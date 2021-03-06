@@ -5,10 +5,10 @@ let properties = new Set([
   'value',
 ]);
 
-let isNil = (val) => val == null;
-let isString = (val) => typeof val === 'string';
-let isNumber = (val) => typeof val === 'number';
-let isFunction = (val) => typeof val === 'function';
+let isNil = (val: unknown) => val == null;
+let isString = (val: unknown): val is string => typeof val === 'string';
+let isNumber = (val: unknown): val is number => typeof val === 'number';
+let isFunction = (val: unknown): val is Function => typeof val === 'function';
 
 let className = (val) => Array.isArray(val)
   ? val.filter(Boolean).join(' ')
@@ -30,7 +30,7 @@ let appendChildren = (node, children) => {
   }
 };
 
-let h = (tagName, props) => {
+let h = (tagName, props): HTMLElement => {
   let node = document.createElement(tagName);
 
   for (let key in props) {
@@ -68,8 +68,8 @@ let h = (tagName, props) => {
   return node;
 };
 
-module.exports = {
+export {
   h,
-  jsx: h,
-  jsxs: h,
+  h as jsx,
+  h as jsxs,
 };

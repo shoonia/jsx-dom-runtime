@@ -1,10 +1,12 @@
 {
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "extends": "eslint:recommended",
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "env": {
     "es6": true,
     "browser": true,
-    "node": true,
     "jest": true
   },
   "parserOptions": {
