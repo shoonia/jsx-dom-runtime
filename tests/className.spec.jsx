@@ -4,12 +4,13 @@ describe('className', () => {
   });
 
   it('should have a few class names when pass the array', () => {
+    // @ts-ignore
     expect(<table className={['one', 'two']} />).toHaveClass('one two');
   });
 
   it('should filtered class names', () => {
     const classNames = [ undefined, 'one', null, 0, NaN, 'two', false ];
-
+    // @ts-ignore
     expect(<div className={classNames} />).toHaveOuterHTML('<div class="one two"></div>');
   });
 });
