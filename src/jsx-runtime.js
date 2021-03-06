@@ -2,12 +2,12 @@ let properties = new Set([
   'innerHTML',
   'innerText',
   'textContent',
+  'value',
 ]);
 
 let isNil = (val) => val == null;
 let isString = (val) => typeof val === 'string';
 let isNumber = (val) => typeof val === 'number';
-let isObject = (val) => typeof val === 'object' && val !== null;
 let isFunction = (val) => typeof val === 'function';
 
 let className = (val) => Array.isArray(val)
@@ -39,7 +39,7 @@ let h = (tagName, props) => {
     if (key === 'style') {
       if (isString(val)) {
         node.style.cssText = val;
-      } else if (isObject(val)) {
+      } else {
         for (let s in val) {
           node.style[s] = val[s];
         }
@@ -48,7 +48,7 @@ let h = (tagName, props) => {
       node.setAttribute('class', className(val));
     } else if (key === 'children') {
       appendChildren(node, val);
-    } else if (properties.has(key)) {
+    } else if (properties.has(key) && key in node) {
       node[key] = val;
     } else if (key[0] === 'o' && key[1] === 'n') {
       let name = key.toLowerCase();
