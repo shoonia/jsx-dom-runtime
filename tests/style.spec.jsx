@@ -1,8 +1,7 @@
 describe('Style attribute', () => {
   it('should add style as a string', () => {
     // @ts-ignore
-    expect(<div style="color: red; padding: 10px;" />).toHaveAttribute(
-      'style',
+    expect(<div style="color: red; padding: 10px;" />).toHaveStyle(
       'color: red; padding: 10px;',
     );
   });
@@ -11,8 +10,7 @@ describe('Style attribute', () => {
     expect(<div style={{
       color: 'black',
       border: '1px solid white',
-    }} />).toHaveAttribute(
-      'style',
+    }} />).toHaveStyle(
       'color: black; border: 1px solid white;',
     );
   });
