@@ -1,8 +1,7 @@
 {
   "parser": "@typescript-eslint/parser",
   "extends": [
-    "eslint:recommended",
-    "plugin:@typescript-eslint/recommended"
+    "eslint:recommended"
   ],
   "plugins": [
     "@typescript-eslint"
@@ -20,7 +19,6 @@
     }
   },
   "rules": {
-    "@typescript-eslint/explicit-module-boundary-types": "off",
     "linebreak-style": "off",
     "no-else-return": "error",
     "no-trailing-spaces": "error",

@@ -1,23 +1,23 @@
-const properties = new Set([
+let properties = new Set([
   'innerHTML',
   'innerText',
   'textContent',
   'value',
 ]);
 
-const isNil = (val: unknown) => val == null;
-const isString = (val: unknown): val is string => typeof val === 'string';
-const isNumber = (val: unknown): val is number => typeof val === 'number';
-const isFunction = (val: unknown) => typeof val === 'function';
+let isNil = (val) => val == null;
+let isString = (val) => typeof val === 'string';
+let isNumber = (val) => typeof val === 'number';
+let isFunction = (val) => typeof val === 'function';
 
-const className = (val) => Array.isArray(val)
+let className = (val) => Array.isArray(val)
   ? val.filter(Boolean).join(' ')
   : val;
 
-const appendChildren = (node: Element, children) => {
+let appendChildren = (node, children) => {
   if (!isNil(children) && children !== false) {
     if (Array.isArray(children)) {
-      for (const child of children) {
+      for (let child of children) {
         appendChildren(node, child);
       }
     } else {
@@ -30,19 +30,17 @@ const appendChildren = (node: Element, children) => {
   }
 };
 
-type M = HTMLElementTagNameMap;
+let h = (tagName, props) => {
+  let node = document.createElement(tagName);
 
-const h = <T extends keyof M>(tagName: T, props): M[T] => {
-  const node = document.createElement<T>(tagName);
-
-  for (const key in props) {
-    const val = props[key];
+  for (let key in props) {
+    let val = props[key];
 
     if (key === 'style') {
       if (isString(val)) {
         node.style.cssText = val;
       } else {
-        for (const s in val) {
+        for (let s in val) {
           node.style[s] = val[s];
         }
       }
@@ -53,7 +51,7 @@ const h = <T extends keyof M>(tagName: T, props): M[T] => {
     } else if (properties.has(key) && key in node) {
       node[key] = val;
     } else if (key[0] === 'o' && key[1] === 'n') {
-      const name = key.toLowerCase();
+      let name = key.toLowerCase();
 
       if (name in node) {
         if (isNil(val)) {
