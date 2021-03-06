@@ -1,7 +1,7 @@
 declare global {
   namespace jest {
     interface Matchers<R> {
-      toBeHaveOuterHTML(html: string): R;
+      toHaveOuterHTML(html: string): R;
     }
   }
 }

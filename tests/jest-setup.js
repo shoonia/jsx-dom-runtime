@@ -1,7 +1,7 @@
 require('@testing-library/jest-dom');
 
 expect.extend({
-  toBeHaveOuterHTML(node, html) {
+  toHaveOuterHTML(node, html) {
     const val = node.outerHTML;
 
     if (val === html) {

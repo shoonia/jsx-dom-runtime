@@ -1,11 +1,11 @@
 
 describe('Smoke', () => {
   it('should create a div', () => {
-    expect(<div />).toBeHaveOuterHTML('<div></div>')
+    expect(<div />).toHaveOuterHTML('<div></div>')
   });
 
   it('should have a text', () => {
-    expect(<span>hello</span>).toBeHaveOuterHTML('<span>hello</span>');
+    expect(<span>hello</span>).toHaveOuterHTML('<span>hello</span>');
   });
 
   it.each([
@@ -19,7 +19,7 @@ describe('Smoke', () => {
     [true, /***************/ '<p>true</p>'],
     [[0, 1, NaN, true], /**/ '<p>01NaNtrue</p>'],
   ])('should have a stringified child node if %s', (val, html) => {
-    expect(<p>{val}</p>).toBeHaveOuterHTML(html);
+    expect(<p>{val}</p>).toHaveOuterHTML(html);
   });
 
   it.each([
@@ -28,7 +28,7 @@ describe('Smoke', () => {
     false,
     [],
   ])(`should haven't child nodes if %s`, (child) => {
-    expect(<div>{child}</div>).toBeHaveOuterHTML('<div></div>');
+    expect(<div>{child}</div>).toHaveOuterHTML('<div></div>');
   });
 
   it('should have a child node', () => {
@@ -36,7 +36,7 @@ describe('Smoke', () => {
       <div>
         <p>text</p>
       </div>
-    ).toBeHaveOuterHTML('<div><p>text</p></div>');
+    ).toHaveOuterHTML('<div><p>text</p></div>');
   });
 
   it('should have two children nodes', () => {
@@ -45,7 +45,7 @@ describe('Smoke', () => {
         <li>one</li>
         <li>two</li>
       </ul>
-    ).toBeHaveOuterHTML(
+    ).toHaveOuterHTML(
       '<ul><li>one</li><li>two</li></ul>',
     );
   });
@@ -56,7 +56,7 @@ describe('Smoke', () => {
         one
         <code>two</code>
       </pre>
-    ).toBeHaveOuterHTML(
+    ).toHaveOuterHTML(
       '<pre>one<code>two</code></pre>',
     );
   });
@@ -72,7 +72,7 @@ describe('Smoke', () => {
           ]
         }
       </div>
-    ).toBeHaveOuterHTML(
+    ).toHaveOuterHTML(
       '<div><nav></nav><span></span>text</div>',
     );
   });

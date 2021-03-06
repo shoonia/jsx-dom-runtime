@@ -10,6 +10,6 @@ describe('className', () => {
   it('should filtered class names', () => {
     const classNames = [ undefined, 'one', null, 0, NaN, 'two', false ];
 
-    expect(<div className={classNames} />).toBeHaveOuterHTML('<div class="one two"></div>');
+    expect(<div className={classNames} />).toHaveOuterHTML('<div class="one two"></div>');
   })
 });
