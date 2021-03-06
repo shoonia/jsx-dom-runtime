@@ -33,37 +33,35 @@ let appendChildren = (node, children) => {
 let h = (tagName, props) => {
   let node = document.createElement(tagName);
 
-  if (isObject(props)) {
-    for (let key in props) {
-      let val = props[key];
+  for (let key in props) {
+    let val = props[key];
 
-      if (key === 'style') {
-        if (isString(val)) {
-          node.style.cssText = val;
-        } else if (isObject(val)) {
-          for (let s in val) {
-            node.style[s] = val[s];
-          }
+    if (key === 'style') {
+      if (isString(val)) {
+        node.style.cssText = val;
+      } else if (isObject(val)) {
+        for (let s in val) {
+          node.style[s] = val[s];
         }
-      } else if (key === 'className') {
-        node.setAttribute('class', className(val));
-      } else if (key === 'children') {
-        appendChildren(node, val);
-      } else if (properties.has(key)) {
-        node[key] = val;
-      } else if (key[0] === 'o' && key[1] === 'n') {
-        let name = key.toLowerCase();
-
-        if (name in node) {
-          if (isNil(val)) {
-            node[name] = null;
-          } else if (isFunction(val)) {
-            node[name] = val;
-          }
-        }
-      } else if (!isNil(val)) {
-        node.setAttribute(key, String(val));
       }
+    } else if (key === 'className') {
+      node.setAttribute('class', className(val));
+    } else if (key === 'children') {
+      appendChildren(node, val);
+    } else if (properties.has(key)) {
+      node[key] = val;
+    } else if (key[0] === 'o' && key[1] === 'n') {
+      let name = key.toLowerCase();
+
+      if (name in node) {
+        if (isNil(val)) {
+          node[name] = null;
+        } else if (isFunction(val)) {
+          node[name] = val;
+        }
+      }
+    } else if (!isNil(val)) {
+      node.setAttribute(key, String(val));
     }
   }
 
