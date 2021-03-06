@@ -1,7 +1,7 @@
 
 describe('Smoke', () => {
   it('should create a div', () => {
-    expect(<div />).toHaveOuterHTML('<div></div>')
+    expect(<div />).toHaveOuterHTML('<div></div>');
   });
 
   it('should have a text', () => {
@@ -27,7 +27,7 @@ describe('Smoke', () => {
     null,
     false,
     [],
-  ])(`should haven't child nodes if %s`, (child) => {
+  ])('should haven\'t child nodes if %s', (child) => {
     expect(<div>{child}</div>).toHaveOuterHTML('<div></div>');
   });
 

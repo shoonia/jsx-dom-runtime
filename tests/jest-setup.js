@@ -9,11 +9,11 @@ expect.extend({
         message: () => `expected "${val}" not to be equal outerHTML "${html}"`,
         pass: true,
       };
-    } else {
-      return {
-        message: () => `expected "${val}" to be equal outerHTML "${html}"`,
-        pass: false,
-      };
     }
+
+    return {
+      message: () => `expected "${val}" to be equal outerHTML "${html}"`,
+      pass: false,
+    };
   },
 });

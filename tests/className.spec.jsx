@@ -11,5 +11,5 @@ describe('className', () => {
     const classNames = [ undefined, 'one', null, 0, NaN, 'two', false ];
 
     expect(<div className={classNames} />).toHaveOuterHTML('<div class="one two"></div>');
-  })
+  });
 });
