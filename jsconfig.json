@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "checkJs": true,
+    "esModuleInterop": true,
+    "sourceMap": false,
+    "target": "ES5",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "noEmit": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "preserve",
+    "lib": [
+      "dom",
+      "es2020"
+    ]
+  },
+  "include": [
+    "./src/**/*.js",
+    "./tests/**/*.js",
+    "./tests/**/*.jsx"
+  ],
+  "files": [
+    "./types/index.d.ts",
+    "./types/global.d.ts"
+  ]
+}

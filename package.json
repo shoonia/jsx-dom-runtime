@@ -1,0 +1,20 @@
+{
+  "name": "h",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/jsx-runtime.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.13.8",
+    "@babel/plugin-transform-modules-commonjs": "^7.13.8",
+    "@babel/plugin-transform-react-jsx": "^7.12.17",
+    "@testing-library/jest-dom": "^5.11.9",
+    "@types/testing-library__jest-dom": "^5.9.5",
+    "babel-jest": "^26.6.3",
+    "jest": "^26.6.3"
+  },
+  "keywords": [],
+  "license": "MIT"
+}
