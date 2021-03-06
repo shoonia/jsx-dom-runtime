@@ -1,23 +1,23 @@
-let properties = new Set([
+const properties = new Set([
   'innerHTML',
   'innerText',
   'textContent',
   'value',
 ]);
 
-let isNil = (val: unknown) => val == null;
-let isString = (val: unknown): val is string => typeof val === 'string';
-let isNumber = (val: unknown): val is number => typeof val === 'number';
-let isFunction = (val: unknown): val is Function => typeof val === 'function';
+const isNil = (val: unknown) => val == null;
+const isString = (val: unknown): val is string => typeof val === 'string';
+const isNumber = (val: unknown): val is number => typeof val === 'number';
+const isFunction = (val: unknown) => typeof val === 'function';
 
-let className = (val) => Array.isArray(val)
+const className = (val) => Array.isArray(val)
   ? val.filter(Boolean).join(' ')
   : val;
 
-let appendChildren = (node, children) => {
+const appendChildren = (node: Element, children) => {
   if (!isNil(children) && children !== false) {
     if (Array.isArray(children)) {
-      for (let child of children) {
+      for (const child of children) {
         appendChildren(node, child);
       }
     } else {
@@ -30,17 +30,19 @@ let appendChildren = (node, children) => {
   }
 };
 
-let h = (tagName, props): HTMLElement => {
-  let node = document.createElement(tagName);
+type M = HTMLElementTagNameMap;
 
-  for (let key in props) {
-    let val = props[key];
+const h = <T extends keyof M>(tagName: T, props): M[T] => {
+  const node = document.createElement<T>(tagName);
+
+  for (const key in props) {
+    const val = props[key];
 
     if (key === 'style') {
       if (isString(val)) {
         node.style.cssText = val;
       } else {
-        for (let s in val) {
+        for (const s in val) {
           node.style[s] = val[s];
         }
       }
@@ -51,7 +53,7 @@ let h = (tagName, props): HTMLElement => {
     } else if (properties.has(key) && key in node) {
       node[key] = val;
     } else if (key[0] === 'o' && key[1] === 'n') {
-      let name = key.toLowerCase();
+      const name = key.toLowerCase();
 
       if (name in node) {
         if (isNil(val)) {

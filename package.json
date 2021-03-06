@@ -5,7 +5,8 @@
   "main": "src/jsx-runtime.js",
   "scripts": {
     "lint": "eslint src/** tests/**",
-    "test": "jest"
+    "test": "jest",
+    "posttest": "npm run lint"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
