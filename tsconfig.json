@@ -10,7 +10,8 @@
     "moduleResolution": "Node",
     "noEmit": true,
     "forceConsistentCasingInFileNames": true,
-    "jsx": "preserve",
+    "jsx": "react-jsx",
+    "jsxImportSource": ".",
     "lib": [
       "ES2020",
       "DOM"
@@ -21,7 +22,7 @@
     "./tests/**/*.tsx"
   ],
   "files": [
-    "./src/jsx-runtime.js",
+    "./jsx-runtime/src/index.js",
     "./types/global.d.ts"
   ]
 }

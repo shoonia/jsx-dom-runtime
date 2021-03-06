@@ -16,7 +16,7 @@ module.exports = {
       '@babel/transform-react-jsx',
       {
         runtime: 'automatic',
-        importSource: resolve(process.cwd(), 'src'),
+        importSource: resolve(process.cwd()),
       }
     ]
   ]

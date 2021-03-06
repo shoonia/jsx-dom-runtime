@@ -1,2 +1,4 @@
 node_modules/
+jsx-runtime/dist/
+
 .DS_Store
