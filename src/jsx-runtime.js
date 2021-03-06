@@ -61,12 +61,8 @@ let h = (tagName, props) => {
             node[name] = val;
           }
         }
-      } else {
-        if (isNil(val)) {
-          node.removeAttribute(key);
-        } else {
-          node.setAttribute(key, String(val));
-        }
+      } else if (!isNil(val)) {
+        node.setAttribute(key, String(val));
       }
     }
   }
