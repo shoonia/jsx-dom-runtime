@@ -44,7 +44,7 @@ emptyDirSync(dist);
 outputJSONSync(resolve('package.json'), pkg, { spaces: 2 });
 
 export default {
-  input: './src/index.js',
+  input: join('src', source),
   output: [
     {
       file: resolve(source),

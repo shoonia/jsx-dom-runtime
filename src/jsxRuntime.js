@@ -11,6 +11,8 @@ let isNumber = (val) => typeof val === 'number';
 let isFunction = (val) => typeof val === 'function';
 let isArray = Array.isArray;
 
+let Fragment = () => document.createDocumentFragment();
+
 let className = (val) => isArray(val)
   ? val.filter(Boolean).join(' ')
   : val;
@@ -31,8 +33,12 @@ let appendChildren = (node, children) => {
   }
 };
 
-let jsx = (tagName, props) => {
-  let node = document.createElement(tagName);
+let jsx = (el, props) => {
+  let node = isString(el)
+    ? document.createElement(el)
+    : isFunction(el)
+      ? el()
+      : el;
 
   for (let key in props) {
     let val = props[key];
@@ -68,4 +74,5 @@ let jsx = (tagName, props) => {
 export {
   jsx,
   jsx as jsxs,
+  Fragment,
 };
