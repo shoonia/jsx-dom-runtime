@@ -2,7 +2,9 @@
   "name": "h",
   "version": "1.0.0",
   "description": "",
-  "main": "src/jsx-runtime.js",
+  "main": "jsx-runtime/jsxRuntime.cjs.js",
+  "module": "jsx-runtime/jsxRuntime.module.js",
+  "sideEffects": false,
   "scripts": {
     "lint": "eslint jsx-runtime/src/** tests/**",
     "test": "jest",
@@ -10,9 +12,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
+    "@babel/plugin-transform-modules-amd": "^7.13.0",
+    "@babel/plugin-transform-modules-umd": "^7.13.0",
     "@babel/plugin-transform-react-jsx": "^7.12.17",
     "@babel/preset-env": "^7.13.9",
     "@babel/preset-typescript": "^7.13.0",
+    "@rollup/plugin-babel": "^5.3.0",
     "@testing-library/dom": "^7.29.6",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/user-event": "^12.8.1",
@@ -21,9 +26,11 @@
     "@typescript-eslint/parser": "^4.16.1",
     "babel-jest": "^26.6.3",
     "eslint": "^7.21.0",
+    "fs-extra": "^9.1.0",
     "husky": "^5.1.3",
     "jest": "^26.6.3",
     "rollup": "^2.40.0",
+    "rollup-plugin-terser": "^7.0.2",
     "typescript": "^4.2.3"
   },
   "husky": {
