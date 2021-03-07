@@ -9,17 +9,16 @@ let isNil = (val) => val == null;
 let isString = (val) => typeof val === 'string';
 let isNumber = (val) => typeof val === 'number';
 let isFunction = (val) => typeof val === 'function';
+let isArray = Array.isArray;
 
-let className = (val) => Array.isArray(val)
+let className = (val) => isArray(val)
   ? val.filter(Boolean).join(' ')
   : val;
 
 let appendChildren = (node, children) => {
   if (!isNil(children) && children !== false) {
-    if (Array.isArray(children)) {
-      let i = 0;
-
-      while (children.length > i) {
+    if (isArray(children)) {
+      for (let i = 0; children.length > i;) {
         appendChildren(node, children[i++]);
       }
     } else {
@@ -32,13 +31,19 @@ let appendChildren = (node, children) => {
   }
 };
 
-let h = (tagName, props) => {
+let jsx = (tagName, props) => {
   let node = document.createElement(tagName);
 
   for (let key in props) {
     let val = props[key];
 
-    if (key === 'style') {
+    if (key === 'className') {
+      node.setAttribute('class', className(val));
+    } else if (key === 'children') {
+      appendChildren(node, val);
+    } else if (properties.has(key) && key in node) {
+      node[key] = val;
+    } else if (key === 'style') {
       if (isString(val)) {
         node.style.cssText = val;
       } else {
@@ -46,21 +51,11 @@ let h = (tagName, props) => {
           node.style[s] = val[s];
         }
       }
-    } else if (key === 'className') {
-      node.setAttribute('class', className(val));
-    } else if (key === 'children') {
-      appendChildren(node, val);
-    } else if (properties.has(key) && key in node) {
-      node[key] = val;
-    } else if (key[0] === 'o' && key[1] === 'n') {
+    } else if (key[0] === 'o' && key[1] === 'n' && isFunction(val)) {
       let name = key.toLowerCase();
 
       if (name in node) {
-        if (isNil(val)) {
-          node[name] = null;
-        } else if (isFunction(val)) {
-          node[name] = val;
-        }
+        node[name] = val;
       }
     } else if (!isNil(val)) {
       node.setAttribute(key, String(val));
@@ -71,7 +66,6 @@ let h = (tagName, props) => {
 };
 
 export {
-  h,
-  h as jsx,
-  h as jsxs,
+  jsx,
+  jsx as jsxs,
 };
