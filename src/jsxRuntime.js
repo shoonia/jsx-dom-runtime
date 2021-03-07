@@ -47,11 +47,14 @@ let jsx = (el, props) => {
   }
 
   let node = doc.createElement(el);
+  let ref = props.ref;
 
   for (let key in props) {
     let val = props[key];
 
-    if (key === 'className') {
+    if (key === 'ref') {
+      // noop
+    } else if (key === 'className') {
       node.setAttribute('class', className(val));
     } else if (key === 'children') {
       appendChildren(node, val);
@@ -73,6 +76,14 @@ let jsx = (el, props) => {
       }
     } else if (!isNil(val)) {
       node.setAttribute(key, String(val));
+    }
+  }
+
+  if (!isNil(ref)) {
+    if ('current' in ref) {
+      ref.current = node;
+    } else if (isFunction(ref)) {
+      ref(node);
     }
   }
 

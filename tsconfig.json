@@ -22,7 +22,7 @@
     "./tests/**/*.tsx"
   ],
   "files": [
-    "./jsx-runtime/src/index.js",
+    "./src/jsxRuntime.js",
     "./types/global.d.ts"
   ]
 }
