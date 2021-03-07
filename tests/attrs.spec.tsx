@@ -10,4 +10,8 @@ describe('Props', () => {
   it('should have the role attribute', () => {
     expect(<div role="contentinfo" />).toHaveOuterHTML('<div role="contentinfo"></div>');
   });
+
+  it('should support htmlFor attribute in <label />', () => {
+    expect(<label htmlFor="some-id" />).toHaveOuterHTML('<label for="some-id"></label>');
+  });
 });

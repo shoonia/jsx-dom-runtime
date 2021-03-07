@@ -3,6 +3,7 @@ let properties = new Set([
   'innerText',
   'textContent',
   'value',
+  'htmlFor',
 ]);
 
 let isNil = (val) => val == null;
