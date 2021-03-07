@@ -6,7 +6,7 @@
   "module": "jsx-runtime/jsxRuntime.module.js",
   "sideEffects": false,
   "scripts": {
-    "lint": "eslint jsx-runtime/src/** tests/**",
+    "lint": "eslint src/** tests/**",
     "test": "jest",
     "build": "rollup -c"
   },
