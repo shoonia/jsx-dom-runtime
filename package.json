@@ -8,7 +8,9 @@
   "scripts": {
     "lint": "eslint src/** tests/**",
     "test": "jest",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "pretest": "npm run build",
+    "posttest": "npm run lint"
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
@@ -35,7 +37,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint && npm test"
+      "pre-commit": "npm test"
     }
   },
   "engines": {
