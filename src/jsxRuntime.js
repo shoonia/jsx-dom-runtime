@@ -9,9 +9,9 @@ let isNil = (val) => val == null;
 let isString = (val) => typeof val === 'string';
 let isNumber = (val) => typeof val === 'number';
 let isFunction = (val) => typeof val === 'function';
-let isArray = Array.isArray;
 
-let Fragment = () => document.createDocumentFragment();
+let isArray = Array.isArray;
+let doc = document;
 
 let className = (val) => isArray(val)
   ? val.filter(Boolean).join(' ')
@@ -27,18 +27,25 @@ let appendChildren = (node, children) => {
       node.appendChild(
         isNumber(children.nodeType)
           ? children
-          : document.createTextNode(children)
+          : doc.createTextNode(children)
       );
     }
   }
 };
 
+let Fragment = ({ children }) => {
+  let fragment = doc.createDocumentFragment();
+
+  appendChildren(fragment, children);
+  return fragment;
+};
+
 let jsx = (el, props) => {
-  let node = isString(el)
-    ? document.createElement(el)
-    : isFunction(el)
-      ? el()
-      : el;
+  if (isFunction(el)) {
+    return el(props);
+  }
+
+  let node = doc.createElement(el);
 
   for (let key in props) {
     let val = props[key];
