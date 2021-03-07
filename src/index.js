@@ -17,8 +17,10 @@ let className = (val) => Array.isArray(val)
 let appendChildren = (node, children) => {
   if (!isNil(children) && children !== false) {
     if (Array.isArray(children)) {
-      for (let child of children) {
-        appendChildren(node, child);
+      let i = 0;
+
+      while (children.length > i) {
+        appendChildren(node, children[i++]);
       }
     } else {
       node.appendChild(
