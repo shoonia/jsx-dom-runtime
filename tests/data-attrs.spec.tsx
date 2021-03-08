@@ -4,8 +4,11 @@ describe('Data attribute', () => {
   });
 
   it('should set attribute with boolean value', () => {
+    expect(<b data-on />).toHaveOuterHTML('<b data-on="true"></b>');
     expect(<b data-on={true} />).toHaveOuterHTML('<b data-on="true"></b>');
     expect(<b data-on={false} />).toHaveOuterHTML('<b data-on="false"></b>');
+    expect(<b data-on="true" />).toHaveOuterHTML('<b data-on="true"></b>');
+    expect(<b data-on="false" />).toHaveOuterHTML('<b data-on="false"></b>');
   });
 
   it('shoud not set attribute with null or undefined', () => {

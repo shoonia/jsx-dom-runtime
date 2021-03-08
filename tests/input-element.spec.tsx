@@ -1,3 +1,5 @@
+const off = [false, null, undefined];
+
 describe('HTMLInputElement', () => {
   it('should set value', () => {
     expect(<input type="text" value="test text" />).toHaveValue('test text');
@@ -15,19 +17,51 @@ describe('HTMLInputElement', () => {
     expect(<input size={24} />).toHaveProperty('size', 24);
   });
 
-  it('should have autofocus', () => {
-    expect(<input autofocus />).toHaveProperty('autofocus');
+  it('should have correct attribute value `autofocus`', () => {
+    expect(<input autofocus />).toHaveProperty('autofocus', true);
+    expect(<input autofocus />).toHaveAttribute('autofocus', '');
+    expect(<input autofocus={true} />).toHaveProperty('autofocus', true);
+    expect(<input autofocus={true} />).toHaveAttribute('autofocus', '');
   });
 
-  it('should be disabled', () => {
+  it.each(off)('should not have attribute `autofocus`', (val) => {
+    expect(<input autofocus={val} />).not.toHaveAttribute('autofocus');
+    expect(<input autofocus={val} />).toHaveProperty('autofocus', false);
+  });
+
+  it('should have correct attribute value `disabled`', () => {
     expect(<input disabled />).toBeDisabled();
+    expect(<input disabled />).toHaveAttribute('disabled', '');
+    expect(<input disabled={true} />).toBeDisabled();
+    expect(<input disabled={true} />).toHaveAttribute('disabled', '');
   });
 
-  it('should be required', () => {
+  it.each(off)('should not have attribute `disabled`', (val) => {
+    expect(<input disabled={val} />).not.toHaveAttribute('disabled');
+    expect(<input disabled={val} />).not.toBeDisabled();
+  });
+
+  it('should have correct attribute value `required`', () => {
     expect(<input required />).toBeRequired();
+    expect(<input required />).toHaveAttribute('required', '');
+    expect(<input required={true} />).toBeRequired();
+    expect(<input required={true} />).toHaveAttribute('required', '');
   });
 
-  it('should be required', () => {
-    expect(<input readonly />).toHaveAttribute('readonly');
+  it.each(off)('should not have attribute `required`', (val) => {
+    expect(<input required={val} />).not.toHaveAttribute('required');
+    expect(<input required={val} />).toHaveProperty('required', false);
+  });
+
+  it('should have correct attribute value `required`', () => {
+    expect(<input readOnly />).toHaveAttribute('readonly', '');
+    expect(<input readOnly />).toHaveProperty('readOnly', true);
+    expect(<input readOnly={true} />).toHaveAttribute('readonly', '');
+    expect(<input readOnly={true} />).toHaveProperty('readOnly', true);
+  });
+
+  it.each(off)('should not have attribute `readonly`', (val) => {
+    expect(<input readOnly={val} />).not.toHaveAttribute('readonly');
+    expect(<input readOnly={val} />).toHaveProperty('readOnly', false);
   });
 });

@@ -10,6 +10,7 @@ let isNotNil = (val) => val != null;
 let isString = (val) => typeof val === 'string';
 let isNumber = (val) => typeof val === 'number';
 let isFunction = (val) => typeof val === 'function';
+let isBoolean = (val) => typeof val === 'boolean';
 
 let isArray = Array.isArray;
 let doc = document;
@@ -76,7 +77,17 @@ let jsx = (el, props) => {
         node[name] = val;
       }
     } else if (isNotNil(val)) {
-      node.setAttribute(key, String(val));
+      if (isBoolean(val)) {
+        if (/(aria|data)-/.test(key)) {
+          node.setAttribute(key, String(val));
+        } else if (val) {
+          node.setAttribute(key, '');
+        } else {
+          node.removeAttribute(key);
+        }
+      } else {
+        node.setAttribute(key, String(val));
+      }
     }
   }
 

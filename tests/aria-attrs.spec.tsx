@@ -4,8 +4,11 @@ describe('ARIA attribute', () => {
   });
 
   it('should set attribute with boolean value', () => {
+    expect(<b aria-hidden />).toHaveOuterHTML('<b aria-hidden="true"></b>');
     expect(<b aria-hidden={true} />).toHaveOuterHTML('<b aria-hidden="true"></b>');
     expect(<b aria-hidden={false} />).toHaveOuterHTML('<b aria-hidden="false"></b>');
+    expect(<b aria-hidden="true" />).toHaveOuterHTML('<b aria-hidden="true"></b>');
+    expect(<b aria-hidden="false" />).toHaveOuterHTML('<b aria-hidden="false"></b>');
   });
 
   it('shoud not set attribute with null or undefined', () => {
