@@ -2,3 +2,4 @@ node_modules/
 jsx-runtime/
 
 .DS_Store
+*.tgz
