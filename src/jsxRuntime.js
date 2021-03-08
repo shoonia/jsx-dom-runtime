@@ -6,7 +6,7 @@ let properties = new Set([
   'htmlFor',
 ]);
 
-let isNil = (val) => val == null;
+let isNotNil = (val) => val != null;
 let isString = (val) => typeof val === 'string';
 let isNumber = (val) => typeof val === 'number';
 let isFunction = (val) => typeof val === 'function';
@@ -19,7 +19,7 @@ let className = (val) => isArray(val)
   : val;
 
 let appendChildren = (node, children) => {
-  if (!isNil(children) && children !== false) {
+  if (isNotNil(children) && children !== false) {
     if (isArray(children)) {
       for (let i = 0; children.length > i;) {
         appendChildren(node, children[i++]);
@@ -74,12 +74,12 @@ let jsx = (el, props) => {
       if (name in node) {
         node[name] = val;
       }
-    } else if (!isNil(val)) {
+    } else if (isNotNil(val)) {
       node.setAttribute(key, String(val));
     }
   }
 
-  if (!isNil(ref)) {
+  if (isNotNil(ref)) {
     if ('current' in ref) {
       ref.current = node;
     } else if (isFunction(ref)) {
