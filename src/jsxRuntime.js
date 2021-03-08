@@ -68,6 +68,7 @@ let jsx = (el, props) => {
           node.style[s] = val[s];
         }
       }
+    // Benchmark for comparison (thanks preact): https://esbench.com/bench/574c954bdb965b9a00965ac6
     } else if (key[0] === 'o' && key[1] === 'n' && isFunction(val)) {
       let name = key.toLowerCase();
 

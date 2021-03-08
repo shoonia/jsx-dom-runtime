@@ -4,7 +4,6 @@ import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 
 const dist = 'jsx-runtime';
-const amdName = 'jsxRuntime';
 const source = 'jsxRuntime.js';
 const esm = 'jsxRuntime.esm.js';
 const moduleJs = 'jsxRuntime.module.js';
@@ -12,7 +11,6 @@ const cjs = 'jsxRuntime.cjs.js';
 
 const pkg = {
   name: dist,
-  amdName,
   version: '1.0.0',
   description: 'JSX runtime',
   sideEffects: false,
