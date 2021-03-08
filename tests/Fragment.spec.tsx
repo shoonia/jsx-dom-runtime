@@ -7,7 +7,7 @@ describe('Fragment', () => {
       </>
     );
 
-    expect(document.body.innerHTML).toBe('<p>1</p><p>2</p>');
+    expect(document.body).toContainHTML('<p>1</p><p>2</p>');
   });
 
   it('should support Fragment as a component value', () => {
