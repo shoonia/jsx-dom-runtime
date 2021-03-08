@@ -1,5 +1,9 @@
 # jsx-dom-runtime
 
+[![test status](https://github.com/shoonia/jsx-dom-runtime/workflows/tests/badge.svg)](https://github.com/shoonia/jsx-dom-runtime/actions)
+[![npm version](https://badgen.net/npm/v/jsx-dom-runtime)](https://www.npmjs.com/package/jsx-dom-runtime)
+[![minzip](https://badgen.net/bundlephobia/minzip/jsx-dom-runtime@latest)](https://bundlephobia.com/result?p=jsx-dom-runtime)
+
 ## Install
 
 ```bash
