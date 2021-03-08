@@ -9,97 +9,64 @@ const source = 'jsxRuntime.js';
 const esm = 'jsxRuntime.esm.js';
 const moduleJs = 'jsxRuntime.module.js';
 const cjs = 'jsxRuntime.cjs.js';
-const umd = 'jsxRuntime.umd.js';
-const amd = 'jsxRuntime.amd.js';
 
 const pkg = {
   name: dist,
   amdName,
   version: '1.0.0',
   description: 'JSX runtime',
+  sideEffects: false,
   source,
   main: cjs,
   module: moduleJs,
   exports: `./${esm}`,
   esmodule: esm,
-  unpkg: umd,
-  'umd:main': umd,
   private: true,
   license: 'MIT',
 };
 
-const presets = [
-  [
-    '@babel/preset-env',
-    {
-      loose: true,
-      targets: 'defaults',
-    },
+const bablePlugin = getBabelOutputPlugin({
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        loose: true,
+        targets: 'defaults',
+      },
+    ],
   ],
-];
-
-const resolve = (path) => join(dist, path);
+});
 
 emptyDirSync(dist);
-outputJSONSync(resolve('package.json'), pkg, { spaces: 2 });
+outputJSONSync(join(dist, 'package.json'), pkg, { spaces: 2 });
 
 export default {
   input: join('src', source),
   output: [
     {
-      file: resolve(source),
+      file: join(dist, source),
       format: 'esm',
     },
     {
-      file: resolve(esm),
+      file: join(dist, esm),
       format: 'esm',
       plugins: [
         terser(),
       ],
     },
     {
-      file: resolve(moduleJs),
+      file: join(dist, moduleJs),
       format: 'esm',
       plugins: [
-        getBabelOutputPlugin({
-          presets
-        }),
+        bablePlugin,
         terser(),
       ],
     },
     {
-      file: resolve(cjs),
+      file: join(dist, cjs),
       format: 'cjs',
       plugins: [
-        getBabelOutputPlugin({
-          presets
-        }),
-        terser(),
-      ],
-    },
-    {
-      name: amdName,
-      file: resolve(amd),
-      plugins: [
-        getBabelOutputPlugin({
-          presets,
-          plugins: [
-            '@babel/plugin-transform-modules-amd',
-          ],
-        }),
-        terser(),
-      ],
-    },
-    {
-      name: amdName,
-      file: resolve(umd),
-      plugins: [
-        getBabelOutputPlugin({
-          presets,
-          plugins: [
-            '@babel/plugin-transform-modules-umd',
-          ],
-        }),
+        bablePlugin,
         terser(),
       ],
     },

@@ -14,8 +14,6 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.8",
-    "@babel/plugin-transform-modules-amd": "^7.13.0",
-    "@babel/plugin-transform-modules-umd": "^7.13.0",
     "@babel/plugin-transform-react-jsx": "^7.12.17",
     "@babel/preset-env": "^7.13.9",
     "@babel/preset-typescript": "^7.13.0",
@@ -41,8 +39,8 @@
     }
   },
   "engines": {
-    "node": "14.x",
-    "npm": "7.x"
+    "node": "14",
+    "npm": "7"
   },
   "keywords": [],
   "license": "MIT"
