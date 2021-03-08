@@ -50,13 +50,17 @@ let jsx = (el, props) => {
   let node = doc.createElement(el);
   let ref = props.ref;
 
+  let setAttribute = (key, val) => {
+    node.setAttribute(key, val);
+  };
+
   for (let key in props) {
     let val = props[key];
 
     if (key === 'ref') {
       // noop
     } else if (key === 'className') {
-      node.setAttribute('class', className(val));
+      setAttribute('class', className(val));
     } else if (key === 'children') {
       appendChildren(node, val);
     } else if (properties.has(key) && key in node) {
@@ -79,14 +83,14 @@ let jsx = (el, props) => {
     } else if (isNotNil(val)) {
       if (isBoolean(val)) {
         if (/(aria|data)-/.test(key)) {
-          node.setAttribute(key, String(val));
+          setAttribute(key, String(val));
         } else if (val) {
-          node.setAttribute(key, '');
+          setAttribute(key, '');
         } else {
           node.removeAttribute(key);
         }
       } else {
-        node.setAttribute(key, String(val));
+        setAttribute(key, String(val));
       }
     }
   }
