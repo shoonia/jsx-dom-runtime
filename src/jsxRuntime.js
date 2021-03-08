@@ -82,7 +82,7 @@ let jsx = (el, props) => {
       }
     } else if (isNotNil(val)) {
       if (isBoolean(val)) {
-        if (/(aria|data)-/.test(key)) {
+        if (/^(aria|data)-/.test(key)) {
           setAttribute(key, String(val));
         } else if (val) {
           setAttribute(key, '');
