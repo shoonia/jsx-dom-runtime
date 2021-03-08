@@ -1,5 +1,5 @@
 {
-  "name": "h",
+  "name": "jsx-dom-runtime",
   "version": "1.0.0",
   "description": "",
   "main": "jsx-runtime/jsxRuntime.cjs.js",
