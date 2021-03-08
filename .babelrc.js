@@ -1,8 +1,9 @@
 const { resolve } = require('path');
 
+const root = process.cwd();
+
 module.exports = {
   presets: [
-    '@babel/preset-typescript',
     [
       '@babel/preset-env',
       {
@@ -10,14 +11,11 @@ module.exports = {
         targets: { node: 14 },
       },
     ],
-  ],
-  plugins: [
     [
-      '@babel/transform-react-jsx',
+      resolve(root, 'babel-preset'),
       {
-        runtime: 'automatic',
-        importSource: resolve(process.cwd()),
+        importSource: resolve(root),
       }
     ]
-  ]
+  ],
 }

@@ -18,14 +18,8 @@ yarn add jsx-dom-runtime
 
 ```json
 {
-  "plugins": [
-    [
-      "@babel/transform-react-jsx",
-      {
-        "runtime": "automatic",
-        "importSource": "jsx-dom-runtime",
-      }
-    ]
+  "presets": [
+    "jsx-dom-runtime/babel-preset"
   ]
 }
 ```

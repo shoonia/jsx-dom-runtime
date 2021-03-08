@@ -6,7 +6,7 @@ beforeEach(() => {
 });
 
 export class Driver {
-  render(node: Element) {
+  render(node) {
     return document.body.appendChild(node);
   }
 
@@ -14,15 +14,15 @@ export class Driver {
     return getByTestId(document.body, dataId);
   }
 
-  getAll(dataId: string) {
+  getAll(dataId) {
     return getAllByTestId(document.body, dataId);
   }
 
-  click(dataId: string) {
+  click(dataId) {
     userEvent.click(this.get(dataId));
   }
 
-  dblClick(dataId: string) {
+  dblClick(dataId) {
     userEvent.dblClick(this.get(dataId));
   }
 }
