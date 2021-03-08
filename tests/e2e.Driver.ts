@@ -1,5 +1,4 @@
-import { getAllByTestId, getByTestId } from '@testing-library/dom';
-import userEvent from '@testing-library/user-event';
+import { fireEvent, getAllByTestId, getByTestId } from '@testing-library/dom';
 
 beforeEach(() => {
   document.body.innerHTML = '';
@@ -19,10 +18,6 @@ export class Driver {
   }
 
   click(dataId) {
-    userEvent.click(this.get(dataId));
-  }
-
-  dblClick(dataId) {
-    userEvent.dblClick(this.get(dataId));
+    fireEvent.click(this.get(dataId));
   }
 }

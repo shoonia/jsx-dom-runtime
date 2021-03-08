@@ -28,7 +28,7 @@ it('should add new items to list by click', () => {
 
   expect(driver.getAll('item')).toHaveLength(1);
 
-  driver.dblClick('button');
+  driver.click('button');
 
-  expect(driver.getAll('item')).toHaveLength(3);
+  expect(driver.getAll('item')).toHaveLength(2);
 });
