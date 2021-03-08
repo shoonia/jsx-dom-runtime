@@ -12,11 +12,13 @@
     "pretest": "npm run build",
     "posttest": "npm run lint"
   },
-  "devDependencies": {
+  "dependencies": {
     "@babel/core": "^7.13.8",
-    "@babel/plugin-transform-react-jsx": "^7.12.17",
+    "@babel/helper-plugin-utils": "^7.13.0",
+    "@babel/plugin-transform-react-jsx": "^7.12.17"
+  },
+  "devDependencies": {
     "@babel/preset-env": "^7.13.9",
-    "@babel/preset-typescript": "^7.13.0",
     "@rollup/plugin-babel": "^5.3.0",
     "@testing-library/dom": "^7.29.6",
     "@testing-library/jest-dom": "^5.11.9",
@@ -36,6 +38,7 @@
   "files": [
     "src",
     "jsx-runtime",
+    "babel-preset",
     "README",
     "LICENSE"
   ],
