@@ -1,7 +1,7 @@
 {
   "name": "jsx-dom-runtime",
-  "version": "0.1.0",
-  "description": "",
+  "version": "0.2.0",
+  "description": "JSX syntax for DOM Element",
   "main": "jsx-runtime/jsxRuntime.cjs.js",
   "module": "jsx-runtime/jsxRuntime.module.js",
   "sideEffects": false,
