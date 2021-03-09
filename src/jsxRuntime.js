@@ -50,20 +50,16 @@ let jsx = (el, props) => {
   let node = doc.createElement(el);
   let ref = props.ref;
 
-  let setAttribute = (key, val) => {
-    node.setAttribute(key, val);
-  };
-
   for (let key in props) {
     let val = props[key];
 
     if (key === 'ref') {
       // noop
     } else if (key === 'className') {
-      setAttribute('class', className(val));
+      node.setAttribute('class', className(val));
     } else if (key === 'children') {
       appendChildren(node, val);
-    } else if (properties.has(key) && key in node) {
+    } else if (properties.has(key)) {
       node[key] = val;
     } else if (key === 'style') {
       if (isString(val)) {
@@ -74,7 +70,7 @@ let jsx = (el, props) => {
         }
       }
     // Benchmark for comparison (thanks preact): https://esbench.com/bench/574c954bdb965b9a00965ac6
-    } else if (key[0] === 'o' && key[1] === 'n' && isFunction(val)) {
+    } else if (key[0] === 'o' && key[1] === 'n') {
       let name = key.toLowerCase();
 
       if (name in node) {
@@ -83,14 +79,12 @@ let jsx = (el, props) => {
     } else if (isNotNil(val)) {
       if (isBoolean(val)) {
         if (/^(aria|data)-/.test(key)) {
-          setAttribute(key, String(val));
-        } else if (val) {
-          setAttribute(key, '');
+          node.setAttribute(key, '' + val);
         } else {
-          node.removeAttribute(key);
+          node[key] = val;
         }
       } else {
-        setAttribute(key, String(val));
+        node.setAttribute(key, String(val));
       }
     }
   }
