@@ -1,6 +1,5 @@
 let properties = new Set([
   'innerHTML',
-  'innerText',
   'textContent',
   'value',
   'htmlFor',
