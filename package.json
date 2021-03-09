@@ -10,7 +10,8 @@
     "test": "jest",
     "build": "rollup -c",
     "pretest": "npm run build",
-    "posttest": "npm run lint"
+    "posttest": "npm run lint && size-limit",
+    "size": "npm run build && size-limit"
   },
   "dependencies": {
     "@babel/core": "^7.13.8",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.13.9",
     "@rollup/plugin-babel": "^5.3.0",
+    "@size-limit/preset-small-lib": "^4.10.1",
     "@testing-library/dom": "^7.29.6",
     "@testing-library/jest-dom": "^5.11.9",
     "@types/testing-library__jest-dom": "^5.9.5",
@@ -32,6 +34,7 @@
     "jest": "^26.6.3",
     "rollup": "^2.40.0",
     "rollup-plugin-terser": "^7.0.2",
+    "size-limit": "^4.10.1",
     "typescript": "^4.2.3"
   },
   "files": [
@@ -51,6 +54,20 @@
       "pre-commit": "npm test"
     }
   },
+  "size-limit": [
+    {
+      "path": "jsx-runtime/jsxRuntime.esm.js",
+      "limit": "506 B"
+    },
+    {
+      "path": "jsx-runtime/jsxRuntime.cjs.js",
+      "limit": "501 B"
+    },
+    {
+      "path": "jsx-runtime/jsxRuntime.module.js",
+      "limit": "512 B"
+    }
+  ],
   "engines": {
     "node": "14",
     "npm": "7"
