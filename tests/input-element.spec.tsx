@@ -64,4 +64,29 @@ describe('HTMLInputElement', () => {
     expect(<input readOnly={val} />).not.toHaveAttribute('readonly');
     expect(<input readOnly={val} />).toHaveProperty('readOnly', false);
   });
+
+  it('s', () => {
+    expect(<input type="text" placeholder="noop" />).toHaveProperty('placeholder', 'noop');
+    expect(<input type="text" placeholder="noop" />).toHaveAttribute('placeholder', 'noop');
+  });
+
+  it('should work with checkbox', () => {
+    expect(<input type="checkbox" checked />).toHaveProperty('checked', true);
+    expect(<input type="checkbox" checked={true} />).toHaveProperty('checked', true);
+  });
+
+  it('should work with radio button', () => {
+    expect(<input type="radio" checked />).toHaveProperty('checked', true);
+    expect(<input type="radio" checked={true} />).toHaveProperty('checked', true);
+  });
+
+  it('should set inputMode', () => {
+    expect(<input type="password" inputMode="numeric" />).toHaveProperty('inputMode', 'numeric');
+    expect(<input type="password" inputMode="numeric" />).toHaveAttribute('inputmode', 'numeric');
+  });
+
+  it('should set autocomplete', () => {
+    expect(<input autocomplete="off" />).toHaveProperty('autocomplete', 'off');
+    expect(<input autocomplete="off" />).toHaveAttribute('autocomplete', 'off');
+  });
 });

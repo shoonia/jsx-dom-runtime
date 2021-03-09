@@ -14,4 +14,12 @@ describe('Props', () => {
   it('should support htmlFor attribute in <label />', () => {
     expect(<label htmlFor="some-id" />).toHaveOuterHTML('<label for="some-id"></label>');
   });
+
+  it('add html to component', () => {
+    expect(<div innerHTML="<p>text</p>" />).toHaveOuterHTML('<div><p>text</p></div>');
+  });
+
+  it('add text content to component', () => {
+    expect(<div textContent="some string" />).toHaveTextContent('some string');
+  });
 });
