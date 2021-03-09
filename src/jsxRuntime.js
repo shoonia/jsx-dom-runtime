@@ -47,7 +47,7 @@ let jsx = (el, props) => {
     return el(props);
   }
 
-  let node = doc.createElement(el);
+  let node = isString(el) ? doc.createElement(el) : el;
   let ref = props.ref;
 
   for (let key in props) {
