@@ -35,6 +35,10 @@ const bablePlugin = getBabelOutputPlugin({
   ],
 });
 
+const terserPlugin = terser({
+  module: true,
+});
+
 emptyDirSync(dist);
 outputJSONSync(join(dist, 'package.json'), pkg, { spaces: 2 });
 
@@ -49,7 +53,7 @@ export default {
       file: join(dist, esm),
       format: 'esm',
       plugins: [
-        terser(),
+        terserPlugin,
       ],
     },
     {
@@ -57,7 +61,7 @@ export default {
       format: 'esm',
       plugins: [
         bablePlugin,
-        terser(),
+        terserPlugin,
       ],
     },
     {
@@ -65,7 +69,7 @@ export default {
       format: 'cjs',
       plugins: [
         bablePlugin,
-        terser(),
+        terserPlugin,
       ],
     },
   ],

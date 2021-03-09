@@ -61,7 +61,7 @@
     },
     {
       "path": "jsx-runtime/jsxRuntime.cjs.js",
-      "limit": "491 B"
+      "limit": "486 B"
     },
     {
       "path": "jsx-runtime/jsxRuntime.module.js",
