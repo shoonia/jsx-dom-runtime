@@ -2,7 +2,7 @@
 
 [![test status](https://github.com/shoonia/jsx-dom-runtime/workflows/tests/badge.svg)](https://github.com/shoonia/jsx-dom-runtime/actions)
 [![npm version](https://badgen.net/npm/v/jsx-dom-runtime)](https://www.npmjs.com/package/jsx-dom-runtime)
-[![minzip](https://badgen.net/bundlephobia/minzip/jsx-dom-runtime@latest)](https://bundlephobia.com/result?p=jsx-dom-runtime)
+[![minzip](https://badgen.net/bundlephobia/minzip/jsx-dom-runtime)](https://bundlephobia.com/result?p=jsx-dom-runtime)
 
 ## Install
 
@@ -28,26 +28,32 @@ yarn add jsx-dom-runtime
 
 ```js
 const App = () => {
-  const ref = { current: null };
+  const List = { current: null };
 
-  const add = () => {
-    ref.current.appendChild(
+  const addItem = () => {
+    <List.current>
       <li>New Item</li>
-    );
+    </List.current>
   };
 
   return (
     <>
-      <button type="button" onClick={add}>
+      <button type="button" onClick={addItem}>
         Add
       </button>
-      <ul ref={ref} />
+      <ul ref={List} />
     </>
   );
 }
 
-document.body.appendChild(<App />);
+const Body = document.body;
+
+<Body>
+  <App />
+</Body>;
 ```
+
+[Demo](/DEMO)
 
 ## License
 
