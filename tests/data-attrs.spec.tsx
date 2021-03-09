@@ -15,4 +15,15 @@ describe('Data attribute', () => {
     expect(<span data-on={null} />).toHaveOuterHTML('<span></span>');
     expect(<span data-on={undefined} />).toHaveOuterHTML('<span></span>');
   });
+
+  it('should stringify attribute value', () => {
+    expect(<oi data-str={0} />).toHaveOuterHTML('<oi data-str="0"></oi>');
+    expect(<oi data-str={1} />).toHaveOuterHTML('<oi data-str="1"></oi>');
+    expect(<oi data-str={NaN} />).toHaveOuterHTML('<oi data-str="NaN"></oi>');
+    expect(<oi data-str={Infinity} />).toHaveOuterHTML('<oi data-str="Infinity"></oi>');
+    expect(<oi data-str={[0, 1]} />).toHaveOuterHTML('<oi data-str="0,1"></oi>');
+    expect(<oi data-str={() => {}} />).toHaveOuterHTML('<oi data-str="() => {}"></oi>');
+    expect(<oi data-str={function x() {}} />).toHaveOuterHTML('<oi data-str="function x() {}"></oi>');
+    expect(<oi data-str={{ x: 10 }} />).toHaveOuterHTML('<oi data-str="[object Object]"></oi>');
+  });
 });

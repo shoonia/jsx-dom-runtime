@@ -76,16 +76,10 @@ let jsx = (el, props) => {
       if (name in node) {
         node[name] = val;
       }
+    } else if (isBoolean(val) && !/^(aria|data)-/.test(key)) {
+      node[key] = val;
     } else if (isNotNil(val)) {
-      if (isBoolean(val)) {
-        if (/^(aria|data)-/.test(key)) {
-          node.setAttribute(key, '' + val);
-        } else {
-          node[key] = val;
-        }
-      } else {
-        node.setAttribute(key, String(val));
-      }
+      node.setAttribute(key, '' + val);
     }
   }
 
