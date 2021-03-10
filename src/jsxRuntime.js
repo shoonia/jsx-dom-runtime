@@ -1,3 +1,15 @@
+import { validateEl, validatePros } from './dev';
+import { appendChildren } from './appendChildren';
+
+import {
+  isNotNil,
+  isString,
+  isFunction,
+  isBoolean,
+  isArray,
+  doc,
+} from './util';
+
 let properties = new Set([
   'innerHTML',
   'textContent',
@@ -5,43 +17,16 @@ let properties = new Set([
   'htmlFor',
 ]);
 
-let isNotNil = (val) => val != null;
-let isString = (val) => typeof val === 'string';
-let isNumber = (val) => typeof val === 'number';
-let isFunction = (val) => typeof val === 'function';
-let isBoolean = (val) => typeof val === 'boolean';
-
-let isArray = Array.isArray;
-let doc = document;
-
 let className = (val) => isArray(val)
   ? val.filter(Boolean).join(' ')
   : val;
 
-let appendChildren = (node, children) => {
-  if (isNotNil(children) && children !== false) {
-    if (isArray(children)) {
-      for (let i = 0; children.length > i;) {
-        appendChildren(node, children[i++]);
-      }
-    } else {
-      node.appendChild(
-        isNumber(children.nodeType)
-          ? children
-          : doc.createTextNode(children)
-      );
-    }
+export let jsx = (el, props) => {
+  if (__DEV__) {
+    validateEl(el);
+    validatePros(props);
   }
-};
 
-let Fragment = (props) => {
-  let fragment = doc.createDocumentFragment();
-
-  appendChildren(fragment, props.children);
-  return fragment;
-};
-
-let jsx = (el, props) => {
   if (isFunction(el)) {
     return el(props);
   }
@@ -91,10 +76,4 @@ let jsx = (el, props) => {
   }
 
   return node;
-};
-
-export {
-  jsx,
-  jsx as jsxs,
-  Fragment,
 };

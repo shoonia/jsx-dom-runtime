@@ -4,6 +4,8 @@ import { getBabelOutputPlugin } from '@rollup/plugin-babel';
 import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 
+const entry = 'src/index.js';
+
 const dist = 'jsx-runtime';
 const source = 'jsxRuntime.js';
 const esm = 'jsxRuntime.esm.js';
@@ -45,7 +47,7 @@ outputJSONSync(join(dist, 'package.json'), pkg, { spaces: 2 });
 
 export default [
   {
-    input: join('src', source),
+    input: entry,
     output: [
       {
         file: join(dist, source),
@@ -83,7 +85,7 @@ export default [
     ],
   },
   {
-    input: join('src', source),
+    input: entry,
     output: [
       {
         file: join('dev', dist, 'index.js'),
