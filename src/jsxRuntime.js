@@ -25,42 +25,42 @@ export let jsx = (el, props) => {
   let ref = props.ref;
 
   for (let key in props) {
-    let val = props[key];
+    if (key !== 'ref' && key !== 'children') {
+      let val = props[key];
 
-    if (key === 'ref') {
-      // noop
-    } else if (key === 'className') {
-      node.setAttribute(
-        'class',
-        isArray(val)
-          ? val.filter(Boolean).join(' ')
-          : val
-      );
-    } else if (key === 'children') {
-      appendChildren(node, val);
-    } else if (properties.has(key)) {
-      node[key] = val;
-    } else if (key === 'style') {
-      if (isString(val)) {
-        node.style.cssText = val;
-      } else {
-        for (let s in val) {
-          node.style[s] = val[s];
+      if (key === 'className') {
+        node.setAttribute(
+          'class',
+          isArray(val)
+            ? val.filter(Boolean).join(' ')
+            : val
+        );
+      } else if (properties.has(key)) {
+        node[key] = val;
+      } else if (key === 'style') {
+        if (isString(val)) {
+          node.style.cssText = val;
+        } else {
+          for (let s in val) {
+            node.style[s] = val[s];
+          }
         }
-      }
-    // Benchmark for comparison (thanks preact): https://esbench.com/bench/574c954bdb965b9a00965ac6
-    } else if (key[0] === 'o' && key[1] === 'n') {
-      let name = key.toLowerCase();
+        // Benchmark for comparison (thanks preact): https://esbench.com/bench/574c954bdb965b9a00965ac6
+      } else if (key[0] === 'o' && key[1] === 'n') {
+        let name = key.toLowerCase();
 
-      if (name in node) {
-        node[name] = val;
+        if (name in node) {
+          node[name] = val;
+        }
+      } else if (isBoolean(val) && !/^(aria|data)-/.test(key)) {
+        node[key] = val;
+      } else if (isNotNil(val)) {
+        node.setAttribute(key, '' + val);
       }
-    } else if (isBoolean(val) && !/^(aria|data)-/.test(key)) {
-      node[key] = val;
-    } else if (isNotNil(val)) {
-      node.setAttribute(key, '' + val);
     }
   }
+
+  appendChildren(node, props.children);
 
   if (isNotNil(ref)) {
     if ('current' in ref) {
