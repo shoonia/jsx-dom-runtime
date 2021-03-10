@@ -1,13 +1,5 @@
+import { isArray, doc } from './util';
 import { appendChildren } from './appendChildren';
-
-import {
-  isNotNil,
-  isString,
-  isFunction,
-  isBoolean,
-  isArray,
-  doc,
-} from './util';
 
 let properties = new Set([
   'innerHTML',
@@ -17,17 +9,17 @@ let properties = new Set([
 ]);
 
 export let jsx = (el, props) => {
-  if (isFunction(el)) {
+  if (typeof el === 'function') {
     return el(props);
   }
 
-  let node = isString(el) ? doc.createElement(el) : el;
+  let node = typeof el === 'string' ? doc.createElement(el) : el;
   let ref = props.ref;
 
   for (let key in props) {
-    if (key !== 'ref' && key !== 'children') {
-      let val = props[key];
+    let val = props[key];
 
+    if (key !== 'ref' && key !== 'children') {
       if (key === 'className') {
         node.setAttribute(
           'class',
@@ -38,7 +30,7 @@ export let jsx = (el, props) => {
       } else if (properties.has(key)) {
         node[key] = val;
       } else if (key === 'style') {
-        if (isString(val)) {
+        if (typeof val === 'string') {
           node.style.cssText = val;
         } else {
           for (let s in val) {
@@ -52,9 +44,9 @@ export let jsx = (el, props) => {
         if (name in node) {
           node[name] = val;
         }
-      } else if (isBoolean(val) && !/^(aria|data)-/.test(key)) {
+      } else if (typeof val === 'boolean' && !/^(aria|data)-/.test(key)) {
         node[key] = val;
-      } else if (isNotNil(val)) {
+      } else if (val != null) {
         node.setAttribute(key, '' + val);
       }
     }
@@ -62,10 +54,10 @@ export let jsx = (el, props) => {
 
   appendChildren(node, props.children);
 
-  if (isNotNil(ref)) {
+  if (ref != null) {
     if ('current' in ref) {
       ref.current = node;
-    } else if (isFunction(ref)) {
+    } else if (typeof ref === 'function') {
       ref(node);
     }
   }
