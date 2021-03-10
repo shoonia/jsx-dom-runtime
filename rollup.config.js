@@ -1,6 +1,7 @@
 import { join } from 'path';
 import { emptyDirSync, outputJSONSync } from 'fs-extra';
 import { getBabelOutputPlugin } from '@rollup/plugin-babel';
+import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 
 const dist = 'jsx-runtime';
@@ -42,35 +43,58 @@ const terserPlugin = terser({
 emptyDirSync(dist);
 outputJSONSync(join(dist, 'package.json'), pkg, { spaces: 2 });
 
-export default {
-  input: join('src', source),
-  output: [
-    {
-      file: join(dist, source),
-      format: 'esm',
-    },
-    {
-      file: join(dist, esm),
-      format: 'esm',
-      plugins: [
-        terserPlugin,
-      ],
-    },
-    {
-      file: join(dist, moduleJs),
-      format: 'esm',
-      plugins: [
-        bablePlugin,
-        terserPlugin,
-      ],
-    },
-    {
-      file: join(dist, cjs),
-      format: 'cjs',
-      plugins: [
-        bablePlugin,
-        terserPlugin,
-      ],
-    },
-  ],
-};
+export default [
+  {
+    input: join('src', source),
+    output: [
+      {
+        file: join(dist, source),
+        format: 'esm',
+      },
+      {
+        file: join(dist, esm),
+        format: 'esm',
+        plugins: [
+          terserPlugin,
+        ],
+      },
+      {
+        file: join(dist, moduleJs),
+        format: 'esm',
+        plugins: [
+          bablePlugin,
+          terserPlugin,
+        ],
+      },
+      {
+        file: join(dist, cjs),
+        format: 'cjs',
+        plugins: [
+          bablePlugin,
+          terserPlugin,
+        ],
+      },
+    ],
+    plugins: [
+      replace({
+        preventAssignment: true,
+        __DEV__: JSON.stringify(false),
+      }),
+    ],
+  },
+  {
+    input: join('src', source),
+    output: [
+      {
+        file: join('dev', dist, 'index.js'),
+        format: 'cjs',
+      },
+    ],
+    plugins: [
+      replace({
+        preventAssignment: true,
+        __DEV__: JSON.stringify(true),
+      }),
+    ],
+  },
+];

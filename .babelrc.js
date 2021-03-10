@@ -1,9 +1,8 @@
 const { resolve } = require('path');
 
-const root = process.cwd();
-
 module.exports = {
   presets: [
+    resolve(process.cwd(), 'babel-preset'),
     [
       '@babel/preset-env',
       {
@@ -11,11 +10,5 @@ module.exports = {
         targets: { node: 14 },
       },
     ],
-    [
-      resolve(root, 'babel-preset'),
-      {
-        importSource: resolve(root),
-      }
-    ]
   ],
 }
