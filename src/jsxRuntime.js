@@ -1,4 +1,3 @@
-import { validateEl, validatePros } from './dev';
 import { appendChildren } from './appendChildren';
 
 import {
@@ -17,16 +16,7 @@ let properties = new Set([
   'htmlFor',
 ]);
 
-let className = (val) => isArray(val)
-  ? val.filter(Boolean).join(' ')
-  : val;
-
 export let jsx = (el, props) => {
-  if (__DEV__) {
-    validateEl(el);
-    validatePros(props);
-  }
-
   if (isFunction(el)) {
     return el(props);
   }
@@ -40,7 +30,12 @@ export let jsx = (el, props) => {
     if (key === 'ref') {
       // noop
     } else if (key === 'className') {
-      node.setAttribute('class', className(val));
+      node.setAttribute(
+        'class',
+        isArray(val)
+          ? val.filter(Boolean).join(' ')
+          : val
+      );
     } else if (key === 'children') {
       appendChildren(node, val);
     } else if (properties.has(key)) {

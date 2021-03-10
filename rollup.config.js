@@ -80,7 +80,7 @@ export default [
     plugins: [
       replace({
         preventAssignment: true,
-        __DEV__: JSON.stringify(false),
+        __DEV__: false,
       }),
     ],
   },
@@ -95,7 +95,7 @@ export default [
     plugins: [
       replace({
         preventAssignment: true,
-        __DEV__: JSON.stringify(true),
+        __DEV__: true,
       }),
     ],
   },
