@@ -17,9 +17,9 @@ export let jsx = (el, props) => {
   let ref = props.ref;
 
   for (let key in props) {
-    let val = props[key];
-
     if (key !== 'ref' && key !== 'children') {
+      let val = props[key];
+
       if (key === 'className') {
         node.setAttribute(
           'class',

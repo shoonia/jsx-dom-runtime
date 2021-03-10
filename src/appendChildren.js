@@ -8,9 +8,9 @@ export let appendChildren = (node, children) => {
       }
     } else {
       node.appendChild(
-        typeof children.nodeType !== 'number'
-          ? doc.createTextNode(children)
-          : children
+        children.nodeType > 0
+          ? children
+          : doc.createTextNode(children)
       );
     }
   }
