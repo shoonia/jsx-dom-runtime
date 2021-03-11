@@ -39,18 +39,20 @@ const App = () => {
   return (
     <>
       <button type="button" onClick={addItem}>
-        Add
+        Add Item
       </button>
       <ul ref={List} />
     </>
   );
-}
+};
 
-const Body = document.body;
+<document.head>
+  <link rel="stylesheet" href="/style.css" />
+</document.head>;
 
-<Body>
+<document.body id="root">
   <App />
-</Body>;
+</document.body>;
 ```
 
 [Demo](/DEMO)
