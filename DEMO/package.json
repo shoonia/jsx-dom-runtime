@@ -5,14 +5,14 @@
   "private": true,
   "main": "dist/index.html",
   "scripts": {
-    "start": "parcel src/index.html --no-source-maps --no-cache",
+    "start": "parcel src/index.html --no-source-maps --no-cache --open",
     "build": "parcel build --no-source-maps --no-cache src/index.html"
   },
   "dependencies": {
     "jsx-dom-runtime": "^0.4.0"
   },
   "devDependencies": {
-    "parcel": "^2.0.0-beta.1"
+    "parcel": "^2.0.0-nightly.623"
   },
   "browser": {
     "engines": {

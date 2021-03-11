@@ -1,50 +1,45 @@
-const createRef = () => Object.seal({ current: null });
+import { App } from './App';
 
-const App = () => {
-  const Input = createRef();
-  const List = createRef();
+<document.head>
+  <style>{`
+  .wrapper {
+    font-family: sans-serif;
+    padding: 25px;
+  }
 
-  const removeItem = ({ target }) => {
-    target.closest('[data-item]').remove();
-  };
+  .toolbar {
+    display: flex;
+    justify-content: space-between;
+    width: 300px;
+    padding: 0;
+  }
 
-  const addItem = () => {
-    const field = Input.current;
+  .field {
+    width: 100%;
+  }
 
-    <List.current>
-      <li data-item>
-        <button type="button" onClick={removeItem}>
-          Remove
-        </button>
-        {field.value}
-      </li>
-    </List.current>;
+  .list {
+    padding: 0;
+  }
 
-    field.value = null;
-    field.focus();
-  };
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    margin-top: 5px;
+    padding: 5px;
+    word-break: break-all;
+    background-color: lightgray;
+  }
 
-  const pressEnter = (event) => {
-    if (event.key === 'Enter') {
-      addItem();
-    }
-  };
+  .btn {
+    white-space: nowrap;
+    margin-left: 5px;
+  }
+`}</style>
+</document.head>;
 
-  return (
-    <>
-      <fieldset style="border: none;">
-        <input ref={Input} type="text" onKeyPress={pressEnter} />
-        <button type="button" onClick={addItem}>
-          Add Item
-        </button>
-      </fieldset>
-      <ul ref={List} />
-    </>
-  );
-};
-
-const Body = document.body;
-
-<Body>
+<document.body className="wrapper">
   <App />
-</Body>;
+</document.body>;

@@ -1,5 +1,7 @@
 # Demo
 
+[Live Demo](https://shoonia.github.io/jsx-dom-runtime/DEMO/dist/index.html)
+
 ```bash
 node --version # v14.x
 npm --version # v7.x
@@ -12,7 +14,3 @@ cd jsx-dom-runtime-demo
 npm install
 npm start
 ```
-
-http://localhost:1234
-
-[Live Demo](https://shoonia.github.io/jsx-dom-runtime/DEMO/dist/index.html)
