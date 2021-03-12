@@ -1,7 +1,11 @@
+import { a } from './a';
 import { element } from './element';
 
-let map= new Map();
+const map= new Map();
 
-map.set('a', element);
+const assign = (...types) => Object.assign({}, ...types);
+
+map.set('dev', element);
+map.set('a', assign(element, a));
 
 export { map };

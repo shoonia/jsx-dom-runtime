@@ -3,16 +3,6 @@
 const ANONYMOUS = '<<anonymous>>';
 const has = Function.call.bind(Object.prototype.hasOwnProperty);
 
-const printWarning = (text) => {
-  const message = 'Warning: ' + text;
-
-  console?.error(message);
-
-  try {
-    throw new Error(message);
-  } catch (x) { /**/ }
-};
-
 const empty = () => null;
 
 const is = (x, y) => {
@@ -79,22 +69,6 @@ const getPreciseType = (propValue) => {
   return propType;
 };
 
-const getPostfixForTypeWarning = (value) => {
-  const type = getPreciseType(value);
-
-  switch (type) {
-      case 'array':
-      case 'object':
-        return 'an ' + type;
-      case 'boolean':
-      case 'date':
-      case 'regexp':
-        return 'a ' + type;
-      default:
-        return type;
-  }
-};
-
 const getClassName = (propValue) => {
   if (!propValue.constructor || !propValue.constructor.name) {
     return ANONYMOUS;
@@ -112,19 +86,19 @@ function PropTypeError(message, data) {
 PropTypeError.prototype = Error.prototype;
 
 const createChainableTypeChecker = (validate) => {
-  function checkType(isRequired, props, propName, _, location) {
+  function checkType(isRequired, props, propName) {
 
     if (props[propName] == null) {
       if (isRequired) {
-        if (props[propName] === null) {
-          return new PropTypeError('The ' + location + ' `' + propName + '` is marked as required, but its value is `null`.');
-        }
-        return new PropTypeError('The ' + location + ' `' + propName + '` is marked as required, but its value is `undefined`.');
+        return new PropTypeError(
+          `The prop "${propName}" is marked as required, but its value is \`${props[propName]}\``,
+        );
       }
+
       return null;
     }
 
-    return validate(props, propName, _, location);
+    return validate(props, propName);
   }
 
   const chainedCheckType = checkType.bind(null, false);
@@ -135,7 +109,7 @@ const createChainableTypeChecker = (validate) => {
 };
 
 const createPrimitiveTypeChecker = (expectedType) => {
-  return createChainableTypeChecker((props, propName, componentName, location) => {
+  return createChainableTypeChecker((props, propName) => {
     const propValue = props[propName];
     const propType = getPropType(propValue);
 
@@ -143,8 +117,7 @@ const createPrimitiveTypeChecker = (expectedType) => {
       const preciseType = getPreciseType(propValue);
 
       return new PropTypeError(
-        'Invalid ' + location + ' `' + propName + '` of type ' + ('`' + preciseType + '` supplied to `' + componentName + '`, expected ') + ('`' + expectedType + '`.'),
-        { expectedType }
+        `Invalid prop "${propName}" of type \`${preciseType}\`, expected \`${expectedType}\``,
       );
     }
 
@@ -152,23 +125,11 @@ const createPrimitiveTypeChecker = (expectedType) => {
   });
 };
 
-const createAnyTypeChecker = () => {
-  return createChainableTypeChecker(empty);
-};
+const createAnyTypeChecker = () => createChainableTypeChecker(empty);
 
-function createArrayOfTypeChecker(typeChecker) {
+const createArrayOfTypeChecker = (typeChecker) => {
   return createChainableTypeChecker((props, propName, componentName, location) => {
-    if (typeof typeChecker !== 'function') {
-      return new PropTypeError('Property `' + propName + '` of component `' + componentName + '` has invalid PropType notation inside arrayOf.');
-    }
-
     const propValue = props[propName];
-
-    if (!Array.isArray(propValue)) {
-      const propType = getPropType(propValue);
-
-      return new PropTypeError('Invalid ' + location + ' `' + propName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an array.'));
-    }
 
     for (let i = 0; i < propValue.length; i++) {
       const error = typeChecker(propValue, i, componentName, location, propName + '[' + i + ']');
@@ -180,7 +141,7 @@ function createArrayOfTypeChecker(typeChecker) {
 
     return null;
   });
-}
+};
 
 const createInstanceTypeChecker = (expectedClass) => {
   return createChainableTypeChecker((props, propName, componentName, location) => {
@@ -195,42 +156,22 @@ const createInstanceTypeChecker = (expectedClass) => {
   });
 };
 
-function createEnumTypeChecker(expectedValues) {
-  if (!Array.isArray(expectedValues)) {
-    if (arguments.length > 1) {
-      printWarning(
-        'Invalid arguments supplied to oneOf, expected an array, got ' + arguments.length + ' arguments. ' +
-             'A common mistake is to write oneOf(x, y, z) instead of oneOf([x, y, z]).'
-      );
-    } else {
-      printWarning('Invalid argument supplied to oneOf, expected an array.');
-    }
-
-    return empty;
-  }
-
-  return createChainableTypeChecker((props, propName, componentName, location) => {
+/**@param {any[]} listOfValues */
+const createEnumTypeChecker = (listOfValues) => {
+  return createChainableTypeChecker((props, propName, componentName) => {
     const propValue = props[propName];
 
-    for (let i = 0; i < expectedValues.length; i++) {
-      if (is(propValue, expectedValues[i])) {
+    for (let i = 0; i < listOfValues.length; i++) {
+      if (is(propValue, listOfValues[i])) {
         return null;
       }
     }
 
-    const valuesString = JSON.stringify(expectedValues, (_, value) => {
-      const type = getPreciseType(value);
+    const valuesString = JSON.stringify(listOfValues);
 
-      if (type === 'symbol') {
-        return String(value);
-      }
-
-      return value;
-    });
-
-    return new PropTypeError('Invalid ' + location + ' `' + propName + '` of value `' + String(propValue) + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
+    return new PropTypeError('Invalid prop' + ' `' + propName + '` of value `' + String(propValue) + '` ' + ('supplied to `' + componentName + '`, expected one of ' + valuesString + '.'));
   });
-}
+};
 
 function createObjectOfTypeChecker(typeChecker) {
   return createChainableTypeChecker((props, propName, componentName, location) => {
@@ -259,26 +200,8 @@ function createObjectOfTypeChecker(typeChecker) {
   });
 }
 
+/**@param {any[]} arrayOfTypeCheckers */
 function createUnionTypeChecker(arrayOfTypeCheckers) {
-  if (!Array.isArray(arrayOfTypeCheckers)) {
-    printWarning('Invalid argument supplied to oneOfType, expected an instance of array.');
-
-    return empty;
-  }
-
-  for (let i = 0; i < arrayOfTypeCheckers.length; i++) {
-    const checker = arrayOfTypeCheckers[i];
-
-    if (typeof checker !== 'function') {
-      printWarning(
-        'Invalid argument supplied to oneOfType. Expected an array of check functions, but ' +
-           'received ' + getPostfixForTypeWarning(checker) + ' at index ' + i + '.'
-      );
-
-      return empty;
-    }
-  }
-
   return createChainableTypeChecker((props, propName, componentName, location, propFullName) => {
     const expectedTypes = [];
 

@@ -1,22 +1,15 @@
-let checkSpec = (spec, value, locale, _, getStack) => {
+let checkSpec = (spec, value) => {
   for (let name in spec) {
     let error;
 
     try {
-      error = spec[name](
-        value,
-        name,
-        _,
-        locale,
-        null
-      );
+      error = spec[name](value, name);
     } catch (ex) {
       error = ex;
     }
 
     if (error instanceof Error) {
-      let stack = getStack && getStack() || '';
-      return 'Failed ' + locale + ' type: ' + error.message + stack;
+      return `Failed "prop" \`${name}\`: ${error.message}`;
     }
   }
 };
