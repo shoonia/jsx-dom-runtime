@@ -9,7 +9,7 @@ let checkSpec = (spec, value) => {
     }
 
     if (error instanceof Error) {
-      return `Failed "prop" \`${name}\`: ${error.message}`;
+      return error.message;
     }
   }
 };

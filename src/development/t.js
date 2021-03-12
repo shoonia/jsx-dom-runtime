@@ -144,12 +144,12 @@ const createArrayOfTypeChecker = (typeChecker) => {
 };
 
 const createInstanceTypeChecker = (expectedClass) => {
-  return createChainableTypeChecker((props, propName, componentName, location) => {
+  return createChainableTypeChecker((props, propName, componentName) => {
     if (!(props[propName] instanceof expectedClass)) {
       const expectedClassName = expectedClass.name || ANONYMOUS;
       const actualClassName = getClassName(props[propName]);
 
-      return new PropTypeError('Invalid ' + location + ' `' + propName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
+      return new PropTypeError('Invalid "prop" `' + propName + '` of type ' + ('`' + actualClassName + '` supplied to `' + componentName + '`, expected ') + ('instance of `' + expectedClassName + '`.'));
     }
 
     return null;
@@ -173,17 +173,13 @@ const createEnumTypeChecker = (listOfValues) => {
   });
 };
 
-function createObjectOfTypeChecker(typeChecker) {
+const createObjectOfTypeChecker = (typeChecker) => {
   return createChainableTypeChecker((props, propName, componentName, location) => {
-    if (typeof typeChecker !== 'function') {
-      return new PropTypeError('Property `' + propName + '` of component `' + componentName + '` has invalid PropType notation inside objectOf.');
-    }
-
     const propValue = props[propName];
     const propType = getPropType(propValue);
 
     if (propType !== 'object') {
-      return new PropTypeError('Invalid ' + location + ' `' + propName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
+      return new PropTypeError('Invalid "prop" `' + propName + '` of type ' + ('`' + propType + '` supplied to `' + componentName + '`, expected an object.'));
     }
 
     for (let key in propValue) {
@@ -198,10 +194,10 @@ function createObjectOfTypeChecker(typeChecker) {
 
     return null;
   });
-}
+};
 
 /**@param {any[]} arrayOfTypeCheckers */
-function createUnionTypeChecker(arrayOfTypeCheckers) {
+const createUnionTypeChecker = (arrayOfTypeCheckers) => {
   return createChainableTypeChecker((props, propName, componentName, location, propFullName) => {
     const expectedTypes = [];
 
@@ -219,15 +215,8 @@ function createUnionTypeChecker(arrayOfTypeCheckers) {
     }
     const expectedTypesMessage = (expectedTypes.length > 0) ? ', expected one of type [' + expectedTypes.join(', ') + ']': '';
 
-    return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` supplied to ' + ('`' + componentName + '`' + expectedTypesMessage + '.'));
+    return new PropTypeError('Invalid "prop" `' + propFullName + '` supplied to ' + ('`' + componentName + '`' + expectedTypesMessage + '.'));
   });
-}
-
-const invalidValidatorError = (componentName, location, propFullName, key, type) => {
-  return new PropTypeError(
-    (componentName || 'React class') + ': ' + location + ' type `' + propFullName + '.' + key + '` is invalid; ' +
-       'it must be a function, usually from the `prop-types` package, but received `' + type + '`.'
-  );
 };
 
 const createShapeTypeChecker = (shapeTypes) => {
@@ -236,16 +225,11 @@ const createShapeTypeChecker = (shapeTypes) => {
     const propType = getPropType(propValue);
 
     if (propType !== 'object') {
-      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      return new PropTypeError('Invalid "prop" `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
     }
 
     for (let key in shapeTypes) {
       const checker = shapeTypes[key];
-
-      if (typeof checker !== 'function') {
-        return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
-      }
-
       const error = checker(propValue, key, componentName, location, propFullName + '.' + key);
 
       if (error) {
@@ -263,7 +247,7 @@ const createStrictShapeTypeChecker = (shapeTypes) => {
     const propType = getPropType(propValue);
 
     if (propType !== 'object') {
-      return new PropTypeError('Invalid ' + location + ' `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
+      return new PropTypeError('Invalid "prop" `' + propFullName + '` of type `' + propType + '` ' + ('supplied to `' + componentName + '`, expected `object`.'));
     }
 
     const allKeys = Object.assign({}, props[propName], shapeTypes);
@@ -271,13 +255,9 @@ const createStrictShapeTypeChecker = (shapeTypes) => {
     for (let key in allKeys) {
       const checker = shapeTypes[key];
 
-      if (has(shapeTypes, key) && typeof checker !== 'function') {
-        return invalidValidatorError(componentName, location, propFullName, key, getPreciseType(checker));
-      }
-
       if (!checker) {
         return new PropTypeError(
-          'Invalid ' + location + ' `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
+          'Invalid "prop" `' + propFullName + '` key `' + key + '` supplied to `' + componentName + '`.' +
              '\nBad object: ' + JSON.stringify(props[propName], null, '  ') +
              '\nValid keys: ' +  JSON.stringify(Object.keys(shapeTypes), null, '  ')
         );
