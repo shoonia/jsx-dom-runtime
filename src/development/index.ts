@@ -18,7 +18,7 @@ const propTypes = (spec, prop) => {
   }
 };
 
-const jsxDevCheck = (el: unknown, props: Record<string, any>) => {
+const jsxDevCheck = (el: unknown, props: Record<string, any>): void => {
   if (typeof el === 'string') {
     if (specMap.has(el)) {
       propTypes(specMap.get(el), props);

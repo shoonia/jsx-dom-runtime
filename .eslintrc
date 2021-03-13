@@ -20,6 +20,8 @@
     }
   },
   "rules": {
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["error"],
     "linebreak-style": "off",
     "no-else-return": "error",
     "no-trailing-spaces": "error",

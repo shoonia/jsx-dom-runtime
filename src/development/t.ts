@@ -1,15 +1,11 @@
-// const has = Function.call.bind(Object.prototype.hasOwnProperty);
+type TProps = Record<string, unknown>;
 
-// const is = (x, y) => {
-//   if (x === y) {
-//     return x !== 0 || 1 / x === 1 / y;
-//   }
+type TValidator = (props: TProps, propName: string) => PropTypeError | null;
 
-//   return x !== x && y !== y;
-// };
+type TChainableChecker = (validator: TValidator) => any;
 
 class PropTypeError extends Error {
-  constructor(message) {
+  constructor(message: string) {
     super();
 
     this.message = message;
@@ -17,15 +13,11 @@ class PropTypeError extends Error {
   }
 }
 
-const getPropType = (propValue) => {
-  if (Array.isArray(propValue)) {
-    return 'array';
-  }
-
-  return typeof propValue;
+const getPropType = (propValue: unknown): string => {
+  return Array.isArray(propValue) ? 'array' : typeof propValue;
 };
 
-const getPreciseType = (propValue) => {
+const getPreciseType = (propValue: unknown): string => {
   if (propValue == null) {
     return String(propValue);
   }
@@ -43,9 +35,8 @@ const getPreciseType = (propValue) => {
   return propType;
 };
 
-const createChainableChecker = (validate) => {
-  const checkType = (isRequired, props, propName) => {
-
+const createChainableChecker: TChainableChecker = (validater) => {
+  const required = (isRequired: boolean, props, propName): PropTypeError | null => {
     if (props[propName] == null) {
       if (isRequired) {
         return new PropTypeError(
@@ -56,17 +47,17 @@ const createChainableChecker = (validate) => {
       return null;
     }
 
-    return validate(props, propName);
+    return validater(props, propName);
   };
 
-  const chainedCheckType = checkType.bind(null, false);
+  const chainedCheck = required.bind(null, false);
 
-  chainedCheckType.isRequired = checkType.bind(null, true);
+  chainedCheck.isRequired = required.bind(null, true);
 
-  return chainedCheckType;
+  return chainedCheck;
 };
 
-const createPrimitiveChecker = (expectedType) => {
+const createPrimitiveChecker = (expectedType: string) => {
   return createChainableChecker((props, propName) => {
     const propValue = props[propName];
     const propType = getPropType(propValue);
