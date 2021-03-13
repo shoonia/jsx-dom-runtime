@@ -1,12 +1,27 @@
 import { jsx } from '../jsxRuntime';
 import { Fragment } from '../Fragment';
-import { checkTypes } from './props';
-import { map } from './map';
+import { specMap } from './specMap';
 
-let jsxDevCheck = (el, props) => {
+const propTypes = (spec, prop) => {
+  for (const propName in spec) {
+    let error;
+
+    try {
+      error = spec[propName](prop, propName);
+    } catch (ex) {
+      error = ex;
+    }
+
+    if (error != null) {
+      return console.log(error.message);
+    }
+  }
+};
+
+const jsxDevCheck = (el, props) => {
   if (typeof el === 'string') {
-    if (map.has(el)) {
-      checkTypes(map.get(el), props, 'prop');
+    if (specMap.has(el)) {
+      propTypes(specMap.get(el), props);
     }
   }
 

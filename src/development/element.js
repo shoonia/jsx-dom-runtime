@@ -6,11 +6,8 @@ export const element = {
   lang: T.string,
   title: T.string,
   class: T.string,
-  className: T.oneOfType([
-    T.string,
-    T.arrayOf(T.oneOfType([T.string, T.bool]))
-  ]),
-  style: T.string,
+  // className: T.string, // TODO:
+  // style: T.string, // TODO:
   tabindex: T.number,
   tabIndex: T.number,
   hidden: T.bool,
