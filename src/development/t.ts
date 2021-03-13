@@ -22,13 +22,7 @@ const getPropType = (propValue) => {
     return 'array';
   }
 
-  if (propValue instanceof RegExp) {
-    return 'object';
-  }
-
-  const propType = typeof propValue;
-
-  return propType;
+  return typeof propValue;
 };
 
 const getPreciseType = (propValue) => {
@@ -49,13 +43,13 @@ const getPreciseType = (propValue) => {
   return propType;
 };
 
-const createChainableTypeChecker = (validate) => {
+const createChainableChecker = (validate) => {
   const checkType = (isRequired, props, propName) => {
 
     if (props[propName] == null) {
       if (isRequired) {
         return new PropTypeError(
-          `The prop "${propName}" is marked as required, but its value is \`${props[propName]}\``,
+          `The prop "${propName}" is required, but its value is \`${props[propName]}\``,
         );
       }
 
@@ -72,8 +66,8 @@ const createChainableTypeChecker = (validate) => {
   return chainedCheckType;
 };
 
-const createPrimitiveTypeChecker = (expectedType) => {
-  return createChainableTypeChecker((props, propName) => {
+const createPrimitiveChecker = (expectedType) => {
+  return createChainableChecker((props, propName) => {
     const propValue = props[propName];
     const propType = getPropType(propValue);
 
@@ -89,12 +83,10 @@ const createPrimitiveTypeChecker = (expectedType) => {
   });
 };
 
-export default {
-  array: createPrimitiveTypeChecker('array'),
-  bool: createPrimitiveTypeChecker('boolean'),
-  func: createPrimitiveTypeChecker('function'),
-  number: createPrimitiveTypeChecker('number'),
-  object: createPrimitiveTypeChecker('object'),
-  string: createPrimitiveTypeChecker('string'),
-  any: createChainableTypeChecker(() => null),
-};
+export const array = createPrimitiveChecker('array');
+export const bool = createPrimitiveChecker('boolean');
+export const func = createPrimitiveChecker('function');
+export const number = createPrimitiveChecker('number');
+export const object = createPrimitiveChecker('object');
+export const string = createPrimitiveChecker('string');
+export const any = createChainableChecker(() => null);

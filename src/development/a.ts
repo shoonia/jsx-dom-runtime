@@ -1,4 +1,4 @@
-import T from './t';
+import * as T from './t';
 
 export const a = {
   href: T.string.isRequired,

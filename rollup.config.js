@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { emptyDirSync, outputJSONSync } from 'fs-extra';
-import { getBabelOutputPlugin } from '@rollup/plugin-babel';
+import babel, { getBabelOutputPlugin } from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
@@ -24,6 +24,8 @@ const pkg = {
   private: true,
   license: 'MIT',
 };
+
+const extensions = ['.js', '.ts'];
 
 const bablePlugin = getBabelOutputPlugin({
   presets: [
@@ -78,7 +80,7 @@ export default [
     ],
   },
   {
-    input: 'src/development/index.js',
+    input: 'src/development/index.ts',
     output: [
       {
         file: 'dev/jsx-runtime.js',
@@ -87,7 +89,15 @@ export default [
     ],
     plugins: [
       commonjs(),
-      nodeResolve(),
+      nodeResolve({
+        extensions,
+      }),
+      babel({
+        extensions,
+        presets: [
+          '@babel/preset-typescript',
+        ],
+      }),
     ],
   },
 ];
