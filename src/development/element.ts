@@ -1,4 +1,4 @@
-import * as T from './t';
+import T from './t';
 
 export const element = {
   id: T.string,

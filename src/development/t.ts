@@ -74,10 +74,12 @@ const createPrimitiveChecker = (expectedType: string) => {
   });
 };
 
-export const array = createPrimitiveChecker('array');
-export const bool = createPrimitiveChecker('boolean');
-export const func = createPrimitiveChecker('function');
-export const number = createPrimitiveChecker('number');
-export const object = createPrimitiveChecker('object');
-export const string = createPrimitiveChecker('string');
-export const any = createChainableChecker(() => null);
+export default {
+  array: createPrimitiveChecker('array'),
+  bool: createPrimitiveChecker('boolean'),
+  func: createPrimitiveChecker('function'),
+  number: createPrimitiveChecker('number'),
+  object: createPrimitiveChecker('object'),
+  string: createPrimitiveChecker('string'),
+  any: createChainableChecker(() => null),
+} as const;

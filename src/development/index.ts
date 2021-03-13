@@ -2,7 +2,7 @@ import { jsx } from '../jsxRuntime';
 import { Fragment } from '../Fragment';
 import { specMap } from './specMap';
 
-const propTypes = (spec, prop) => {
+const propTypes = (tagName: string, spec, prop) => {
   for (const propName in spec) {
     let error;
 
@@ -13,15 +13,16 @@ const propTypes = (spec, prop) => {
     }
 
     if (error != null) {
-      return console.log(error.message);
+      console.error(`<${tagName}> :`, error.message);
+      break;
     }
   }
 };
 
-const jsxDevCheck = (el: unknown, props: Record<string, any>): void => {
+const jsxDev = (el: unknown, props: Record<string, unknown>): void => {
   if (typeof el === 'string') {
     if (specMap.has(el)) {
-      propTypes(specMap.get(el), props);
+      propTypes(el, specMap.get(el), props);
     }
   }
 
@@ -29,7 +30,7 @@ const jsxDevCheck = (el: unknown, props: Record<string, any>): void => {
 };
 
 export {
-  jsxDevCheck as jsx,
-  jsxDevCheck as jsxs,
+  jsxDev as jsx,
+  jsxDev as jsxs,
   Fragment,
 };

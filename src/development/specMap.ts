@@ -1,11 +1,15 @@
 import { a } from './a';
 import { element } from './element';
 
-const specMap = new Map();
+type TagNameMap = keyof HTMLElementTagNameMap;
 
-const assign = (...types) => Object.assign({}, ...types);
+const specMap = new Map<string, any>();
 
-specMap.set('a', assign(element, a));
-specMap.set('dev', element);
+const setup = (tagName: TagNameMap, ...types): void => {
+  specMap.set(tagName, Object.assign({}, ...types));
+};
+
+setup('a', element, a);
+setup('div', element);
 
 export { specMap };
