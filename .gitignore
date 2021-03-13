@@ -1,6 +1,7 @@
 node_modules/
 dev/
 jsx-runtime/
+__test/
 
 .DS_Store
 *.tgz

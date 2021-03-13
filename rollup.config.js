@@ -1,10 +1,9 @@
 import { join } from 'path';
 import { emptyDirSync, outputJSONSync } from 'fs-extra';
 import { getBabelOutputPlugin } from '@rollup/plugin-babel';
-import replace from '@rollup/plugin-replace';
+import commonjs from '@rollup/plugin-commonjs';
+import nodeResolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
-
-const entry = 'src/index.js';
 
 const dist = 'jsx-runtime';
 const source = 'jsxRuntime.js';
@@ -47,7 +46,7 @@ outputJSONSync(join(dist, 'package.json'), pkg, { spaces: 2 });
 
 export default [
   {
-    input: entry,
+    input: 'src/index.js',
     output: [
       {
         file: join(dist, source),
@@ -77,26 +76,18 @@ export default [
         ],
       },
     ],
-    plugins: [
-      replace({
-        preventAssignment: true,
-        __DEV__: false,
-      }),
-    ],
   },
   {
-    input: entry,
+    input: 'src/development/index.js',
     output: [
       {
-        file: join('dev', dist, 'index.js'),
+        file: 'dev/jsx-runtime.js',
         format: 'cjs',
       },
     ],
     plugins: [
-      replace({
-        preventAssignment: true,
-        __DEV__: true,
-      }),
+      commonjs(),
+      nodeResolve(),
     ],
   },
 ];

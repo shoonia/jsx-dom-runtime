@@ -1,4 +1,3 @@
-
 describe('Node Component', () => {
   beforeEach(() => {
     document.body.innerHTML = '';
