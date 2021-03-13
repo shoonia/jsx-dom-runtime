@@ -4,12 +4,12 @@ const driver = new Driver();
 
 it('should add new items to list by click', () => {
   const List = () => {
-    const ref = { current: null };
+    const List = { current: null };
 
     const add = () => {
-      ref.current.appendChild(
+      <List.current>
         <li data-testid="item">item</li>
-      );
+      </List.current>;
     };
 
     return (
@@ -17,7 +17,7 @@ it('should add new items to list by click', () => {
         <button type="button" onClick={add} data-testid="button">
           add
         </button>
-        <li ref={ref}></li>
+        <li ref={List}></li>
       </>
     );
   };

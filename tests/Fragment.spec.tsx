@@ -1,11 +1,11 @@
 describe('Fragment', () => {
   it('should support Fragment', () => {
-    document.body.appendChild(
+    <document.body>
       <>
         <p>1</p>
         <p>2</p>
       </>
-    );
+    </document.body>;
 
     expect(document.body).toContainHTML('<p>1</p><p>2</p>');
   });

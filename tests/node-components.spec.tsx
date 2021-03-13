@@ -4,12 +4,10 @@ describe('Node Component', () => {
   });
 
   it('should append children to body element', () => {
-    const Body = document.body;
-
-    <Body>
+    <document.body>
       <div>one</div>
       <div>two</div>
-    </Body>;
+    </document.body>;
 
     expect(document.body).toContainHTML('<div>one</div><div>two</div>');
   });
@@ -48,7 +46,9 @@ describe('Node Component', () => {
   it('should update content on text node', () => {
     const MyText = new Text();
 
-    document.body.appendChild(<MyText textContent="new text" />);
+    <document.body>
+      <MyText textContent="new text" />
+    </document.body>;
 
     expect(document.body).toContainHTML('new text');
   });
