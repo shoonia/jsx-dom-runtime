@@ -11,7 +11,7 @@ export const App = () => {
   const addItem = () => {
     const field = Input.current;
 
-    if (field.input === '') {
+    if (field.value === '') {
       return;
     }
 

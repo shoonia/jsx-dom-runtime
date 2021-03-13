@@ -1,5 +1,7 @@
 import { App } from './App';
 
+<document.documentElement lang="en" />;
+
 <document.head>
   <style>{`
   .wrapper {
