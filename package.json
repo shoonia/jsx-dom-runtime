@@ -41,7 +41,7 @@
   },
   "files": [
     "src",
-    "dev",
+    "jsx-dev-runtime",
     "jsx-runtime",
     "babel-preset",
     "README",

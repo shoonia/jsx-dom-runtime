@@ -1,10 +1,7 @@
 const { declare } = require('@babel/helper-plugin-utils');
-const transformReactJSX = require('@babel/plugin-transform-react-jsx');
+const createPlugin = require('@babel/plugin-transform-react-jsx/lib/create-plugin').default;
 
-module.exports = declare((api, {
-  useBuiltIns,
-  useSpread,
-}) => {
+module.exports = declare((api, { useBuiltIns, useSpread }) => {
   api.assertVersion(7);
 
   const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test';
@@ -12,10 +9,13 @@ module.exports = declare((api, {
   return {
     plugins: [
       [
-        transformReactJSX,
+        createPlugin({
+          name: 'jsx-dom-runtime',
+          development: isDev,
+        }),
         {
           runtime: 'automatic',
-          importSource: isDev ? 'jsx-dom-runtime/dev' : 'jsx-dom-runtime',
+          importSource: 'jsx-dom-runtime',
           throwIfNamespace: true,
           useBuiltIns,
           useSpread,

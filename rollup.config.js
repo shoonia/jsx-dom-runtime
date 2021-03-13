@@ -83,7 +83,7 @@ export default [
     input: 'src/development/index.ts',
     output: [
       {
-        file: 'dev/jsx-runtime.js',
+        file: 'jsx-dev-runtime/index.js',
         format: 'cjs',
       },
     ],

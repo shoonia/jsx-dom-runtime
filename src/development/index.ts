@@ -2,27 +2,43 @@ import { jsx } from '../jsxRuntime';
 import { Fragment } from '../Fragment';
 import { specMap } from './specMap';
 
-const propTypes = (tagName: string, spec, prop) => {
+interface IStack {
+  fileName: string;
+  lineNumber: number;
+  columnNumber: number;
+}
+
+const propTypes = (tagName: string, spec, props, stack: IStack) => {
   for (const propName in spec) {
     let error;
 
     try {
-      error = spec[propName](prop, propName);
+      error = spec[propName](props, propName);
     } catch (ex) {
       error = ex;
     }
 
     if (error != null) {
-      console.error(`<${tagName}> :`, error.message);
+      console.error(
+        `${error?.message}\n\n`,
+        `<${tagName}> at [${stack.lineNumber}:${stack.columnNumber}] - ${stack.fileName}`,
+      );
+
       break;
     }
   }
 };
 
-const jsxDev = (el: unknown, props: Record<string, unknown>): void => {
+const jsxDEV = (
+  el: unknown,
+  props: Record<string, unknown>,
+  _,
+  __,
+  stack: IStack,
+): void => {
   if (typeof el === 'string') {
     if (specMap.has(el)) {
-      propTypes(el, specMap.get(el), props);
+      propTypes(el, specMap.get(el), props, stack);
     }
   }
 
@@ -30,7 +46,6 @@ const jsxDev = (el: unknown, props: Record<string, unknown>): void => {
 };
 
 export {
-  jsxDev as jsx,
-  jsxDev as jsxs,
+  jsxDEV,
   Fragment,
 };
