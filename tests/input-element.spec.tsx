@@ -89,4 +89,9 @@ describe('HTMLInputElement', () => {
     expect(<input autocomplete="off" />).toHaveProperty('autocomplete', 'off');
     expect(<input autocomplete="off" />).toHaveAttribute('autocomplete', 'off');
   });
+
+  it('should set name', () => {
+    expect(<input name="inp" />).toHaveProperty('name', 'inp');
+    expect(<input name="inp" />).toHaveAttribute('name', 'inp');
+  });
 });

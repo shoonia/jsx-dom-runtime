@@ -22,4 +22,30 @@ describe('Props', () => {
   it('add text content to component', () => {
     expect(<div textContent="some string" />).toHaveTextContent('some string');
   });
+
+  it('should add all attributes with spread', () => {
+    const props = {
+      className: 'some',
+      id: 'one',
+      textContent: 'Hello',
+    };
+
+    expect(<p {...props} />).toHaveOuterHTML('<p class="some" id="one">Hello</p>');
+  });
+
+  it('should add all attributes', () => {
+    const props = {
+      className: 'box',
+    };
+
+    expect(<p id="one" {...props} />).toHaveOuterHTML('<p id="one" class="box"></p>');
+  });
+
+  it('should add children nodes with spread', () => {
+    const props = {
+      children: <q />,
+    };
+
+    expect(<p {...props} />).toHaveOuterHTML('<p><q></q></p>');
+  });
 });
