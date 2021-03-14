@@ -4,7 +4,7 @@ const createPlugin = require('@babel/plugin-transform-react-jsx/lib/create-plugi
 module.exports = declare((api, { useBuiltIns, useSpread }) => {
   api.assertVersion(7);
 
-  const isDev = process.env.NODE_ENV === 'development' || process.env.NODE_ENV === 'test';
+  const isDev = process.env.NODE_ENV === 'development';
 
   return {
     plugins: [
