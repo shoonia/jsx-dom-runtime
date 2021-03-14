@@ -1,10 +1,12 @@
+import { createRef } from '..';
+
 import { Driver } from './e2e.Driver';
 
 const driver = new Driver();
 
 it('should add new items to list by click', () => {
   const List = () => {
-    const List = { current: null };
+    const List = createRef();
 
     const add = () => {
       <List.current>
