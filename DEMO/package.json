@@ -9,7 +9,7 @@
     "build": "parcel build --no-source-maps --no-cache src/index.html"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.4.0"
+    "jsx-dom-runtime": "^0.6.0"
   },
   "devDependencies": {
     "parcel": "^2.0.0-nightly.623"

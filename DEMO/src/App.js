@@ -1,4 +1,4 @@
-const createRef = () => Object.seal({ current: null });
+import { createRef } from 'jsx-dom-runtime';
 
 export const App = () => {
   const Input = createRef();
