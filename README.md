@@ -106,7 +106,23 @@ const callback = (node) => {
 };
 
 <document.body>
-  <p ref={bindRef(ref, callback /* ... */)} />;
+  <p ref={bindRef(ref, callback /* ... */)} />
+</document.body>;
+```
+
+### Parse from string
+
+```js
+import { parseFromString } from 'jsx-dom-runtime';
+
+const svg = parseFromString(
+  `<svg width="24" height="24" aria-hidden="true">
+    <path d="M12 12V6h-1v6H5v1h6v6h1v-6h6v-1z"/>
+  </svg>`
+);
+
+<document.body>
+  {svg}
 </document.body>;
 ```
 
