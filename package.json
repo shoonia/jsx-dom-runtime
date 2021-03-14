@@ -42,7 +42,6 @@
     "typescript": "^4.2.3"
   },
   "files": [
-    "src",
     "dist",
     "jsx-dev-runtime",
     "jsx-runtime",
