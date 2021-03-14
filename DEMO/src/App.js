@@ -1,5 +1,7 @@
 import { createRef } from 'jsx-dom-runtime';
 
+import * as s from "./styles.module.css"
+
 export const App = () => {
   const Input = createRef();
   const List = createRef();
@@ -16,9 +18,9 @@ export const App = () => {
     }
 
     <List.current>
-      <li data-item className="item">
+      <li data-item className={s.item}>
         {field.value}
-        <button type="button" className="btn" onClick={removeItem}>
+        <button type="button" className={s.btn} onClick={removeItem}>
           Remove
         </button>
       </li>
@@ -37,14 +39,14 @@ export const App = () => {
   return (
     <>
       <fieldset style="border: 0; padding: 0;">
-        <div className="toolbar">
-          <input ref={Input} type="text" className="field" onKeyPress={pressEnter} />
-          <button type="button" className="btn" onClick={addItem}>
+        <div className={s.toolbar}>
+          <input ref={Input} type="text" className={s.field} onKeyPress={pressEnter} />
+          <button type="button" className={s.btn} onClick={addItem}>
           Add Item
           </button>
         </div>
       </fieldset>
-      <ul className="list" ref={List} />
+      <ul className={s.list} ref={List} />
     </>
   );
 };

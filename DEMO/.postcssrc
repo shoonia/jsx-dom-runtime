@@ -1,0 +1,8 @@
+{
+  "modules": true,
+  "plugins": {
+    "postcss-modules": {
+      "generateScopedName": "_[hash:base64:5]"
+    }
+  }
+}
