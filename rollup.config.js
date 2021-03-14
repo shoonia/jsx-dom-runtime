@@ -5,6 +5,8 @@ import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 
+import libPkg from './package.json';
+
 const dist = 'jsx-runtime';
 const source = 'jsxRuntime.js';
 const esm = 'jsxRuntime.esm.js';
@@ -26,6 +28,19 @@ const pkg = {
 };
 
 const extensions = ['.js', '.ts'];
+
+const plugins = [
+  commonjs(),
+  nodeResolve({
+    extensions,
+  }),
+  babel({
+    extensions,
+    presets: [
+      '@babel/preset-typescript',
+    ],
+  }),
+];
 
 const bablePlugin = getBabelOutputPlugin({
   presets: [
@@ -80,6 +95,30 @@ export default [
     ],
   },
   {
+    input: 'src/lib/index.ts',
+    output: [
+      {
+        file: libPkg.esmodule,
+        format: 'esm',
+      },
+      {
+        file: libPkg.module,
+        format: 'esm',
+        plugins: [
+          bablePlugin,
+        ],
+      },
+      {
+        file: libPkg.main,
+        format: 'cjs',
+        plugins: [
+          bablePlugin,
+        ],
+      },
+    ],
+    plugins,
+  },
+  {
     input: 'src/development/index.ts',
     output: [
       {
@@ -87,17 +126,6 @@ export default [
         format: 'cjs',
       },
     ],
-    plugins: [
-      commonjs(),
-      nodeResolve({
-        extensions,
-      }),
-      babel({
-        extensions,
-        presets: [
-          '@babel/preset-typescript',
-        ],
-      }),
-    ],
+    plugins,
   },
 ];

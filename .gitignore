@@ -1,6 +1,7 @@
 node_modules/
 jsx-dev-runtime/
 jsx-runtime/
+dist/
 __test/
 
 .DS_Store
