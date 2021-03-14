@@ -1,3 +1,3 @@
-export const createRef = () => ({
+export let createRef = () => ({
   current: null,
 });

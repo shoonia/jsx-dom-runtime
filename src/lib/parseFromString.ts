@@ -1,4 +1,4 @@
-export const parseFromString = (html: string): Node[] => {
+export let parseFromString = (html: string): Node[] => {
   let node = document.createElement('p');
 
   node.innerHTML = html;
