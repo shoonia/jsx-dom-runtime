@@ -86,7 +86,7 @@ const createOneOf = (list: string[]) => {
     }
 
     return new PropTypeError(
-      `Invalid prop \`${key}\` of type \`${value}\`, expected one of ${list.join(', ')}`,
+      `Invalid prop \`${key}\` of type "${value}", expected one of "${list.join('", "')}"`,
     );
   });
 };

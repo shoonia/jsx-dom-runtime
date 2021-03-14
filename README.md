@@ -34,7 +34,7 @@ const App = () => {
   const List = createRef();
 
   const addItem = () => {
-    // append to the end of list
+    // append to the end the of list
     <List.current>
       <li>New Item</li>
     </List.current>
@@ -50,12 +50,12 @@ const App = () => {
   );
 };
 
-// append to the end of head
+// append to the end the of head
 <document.head>
   <link rel="stylesheet" href="/style.css" />
 </document.head>;
 
-// append to the end of body
+// append to the end the of body
 <document.body id="root">
   <App />
 </document.body>;

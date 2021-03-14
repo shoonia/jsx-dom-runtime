@@ -1,6 +1,8 @@
 import { element } from './element';
 import { a } from './a';
 import { img } from './img';
+import { input } from './input';
+import { button } from './button';
 
 const specMap = new Map<string, any>();
 
@@ -21,7 +23,7 @@ const list = <const>[
   'blockquote',
   'body',
   'br',
-  'button',
+  ['button', button],
   'canvas',
   'caption',
   'cite',
@@ -63,7 +65,7 @@ const list = <const>[
   'i',
   'iframe',
   ['img', img],
-  'input',
+  ['input', input],
   'ins',
   'kbd',
   'label',
