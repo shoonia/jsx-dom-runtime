@@ -3,6 +3,7 @@ import { a } from './a';
 import { img } from './img';
 import { input } from './input';
 import { button } from './button';
+import { CORS } from './CORS';
 
 const specMap = new Map<string, any>();
 
@@ -64,7 +65,7 @@ const list = <const>[
   'html',
   'i',
   'iframe',
-  ['img', img],
+  ['img', img, CORS],
   ['input', input],
   'ins',
   'kbd',
