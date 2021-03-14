@@ -1,6 +1,6 @@
 import { createRef } from 'jsx-dom-runtime';
 
-import * as s from "./styles.module.css"
+import * as s from './styles.module.css';
 
 export const App = () => {
   const Input = createRef();

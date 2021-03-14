@@ -1,7 +1,7 @@
 {
   "name": "jsx-dom-runtime",
   "version": "0.6.0",
-  "description": "JSX syntax for DOM Element",
+  "description": "A tiny in 500 bytes library to JSX syntax templates for DOM",
   "main": "dist/index.cjs.js",
   "module": "dist/index.module.js",
   "esmodule": "dist/index.js",
