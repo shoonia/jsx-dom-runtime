@@ -1,9 +1,5 @@
 import { fireEvent, getAllByTestId, getByTestId } from '@testing-library/dom';
 
-beforeEach(() => {
-  document.body.innerHTML = '';
-});
-
 export class Driver {
   render(node) {
     return document.body.appendChild(node);

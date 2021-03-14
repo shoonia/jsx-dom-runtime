@@ -1,8 +1,4 @@
 describe('Node Component', () => {
-  beforeEach(() => {
-    document.body.innerHTML = '';
-  });
-
   it('should append children to body element', () => {
     <document.body>
       <div>one</div>
