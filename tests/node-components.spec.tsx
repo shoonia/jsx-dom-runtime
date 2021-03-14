@@ -5,7 +5,7 @@ describe('Node Component', () => {
       <div>two</div>
     </document.body>;
 
-    expect(document.body).toContainHTML('<div>one</div><div>two</div>');
+    expect(document.body).toHaveInnerHTML('<div>one</div><div>two</div>');
   });
 
   it('should add a new child node', () => {
@@ -24,7 +24,7 @@ describe('Node Component', () => {
       <li>four</li>
     </List>;
 
-    expect(List).toContainHTML(
+    expect(List).toHaveInnerHTML(
       '<li>one</li><li>two</li><li>three</li><li>four</li>'
     );
   });
@@ -46,6 +46,6 @@ describe('Node Component', () => {
       <MyText textContent="new text" />
     </document.body>;
 
-    expect(document.body).toContainHTML('new text');
+    expect(document.body).toHaveInnerHTML('new text');
   });
 });
