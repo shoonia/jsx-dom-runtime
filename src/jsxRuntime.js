@@ -55,10 +55,10 @@ export let jsx = (el, props) => {
   appendChildren(node, props.children);
 
   if (ref != null) {
-    if ('current' in ref) {
-      ref.current = node;
-    } else if (typeof ref === 'function') {
+    if (typeof ref === 'function') {
       ref(node);
+    } else {
+      ref.current = node;
     }
   }
 
