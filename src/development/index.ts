@@ -13,7 +13,7 @@ const propTypes = (tagName: string, spec, props, stack: IStack) => {
     let error;
 
     try {
-      error = spec[key](key, props[key], props);
+      error = spec[key](key, props[key]);
     } catch (ex) {
       error = ex;
     }

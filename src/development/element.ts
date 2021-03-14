@@ -8,8 +8,14 @@ export const element = {
   lang: T.string,
   title: T.string,
   class: T.string,
-  // className: T.string, // TODO:
-  // style: T.string, // TODO:
+  className: T.oneOfType([
+    T.string,
+    T.array,
+  ]),
+  style: T.oneOfType([
+    T.string,
+    T.object,
+  ]),
   tabindex: T.number,
   tabIndex: T.number,
   hidden: T.bool,
