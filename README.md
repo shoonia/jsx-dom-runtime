@@ -27,8 +27,10 @@ yarn add jsx-dom-runtime
 ## Example
 
 ```js
+import { createRef } from 'jsx-dom-runtime';
+
 const App = () => {
-  const List = { current: null };
+  const List = createRef();
 
   const addItem = () => {
     <List.current>
