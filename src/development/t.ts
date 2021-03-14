@@ -1,6 +1,10 @@
 type TProps = Record<string, unknown>;
 
-type TValidator = (props: TProps, propName: string) => PropTypeError | null;
+type TValidator = (
+  key: string,
+  value: unknown,
+  props: TProps,
+  ) => PropTypeError | null;
 
 type TChainableChecker = (validator: TValidator) => any;
 
@@ -13,21 +17,21 @@ class PropTypeError extends Error {
   }
 }
 
-const getPropType = (propValue: unknown): string => {
-  return Array.isArray(propValue) ? 'array' : typeof propValue;
+const getPropType = (value: unknown): string => {
+  return Array.isArray(value) ? 'array' : typeof value;
 };
 
-const getPreciseType = (propValue: unknown): string => {
-  if (propValue == null) {
-    return String(propValue);
+const getPreciseType = (value: unknown): string => {
+  if (value == null) {
+    return String(value);
   }
 
-  const propType = getPropType(propValue);
+  const propType = getPropType(value);
 
   if (propType === 'object') {
-    if (propValue instanceof Date) {
+    if (value instanceof Date) {
       return 'date';
-    } else if (propValue instanceof RegExp) {
+    } else if (value instanceof RegExp) {
       return 'regexp';
     }
   }
@@ -36,18 +40,18 @@ const getPreciseType = (propValue: unknown): string => {
 };
 
 const createChainableChecker: TChainableChecker = (validater) => {
-  const required = (isRequired: boolean, props, propName): PropTypeError | null => {
-    if (props[propName] == null) {
+  const required = (isRequired: boolean, key, value, props): PropTypeError | null => {
+    if (value == null) {
       if (isRequired) {
         return new PropTypeError(
-          `The prop "${propName}" is required, but its value is \`${props[propName]}\``,
+          `The prop "${key}" is required, but its value is \`${value}\``,
         );
       }
 
       return null;
     }
 
-    return validater(props, propName);
+    return validater(key, value, props);
   };
 
   const chainedCheck = required.bind(null, false);
@@ -58,19 +62,32 @@ const createChainableChecker: TChainableChecker = (validater) => {
 };
 
 const createPrimitiveChecker = (expectedType: string) => {
-  return createChainableChecker((props, propName) => {
-    const propValue = props[propName];
-    const propType = getPropType(propValue);
+  return createChainableChecker((key, value) => {
+    const propType = getPropType(value);
 
     if (propType !== expectedType) {
-      const preciseType = getPreciseType(propValue);
+      const preciseType = getPreciseType(value);
 
       return new PropTypeError(
-        `Invalid prop \`${propName}\` of type \`${preciseType}\`, expected \`${expectedType}\``,
+        `Invalid prop \`${key}\` of type \`${preciseType}\`, expected \`${expectedType}\``,
       );
     }
 
     return null;
+  });
+};
+
+const createOneOf = (list: string[]) => {
+  return createChainableChecker((key, value) => {
+    for (let i = 0; i < list.length; i++) {
+      if (value === list[i]) {
+        return null;
+      }
+    }
+
+    return new PropTypeError(
+      `Invalid prop \`${key}\` of type \`${value}\`, expected one of ${list.join(', ')}`,
+    );
   });
 };
 
@@ -82,4 +99,5 @@ export default {
   object: createPrimitiveChecker('object'),
   string: createPrimitiveChecker('string'),
   any: createChainableChecker(() => null),
+  oneOf: createOneOf,
 } as const;

@@ -5,5 +5,10 @@ export const a = {
   rel: T.string,
   download: T.string,
   type: T.string,
-  target: T.string,
+  target: T.oneOf([
+    '_blank',
+    '_self',
+    '_parent',
+    '_top',
+  ]),
 };

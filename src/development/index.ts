@@ -9,11 +9,11 @@ interface IStack {
 }
 
 const propTypes = (tagName: string, spec, props, stack: IStack) => {
-  for (const propName in spec) {
+  for (const key in spec) {
     let error;
 
     try {
-      error = spec[propName](props, propName);
+      error = spec[key](key, props[key], props);
     } catch (ex) {
       error = ex;
     }
