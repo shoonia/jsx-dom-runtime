@@ -7,7 +7,7 @@ describe('useText', () => {
     expect(<i>{text}</i>).toHaveOuterHTML('<i>hello</i>');
   });
 
-  it('should not add text', () => {
+  it('should add empty text', () => {
     const [text] = useText();
 
     expect(<s>{text}</s>).toHaveOuterHTML('<s></s>');
@@ -25,5 +25,19 @@ describe('useText', () => {
     setText('new');
 
     expect(document.body).toHaveInnerHTML('new');
+  });
+
+  it('should update empty text', () => {
+    const [text, setText] = useText();
+
+    <document.body>
+      {text}
+    </document.body>;
+
+    expect(document.body).toHaveInnerHTML('');
+
+    setText('new one');
+
+    expect(document.body).toHaveInnerHTML('new one');
   });
 });
