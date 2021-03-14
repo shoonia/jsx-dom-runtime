@@ -4,6 +4,7 @@ import { img } from './img';
 import { input } from './input';
 import { button } from './button';
 import { CORS } from './CORS';
+import { label } from './label';
 
 const specMap = new Map<string, any>();
 
@@ -69,7 +70,7 @@ const list = <const>[
   ['input', input],
   'ins',
   'kbd',
-  'label',
+  ['label', label],
   'legend',
   'li',
   'link',

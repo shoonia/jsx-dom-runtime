@@ -8,7 +8,23 @@ describe('Props', () => {
   });
 
   it('should support htmlFor attribute in <label />', () => {
-    expect(<label htmlFor="some-id" />).toHaveOuterHTML('<label for="some-id"></label>');
+    expect(<label htmlFor="some-1" />).toHaveOuterHTML('<label for="some-1"></label>');
+    expect(<label htmlFor="some-2" />).toHaveProperty('htmlFor', 'some-2');
+  });
+
+  it('should support for attribute in <label />', () => {
+    expect(<label for="some-1" />).toHaveOuterHTML('<label for="some-1"></label>');
+    expect(<label for="some-2" />).toHaveProperty('htmlFor', 'some-2');
+  });
+
+  it('should have attribute accesskey', () => {
+    expect(<p accessKey="s" />).toHaveOuterHTML('<p accesskey="s"></p>');
+    expect(<p accesskey="f" />).toHaveOuterHTML('<p accesskey="f"></p>');
+  });
+
+  it('should have property accessKey', () => {
+    expect(<p accessKey="s" />).toHaveProperty('accessKey', 's');
+    expect(<p accesskey="f" />).toHaveProperty('accessKey', 'f');
   });
 
   it('add html to component', () => {

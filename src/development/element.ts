@@ -1,6 +1,8 @@
 import T from './t';
 
 export const element = {
+  accesskey: T.string,
+  accessKey: T.string,
   id: T.string,
   dir: T.string,
   lang: T.string,
