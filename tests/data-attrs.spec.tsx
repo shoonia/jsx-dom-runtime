@@ -17,13 +17,13 @@ describe('Data attribute', () => {
   });
 
   it('should stringify attribute value', () => {
-    expect(<oi data-str={0} />).toHaveOuterHTML('<oi data-str="0"></oi>');
-    expect(<oi data-str={1} />).toHaveOuterHTML('<oi data-str="1"></oi>');
-    expect(<oi data-str={NaN} />).toHaveOuterHTML('<oi data-str="NaN"></oi>');
-    expect(<oi data-str={Infinity} />).toHaveOuterHTML('<oi data-str="Infinity"></oi>');
-    expect(<oi data-str={[0, 1]} />).toHaveOuterHTML('<oi data-str="0,1"></oi>');
-    expect(<oi data-str={() => {}} />).toHaveOuterHTML('<oi data-str="() => {}"></oi>');
-    expect(<oi data-str={function x() {}} />).toHaveOuterHTML('<oi data-str="function x() {}"></oi>');
-    expect(<oi data-str={{ x: 10 }} />).toHaveOuterHTML('<oi data-str="[object Object]"></oi>');
+    expect(<ol data-str={0} />).toHaveOuterHTML('<ol data-str="0"></ol>');
+    expect(<ol data-str={1} />).toHaveOuterHTML('<ol data-str="1"></ol>');
+    expect(<ol data-str={NaN} />).toHaveOuterHTML('<ol data-str="NaN"></ol>');
+    expect(<ol data-str={Infinity} />).toHaveOuterHTML('<ol data-str="Infinity"></ol>');
+    expect(<ol data-str={[0, 1]} />).toHaveOuterHTML('<ol data-str="0,1"></ol>');
+    expect(<ol data-str={() => {}} />).toHaveOuterHTML('<ol data-str="() => {}"></ol>');
+    expect(<ol data-str={function x() {}} />).toHaveOuterHTML('<ol data-str="function x() {}"></ol>');
+    expect(<ol data-str={{ x: 10 }} />).toHaveOuterHTML('<ol data-str="[object Object]"></ol>');
   });
 });

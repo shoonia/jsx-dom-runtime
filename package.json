@@ -6,6 +6,7 @@
   "module": "dist/index.module.js",
   "esmodule": "dist/index.js",
   "source": "dist/index.js",
+  "types": "./index.d.ts",
   "sideEffects": false,
   "scripts": {
     "lint": "eslint 'src/**/*.{js,ts}' 'tests/**/*.{js,ts,tsx}'",
@@ -18,7 +19,8 @@
   "dependencies": {
     "@babel/core": "^7.13.8",
     "@babel/helper-plugin-utils": "^7.13.0",
-    "@babel/plugin-transform-react-jsx": "^7.12.17"
+    "@babel/plugin-transform-react-jsx": "^7.12.17",
+    "csstype": "^3.0.7"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.13.9",

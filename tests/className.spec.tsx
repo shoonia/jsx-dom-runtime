@@ -9,6 +9,7 @@ describe('className', () => {
 
   it('should filtered class names', () => {
     const classNames = [ undefined, 'one', null, 0, NaN, 'two', '', false ];
+    // @ts-expect-error
     expect(<div className={classNames} />).toHaveOuterHTML('<div class="one two"></div>');
   });
 });

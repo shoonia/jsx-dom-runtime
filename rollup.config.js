@@ -23,6 +23,7 @@ const pkg = {
   module: moduleJs,
   exports: `./${esm}`,
   esmodule: esm,
+  types: '../index.d.ts',
   private: true,
   license: 'MIT',
 };
