@@ -12,4 +12,9 @@ export const img = {
     'eager',
     'auto',
   ]),
+  decoding: T.oneOf([
+    'async',
+    'sync',
+    'auto'
+  ]),
 };

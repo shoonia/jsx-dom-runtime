@@ -33,4 +33,8 @@ describe('HTMLImageElement', () => {
   it('should add loading', () => {
     expect(<img loading="lazy" />).toHaveAttribute('loading', 'lazy');
   });
+
+  it('should add decoding', () => {
+    expect(<img decoding="async" />).toHaveAttribute('decoding', 'async');
+  });
 });
