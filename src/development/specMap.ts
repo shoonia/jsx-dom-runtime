@@ -5,8 +5,11 @@ import { input } from './input';
 import { button } from './button';
 import { CORS } from './CORS';
 import { label } from './label';
+import { ARIA } from './ARIA';
 
 const specMap = new Map<string, any>();
+
+const defaultSpecs = Object.assign({}, element, ARIA);
 
 const list = <const>[
   ['a', a],
@@ -134,9 +137,9 @@ list.forEach((item) => {
   if (Array.isArray(item)) {
     const [tagName, ...specs] = item;
 
-    specMap.set(tagName, Object.assign({}, element, ...specs));
+    specMap.set(tagName, Object.assign({}, defaultSpecs, ...specs));
   } if (typeof item === 'string') {
-    specMap.set(item, element);
+    specMap.set(item, defaultSpecs);
   }
 });
 
