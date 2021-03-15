@@ -71,6 +71,18 @@ const createPrimitiveChecker = (expectedType: string) => {
   });
 };
 
+const createBooleanish = createChainableChecker((key, value) => {
+  if (typeof value === 'boolean' || value === 'true' || value === 'false') {
+    return null;
+  }
+
+  const preciseType = getPreciseType(value);
+
+  return new PropTypeError(
+    `Invalid prop \`${key}\` of type \`${preciseType}\`, expected "true", "false" or \`boolean\``,
+  );
+});
+
 const createOneOf = (list: string[]) => {
   return createChainableChecker((key, value) => {
     for (let i = 0; i < list.length; i++) {
@@ -111,6 +123,7 @@ export default {
   object: createPrimitiveChecker('object'),
   string: createPrimitiveChecker('string'),
   any: createChainableChecker(() => null),
+  booleanish: createBooleanish,
   oneOf: createOneOf,
   oneOfType: createOneOfType,
 } as const;
