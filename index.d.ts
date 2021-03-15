@@ -16,7 +16,7 @@ interface AttrWithRef<T> extends Attributes {
   ref?: Ref<T>
 }
 
-type TText = string | number
+type TText = string | number | Text
 type TChild = Node | TText
 type TChildren = TNodeArray;
 
@@ -26,7 +26,6 @@ type TNode =
   | TChild
   | TChildren
   | DocumentFragment
-  | HTMLElement
   | Text
   | TText
   | Comment
@@ -36,16 +35,16 @@ type TNode =
 
 type PropsWithChildren<P> = P & { children?: TNode | TChildren }
 
-export function jsx<K extends keyof HTMLTagMap, T extends HTMLElementTagNameMap[K]>(
-  type: K | HTMLElement,
+export function jsx<K extends keyof HTMLElementTagNameMap, T extends HTMLElementTagNameMap[K]>(
+  type: K,
   props?: (HTMLAttributes<T> & AttrWithRef<T>),
 ): T
 
-export { jsx as jsxs, jsx as createElement };
+export { jsx as jsxs, jsx as jsxDEV };
 
-export function Fragment(props: { children?: TNode | TChildren }): DocumentFragment
+export function Fragment(props: { children?: TNode | TChildren }): JSX.Element
 
-export interface FunctionComponent<P = {}, T extends Element = JSX.TElement> {
+export interface FunctionComponent<P = {}, T extends Element = JSX.Element> {
   (props: PropsWithChildren<P>): T | null
 }
 
@@ -1026,13 +1025,11 @@ interface WebViewHTMLAttributes<T> extends HTMLAttributes<T> {
   webpreferences?: string
 }
 
-type HTMLTagMap = HTMLElementTagNameMap
-
 type HTMLWebViewElement = HTMLElement
 
 declare global {
   namespace JSX {
-    type TElement = HTMLElement;
+    type Element = HTMLElement;
 
     interface ElementAttributesProperty {
       props: {}

@@ -1,6 +1,5 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
     "checkJs": true,
     "allowJs": true,
     "esModuleInterop": true,
@@ -22,7 +21,6 @@
     "./tests/**/*.tsx"
   ],
   "files": [
-    "./src/jsxRuntime.js",
     "./types/global.d.ts"
   ]
 }
