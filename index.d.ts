@@ -947,7 +947,7 @@ interface TableHTMLAttributes<T> extends HTMLAttributes<T> {
   width?: number | string
 }
 
-interface TextareaHTMLAttributes<T> extends HTMLAttributes<T> {
+export interface TextareaHTMLAttributes<T = HTMLTextAreaElement> extends HTMLAttributes<T> {
   autoComplete?: string
   autoFocus?: boolean
   autofocus?: boolean

@@ -1,11 +1,12 @@
+import { CORS } from './CORS';
+import { ARIA } from './ARIA';
 import { element } from './element';
 import { a } from './a';
 import { img } from './img';
 import { input } from './input';
 import { button } from './button';
-import { CORS } from './CORS';
 import { label } from './label';
-import { ARIA } from './ARIA';
+import { textarea } from './textarea';
 
 const specMap = new Map<string, any>();
 
@@ -118,7 +119,7 @@ const list = <const>[
   'tbody',
   'td',
   'template',
-  'textarea',
+  ['textarea', textarea],
   'tfoot',
   'th',
   'thead',
