@@ -3,11 +3,14 @@ type TValidator = (key: string, value: unknown) => PropTypeError | null;
 type TChainableChecker = (validator: TValidator) => any;
 
 class PropTypeError extends Error {
-  constructor(message: string) {
+  public expected: string[];
+
+  constructor(message: string, expected = []) {
     super();
 
     this.message = message;
     this.stack = '';
+    this.expected = expected;
   }
 }
 
@@ -64,6 +67,7 @@ const createPrimitiveChecker = (expectedType: string) => {
 
       return new PropTypeError(
         `Invalid prop \`${key}\` of type \`${preciseType}\`, expected \`${expectedType}\``,
+        [`\`${expectedType}\``],
       );
     }
 
@@ -71,7 +75,7 @@ const createPrimitiveChecker = (expectedType: string) => {
   });
 };
 
-const createBooleanish = createChainableChecker((key, value) => {
+const booleanishChecker = createChainableChecker((key, value) => {
   if (typeof value === 'boolean' || value === 'true' || value === 'false') {
     return null;
   }
@@ -80,6 +84,7 @@ const createBooleanish = createChainableChecker((key, value) => {
 
   return new PropTypeError(
     `Invalid prop \`${key}\` of type \`${preciseType}\`, expected "true", "false" or \`boolean\``,
+    ['`boolean`', 'true', 'false'],
   );
 });
 
@@ -93,24 +98,30 @@ const createOneOf = (list: string[]) => {
 
     return new PropTypeError(
       `Invalid prop \`${key}\` of type "${value}", expected one of "${list.join('", "')}"`,
+      list,
     );
   });
 };
 
 const createOneOfType = (validators: TValidator[]) => {
   return createChainableChecker((key, value) => {
+    const expected = [];
+
     for (let i = 0; i < validators.length; i++) {
       const result = validators[i](key, value);
 
       if (result === null) {
         return null;
       }
+
+      expected.push(...result.expected);
     }
 
     const preciseType = getPreciseType(value);
 
     return new PropTypeError(
-      `Invalid prop \`${key}\` of type \`${preciseType}\``,
+      `Invalid prop \`${key}\` of type \`${preciseType}\`, expected one of ${expected.join(', ')}`,
+      expected,
     );
   });
 };
@@ -123,7 +134,7 @@ export default {
   object: createPrimitiveChecker('object'),
   string: createPrimitiveChecker('string'),
   any: createChainableChecker(() => null),
-  booleanish: createBooleanish,
+  booleanish: booleanishChecker,
   oneOf: createOneOf,
   oneOfType: createOneOfType,
 } as const;

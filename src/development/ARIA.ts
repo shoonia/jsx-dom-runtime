@@ -10,12 +10,24 @@ export const ARIA = {
     'both',
   ]),
   'aria-busy': T.booleanish,
-  // 'aria-checked'?: Booleanish | 'mixed'
+  'aria-checked': T.oneOfType([
+    T.booleanish,
+    T.oneOf(['mixed']),
+  ]),
   'aria-colcount': T.number,
   'aria-colindex': T.number,
   'aria-colspan': T.number,
   'aria-controls': T.string,
-  // 'aria-current'?: Booleanish | 'page' | 'step' | 'location' | 'date' | 'time'
+  'aria-current': T.oneOfType([
+    T.booleanish,
+    T.oneOf([
+      'page',
+      'step',
+      'location',
+      'date',
+      'time'
+    ]),
+  ]),
   'aria-describedby': T.string,
   'aria-details': T.string,
   'aria-disabled': T.booleanish,
@@ -31,9 +43,24 @@ export const ARIA = {
   'aria-expanded': T.booleanish,
   'aria-flowto': T.string,
   'aria-grabbed': T.booleanish,
-  // 'aria-haspopup'?: Booleanish | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
+  'aria-haspopup': T.oneOfType([
+    T.booleanish,
+    T.oneOf([
+      'menu',
+      'listbox',
+      'tree',
+      'grid',
+      'dialog'
+    ]),
+  ]),
   'aria-hidden': T.booleanish,
-  // 'aria-invalid'?: Booleanish | 'grammar' | 'spelling'
+  'aria-invalid': T.oneOfType([
+    T.booleanish,
+    T.oneOf([
+      'grammar',
+      'spelling',
+    ]),
+  ]),
   'aria-keyshortcuts': T.string,
   'aria-label': T.string,
   'aria-labelledby': T.string,
@@ -53,7 +80,10 @@ export const ARIA = {
   'aria-owns': T.string,
   'aria-placeholder': T.string,
   'aria-posinset': T.number,
-  // 'aria-pressed'?: Booleanish | 'mixed'
+  'aria-pressed': T.oneOfType([
+    T.booleanish,
+    T.oneOf(['mixed']),
+  ]),
   'aria-readonly': T.booleanish,
   'aria-relevant': T.oneOf([
     'additions',
