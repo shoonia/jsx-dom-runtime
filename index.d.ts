@@ -56,7 +56,10 @@ export function bindRef<T>(...refs: Ref<T>[]): RefCallback<T>
 
 export function parseFromString(htmlSvgXml: string): Node[]
 
-export function useText(initContent?: string): Text
+export function useText(initContent?: string): readonly [
+  Text,
+  (text: string) => void
+]
 
 interface CurrentTarget<T> {
   currentTarget: EventTarget & T
