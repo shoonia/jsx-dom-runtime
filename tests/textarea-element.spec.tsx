@@ -38,6 +38,11 @@ describe('HTMLTextAreaElement', () => {
     expect(<textarea readOnly={false} />).toHaveProperty('readOnly', false);
     expect(<textarea readOnly />).toHaveAttribute('readonly');
     expect(<textarea readOnly={false} />).not.toHaveAttribute('readonly');
+
+    expect(<textarea readonly />).toHaveProperty('readOnly', true);
+    expect(<textarea readonly={false} />).toHaveProperty('readOnly', false);
+    expect(<textarea readonly />).toHaveAttribute('readonly');
+    expect(<textarea readonly={false} />).not.toHaveAttribute('readonly');
   });
 
   it('should have correct attribute value `autofocus`', () => {
@@ -47,5 +52,12 @@ describe('HTMLTextAreaElement', () => {
     expect(<textarea autofocus={true} />).toHaveAttribute('autofocus', '');
     expect(<textarea autofocus={false} />).toHaveProperty('autofocus', false);
     expect(<textarea autofocus={false} />).not.toHaveAttribute('autofocus');
+
+    expect(<textarea autoFocus />).toHaveProperty('autofocus', true);
+    expect(<textarea autoFocus />).toHaveAttribute('autofocus', '');
+    expect(<textarea autoFocus={true} />).toHaveProperty('autofocus', true);
+    expect(<textarea autoFocus={true} />).toHaveAttribute('autofocus', '');
+    expect(<textarea autoFocus={false} />).toHaveProperty('autofocus', false);
+    expect(<textarea autoFocus={false} />).not.toHaveAttribute('autofocus');
   });
 });

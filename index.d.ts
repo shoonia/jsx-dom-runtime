@@ -731,6 +731,7 @@ export interface InputHTMLAttributes<T = HTMLInputElement> extends HTMLAttribute
   accept?: string
   alt?: string
   autoComplete?: string
+  autocomplete?: string
   autoFocus?: boolean
   autofocus?: boolean
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
@@ -756,6 +757,7 @@ export interface InputHTMLAttributes<T = HTMLInputElement> extends HTMLAttribute
   pattern?: string
   placeholder?: string
   readOnly?: boolean
+  readonly?: boolean
   required?: boolean
   size?: number
   src?: string
@@ -960,6 +962,7 @@ export interface TextareaHTMLAttributes<T = HTMLTextAreaElement> extends HTMLAtt
   name?: string
   placeholder?: string
   readOnly?: boolean
+  readonly?: boolean
   required?: boolean
   rows?: number
   value?: string | readonly string[] | number

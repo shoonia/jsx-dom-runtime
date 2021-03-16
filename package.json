@@ -60,15 +60,15 @@
   "size-limit": [
     {
       "path": "jsx-runtime/jsxRuntime.esm.js",
-      "limit": "462 B"
+      "limit": "471 B"
     },
     {
       "path": "jsx-runtime/jsxRuntime.cjs.js",
-      "limit": "456 B"
+      "limit": "466 B"
     },
     {
       "path": "jsx-runtime/jsxRuntime.module.js",
-      "limit": "464 B"
+      "limit": "474 B"
     }
   ],
   "engines": {

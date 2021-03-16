@@ -22,11 +22,19 @@ describe('HTMLInputElement', () => {
     expect(<input autofocus />).toHaveAttribute('autofocus', '');
     expect(<input autofocus={true} />).toHaveProperty('autofocus', true);
     expect(<input autofocus={true} />).toHaveAttribute('autofocus', '');
+
+    expect(<input autoFocus />).toHaveProperty('autofocus', true);
+    expect(<input autoFocus />).toHaveAttribute('autofocus', '');
+    expect(<input autoFocus={true} />).toHaveProperty('autofocus', true);
+    expect(<input autoFocus={true} />).toHaveAttribute('autofocus', '');
   });
 
   it.each(off)('should not have attribute `autofocus`', (val) => {
     expect(<input autofocus={val} />).not.toHaveAttribute('autofocus');
     expect(<input autofocus={val} />).toHaveProperty('autofocus', false);
+
+    expect(<input autoFocus={val} />).not.toHaveAttribute('autofocus');
+    expect(<input autoFocus={val} />).toHaveProperty('autofocus', false);
   });
 
   it('should have correct attribute value `disabled`', () => {
@@ -54,6 +62,11 @@ describe('HTMLInputElement', () => {
   });
 
   it('should have correct attribute value `required`', () => {
+    expect(<input readonly />).toHaveAttribute('readonly', '');
+    expect(<input readonly />).toHaveProperty('readOnly', true);
+    expect(<input readonly={true} />).toHaveAttribute('readonly', '');
+    expect(<input readonly={true} />).toHaveProperty('readOnly', true);
+
     expect(<input readOnly />).toHaveAttribute('readonly', '');
     expect(<input readOnly />).toHaveProperty('readOnly', true);
     expect(<input readOnly={true} />).toHaveAttribute('readonly', '');
@@ -63,6 +76,9 @@ describe('HTMLInputElement', () => {
   it.each(off)('should not have attribute `readonly`', (val) => {
     expect(<input readOnly={val} />).not.toHaveAttribute('readonly');
     expect(<input readOnly={val} />).toHaveProperty('readOnly', false);
+
+    expect(<input readonly={val} />).not.toHaveAttribute('readonly');
+    expect(<input readonly={val} />).toHaveProperty('readOnly', false);
   });
 
   it('s', () => {
@@ -88,6 +104,9 @@ describe('HTMLInputElement', () => {
   it('should set autocomplete', () => {
     expect(<input autocomplete="off" />).toHaveProperty('autocomplete', 'off');
     expect(<input autocomplete="off" />).toHaveAttribute('autocomplete', 'off');
+
+    expect(<input autoComplete="off" />).toHaveProperty('autocomplete', 'off');
+    expect(<input autoComplete="off" />).toHaveAttribute('autocomplete', 'off');
   });
 
   it('should set name', () => {
