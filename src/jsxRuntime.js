@@ -39,10 +39,10 @@ export let jsx = (el, props) => {
         }
         // Benchmark for comparison (thanks preact): https://esbench.com/bench/574c954bdb965b9a00965ac6
       } else if (key[0] === 'o' && key[1] === 'n') {
-        let name = key.toLowerCase();
+        key = key.toLowerCase();
 
-        if (name in node) {
-          node[name] = val;
+        if (key in node) {
+          node[key] = val;
         }
       } else if (typeof val === 'boolean' && !/^(aria|data)-/.test(key)) {
         if (val) {
