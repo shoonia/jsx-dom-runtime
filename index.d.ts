@@ -579,7 +579,7 @@ export interface AnchorHTMLAttributes<T = HTMLAnchorElement> extends HTMLAttribu
   media?: string
   ping?: string
   rel?: string
-  target?: string
+  target?: '_blank' | '_self' | '_parent' | '_top'
   type?: string
   referrerPolicy?: HTMLAttributeReferrerPolicy
 }
