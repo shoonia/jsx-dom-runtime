@@ -1,6 +1,7 @@
+import { AnchorHTMLAttributes } from '../..';
 import T from './t';
 
-export const a = {
+export const a: AnchorHTMLAttributes = {
   href: T.string.isRequired,
   rel: T.string,
   download: T.string,

@@ -1,6 +1,7 @@
+import { InputHTMLAttributes } from '../..';
 import T from './t';
 
-export const input = {
+export const input: InputHTMLAttributes = {
   type: T.oneOf([
     'text',
     'password',
@@ -25,5 +26,9 @@ export const input = {
     'url',
     'week',
     'datetime-local',
+  ]),
+  value: T.oneOfType([
+    T.string,
+    T.number,
   ]),
 };

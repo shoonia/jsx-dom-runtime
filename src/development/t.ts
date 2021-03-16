@@ -88,7 +88,7 @@ const booleanishChecker = createChainableChecker((key, value) => {
   );
 });
 
-const createOneOf = (list: string[]) => {
+const createOneOf = <T extends string>(list: T[]) => {
   return createChainableChecker((key, value) => {
     for (let i = 0; i < list.length; i++) {
       if (value === list[i]) {

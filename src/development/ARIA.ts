@@ -1,6 +1,7 @@
+import { AriaAttributes } from '../..';
 import T from './t';
 
-export const ARIA = {
+export const ARIA: AriaAttributes = {
   'aria-activedescendant': T.string,
   'aria-atomic': T.booleanish,
   'aria-autocomplete': T.oneOf([

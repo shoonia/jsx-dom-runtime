@@ -1,6 +1,7 @@
+import { ImgHTMLAttributes } from '../..';
 import T from './t';
 
-export const img = {
+export const img: ImgHTMLAttributes = {
   src: T.string.isRequired,
   alt: T.string.isRequired,
   width: T.number,

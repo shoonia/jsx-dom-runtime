@@ -287,7 +287,7 @@ interface DOMAttributes<T> {
 
 export interface CSSProperties extends CSS.Properties<string | number> {}
 
-interface AriaAttributes {
+export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
   'aria-activedescendant'?: string
   /** Indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the aria-relevant attribute. */
@@ -493,8 +493,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   // dataset?: {
   //   [key: string]: string
   // }
-
-  // Standard HTML Attributes
   accessKey?: string
   accesskey?: string
   className?: string | string[]
@@ -569,7 +567,12 @@ type HTMLAttributeReferrerPolicy =
   | 'strict-origin-when-cross-origin'
   | 'unsafe-url'
 
-interface AnchorHTMLAttributes<T> extends HTMLAttributes<T> {
+export type HTMLAttrinuteCORS =
+  |'anonymous'
+  |'use-credentials'
+  | ''
+
+export interface AnchorHTMLAttributes<T = HTMLAnchorElement> extends HTMLAttributes<T> {
   download?: any
   href?: string
   hrefLang?: string
@@ -605,7 +608,7 @@ interface BlockquoteHTMLAttributes<T> extends HTMLAttributes<T> {
   cite?: string
 }
 
-interface ButtonHTMLAttributes<T> extends HTMLAttributes<T> {
+export interface ButtonHTMLAttributes<T = HTMLButtonElement> extends HTMLAttributes<T> {
   autoFocus?: boolean
   autofocus?: boolean
   disabled?: boolean
@@ -703,10 +706,10 @@ interface IframeHTMLAttributes<T> extends HTMLAttributes<T> {
   width?: number | string
 }
 
-interface ImgHTMLAttributes<T> extends HTMLAttributes<T> {
+export interface ImgHTMLAttributes<T = HTMLImageElement> extends HTMLAttributes<T> {
   alt?: string
-  crossOrigin?: 'anonymous' | 'use-credentials' | ''
-  crossorigin?: 'anonymous' | 'use-credentials' | ''
+  crossOrigin?: HTMLAttrinuteCORS
+  crossorigin?: HTMLAttrinuteCORS
   decoding?: 'async' | 'auto' | 'sync'
   height?: number | string
   loading?: 'eager' | 'lazy'
@@ -724,7 +727,7 @@ interface InsHTMLAttributes<T> extends HTMLAttributes<T> {
   dateTime?: string
 }
 
-interface InputHTMLAttributes<T> extends HTMLAttributes<T> {
+export interface InputHTMLAttributes<T = HTMLInputElement> extends HTMLAttributes<T> {
   accept?: string
   alt?: string
   autoComplete?: string
@@ -732,8 +735,8 @@ interface InputHTMLAttributes<T> extends HTMLAttributes<T> {
   autofocus?: boolean
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
   checked?: boolean
-  crossorigin?: 'anonymous' | 'use-credentials' | ''
-  crossOrigin?: 'anonymous' | 'use-credentials' | ''
+  crossorigin?: HTMLAttrinuteCORS
+  crossOrigin?: HTMLAttrinuteCORS
   disabled?: boolean
   enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
   form?: string
@@ -775,7 +778,7 @@ interface KeygenHTMLAttributes<T> extends HTMLAttributes<T> {
   name?: string
 }
 
-interface LabelHTMLAttributes<T> extends HTMLAttributes<T> {
+export interface LabelHTMLAttributes<T = HTMLLabelElement> extends HTMLAttributes<T> {
   form?: string
   htmlFor?: string
   for?: string
@@ -787,8 +790,8 @@ interface LiHTMLAttributes<T> extends HTMLAttributes<T> {
 
 interface LinkHTMLAttributes<T> extends HTMLAttributes<T> {
   as?: string
-  crossOrigin?: 'anonymous' | 'use-credentials' | ''
-  crossorigin?: 'anonymous' | 'use-credentials' | ''
+  crossOrigin?: HTMLAttrinuteCORS
+  crossorigin?: HTMLAttrinuteCORS
   href?: string
   hrefLang?: string
   integrity?: string
@@ -812,8 +815,8 @@ interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
   autoPlay?: boolean
   controls?: boolean
   controlsList?: string
-  crossorigin?: 'anonymous' | 'use-credentials' | ''
-  crossOrigin?: 'anonymous' | 'use-credentials' | ''
+  crossorigin?: HTMLAttrinuteCORS
+  crossOrigin?: HTMLAttrinuteCORS
   loop?: boolean
   mediaGroup?: string
   muted?: boolean
@@ -893,8 +896,8 @@ interface ScriptHTMLAttributes<T> extends HTMLAttributes<T> {
   async?: boolean
   /** @deprecated */
   charSet?: string
-  crossorigin?: 'anonymous' | 'use-credentials' | ''
-  crossOrigin?: 'anonymous' | 'use-credentials' | ''
+  crossorigin?: HTMLAttrinuteCORS
+  crossOrigin?: HTMLAttrinuteCORS
   defer?: boolean
   integrity?: string
   noModule?: boolean
