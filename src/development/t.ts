@@ -96,8 +96,10 @@ const createOneOf = <T extends string>(list: T[]) => {
       }
     }
 
+    const preciseType = String(value).slice(0, 100);
+
     return new PropTypeError(
-      `Invalid prop \`${key}\` of type "${value}", expected one of "${list.join('", "')}"`,
+      `Invalid prop \`${key}\` of type "${preciseType}", expected one of "${list.join('", "')}"`,
       list,
     );
   });

@@ -10,23 +10,37 @@ interface IStack {
   columnNumber: number;
 }
 
+const printValue = (val: unknown): string => {
+  if (Array.isArray(val)) return '{ […] }';
+  if (typeof val === 'object') return '{ {…} }';
+  if (typeof val === 'string') return `"${val.slice(0, 100)}"`;
+  if (typeof val === 'function') return '{ () => … }';
+
+  return `{ ${val} }`;
+};
+
 const propTypes = (tagName: string, spec, props: Props, stack: IStack) => {
   for (const key in props) {
-    let error;
+    if (key in spec) {
+      const value = props[key];
 
-    try {
-      error = spec[key](key, props[key]);
-    } catch (ex) {
-      error = ex;
-    }
+      let error;
 
-    if (error != null) {
-      console.error(
-        `${error?.message}\n\n`,
-        `<${tagName}> at [${stack.lineNumber}:${stack.columnNumber}] - ${stack.fileName}`,
-      );
+      try {
+        error = spec[key](key, value);
+      } catch (ex) {
+        error = ex;
+      }
 
-      break;
+      if (error != null) {
+        console.error(
+          `<${tagName} ${key}=${printValue(value)}>\n\n`,
+          `${error?.message}\n\n`,
+          `at [${stack.lineNumber}:${stack.columnNumber}] - ${stack.fileName}`,
+        );
+
+        break;
+      }
     }
   }
 };
