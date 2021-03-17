@@ -10,5 +10,6 @@ export const textarea: TextareaHTMLAttributes = {
   rows: T.number,
   cols: T.number,
   readOnly: T.bool,
+  readonly: T.bool,
   required: T.bool,
 };

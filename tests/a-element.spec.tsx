@@ -18,4 +18,9 @@ describe('HTMLAnchorElement', () => {
   it('should have the type', () => {
     expect(<a type="image/png">link</a>).toHaveOuterHTML('<a type="image/png">link</a>');
   });
+
+  it('should have the referrerpolicy', () => {
+    expect(<a referrerPolicy="origin" />).toHaveOuterHTML('<a referrerpolicy="origin"></a>');
+    expect(<a referrerpolicy="origin" />).toHaveOuterHTML('<a referrerpolicy="origin"></a>');
+  });
 });

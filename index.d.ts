@@ -1,3 +1,4 @@
+/// <reference lib="dom" />
 import * as CSS from 'csstype';
 
 type Booleanish = boolean | 'true' | 'false'
@@ -556,17 +557,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   is?: string
 }
 
-type HTMLAttributeReferrerPolicy =
-  | ''
-  | 'no-referrer'
-  | 'no-referrer-when-downgrade'
-  | 'origin'
-  | 'origin-when-cross-origin'
-  | 'same-origin'
-  | 'strict-origin'
-  | 'strict-origin-when-cross-origin'
-  | 'unsafe-url'
-
 export type HTMLAttrinuteCORS =
   |'anonymous'
   |'use-credentials'
@@ -581,7 +571,8 @@ export interface AnchorHTMLAttributes<T = HTMLAnchorElement> extends HTMLAttribu
   rel?: string
   target?: '_blank' | '_self' | '_parent' | '_top'
   type?: string
-  referrerPolicy?: HTMLAttributeReferrerPolicy
+  referrerPolicy?: ReferrerPolicy
+  referrerpolicy?: ReferrerPolicy
 }
 
 interface AudioHTMLAttributes<T> extends MediaHTMLAttributes<T> {}
@@ -593,7 +584,8 @@ interface AreaHTMLAttributes<T> extends HTMLAttributes<T> {
   href?: string
   hrefLang?: string
   media?: string
-  referrerPolicy?: HTMLAttributeReferrerPolicy
+  referrerPolicy?: ReferrerPolicy
+  referrerpolicy?: ReferrerPolicy
   rel?: string
   shape?: string
   target?: string
@@ -696,7 +688,8 @@ interface IframeHTMLAttributes<T> extends HTMLAttributes<T> {
   /** @deprecated */
   marginWidth?: number
   name?: string
-  referrerPolicy?: HTMLAttributeReferrerPolicy
+  referrerPolicy?: ReferrerPolicy
+  referrerpolicy?: ReferrerPolicy
   sandbox?: string
   /** @deprecated */
   scrolling?: string
@@ -713,7 +706,8 @@ export interface ImgHTMLAttributes<T = HTMLImageElement> extends HTMLAttributes<
   decoding?: 'async' | 'auto' | 'sync'
   height?: number | string
   loading?: 'eager' | 'lazy'
-  referrerPolicy?: HTMLAttributeReferrerPolicy
+  referrerPolicy?: ReferrerPolicy
+  referrerpolicy?: ReferrerPolicy
   sizes?: string
   src?: string
   srcSet?: string
@@ -798,7 +792,8 @@ interface LinkHTMLAttributes<T> extends HTMLAttributes<T> {
   hrefLang?: string
   integrity?: string
   media?: string
-  referrerPolicy?: HTMLAttributeReferrerPolicy
+  referrerPolicy?: ReferrerPolicy
+  referrerpolicy?: ReferrerPolicy
   rel?: string
   sizes?: string
   type?: string
@@ -904,7 +899,8 @@ interface ScriptHTMLAttributes<T> extends HTMLAttributes<T> {
   integrity?: string
   noModule?: boolean
   nonce?: string
-  referrerPolicy?: HTMLAttributeReferrerPolicy
+  referrerPolicy?: ReferrerPolicy
+  referrerpolicy?: ReferrerPolicy
   src?: string
   type?: string
 }

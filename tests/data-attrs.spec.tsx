@@ -21,6 +21,7 @@ describe('Data attribute', () => {
     expect(<ol data-str={1} />).toHaveOuterHTML('<ol data-str="1"></ol>');
     expect(<ol data-str={NaN} />).toHaveOuterHTML('<ol data-str="NaN"></ol>');
     expect(<ol data-str={Infinity} />).toHaveOuterHTML('<ol data-str="Infinity"></ol>');
+    expect(<ol data-str={[]} />).toHaveOuterHTML('<ol data-str=""></ol>');
     expect(<ol data-str={[0, 1]} />).toHaveOuterHTML('<ol data-str="0,1"></ol>');
     expect(<ol data-str={() => {}} />).toHaveOuterHTML('<ol data-str="() => {}"></ol>');
     expect(<ol data-str={function x() {}} />).toHaveOuterHTML('<ol data-str="function x() {}"></ol>');
