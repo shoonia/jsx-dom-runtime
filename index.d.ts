@@ -990,6 +990,7 @@ interface ThHTMLAttributes<T> extends HTMLAttributes<T> {
 
 interface TimeHTMLAttributes<T> extends HTMLAttributes<T> {
   dateTime?: string
+  datetime?: string
 }
 
 interface TrackHTMLAttributes<T> extends HTMLAttributes<T> {

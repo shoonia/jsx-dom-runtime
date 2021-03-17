@@ -37,4 +37,9 @@ describe('HTMLImageElement', () => {
   it('should add decoding', () => {
     expect(<img decoding="async" />).toHaveAttribute('decoding', 'async');
   });
+
+  it('should have the referrerpolicy', () => {
+    expect(<img referrerPolicy="origin" />).toHaveOuterHTML('<img referrerpolicy="origin">');
+    expect(<img referrerpolicy="origin" />).toHaveOuterHTML('<img referrerpolicy="origin">');
+  });
 });

@@ -17,6 +17,19 @@ describe('Props', () => {
     expect(<label for="some-2" />).toHaveProperty('htmlFor', 'some-2');
   });
 
+  it('should', () => {
+    expect(<time dateTime="2021-03-16" />).toHaveOuterHTML('<time datetime="2021-03-16"></time>');
+    expect(<time dateTime="2021-03-16" />).toHaveProperty('dateTime', '2021-03-16');
+
+    expect(<time datetime="2021-03-16" />).toHaveOuterHTML('<time datetime="2021-03-16"></time>');
+    expect(<time datetime="2021-03-16" />).toHaveProperty('dateTime', '2021-03-16');
+  });
+
+  it('should have title', () => {
+    expect(<abbr title="test text" />).toHaveOuterHTML('<abbr title="test text"></abbr>');
+    expect(<abbr title="test text" />).toHaveProperty('title', 'test text');
+  });
+
   it('should have attribute accesskey', () => {
     expect(<p accessKey="s" />).toHaveOuterHTML('<p accesskey="s"></p>');
     expect(<p accesskey="f" />).toHaveOuterHTML('<p accesskey="f"></p>');
@@ -27,11 +40,11 @@ describe('Props', () => {
     expect(<p accesskey="f" />).toHaveProperty('accessKey', 'f');
   });
 
-  it('add html to component', () => {
+  it('should add html to component', () => {
     expect(<div innerHTML="<p>text</p>" />).toHaveOuterHTML('<div><p>text</p></div>');
   });
 
-  it('add text content to component', () => {
+  it('should add text content to component', () => {
     expect(<div textContent="some string" />).toHaveTextContent('some string');
   });
 

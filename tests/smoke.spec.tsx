@@ -77,4 +77,11 @@ describe('Smoke', () => {
       '<div><nav></nav><span></span>text</div>',
     );
   });
+
+  it('should add custom my-webcomponent tag', () => {
+    // @ts-expect-error
+    expect(<my-webcomponent></my-webcomponent>).toHaveOuterHTML(
+      '<my-webcomponent></my-webcomponent>',
+    );
+  });
 });

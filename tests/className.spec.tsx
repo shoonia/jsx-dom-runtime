@@ -12,4 +12,8 @@ describe('className', () => {
     // @ts-expect-error
     expect(<div className={classNames} />).toHaveOuterHTML('<div class="one two"></div>');
   });
+
+  it('should have a class attribute', () => {
+    expect(<i class="a b c" />).toHaveClass('a b c');
+  });
 });
