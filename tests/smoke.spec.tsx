@@ -1,4 +1,3 @@
-
 describe('Smoke', () => {
   it('should create a div', () => {
     expect(<div />).toHaveOuterHTML('<div></div>');

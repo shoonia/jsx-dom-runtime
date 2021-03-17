@@ -44,14 +44,16 @@ export let jsx = (el, props) => {
         if (key in node) {
           node[key] = val;
         }
-      } else if (typeof val === 'boolean' && !/^(aria|data)-/.test(key)) {
-        if (val) {
+      } else if (val != null) {
+        if (typeof val !== 'boolean' || /^(aria|data)-/.test(key)) {
+          node.setAttribute(key, val);
+        } else if (val) {
           node.setAttribute(key, '');
         } else {
           node.removeAttribute(key);
         }
-      } else if (val != null) {
-        node.setAttribute(key, val);
+      } else {
+        node.removeAttribute(key);
       }
     }
   }
