@@ -675,9 +675,10 @@ interface HtmlHTMLAttributes<T> extends HTMLAttributes<T> {
   manifest?: string
 }
 
-interface IframeHTMLAttributes<T> extends HTMLAttributes<T> {
+export interface IframeHTMLAttributes<T = HTMLIFrameElement> extends HTMLAttributes<T> {
   allow?: string
   allowFullScreen?: boolean
+  allowfullscreen?: boolean
   allowTransparency?: boolean
   /** @deprecated */
   frameBorder?: number | string
