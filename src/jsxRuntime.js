@@ -13,8 +13,8 @@ export let jsx = (el, props) => {
     return el(props);
   }
 
-  let node = typeof el === 'string' ? doc.createElement(el) : el;
   let ref = props.ref;
+  let node = typeof el === 'string' ? doc.createElement(el) : el;
 
   for (let key in props) {
     if (key !== 'ref' && key !== 'children') {

@@ -19,7 +19,7 @@ it('should add new items to list by click', () => {
         <button type="button" onClick={add} data-testid="button">
           add
         </button>
-        <li ref={List}></li>
+        <ul ref={List}></ul>
       </>
     );
   };
