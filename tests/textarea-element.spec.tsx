@@ -60,4 +60,28 @@ describe('HTMLTextAreaElement', () => {
     expect(<textarea autoFocus={false} />).toHaveProperty('autofocus', false);
     expect(<textarea autoFocus={false} />).not.toHaveAttribute('autofocus');
   });
+
+  it('should set text content', () => {
+    expect(<textarea>content text</textarea>).toHaveProperty('value', 'content text');
+    expect(<textarea>content text</textarea>).toHaveProperty('textContent', 'content text');
+    expect(<textarea>content text</textarea>).toHaveProperty('innerHTML', 'content text');
+  });
+
+  it('should append new content to the end', () => {
+    const TextArea = <textarea>1</textarea>;
+
+    expect(TextArea.textContent).toBe( '1');
+    <TextArea>2</TextArea>;
+    expect(TextArea.textContent).toBe('12');
+  });
+
+  it('should replace content', () => {
+    const TextArea = <textarea>1</textarea>;
+
+    expect(TextArea.textContent).toBe('1');
+    <TextArea textContent="2" />;
+    expect(TextArea.textContent).toBe('2');
+    <TextArea innerHTML="3" />;
+    expect(TextArea.textContent).toBe('3');
+  });
 });
