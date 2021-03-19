@@ -19,8 +19,5 @@
   "include": [
     "./tests/**/*.ts",
     "./tests/**/*.tsx"
-  ],
-  "files": [
-    "./types/global.d.ts"
   ]
 }
