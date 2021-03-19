@@ -54,4 +54,13 @@ describe('parseFromString', () => {
       'one<div><span>two</span></div>three',
     );
   });
+
+  it('should have array with correct children nodes', () => {
+    const list = parseFromString('text<div>one</div>text');
+
+    expect(list).toHaveLength(3);
+    expect(list[0] instanceof Text).toBe(true);
+    expect(list[1] instanceof HTMLDivElement).toBe(true);
+    expect(list[2] instanceof Text).toBe(true);
+  });
 });
