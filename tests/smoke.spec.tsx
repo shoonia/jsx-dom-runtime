@@ -17,17 +17,19 @@ describe('Smoke', () => {
     [-Infinity, /**********/ '<p>-Infinity</p>'],
     [true, /***************/ '<p>true</p>'],
     [[0, 1, NaN, true], /**/ '<p>01NaNtrue</p>'],
+    [{}, /*****************/ '<p>[object Object]</p>'],
   ])('should have a stringified child node if %s', (val, html) => {
     // @ts-expect-error
     expect(<p>{val}</p>).toHaveOuterHTML(html);
   });
 
   it.each([
+    '',
     undefined,
     null,
     false,
     [],
-  ])('should haven\'t child nodes if %s', (child) => {
+  ])('should have empty tag if %s', (child) => {
     expect(<div>{child}</div>).toHaveOuterHTML('<div></div>');
   });
 
