@@ -45,7 +45,7 @@ export let jsx = (el, props) => {
           node[key] = val;
         }
       } else if (val != null) {
-        if (typeof val !== 'boolean' || /^(aria|data)-/.test(key)) {
+        if (typeof val !== 'boolean' || /^(ari|dat)a-/.test(key)) {
           node.setAttribute(key, val);
         } else if (val) {
           node.setAttribute(key, '');
