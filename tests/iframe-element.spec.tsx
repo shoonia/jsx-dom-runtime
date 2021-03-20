@@ -21,4 +21,14 @@ describe('HTMLIFrameElement', () => {
   it('should set loading', () => {
     expect(<iframe loading="lazy" />).toHaveAttribute('loading', 'lazy');
   });
+
+  it('should have a title', () => {
+    expect(<iframe title="Page" />).toHaveAttribute('title', 'Page');
+    expect(<iframe title="Page" />).toHaveProperty('title', 'Page');
+  });
+
+  it('should have a srcDoc', () => {
+    expect(<iframe srcDoc="<p></p>" />).toHaveAttribute('srcdoc', '<p></p>');
+    expect(<iframe srcdoc="<p></p>" />).toHaveAttribute('srcdoc', '<p></p>');
+  });
 });

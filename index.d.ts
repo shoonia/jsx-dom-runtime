@@ -697,6 +697,7 @@ export interface IframeHTMLAttributes<T = HTMLIFrameElement> extends HTMLAttribu
   seamless?: boolean
   src?: string
   srcDoc?: string
+  srcdoc?: string
   width?: number | string
 }
 
