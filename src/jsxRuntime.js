@@ -13,12 +13,12 @@ export let jsx = (el, props) => {
     return el(props);
   }
 
-  let ref = props.ref;
+  let val;
   let node = typeof el === 'string' ? doc.createElement(el) : el;
 
   for (let key in props) {
     if (key !== 'ref' && key !== 'children') {
-      let val = props[key];
+      val = props[key];
 
       if (key === 'className') {
         node.setAttribute(
@@ -65,11 +65,14 @@ export let jsx = (el, props) => {
 
   appendChildren(node, props.children);
 
-  if (ref != null) {
-    if (typeof ref === 'function') {
-      ref(node);
+  // reuse `val` variable
+  val = props.ref;
+
+  if (val != null) {
+    if (typeof val === 'function') {
+      val(node);
     } else {
-      ref.current = node;
+      val.current = node;
     }
   }
 
