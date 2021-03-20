@@ -33,8 +33,13 @@ export let jsx = (el, props) => {
         if (typeof val === 'string') {
           node.style.cssText = val;
         } else {
-          for (let s in val) {
-            node.style[s] = val[s];
+          // reuse `key` variable
+          for (key in val) {
+            if (key[0] === '-') {
+              node.style.setProperty(key, val[key]);
+            } else {
+              node.style[key] = val[key];
+            }
           }
         }
         // Benchmark for comparison (thanks preact): https://esbench.com/bench/574c954bdb965b9a00965ac6
