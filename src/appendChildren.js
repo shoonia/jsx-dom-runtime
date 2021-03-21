@@ -1,7 +1,5 @@
-import { doc, isArray } from './util';
-
 export let appendChildren = (node, children) => {
-  if (isArray(children)) {
+  if (Array.isArray(children)) {
     for (let i = 0; children.length > i;) {
       appendChildren(node, children[i++]);
     }
@@ -9,7 +7,7 @@ export let appendChildren = (node, children) => {
     node.appendChild(
       children.nodeType > 0
         ? children
-        : doc.createTextNode(children)
+        : document.createTextNode(children)
     );
   }
 };

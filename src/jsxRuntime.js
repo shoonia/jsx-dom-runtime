@@ -1,4 +1,3 @@
-import { isArray, doc } from './util';
 import { appendChildren } from './appendChildren';
 
 let properties = new Set([
@@ -14,7 +13,7 @@ export let jsx = (el, props) => {
   }
 
   let val;
-  let node = typeof el === 'string' ? doc.createElement(el) : el;
+  let node = typeof el === 'string' ? document.createElement(el) : el;
 
   for (let key in props) {
     if (key !== 'ref' && key !== 'children') {
@@ -23,7 +22,7 @@ export let jsx = (el, props) => {
       if (key === 'className') {
         node.setAttribute(
           'class',
-          isArray(val)
+          Array.isArray(val)
             ? val.filter(Boolean).join(' ')
             : val
         );
