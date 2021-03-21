@@ -1,8 +1,6 @@
 export let parseFromString = (html: string): Node[] => {
-  let node = document.createElement(
-    /* just the shorter tag name than the `div` */
-    'p'
-  );
+  /* just the shorter tag name than the `div` */
+  let node = document.createElement('p');
 
   node.innerHTML = html;
 

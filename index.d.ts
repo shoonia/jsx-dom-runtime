@@ -62,6 +62,13 @@ export function useText(initContent?: string): readonly [
   (text: string) => void
 ]
 
+// Events hint
+type On = (type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void;
+type Off = (type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void;
+type ReadyCallback<T> = (on?: On, off?: Off, target?: T) => void;
+
+export function events<T extends HTMLElement>(ready: ReadyCallback<T>): RefCallback<T>;
+
 interface CurrentTarget<T> {
   currentTarget: EventTarget & T
 }
