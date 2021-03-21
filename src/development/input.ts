@@ -31,4 +31,5 @@ export const input: InputHTMLAttributes = {
     T.string,
     T.number,
   ]),
+  name: T.string,
 };

@@ -1,5 +1,5 @@
-import { HTMLAttrinuteCORS } from '../..';
-import T from './t';
+import { HTMLAttrinuteCORS } from '../../..';
+import T from '../t';
 
 const type = T.oneOf<HTMLAttrinuteCORS>([
   'anonymous',

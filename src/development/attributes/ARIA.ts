@@ -1,5 +1,5 @@
-import { AriaAttributes } from '../..';
-import T from './t';
+import { AriaAttributes } from '../../..';
+import T from '../t';
 
 export const ARIA: AriaAttributes = {
   'aria-activedescendant': T.string,

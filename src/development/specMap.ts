@@ -1,6 +1,9 @@
-import { CORS } from './CORS';
-import { ARIA } from './ARIA';
+import { CORS } from './attributes/CORS';
+import { ARIA } from './attributes/ARIA';
+import { ReferrerPolicy } from './attributes/ReferrerPolicy';
+
 import { element } from './element';
+
 import { a } from './a';
 import { img } from './img';
 import { input } from './input';
@@ -13,14 +16,14 @@ const specMap = new Map<string, any>();
 const defaultSpecs = Object.assign({}, element, ARIA);
 
 const list = <const>[
-  ['a', a],
+  ['a', a, ReferrerPolicy],
   'abbr',
   'address',
   'applet',
-  'area',
+  ['area', ReferrerPolicy],
   'article',
   'aside',
-  'audio',
+  ['audio', CORS],
   'b',
   'base',
   'basefont',
@@ -69,15 +72,15 @@ const list = <const>[
   'hr',
   'html',
   'i',
-  'iframe',
-  ['img', img, CORS],
-  ['input', input],
+  ['iframe', ReferrerPolicy],
+  ['img', img, CORS, ReferrerPolicy],
+  ['input', input, CORS],
   'ins',
   'kbd',
   ['label', label],
   'legend',
   'li',
-  'link',
+  ['link', CORS, ReferrerPolicy],
   'main',
   'map',
   'mark',
@@ -103,7 +106,7 @@ const list = <const>[
   'ruby',
   's',
   'samp',
-  'script',
+  ['script', CORS],
   'section',
   'select',
   'slot',
@@ -130,7 +133,7 @@ const list = <const>[
   'u',
   'ul',
   'var',
-  'video',
+  ['video', CORS],
   'wbr',
 ];
 

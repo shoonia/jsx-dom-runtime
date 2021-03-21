@@ -3,6 +3,7 @@ import T from './t';
 
 export const textarea: TextareaHTMLAttributes = {
   autofocus: T.bool,
+  autoFocus: T.bool,
   name: T.string,
   maxLength: T.number,
   minLength: T.number,
