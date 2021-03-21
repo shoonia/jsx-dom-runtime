@@ -1,4 +1,4 @@
-export const events = (ready) => {
+export let events = (ready) => {
   return (node: HTMLElement) => {
     let on = (type, listener, options) => {
       node.addEventListener(type, listener, options);
