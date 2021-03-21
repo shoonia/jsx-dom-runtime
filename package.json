@@ -73,7 +73,7 @@
     }
   ],
   "simple-git-hooks": {
-    "pre-commit": "npm run lint && npm test"
+    "pre-commit": "npm test"
   },
   "engines": {
     "node": "14",
