@@ -660,11 +660,13 @@ interface FieldsetHTMLAttributes<T> extends HTMLAttributes<T> {
   name?: string
 }
 
-interface FormHTMLAttributes<T> extends HTMLAttributes<T> {
+export interface FormHTMLAttributes<T = HTMLFontElement> extends HTMLAttributes<T> {
   acceptCharset?: string
   action?: string
   autoComplete?: string
+  autocomplete?: string
   encType?: string
+  enctype?: string
   method?: string
   name?: string
   noValidate?: boolean
