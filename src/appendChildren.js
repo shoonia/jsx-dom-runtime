@@ -1,8 +1,8 @@
 export let appendChildren = (node, children) => {
   if (Array.isArray(children)) {
-    for (let i = 0; children.length > i;) {
-      appendChildren(node, children[i++]);
-    }
+    children.forEach((child) => {
+      appendChildren(node, child);
+    });
   } else if (children != null && children !== false) {
     node.appendChild(
       children.nodeType > 0
