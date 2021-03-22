@@ -1,3 +1,5 @@
+import { createRef } from '../..';
+
 describe('ref', () => {
   it('should run ref when it is function', () => {
     const spy = jest.fn();
@@ -9,7 +11,7 @@ describe('ref', () => {
   });
 
   it('should set up ref.current when it is object', () => {
-    const ref = Object.seal({ current: null });
+    const ref = createRef();
 
     const node = <td ref={ref} />;
 

@@ -62,7 +62,10 @@ export let jsx = (el, props) => {
     }
   }
 
-  appendChildren(node, props.children);
+  appendChildren(
+    node.tagName === 'TEMPLATE' ? node.content : node,
+    props.children
+  );
 
   // reuse `val` variable
   val = props.ref;
