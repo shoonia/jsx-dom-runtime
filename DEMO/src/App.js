@@ -42,11 +42,11 @@ export const App = () => {
         <div className={s.toolbar}>
           <input ref={Input} type="text" className={s.field} onKeyPress={pressEnter} />
           <button type="button" className={s.btn} onClick={addItem}>
-          Add Item
+            Add Item
           </button>
         </div>
       </fieldset>
-      <ul className={s.list} ref={List} />
+      <ul ref={List} className={s.list} />
     </>
   );
 };
