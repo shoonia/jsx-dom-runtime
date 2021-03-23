@@ -40,6 +40,25 @@ describe('Props', () => {
     expect(<p accesskey="f" />).toHaveProperty('accessKey', 'f');
   });
 
+  it('should have id', () => {
+    expect(<blockquote id="some-id" />).toHaveAttribute('id', 'some-id');
+    expect(<blockquote id="some-id" />).toHaveProperty('id', 'some-id');
+  });
+
+  it('should have attribute translate', () => {
+    expect(<u translate="no" />).toHaveAttribute('translate', 'no');
+  });
+
+  it('should have dir attribute', () => {
+    expect(<s dir="ltr" />).toHaveAttribute('dir', 'ltr');
+    expect(<s dir="ltr" />).toHaveProperty('dir', 'ltr');
+  });
+
+  it('should have lang attribute', () => {
+    expect(<span lang="ua" />).toHaveAttribute('lang', 'ua');
+    expect(<span lang="ua" />).toHaveProperty('lang', 'ua');
+  });
+
   it('should add html to component', () => {
     expect(<div innerHTML="<p>text</p>" />).toHaveOuterHTML('<div><p>text</p></div>');
   });
