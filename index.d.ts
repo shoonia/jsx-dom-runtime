@@ -1,4 +1,5 @@
 /// <reference lib="dom" />
+/// <reference lib="es2020" />
 import * as CSS from 'csstype';
 
 type Booleanish = boolean | 'true' | 'false'
@@ -17,8 +18,8 @@ interface AttrWithRef<T> extends Attributes {
   ref?: Ref<T>
 }
 
-type TText = string | number | Text
-type TChild = Node | TText
+type TText = string | number
+type TChild = Node | Text | TText
 type TChildren = TNodeArray;
 
 interface TNodeArray extends Array<TNode> {}
@@ -27,8 +28,6 @@ type TNode =
   | TChild
   | TChildren
   | DocumentFragment
-  | Text
-  | TText
   | Comment
   | false
   | null
@@ -55,7 +54,7 @@ export function createRef<T = any>(): RefObject<T>
 
 export function bindRef<T>(...refs: Ref<T>[]): RefCallback<T>
 
-export function parseFromString(htmlSvgXml: string): Node[]
+export function parseFromString(htmlOrSvg: string): Node[]
 
 export function useText(initContent?: string): readonly [
   Text,
@@ -78,7 +77,7 @@ type ChangeEvent = Event
 
 type EventHandler<E extends Event, T> = (this: T, event: E & CurrentTarget<T>) => void
 
-type ReactEventHandler<T = Element> = EventHandler<Event, T>
+type TEventHandler<T = Element> = EventHandler<Event, T>
 
 type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent, T>
 type CompositionEventHandler<T = Element> = EventHandler<CompositionEvent, T>
@@ -104,193 +103,114 @@ interface DOMAttributes<T> {
 
   // Clipboard Events
   onCopy?: ClipboardEventHandler<T>
-  // onCopyCapture?: ClipboardEventHandler<T>
   onCut?: ClipboardEventHandler<T>
-  // onCutCapture?: ClipboardEventHandler<T>
   onPaste?: ClipboardEventHandler<T>
-  // onPasteCapture?: ClipboardEventHandler<T>
 
   // Composition Events
   onCompositionEnd?: CompositionEventHandler<T>
-  // onCompositionEndCapture?: CompositionEventHandler<T>
   onCompositionStart?: CompositionEventHandler<T>
-  // onCompositionStartCapture?: CompositionEventHandler<T>
   onCompositionUpdate?: CompositionEventHandler<T>
-  // onCompositionUpdateCapture?: CompositionEventHandler<T>
 
   // Focus Events
   onFocus?: FocusEventHandler<T>
-  // onFocusCapture?: FocusEventHandler<T>
   onBlur?: FocusEventHandler<T>
-  // onBlurCapture?: FocusEventHandler<T>
 
   // Form Events
   onChange?: FormEventHandler<T>
-  // onChangeCapture?: FormEventHandler<T>
   onBeforeInput?: FormEventHandler<T>
-  // onBeforeInputCapture?: FormEventHandler<T>
   onInput?: FormEventHandler<T>
-  // onInputCapture?: FormEventHandler<T>
   onReset?: FormEventHandler<T>
-  // onResetCapture?: FormEventHandler<T>
   onSubmit?: FormEventHandler<T>
-  // onSubmitCapture?: FormEventHandler<T>
   onInvalid?: FormEventHandler<T>
-  // onInvalidCapture?: FormEventHandler<T>
 
   // Image Events
-  onLoad?: ReactEventHandler<T>
-  // onLoadCapture?: ReactEventHandler<T>
-  onError?: ReactEventHandler<T> // also a Media Event
-  // onErrorCapture?: ReactEventHandler<T> // also a Media Event
+  onLoad?: TEventHandler<T>
+  onError?: TEventHandler<T> // also a Media Event
 
   // Keyboard Events
   onKeyDown?: KeyboardEventHandler<T>
-  // onKeyDownCapture?: KeyboardEventHandler<T>
   onKeyPress?: KeyboardEventHandler<T>
-  // onKeyPressCapture?: KeyboardEventHandler<T>
   onKeyUp?: KeyboardEventHandler<T>
-  // onKeyUpCapture?: KeyboardEventHandler<T>
 
   // Media Events
-  onAbort?: ReactEventHandler<T>
-  // onAbortCapture?: ReactEventHandler<T>
-  onCanPlay?: ReactEventHandler<T>
-  // onCanPlayCapture?: ReactEventHandler<T>
-  onCanPlayThrough?: ReactEventHandler<T>
-  // onCanPlayThroughCapture?: ReactEventHandler<T>
-  onDurationChange?: ReactEventHandler<T>
-  // onDurationChangeCapture?: ReactEventHandler<T>
-  onEmptied?: ReactEventHandler<T>
-  // onEmptiedCapture?: ReactEventHandler<T>
-  onEncrypted?: ReactEventHandler<T>
-  // onEncryptedCapture?: ReactEventHandler<T>
-  onEnded?: ReactEventHandler<T>
-  // onEndedCapture?: ReactEventHandler<T>
-  onLoadedData?: ReactEventHandler<T>
-  // onLoadedDataCapture?: ReactEventHandler<T>
-  onLoadedMetadata?: ReactEventHandler<T>
-  // onLoadedMetadataCapture?: ReactEventHandler<T>
-  onLoadStart?: ReactEventHandler<T>
-  // onLoadStartCapture?: ReactEventHandler<T>
-  onPause?: ReactEventHandler<T>
-  // onPauseCapture?: ReactEventHandler<T>
-  onPlay?: ReactEventHandler<T>
-  // onPlayCapture?: ReactEventHandler<T>
-  onPlaying?: ReactEventHandler<T>
-  // onPlayingCapture?: ReactEventHandler<T>
-  onProgress?: ReactEventHandler<T>
-  // onProgressCapture?: ReactEventHandler<T>
-  onRateChange?: ReactEventHandler<T>
-  // onRateChangeCapture?: ReactEventHandler<T>
-  onSeeked?: ReactEventHandler<T>
-  // onSeekedCapture?: ReactEventHandler<T>
-  onSeeking?: ReactEventHandler<T>
-  // onSeekingCapture?: ReactEventHandler<T>
-  onStalled?: ReactEventHandler<T>
-  // onStalledCapture?: ReactEventHandler<T>
-  onSuspend?: ReactEventHandler<T>
-  // onSuspendCapture?: ReactEventHandler<T>
-  onTimeUpdate?: ReactEventHandler<T>
-  // onTimeUpdateCapture?: ReactEventHandler<T>
-  onVolumeChange?: ReactEventHandler<T>
-  // onVolumeChangeCapture?: ReactEventHandler<T>
-  onWaiting?: ReactEventHandler<T>
-  // onWaitingCapture?: ReactEventHandler<T>
+  onAbort?: TEventHandler<T>
+  onCanPlay?: TEventHandler<T>
+  onCanPlayThrough?: TEventHandler<T>
+  onDurationChange?: TEventHandler<T>
+  onEmptied?: TEventHandler<T>
+  onEncrypted?: TEventHandler<T>
+  onEnded?: TEventHandler<T>
+  onLoadedData?: TEventHandler<T>
+  onLoadedMetadata?: TEventHandler<T>
+  onLoadStart?: TEventHandler<T>
+  onPause?: TEventHandler<T>
+  onPlay?: TEventHandler<T>
+  onPlaying?: TEventHandler<T>
+  onProgress?: TEventHandler<T>
+  onRateChange?: TEventHandler<T>
+  onSeeked?: TEventHandler<T>
+  onSeeking?: TEventHandler<T>
+  onStalled?: TEventHandler<T>
+  onSuspend?: TEventHandler<T>
+  onTimeUpdate?: TEventHandler<T>
+  onVolumeChange?: TEventHandler<T>
+  onWaiting?: TEventHandler<T>
 
   // MouseEvents
   onAuxClick?: MouseEventHandler<T>
-  // onAuxClickCapture?: MouseEventHandler<T>
   onClick?: MouseEventHandler<T>
-  // onClickCapture?: MouseEventHandler<T>
   onContextMenu?: MouseEventHandler<T>
-  // onContextMenuCapture?: MouseEventHandler<T>
   onDoubleClick?: MouseEventHandler<T>
-  // onDoubleClickCapture?: MouseEventHandler<T>
   onDrag?: DragEventHandler<T>
-  // onDragCapture?: DragEventHandler<T>
   onDragEnd?: DragEventHandler<T>
-  // onDragEndCapture?: DragEventHandler<T>
   onDragEnter?: DragEventHandler<T>
-  // onDragEnterCapture?: DragEventHandler<T>
   onDragExit?: DragEventHandler<T>
-  // onDragExitCapture?: DragEventHandler<T>
   onDragLeave?: DragEventHandler<T>
-  // onDragLeaveCapture?: DragEventHandler<T>
   onDragOver?: DragEventHandler<T>
-  // onDragOverCapture?: DragEventHandler<T>
   onDragStart?: DragEventHandler<T>
-  // onDragStartCapture?: DragEventHandler<T>
   onDrop?: DragEventHandler<T>
-  // onDropCapture?: DragEventHandler<T>
   onMouseDown?: MouseEventHandler<T>
-  // onMouseDownCapture?: MouseEventHandler<T>
   onMouseEnter?: MouseEventHandler<T>
   onMouseLeave?: MouseEventHandler<T>
   onMouseMove?: MouseEventHandler<T>
-  // onMouseMoveCapture?: MouseEventHandler<T>
   onMouseOut?: MouseEventHandler<T>
-  // onMouseOutCapture?: MouseEventHandler<T>
   onMouseOver?: MouseEventHandler<T>
-  // onMouseOverCapture?: MouseEventHandler<T>
   onMouseUp?: MouseEventHandler<T>
-  // onMouseUpCapture?: MouseEventHandler<T>
 
   // Selection Events
-  onSelect?: ReactEventHandler<T>
-  // onSelectCapture?: ReactEventHandler<T>
+  onSelect?: TEventHandler<T>
 
   // Touch Events
   onTouchCancel?: TouchEventHandler<T>
-  // onTouchCancelCapture?: TouchEventHandler<T>
   onTouchEnd?: TouchEventHandler<T>
-  // onTouchEndCapture?: TouchEventHandler<T>
   onTouchMove?: TouchEventHandler<T>
-  // onTouchMoveCapture?: TouchEventHandler<T>
   onTouchStart?: TouchEventHandler<T>
-  // onTouchStartCapture?: TouchEventHandler<T>
 
   // Pointer Events
   onPointerDown?: PointerEventHandler<T>
-  // onPointerDownCapture?: PointerEventHandler<T>
   onPointerMove?: PointerEventHandler<T>
-  // onPointerMoveCapture?: PointerEventHandler<T>
   onPointerUp?: PointerEventHandler<T>
-  // onPointerUpCapture?: PointerEventHandler<T>
   onPointerCancel?: PointerEventHandler<T>
-  // onPointerCancelCapture?: PointerEventHandler<T>
   onPointerEnter?: PointerEventHandler<T>
-  // onPointerEnterCapture?: PointerEventHandler<T>
   onPointerLeave?: PointerEventHandler<T>
-  // onPointerLeaveCapture?: PointerEventHandler<T>
   onPointerOver?: PointerEventHandler<T>
-  // onPointerOverCapture?: PointerEventHandler<T>
   onPointerOut?: PointerEventHandler<T>
-  // onPointerOutCapture?: PointerEventHandler<T>
   onGotPointerCapture?: PointerEventHandler<T>
-  // onGotPointerCaptureCapture?: PointerEventHandler<T>
   onLostPointerCapture?: PointerEventHandler<T>
-  // onLostPointerCaptureCapture?: PointerEventHandler<T>
 
   // UI Events
   onScroll?: UIEventHandler<T>
-  // onScrollCapture?: UIEventHandler<T>
 
   // Wheel Events
   onWheel?: WheelEventHandler<T>
-  // onWheelCapture?: WheelEventHandler<T>
 
   // Animation Events
   onAnimationStart?: AnimationEventHandler<T>
-  // onAnimationStartCapture?: AnimationEventHandler<T>
   onAnimationEnd?: AnimationEventHandler<T>
-  // onAnimationEndCapture?: AnimationEventHandler<T>
   onAnimationIteration?: AnimationEventHandler<T>
-  // onAnimationIterationCapture?: AnimationEventHandler<T>
 
   // Transition Events
   onTransitionEnd?: TransitionEventHandler<T>
-  // onTransitionEndCapture?: TransitionEventHandler<T>
 }
 
 export interface CSSProperties extends CSS.Properties<string | number> {}
@@ -642,7 +562,7 @@ interface DataHTMLAttributes<T> extends HTMLAttributes<T> {
 
 interface DetailsHTMLAttributes<T> extends HTMLAttributes<T> {
   open?: boolean
-  onToggle?: ReactEventHandler<T>
+  onToggle?: TEventHandler<T>
 }
 
 interface DelHTMLAttributes<T> extends HTMLAttributes<T> {
@@ -1048,9 +968,7 @@ declare global {
   namespace JSX {
     type Element = HTMLElement;
 
-    interface ElementAttributesProperty {
-      props: {}
-    }
+    // interface ElementAttributesProperty { props: {} }
 
     interface ElementChildrenAttribute {
       children: {}
@@ -1080,10 +998,7 @@ declare global {
       cite: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       code: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       col: DetailedHTMLProps<ColHTMLAttributes<HTMLTableColElement>, HTMLTableColElement>
-      colgroup: DetailedHTMLProps<
-        ColgroupHTMLAttributes<HTMLTableColElement>,
-        HTMLTableColElement
-      >
+      colgroup: DetailedHTMLProps<ColgroupHTMLAttributes<HTMLTableColElement>, HTMLTableColElement>
       data: DetailedHTMLProps<DataHTMLAttributes<HTMLDataElement>, HTMLDataElement>
       datalist: DetailedHTMLProps<HTMLAttributes<HTMLDataListElement>, HTMLDataListElement>
       dd: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
@@ -1096,10 +1011,7 @@ declare global {
       dt: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       em: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       embed: DetailedHTMLProps<EmbedHTMLAttributes<HTMLEmbedElement>, HTMLEmbedElement>
-      fieldset: DetailedHTMLProps<
-        FieldsetHTMLAttributes<HTMLFieldSetElement>,
-        HTMLFieldSetElement
-      >
+      fieldset: DetailedHTMLProps<FieldsetHTMLAttributes<HTMLFieldSetElement>, HTMLFieldSetElement>
       figcaption: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       figure: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       footer: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
@@ -1138,20 +1050,14 @@ declare global {
       noscript: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       object: DetailedHTMLProps<ObjectHTMLAttributes<HTMLObjectElement>, HTMLObjectElement>
       ol: DetailedHTMLProps<OlHTMLAttributes<HTMLOListElement>, HTMLOListElement>
-      optgroup: DetailedHTMLProps<
-        OptgroupHTMLAttributes<HTMLOptGroupElement>,
-        HTMLOptGroupElement
-      >
+      optgroup: DetailedHTMLProps<OptgroupHTMLAttributes<HTMLOptGroupElement>, HTMLOptGroupElement>
       option: DetailedHTMLProps<OptionHTMLAttributes<HTMLOptionElement>, HTMLOptionElement>
       output: DetailedHTMLProps<OutputHTMLAttributes<HTMLElement>, HTMLElement>
       p: DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>
       param: DetailedHTMLProps<ParamHTMLAttributes<HTMLParamElement>, HTMLParamElement>
       picture: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       pre: DetailedHTMLProps<HTMLAttributes<HTMLPreElement>, HTMLPreElement>
-      progress: DetailedHTMLProps<
-        ProgressHTMLAttributes<HTMLProgressElement>,
-        HTMLProgressElement
-      >
+      progress: DetailedHTMLProps<ProgressHTMLAttributes<HTMLProgressElement>, HTMLProgressElement>
       q: DetailedHTMLProps<QuoteHTMLAttributes<HTMLQuoteElement>, HTMLQuoteElement>
       rp: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       rt: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
@@ -1174,15 +1080,9 @@ declare global {
       template: DetailedHTMLProps<HTMLAttributes<HTMLTemplateElement>, HTMLTemplateElement>
       tbody: DetailedHTMLProps<HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement>
       td: DetailedHTMLProps<TdHTMLAttributes<HTMLTableDataCellElement>, HTMLTableDataCellElement>
-      textarea: DetailedHTMLProps<
-        TextareaHTMLAttributes<HTMLTextAreaElement>,
-        HTMLTextAreaElement
-      >
+      textarea: DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>
       tfoot: DetailedHTMLProps<HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement>
-      th: DetailedHTMLProps<
-        ThHTMLAttributes<HTMLTableHeaderCellElement>,
-        HTMLTableHeaderCellElement
-      >
+      th: DetailedHTMLProps<ThHTMLAttributes<HTMLTableHeaderCellElement>, HTMLTableHeaderCellElement>
       thead: DetailedHTMLProps<HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement>
       time: DetailedHTMLProps<TimeHTMLAttributes<HTMLElement>, HTMLElement>
       title: DetailedHTMLProps<HTMLAttributes<HTMLTitleElement>, HTMLTitleElement>
