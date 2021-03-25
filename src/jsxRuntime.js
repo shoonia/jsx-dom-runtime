@@ -1,4 +1,5 @@
 import { appendChildren } from './appendChildren';
+import { plugins } from './Extend';
 
 let properties = new Set([
   'className',
@@ -20,7 +21,9 @@ export let jsx = (el, props) => {
     if (key !== 'ref' && key !== 'children') {
       val = props[key];
 
-      if (properties.has(key)) {
+      if (plugins.has(key)) {
+        plugins.get(key)(node, val);
+      } else if (properties.has(key)) {
         node[key] = val;
       } else if (key === 'style') {
         if (typeof val === 'string') {

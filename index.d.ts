@@ -68,6 +68,8 @@ type ReadyCallback<T> = (on?: On, off?: Off, target?: T) => void;
 
 export function events<T extends HTMLElement>(ready: ReadyCallback<T>): RefCallback<T>;
 
+export function Extend(props: { [attribure: string]: (node: HTMLElement, value: any) => void }): undefined;
+
 interface CurrentTarget<T> {
   currentTarget: EventTarget & T
 }
