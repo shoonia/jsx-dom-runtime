@@ -743,6 +743,7 @@ interface MenuHTMLAttributes<T> extends HTMLAttributes<T> {
 
 interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
   autoPlay?: boolean
+  autoplay?: boolean
   controls?: boolean
   controlsList?: string
   crossorigin?: HTMLAttrinuteCORS

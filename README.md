@@ -127,7 +127,7 @@ const ready = events((on, off, Target) => {
 });
 
 <document.body>
-  <p ref={bindRef(ref, callback, ready /*...*/)} />
+  <p ref={bindRef(ref, callback, ready /*,...*/)} />
 </document.body>;
 ```
 
