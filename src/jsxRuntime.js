@@ -1,6 +1,7 @@
 import { appendChildren } from './appendChildren';
 
 let properties = new Set([
+  'className',
   'innerHTML',
   'textContent',
   'value',
@@ -18,10 +19,6 @@ export let jsx = (el, props) => {
   for (let key in props) {
     if (key !== 'ref' && key !== 'children') {
       val = props[key];
-
-      if (key === 'className') {
-        key = 'class';
-      }
 
       if (properties.has(key)) {
         node[key] = val;
