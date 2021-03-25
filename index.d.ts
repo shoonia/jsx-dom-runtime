@@ -423,7 +423,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   // }
   accessKey?: string
   accesskey?: string
-  className?: string | string[]
+  className?: string
   class?: string
   contentEditable?: Booleanish | 'inherit'
   contenteditable?: Booleanish | 'inherit'

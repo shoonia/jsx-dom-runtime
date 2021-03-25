@@ -13,10 +13,7 @@ export const element = {
   lang: T.string,
   title: T.string,
   class: T.string,
-  className: T.oneOfType([
-    T.string,
-    T.array,
-  ]),
+  className: T.string,
   style: T.oneOfType([
     T.string,
     T.object,

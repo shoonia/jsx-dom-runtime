@@ -20,13 +20,10 @@ export let jsx = (el, props) => {
       val = props[key];
 
       if (key === 'className') {
-        node.setAttribute(
-          'class',
-          Array.isArray(val)
-            ? val.filter(Boolean).join(' ')
-            : val
-        );
-      } else if (properties.has(key)) {
+        key = 'class';
+      }
+
+      if (properties.has(key)) {
         node[key] = val;
       } else if (key === 'style') {
         if (typeof val === 'string') {
