@@ -94,43 +94,6 @@ const ref = createRef();
 </document.body>;
 ```
 
-### Events
-
-```js
-import { events } from 'jsx-dom-runtime';
-
-let i = 0;
-
-const ready = events((on, off, Target) => {
-  on('click', () => <Target textContent={++i} />);
-  on('mouseover', () => console.log('Ping'), { once: true });
-});
-
-<document.body>
-  <button ref={ready}>{i}</button>
-</document.body>;
-```
-
-### Binding multiple refs
-
-```js
-import { bindRef, createRef, events } from 'jsx-dom-runtime';
-
-const ref = createRef();
-
-const callback = (node) => {
-  console.log(ref.current === node); // true
-};
-
-const ready = events((on, off, Target) => {
-  console.log(ref.current === Target); // true
-});
-
-<document.body>
-  <p ref={bindRef(ref, callback, ready /*,...*/)} />
-</document.body>;
-```
-
 ### Parse from string
 
 ```js
