@@ -59,6 +59,22 @@ describe('Props', () => {
     expect(<span lang="ua" />).toHaveProperty('lang', 'ua');
   });
 
+  it('should add contentEditable attribute', () => {
+    expect(<p contentEditable="true" />).toHaveAttribute('contenteditable', 'true');
+    expect(<p contentEditable="false" />).toHaveAttribute('contenteditable', 'false');
+
+    expect(<p contenteditable="true" />).toHaveAttribute('contenteditable', 'true');
+    expect(<p contenteditable="false" />).toHaveAttribute('contenteditable', 'false');
+  });
+
+  it('should add spellCheck attribute', () => {
+    expect(<p spellCheck="true" />).toHaveAttribute('spellcheck', 'true');
+    expect(<p spellCheck="false" />).toHaveAttribute('spellcheck', 'false');
+
+    expect(<p spellcheck="true" />).toHaveAttribute('spellcheck', 'true');
+    expect(<p spellcheck="false" />).toHaveAttribute('spellcheck', 'false');
+  });
+
   it('should add html to component', () => {
     expect(<div innerHTML="<p>text</p>" />).toHaveOuterHTML('<div><p>text</p></div>');
   });

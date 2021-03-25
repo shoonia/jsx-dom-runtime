@@ -1,5 +1,10 @@
 import T from './t';
 
+const contentEditable = T.oneOfType([
+  T.booleanish,
+  T.oneOf(['inherit'])
+]);
+
 export const element = {
   accesskey: T.string,
   accessKey: T.string,
@@ -19,6 +24,10 @@ export const element = {
   tabindex: T.number,
   tabIndex: T.number,
   hidden: T.bool,
+  spellCheck: T.oneOf(['true', 'false']),
+  spellcheck: T.oneOf(['true', 'false']),
+  contentEditable,
+  contenteditable: contentEditable,
   textContent: T.string,
   innerHTML: T.string,
 };

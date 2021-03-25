@@ -426,6 +426,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   className?: string | string[]
   class?: string
   contentEditable?: Booleanish | 'inherit'
+  contenteditable?: Booleanish | 'inherit'
   contextMenu?: string
   dir?: string
   draggable?: Booleanish
@@ -434,7 +435,8 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   lang?: string
   placeholder?: string
   slot?: string
-  spellCheck?: Booleanish
+  spellCheck?: 'true' | 'false'
+  spellcheck?: 'true' | 'false'
   style?: string | CSSProperties
   tabIndex?: number
   tabindex?: number

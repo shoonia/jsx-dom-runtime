@@ -84,7 +84,7 @@ const booleanishChecker = createChainableChecker((key, value) => {
 
   return new PropTypeError(
     `Invalid prop \`${key}\` of type \`${preciseType}\`, expected "true", "false" or \`boolean\``,
-    ['`boolean`', 'true', 'false'],
+    ['"true", "false", `boolean`'],
   );
 });
 
@@ -96,11 +96,12 @@ const createOneOf = <T extends string>(list: T[]) => {
       }
     }
 
-    const preciseType = String(value).slice(0, 100);
+    const preciseType = getPreciseType(value);
+    const type = preciseType === 'string' ? `"${value}"` : `\`${preciseType}\``;
 
     return new PropTypeError(
-      `Invalid prop \`${key}\` of type "${preciseType}", expected one of "${list.join('", "')}"`,
-      list,
+      `Invalid prop \`${key}\` of type ${type}, expected one of "${list.join('", "')}"`,
+      [list.join('", "')]
     );
   });
 };
