@@ -68,6 +68,8 @@ type ReadyCallback<T> = (on?: On, off?: Off, target?: T) => void;
 
 export function events<T extends HTMLElement>(ready: ReadyCallback<T>): RefCallback<T>;
 
+export const Extend = '_ex';
+
 interface CurrentTarget<T> {
   currentTarget: EventTarget & T
 }
@@ -1097,6 +1099,7 @@ declare global {
       video: DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>
       wbr: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       webview: DetailedHTMLProps<WebViewHTMLAttributes<HTMLWebViewElement>, HTMLWebViewElement>
+      [Extend]: { [key: string]: (node: HTMLElement, value: any) => void };
     }
   }
 }

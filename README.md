@@ -94,41 +94,34 @@ const ref = createRef();
 </document.body>;
 ```
 
-### Events
+### Extend
+
+Add custom attributes behavior
 
 ```js
-import { events } from 'jsx-dom-runtime';
+import { Extend } from 'jsx-dom-runtime';
 
-let i = 0;
+<Extend
+  classList={(node, value) => {
+    node.setAttribute('class', value.filter(Boolean).join(' '));
+  }}
 
-const ready = events((on, off, Target) => {
-  on('click', () => <Target textContent={++i} />);
-  on('mouseover', () => console.log('Ping'), { once: true });
-});
+  dataset={(node, value) => {
+    for (let key in value) {
+      node.dataset[key] = value[key];
+    }
+  }}
+/>;
 
 <document.body>
-  <button ref={ready}>{i}</button>
+  <div classList={['one', 'two']} dataset={{ testid: 'test', hook: 'text' }} />
 </document.body>;
 ```
 
-### Binding multiple refs
+Result
 
-```js
-import { bindRef, createRef, events } from 'jsx-dom-runtime';
-
-const ref = createRef();
-
-const callback = (node) => {
-  console.log(ref.current === node); // true
-};
-
-const ready = events((on, off, Target) => {
-  console.log(ref.current === Target); // true
-});
-
-<document.body>
-  <p ref={bindRef(ref, callback, ready /*,...*/)} />
-</document.body>;
+```html
+<div class="one two" data-testid="test" data-hook="text"></div>
 ```
 
 ### Parse from string

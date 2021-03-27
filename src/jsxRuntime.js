@@ -1,5 +1,7 @@
 import { appendChildren } from './appendChildren';
 
+let plugins = new Map();
+
 let properties = new Set([
   'className',
   'innerHTML',
@@ -13,6 +15,14 @@ export let jsx = (el, props) => {
     return el(props);
   }
 
+  if (el === '_ex') {
+    for (let key in props) {
+      plugins.set(key, props[key]);
+    }
+
+    return;
+  }
+
   let val;
   let node = typeof el === 'string' ? document.createElement(el) : el;
 
@@ -20,7 +30,9 @@ export let jsx = (el, props) => {
     if (key !== 'ref' && key !== 'children') {
       val = props[key];
 
-      if (properties.has(key)) {
+      if (plugins.has(key)) {
+        plugins.get(key)(node, val);
+      } else if (properties.has(key)) {
         node[key] = val;
       } else if (key === 'style') {
         if (typeof val === 'string') {
