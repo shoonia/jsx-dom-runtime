@@ -1,5 +1,6 @@
 import { appendChildren } from './appendChildren';
-import { plugins } from './Extend';
+
+let plugins = new Map();
 
 let properties = new Set([
   'className',
@@ -12,6 +13,14 @@ let properties = new Set([
 export let jsx = (el, props) => {
   if (typeof el === 'function') {
     return el(props);
+  }
+
+  if (el === '_ex') {
+    for (let key in props) {
+      plugins.set(key, props[key]);
+    }
+
+    return;
   }
 
   let val;
