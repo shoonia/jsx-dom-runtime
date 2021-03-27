@@ -1,1 +1,1 @@
-export const Extend = '_ex';
+export const Extend = '!';

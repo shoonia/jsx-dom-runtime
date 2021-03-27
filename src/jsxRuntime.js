@@ -10,23 +10,24 @@ let properties = new Set([
   'htmlFor',
 ]);
 
-export let jsx = (el, props) => {
-  if (typeof el === 'function') {
-    return el(props);
+export let jsx = (node, props) => {
+  let key, val;
+
+  if (typeof node === 'function') {
+    return node(props);
   }
 
-  if (el === '_ex') {
-    for (let key in props) {
+  if (node === '!') {
+    for (key in props) {
       extensions.set(key, props[key]);
     }
 
     return;
   }
 
-  let val;
-  let node = typeof el === 'string' ? document.createElement(el) : el;
+  node = typeof node === 'string' ? document.createElement(node) : node;
 
-  for (let key in props) {
+  for (key in props) {
     if (key !== 'ref' && key !== 'children') {
       val = props[key];
 

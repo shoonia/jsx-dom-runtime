@@ -61,7 +61,7 @@ export function useText(initContent?: string): readonly [
   (text: string) => void
 ]
 
-export const Extend = '_ex';
+export const Extend = '!';
 
 interface CurrentTarget<T> {
   currentTarget: EventTarget & T
