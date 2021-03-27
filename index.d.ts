@@ -61,13 +61,6 @@ export function useText(initContent?: string): readonly [
   (text: string) => void
 ]
 
-// Events hint
-type On = (type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions) => void;
-type Off = (type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions) => void;
-type ReadyCallback<T> = (on?: On, off?: Off, target?: T) => void;
-
-export function events<T extends HTMLElement>(ready: ReadyCallback<T>): RefCallback<T>;
-
 export const Extend = '_ex';
 
 interface CurrentTarget<T> {
@@ -973,15 +966,13 @@ declare global {
   namespace JSX {
     type Element = HTMLElement;
 
-    // interface ElementAttributesProperty { props: {} }
-
-    interface ElementChildrenAttribute {
-      children: {}
-    }
+    interface ElementAttributesProperty { props: {}; }
+    interface ElementChildrenAttribute { children: {}; }
 
     interface IntrinsicAttributes extends Attributes {}
 
     interface IntrinsicElements {
+      [Extend]: { [key: string]: (node: HTMLElement, value: any) => void };
       a: DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
       abbr: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       address: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
@@ -1099,7 +1090,6 @@ declare global {
       video: DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>
       wbr: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       webview: DetailedHTMLProps<WebViewHTMLAttributes<HTMLWebViewElement>, HTMLWebViewElement>
-      [Extend]: { [key: string]: (node: HTMLElement, value: any) => void };
     }
   }
 }
