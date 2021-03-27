@@ -1,6 +1,6 @@
 import { appendChildren } from './appendChildren';
 
-let extends = new Map();
+let extensions = new Map();
 
 let properties = new Set([
   'className',
@@ -17,7 +17,7 @@ export let jsx = (el, props) => {
 
   if (el === '_ex') {
     for (let key in props) {
-      extends.set(key, props[key]);
+      extensions.set(key, props[key]);
     }
 
     return;
@@ -30,8 +30,8 @@ export let jsx = (el, props) => {
     if (key !== 'ref' && key !== 'children') {
       val = props[key];
 
-      if (extends.has(key)) {
-        extends.get(key)(node, val);
+      if (extensions.has(key)) {
+        extensions.get(key)(node, val);
       } else if (properties.has(key)) {
         node[key] = val;
       } else if (key === 'style') {
