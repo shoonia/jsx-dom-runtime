@@ -9,10 +9,10 @@
     "build": "parcel build --no-source-maps --public-url /jsx-dom-runtime/DEMO/build src/index.html"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.12.0"
+    "jsx-dom-runtime": "^0.14.0"
   },
   "devDependencies": {
-    "parcel": "^2.0.0-nightly.630"
+    "parcel": "^2.0.0-nightly.631"
   },
   "browser": {
     "engines": {

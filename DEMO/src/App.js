@@ -13,7 +13,7 @@ export const App = () => {
   const addItem = () => {
     const field = Input.current;
 
-    if (field.value === '') {
+    if (field.value !== '') {
       return;
     }
 
@@ -27,7 +27,6 @@ export const App = () => {
     </List.current>;
 
     field.value = '';
-    field.focus();
   };
 
   const pressEnter = (event) => {
