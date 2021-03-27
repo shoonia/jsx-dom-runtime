@@ -94,6 +94,36 @@ const ref = createRef();
 </document.body>;
 ```
 
+### Extend
+
+Add custom attributes behavior
+
+```js
+import { Extend } from 'jsx-dom-runtime';
+
+<Extend
+  classList={(node, value) => {
+    node.setAttribute('class', value.filter(Boolean).join(' '));
+  }}
+
+  dataset={(node, value) => {
+    for (let key in value) {
+      node.dataset[key] = value[key];
+    }
+  }}
+/>;
+
+<document.body>
+  <div classList={['one', 'two']} dataset={{ testid: 'test', hook: 'text' }} />
+</document.body>;
+```
+
+Result
+
+```html
+<div class="one two" data-testid="test" data-hook="text"></div>
+```
+
 ### Parse from string
 
 ```js
