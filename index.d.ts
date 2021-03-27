@@ -1099,7 +1099,7 @@ declare global {
       video: DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>
       wbr: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       webview: DetailedHTMLProps<WebViewHTMLAttributes<HTMLWebViewElement>, HTMLWebViewElement>
-      [Extend]: (props: { [key: string]: (node: HTMLElement, value: any) => void }) => undefined;
+      [Extend]: { [key: string]: (node: HTMLElement, value: any) => void };
     }
   }
 }
