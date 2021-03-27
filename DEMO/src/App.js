@@ -13,7 +13,7 @@ export const App = () => {
   const addItem = () => {
     const field = Input.current;
 
-    if (field.value !== '') {
+    if (field.value === '') {
       return;
     }
 
