@@ -474,6 +474,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   * @see https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute
   */
   inputMode?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'
+  inputmode?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'
   /**
   * Specify that a standard HTML element should behave like a defined custom built-in element
   * @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is
@@ -662,6 +663,7 @@ export interface InputHTMLAttributes<T = HTMLInputElement> extends HTMLAttribute
   crossOrigin?: HTMLAttrinuteCORS
   disabled?: boolean
   enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
+  enterkeyhint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
   form?: string
   formAction?: string
   formEncType?: string

@@ -97,8 +97,11 @@ describe('HTMLInputElement', () => {
   });
 
   it('should set inputMode', () => {
-    expect(<input type="password" inputMode="numeric" />).toHaveProperty('inputMode', 'numeric');
-    expect(<input type="password" inputMode="numeric" />).toHaveAttribute('inputmode', 'numeric');
+    expect(<input inputMode="numeric" />).toHaveProperty('inputMode', 'numeric');
+    expect(<input inputMode="numeric" />).toHaveAttribute('inputmode', 'numeric');
+
+    expect(<input inputmode="numeric" />).toHaveProperty('inputMode', 'numeric');
+    expect(<input inputmode="numeric" />).toHaveAttribute('inputmode', 'numeric');
   });
 
   it('should set autocomplete', () => {
@@ -112,5 +115,10 @@ describe('HTMLInputElement', () => {
   it('should set name', () => {
     expect(<input name="inp" />).toHaveProperty('name', 'inp');
     expect(<input name="inp" />).toHaveAttribute('name', 'inp');
+  });
+
+  it('should set enterkeyhint', () => {
+    expect(<input enterkeyhint="go" />).toHaveAttribute('enterkeyhint', 'go');
+    expect(<input enterKeyHint="go" />).toHaveAttribute('enterkeyhint', 'go');
   });
 });
