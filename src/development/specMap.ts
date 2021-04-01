@@ -10,6 +10,7 @@ import { input } from './input';
 import { button } from './button';
 import { label } from './label';
 import { textarea } from './textarea';
+import { iframe } from './iframe';
 
 const specMap = new Map<string, any>();
 
@@ -72,7 +73,7 @@ const list = <const>[
   'hr',
   'html',
   'i',
-  ['iframe', ReferrerPolicy],
+  ['iframe', iframe, ReferrerPolicy],
   ['img', img, CORS, ReferrerPolicy],
   ['input', input, CORS],
   'ins',
