@@ -58,12 +58,9 @@ export const input: InputHTMLAttributes = {
   enterKeyHint,
   enterkeyhint: enterKeyHint,
   pattern: T.string,
-  maxLength: T.oneOfType([
-    T.number,
-    T.string,
-  ]),
-  minLength: T.oneOfType([
-    T.number,
-    T.string,
-  ]),
+  maxLength: T.number,
+  maxlength: T.number,
+  minLength: T.number,
+  minlength: T.number,
+  size: T.number,
 };

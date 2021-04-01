@@ -6,15 +6,25 @@ describe('HTMLInputElement', () => {
     expect(<input type="number" value={7} />).toHaveValue(7);
   });
 
-  it('should have max / min property', () => {
-    const input = <input minLength={5} maxLength={10} />;
+  it('should have max property', () => {
+    expect(<input maxLength={10} />).toHaveProperty('maxLength', 10);
+    expect(<input maxlength={10} />).toHaveProperty('maxLength', 10);
 
-    expect(input).toHaveProperty('minLength', 5);
-    expect(input).toHaveProperty('maxLength', 10);
+    expect(<input maxLength={10} />).toHaveAttribute('maxlength', '10');
+    expect(<input maxlength={10} />).toHaveAttribute('maxlength', '10');
+  });
+
+  it('should have min property', () => {
+    expect(<input minLength={10} />).toHaveProperty('minLength', 10);
+    expect(<input minlength={10} />).toHaveProperty('minLength', 10);
+
+    expect(<input minLength={10} />).toHaveAttribute('minlength', '10');
+    expect(<input minlength={10} />).toHaveAttribute('minlength', '10');
   });
 
   it('should have size', () => {
     expect(<input size={24} />).toHaveProperty('size', 24);
+    expect(<input size={24} />).toHaveAttribute('size', '24');
   });
 
   it('should have correct attribute value `autofocus`', () => {
@@ -81,7 +91,7 @@ describe('HTMLInputElement', () => {
     expect(<input readonly={val} />).toHaveProperty('readOnly', false);
   });
 
-  it('s', () => {
+  it('should work with placeholder', () => {
     expect(<input type="text" placeholder="noop" />).toHaveProperty('placeholder', 'noop');
     expect(<input type="text" placeholder="noop" />).toHaveAttribute('placeholder', 'noop');
   });
@@ -124,5 +134,9 @@ describe('HTMLInputElement', () => {
 
   it('should set pattern', () => {
     expect(<input pattern="[0-9]{3}" />).toHaveAttribute('pattern', '[0-9]{3}');
+  });
+
+  it('should set list', () => {
+    expect(<input list="some-id" />).toHaveAttribute('list', 'some-id');
   });
 });

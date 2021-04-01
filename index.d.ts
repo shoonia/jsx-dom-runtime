@@ -674,8 +674,10 @@ export interface InputHTMLAttributes<T = HTMLInputElement> extends HTMLAttribute
   list?: string
   max?: number | string
   maxLength?: number
+  maxlength?: number
   min?: number | string
   minLength?: number
+  minlength?: number
   multiple?: boolean
   name?: string
   pattern?: string
