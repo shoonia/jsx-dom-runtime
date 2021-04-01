@@ -1,6 +1,7 @@
 describe('HTMLIFrameElement', () => {
   it('should set src', () => {
     expect(<iframe src="/doc" />).toHaveAttribute('src', '/doc');
+    expect(<iframe src="/doc" />).toHaveProperty('src', 'http://localhost/doc');
   });
 
   it('should set width / height', () => {

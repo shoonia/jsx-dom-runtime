@@ -121,4 +121,8 @@ describe('HTMLInputElement', () => {
     expect(<input enterkeyhint="go" />).toHaveAttribute('enterkeyhint', 'go');
     expect(<input enterKeyHint="go" />).toHaveAttribute('enterkeyhint', 'go');
   });
+
+  it('should set pattern', () => {
+    expect(<input pattern="[0-9]{3}" />).toHaveAttribute('pattern', '[0-9]{3}');
+  });
 });
