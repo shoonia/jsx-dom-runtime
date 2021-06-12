@@ -1,6 +1,6 @@
 {
   "name": "jsx-dom-runtime",
-  "version": "0.14.0",
+  "version": "0.14.1",
   "description": "A tiny in 500 bytes library to JSX syntax templates for DOM",
   "main": "dist/index.cjs.js",
   "module": "dist/index.module.js",
@@ -76,7 +76,7 @@
     "pre-commit": "npm test"
   },
   "engines": {
-    "node": "14",
+    "node": "16",
     "npm": "7"
   },
   "repository": {
