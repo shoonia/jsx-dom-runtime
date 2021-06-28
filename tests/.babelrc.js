@@ -6,7 +6,7 @@ module.exports = {
       '@babel/preset-env',
       {
         loose: true,
-        targets: { node: 14 },
+        targets: { node: 16 },
       },
     ],
   ],
