@@ -12,7 +12,7 @@
     "jsx-dom-runtime": "^0.14.1"
   },
   "devDependencies": {
-    "parcel": "^2.0.0-nightly.718"
+    "parcel": "^2.0.0-nightly.734"
   },
   "browser": {
     "engines": {

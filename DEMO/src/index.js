@@ -1,4 +1,4 @@
-import { App } from './App';
+import { App } from './App.js';
 
 <document.documentElement lang="en" />;
 
