@@ -11,10 +11,11 @@ import { button } from './button';
 import { label } from './label';
 import { textarea } from './textarea';
 import { iframe } from './iframe';
+import { video } from './video';
 
 const specMap = new Map<string, any>();
 
-const defaultSpecs = Object.assign({}, element, ARIA);
+const defaultSpecs = { ...element, ...ARIA };
 
 const list = <const>[
   ['a', a, ReferrerPolicy],
@@ -134,7 +135,7 @@ const list = <const>[
   'u',
   'ul',
   'var',
-  ['video', CORS],
+  ['video', video, CORS],
   'wbr',
 ];
 

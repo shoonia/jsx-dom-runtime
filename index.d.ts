@@ -744,14 +744,15 @@ interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
   autoPlay?: boolean
   autoplay?: boolean
   controls?: boolean
-  controlsList?: string
+  controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
+  controlslist?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
   crossorigin?: HTMLAttrinuteCORS
   crossOrigin?: HTMLAttrinuteCORS
   loop?: boolean
   mediaGroup?: string
   muted?: boolean
   playsInline?: boolean
-  preload?: string
+  preload?: 'none' | 'metadata' | 'auto'
   src?: string
 }
 
@@ -934,13 +935,15 @@ interface TrackHTMLAttributes<T> extends HTMLAttributes<T> {
   srcLang?: string
 }
 
-interface VideoHTMLAttributes<T> extends MediaHTMLAttributes<T> {
+export interface VideoHTMLAttributes<T = HTMLVideoElement> extends MediaHTMLAttributes<T> {
   height?: number | string
   playsInline?: boolean
   poster?: string
   width?: number | string
   disablePictureInPicture?: boolean
+  disablepictureinpicture?: boolean
   disableRemotePlayback?: boolean
+  disableremoteplayback?: boolean
 }
 
 interface WebViewHTMLAttributes<T> extends HTMLAttributes<T> {
