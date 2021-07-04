@@ -61,7 +61,7 @@ export function useText(initContent?: string): readonly [
   (text: string) => void
 ]
 
-export const Extend = '!';
+export function Extend(props: Record<string, (node: HTMLElement, value: any) => void>): void;
 
 interface CurrentTarget<T> {
   currentTarget: EventTarget & T
@@ -979,7 +979,6 @@ declare global {
     interface IntrinsicAttributes extends Attributes {}
 
     interface IntrinsicElements {
-      [Extend]: { [key: string]: (node: HTMLElement, value: any) => void };
       a: DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
       abbr: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       address: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>

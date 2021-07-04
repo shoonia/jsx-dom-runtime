@@ -99,19 +99,19 @@ const ref = createRef();
 Add custom attributes behavior
 
 ```js
-import { Extend } from 'jsx-dom-runtime';
+import { Extend } from 'jsx-dom-runtime/jsx-runtime';
 
-<Extend
-  classList={(node, value) => {
+Extend({
+  classList(node, value) {
     node.setAttribute('class', value.filter(Boolean).join(' '));
-  }}
+  },
 
-  dataset={(node, value) => {
+  dataset(node, value) {
     for (let key in value) {
       node.dataset[key] = value[key];
     }
-  }}
-/>;
+  },
+});
 
 <document.body>
   <div classList={['one', 'two']} dataset={{ testid: 'test', hook: 'text' }} />
