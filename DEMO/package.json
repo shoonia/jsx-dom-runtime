@@ -3,16 +3,15 @@
   "version": "1.0.0",
   "description": "",
   "private": true,
-  "main": "build/index.html",
   "scripts": {
     "start": "parcel src/index.html --no-source-maps --no-cache --open",
-    "build": "parcel build --no-source-maps --public-url /jsx-dom-runtime/DEMO/build src/index.html"
+    "build": "parcel build --no-source-maps --public-url /jsx-dom-runtime/DEMO/dist src/index.html"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.14.2"
+    "jsx-dom-runtime": "^0.15.0"
   },
   "devDependencies": {
-    "parcel": "^2.0.0-nightly.734"
+    "parcel": "^2.0.0-nightly.750"
   },
   "browser": {
     "engines": {
