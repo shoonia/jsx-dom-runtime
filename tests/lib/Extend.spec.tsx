@@ -38,4 +38,17 @@ describe('Extend', () => {
     // @ts-expect-error
     expect(<p plugin_4="hello" />).toHaveOuterHTML('<p>hello</p>');
   });
+
+  it('should set muted value', () => {
+    Extend({
+      muted(node, value) {
+        // @ts-ignore
+        node.muted = value;
+      }
+    });
+
+    expect(<audio />).toHaveProperty('muted', false);
+    expect(<audio muted />).toHaveProperty('muted', true);
+    expect(<audio muted={false} />).toHaveProperty('muted', false);
+  });
 });
