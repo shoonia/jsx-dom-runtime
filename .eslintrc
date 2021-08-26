@@ -6,6 +6,11 @@
   "plugins": [
     "@typescript-eslint"
   ],
+  "ignorePatterns": [
+    "babel-preset/**",
+    "jsx-runtime/**",
+    "jsx-dev-runtime/**"
+  ],
   "env": {
     "es6": true,
     "browser": true,
