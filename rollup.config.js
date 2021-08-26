@@ -15,8 +15,6 @@ const cjs = 'jsxRuntime.cjs.js';
 
 const pkg = {
   name: dist,
-  version: '1.0.0',
-  description: 'JSX runtime',
   type: 'module',
   sideEffects: false,
   source,
@@ -28,6 +26,19 @@ const pkg = {
   },
   esmodule: esm,
   types: '../index.d.ts',
+  private: true,
+  license: 'MIT',
+};
+
+const presetPkg = {
+  name: 'babel-preset-jsx-dom-runtime',
+  type: 'module',
+  main: 'index.cjs.js',
+  module: 'index.js',
+  exports: {
+    import: './index.js',
+    require: './index.cjs.js',
+  },
   private: true,
   license: 'MIT',
 };
@@ -65,6 +76,7 @@ const terserPlugin = terser({
 
 emptyDirSync(dist);
 outputJSONSync(join(dist, 'package.json'), pkg, { spaces: 2 });
+outputJSONSync('babel-preset/package.json', presetPkg, { spaces: 2 });
 
 export default [
   {
@@ -133,4 +145,19 @@ export default [
     ],
     plugins,
   },
+  {
+    input: 'src/babel/index.js',
+    output: [
+      {
+        file: 'babel-preset/index.js',
+        exports: 'default',
+        format: 'esm',
+      },
+      {
+        file: 'babel-preset/index.cjs.js',
+        exports: 'default',
+        format: 'cjs',
+      },
+    ],
+  }
 ];

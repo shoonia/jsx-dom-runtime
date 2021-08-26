@@ -1,7 +1,7 @@
-const { declare } = require('@babel/helper-plugin-utils');
-const createPlugin = require('@babel/plugin-transform-react-jsx/lib/create-plugin').default;
+import { declare } from '@babel/helper-plugin-utils';
+import createPlugin from '@babel/plugin-transform-react-jsx/lib/create-plugin';
 
-module.exports = declare((api, {
+const index = declare((api, {
   useBuiltIns,
   useSpread,
   nodeEnv = process.env.NODE_ENV,
@@ -26,3 +26,5 @@ module.exports = declare((api, {
     ],
   };
 });
+
+export { index as default };
