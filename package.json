@@ -2,15 +2,33 @@
   "name": "jsx-dom-runtime",
   "version": "0.15.0",
   "description": "A tiny in 500 bytes library to JSX syntax templates for DOM",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.module.js",
-  "esmodule": "dist/index.js",
-  "source": "dist/index.js",
-  "exports": {
-    "import": "./dist/index.js",
-    "require": "./dist/index.cjs.js"
-  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "./index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./jsx-runtime": {
+      "require": "./jsx-runtime/index.cjs",
+      "import": "./jsx-runtime/index.js",
+      "default": "./jsx-runtime/index.js"
+    },
+    "./jsx-dev-runtime": {
+      "require": "./jsx-dev-runtime/index.cjs",
+      "import": "./jsx-dev-runtime/index.js",
+      "default": "./jsx-dev-runtime/index.js"
+    },
+    "./babel-preset": {
+      "require": "./babel-preset/index.cjs",
+      "import": "./babel-preset/index.js",
+      "default": "./babel-preset/index.js"
+    },
+    "./package.json": "./package.json",
+    "./": "./"
+  },
   "sideEffects": false,
   "scripts": {
     "lint": "eslint 'src/**/*.{js,ts}' 'tests/**/*.{js,ts,tsx}'",
@@ -21,32 +39,31 @@
     "size": "npm run build && size-limit"
   },
   "dependencies": {
-    "@babel/core": "^7.15.0",
+    "@babel/core": "^7.15.5",
     "@babel/helper-plugin-utils": "^7.14.5",
     "@babel/plugin-transform-react-jsx": "^7.14.9",
-    "csstype": "^3.0.8"
+    "csstype": "^3.0.9"
   },
   "devDependencies": {
-    "@babel/preset-env": "^7.15.0",
+    "@babel/preset-env": "^7.15.6",
     "@babel/preset-typescript": "^7.15.0",
     "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^20.0.0",
-    "@rollup/plugin-node-resolve": "^13.0.4",
-    "@size-limit/preset-small-lib": "^5.0.3",
-    "@testing-library/dom": "^8.2.0",
+    "@rollup/plugin-node-resolve": "^13.0.5",
+    "@size-limit/preset-small-lib": "^5.0.5",
+    "@testing-library/dom": "^8.7.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@types/testing-library__jest-dom": "^5.14.1",
-    "@typescript-eslint/eslint-plugin": "^4.29.3",
-    "@typescript-eslint/parser": "^4.29.3",
-    "babel-jest": "^27.0.6",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
+    "babel-jest": "^27.2.4",
     "eslint": "^7.32.0",
-    "fs-extra": "^10.0.0",
-    "jest": "^27.0.6",
-    "rollup": "^2.56.3",
+    "jest": "^27.2.4",
+    "rollup": "^2.57.0",
     "rollup-plugin-terser": "^7.0.2",
     "simple-git-hooks": "^2.6.1",
-    "size-limit": "^5.0.3",
-    "typescript": "^4.3.5"
+    "size-limit": "^5.0.5",
+    "typescript": "^4.4.3"
   },
   "files": [
     "dist",
@@ -64,16 +81,12 @@
   ],
   "size-limit": [
     {
-      "path": "jsx-runtime/jsxRuntime.esm.js",
+      "path": "jsx-runtime/index.js",
       "limit": "497 B"
     },
     {
-      "path": "jsx-runtime/jsxRuntime.cjs.js",
-      "limit": "478 B"
-    },
-    {
-      "path": "jsx-runtime/jsxRuntime.module.js",
-      "limit": "492 B"
+      "path": "jsx-runtime/index.cjs",
+      "limit": "480 B"
     }
   ],
   "simple-git-hooks": {

@@ -1,48 +1,12 @@
-import { join } from 'path';
-import { emptyDirSync, outputJSONSync } from 'fs-extra';
-import babel, { getBabelOutputPlugin } from '@rollup/plugin-babel';
+import { rmSync, existsSync } from 'fs';
+import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 
-import libPkg from './package.json';
+import pkg from './package.json';
 
-const dist = 'jsx-runtime';
-const source = 'jsxRuntime.js';
-const esm = 'jsxRuntime.esm.js';
-const moduleJs = 'jsxRuntime.module.js';
-const cjs = 'jsxRuntime.cjs.js';
-
-const pkg = {
-  name: dist,
-  type: 'module',
-  sideEffects: false,
-  source,
-  main: cjs,
-  module: moduleJs,
-  exports: {
-    import: `./${esm}`,
-    require: `./${cjs}`,
-  },
-  esmodule: esm,
-  types: '../index.d.ts',
-  private: true,
-  license: 'MIT',
-};
-
-const presetPkg = {
-  name: 'babel-preset-jsx-dom-runtime',
-  type: 'module',
-  main: 'index.cjs.js',
-  module: 'index.js',
-  exports: {
-    import: './index.js',
-    require: './index.cjs.js',
-  },
-  private: true,
-  license: 'MIT',
-};
-
+const outputDirs = ['dist', 'jsx-runtime', 'jsx-dev-runtime', 'babel-preset'];
 const extensions = ['.js', '.ts'];
 
 const plugins = [
@@ -52,94 +16,66 @@ const plugins = [
   }),
   babel({
     extensions,
+    babelHelpers: 'bundled',
     presets: [
       '@babel/preset-typescript',
     ],
   }),
 ];
 
-const bablePlugin = getBabelOutputPlugin({
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        loose: true,
-        targets: 'defaults',
-      },
-    ],
-  ],
-});
-
 const terserPlugin = terser({
   module: true,
 });
 
-emptyDirSync(dist);
-outputJSONSync(join(dist, 'package.json'), pkg, { spaces: 2 });
-outputJSONSync('babel-preset/package.json', presetPkg, { spaces: 2 });
+outputDirs.forEach((i) => {
+  if (existsSync(i)) {
+    rmSync(i, { recursive: true });
+  }
+});
 
 export default [
   {
     input: 'src/index.js',
     output: [
       {
-        file: join(dist, source),
-        format: 'esm',
+        file: pkg.exports['./jsx-runtime'].import,
+        format: 'es',
       },
       {
-        file: join(dist, esm),
-        format: 'esm',
-        plugins: [
-          terserPlugin,
-        ],
-      },
-      {
-        file: join(dist, moduleJs),
-        format: 'esm',
-        plugins: [
-          bablePlugin,
-          terserPlugin,
-        ],
-      },
-      {
-        file: join(dist, cjs),
+        file: pkg.exports['./jsx-runtime'].require,
         format: 'cjs',
-        plugins: [
-          bablePlugin,
-          terserPlugin,
-        ],
       },
+    ],
+    plugins: [
+      terserPlugin,
     ],
   },
   {
     input: 'src/lib/index.ts',
     output: [
       {
-        file: libPkg.esmodule,
-        format: 'esm',
+        file: pkg.exports['.'].import,
+        format: 'es',
       },
       {
-        file: libPkg.module,
-        format: 'esm',
-        plugins: [
-          bablePlugin,
-        ],
-      },
-      {
-        file: libPkg.main,
+        file: pkg.exports['.'].require,
         format: 'cjs',
-        plugins: [
-          bablePlugin,
-        ],
       },
     ],
-    plugins,
+    plugins: [
+      ...plugins,
+      terserPlugin,
+    ],
   },
   {
     input: 'src/development/index.ts',
     output: [
       {
-        file: 'jsx-dev-runtime/index.js',
+        file: pkg.exports['./jsx-dev-runtime'].import,
+        format: 'es',
+      },
+      {
+        file: pkg.exports['./jsx-dev-runtime'].require,
         format: 'cjs',
       },
     ],
@@ -149,12 +85,12 @@ export default [
     input: 'src/babel/index.js',
     output: [
       {
-        file: 'babel-preset/index.js',
+        file: pkg.exports['./babel-preset'].import,
         exports: 'default',
-        format: 'esm',
+        format: 'es',
       },
       {
-        file: 'babel-preset/index.cjs.js',
+        file: pkg.exports['./babel-preset'].require,
         exports: 'default',
         format: 'cjs',
       },
