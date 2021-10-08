@@ -24,4 +24,14 @@ describe('Fragment', () => {
       </div>
     ).toHaveOuterHTML('<div><p>3</p><p>4</p></div>');
   });
+
+  it('should append one element to fragment ', () => {
+    <document.body>
+      <>
+        <h1>one</h1>
+      </>
+    </document.body>;
+
+    expect(document.body).toHaveInnerHTML('<h1>one</h1>');
+  });
 });
