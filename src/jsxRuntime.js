@@ -61,7 +61,7 @@ export let jsx = (node, props) => {
   }
 
   appendChildren(
-    node.tagName === 'TEMPLATE' ? node.content : node,
+    node.localName === 'template' ? node.content : node,
     props.children
   );
 

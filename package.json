@@ -86,7 +86,7 @@
     },
     {
       "path": "jsx-runtime/index.cjs",
-      "limit": "455 B"
+      "limit": "452 B"
     }
   ],
   "simple-git-hooks": {
