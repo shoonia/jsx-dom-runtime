@@ -1,7 +1,7 @@
 import { appendChildren } from './appendChildren';
 
 export let Fragment = (props) => {
-  let fragment = document.createDocumentFragment();
+  let fragment = new DocumentFragment();
 
   appendChildren(fragment, props.children);
   return fragment;
