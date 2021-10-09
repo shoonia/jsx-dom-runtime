@@ -82,11 +82,11 @@
   "size-limit": [
     {
       "path": "jsx-runtime/index.js",
-      "limit": "497 B"
+      "limit": "475 B"
     },
     {
       "path": "jsx-runtime/index.cjs",
-      "limit": "480 B"
+      "limit": "458 B"
     }
   ],
   "simple-git-hooks": {
