@@ -16,15 +16,23 @@ describe('Data attribute', () => {
     expect(<span data-on={undefined} />).toHaveOuterHTML('<span></span>');
   });
 
-  it('should stringify attribute value', () => {
-    expect(<ol data-str={0} />).toHaveOuterHTML('<ol data-str="0"></ol>');
-    expect(<ol data-str={1} />).toHaveOuterHTML('<ol data-str="1"></ol>');
-    expect(<ol data-str={NaN} />).toHaveOuterHTML('<ol data-str="NaN"></ol>');
-    expect(<ol data-str={Infinity} />).toHaveOuterHTML('<ol data-str="Infinity"></ol>');
-    expect(<ol data-str={[]} />).toHaveOuterHTML('<ol data-str=""></ol>');
-    expect(<ol data-str={[0, 1]} />).toHaveOuterHTML('<ol data-str="0,1"></ol>');
-    expect(<ol data-str={() => {}} />).toHaveOuterHTML('<ol data-str="() => {}"></ol>');
-    expect(<ol data-str={function x() {}} />).toHaveOuterHTML('<ol data-str="function x() {}"></ol>');
-    expect(<ol data-str={{ x: 10 }} />).toHaveOuterHTML('<ol data-str="[object Object]"></ol>');
+  it.each([
+    [0,               '0'],
+    [0,               '0'],
+    [1,               '1'],
+    [-1,              '-1'],
+    [3.14,            '3.14'],
+    [NaN,             'NaN'],
+    [5n,              '5'],
+    [Infinity,        'Infinity'],
+    [-Infinity,       '-Infinity'],
+    [[],              ''],
+    [[0, 1],          '0,1'],
+    [() => {},        '() => {}'],
+    [function x() {}, 'function x() {}'],
+    [{},              '[object Object]'],
+    [{ x: 10 },       '[object Object]'],
+  ])('should stringify attribute', (data, value) => {
+    expect(<ol data-str={data} />).toHaveAttribute('data-str', value);
   });
 });
