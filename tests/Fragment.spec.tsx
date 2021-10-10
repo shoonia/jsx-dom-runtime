@@ -25,7 +25,7 @@ describe('Fragment', () => {
     ).toHaveOuterHTML('<div><p>3</p><p>4</p></div>');
   });
 
-  it('should append one element to fragment ', () => {
+  it('should append one element to fragment', () => {
     <document.body>
       <>
         <h1>one</h1>
@@ -33,5 +33,60 @@ describe('Fragment', () => {
     </document.body>;
 
     expect(document.body).toHaveInnerHTML('<h1>one</h1>');
+  });
+
+  it('should work with list of fragments', () => {
+    <document.body>
+      <>
+        <p>one</p>
+      </>
+      <>
+        <p>two</p>
+      </>
+    </document.body>;
+
+    expect(document.body).toHaveInnerHTML('<p>one</p><p>two</p>');
+  });
+
+  it('should work with nested fragments', () => {
+    <document.body>
+      <>
+        <>
+          <>
+            <p>one</p>
+          </>
+        </>
+      </>
+    </document.body>;
+
+    expect(document.body).toHaveInnerHTML('<p>one</p>');
+  });
+
+  test('difficult tree of fragments and nodes', () => {
+    <document.body>
+      <p>1</p>
+      <>
+        <p>2</p>
+        <>
+          <p>3</p>
+        </>
+        <>
+          <>
+            <p>4</p>
+          </>
+        </>
+        <>
+          <p>
+            <>
+              5
+            </>
+          </p>
+        </>
+      </>
+    </document.body>;
+
+    expect(document.body).toHaveInnerHTML(
+      '<p>1</p><p>2</p><p>3</p><p>4</p><p>5</p>',
+    );
   });
 });
