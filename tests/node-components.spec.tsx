@@ -1,4 +1,4 @@
-describe('Node Component', () => {
+describe('Node Components', () => {
   it('should append children to body element', () => {
     <document.body>
       <div>one</div>
@@ -33,9 +33,7 @@ describe('Node Component', () => {
     const Item = <div data-value="1"/>;
 
     expect(Item).toHaveOuterHTML('<div data-value="1"></div>');
-
     <Item data-value="2" />;
-
     expect(Item).toHaveOuterHTML('<div data-value="2"></div>');
   });
 
@@ -47,5 +45,53 @@ describe('Node Component', () => {
     </document.body>;
 
     expect(document.body).toHaveInnerHTML('new text');
+  });
+
+  it('should update src on image', () => {
+    const MyImage = new Image(100, 100);
+
+    <document.body>
+      <MyImage src="https://a.com" />
+    </document.body>;
+
+    expect(document.body).toHaveInnerHTML(
+      '<img width="100" height="100" src="https://a.com">'
+    );
+  });
+
+  it('should work with fragment node', () => {
+    const MyFragment = new DocumentFragment();
+
+    MyFragment.append(<div>hello</div>);
+
+    <document.body>
+      <MyFragment />
+    </document.body>;
+
+    expect(document.body).toHaveInnerHTML('<div>hello</div>');
+  });
+
+  it('should work with nodes as value', () => {
+    const myText = new Text('myText');
+    const myImage = new Image(5, 5);
+    const myFragment0 = new DocumentFragment();
+    const myFragment1 = document.createDocumentFragment();
+    const myDiv = document.createElement('div');
+
+    myFragment0.append('myFragment0');
+    myFragment1.append('myFragment1');
+    myDiv.append('myDiv');
+
+    <document.body>
+      {myText}
+      {myImage}
+      {myFragment0}
+      {myFragment1}
+      {myDiv}
+    </document.body>;
+
+    expect(document.body).toHaveInnerHTML(
+      'myText<img width="5" height="5">myFragment0myFragment1<div>myDiv</div>',
+    );
   });
 });
