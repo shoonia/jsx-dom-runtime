@@ -17,4 +17,7 @@ jobs:
     - name: Install dependencies
       uses: bahmutov/npm-install@v1
 
+    - run: npm run lint
+    - run: npm run build
     - run: npm test
+    - run: npm run size

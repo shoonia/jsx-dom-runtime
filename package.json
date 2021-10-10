@@ -34,9 +34,8 @@
     "lint": "eslint 'src/**/*.{js,ts}' 'tests/**/*.{js,ts,tsx}'",
     "test": "jest",
     "build": "rollup -c",
-    "pretest": "npm run build",
-    "posttest": "npm run lint && size-limit",
-    "size": "npm run build && size-limit"
+    "size": "size-limit",
+    "dev": "npm run lint && npm run build && npm test && npm run size"
   },
   "dependencies": {
     "@babel/core": "^7.15.8",
@@ -90,7 +89,7 @@
     }
   ],
   "simple-git-hooks": {
-    "pre-commit": "npm test"
+    "pre-commit": "npm run dev"
   },
   "engines": {
     "node": "16",
