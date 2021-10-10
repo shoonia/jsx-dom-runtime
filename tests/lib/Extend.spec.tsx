@@ -41,14 +41,23 @@ describe('Extend', () => {
 
   it('should set muted value', () => {
     Extend({
-      muted(node, value) {
-        // @ts-ignore
+      plugin_5(node, value) {
         node.muted = value;
       }
     });
 
     expect(<audio />).toHaveProperty('muted', false);
-    expect(<audio muted />).toHaveProperty('muted', true);
-    expect(<audio muted={false} />).toHaveProperty('muted', false);
+    expect(<audio plugin_5 />).toHaveProperty('muted', true);
+    expect(<audio plugin_5={false} />).toHaveProperty('muted', false);
+  });
+
+  it('should work as JSX tag', () => {
+    <Extend
+      plugin_6={(node, value) => {
+        node.setAttribute('data-plugin', value);
+      }}
+    />;
+
+    expect(<div plugin_6="test" />).toHaveOuterHTML('<div data-plugin="test"></div>');
   });
 });
