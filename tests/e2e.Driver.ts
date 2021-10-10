@@ -2,7 +2,7 @@ import { fireEvent, getAllByTestId, getByTestId } from '@testing-library/dom';
 
 export class Driver {
   render(node) {
-    return document.body.appendChild(node);
+    document.body.append(node);
   }
 
   get(dataId) {
