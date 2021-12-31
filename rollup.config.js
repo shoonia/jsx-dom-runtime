@@ -44,6 +44,8 @@ export default [
       {
         file: pkg.exports['./jsx-runtime'].require,
         format: 'cjs',
+        interop: false,
+        esModule: false,
       },
     ],
     plugins: [
@@ -60,6 +62,8 @@ export default [
       {
         file: pkg.exports['.'].require,
         format: 'cjs',
+        interop: false,
+        esModule: false,
       },
     ],
     plugins: [
@@ -77,6 +81,8 @@ export default [
       {
         file: pkg.exports['./jsx-dev-runtime'].require,
         format: 'cjs',
+        interop: false,
+        esModule: false,
       },
     ],
     plugins,
@@ -93,6 +99,8 @@ export default [
         file: pkg.exports['./babel-preset'].require,
         exports: 'default',
         format: 'cjs',
+        interop: false,
+        esModule: false,
       },
     ],
   }
