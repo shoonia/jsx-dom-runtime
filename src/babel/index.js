@@ -16,7 +16,7 @@ const index = declarePreset((api, {
     plugins: [
       [
         createPlugin({
-          name: 'jsx-dom-runtime',
+          name: 'jsx-dom-runtime/babel-preset',
           development: nodeEnv === 'development',
         }),
         {
