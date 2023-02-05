@@ -1,5 +1,9 @@
 import { declarePreset } from '@babel/helper-plugin-utils';
-import createPlugin from '@babel/plugin-transform-react-jsx/lib/create-plugin';
+import _createPlugin from '@babel/plugin-transform-react-jsx/lib/create-plugin.js';
+
+const createPlugin = _createPlugin && typeof _createPlugin.default === 'function'
+  ? _createPlugin.default
+  : _createPlugin;
 
 const index = declarePreset((api, {
   useBuiltIns,
