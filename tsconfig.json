@@ -4,7 +4,7 @@
     "allowJs": true,
     "esModuleInterop": true,
     "sourceMap": false,
-    "target": "ES2021",
+    "target": "ES2022",
     "module": "ESNext",
     "moduleResolution": "Node",
     "noEmit": true,
@@ -12,7 +12,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": ".",
     "lib": [
-      "ES2021",
+      "ES2022",
       "DOM"
     ],
   },

@@ -1,4 +1,4 @@
-const { resolve } = require('path');
+const { resolve } = require('node:path');
 
 module.exports = {
   presets: [
@@ -6,11 +6,12 @@ module.exports = {
       '@babel/preset-env',
       {
         loose: true,
-        targets: { node: 16 },
+        targets: {
+          node: 'current'
+        },
       },
     ],
   ],
-
   plugins: [
     [
       '@babel/plugin-transform-react-jsx',
