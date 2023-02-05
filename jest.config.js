@@ -1,4 +1,4 @@
-module.exports = {
+const config = {
   rootDir: 'tests',
   transform: {
     '\\.[jt]sx?$': 'babel-jest',
@@ -7,4 +7,7 @@ module.exports = {
     '<rootDir>/jest-setup.ts'
   ],
   testEnvironment: 'jest-environment-jsdom',
+  extensionsToTreatAsEsm: ['.tsx', '.ts'],
 };
+
+export { config as default };

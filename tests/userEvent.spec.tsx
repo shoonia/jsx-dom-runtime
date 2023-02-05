@@ -1,4 +1,5 @@
 import { fireEvent } from '@testing-library/dom';
+import { jest } from '@jest/globals';
 
 describe('User events', () => {
   it('should add click handler', () => {
