@@ -1,7 +1,7 @@
-import { declare } from '@babel/helper-plugin-utils';
+import { declarePreset } from '@babel/helper-plugin-utils';
 import createPlugin from '@babel/plugin-transform-react-jsx/lib/create-plugin';
 
-const index = declare((api, {
+const index = declarePreset((api, {
   useBuiltIns,
   useSpread,
   nodeEnv = process.env.NODE_ENV,
