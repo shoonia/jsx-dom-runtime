@@ -1,10 +1,12 @@
+import { createRequire } from 'node:module';
 import { rmSync, existsSync } from 'node:fs';
 import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 
-import pkg from './package.json';
+/** @type {import('./package.json')} */
+const pkg = createRequire(import.meta.url)('./package.json');
 
 const outputDirs = ['dist', 'jsx-runtime', 'jsx-dev-runtime', 'babel-preset'];
 const extensions = ['.js', '.ts'];
@@ -44,7 +46,6 @@ export default [
       {
         file: pkg.exports['./jsx-runtime'].require,
         format: 'cjs',
-        interop: false,
         esModule: false,
       },
     ],
@@ -62,7 +63,6 @@ export default [
       {
         file: pkg.exports['.'].require,
         format: 'cjs',
-        interop: false,
         esModule: false,
       },
     ],
@@ -81,7 +81,6 @@ export default [
       {
         file: pkg.exports['./jsx-dev-runtime'].require,
         format: 'cjs',
-        interop: false,
         esModule: false,
       },
     ],
@@ -99,7 +98,6 @@ export default [
         file: pkg.exports['./babel-preset'].require,
         exports: 'default',
         format: 'cjs',
-        interop: false,
         esModule: false,
       },
     ],
