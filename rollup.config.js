@@ -6,7 +6,7 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 /** @type {import('./package.json')} */
 const pkg = createRequire(import.meta.url)('./package.json');
 
-const extensions = ['.js', '.ts', '.tsx'];
+const extensions = ['.js', '.ts'];
 
 const plugins = [
   nodeResolve({
