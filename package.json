@@ -3,14 +3,14 @@
   "version": "0.18.0",
   "description": "A tiny in 500 bytes library to JSX syntax templates for DOM",
   "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "main": "jsx-runtime/index.cjs",
+  "module": "jsx-runtime/index.js",
   "types": "./index.d.ts",
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "require": "./jsx-runtime/index.cjs",
+      "import": "./jsx-runtime/index.js",
+      "default": "./jsx-runtime/index.js"
     },
     "./jsx-runtime": {
       "require": "./jsx-runtime/index.cjs",
@@ -49,9 +49,7 @@
     "@evilmartians/lefthook": "^1.2.8",
     "@jest/globals": "^29.4.2",
     "@rollup/plugin-babel": "^6.0.3",
-    "@rollup/plugin-commonjs": "^24.0.1",
     "@rollup/plugin-node-resolve": "^15.0.1",
-    "@rollup/plugin-terser": "^0.4.0",
     "@size-limit/preset-small-lib": "^8.1.2",
     "@testing-library/dom": "^8.20.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -81,11 +79,8 @@
   "size-limit": [
     {
       "path": "jsx-runtime/index.js",
-      "limit": "495 B"
-    },
-    {
-      "path": "jsx-runtime/index.cjs",
-      "limit": "553 B"
+      "import": "{ jsx }",
+      "limit": "453 B"
     }
   ],
   "repository": {

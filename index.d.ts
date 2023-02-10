@@ -54,14 +54,12 @@ export function createRef<T = any>(): RefObject<T>
 
 export function bindRef<T>(...refs: Ref<T>[]): RefCallback<T>
 
-export function parseFromString(htmlOrSvg: string): Node[]
-
 export function useText(initContent?: string): readonly [
   Text,
   (text: string) => void
 ]
 
-export function Extend(props: Record<string, (node: HTMLElement, value: any) => void>): void;
+export function extend(props: Record<string, (node: HTMLElement, value: any) => void>): void;
 
 interface CurrentTarget<T> {
   currentTarget: EventTarget & T

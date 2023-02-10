@@ -99,9 +99,9 @@ const ref = createRef();
 Add custom attributes behavior
 
 ```js
-import { Extend } from 'jsx-dom-runtime/jsx-runtime';
+import { extend } from 'jsx-dom-runtime';
 
-Extend({
+extend({
   classList(node, value) {
     node.setAttribute('class', value.filter(Boolean).join(' '));
   },
@@ -124,21 +124,6 @@ Result
 <div class="one two" data-testid="test" data-hook="text"></div>
 ```
 
-### Parse from string
-
-```js
-import { parseFromString } from 'jsx-dom-runtime';
-
-const svg = parseFromString(
-  `<svg width="24" height="24" aria-hidden="true">
-    <path d="M12 12V6h-1v6H5v1h6v6h1v-6h6v-1z"/>
-  </svg>`
-);
-
-<document.body>
-  {svg}
-</document.body>;
-```
 
 ## License
 

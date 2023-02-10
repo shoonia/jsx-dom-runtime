@@ -1,18 +1,14 @@
 import { createRequire } from 'node:module';
 import { rmSync, existsSync } from 'node:fs';
 import babel from '@rollup/plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
-import terser from '@rollup/plugin-terser';
 
 /** @type {import('./package.json')} */
 const pkg = createRequire(import.meta.url)('./package.json');
 
-const outputDirs = ['dist', 'jsx-runtime', 'jsx-dev-runtime', 'babel-preset'];
-const extensions = ['.js', '.ts'];
+const extensions = ['.js', '.ts', '.tsx'];
 
 const plugins = [
-  commonjs(),
   nodeResolve({
     extensions,
   }),
@@ -21,21 +17,38 @@ const plugins = [
     babelHelpers: 'bundled',
     presets: [
       '@babel/preset-typescript',
+      './babel-preset/index.js',
     ],
   }),
 ];
 
-const terserPlugin = terser({
-  module: true,
-});
-
-outputDirs.forEach((i) => {
-  if (existsSync(i)) {
-    rmSync(i, { recursive: true });
+[
+  './babel-preset',
+  './jsx-runtime',
+  './jsx-dev-runtime',
+].forEach((path) => {
+  if (existsSync(path)) {
+    rmSync(path, { recursive: true });
   }
 });
 
 export default [
+  {
+    input: 'src/babel/index.js',
+    output: [
+      {
+        file: pkg.exports['./babel-preset'].import,
+        exports: 'default',
+        format: 'es',
+      },
+      {
+        file: pkg.exports['./babel-preset'].require,
+        exports: 'default',
+        format: 'cjs',
+        esModule: false,
+      },
+    ],
+  },
   {
     input: 'src/index.js',
     output: [
@@ -49,27 +62,7 @@ export default [
         esModule: false,
       },
     ],
-    plugins: [
-      terserPlugin,
-    ],
-  },
-  {
-    input: 'src/lib/index.ts',
-    output: [
-      {
-        file: pkg.exports['.'].import,
-        format: 'es',
-      },
-      {
-        file: pkg.exports['.'].require,
-        format: 'cjs',
-        esModule: false,
-      },
-    ],
-    plugins: [
-      ...plugins,
-      terserPlugin,
-    ],
+    plugins,
   },
   {
     input: 'src/development/index.ts',
@@ -86,20 +79,4 @@ export default [
     ],
     plugins,
   },
-  {
-    input: 'src/babel/index.js',
-    output: [
-      {
-        file: pkg.exports['./babel-preset'].import,
-        exports: 'default',
-        format: 'es',
-      },
-      {
-        file: pkg.exports['./babel-preset'].require,
-        exports: 'default',
-        format: 'cjs',
-        esModule: false,
-      },
-    ],
-  }
 ];

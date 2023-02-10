@@ -1,9 +1,9 @@
 
-import { Extend } from '../../jsx-runtime';
+import { extend } from '../../jsx-runtime';
 
-describe('Extend', () => {
+describe('extend', () => {
   it('should add plugin', () => {
-    Extend({
+    extend({
       plugin_1(node) {
         node.setAttribute('class', 'plugin_1');
       },
@@ -14,7 +14,7 @@ describe('Extend', () => {
   });
 
   it('should add two plugins', () => {
-    Extend({
+    extend({
       plugin_2(node) {
         node.classList.add('a');
       },
@@ -29,7 +29,7 @@ describe('Extend', () => {
   });
 
   it('should work with passed value', () => {
-    Extend({
+    extend({
       plugin_4(node, value) {
         node.textContent = value;
       },
@@ -40,7 +40,7 @@ describe('Extend', () => {
   });
 
   it('should set muted value', () => {
-    Extend({
+    extend({
       plugin_5(node, value) {
         node.muted = value;
       }
@@ -49,15 +49,5 @@ describe('Extend', () => {
     expect(<audio />).toHaveProperty('muted', false);
     expect(<audio plugin_5 />).toHaveProperty('muted', true);
     expect(<audio plugin_5={false} />).toHaveProperty('muted', false);
-  });
-
-  it('should work as JSX tag', () => {
-    <Extend
-      plugin_6={(node, value) => {
-        node.setAttribute('data-plugin', value);
-      }}
-    />;
-
-    expect(<div plugin_6="test" />).toHaveOuterHTML('<div data-plugin="test"></div>');
   });
 });

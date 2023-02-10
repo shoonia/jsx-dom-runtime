@@ -1,5 +1,5 @@
 import { appendChildren } from './appendChildren.js';
-import { extensions } from './Extend.js';
+import { extensions } from './extend.js';
 
 let properties = new Set([
   'className',
