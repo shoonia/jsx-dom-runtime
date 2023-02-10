@@ -18,7 +18,7 @@
     "node": true
   },
   "parserOptions": {
-    "ecmaVersion": 2020,
+    "ecmaVersion": 2022,
     "sourceType": "module",
     "ecmaFeatures": {
       "jsx": true
@@ -27,12 +27,23 @@
   "rules": {
     "no-unused-vars": "off",
     "no-undef": "off",
-    "no-redeclare":"off",
-    "@typescript-eslint/no-unused-vars": ["error"],
-    "@typescript-eslint/no-redeclare": ["error"],
-    "linebreak-style": "off",
+    "no-redeclare": "off",
     "no-else-return": "error",
     "no-trailing-spaces": "error",
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1,
+        "maxEOF": 0
+      }
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error"
+    ],
+    "@typescript-eslint/no-redeclare": [
+      "error"
+    ],
+    "linebreak-style": "off",
     "indent": [
       "error",
       2,
