@@ -1,3 +1,5 @@
+import { createRequire } from 'node:module';
+
 describe('Fragment', () => {
   it('should support Fragment', () => {
     <document.body>
@@ -88,5 +90,17 @@ describe('Fragment', () => {
     expect(document.body).toHaveInnerHTML(
       '<p>1</p><p>2</p><p>3</p><p>4</p><p>5</p>',
     );
+  });
+
+  it('should work with component Fragment', () => {
+    const { Fragment } = createRequire(import.meta.url)('../jsx-runtime/index.cjs');
+
+    <document.body>
+      <Fragment>
+        <p>a</p>
+      </Fragment>
+    </document.body>;
+
+    expect(document.body).toHaveInnerHTML('<p>a</p>');
   });
 });
