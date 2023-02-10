@@ -63,9 +63,7 @@ const App = () => {
 
 [Demo](/DEMO)
 
-## Syntax
-
-### Creating Refs
+## Creating Refs
 
 ```js
 import { createRef } from 'jsx-dom-runtime';
@@ -94,7 +92,7 @@ const ref = createRef();
 </document.body>;
 ```
 
-### Extend
+## Extend
 
 Add custom attributes behavior
 
@@ -114,7 +112,10 @@ extend({
 });
 
 <document.body>
-  <div classList={['one', 'two']} dataset={{ testid: 'test', hook: 'text' }} />
+  <div
+    classList={['one', 'two']}
+    dataset={{ testid: 'test', hook: 'text' }}
+  />
 </document.body>;
 ```
 
@@ -124,6 +125,21 @@ Result
 <div class="one two" data-testid="test" data-hook="text"></div>
 ```
 
+## Template
+
+Get template from string
+
+```js
+import { Template } from 'jsx-dom-runtime';
+
+<document.body>
+  <Template>
+    {`<svg width="24" height="24" aria-hidden="true">
+        <path d="M12 12V6h-1v6H5v1h6v6h1v-6h6v-1z"/>
+      </svg>`}
+  </Template>
+</document.body>
+```
 
 ## License
 
