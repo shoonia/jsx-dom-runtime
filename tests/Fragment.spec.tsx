@@ -93,7 +93,7 @@ describe('Fragment', () => {
   });
 
   it('should work with component Fragment', () => {
-    const { Fragment } = createRequire(import.meta.url)('../jsx-runtime/index.cjs');
+    const { Fragment } = createRequire(import.meta.url)('..');
 
     <document.body>
       <Fragment>
