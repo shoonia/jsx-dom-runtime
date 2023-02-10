@@ -1,6 +1,6 @@
-export { jsx, jsx as jsxs } from './jsxRuntime.js';
-export { Fragment } from './Fragment.js';
-export { extend } from './extend.js';
-export { Template } from './lib/Template.ts';
-export { createRef, createRef as useRef } from './lib/createRef.ts';
-export { useText } from './lib/useText.ts';
+export { jsx, jsx as jsxs } from './jsxRuntime';
+export { Fragment } from './Fragment';
+export { extend } from './extend';
+export { Template } from './lib/Template';
+export { createRef, createRef as useRef } from './lib/createRef';
+export { useText } from './lib/useText';
