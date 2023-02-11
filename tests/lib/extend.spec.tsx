@@ -1,4 +1,3 @@
-
 import { extend } from '../../jsx-runtime';
 
 describe('extend', () => {
