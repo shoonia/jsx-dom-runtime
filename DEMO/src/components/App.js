@@ -4,19 +4,19 @@ import * as s from './App.module.css';
 import { ListItem } from './ListItem';
 
 export const App = () => {
-  const RefInput = createRef();
-  const RefList = createRef();
+  const refInput = createRef();
+  const refList = createRef();
 
   const addItem = () => {
-    const input = RefInput.current;
+    const input = refInput.current;
 
     if (input.value === '') {
       return;
     }
 
-    <RefList.current>
+    <refList.current>
       <ListItem text={input.value} />
-    </RefList.current>;
+    </refList.current>;
 
     input.value = '';
   };
@@ -31,13 +31,13 @@ export const App = () => {
     <>
       <fieldset style="border: 0; padding: 0;">
         <div class={s.toolbar}>
-          <input ref={RefInput} type="text" class={s.field} onkeypress={pressEnter} />
+          <input ref={refInput} type="text" class={s.field} onkeypress={pressEnter} />
           <button type="button" class={s.btn} onclick={addItem}>
             Add Item
           </button>
         </div>
       </fieldset>
-      <ul ref={RefList} class={s.list} />
+      <ul ref={refList} class={s.list} />
     </>
   );
 };
