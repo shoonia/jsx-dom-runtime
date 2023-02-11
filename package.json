@@ -80,7 +80,7 @@
     {
       "path": "jsx-runtime/index.js",
       "import": "{ jsx }",
-      "limit": "455 B"
+      "limit": "439 B"
     }
   ],
   "repository": {
