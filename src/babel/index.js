@@ -1,5 +1,6 @@
 import { declarePreset } from '@babel/helper-plugin-utils';
 import _createPlugin from '@babel/plugin-transform-react-jsx/lib/create-plugin.js';
+import { jsxPlugin } from './jsxPlugin';
 
 const createPlugin = typeof _createPlugin.default === 'function'
   ? _createPlugin.default
@@ -14,6 +15,7 @@ const index = declarePreset((api, {
 
   return {
     plugins: [
+      jsxPlugin,
       [
         createPlugin({
           name: 'jsx-dom-runtime/babel-preset',
