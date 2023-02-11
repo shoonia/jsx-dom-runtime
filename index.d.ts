@@ -54,7 +54,7 @@ export function createRef<T = any>(): RefObject<T>
 
 export function bindRef<T>(...refs: Ref<T>[]): RefCallback<T>
 
-export function parseFromString(htmlOrSvg: string): Node[]
+export function parseFromString(htmlOrSvg: string): DocumentFragment;
 
 export function useText(initContent?: string): readonly [
   Text,
