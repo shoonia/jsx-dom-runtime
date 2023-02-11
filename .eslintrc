@@ -34,6 +34,7 @@
       "error",
       {
         "max": 1,
+        "maxBOF": 0,
         "maxEOF": 0
       }
     ],
@@ -48,7 +49,7 @@
       "error",
       2,
       {
-        "SwitchCase": 2
+        "SwitchCase": 1
       }
     ],
     "quotes": [

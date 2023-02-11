@@ -1,6 +1,7 @@
 import { jsx } from '../jsxRuntime';
-import { Fragment } from '../Fragment';
 import { specMap } from './specMap';
+
+export * from '..';
 
 type Props = Record<string, unknown>;
 
@@ -45,7 +46,7 @@ const propTypes = (tagName: string, spec, props: Props, stack: IStack) => {
   }
 };
 
-const jsxDEV = (
+export const jsxDEV = (
   el: unknown,
   props: Record<string, unknown>,
   _,
@@ -59,9 +60,4 @@ const jsxDEV = (
   }
 
   return jsx(el, props);
-};
-
-export {
-  jsxDEV,
-  Fragment,
 };
