@@ -105,10 +105,18 @@ Add custom attributes behavior
 import { Extend } from 'jsx-dom-runtime';
 
 Extend({
+  /**
+   * @param {HTMLElement} node
+   * @param {string[]} value
+   */
   classList(node, value) {
     node.setAttribute('class', value.filter(Boolean).join(' '));
   },
 
+  /**
+   * @param {HTMLElement} node
+   * @param {Record<string, string>} value
+   */
   dataset(node, value) {
     for (let key in value) {
       node.dataset[key] = value[key];
