@@ -99,7 +99,7 @@ const ref = createRef();
 Add custom attributes behavior
 
 ```js
-import { Extend } from 'jsx-dom-runtime/jsx-runtime';
+import { Extend } from 'jsx-dom-runtime';
 
 Extend({
   classList(node, value) {

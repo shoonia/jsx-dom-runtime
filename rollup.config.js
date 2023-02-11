@@ -21,9 +21,13 @@ const plugins = [
   }),
 ];
 
-['dist', 'jsx-runtime', 'jsx-dev-runtime', 'babel-preset'].forEach((i) => {
-  if (existsSync(i)) {
-    rmSync(i, { recursive: true });
+[
+  './babel-preset',
+  './jsx-runtime',
+  './jsx-dev-runtime',
+].forEach((path) => {
+  if (existsSync(path)) {
+    rmSync(path, { recursive: true });
   }
 });
 
@@ -53,20 +57,6 @@ export default [
       },
       {
         file: pkg.exports['./jsx-runtime'].require,
-        format: 'cjs',
-        esModule: false,
-      },
-    ],
-  },
-  {
-    input: 'src/lib/index.ts',
-    output: [
-      {
-        file: pkg.exports['.'].import,
-        format: 'es',
-      },
-      {
-        file: pkg.exports['.'].require,
         format: 'cjs',
         esModule: false,
       },
