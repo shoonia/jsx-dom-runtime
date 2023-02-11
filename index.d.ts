@@ -42,17 +42,16 @@ export function jsx<K extends keyof HTMLElementTagNameMap, T extends HTMLElement
 
 export { jsx as jsxs, jsx as jsxDEV };
 
-export function Fragment(props: { children?: TNode | TChildren }): JSX.Element
+export function Fragment(props: { children?: TNode | TChildren }): JSX.Element;
+export function Template(props: { children: string }): DocumentFragment;
 
 export interface FunctionComponent<P = {}, T extends Element = JSX.Element> {
   (props: PropsWithChildren<P>): T | null
 }
-
 export { FunctionComponent as FC };
 
-export function createRef<T = any>(): RefObject<T>
-
-export function bindRef<T>(...refs: Ref<T>[]): RefCallback<T>
+export function createRef<T = any>(current?: T): RefObject<T>
+export { createRef as useRef };
 
 export function parseFromString(htmlOrSvg: string): DocumentFragment;
 
@@ -862,6 +861,7 @@ interface SourceHTMLAttributes<T> extends HTMLAttributes<T> {
   sizes?: string
   src?: string
   srcSet?: string
+  srcset?: string
   type?: string
 }
 
