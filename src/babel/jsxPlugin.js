@@ -68,6 +68,28 @@ export const jsxPlugin = (babel) => {
           path.node.attributes.push(svgNsAttribute());
         }
       },
+      JSXAttribute(path) {
+        const attr = path.node.name;
+
+        switch (attr.name) {
+          case 'className':
+          case 'classname': {
+            attr.name = 'class';
+            break;
+          }
+
+          case 'htmlFor':
+          case 'htmlfor': {
+            attr.name = 'for';
+            break;
+          }
+        }
+
+        if (attr.name.startsWith('on')) {
+          attr.name = attr.name.toLowerCase();
+          return;
+        }
+      }
     }
   };
 };
