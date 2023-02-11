@@ -85,7 +85,7 @@ describe('Props', () => {
 
   it('should add all attributes with spread', () => {
     const props = {
-      className: 'some',
+      class: 'some',
       id: 'one',
       textContent: 'Hello',
     };
@@ -95,7 +95,7 @@ describe('Props', () => {
 
   it('should add all attributes', () => {
     const props = {
-      className: 'box',
+      class: 'box',
     };
 
     expect(<p id="one" {...props} />).toHaveOuterHTML('<p id="one" class="box"></p>');
