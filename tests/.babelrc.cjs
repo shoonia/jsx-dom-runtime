@@ -11,14 +11,6 @@ module.exports = {
         },
       },
     ],
-  ],
-  plugins: [
-    [
-      '@babel/plugin-transform-react-jsx',
-      {
-        runtime: 'automatic',
-        importSource: resolve(process.cwd()),
-      },
-    ],
+    resolve(process.cwd(), 'babel-preset/index.js'),
   ],
 }
