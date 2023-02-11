@@ -38,4 +38,22 @@ describe('User events', () => {
 
     expect(spyCallback).toHaveBeenCalledTimes(1);
   });
+
+  it('should add click handler when lower case', () => {
+    const click = jest.fn();
+    const change = jest.fn();
+
+    const input = <input
+      type="text"
+      onclick={click}
+      onchange={change}
+    />;
+
+    fireEvent.click(input);
+    fireEvent.change(input, { target: { value: '1' } });
+
+    expect(click).toHaveBeenCalledTimes(1);
+    expect(change).toHaveBeenCalledTimes(1);
+    expect(input).toHaveValue('1');
+  });
 });
