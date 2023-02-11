@@ -1,18 +1,14 @@
 import { createRequire } from 'node:module';
 import { rmSync, existsSync } from 'node:fs';
 import babel from '@rollup/plugin-babel';
-import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
-import terser from '@rollup/plugin-terser';
 
 /** @type {import('./package.json')} */
 const pkg = createRequire(import.meta.url)('./package.json');
 
-const outputDirs = ['dist', 'jsx-runtime', 'jsx-dev-runtime', 'babel-preset'];
 const extensions = ['.js', '.ts'];
 
 const plugins = [
-  commonjs(),
   nodeResolve({
     extensions,
   }),
@@ -25,17 +21,29 @@ const plugins = [
   }),
 ];
 
-const terserPlugin = terser({
-  module: true,
-});
-
-outputDirs.forEach((i) => {
+['dist', 'jsx-runtime', 'jsx-dev-runtime', 'babel-preset'].forEach((i) => {
   if (existsSync(i)) {
     rmSync(i, { recursive: true });
   }
 });
 
 export default [
+  {
+    input: 'src/babel/index.js',
+    output: [
+      {
+        file: pkg.exports['./babel-preset'].import,
+        exports: 'default',
+        format: 'es',
+      },
+      {
+        file: pkg.exports['./babel-preset'].require,
+        exports: 'default',
+        format: 'cjs',
+        esModule: false,
+      },
+    ],
+  },
   {
     input: 'src/index.js',
     output: [
@@ -48,9 +56,6 @@ export default [
         format: 'cjs',
         esModule: false,
       },
-    ],
-    plugins: [
-      terserPlugin,
     ],
   },
   {
@@ -66,10 +71,7 @@ export default [
         esModule: false,
       },
     ],
-    plugins: [
-      ...plugins,
-      terserPlugin,
-    ],
+    plugins,
   },
   {
     input: 'src/development/index.ts',
@@ -86,20 +88,4 @@ export default [
     ],
     plugins,
   },
-  {
-    input: 'src/babel/index.js',
-    output: [
-      {
-        file: pkg.exports['./babel-preset'].import,
-        exports: 'default',
-        format: 'es',
-      },
-      {
-        file: pkg.exports['./babel-preset'].require,
-        exports: 'default',
-        format: 'cjs',
-        esModule: false,
-      },
-    ],
-  }
 ];
