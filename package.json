@@ -65,23 +65,15 @@
     "typescript": "^4.9.5"
   },
   "files": [
-    "dist",
-    "jsx-dev-runtime",
+    "babel-preset",
     "jsx-runtime",
-    "babel-preset"
+    "jsx-dev-runtime"
   ],
   "keywords": [
     "jsx",
     "jsxdom",
     "jsx-dom",
     "jsx-runtime"
-  ],
-  "size-limit": [
-    {
-      "path": "jsx-runtime/index.js",
-      "import": "{ jsx }",
-      "limit": "470 B"
-    }
   ],
   "repository": {
     "type": "git",
