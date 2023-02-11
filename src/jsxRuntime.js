@@ -2,14 +2,16 @@ import { appendChildren } from './appendChildren';
 import { extensions } from './Extend';
 
 let properties = new Set([
-  'className',
   'innerHTML',
   'textContent',
   'value',
-  'htmlFor',
 ]);
 
-let ignoreKeys = new Set(['ref', 'children', '__ns']);
+let ignoreKeys = new Set([
+  'ref',
+  'children',
+  '__ns',
+]);
 
 export let jsx = (node, props) => {
   let key, val;
@@ -30,8 +32,10 @@ export let jsx = (node, props) => {
 
       if (extensions.has(key)) {
         extensions.get(key)(node, val);
-      } else if (properties.has(key)) {
-        node[key] = val;
+      } else if (properties.has(key) || key.startsWith('on')) {
+        if (key in node) {
+          node[key] = val;
+        }
       } else if (key === 'style') {
         if (typeof val === 'string') {
           node.style.cssText = val;
@@ -44,12 +48,6 @@ export let jsx = (node, props) => {
               node.style[key] = val[key];
             }
           }
-        }
-      } else if (key.startsWith('on')) {
-        key = key.toLowerCase();
-
-        if (key in node) {
-          node[key] = val;
         }
       } else if (val != null) {
         if (typeof val !== 'boolean' || /^(ari|dat)a-/.test(key)) {
