@@ -1,18 +1,3 @@
-.toolbar {
-  display: flex;
-  justify-content: space-between;
-  width: 300px;
-  padding: 0;
-}
-
-.field {
-  width: 100%;
-}
-
-.list {
-  padding: 0;
-}
-
 .item {
   display: flex;
   justify-content: space-between;
@@ -25,6 +10,5 @@
 }
 
 .btn {
-  white-space: nowrap;
-  margin-left: 5px;
+  color: red;
 }

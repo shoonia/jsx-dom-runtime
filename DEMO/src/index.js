@@ -1,4 +1,4 @@
-import { App } from './App.js';
+import { App } from './components/App.js';
 
 <document.documentElement lang="en" />;
 
@@ -11,6 +11,6 @@ import { App } from './App.js';
 `}</style>
 </document.head>;
 
-<document.body className="wrapper">
+<document.body class="wrapper">
   <App />
 </document.body>;

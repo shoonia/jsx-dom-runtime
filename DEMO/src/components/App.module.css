@@ -1,0 +1,19 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  width: 300px;
+  padding: 0;
+}
+
+.field {
+  width: 100%;
+}
+
+.list {
+  padding: 0;
+}
+
+.btn {
+  white-space: nowrap;
+  margin-left: 5px;
+}
