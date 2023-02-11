@@ -9,7 +9,7 @@
     "build": "rm -rf dist .parcel-cache && parcel build --no-source-maps --public-url /jsx-dom-runtime/DEMO/dist src/index.html"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.19.0"
+    "jsx-dom-runtime": "^0.20.0"
   },
   "devDependencies": {
     "parcel": "^2.8.3",
