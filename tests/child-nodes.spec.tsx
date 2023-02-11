@@ -30,6 +30,7 @@ describe('Child nodes', () => {
     [[]],
     [[], undefined, null, false, ''],
   ])('should have empty tag if %s', (child) => {
+    // @ts-expect-error
     expect(<div>{child}</div>).toHaveOuterHTML('<div></div>');
   });
 
