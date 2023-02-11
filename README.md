@@ -42,7 +42,7 @@ const App = () => {
 
   return (
     <>
-      <button type="button" onClick={addItem}>
+      <button type="button" onclick={addItem}>
         Add Item
       </button>
       <ul ref={List} />
@@ -73,12 +73,13 @@ import { createRef } from 'jsx-dom-runtime';
 let i = 0;
 
 const ref = createRef();
+const clickHandler = () => {
+  ref.current.textContent = ++i;
+};
 
 <document.body>
   <p ref={ref}>{i}</p>
-  <button type="button" onClick={() => {
-    ref.current.textContent = ++i;
-  }}>
+  <button type="button" onclick={clickHandler}>
     + 1
   </button>
 </document.body>;
@@ -87,10 +88,12 @@ const ref = createRef();
 ### Callback Refs
 
 ```js
+const autofocus = (node) => {
+  setTimeout(() => node.focus(), 100);
+};
+
 <document.body>
-  <input ref={(node) => {
-    setTimeout(() => node.focus(), 100);
-  }} />
+  <input type="text" ref={autofocus} />
 </document.body>;
 ```
 
@@ -114,7 +117,10 @@ Extend({
 });
 
 <document.body>
-  <div classList={['one', 'two']} dataset={{ testid: 'test', hook: 'text' }} />
+  <div
+    classList={['one', 'two']}
+    dataset={{ testid: 'test', hook: 'text' }}
+  />
 </document.body>;
 ```
 
@@ -124,20 +130,20 @@ Result
 <div class="one two" data-testid="test" data-hook="text"></div>
 ```
 
-### Parse from string
+### Template
+
+Get template from string
 
 ```js
-import { parseFromString } from 'jsx-dom-runtime';
-
-const svg = parseFromString(
-  `<svg width="24" height="24" aria-hidden="true">
-    <path d="M12 12V6h-1v6H5v1h6v6h1v-6h6v-1z"/>
-  </svg>`
-);
+import { Template } from 'jsx-dom-runtime';
 
 <document.body>
-  {svg}
-</document.body>;
+  <Template>
+    {`<svg width="24" height="24" aria-hidden="true">
+        <path d="M12 12V6h-1v6H5v1h6v6h1v-6h6v-1z"/>
+      </svg>`}
+  </Template>
+</document.body>
 ```
 
 ## License
