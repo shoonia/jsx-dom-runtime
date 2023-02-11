@@ -75,13 +75,13 @@ export const jsxPlugin = (babel) => {
           case 'className':
           case 'classname': {
             attr.name = 'class';
-            break;
+            return;
           }
 
           case 'htmlFor':
           case 'htmlfor': {
             attr.name = 'for';
-            break;
+            return;
           }
         }
 
