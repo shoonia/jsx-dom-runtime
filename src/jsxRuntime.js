@@ -9,6 +9,8 @@ let properties = new Set([
   'htmlFor',
 ]);
 
+let ignoreKeys = new Set(['ref', 'children', '__ns']);
+
 export let jsx = (node, props) => {
   let key, val;
 
@@ -16,10 +18,14 @@ export let jsx = (node, props) => {
     return node(props);
   }
 
-  node = typeof node === 'string' ? document.createElement(node) : node;
+  node = typeof node === 'string'
+    ? props.__ns
+      ? document.createElementNS('http://www.w3.org/2000/svg', node)
+      : document.createElement(node)
+    : node;
 
   for (key in props) {
-    if (key !== 'ref' && key !== 'children') {
+    if (!ignoreKeys.has(key)) {
       val = props[key];
 
       if (extensions.has(key)) {
