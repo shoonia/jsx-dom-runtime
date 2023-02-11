@@ -32,15 +32,14 @@ export let jsx = (node, props) => {
         } else {
           // reuse `key` variable
           for (key in val) {
-            if (key[0] === '-') {
+            if (key.startsWith('--')) {
               node.style.setProperty(key, val[key]);
             } else {
               node.style[key] = val[key];
             }
           }
         }
-        // Benchmark for comparison (thanks preact): https://esbench.com/bench/574c954bdb965b9a00965ac6
-      } else if (key[0] === 'o' && key[1] === 'n') {
+      } else if (key.startsWith('on')) {
         key = key.toLowerCase();
 
         if (key in node) {
