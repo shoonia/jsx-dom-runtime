@@ -1,3 +1,17 @@
 {
-  "extends": "./tests/.babelrc.cjs"
+  "presets": [
+    "@babel/preset-typescript",
+    "./babel-preset/index.js",
+    [
+      "@babel/preset-env",
+      {
+        "loose": true,
+        "bugfixes": true,
+        "useBuiltIns": false,
+        "targets": {
+          "node": "current"
+        }
+      }
+    ]
+  ]
 }
