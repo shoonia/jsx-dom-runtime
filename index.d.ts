@@ -43,7 +43,7 @@ export function jsx<K extends keyof HTMLElementTagNameMap, T extends HTMLElement
 export { jsx as jsxs, jsx as jsxDEV };
 
 export function Fragment(props: { children?: TNode | TChildren }): JSX.Element;
-export function Template(props: { children: string }): DocumentFragment;
+export function Template(props: { children: string }): JSX.Element;
 
 export interface FunctionComponent<P = {}, T extends Element = JSX.Element> {
   (props: PropsWithChildren<P>): T | null
@@ -53,7 +53,7 @@ export { FunctionComponent as FC };
 export function createRef<T = any>(current?: T): RefObject<T>
 export { createRef as useRef };
 
-export function parseFromString(htmlOrSvg: string): DocumentFragment;
+export function parseFromString(htmlOrSvg: string): JSX.Element;
 
 export function useText(initContent?: string): readonly [
   Text,
@@ -496,7 +496,7 @@ export interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> 
 
 interface AudioHTMLAttributes extends MediaHTMLAttributes<HTMLAudioElement> {}
 
-interface AreaHTMLAttributes<T> extends HTMLAttributes<T> {
+interface AreaHTMLAttributes extends HTMLAttributes<HTMLAreaElement> {
   alt?: string
   coords?: string
   download?: any
@@ -515,7 +515,7 @@ interface BaseHTMLAttributes extends HTMLAttributes<HTMLBaseElement> {
   target?: string
 }
 
-interface BlockquoteHTMLAttributes<T> extends HTMLAttributes<T> {
+interface BlockquoteHTMLAttributes extends HTMLAttributes<HTMLElement> {
   cite?: string
 }
 
@@ -534,12 +534,12 @@ export interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> 
   value?: string | readonly string[] | number
 }
 
-interface CanvasHTMLAttributes<T> extends HTMLAttributes<T> {
+interface CanvasHTMLAttributes extends HTMLAttributes<HTMLCanvasElement> {
   height?: number | string
   width?: number | string
 }
 
-interface ColHTMLAttributes<T> extends HTMLAttributes<T> {
+interface ColHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
   span?: number
   width?: number | string
 }
@@ -975,7 +975,7 @@ declare global {
       a: DetailedHTMLProps<AnchorHTMLAttributes, HTMLAnchorElement>
       abbr: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       address: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      area: DetailedHTMLProps<AreaHTMLAttributes<HTMLAreaElement>, HTMLAreaElement>
+      area: DetailedHTMLProps<AreaHTMLAttributes, HTMLAreaElement>
       article: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       aside: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       audio: DetailedHTMLProps<AudioHTMLAttributes, HTMLAudioElement>
@@ -984,15 +984,15 @@ declare global {
       bdi: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       bdo: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       big: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      blockquote: DetailedHTMLProps<BlockquoteHTMLAttributes<HTMLElement>, HTMLElement>
+      blockquote: DetailedHTMLProps<BlockquoteHTMLAttributes, HTMLElement>
       body: DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>
       br: DetailedHTMLProps<HTMLAttributes<HTMLBRElement>, HTMLBRElement>
       button: DetailedHTMLProps<ButtonHTMLAttributes, HTMLButtonElement>
-      canvas: DetailedHTMLProps<CanvasHTMLAttributes<HTMLCanvasElement>, HTMLCanvasElement>
+      canvas: DetailedHTMLProps<CanvasHTMLAttributes, HTMLCanvasElement>
       caption: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       cite: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       code: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      col: DetailedHTMLProps<ColHTMLAttributes<HTMLTableColElement>, HTMLTableColElement>
+      col: DetailedHTMLProps<ColHTMLAttributes, HTMLTableColElement>
       colgroup: DetailedHTMLProps<ColgroupHTMLAttributes, HTMLTableColElement>
       data: DetailedHTMLProps<DataHTMLAttributes, HTMLDataElement>
       datalist: DetailedHTMLProps<HTMLAttributes<HTMLDataListElement>, HTMLDataListElement>
