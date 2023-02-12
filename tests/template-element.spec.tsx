@@ -14,13 +14,13 @@ describe('HTMLTemplateElement', () => {
       <template>
         <p>text here</p>
       </template>
-    );
+    ) as HTMLTemplateElement;
 
     expect(temp.content.querySelector('p')).toHaveInnerHTML('text here');
   });
 
   it('should get a child with querySelector with ref', () => {
-    const ref = createRef();
+    const ref = createRef<HTMLTemplateElement>();
 
     <template ref={ref}>
       <p>text here</p>
@@ -51,7 +51,7 @@ describe('HTMLTemplateElement', () => {
     );
 
     expect(Temp).toHaveOuterHTML('<template><i>some text</i></template>');
-    <I.current className="one two" />;
+    <I.current class="one two" />;
     expect(Temp).toHaveOuterHTML('<template><i class="one two">some text</i></template>');
   });
 });
