@@ -781,18 +781,18 @@ interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
   wmode?: string
 }
 
-interface OlHTMLAttributes<T> extends HTMLAttributes<T> {
+interface OlHTMLAttributes extends HTMLAttributes<HTMLOListElement> {
   reversed?: boolean
   start?: number
   type?: '1' | 'a' | 'A' | 'i' | 'I'
 }
 
-interface OptgroupHTMLAttributes<T> extends HTMLAttributes<T> {
+interface OptgroupHTMLAttributes extends HTMLAttributes<HTMLOptGroupElement> {
   disabled?: boolean
   label?: string
 }
 
-interface OptionHTMLAttributes<T> extends HTMLAttributes<T> {
+interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
   disabled?: boolean
   label?: string
   selected?: boolean
@@ -1044,9 +1044,9 @@ declare global {
       noindex: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       noscript: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       object: DetailedHTMLProps<ObjectHTMLAttributes, HTMLObjectElement>
-      ol: DetailedHTMLProps<OlHTMLAttributes<HTMLOListElement>, HTMLOListElement>
-      optgroup: DetailedHTMLProps<OptgroupHTMLAttributes<HTMLOptGroupElement>, HTMLOptGroupElement>
-      option: DetailedHTMLProps<OptionHTMLAttributes<HTMLOptionElement>, HTMLOptionElement>
+      ol: DetailedHTMLProps<OlHTMLAttributes, HTMLOListElement>
+      optgroup: DetailedHTMLProps<OptgroupHTMLAttributes, HTMLOptGroupElement>
+      option: DetailedHTMLProps<OptionHTMLAttributes, HTMLOptionElement>
       output: DetailedHTMLProps<OutputHTMLAttributes, HTMLElement>
       p: DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>
       param: DetailedHTMLProps<ParamHTMLAttributes, HTMLParamElement>
