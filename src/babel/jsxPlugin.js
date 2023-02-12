@@ -1,55 +1,8 @@
-const svgTags = new Set([
-  'svg',
-  'animate',
-  'circle',
-  'animateTransform',
-  'clipPath',
-  'defs',
-  'desc',
-  'ellipse',
-  'feBlend',
-  'feColorMatrix',
-  'feComponentTransfer',
-  'feComposite',
-  'feConvolveMatrix',
-  'feDiffuseLighting',
-  'feDisplacementMap',
-  'feDropShadow',
-  'feFlood',
-  'feFuncA',
-  'feFuncB',
-  'feFuncG',
-  'feFuncR',
-  'feGaussianBlur',
-  'feImage',
-  'feMerge',
-  'feMergeNode',
-  'feMorphology',
-  'feOffset',
-  'feSpecularLighting',
-  'feTile',
-  'feTurbulence',
-  'filter',
-  'foreignObject',
-  'g',
-  'image',
-  'line',
-  'linearGradient',
-  'marker',
-  'mask',
-  'path',
-  'pattern',
-  'polygon',
-  'polyline',
-  'radialGradient',
-  'rect',
-  'stop',
-  'symbol',
-  'text',
-  'textPath',
-  'tspan',
-  'use',
-]);
+import { svg } from './tags/svg';
+import { html } from './tags/html';
+
+const svgTags = new Set(svg);
+const htmlTags = new Set(html);
 
 export const jsxPlugin = (babel) => {
   const { types: t } = babel;
@@ -71,23 +24,24 @@ export const jsxPlugin = (babel) => {
       JSXAttribute(path) {
         const attr = path.node.name;
 
-        switch (attr.name) {
-          case 'className':
-          case 'classname': {
-            attr.name = 'class';
-            return;
+        if (htmlTags.has(path.parent.name.name)) {
+          const name = attr.name.toLowerCase();
+
+          switch (name) {
+            case 'classname': {
+              attr.name = 'class';
+              return;
+            }
+            case 'htmlfor': {
+              attr.name = 'for';
+              return;
+            }
           }
 
-          case 'htmlFor':
-          case 'htmlfor': {
-            attr.name = 'for';
+          if (attr.name.startsWith('on')) {
+            attr.name = name;
             return;
           }
-        }
-
-        if (attr.name.startsWith('on')) {
-          attr.name = attr.name.toLowerCase();
-          return;
         }
       }
     }
