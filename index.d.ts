@@ -36,7 +36,7 @@ type TNode =
 type PropsWithChildren<P> = P & { children?: TNode | TChildren }
 
 export function jsx<K extends keyof HTMLElementTagNameMap, T extends HTMLElementTagNameMap[K]>(
-  type: K,
+  type: K | HTMLElementTagNameMap[K],
   props?: (HTMLAttributes<T> & AttrWithRef<T>),
 ): T
 

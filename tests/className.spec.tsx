@@ -1,5 +1,6 @@
 describe('className / class', () => {
   it('should have className', () => {
+    // @ts-expect-error
     expect(<aside className="one" />).toHaveClass('one');
   });
 
