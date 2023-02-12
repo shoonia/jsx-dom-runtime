@@ -7,10 +7,10 @@ const htmlTags = new Set(html);
 export const jsxPlugin = (babel) => {
   const { types: t } = babel;
 
-  const svgNsAttribute = () => {
+  const createNsAttribute = (val) => {
     return t.jSXAttribute(
       t.jSXIdentifier('__ns'),
-      t.JSXExpressionContainer(t.numericLiteral(1))
+      t.JSXExpressionContainer(t.numericLiteral(val))
     );
   };
 
@@ -18,7 +18,7 @@ export const jsxPlugin = (babel) => {
     visitor: {
       JSXOpeningElement(path) {
         if (svgTags.has(path.node.name.name)) {
-          path.node.attributes.push(svgNsAttribute());
+          path.node.attributes.push(createNsAttribute(1));
         }
       },
       JSXAttribute(path) {
