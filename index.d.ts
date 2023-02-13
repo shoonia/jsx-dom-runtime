@@ -189,7 +189,7 @@ interface DOMAttributes<T> {
   onpointerleave?: PointerEventHandler<T>
   onpointerover?: PointerEventHandler<T>
   onpointerout?: PointerEventHandler<T>
-  ongotPointercapture?: PointerEventHandler<T>
+  ongotpointercapture?: PointerEventHandler<T>
   onlostpointercapture?: PointerEventHandler<T>
 
   // UI Events
