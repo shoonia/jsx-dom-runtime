@@ -4,7 +4,7 @@ import { jest } from '@jest/globals';
 describe('User events', () => {
   it('should add click handler', () => {
     const spy = jest.fn();
-    const btn = <button type="button" onClick={spy}>click</button>;
+    const btn = <button type="button" onclick={spy}>click</button>;
 
     fireEvent.click(btn);
 
@@ -13,7 +13,7 @@ describe('User events', () => {
 
   it('should add double click handler', () => {
     const spy = jest.fn();
-    const btn = <button type="button" onDBlClick={spy}>click</button>;
+    const btn = <button type="button" ondblclick={spy}>click</button>;
 
     fireEvent.dblClick(btn);
 
@@ -22,7 +22,7 @@ describe('User events', () => {
 
   it('should add change handler', () => {
     const spy = jest.fn();
-    const input = <input type="text" onChange={spy} />;
+    const input = <input type="text" onchange={spy} />;
 
     fireEvent.change(input, { target: { value: 'change event' } });
 
@@ -32,7 +32,7 @@ describe('User events', () => {
 
   it('should add submit handler', () => {
     const spy = jest.fn();
-    const form = <form onSubmit={spy} />;
+    const form = <form onsubmit={spy} />;
 
     fireEvent.submit(form);
 

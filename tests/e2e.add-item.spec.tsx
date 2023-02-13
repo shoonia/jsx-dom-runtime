@@ -16,7 +16,7 @@ it('should add new items to list by click', () => {
 
     return (
       <>
-        <button type="button" onClick={add} data-testid="button">
+        <button type="button" onclick={add} data-testid="button">
           add
         </button>
         <ul ref={List}></ul>

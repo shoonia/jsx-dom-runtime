@@ -1,11 +1,11 @@
 /// <reference lib="dom" />
-/// <reference lib="es2020" />
+/// <reference lib="es2022" />
 import * as CSS from 'csstype';
 
 type Booleanish = boolean | 'true' | 'false'
 
 interface RefObject<T> {
-  readonly current: T | null
+  readonly current: T
 }
 
 type RefCallback<T> = (instance: T) => void
@@ -36,14 +36,14 @@ type TNode =
 type PropsWithChildren<P> = P & { children?: TNode | TChildren }
 
 export function jsx<K extends keyof HTMLElementTagNameMap, T extends HTMLElementTagNameMap[K]>(
-  type: K,
+  type: K | HTMLElementTagNameMap[K],
   props?: (HTMLAttributes<T> & AttrWithRef<T>),
 ): T
 
 export { jsx as jsxs, jsx as jsxDEV };
 
 export function Fragment(props: { children?: TNode | TChildren }): JSX.Element;
-export function Template(props: { children: string }): DocumentFragment;
+export function Template(props: { children: string }): JSX.Element;
 
 export interface FunctionComponent<P = {}, T extends Element = JSX.Element> {
   (props: PropsWithChildren<P>): T | null
@@ -53,7 +53,7 @@ export { FunctionComponent as FC };
 export function createRef<T = any>(current?: T): RefObject<T>
 export { createRef as useRef };
 
-export function parseFromString(htmlOrSvg: string): DocumentFragment;
+export function parseFromString(htmlOrSvg: string): JSX.Element;
 
 export function useText(initContent?: string): readonly [
   Text,
@@ -96,115 +96,115 @@ interface DOMAttributes<T> {
   textContent?: string;
 
   // Clipboard Events
-  onCopy?: ClipboardEventHandler<T>
-  onCut?: ClipboardEventHandler<T>
-  onPaste?: ClipboardEventHandler<T>
+  oncopy?: ClipboardEventHandler<T>
+  oncut?: ClipboardEventHandler<T>
+  onpaste?: ClipboardEventHandler<T>
 
   // Composition Events
-  onCompositionEnd?: CompositionEventHandler<T>
-  onCompositionStart?: CompositionEventHandler<T>
-  onCompositionUpdate?: CompositionEventHandler<T>
+  oncompositionend?: CompositionEventHandler<T>
+  oncompositionstart?: CompositionEventHandler<T>
+  oncompositionupdate?: CompositionEventHandler<T>
 
   // Focus Events
-  onFocus?: FocusEventHandler<T>
-  onBlur?: FocusEventHandler<T>
+  onfocus?: FocusEventHandler<T>
+  onblur?: FocusEventHandler<T>
 
   // Form Events
-  onChange?: FormEventHandler<T>
-  onBeforeInput?: FormEventHandler<T>
-  onInput?: FormEventHandler<T>
-  onReset?: FormEventHandler<T>
-  onSubmit?: FormEventHandler<T>
-  onInvalid?: FormEventHandler<T>
+  onchange?: FormEventHandler<T>
+  onbeforeinput?: FormEventHandler<T>
+  oninput?: FormEventHandler<T>
+  onreset?: FormEventHandler<T>
+  onsubmit?: FormEventHandler<T>
+  oninvalid?: FormEventHandler<T>
 
   // Image Events
-  onLoad?: TEventHandler<T>
-  onError?: TEventHandler<T> // also a Media Event
+  onload?: TEventHandler<T>
+  onerror?: TEventHandler<T> // also a Media Event
 
   // Keyboard Events
-  onKeyDown?: KeyboardEventHandler<T>
-  onKeyPress?: KeyboardEventHandler<T>
-  onKeyUp?: KeyboardEventHandler<T>
+  onkeydown?: KeyboardEventHandler<T>
+  onkeypress?: KeyboardEventHandler<T>
+  onkeyup?: KeyboardEventHandler<T>
 
   // Media Events
-  onAbort?: TEventHandler<T>
-  onCanPlay?: TEventHandler<T>
-  onCanPlayThrough?: TEventHandler<T>
-  onDurationChange?: TEventHandler<T>
-  onEmptied?: TEventHandler<T>
-  onEncrypted?: TEventHandler<T>
-  onEnded?: TEventHandler<T>
-  onLoadedData?: TEventHandler<T>
-  onLoadedMetadata?: TEventHandler<T>
-  onLoadStart?: TEventHandler<T>
-  onPause?: TEventHandler<T>
-  onPlay?: TEventHandler<T>
-  onPlaying?: TEventHandler<T>
-  onProgress?: TEventHandler<T>
-  onRateChange?: TEventHandler<T>
-  onSeeked?: TEventHandler<T>
-  onSeeking?: TEventHandler<T>
-  onStalled?: TEventHandler<T>
-  onSuspend?: TEventHandler<T>
-  onTimeUpdate?: TEventHandler<T>
-  onVolumeChange?: TEventHandler<T>
-  onWaiting?: TEventHandler<T>
+  onabort?: TEventHandler<T>
+  oncanplay?: TEventHandler<T>
+  oncanplaythrough?: TEventHandler<T>
+  ondurationchange?: TEventHandler<T>
+  onemptied?: TEventHandler<T>
+  onencrypted?: TEventHandler<T>
+  onended?: TEventHandler<T>
+  onloadeddata?: TEventHandler<T>
+  onloadedmetadata?: TEventHandler<T>
+  onloadstart?: TEventHandler<T>
+  onpause?: TEventHandler<T>
+  onplay?: TEventHandler<T>
+  onplaying?: TEventHandler<T>
+  onprogress?: TEventHandler<T>
+  onratechange?: TEventHandler<T>
+  onseeked?: TEventHandler<T>
+  onseeking?: TEventHandler<T>
+  onstalled?: TEventHandler<T>
+  onsuspend?: TEventHandler<T>
+  ontimeupdate?: TEventHandler<T>
+  onvolumechange?: TEventHandler<T>
+  onwaiting?: TEventHandler<T>
 
   // MouseEvents
-  onAuxClick?: MouseEventHandler<T>
-  onClick?: MouseEventHandler<T>
-  onContextMenu?: MouseEventHandler<T>
-  onDoubleClick?: MouseEventHandler<T>
-  onDrag?: DragEventHandler<T>
-  onDragEnd?: DragEventHandler<T>
-  onDragEnter?: DragEventHandler<T>
-  onDragExit?: DragEventHandler<T>
-  onDragLeave?: DragEventHandler<T>
-  onDragOver?: DragEventHandler<T>
-  onDragStart?: DragEventHandler<T>
-  onDrop?: DragEventHandler<T>
-  onMouseDown?: MouseEventHandler<T>
-  onMouseEnter?: MouseEventHandler<T>
-  onMouseLeave?: MouseEventHandler<T>
-  onMouseMove?: MouseEventHandler<T>
-  onMouseOut?: MouseEventHandler<T>
-  onMouseOver?: MouseEventHandler<T>
-  onMouseUp?: MouseEventHandler<T>
+  onauxclick?: MouseEventHandler<T>
+  onclick?: MouseEventHandler<T>
+  oncontextmenu?: MouseEventHandler<T>
+  ondblclick?: MouseEventHandler<T>
+  ondrag?: DragEventHandler<T>
+  ondragend?: DragEventHandler<T>
+  ondragenter?: DragEventHandler<T>
+  ondragexit?: DragEventHandler<T>
+  ondragleave?: DragEventHandler<T>
+  ondragover?: DragEventHandler<T>
+  ondragstart?: DragEventHandler<T>
+  ondrop?: DragEventHandler<T>
+  onmousedown?: MouseEventHandler<T>
+  onmouseenter?: MouseEventHandler<T>
+  onmouseleave?: MouseEventHandler<T>
+  onmousemove?: MouseEventHandler<T>
+  onmouseout?: MouseEventHandler<T>
+  onmouseover?: MouseEventHandler<T>
+  onmouseup?: MouseEventHandler<T>
 
   // Selection Events
-  onSelect?: TEventHandler<T>
+  onselect?: TEventHandler<T>
 
   // Touch Events
-  onTouchCancel?: TouchEventHandler<T>
-  onTouchEnd?: TouchEventHandler<T>
-  onTouchMove?: TouchEventHandler<T>
-  onTouchStart?: TouchEventHandler<T>
+  ontouchcancel?: TouchEventHandler<T>
+  ontouchend?: TouchEventHandler<T>
+  ontouchmove?: TouchEventHandler<T>
+  ontouchstart?: TouchEventHandler<T>
 
   // Pointer Events
-  onPointerDown?: PointerEventHandler<T>
-  onPointerMove?: PointerEventHandler<T>
-  onPointerUp?: PointerEventHandler<T>
-  onPointerCancel?: PointerEventHandler<T>
-  onPointerEnter?: PointerEventHandler<T>
-  onPointerLeave?: PointerEventHandler<T>
-  onPointerOver?: PointerEventHandler<T>
-  onPointerOut?: PointerEventHandler<T>
-  onGotPointerCapture?: PointerEventHandler<T>
-  onLostPointerCapture?: PointerEventHandler<T>
+  onpointerdown?: PointerEventHandler<T>
+  onpointermove?: PointerEventHandler<T>
+  onpointerup?: PointerEventHandler<T>
+  onpointercancel?: PointerEventHandler<T>
+  onpointerenter?: PointerEventHandler<T>
+  onpointerleave?: PointerEventHandler<T>
+  onpointerover?: PointerEventHandler<T>
+  onpointerout?: PointerEventHandler<T>
+  ongotPointercapture?: PointerEventHandler<T>
+  onlostpointercapture?: PointerEventHandler<T>
 
   // UI Events
-  onScroll?: UIEventHandler<T>
+  onscroll?: UIEventHandler<T>
 
   // Wheel Events
-  onWheel?: WheelEventHandler<T>
+  onwheel?: WheelEventHandler<T>
 
   // Animation Events
-  onAnimationStart?: AnimationEventHandler<T>
-  onAnimationEnd?: AnimationEventHandler<T>
-  onAnimationIteration?: AnimationEventHandler<T>
+  onanimationstart?: AnimationEventHandler<T>
+  onanimationend?: AnimationEventHandler<T>
+  onanimationiteration?: AnimationEventHandler<T>
 
   // Transition Events
-  onTransitionEnd?: TransitionEventHandler<T>
+  ontransitionend?: TransitionEventHandler<T>
 }
 
 export interface CSSProperties extends CSS.Properties<string | number> {}
@@ -412,12 +412,8 @@ export interface AriaAttributes {
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   innerHTML?: string
   textContent?: string
-  // dataset?: {
-  //   [key: string]: string
-  // }
   accessKey?: string
   accesskey?: string
-  className?: string
   class?: string
   contentEditable?: Booleanish | 'inherit'
   contenteditable?: Booleanish | 'inherit'
@@ -429,7 +425,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   lang?: string
   placeholder?: string
   slot?: string
-  spellCheck?: 'true' | 'false'
   spellcheck?: 'true' | 'false'
   style?: string | CSSProperties
   tabIndex?: number
@@ -486,7 +481,7 @@ export type HTMLAttrinuteCORS =
   |'use-credentials'
   | ''
 
-export interface AnchorHTMLAttributes<T = HTMLAnchorElement> extends HTMLAttributes<T> {
+export interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
   download?: any
   href?: string
   hrefLang?: string
@@ -499,9 +494,9 @@ export interface AnchorHTMLAttributes<T = HTMLAnchorElement> extends HTMLAttribu
   referrerpolicy?: ReferrerPolicy
 }
 
-interface AudioHTMLAttributes<T> extends MediaHTMLAttributes<T> {}
+interface AudioHTMLAttributes extends MediaHTMLAttributes<HTMLAudioElement> {}
 
-interface AreaHTMLAttributes<T> extends HTMLAttributes<T> {
+interface AreaHTMLAttributes extends HTMLAttributes<HTMLAreaElement> {
   alt?: string
   coords?: string
   download?: any
@@ -515,16 +510,16 @@ interface AreaHTMLAttributes<T> extends HTMLAttributes<T> {
   target?: string
 }
 
-interface BaseHTMLAttributes<T> extends HTMLAttributes<T> {
+interface BaseHTMLAttributes extends HTMLAttributes<HTMLBaseElement> {
   href?: string
   target?: string
 }
 
-interface BlockquoteHTMLAttributes<T> extends HTMLAttributes<T> {
+interface BlockquoteHTMLAttributes extends HTMLAttributes<HTMLElement> {
   cite?: string
 }
 
-export interface ButtonHTMLAttributes<T = HTMLButtonElement> extends HTMLAttributes<T> {
+export interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
   autoFocus?: boolean
   autofocus?: boolean
   disabled?: boolean
@@ -539,52 +534,52 @@ export interface ButtonHTMLAttributes<T = HTMLButtonElement> extends HTMLAttribu
   value?: string | readonly string[] | number
 }
 
-interface CanvasHTMLAttributes<T> extends HTMLAttributes<T> {
+interface CanvasHTMLAttributes extends HTMLAttributes<HTMLCanvasElement> {
   height?: number | string
   width?: number | string
 }
 
-interface ColHTMLAttributes<T> extends HTMLAttributes<T> {
+interface ColHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
   span?: number
   width?: number | string
 }
 
-interface ColgroupHTMLAttributes<T> extends HTMLAttributes<T> {
+interface ColgroupHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
   span?: number
 }
 
-interface DataHTMLAttributes<T> extends HTMLAttributes<T> {
+interface DataHTMLAttributes extends HTMLAttributes<HTMLDataElement> {
   value?: string | readonly string[] | number
 }
 
-interface DetailsHTMLAttributes<T> extends HTMLAttributes<T> {
+interface DetailsHTMLAttributes extends HTMLAttributes<HTMLElement> {
   open?: boolean
-  onToggle?: TEventHandler<T>
+  ontoggle?: TEventHandler<HTMLElement>
 }
 
-interface DelHTMLAttributes<T> extends HTMLAttributes<T> {
+interface DelHTMLAttributes extends HTMLAttributes<HTMLElement> {
   cite?: string
   dateTime?: string
 }
 
-interface DialogHTMLAttributes<T> extends HTMLAttributes<T> {
+interface DialogHTMLAttributes extends HTMLAttributes<HTMLDialogElement> {
   open?: boolean
 }
 
-interface EmbedHTMLAttributes<T> extends HTMLAttributes<T> {
+interface EmbedHTMLAttributes extends HTMLAttributes<HTMLEmbedElement> {
   height?: number | string
   src?: string
   type?: string
   width?: number | string
 }
 
-interface FieldsetHTMLAttributes<T> extends HTMLAttributes<T> {
+interface FieldsetHTMLAttributes extends HTMLAttributes<HTMLFieldSetElement> {
   disabled?: boolean
   form?: string
   name?: string
 }
 
-export interface FormHTMLAttributes<T = HTMLFontElement> extends HTMLAttributes<T> {
+export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
   acceptCharset?: string
   action?: string
   autoComplete?: string
@@ -597,11 +592,11 @@ export interface FormHTMLAttributes<T = HTMLFontElement> extends HTMLAttributes<
   target?: string
 }
 
-interface HtmlHTMLAttributes<T> extends HTMLAttributes<T> {
+interface HtmlHTMLAttributes extends HTMLAttributes<HTMLHtmlElement> {
   manifest?: string
 }
 
-export interface IframeHTMLAttributes<T = HTMLIFrameElement> extends HTMLAttributes<T> {
+export interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   allow?: string
   allowFullScreen?: boolean
   allowfullscreen?: boolean
@@ -627,7 +622,7 @@ export interface IframeHTMLAttributes<T = HTMLIFrameElement> extends HTMLAttribu
   width?: number | string
 }
 
-export interface ImgHTMLAttributes<T = HTMLImageElement> extends HTMLAttributes<T> {
+export interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
   alt?: string
   crossOrigin?: HTMLAttrinuteCORS
   crossorigin?: HTMLAttrinuteCORS
@@ -644,12 +639,12 @@ export interface ImgHTMLAttributes<T = HTMLImageElement> extends HTMLAttributes<
   width?: number | string
 }
 
-interface InsHTMLAttributes<T> extends HTMLAttributes<T> {
+interface InsHTMLAttributes extends HTMLAttributes<HTMLModElement> {
   cite?: string
   dateTime?: string
 }
 
-export interface InputHTMLAttributes<T = HTMLInputElement> extends HTMLAttributes<T> {
+export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   accept?: string
   alt?: string
   autoComplete?: string
@@ -691,10 +686,10 @@ export interface InputHTMLAttributes<T = HTMLInputElement> extends HTMLAttribute
   value?: string | readonly string[] | number
   width?: number | string
 
-  onChange?: ChangeEventHandler<T>
+  onchange?: ChangeEventHandler<HTMLInputElement>
 }
 
-interface KeygenHTMLAttributes<T> extends HTMLAttributes<T> {
+interface KeygenHTMLAttributes extends HTMLAttributes<HTMLElement> {
   autoFocus?: boolean
   autofocus?: boolean
   challenge?: string
@@ -705,17 +700,15 @@ interface KeygenHTMLAttributes<T> extends HTMLAttributes<T> {
   name?: string
 }
 
-export interface LabelHTMLAttributes<T = HTMLLabelElement> extends HTMLAttributes<T> {
-  form?: string
-  htmlFor?: string
+export interface LabelHTMLAttributes extends HTMLAttributes<HTMLLabelElement> {
   for?: string
 }
 
-interface LiHTMLAttributes<T> extends HTMLAttributes<T> {
+interface LiHTMLAttributes extends HTMLAttributes<HTMLLIElement> {
   value?: string | readonly string[] | number
 }
 
-interface LinkHTMLAttributes<T> extends HTMLAttributes<T> {
+interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
   as?: string
   crossOrigin?: HTMLAttrinuteCORS
   crossorigin?: HTMLAttrinuteCORS
@@ -731,11 +724,11 @@ interface LinkHTMLAttributes<T> extends HTMLAttributes<T> {
   charSet?: string
 }
 
-interface MapHTMLAttributes<T> extends HTMLAttributes<T> {
+interface MapHTMLAttributes extends HTMLAttributes<HTMLMapElement> {
   name?: string
 }
 
-interface MenuHTMLAttributes<T> extends HTMLAttributes<T> {
+interface MenuHTMLAttributes extends HTMLAttributes<HTMLElement> {
   type?: string
 }
 
@@ -755,14 +748,14 @@ interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
   src?: string
 }
 
-interface MetaHTMLAttributes<T> extends HTMLAttributes<T> {
+interface MetaHTMLAttributes extends HTMLAttributes<HTMLMetaElement> {
   charSet?: string
   content?: string
   httpEquiv?: string
   name?: string
 }
 
-interface MeterHTMLAttributes<T> extends HTMLAttributes<T> {
+interface MeterHTMLAttributes extends HTMLAttributes<HTMLElement> {
   form?: string
   high?: number
   low?: number
@@ -772,11 +765,11 @@ interface MeterHTMLAttributes<T> extends HTMLAttributes<T> {
   value?: string | readonly string[] | number
 }
 
-interface QuoteHTMLAttributes<T> extends HTMLAttributes<T> {
+interface QuoteHTMLAttributes extends HTMLAttributes<HTMLQuoteElement> {
   cite?: string
 }
 
-interface ObjectHTMLAttributes<T> extends HTMLAttributes<T> {
+interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
   classID?: string
   data?: string
   form?: string
@@ -788,41 +781,41 @@ interface ObjectHTMLAttributes<T> extends HTMLAttributes<T> {
   wmode?: string
 }
 
-interface OlHTMLAttributes<T> extends HTMLAttributes<T> {
+interface OlHTMLAttributes extends HTMLAttributes<HTMLOListElement> {
   reversed?: boolean
   start?: number
   type?: '1' | 'a' | 'A' | 'i' | 'I'
 }
 
-interface OptgroupHTMLAttributes<T> extends HTMLAttributes<T> {
+interface OptgroupHTMLAttributes extends HTMLAttributes<HTMLOptGroupElement> {
   disabled?: boolean
   label?: string
 }
 
-interface OptionHTMLAttributes<T> extends HTMLAttributes<T> {
+interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
   disabled?: boolean
   label?: string
   selected?: boolean
   value?: string | readonly string[] | number
 }
 
-interface OutputHTMLAttributes<T> extends HTMLAttributes<T> {
+interface OutputHTMLAttributes extends HTMLAttributes<HTMLElement> {
   form?: string
   htmlFor?: string
   name?: string
 }
 
-interface ParamHTMLAttributes<T> extends HTMLAttributes<T> {
+interface ParamHTMLAttributes extends HTMLAttributes<HTMLParamElement> {
   name?: string
   value?: string | readonly string[] | number
 }
 
-interface ProgressHTMLAttributes<T> extends HTMLAttributes<T> {
+interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
   max?: number | string
   value?: string | readonly string[] | number
 }
 
-interface ScriptHTMLAttributes<T> extends HTMLAttributes<T> {
+interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
   async?: boolean
   /** @deprecated */
   charSet?: string
@@ -838,7 +831,7 @@ interface ScriptHTMLAttributes<T> extends HTMLAttributes<T> {
   type?: string
 }
 
-interface SelectHTMLAttributes<T> extends HTMLAttributes<T> {
+interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   autoComplete?: string
   autoFocus?: boolean
   autofocus?: boolean
@@ -849,14 +842,14 @@ interface SelectHTMLAttributes<T> extends HTMLAttributes<T> {
   required?: boolean
   size?: number
   value?: string | readonly string[] | number
-  onChange?: ChangeEventHandler<T>
+  onchange?: ChangeEventHandler<HTMLSelectElement>
 }
 
-interface SlotHTMLAttributes<T> extends HTMLAttributes<T> {
+interface SlotHTMLAttributes extends HTMLAttributes<HTMLElement> {
   name?: string
 }
 
-interface SourceHTMLAttributes<T> extends HTMLAttributes<T> {
+interface SourceHTMLAttributes extends HTMLAttributes<HTMLSourceElement> {
   media?: string
   sizes?: string
   src?: string
@@ -865,21 +858,21 @@ interface SourceHTMLAttributes<T> extends HTMLAttributes<T> {
   type?: string
 }
 
-interface StyleHTMLAttributes<T> extends HTMLAttributes<T> {
+interface StyleHTMLAttributes extends HTMLAttributes<HTMLStyleElement> {
   media?: string
   nonce?: string
   scoped?: boolean
   type?: string
 }
 
-interface TableHTMLAttributes<T> extends HTMLAttributes<T> {
+interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
   cellPadding?: number | string
   cellSpacing?: number | string
   summary?: string
   width?: number | string
 }
 
-export interface TextareaHTMLAttributes<T = HTMLTextAreaElement> extends HTMLAttributes<T> {
+export interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   autoComplete?: string
   autoFocus?: boolean
   autofocus?: boolean
@@ -898,10 +891,10 @@ export interface TextareaHTMLAttributes<T = HTMLTextAreaElement> extends HTMLAtt
   value?: string | readonly string[] | number
   wrap?: string
 
-  onChange?: ChangeEventHandler<T>
+  onchange?: ChangeEventHandler<HTMLTextAreaElement>
 }
 
-interface TdHTMLAttributes<T> extends HTMLAttributes<T> {
+interface TdHTMLAttributes extends HTMLAttributes<HTMLTableDataCellElement> {
   align?: 'left' | 'center' | 'right' | 'justify' | 'char'
   colSpan?: number
   headers?: string
@@ -913,7 +906,7 @@ interface TdHTMLAttributes<T> extends HTMLAttributes<T> {
   valign?: 'top' | 'middle' | 'bottom' | 'baseline'
 }
 
-interface ThHTMLAttributes<T> extends HTMLAttributes<T> {
+interface ThHTMLAttributes extends HTMLAttributes<HTMLTableHeaderCellElement> {
   align?: 'left' | 'center' | 'right' | 'justify' | 'char'
   colSpan?: number
   headers?: string
@@ -922,12 +915,12 @@ interface ThHTMLAttributes<T> extends HTMLAttributes<T> {
   abbr?: string
 }
 
-interface TimeHTMLAttributes<T> extends HTMLAttributes<T> {
+interface TimeHTMLAttributes extends HTMLAttributes<HTMLElement> {
   dateTime?: string
   datetime?: string
 }
 
-interface TrackHTMLAttributes<T> extends HTMLAttributes<T> {
+interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
   default?: boolean
   kind?: string
   label?: string
@@ -935,7 +928,7 @@ interface TrackHTMLAttributes<T> extends HTMLAttributes<T> {
   srcLang?: string
 }
 
-export interface VideoHTMLAttributes<T = HTMLVideoElement> extends MediaHTMLAttributes<T> {
+export interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
   height?: number | string
   playsInline?: boolean
   poster?: string
@@ -946,7 +939,7 @@ export interface VideoHTMLAttributes<T = HTMLVideoElement> extends MediaHTMLAttr
   disableremoteplayback?: boolean
 }
 
-interface WebViewHTMLAttributes<T> extends HTMLAttributes<T> {
+interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
   allowFullScreen?: boolean
   allowpopups?: boolean
   autoFocus?: boolean
@@ -979,45 +972,45 @@ declare global {
     interface IntrinsicAttributes extends Attributes {}
 
     interface IntrinsicElements {
-      a: DetailedHTMLProps<AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
+      a: DetailedHTMLProps<AnchorHTMLAttributes, HTMLAnchorElement>
       abbr: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       address: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      area: DetailedHTMLProps<AreaHTMLAttributes<HTMLAreaElement>, HTMLAreaElement>
+      area: DetailedHTMLProps<AreaHTMLAttributes, HTMLAreaElement>
       article: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       aside: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      audio: DetailedHTMLProps<AudioHTMLAttributes<HTMLAudioElement>, HTMLAudioElement>
+      audio: DetailedHTMLProps<AudioHTMLAttributes, HTMLAudioElement>
       b: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      base: DetailedHTMLProps<BaseHTMLAttributes<HTMLBaseElement>, HTMLBaseElement>
+      base: DetailedHTMLProps<BaseHTMLAttributes, HTMLBaseElement>
       bdi: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       bdo: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       big: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      blockquote: DetailedHTMLProps<BlockquoteHTMLAttributes<HTMLElement>, HTMLElement>
+      blockquote: DetailedHTMLProps<BlockquoteHTMLAttributes, HTMLElement>
       body: DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>
       br: DetailedHTMLProps<HTMLAttributes<HTMLBRElement>, HTMLBRElement>
-      button: DetailedHTMLProps<ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>
-      canvas: DetailedHTMLProps<CanvasHTMLAttributes<HTMLCanvasElement>, HTMLCanvasElement>
+      button: DetailedHTMLProps<ButtonHTMLAttributes, HTMLButtonElement>
+      canvas: DetailedHTMLProps<CanvasHTMLAttributes, HTMLCanvasElement>
       caption: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       cite: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       code: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      col: DetailedHTMLProps<ColHTMLAttributes<HTMLTableColElement>, HTMLTableColElement>
-      colgroup: DetailedHTMLProps<ColgroupHTMLAttributes<HTMLTableColElement>, HTMLTableColElement>
-      data: DetailedHTMLProps<DataHTMLAttributes<HTMLDataElement>, HTMLDataElement>
+      col: DetailedHTMLProps<ColHTMLAttributes, HTMLTableColElement>
+      colgroup: DetailedHTMLProps<ColgroupHTMLAttributes, HTMLTableColElement>
+      data: DetailedHTMLProps<DataHTMLAttributes, HTMLDataElement>
       datalist: DetailedHTMLProps<HTMLAttributes<HTMLDataListElement>, HTMLDataListElement>
       dd: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      del: DetailedHTMLProps<DelHTMLAttributes<HTMLElement>, HTMLElement>
-      details: DetailedHTMLProps<DetailsHTMLAttributes<HTMLElement>, HTMLElement>
+      del: DetailedHTMLProps<DelHTMLAttributes, HTMLElement>
+      details: DetailedHTMLProps<DetailsHTMLAttributes, HTMLElement>
       dfn: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      dialog: DetailedHTMLProps<DialogHTMLAttributes<HTMLDialogElement>, HTMLDialogElement>
+      dialog: DetailedHTMLProps<DialogHTMLAttributes, HTMLDialogElement>
       div: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
       dl: DetailedHTMLProps<HTMLAttributes<HTMLDListElement>, HTMLDListElement>
       dt: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       em: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      embed: DetailedHTMLProps<EmbedHTMLAttributes<HTMLEmbedElement>, HTMLEmbedElement>
-      fieldset: DetailedHTMLProps<FieldsetHTMLAttributes<HTMLFieldSetElement>, HTMLFieldSetElement>
+      embed: DetailedHTMLProps<EmbedHTMLAttributes, HTMLEmbedElement>
+      fieldset: DetailedHTMLProps<FieldsetHTMLAttributes, HTMLFieldSetElement>
       figcaption: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       figure: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       footer: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      form: DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>
+      form: DetailedHTMLProps<FormHTMLAttributes, HTMLFormElement>
       h1: DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>
       h2: DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>
       h3: DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>
@@ -1028,74 +1021,74 @@ declare global {
       header: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       hgroup: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       hr: DetailedHTMLProps<HTMLAttributes<HTMLHRElement>, HTMLHRElement>
-      html: DetailedHTMLProps<HtmlHTMLAttributes<HTMLHtmlElement>, HTMLHtmlElement>
+      html: DetailedHTMLProps<HtmlHTMLAttributes, HTMLHtmlElement>
       i: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      iframe: DetailedHTMLProps<IframeHTMLAttributes<HTMLIFrameElement>, HTMLIFrameElement>
-      img: DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>
-      input: DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
-      ins: DetailedHTMLProps<InsHTMLAttributes<HTMLModElement>, HTMLModElement>
+      iframe: DetailedHTMLProps<IframeHTMLAttributes, HTMLIFrameElement>
+      img: DetailedHTMLProps<ImgHTMLAttributes, HTMLImageElement>
+      input: DetailedHTMLProps<InputHTMLAttributes, HTMLInputElement>
+      ins: DetailedHTMLProps<InsHTMLAttributes, HTMLModElement>
       kbd: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      keygen: DetailedHTMLProps<KeygenHTMLAttributes<HTMLElement>, HTMLElement>
-      label: DetailedHTMLProps<LabelHTMLAttributes<HTMLLabelElement>, HTMLLabelElement>
+      keygen: DetailedHTMLProps<KeygenHTMLAttributes, HTMLElement>
+      label: DetailedHTMLProps<LabelHTMLAttributes, HTMLLabelElement>
       legend: DetailedHTMLProps<HTMLAttributes<HTMLLegendElement>, HTMLLegendElement>
-      li: DetailedHTMLProps<LiHTMLAttributes<HTMLLIElement>, HTMLLIElement>
-      link: DetailedHTMLProps<LinkHTMLAttributes<HTMLLinkElement>, HTMLLinkElement>
+      li: DetailedHTMLProps<LiHTMLAttributes, HTMLLIElement>
+      link: DetailedHTMLProps<LinkHTMLAttributes, HTMLLinkElement>
       main: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      map: DetailedHTMLProps<MapHTMLAttributes<HTMLMapElement>, HTMLMapElement>
+      map: DetailedHTMLProps<MapHTMLAttributes, HTMLMapElement>
       mark: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      menu: DetailedHTMLProps<MenuHTMLAttributes<HTMLElement>, HTMLElement>
+      menu: DetailedHTMLProps<MenuHTMLAttributes, HTMLElement>
       menuitem: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      meta: DetailedHTMLProps<MetaHTMLAttributes<HTMLMetaElement>, HTMLMetaElement>
-      meter: DetailedHTMLProps<MeterHTMLAttributes<HTMLElement>, HTMLElement>
+      meta: DetailedHTMLProps<MetaHTMLAttributes, HTMLMetaElement>
+      meter: DetailedHTMLProps<MeterHTMLAttributes, HTMLElement>
       nav: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       noindex: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       noscript: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      object: DetailedHTMLProps<ObjectHTMLAttributes<HTMLObjectElement>, HTMLObjectElement>
-      ol: DetailedHTMLProps<OlHTMLAttributes<HTMLOListElement>, HTMLOListElement>
-      optgroup: DetailedHTMLProps<OptgroupHTMLAttributes<HTMLOptGroupElement>, HTMLOptGroupElement>
-      option: DetailedHTMLProps<OptionHTMLAttributes<HTMLOptionElement>, HTMLOptionElement>
-      output: DetailedHTMLProps<OutputHTMLAttributes<HTMLElement>, HTMLElement>
+      object: DetailedHTMLProps<ObjectHTMLAttributes, HTMLObjectElement>
+      ol: DetailedHTMLProps<OlHTMLAttributes, HTMLOListElement>
+      optgroup: DetailedHTMLProps<OptgroupHTMLAttributes, HTMLOptGroupElement>
+      option: DetailedHTMLProps<OptionHTMLAttributes, HTMLOptionElement>
+      output: DetailedHTMLProps<OutputHTMLAttributes, HTMLElement>
       p: DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>
-      param: DetailedHTMLProps<ParamHTMLAttributes<HTMLParamElement>, HTMLParamElement>
+      param: DetailedHTMLProps<ParamHTMLAttributes, HTMLParamElement>
       picture: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       pre: DetailedHTMLProps<HTMLAttributes<HTMLPreElement>, HTMLPreElement>
-      progress: DetailedHTMLProps<ProgressHTMLAttributes<HTMLProgressElement>, HTMLProgressElement>
-      q: DetailedHTMLProps<QuoteHTMLAttributes<HTMLQuoteElement>, HTMLQuoteElement>
+      progress: DetailedHTMLProps<ProgressHTMLAttributes, HTMLProgressElement>
+      q: DetailedHTMLProps<QuoteHTMLAttributes, HTMLQuoteElement>
       rp: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       rt: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       ruby: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       s: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       samp: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      script: DetailedHTMLProps<ScriptHTMLAttributes<HTMLScriptElement>, HTMLScriptElement>
+      script: DetailedHTMLProps<ScriptHTMLAttributes, HTMLScriptElement>
       section: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      select: DetailedHTMLProps<SelectHTMLAttributes<HTMLSelectElement>, HTMLSelectElement>
-      slot: DetailedHTMLProps<SlotHTMLAttributes<HTMLElement>, HTMLSlotElement>
+      select: DetailedHTMLProps<SelectHTMLAttributes, HTMLSelectElement>
+      slot: DetailedHTMLProps<SlotHTMLAttributes, HTMLSlotElement>
       small: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      source: DetailedHTMLProps<SourceHTMLAttributes<HTMLSourceElement>, HTMLSourceElement>
+      source: DetailedHTMLProps<SourceHTMLAttributes, HTMLSourceElement>
       span: DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>
       strong: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      style: DetailedHTMLProps<StyleHTMLAttributes<HTMLStyleElement>, HTMLStyleElement>
+      style: DetailedHTMLProps<StyleHTMLAttributes, HTMLStyleElement>
       sub: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       summary: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       sup: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      table: DetailedHTMLProps<TableHTMLAttributes<HTMLTableElement>, HTMLTableElement>
+      table: DetailedHTMLProps<TableHTMLAttributes, HTMLTableElement>
       template: DetailedHTMLProps<HTMLAttributes<HTMLTemplateElement>, HTMLTemplateElement>
       tbody: DetailedHTMLProps<HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement>
-      td: DetailedHTMLProps<TdHTMLAttributes<HTMLTableDataCellElement>, HTMLTableDataCellElement>
-      textarea: DetailedHTMLProps<TextareaHTMLAttributes<HTMLTextAreaElement>, HTMLTextAreaElement>
+      td: DetailedHTMLProps<TdHTMLAttributes, HTMLTableDataCellElement>
+      textarea: DetailedHTMLProps<TextareaHTMLAttributes, HTMLTextAreaElement>
       tfoot: DetailedHTMLProps<HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement>
-      th: DetailedHTMLProps<ThHTMLAttributes<HTMLTableHeaderCellElement>, HTMLTableHeaderCellElement>
+      th: DetailedHTMLProps<ThHTMLAttributes, HTMLTableHeaderCellElement>
       thead: DetailedHTMLProps<HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement>
-      time: DetailedHTMLProps<TimeHTMLAttributes<HTMLElement>, HTMLElement>
+      time: DetailedHTMLProps<TimeHTMLAttributes, HTMLElement>
       title: DetailedHTMLProps<HTMLAttributes<HTMLTitleElement>, HTMLTitleElement>
       tr: DetailedHTMLProps<HTMLAttributes<HTMLTableRowElement>, HTMLTableRowElement>
-      track: DetailedHTMLProps<TrackHTMLAttributes<HTMLTrackElement>, HTMLTrackElement>
+      track: DetailedHTMLProps<TrackHTMLAttributes, HTMLTrackElement>
       u: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
       ul: DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement>
       var: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      video: DetailedHTMLProps<VideoHTMLAttributes<HTMLVideoElement>, HTMLVideoElement>
+      video: DetailedHTMLProps<VideoHTMLAttributes, HTMLVideoElement>
       wbr: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      webview: DetailedHTMLProps<WebViewHTMLAttributes<HTMLWebViewElement>, HTMLWebViewElement>
+      webview: DetailedHTMLProps<WebViewHTMLAttributes, HTMLWebViewElement>
     }
   }
 }

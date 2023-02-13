@@ -7,11 +7,6 @@ describe('Props', () => {
     expect(<div role="contentinfo" />).toHaveOuterHTML('<div role="contentinfo"></div>');
   });
 
-  it('should support htmlFor attribute in <label />', () => {
-    expect(<label htmlFor="some-1" />).toHaveOuterHTML('<label for="some-1"></label>');
-    expect(<label htmlFor="some-2" />).toHaveProperty('htmlFor', 'some-2');
-  });
-
   it('should support for attribute in <label />', () => {
     expect(<label for="some-1" />).toHaveOuterHTML('<label for="some-1"></label>');
     expect(<label for="some-2" />).toHaveProperty('htmlFor', 'some-2');
@@ -68,7 +63,9 @@ describe('Props', () => {
   });
 
   it('should add spellCheck attribute', () => {
+    // @ts-expect-error
     expect(<p spellCheck="true" />).toHaveAttribute('spellcheck', 'true');
+    // @ts-expect-error
     expect(<p spellCheck="false" />).toHaveAttribute('spellcheck', 'false');
 
     expect(<p spellcheck="true" />).toHaveAttribute('spellcheck', 'true');
