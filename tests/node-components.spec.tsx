@@ -72,8 +72,11 @@ describe('Node Components', () => {
   });
 
   it('should work with nodes as value', () => {
-    const myText = new Text('myText');
+    const text0 = new Text('t');
+    const text1 = document.createTextNode('t');
     const myImage = new Image(5, 5);
+    const comment0 = new Comment('x');
+    const comment1 = document.createComment('y');
     const myFragment0 = new DocumentFragment();
     const myFragment1 = document.createDocumentFragment();
     const myDiv = document.createElement('div');
@@ -83,15 +86,18 @@ describe('Node Components', () => {
     myDiv.append('myDiv');
 
     <document.body>
-      {myText}
+      {text0}
+      {text1}
       {myImage}
+      {comment0}
+      {comment1}
       {myFragment0}
       {myFragment1}
       {myDiv}
     </document.body>;
 
     expect(document.body).toHaveInnerHTML(
-      'myText<img width="5" height="5">myFragment0myFragment1<div>myDiv</div>',
+      'tt<img width="5" height="5"><!--x--><!--y-->myFragment0myFragment1<div>myDiv</div>',
     );
   });
 });
