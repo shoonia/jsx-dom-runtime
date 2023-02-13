@@ -7,12 +7,12 @@ describe('Props', () => {
     expect(<div role="contentinfo" />).toHaveOuterHTML('<div role="contentinfo"></div>');
   });
 
-  it('should support for attribute in <label />', () => {
+  it('should support `for` attribute in <label />', () => {
     expect(<label for="some-1" />).toHaveOuterHTML('<label for="some-1"></label>');
     expect(<label for="some-2" />).toHaveProperty('htmlFor', 'some-2');
   });
 
-  it('should', () => {
+  it('should support `dateTime`', () => {
     expect(<time dateTime="2021-03-16" />).toHaveOuterHTML('<time datetime="2021-03-16"></time>');
     expect(<time dateTime="2021-03-16" />).toHaveProperty('dateTime', '2021-03-16');
 

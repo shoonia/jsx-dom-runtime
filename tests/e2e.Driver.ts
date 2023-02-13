@@ -1,7 +1,7 @@
 import { fireEvent, getAllByTestId, getByTestId } from '@testing-library/dom';
 
 export class Driver {
-  render(node: Node) {
+  render(node: any) {
     document.body.append(node);
   }
 
