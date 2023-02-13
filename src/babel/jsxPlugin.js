@@ -1,8 +1,9 @@
 import { svg } from './tags/svg';
-import { html } from './tags/html';
+import { events, html } from './tags/html';
 
 const svgTags = new Set(svg);
 const htmlTags = new Set(html);
+const DOMEvents = new Set(events);
 
 export const jsxPlugin = (babel) => {
   const { types: t } = babel;
@@ -23,23 +24,27 @@ export const jsxPlugin = (babel) => {
       },
       JSXAttribute(path) {
         const attr = path.node.name;
+        const tag = path.parent.name.name;
 
-        if (htmlTags.has(path.parent.name.name)) {
-          const name = attr.name.toLowerCase();
-
-          switch (name) {
-            case 'classname': {
+        if (t.isJSXIdentifier(attr) && htmlTags.has(tag)) {
+          switch (attr.name) {
+            case 'className': {
               attr.name = 'class';
               return;
             }
-            case 'htmlfor': {
-              attr.name = 'for';
+
+            case 'htmlFor': {
+              if (tag === 'label' || tag === 'output') {
+                attr.name = 'for';
+              }
               return;
             }
           }
 
-          if (attr.name.startsWith('on')) {
-            attr.name = name;
+          const attrName = attr.name.toLowerCase();
+
+          if (DOMEvents.has(attrName)) {
+            attr.name = attrName;
             return;
           }
         }
