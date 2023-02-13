@@ -9,7 +9,6 @@ const createPlugin = typeof _createPlugin.default === 'function'
 const index = declarePreset((api, {
   useBuiltIns,
   useSpread,
-  nodeEnv = process.env.NODE_ENV,
 }) => {
   api.assertVersion(7);
 
@@ -19,7 +18,7 @@ const index = declarePreset((api, {
       [
         createPlugin({
           name: 'jsx-dom-runtime/babel-preset',
-          development: nodeEnv === 'development',
+          development: false,
         }),
         {
           runtime: 'automatic',

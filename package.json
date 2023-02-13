@@ -18,9 +18,9 @@
       "default": "./jsx-runtime/index.js"
     },
     "./jsx-dev-runtime": {
-      "require": "./jsx-dev-runtime/index.cjs",
-      "import": "./jsx-dev-runtime/index.js",
-      "default": "./jsx-dev-runtime/index.js"
+      "require": "./jsx-runtime/index.cjs",
+      "import": "./jsx-runtime/index.js",
+      "default": "./jsx-runtime/index.js"
     },
     "./babel-preset": {
       "require": "./babel-preset/index.cjs",
