@@ -35,7 +35,8 @@
     "test": "node --experimental-vm-modules node_modules/.bin/jest --no-cache",
     "build": "rollup -c",
     "size": "size-limit",
-    "dev": "npm run lint && npm run build && npm test && npm run size"
+    "types": "tsc index.d.ts",
+    "dev": "npm run lint && npm run types && npm run build && npm test && npm run size"
   },
   "dependencies": {
     "@babel/core": "^7.20.12",
