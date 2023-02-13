@@ -32,10 +32,10 @@
   "sideEffects": false,
   "scripts": {
     "lint": "eslint 'src/**/*.{js,ts}' 'tests/**/*.{js,ts,tsx}'",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest --no-cache",
     "build": "rollup -c",
     "size": "size-limit",
-    "dev": "npm run lint && npm run build && npx jest --clearCache && npm test && npm run size"
+    "dev": "npm run lint && npm run build && npm test && npm run size"
   },
   "dependencies": {
     "@babel/core": "^7.20.12",
@@ -67,7 +67,8 @@
   "files": [
     "babel-preset",
     "jsx-runtime",
-    "jsx-dev-runtime"
+    "jsx-dev-runtime",
+    "index.d.ts"
   ],
   "keywords": [
     "jsx",
