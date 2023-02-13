@@ -4,31 +4,30 @@ import * as CSS from 'csstype';
 
 type Booleanish = boolean | 'true' | 'false'
 
+interface Attributes {}
+
 interface RefObject<T> {
   readonly current: T
 }
 
 type RefCallback<T> = (instance: T) => void
 
-type Ref<T> = RefCallback<T> | RefObject<T> | null
-
-interface Attributes {}
-
 interface AttrWithRef<T> extends Attributes {
-  ref?: Ref<T>
+  ref?: RefCallback<T> | RefObject<T> | null
 }
 
-type TText = string | number
-type TChild = Node | Text | TText
-type TChildren = TNodeArray;
-
-interface TNodeArray extends Array<TNode> {}
+interface TChildren extends Array<TNode> {}
 
 type TNode =
-  | TChild
-  | TChildren
+  | Node
+  | Element
+  | SVGElement
   | DocumentFragment
   | Comment
+  | Text
+  | TChildren
+  | string
+  | number
   | false
   | null
   | undefined
@@ -42,10 +41,10 @@ export function jsx<K extends keyof HTMLElementTagNameMap, T extends HTMLElement
 
 export { jsx as jsxs, jsx as jsxDEV };
 
-export function Fragment(props: { children?: TNode | TChildren }): JSX.Element;
-export function Template(props: { children: string }): JSX.Element;
+export function Fragment(props: { children?: TNode | TChildren }): DocumentFragment;
+export function Template(props: { children: string }): DocumentFragment;
 
-export interface FunctionComponent<P = {}, T extends Element = JSX.Element> {
+export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> {
   (props: PropsWithChildren<P>): T | null
 }
 export { FunctionComponent as FC };
@@ -53,7 +52,7 @@ export { FunctionComponent as FC };
 export function createRef<T = any>(current?: T): RefObject<T>
 export { createRef as useRef };
 
-export function parseFromString(htmlOrSvg: string): JSX.Element;
+export function parseFromString(htmlOrSvg: string): DocumentFragment;
 
 export function useText(initContent?: string): readonly [
   Text,
@@ -91,7 +90,7 @@ type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 export type DetailedHTMLProps<E extends HTMLAttributes<T>, T> = AttrWithRef<T> & E
 
 interface DOMAttributes<T> {
-  children?: TNode | TNodeArray
+  children?: TNode | TChildren
   innerHTML?: string;
   textContent?: string;
 
@@ -479,8 +478,8 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 }
 
 export type HTMLAttrinuteCORS =
-  |'anonymous'
-  |'use-credentials'
+  | 'anonymous'
+  | 'use-credentials'
   | ''
 
 export interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
@@ -966,7 +965,7 @@ type HTMLWebViewElement = HTMLElement
 
 declare global {
   namespace JSX {
-    type Element = HTMLElement;
+    type Element = HTMLElement | DocumentFragment | Text | SVGElement;
 
     interface ElementAttributesProperty { props: {}; }
     interface ElementChildrenAttribute { children: {}; }
