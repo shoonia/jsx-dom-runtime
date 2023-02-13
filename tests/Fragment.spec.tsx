@@ -2,14 +2,14 @@ import { createRequire } from 'node:module';
 
 describe('Fragment', () => {
   it('should support Fragment', () => {
-    <document.body>
-      <>
-        <p>1</p>
-        <p>2</p>
-      </>
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML('<p>1</p><p>2</p>');
+    expect(
+      <div>
+        <>
+          <p>1</p>
+          <p>2</p>
+        </>
+      </div>
+    ).toHaveInnerHTML('<p>1</p><p>2</p>');
   });
 
   it('should support Fragment as a component value', () => {
@@ -28,79 +28,77 @@ describe('Fragment', () => {
   });
 
   it('should append one element to fragment', () => {
-    <document.body>
-      <>
-        <h1>one</h1>
-      </>
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML('<h1>one</h1>');
+    expect(
+      <div>
+        <>
+          <h1>one</h1>
+        </>
+      </div>
+    ).toHaveInnerHTML('<h1>one</h1>');
   });
 
   it('should work with list of fragments', () => {
-    <document.body>
-      <>
-        <p>one</p>
-      </>
-      <>
-        <p>two</p>
-      </>
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML('<p>one</p><p>two</p>');
+    expect(
+      <div>
+        <>
+          <p>one</p>
+        </>
+        <>
+          <p>two</p>
+        </>
+      </div>
+    ).toHaveInnerHTML('<p>one</p><p>two</p>');
   });
 
   it('should work with nested fragments', () => {
-    <document.body>
-      <>
+    expect(
+      <div>
         <>
           <>
-            <p>one</p>
+            <>
+              <p>one</p>
+            </>
           </>
         </>
-      </>
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML('<p>one</p>');
+      </div>
+    ).toHaveInnerHTML('<p>one</p>');
   });
 
   test('difficult tree of fragments and nodes', () => {
-    <document.body>
-      <p>1</p>
-      <>
-        <p>2</p>
+    expect(
+      <div>
+        <p>1</p>
         <>
-          <p>3</p>
-        </>
-        <>
+          <p>2</p>
           <>
-            <p>4</p>
+            <p>3</p>
+          </>
+          <>
+            <>
+              <p>4</p>
+            </>
+          </>
+          <>
+            <p>
+              <>
+              5
+              </>
+            </p>
           </>
         </>
-        <>
-          <p>
-            <>
-              5
-            </>
-          </p>
-        </>
-      </>
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML(
-      '<p>1</p><p>2</p><p>3</p><p>4</p><p>5</p>',
-    );
+      </div>
+    ).toHaveInnerHTML('<p>1</p><p>2</p><p>3</p><p>4</p><p>5</p>');
   });
 
   it('should work with component Fragment', () => {
     const { Fragment } = createRequire(import.meta.url)('../jsx-runtime/index.cjs');
 
-    <document.body>
-      <Fragment>
-        <p>a</p>
-      </Fragment>
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML('<p>a</p>');
+    expect(
+      <div>
+        <Fragment>
+          <p>a</p>
+        </Fragment>
+      </div>
+    ).toHaveInnerHTML('<p>a</p>');
   });
 });
