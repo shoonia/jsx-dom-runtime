@@ -3,7 +3,7 @@ import { jest } from '@jest/globals';
 import { createRef } from '../..';
 
 describe('ref', () => {
-  it('should run ref when it is function', () => {
+  it('should run callback ref when it is a function', () => {
     const spy = jest.fn();
 
     const node = <footer ref={spy} />;
@@ -12,7 +12,7 @@ describe('ref', () => {
     expect(spy).toHaveBeenCalledWith(node);
   });
 
-  it('should set up ref.current when it is object', () => {
+  it('should set up ref.current when it is an object', () => {
     const ref = createRef();
 
     const node = <td ref={ref} />;

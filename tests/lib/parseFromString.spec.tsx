@@ -4,31 +4,13 @@ describe('parseFromString', () => {
   it('should have append a div', () => {
     const children = parseFromString('<div />');
 
-    <document.body>
-      {children}
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML('<div></div>');
+    expect(<span>{children}</span>).toHaveInnerHTML('<div></div>');
   });
 
   it('should have append a text', () => {
     const children = parseFromString('text');
 
-    <document.body>
-      {children}
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML('text');
-  });
-
-  it('should have append a text', () => {
-    const children = parseFromString('text');
-
-    <document.body>
-      {children}
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML('text');
+    expect(<div>{children}</div>).toHaveInnerHTML('text');
   });
 
   it('should have append all nodes', () => {
@@ -36,11 +18,7 @@ describe('parseFromString', () => {
       'start<div><span>text</span></div>end',
     );
 
-    <document.body>
-      {children}
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML(
+    expect(<div>{children}</div>).toHaveInnerHTML(
       'start<div><span>text</span></div>end',
     );
   });

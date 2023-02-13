@@ -16,6 +16,7 @@ describe('Child nodes', () => {
     [true, /***************/ '<p>true</p>'],
     [[0, 1, NaN, true], /**/ '<p>01NaNtrue</p>'],
     [{}, /*****************/ '<p>[object Object]</p>'],
+    [new Text('text'), /***/ '<p>text</p>'],
   ])('should have a stringified child node if %s', (val, html) => {
     // @ts-expect-error
     expect(<p>{val}</p>).toHaveOuterHTML(html);
