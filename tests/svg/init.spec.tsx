@@ -1,5 +1,5 @@
 describe('<svg/> support', () => {
-  it('should', () => {
+  it('should render SVG', () => {
     <document.body>
       <svg width="99%" height="99%" viewBox="0 0 250 150">
         <rect width="100%" height="100%" fill="url(#fill)" clip-path="url(#clip-path)"/>

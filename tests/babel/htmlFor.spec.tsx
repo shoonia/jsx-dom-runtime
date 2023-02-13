@@ -1,9 +1,10 @@
-describe('`htmlFor` to `for`', () => {
+describe('Babel transform `htmlFor` to `for`', () => {
   it('should transform `htmlFor` attribute in <label />', () => {
     // @ts-expect-error
-    expect(<label htmlFor="some-1" />).toHaveOuterHTML('<label for="some-1"></label>');
-    // @ts-expect-error
-    expect(<label htmlFor="some-2" />).toHaveProperty('htmlFor', 'some-2');
+    const label: HTMLLabelElement = <label htmlFor="some" />;
+
+    expect(label).toHaveOuterHTML('<label for="some"></label>');
+    expect(label).toHaveProperty('htmlFor', 'some');
   });
 
   it('should transform `htmlFor` attribute in <output />', () => {
@@ -19,5 +20,11 @@ describe('`htmlFor` to `for`', () => {
     const MyElem = (props) => Object.keys(props).join('');
 
     expect(<MyElem htmlFor="" />).toBe('htmlFor');
+  });
+
+  it('should not transform `htmlFor` attribute in Web Component', () => {
+    // @ts-expect-error
+    expect(<web-component htmlFor="here"></web-component>)
+      .toHaveOuterHTML('<web-component htmlfor="here"></web-component>');
   });
 });
