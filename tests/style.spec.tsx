@@ -48,4 +48,16 @@ describe('Style attribute', () => {
     <Block style={{ '--y': '' }} />;
     expect(Block).toHaveCssText('color: white;');
   });
+
+  it('should add inline CSS with `cssText` property', () => {
+    expect(<p style={{ cssText: 'padding: 15px; margin: 15px;' }} />).toHaveCssText('padding: 15px; margin: 15px;');
+  });
+
+  it('should remove inline CSS with `cssText` property', () => {
+    const Elem = <p style="padding: 1.5em; margin: 1.5em;" />;
+
+    expect(Elem).toHaveCssText('padding: 1.5em; margin: 1.5em;');
+    <Elem style={{ cssText: null }} />;
+    expect(Elem).toHaveCssText('');
+  });
 });

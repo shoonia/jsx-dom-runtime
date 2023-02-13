@@ -207,7 +207,9 @@ interface DOMAttributes<T> {
   ontransitionend?: TransitionEventHandler<T>
 }
 
-export interface CSSProperties extends CSS.Properties<string | number> {}
+export interface CSSProperties extends CSS.Properties<string | number> {
+  cssText?: string | null
+}
 
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
