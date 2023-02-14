@@ -18,9 +18,9 @@
       "default": "./jsx-runtime/index.js"
     },
     "./jsx-dev-runtime": {
-      "require": "./jsx-dev-runtime/index.cjs",
-      "import": "./jsx-dev-runtime/index.js",
-      "default": "./jsx-dev-runtime/index.js"
+      "require": "./jsx-runtime/index.cjs",
+      "import": "./jsx-runtime/index.js",
+      "default": "./jsx-runtime/index.js"
     },
     "./babel-preset": {
       "require": "./babel-preset/index.cjs",
@@ -32,7 +32,7 @@
   "sideEffects": false,
   "scripts": {
     "lint": "eslint 'src/**/*.{js,ts}' 'tests/**/*.{js,ts,tsx}'",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --no-cache",
+    "test": "npx jest --clearCache && node --experimental-vm-modules node_modules/.bin/jest --no-cache",
     "build": "rollup -c",
     "size": "size-limit",
     "types": "tsc index.d.ts",

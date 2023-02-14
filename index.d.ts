@@ -802,7 +802,7 @@ interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
 
 interface OutputHTMLAttributes extends HTMLAttributes<HTMLElement> {
   form?: string
-  htmlFor?: string
+  for?: string
   name?: string
 }
 
@@ -965,7 +965,7 @@ type HTMLWebViewElement = HTMLElement
 
 declare global {
   namespace JSX {
-    type Element = HTMLElement | DocumentFragment | Text | SVGElement;
+    type Element = TNode | TChildren;
 
     interface ElementAttributesProperty { props: {}; }
     interface ElementChildrenAttribute { children: {}; }
