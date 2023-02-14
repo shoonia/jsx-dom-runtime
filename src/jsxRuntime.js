@@ -71,7 +71,7 @@ export let jsx = (node, props) => {
   // reuse `val` variable
   val = props.ref;
 
-  if (val != null) {
+  if (val) {
     if (typeof val === 'function') {
       val(node);
     } else {
