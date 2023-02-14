@@ -32,7 +32,7 @@
   "sideEffects": false,
   "scripts": {
     "lint": "eslint 'src/**/*.{js,ts}' 'tests/**/*.{js,ts,tsx}'",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest --no-cache",
+    "test": "npx jest --clearCache && node --experimental-vm-modules node_modules/.bin/jest --no-cache",
     "build": "rollup -c",
     "size": "size-limit",
     "types": "tsc index.d.ts",
