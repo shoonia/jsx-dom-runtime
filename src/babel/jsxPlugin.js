@@ -1,9 +1,6 @@
-import { svg } from './tags/svg';
-import { events, html } from './tags/html';
-
-const svgTags = new Set(svg);
-const htmlTags = new Set(html);
-const DOMEvents = new Set(events);
+import { isSvgElement } from './tags/svg';
+import { htmlTags } from './tags/html';
+import { DOMEvents } from './tags/dom';
 
 export const jsxPlugin = (babel) => {
   const { types: t } = babel;
@@ -18,7 +15,7 @@ export const jsxPlugin = (babel) => {
   return {
     visitor: {
       JSXOpeningElement(path) {
-        if (svgTags.has(path.node.name.name)) {
+        if (isSvgElement(path)) {
           path.node.attributes.push(createNsAttribute(1));
         }
       },
