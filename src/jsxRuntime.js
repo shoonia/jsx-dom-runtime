@@ -14,11 +14,11 @@ let ignoreKeys = new Set([
 ]);
 
 export let jsx = (node, props) => {
-  let key, val;
-
   if (typeof node === 'function') {
     return node(props);
   }
+
+  let key, val;
 
   node = typeof node === 'string'
     ? props.__ns
@@ -27,39 +27,35 @@ export let jsx = (node, props) => {
     : node;
 
   for (key in props) {
-    if (!ignoreKeys.has(key)) {
-      val = props[key];
+    if (ignoreKeys.has(key)) {
+      continue;
+    }
 
-      if (extensions.has(key)) {
-        extensions.get(key)(node, val);
-      } else if (properties.has(key) || key.startsWith('on')) {
-        if (key in node) {
-          node[key] = val;
-        }
-      } else if (key === 'style') {
-        if (typeof val === 'string') {
-          node.style.cssText = val;
-        } else {
-          // reuse `key` variable
-          for (key in val) {
-            if (key.startsWith('--')) {
-              node.style.setProperty(key, val[key]);
-            } else {
-              node.style[key] = val[key];
-            }
+    val = props[key];
+
+    if (extensions.has(key)) {
+      extensions.get(key)(node, val);
+    } else if (key === 'style') {
+      if (typeof val === 'string') {
+        node.style.cssText = val;
+      } else {
+        // reuse `key` variable
+        for (key in val) {
+          if (key.startsWith('--')) {
+            node.style.setProperty(key, val[key]);
+          } else {
+            node.style[key] = val[key];
           }
         }
-      } else if (val != null) {
-        if (typeof val !== 'boolean' || /^(ari|dat)a-/.test(key)) {
-          node.setAttribute(key, val);
-        } else if (val) {
-          node.setAttribute(key, '');
-        } else {
-          node.removeAttribute(key);
-        }
-      } else {
-        node.removeAttribute(key);
       }
+    } else if (properties.has(key) || key.startsWith('on') && key in node) {
+      node[key] = val;
+    } else if (val != null && (typeof val !== 'boolean' || /^(ari|dat)a-/.test(key))) {
+      node.setAttribute(key, val);
+    } else if (val) {
+      node.setAttribute(key, '');
+    } else {
+      node.removeAttribute(key);
     }
   }
 
