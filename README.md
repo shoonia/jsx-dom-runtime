@@ -99,7 +99,7 @@ const autofocus = (node) => {
 
 ### Extend
 
-Add custom attributes behavior
+Add custom attributes in `JSX.Element`.
 
 ```js
 import { Extend } from 'jsx-dom-runtime';
@@ -109,7 +109,7 @@ Extend({
    * @param {HTMLElement} node
    * @param {string[]} value
    */
-  classList(node, value) {
+  'x-class': (node, value) => {
     node.setAttribute('class', value.filter(Boolean).join(' '));
   },
 
@@ -117,7 +117,7 @@ Extend({
    * @param {HTMLElement} node
    * @param {Record<string, string>} value
    */
-  dataset(node, value) {
+  'x-dataset': (node, value) => {
     for (let key in value) {
       node.dataset[key] = value[key];
     }
@@ -126,8 +126,8 @@ Extend({
 
 <document.body>
   <div
-    classList={['one', 'two']}
-    dataset={{ testid: 'test', hook: 'text' }}
+    x-class={['one', 'two']}
+    x-dataset={{ testid: 'test', hook: 'text' }}
   />
 </document.body>;
 ```
