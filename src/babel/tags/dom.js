@@ -1,4 +1,4 @@
-export const DOMEvents = new Set([
+const events = new Set([
   'oncopy', 'oncut', 'onpaste',
   // Composition Events
   'oncompositionend', 'oncompositionstart', 'oncompositionupdate',
@@ -38,3 +38,5 @@ export const DOMEvents = new Set([
   // Transition Events
   'ontransitionend',
 ]);
+
+export const isDOMEvent = (name) => events.has(name);
