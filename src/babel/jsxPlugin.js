@@ -1,4 +1,4 @@
-import { isSvgElement } from './tags/svg';
+import { isSvgElement, svgTags } from './tags/svg';
 import { htmlTags } from './tags/html';
 import { DOMEvents } from './tags/dom';
 
@@ -23,19 +23,25 @@ export const jsxPlugin = (babel) => {
         const attr = path.node.name;
         const tag = path.parent.name.name;
 
-        if (t.isJSXIdentifier(attr) && htmlTags.has(tag)) {
-          switch (attr.name) {
-            case 'className': {
-              attr.name = 'class';
-              return;
-            }
+        if (!t.isJSXIdentifier(attr)) {
+          return;
+        }
 
-            case 'htmlFor': {
-              if (tag === 'label' || tag === 'output') {
-                attr.name = 'for';
-              }
-              return;
-            }
+        if (
+          attr.name === 'className' &&
+          (htmlTags.has(tag) || svgTags.has(tag))
+        ) {
+          attr.name = 'class';
+          return;
+        }
+
+        if (htmlTags.has(tag)) {
+          if (
+            attr.name === 'htmlFor' &&
+            (tag === 'label' || tag === 'output')
+          ) {
+            attr.name = 'for';
+            return;
           }
 
           const attrName = attr.name.toLowerCase();
@@ -44,6 +50,8 @@ export const jsxPlugin = (babel) => {
             attr.name = attrName;
             return;
           }
+
+          return;
         }
       }
     }
