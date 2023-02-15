@@ -11,7 +11,6 @@ export const jsxPlugin = (babel) => {
       path.parentPath.parent.openingElement?.attributes.some(
         (a) => a.name.name === '__ns' && a.value.expression?.value === 1
       );
-
   };
 
   const xlinkHref = (attrs) => {
