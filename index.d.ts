@@ -12,21 +12,23 @@ interface RefObject<T> {
 
 type RefCallback<T> = (instance: T) => void
 
-type TNode =
+type TChild =
   | Node
   | Element
   | SVGElement
   | DocumentFragment
   | Comment
   | Text
-  | TNode[]
+  | TChild[]
   | string
   | number
   | false
   | null
   | undefined
 
-type PropsWithChildren<P> = P & { children?: TNode | TNode[] }
+type PropsWithChildren<P> = P & { children?: TChild | TChild[] }
+
+export const properties: Set<string>;
 
 export function jsx<K extends keyof HTMLElementTagNameMap>(
   type: K | HTMLElementTagNameMap[K],
@@ -35,7 +37,7 @@ export function jsx<K extends keyof HTMLElementTagNameMap>(
 
 export { jsx as jsxs, jsx as jsxDEV };
 
-export function Fragment(props: { children?: TNode | TNode[] }): DocumentFragment;
+export function Fragment(props: { children?: TChild | TChild[] }): DocumentFragment;
 export function Template(props: { children: string }): DocumentFragment;
 
 export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> {
@@ -83,7 +85,7 @@ type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 
 interface DOMAttributes<T> {
   ref?: RefCallback<T> | RefObject<T>
-  children?: TNode | TNode[]
+  children?: TChild | TChild[]
   // Clipboard Events
   oncopy?: ClipboardEventHandler<T>
   oncut?: ClipboardEventHandler<T>
@@ -934,7 +936,7 @@ type HTMLWebViewElement = HTMLElement
 
 declare global {
   namespace JSX {
-    type Element = TNode | TNode[];
+    type Element = HTMLElement
 
     interface ElementAttributesProperty { props: {}; }
     interface ElementChildrenAttribute { children: {}; }

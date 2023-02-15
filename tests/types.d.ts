@@ -6,6 +6,14 @@ declare global {
       toHaveCssText(css: string): R;
     }
   }
+
+  namespace JSX {
+    interface IntrinsicElements {
+      'web-component': {
+        [key: string]: any
+      }
+    }
+  }
 }
 
 export {};

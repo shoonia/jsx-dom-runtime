@@ -23,8 +23,8 @@ describe('Babel transform `htmlFor` to `for`', () => {
   });
 
   it('should not transform `htmlFor` attribute in Web Component', () => {
-    // @ts-expect-error
-    expect(<web-component htmlFor="here"></web-component>)
-      .toHaveOuterHTML('<web-component htmlfor="here"></web-component>');
+    expect(<web-component htmlFor="here"></web-component>).toHaveOuterHTML(
+      '<web-component htmlfor="here"></web-component>',
+    );
   });
 });
