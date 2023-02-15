@@ -1,10 +1,12 @@
 describe('className / class', () => {
-  it('should have className', () => {
+  it('should have a class attribute', () => {
     // @ts-expect-error
     expect(<aside className="one" />).toHaveClass('one');
+    // @ts-expect-error
+    expect(<aside className="one" />).toHaveOuterHTML('<aside class="one"></aside>');
   });
 
-  it('should have a class attribute', () => {
+  it('should have class attributes', () => {
     expect(<i class="a b c" />).toHaveClass('a b c');
   });
 
@@ -15,7 +17,8 @@ describe('className / class', () => {
   });
 
   it('should have not break Web Component attr', () => {
-    // @ts-expect-error
-    expect(<qa-test classname="name"></qa-test>).toHaveOuterHTML('<qa-test classname="name"></qa-test>');
+    expect(<web-component class="a" className="b"></web-component>).toHaveOuterHTML(
+      '<web-component class="a" classname="b"></web-component>',
+    );
   });
 });
