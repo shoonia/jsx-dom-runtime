@@ -455,6 +455,65 @@ export type HTMLAttrinuteCORS =
   | 'use-credentials'
   | ''
 
+export type TAutocomplete =
+  | 'on'
+  | 'off'
+  | 'name'
+  | 'honorific-prefix'
+  | 'given-name'
+  | 'additional-name'
+  | 'family-name'
+  | 'honorific-suffix'
+  | 'nickname'
+  | 'username'
+  | 'new-password'
+  | 'current-password'
+  | 'one-time-code'
+  | 'organization-title'
+  | 'organization'
+  | 'street-address'
+  | 'address-line1'
+  | 'address-line2'
+  | 'address-line3'
+  | 'address-level4'
+  | 'address-level3'
+  | 'address-level2'
+  | 'address-level1'
+  | 'country'
+  | 'country-name'
+  | 'postal-code'
+  | 'cc-name'
+  | 'cc-given-name'
+  | 'cc-additional-name'
+  | 'cc-family-name'
+  | 'cc-number'
+  | 'cc-exp'
+  | 'cc-exp-month'
+  | 'cc-exp-year'
+  | 'cc-csc'
+  | 'cc-type'
+  | 'transaction-currency'
+  | 'transaction-amount'
+  | 'language'
+  | 'bday'
+  | 'bday-day'
+  | 'bday-month'
+  | 'bday-year'
+  | 'sex'
+  | 'url'
+  | 'photo'
+  | 'tel'
+  | 'tel-country-code'
+  | 'tel-national'
+  | 'tel-area-code'
+  | 'tel-local'
+  | 'tel-local-prefix'
+  | 'tel-local-suffix'
+  | 'tel-extension'
+  | 'email'
+  | 'impp'
+  | 'webauthn'
+
 export interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
   download?: any
   href?: string
@@ -556,8 +615,8 @@ interface FieldsetHTMLAttributes extends HTMLAttributes<HTMLFieldSetElement> {
 export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
   acceptCharset?: string
   action?: string
-  autoComplete?: string
-  autocomplete?: string
+  autoComplete?: TAutocomplete
+  autocomplete?: TAutocomplete
   encType?: string
   enctype?: string
   method?: string
@@ -621,8 +680,8 @@ interface InsHTMLAttributes extends HTMLAttributes<HTMLModElement> {
 export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   accept?: string
   alt?: string
-  autoComplete?: string
-  autocomplete?: string
+  autoComplete?: TAutocomplete
+  autocomplete?: TAutocomplete
   autoFocus?: boolean
   autofocus?: boolean
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
@@ -805,7 +864,8 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
 }
 
 interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
-  autoComplete?: string
+  autoComplete?: TAutocomplete
+  autocomplete?: TAutocomplete
   autoFocus?: boolean
   autofocus?: boolean
   disabled?: boolean
@@ -846,7 +906,8 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
 }
 
 export interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
-  autoComplete?: string
+  autoComplete?: TAutocomplete
+  autocomplete?: TAutocomplete
   autoFocus?: boolean
   autofocus?: boolean
   cols?: number
