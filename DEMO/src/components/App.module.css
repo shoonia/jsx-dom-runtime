@@ -1,19 +1,46 @@
+.wrapper {
+  width: 500px;
+  font-family: sans-serif;
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.box {
+  width: 100%;
+  border: none;
+  padding: 0;
+}
+
 .toolbar {
   display: flex;
   justify-content: space-between;
-  width: 300px;
   padding: 0;
 }
 
 .field {
   width: 100%;
+  font-size: 1em;
+  padding: 0.5em 1em;
 }
 
 .list {
   padding: 0;
+  width: 100%;
+  margin: 1em;
 }
 
 .btn {
   white-space: nowrap;
-  margin-left: 5px;
+  margin-left: 1em;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  background-color: #116dff;
+  color: #fff;
+  display: inline-block;
+  border: none;
+  user-select: none;
+  cursor: pointer;
 }

@@ -1,24 +1,23 @@
-import { createRef } from 'jsx-dom-runtime';
+import { useRef } from 'jsx-dom-runtime';
 
 import * as s from './App.module.css';
 import { ListItem } from './ListItem';
 
 export const App = () => {
-  const refInput = createRef();
-  const refList = createRef();
+  const inputRef = useRef();
+  const ulRef = useRef();
 
   const addItem = () => {
-    const input = refInput.current;
+    const input = inputRef.current;
 
-    if (input.value === '') {
-      return;
+    if (input.value !== '') {
+      ulRef.current.insertAdjacentElement(
+        'afterbegin',
+        <ListItem text={input.value} />,
+      );
+
+      input.value = '';
     }
-
-    <refList.current>
-      <ListItem text={input.value} />
-    </refList.current>;
-
-    input.value = '';
   };
 
   const pressEnter = (event) => {
@@ -28,16 +27,16 @@ export const App = () => {
   };
 
   return (
-    <>
-      <fieldset style="border: 0; padding: 0;">
+    <div class={s.wrapper}>
+      <fieldset class={s.box}>
         <div class={s.toolbar}>
-          <input ref={refInput} type="text" class={s.field} onkeypress={pressEnter} />
+          <input ref={inputRef} type="text" class={s.field} onkeyup={pressEnter} />
           <button type="button" class={s.btn} onclick={addItem}>
             Add Item
           </button>
         </div>
       </fieldset>
-      <ul ref={refList} class={s.list} />
-    </>
+      <ul ref={ulRef} class={s.list} />
+    </div>
   );
 };

@@ -2,11 +2,11 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 300px;
-  margin-top: 5px;
-  padding: 5px;
+  margin-top: 0.5em;
+  padding: 0.5em 1em;
   word-break: break-all;
-  background-color: lightgray;
+  background-color: #eaf8ff;
+  border: 1px solid #b6c1cd;
 }
 
 .btn {

@@ -1,9 +1,9 @@
-import { createRef } from 'jsx-dom-runtime';
+import { useRef } from 'jsx-dom-runtime';
 
 import * as s from './ListItem.module.css';
 
 export const ListItem = ({ text }) => {
-  const ref = createRef();
+  const ref = useRef();
 
   const remove = () => {
     ref.current.remove();

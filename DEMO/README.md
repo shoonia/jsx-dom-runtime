@@ -3,9 +3,9 @@
 [Live Demo](https://shoonia.github.io/jsx-dom-runtime/DEMO/dist/index.html)
 
 ```bash
-node --version # >= v12.x
-npm --version # >= v6.x
-npx --version # >= v6.x
+node --version # >= v18.x
+npm --version # >= v9.x
+npx --version # >= v9.x
 ```
 
 ```bash
