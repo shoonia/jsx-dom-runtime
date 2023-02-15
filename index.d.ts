@@ -34,10 +34,10 @@ type TNode =
 
 type PropsWithChildren<P> = P & { children?: TNode | TChildren }
 
-export function jsx<K extends keyof HTMLElementTagNameMap, T extends HTMLElementTagNameMap[K]>(
+export function jsx<K extends keyof HTMLElementTagNameMap>(
   type: K | HTMLElementTagNameMap[K],
-  props?: (HTMLAttributes<T> & AttrWithRef<T>),
-): T
+  props: JSX.IntrinsicElements[K],
+): HTMLElementTagNameMap[K]
 
 export { jsx as jsxs, jsx as jsxDEV };
 
