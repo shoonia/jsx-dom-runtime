@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2022" />
-import * as CSS from 'csstype';
+import { Properties } from 'csstype';
 
 type Booleanish = boolean | 'true' | 'false'
 
@@ -87,27 +87,20 @@ type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
 type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 
-export type DetailedHTMLProps<E extends HTMLAttributes<T>, T> = AttrWithRef<T> & E
-
 interface DOMAttributes<T> {
+  ref?: RefCallback<T> | RefObject<T>
   children?: TNode | TChildren
-  innerHTML?: string;
-  textContent?: string;
-
   // Clipboard Events
   oncopy?: ClipboardEventHandler<T>
   oncut?: ClipboardEventHandler<T>
   onpaste?: ClipboardEventHandler<T>
-
   // Composition Events
   oncompositionend?: CompositionEventHandler<T>
   oncompositionstart?: CompositionEventHandler<T>
   oncompositionupdate?: CompositionEventHandler<T>
-
   // Focus Events
   onfocus?: FocusEventHandler<T>
   onblur?: FocusEventHandler<T>
-
   // Form Events
   onchange?: FormEventHandler<T>
   onbeforeinput?: FormEventHandler<T>
@@ -115,16 +108,13 @@ interface DOMAttributes<T> {
   onreset?: FormEventHandler<T>
   onsubmit?: FormEventHandler<T>
   oninvalid?: FormEventHandler<T>
-
   // Image Events
   onload?: TEventHandler<T>
   onerror?: TEventHandler<T> // also a Media Event
-
   // Keyboard Events
   onkeydown?: KeyboardEventHandler<T>
   onkeypress?: KeyboardEventHandler<T>
   onkeyup?: KeyboardEventHandler<T>
-
   // Media Events
   onabort?: TEventHandler<T>
   oncanplay?: TEventHandler<T>
@@ -148,7 +138,6 @@ interface DOMAttributes<T> {
   ontimeupdate?: TEventHandler<T>
   onvolumechange?: TEventHandler<T>
   onwaiting?: TEventHandler<T>
-
   // MouseEvents
   onauxclick?: MouseEventHandler<T>
   onclick?: MouseEventHandler<T>
@@ -169,16 +158,13 @@ interface DOMAttributes<T> {
   onmouseout?: MouseEventHandler<T>
   onmouseover?: MouseEventHandler<T>
   onmouseup?: MouseEventHandler<T>
-
   // Selection Events
   onselect?: TEventHandler<T>
-
   // Touch Events
   ontouchcancel?: TouchEventHandler<T>
   ontouchend?: TouchEventHandler<T>
   ontouchmove?: TouchEventHandler<T>
   ontouchstart?: TouchEventHandler<T>
-
   // Pointer Events
   onpointerdown?: PointerEventHandler<T>
   onpointermove?: PointerEventHandler<T>
@@ -190,23 +176,19 @@ interface DOMAttributes<T> {
   onpointerout?: PointerEventHandler<T>
   ongotpointercapture?: PointerEventHandler<T>
   onlostpointercapture?: PointerEventHandler<T>
-
   // UI Events
   onscroll?: UIEventHandler<T>
-
   // Wheel Events
   onwheel?: WheelEventHandler<T>
-
   // Animation Events
   onanimationstart?: AnimationEventHandler<T>
   onanimationend?: AnimationEventHandler<T>
   onanimationiteration?: AnimationEventHandler<T>
-
   // Transition Events
   ontransitionend?: TransitionEventHandler<T>
 }
 
-export interface CSSProperties extends CSS.Properties<string | number> {
+export interface CSSProperties extends Properties<string | number> {
   cssText?: string | null
 }
 
@@ -432,13 +414,10 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   tabindex?: number
   title?: string
   translate?: 'yes' | 'no'
-
   // Unknown
   radioGroup?: string // <command>, <menuitem>
-
   // WAI-ARIA
   role?: string
-
   // RDFa Attributes
   about?: string
   datatype?: string
@@ -448,7 +427,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   resource?: string
   typeof?: string
   vocab?: string
-
   // Non-standard Attributes
   autoCapitalize?: string
   autoCorrect?: string
@@ -462,7 +440,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   results?: number
   security?: string
   unselectable?: 'on' | 'off'
-
   // Living Standard
   /**
   * Hints at the type of data that might be entered by the user while editing the element or its contents
@@ -686,7 +663,6 @@ export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   type?: string
   value?: string | readonly string[] | number
   width?: number | string
-
   onchange?: ChangeEventHandler<HTMLInputElement>
 }
 
@@ -891,7 +867,6 @@ export interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaEleme
   rows?: number
   value?: string | readonly string[] | number
   wrap?: string
-
   onchange?: ChangeEventHandler<HTMLTextAreaElement>
 }
 
@@ -973,123 +948,123 @@ declare global {
     interface IntrinsicAttributes extends Attributes {}
 
     interface IntrinsicElements {
-      a: DetailedHTMLProps<AnchorHTMLAttributes, HTMLAnchorElement>
-      abbr: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      address: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      area: DetailedHTMLProps<AreaHTMLAttributes, HTMLAreaElement>
-      article: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      aside: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      audio: DetailedHTMLProps<AudioHTMLAttributes, HTMLAudioElement>
-      b: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      base: DetailedHTMLProps<BaseHTMLAttributes, HTMLBaseElement>
-      bdi: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      bdo: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      big: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      blockquote: DetailedHTMLProps<BlockquoteHTMLAttributes, HTMLElement>
-      body: DetailedHTMLProps<HTMLAttributes<HTMLBodyElement>, HTMLBodyElement>
-      br: DetailedHTMLProps<HTMLAttributes<HTMLBRElement>, HTMLBRElement>
-      button: DetailedHTMLProps<ButtonHTMLAttributes, HTMLButtonElement>
-      canvas: DetailedHTMLProps<CanvasHTMLAttributes, HTMLCanvasElement>
-      caption: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      cite: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      code: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      col: DetailedHTMLProps<ColHTMLAttributes, HTMLTableColElement>
-      colgroup: DetailedHTMLProps<ColgroupHTMLAttributes, HTMLTableColElement>
-      data: DetailedHTMLProps<DataHTMLAttributes, HTMLDataElement>
-      datalist: DetailedHTMLProps<HTMLAttributes<HTMLDataListElement>, HTMLDataListElement>
-      dd: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      del: DetailedHTMLProps<DelHTMLAttributes, HTMLElement>
-      details: DetailedHTMLProps<DetailsHTMLAttributes, HTMLElement>
-      dfn: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      dialog: DetailedHTMLProps<DialogHTMLAttributes, HTMLDialogElement>
-      div: DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>
-      dl: DetailedHTMLProps<HTMLAttributes<HTMLDListElement>, HTMLDListElement>
-      dt: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      em: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      embed: DetailedHTMLProps<EmbedHTMLAttributes, HTMLEmbedElement>
-      fieldset: DetailedHTMLProps<FieldsetHTMLAttributes, HTMLFieldSetElement>
-      figcaption: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      figure: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      footer: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      form: DetailedHTMLProps<FormHTMLAttributes, HTMLFormElement>
-      h1: DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>
-      h2: DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>
-      h3: DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>
-      h4: DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>
-      h5: DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>
-      h6: DetailedHTMLProps<HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>
-      head: DetailedHTMLProps<HTMLAttributes<HTMLHeadElement>, HTMLHeadElement>
-      header: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      hgroup: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      hr: DetailedHTMLProps<HTMLAttributes<HTMLHRElement>, HTMLHRElement>
-      html: DetailedHTMLProps<HtmlHTMLAttributes, HTMLHtmlElement>
-      i: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      iframe: DetailedHTMLProps<IframeHTMLAttributes, HTMLIFrameElement>
-      img: DetailedHTMLProps<ImgHTMLAttributes, HTMLImageElement>
-      input: DetailedHTMLProps<InputHTMLAttributes, HTMLInputElement>
-      ins: DetailedHTMLProps<InsHTMLAttributes, HTMLModElement>
-      kbd: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      keygen: DetailedHTMLProps<KeygenHTMLAttributes, HTMLElement>
-      label: DetailedHTMLProps<LabelHTMLAttributes, HTMLLabelElement>
-      legend: DetailedHTMLProps<HTMLAttributes<HTMLLegendElement>, HTMLLegendElement>
-      li: DetailedHTMLProps<LiHTMLAttributes, HTMLLIElement>
-      link: DetailedHTMLProps<LinkHTMLAttributes, HTMLLinkElement>
-      main: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      map: DetailedHTMLProps<MapHTMLAttributes, HTMLMapElement>
-      mark: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      menu: DetailedHTMLProps<MenuHTMLAttributes, HTMLElement>
-      menuitem: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      meta: DetailedHTMLProps<MetaHTMLAttributes, HTMLMetaElement>
-      meter: DetailedHTMLProps<MeterHTMLAttributes, HTMLElement>
-      nav: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      noindex: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      noscript: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      object: DetailedHTMLProps<ObjectHTMLAttributes, HTMLObjectElement>
-      ol: DetailedHTMLProps<OlHTMLAttributes, HTMLOListElement>
-      optgroup: DetailedHTMLProps<OptgroupHTMLAttributes, HTMLOptGroupElement>
-      option: DetailedHTMLProps<OptionHTMLAttributes, HTMLOptionElement>
-      output: DetailedHTMLProps<OutputHTMLAttributes, HTMLElement>
-      p: DetailedHTMLProps<HTMLAttributes<HTMLParagraphElement>, HTMLParagraphElement>
-      param: DetailedHTMLProps<ParamHTMLAttributes, HTMLParamElement>
-      picture: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      pre: DetailedHTMLProps<HTMLAttributes<HTMLPreElement>, HTMLPreElement>
-      progress: DetailedHTMLProps<ProgressHTMLAttributes, HTMLProgressElement>
-      q: DetailedHTMLProps<QuoteHTMLAttributes, HTMLQuoteElement>
-      rp: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      rt: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      ruby: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      s: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      samp: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      script: DetailedHTMLProps<ScriptHTMLAttributes, HTMLScriptElement>
-      section: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      select: DetailedHTMLProps<SelectHTMLAttributes, HTMLSelectElement>
-      slot: DetailedHTMLProps<SlotHTMLAttributes, HTMLSlotElement>
-      small: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      source: DetailedHTMLProps<SourceHTMLAttributes, HTMLSourceElement>
-      span: DetailedHTMLProps<HTMLAttributes<HTMLSpanElement>, HTMLSpanElement>
-      strong: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      style: DetailedHTMLProps<StyleHTMLAttributes, HTMLStyleElement>
-      sub: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      summary: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      sup: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      table: DetailedHTMLProps<TableHTMLAttributes, HTMLTableElement>
-      template: DetailedHTMLProps<HTMLAttributes<HTMLTemplateElement>, HTMLTemplateElement>
-      tbody: DetailedHTMLProps<HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement>
-      td: DetailedHTMLProps<TdHTMLAttributes, HTMLTableDataCellElement>
-      textarea: DetailedHTMLProps<TextareaHTMLAttributes, HTMLTextAreaElement>
-      tfoot: DetailedHTMLProps<HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement>
-      th: DetailedHTMLProps<ThHTMLAttributes, HTMLTableHeaderCellElement>
-      thead: DetailedHTMLProps<HTMLAttributes<HTMLTableSectionElement>, HTMLTableSectionElement>
-      time: DetailedHTMLProps<TimeHTMLAttributes, HTMLElement>
-      title: DetailedHTMLProps<HTMLAttributes<HTMLTitleElement>, HTMLTitleElement>
-      tr: DetailedHTMLProps<HTMLAttributes<HTMLTableRowElement>, HTMLTableRowElement>
-      track: DetailedHTMLProps<TrackHTMLAttributes, HTMLTrackElement>
-      u: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      ul: DetailedHTMLProps<HTMLAttributes<HTMLUListElement>, HTMLUListElement>
-      var: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      video: DetailedHTMLProps<VideoHTMLAttributes, HTMLVideoElement>
-      wbr: DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>
-      webview: DetailedHTMLProps<WebViewHTMLAttributes, HTMLWebViewElement>
+      a: AnchorHTMLAttributes
+      abbr: HTMLAttributes<HTMLElement>
+      address: HTMLAttributes<HTMLElement>
+      area: AreaHTMLAttributes
+      article: HTMLAttributes<HTMLElement>
+      aside: HTMLAttributes<HTMLElement>
+      audio: AudioHTMLAttributes
+      b: HTMLAttributes<HTMLElement>
+      base: BaseHTMLAttributes
+      bdi: HTMLAttributes<HTMLElement>
+      bdo: HTMLAttributes<HTMLElement>
+      big: HTMLAttributes<HTMLElement>
+      blockquote: BlockquoteHTMLAttributes
+      body: HTMLAttributes<HTMLBodyElement>
+      br: HTMLAttributes<HTMLBRElement>
+      button: ButtonHTMLAttributes
+      canvas: CanvasHTMLAttributes
+      caption: HTMLAttributes<HTMLElement>
+      cite: HTMLAttributes<HTMLElement>
+      code: HTMLAttributes<HTMLElement>
+      col: ColHTMLAttributes
+      colgroup: ColgroupHTMLAttributes
+      data: DataHTMLAttributes
+      datalist: HTMLAttributes<HTMLDataListElement>
+      dd: HTMLAttributes<HTMLElement>
+      del: DelHTMLAttributes
+      details: DetailsHTMLAttributes
+      dfn: HTMLAttributes<HTMLElement>
+      dialog: DialogHTMLAttributes
+      div: HTMLAttributes<HTMLDivElement>
+      dl: HTMLAttributes<HTMLDListElement>
+      dt: HTMLAttributes<HTMLElement>
+      em: HTMLAttributes<HTMLElement>
+      embed: EmbedHTMLAttributes
+      fieldset: FieldsetHTMLAttributes
+      figcaption: HTMLAttributes<HTMLElement>
+      figure: HTMLAttributes<HTMLElement>
+      footer: HTMLAttributes<HTMLElement>
+      form: FormHTMLAttributes
+      h1: HTMLAttributes<HTMLHeadingElement>
+      h2: HTMLAttributes<HTMLHeadingElement>
+      h3: HTMLAttributes<HTMLHeadingElement>
+      h4: HTMLAttributes<HTMLHeadingElement>
+      h5: HTMLAttributes<HTMLHeadingElement>
+      h6: HTMLAttributes<HTMLHeadingElement>
+      head: HTMLAttributes<HTMLHeadElement>
+      header: HTMLAttributes<HTMLElement>
+      hgroup: HTMLAttributes<HTMLElement>
+      hr: HTMLAttributes<HTMLHRElement>
+      html: HtmlHTMLAttributes
+      i: HTMLAttributes<HTMLElement>
+      iframe: IframeHTMLAttributes
+      img: ImgHTMLAttributes
+      input: InputHTMLAttributes
+      ins: InsHTMLAttributes
+      kbd: HTMLAttributes<HTMLElement>
+      keygen: KeygenHTMLAttributes
+      label: LabelHTMLAttributes
+      legend: HTMLAttributes<HTMLLegendElement>
+      li: LiHTMLAttributes
+      link: LinkHTMLAttributes
+      main: HTMLAttributes<HTMLElement>
+      map: MapHTMLAttributes
+      mark: HTMLAttributes<HTMLElement>
+      menu: MenuHTMLAttributes
+      menuitem: HTMLAttributes<HTMLElement>
+      meta: MetaHTMLAttributes
+      meter: MeterHTMLAttributes
+      nav: HTMLAttributes<HTMLElement>
+      noindex: HTMLAttributes<HTMLElement>
+      noscript: HTMLAttributes<HTMLElement>
+      object: ObjectHTMLAttributes
+      ol: OlHTMLAttributes
+      optgroup: OptgroupHTMLAttributes
+      option: OptionHTMLAttributes
+      output: OutputHTMLAttributes
+      p: HTMLAttributes<HTMLParagraphElement>
+      param: ParamHTMLAttributes
+      picture: HTMLAttributes<HTMLElement>
+      pre: HTMLAttributes<HTMLPreElement>
+      progress: ProgressHTMLAttributes
+      q: QuoteHTMLAttributes
+      rp: HTMLAttributes<HTMLElement>
+      rt: HTMLAttributes<HTMLElement>
+      ruby: HTMLAttributes<HTMLElement>
+      s: HTMLAttributes<HTMLElement>
+      samp: HTMLAttributes<HTMLElement>
+      script: ScriptHTMLAttributes
+      section: HTMLAttributes<HTMLElement>
+      select: SelectHTMLAttributes
+      slot: SlotHTMLAttributes
+      small: HTMLAttributes<HTMLElement>
+      source: SourceHTMLAttributes
+      span: HTMLAttributes<HTMLSpanElement>
+      strong: HTMLAttributes<HTMLElement>
+      style: StyleHTMLAttributes
+      sub: HTMLAttributes<HTMLElement>
+      summary: HTMLAttributes<HTMLElement>
+      sup: HTMLAttributes<HTMLElement>
+      table: TableHTMLAttributes
+      template: HTMLAttributes<HTMLTemplateElement>
+      tbody: HTMLAttributes<HTMLTableSectionElement>
+      td: TdHTMLAttributes
+      textarea: TextareaHTMLAttributes
+      tfoot: HTMLAttributes<HTMLTableSectionElement>
+      th: ThHTMLAttributes
+      thead: HTMLAttributes<HTMLTableSectionElement>
+      time: TimeHTMLAttributes
+      title: HTMLAttributes<HTMLTitleElement>
+      tr: HTMLAttributes<HTMLTableRowElement>
+      track: TrackHTMLAttributes
+      u: HTMLAttributes<HTMLElement>
+      ul: HTMLAttributes<HTMLUListElement>
+      var: HTMLAttributes<HTMLElement>
+      video: VideoHTMLAttributes
+      wbr: HTMLAttributes<HTMLElement>
+      webview: WebViewHTMLAttributes
     }
   }
 }
