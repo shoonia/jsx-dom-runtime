@@ -1059,6 +1059,58 @@ declare global {
       video: VideoHTMLAttributes
       wbr: HTMLAttributes<HTMLElement>
       webview: WebViewHTMLAttributes
+
+      // TODO:
+      svg: any
+      animate: any;
+      circle: any;
+      animateTransform: any;
+      clipPath: any;
+      defs: any;
+      desc: any;
+      ellipse: any;
+      feBlend: any;
+      feColorMatrix: any;
+      feComponentTransfer: any;
+      feComposite: any;
+      feConvolveMatrix: any;
+      feDiffuseLighting: any;
+      feDisplacementMap: any;
+      feDropShadow: any;
+      feFlood: any;
+      feFuncA: any;
+      feFuncB: any;
+      feFuncG: any;
+      feFuncR: any;
+      feGaussianBlur: any;
+      feImage: any;
+      feMerge: any;
+      feMergeNode: any;
+      feMorphology: any;
+      feOffset: any;
+      feSpecularLighting: any;
+      feTile: any;
+      feTurbulence: any;
+      filter: any;
+      foreignObject: any;
+      g: any;
+      image: any;
+      line: any;
+      linearGradient: any;
+      marker: any;
+      mask: any;
+      path: any;
+      pattern: any;
+      polygon: any;
+      polyline: any;
+      radialGradient: any;
+      rect: any;
+      stop: any;
+      symbol: any;
+      text: any;
+      textPath: any;
+      tspan: any;
+      use: any;
     }
   }
 }
