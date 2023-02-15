@@ -1,16 +1,16 @@
 import { appendChildren } from './appendChildren';
 import { extensions } from './Extend';
 
-let properties = new Set([
-  'innerHTML',
-  'textContent',
-  'value',
-]);
-
-let ignoreKeys = new Set([
+let internalKeys = new Set([
   'ref',
   'children',
   '__ns',
+]);
+
+export let properties = new Set([
+  'innerHTML',
+  'textContent',
+  'value',
 ]);
 
 export let jsx = (node, props) => {
@@ -27,7 +27,7 @@ export let jsx = (node, props) => {
     : node;
 
   for (key in props) {
-    if (ignoreKeys.has(key)) {
+    if (internalKeys.has(key)) {
       continue;
     }
 
