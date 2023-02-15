@@ -1,3 +1,5 @@
+import { FC } from '../..';
+
 describe('Babel transform `htmlFor` to `for`', () => {
   it('should transform `htmlFor` attribute in <label />', () => {
     // @ts-expect-error
@@ -17,7 +19,7 @@ describe('Babel transform `htmlFor` to `for`', () => {
   });
 
   it('should not transform `htmlFor` attribute in FC', () => {
-    const MyElem = (props) => Object.keys(props).join('');
+    const MyElem: FC<any, any> = (props) => Object.keys(props).join('');
 
     expect(<MyElem htmlFor="" />).toBe('htmlFor');
   });

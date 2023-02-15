@@ -41,7 +41,7 @@ export function Fragment(props: { children?: TChild | TChild[] }): DocumentFragm
 export function Template(props: { children: string }): DocumentFragment;
 
 export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> {
-  (props: PropsWithChildren<P>): T | null
+  (props: PropsWithChildren<P>): T | null | string
 }
 export { FunctionComponent as FC };
 
