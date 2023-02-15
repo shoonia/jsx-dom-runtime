@@ -1,8 +1,5 @@
 import { rmSync, existsSync } from 'node:fs';
-import babel from '@rollup/plugin-babel';
-import nodeResolve from '@rollup/plugin-node-resolve';
-
-const extensions = ['.js', '.ts'];
+import { babel } from '@rollup/plugin-babel';
 
 ['./babel-preset', './jsx-runtime'].forEach((path) => {
   if (existsSync(path)) {
@@ -40,11 +37,8 @@ export default [
       },
     ],
     plugins: [
-      nodeResolve({
-        extensions,
-      }),
       babel({
-        extensions,
+        extensions: ['.js', '.ts', '.jsx'],
         babelHelpers: 'bundled',
         presets: [
           '@babel/preset-typescript',
