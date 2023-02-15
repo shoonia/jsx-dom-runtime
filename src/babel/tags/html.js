@@ -1,4 +1,4 @@
-export const htmlTags = new Set([
+const tags = new Set([
   'a', 'abbr', 'address', 'area', 'article', 'aside', 'audio', 'b',
   'base', 'bdi', 'bdo', 'big', 'blockquote', 'body', 'br', 'button',
   'canvas', 'caption', 'cite', 'code', 'col', 'colgroup', 'data',
@@ -15,3 +15,5 @@ export const htmlTags = new Set([
   'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul',
   'var', 'video', 'wbr', 'webview',
 ]);
+
+export const isHtmlTag = (tag) => tags.has(tag);

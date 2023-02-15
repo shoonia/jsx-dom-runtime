@@ -1,4 +1,4 @@
-export const svgTags = new Set([
+const tags = new Set([
   'animate', 'animateMotion', 'animateTransform', 'circle', 'clipPath',
   'defs', 'desc', 'ellipse', 'feBlend', 'feColorMatrix', 'feComponentTransfer',
   'feComposite', 'feConvolveMatrix', 'feDiffuseLighting', 'feDisplacementMap',
@@ -11,9 +11,7 @@ export const svgTags = new Set([
   'tspan', 'use', 'view',
 ]);
 
-const maybeSvg = new Set(['a', 'script', 'style', 'title']);
+const maybe = new Set(['a', 'script', 'style', 'title']);
 
-export const isSvgElement = (path) => {
-  return svgTags.has(path.node.name.name) ||
-    (maybeSvg.has(path.node.name.name) && svgTags.has(path.parentPath.parent?.openingElement?.name?.name));
-};
+export const isSvgTag = (tag) => tags.has(tag);
+export const maybeSvg = (tag) => maybe.has(tag);

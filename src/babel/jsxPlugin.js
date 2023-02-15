@@ -1,23 +1,54 @@
-import { isSvgElement, svgTags } from './tags/svg';
-import { htmlTags } from './tags/html';
-import { DOMEvents } from './tags/dom';
+import { isSvgTag, maybeSvg } from './tags/svg';
+import { isHtmlTag } from './tags/html';
+import { isDOMEvent } from './tags/dom';
 
 export const jsxPlugin = (babel) => {
   const { types: t } = babel;
 
-  const createNsAttribute = (val) => {
-    return t.jSXAttribute(
-      t.jSXIdentifier('__ns'),
-      t.JSXExpressionContainer(t.numericLiteral(val))
-    );
+  const isSvgElement = (path) => {
+    return isSvgTag(path.node.name.name) ||
+      maybeSvg(path.node.name.name) &&
+      path.parentPath.parent.openingElement?.attributes.some(
+        (a) => a.name.name === '__ns' && a.value.expression?.value === 1
+      );
+
+  };
+
+  const xlinkHref = (attrs) => {
+    return attrs.findIndex((attr) => {
+      return t.isJSXNamespacedName(attr.name) &&
+        attr.name.namespace.name === 'xlink' &&
+        attr.name.name.name === 'href';
+    });
   };
 
   return {
     visitor: {
       JSXOpeningElement(path) {
-        if (isSvgElement(path)) {
-          path.node.attributes.push(createNsAttribute(1));
+        if (!isSvgElement(path)) {
+          return;
         }
+
+        const attrs = path.node.attributes;
+        const index = xlinkHref(attrs);
+
+        if (index > -1) {
+          const attr = attrs.splice(index, 1).pop();
+
+          attrs.push(
+            t.jSXAttribute(
+              t.jSXIdentifier('href'),
+              t.stringLiteral(attr.value.value),
+            ),
+          );
+        }
+
+        attrs.push(
+          t.jSXAttribute(
+            t.jSXIdentifier('__ns'),
+            t.JSXExpressionContainer(t.numericLiteral(1)),
+          ),
+        );
       },
       JSXAttribute(path) {
         const attr = path.node.name;
@@ -27,30 +58,26 @@ export const jsxPlugin = (babel) => {
           return;
         }
 
-        if (
-          attr.name === 'className' &&
-          (htmlTags.has(tag) || svgTags.has(tag))
-        ) {
-          attr.name = 'class';
+        if (attr.name === 'className') {
+          if (isHtmlTag(tag) || isSvgTag(tag)) {
+            attr.name = 'class';
+          }
           return;
         }
 
-        if (htmlTags.has(tag)) {
-          if (
-            attr.name === 'htmlFor' &&
-            (tag === 'label' || tag === 'output')
-          ) {
+        if (attr.name === 'htmlFor') {
+          if (tag === 'label' || tag === 'output') {
             attr.name = 'for';
-            return;
           }
+          return;
+        }
 
+        if (isHtmlTag(tag)) {
           const attrName = attr.name.toLowerCase();
 
-          if (DOMEvents.has(attrName)) {
+          if (isDOMEvent(attrName)) {
             attr.name = attrName;
-            return;
           }
-
           return;
         }
       }
