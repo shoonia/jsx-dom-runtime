@@ -4,19 +4,13 @@ import { Properties } from 'csstype';
 
 type Booleanish = boolean | 'true' | 'false'
 
-interface Attributes {}
+interface Attributes { }
 
 interface RefObject<T> {
   readonly current: T
 }
 
 type RefCallback<T> = (instance: T) => void
-
-interface AttrWithRef<T> extends Attributes {
-  ref?: RefCallback<T> | RefObject<T> | null
-}
-
-interface TChildren extends Array<TNode> {}
 
 type TNode =
   | Node
@@ -25,14 +19,14 @@ type TNode =
   | DocumentFragment
   | Comment
   | Text
-  | TChildren
+  | TNode[]
   | string
   | number
   | false
   | null
   | undefined
 
-type PropsWithChildren<P> = P & { children?: TNode | TChildren }
+type PropsWithChildren<P> = P & { children?: TNode | TNode[] }
 
 export function jsx<K extends keyof HTMLElementTagNameMap>(
   type: K | HTMLElementTagNameMap[K],
@@ -41,7 +35,7 @@ export function jsx<K extends keyof HTMLElementTagNameMap>(
 
 export { jsx as jsxs, jsx as jsxDEV };
 
-export function Fragment(props: { children?: TNode | TChildren }): DocumentFragment;
+export function Fragment(props: { children?: TNode | TNode[] }): DocumentFragment;
 export function Template(props: { children: string }): DocumentFragment;
 
 export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> {
@@ -89,7 +83,7 @@ type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 
 interface DOMAttributes<T> {
   ref?: RefCallback<T> | RefObject<T>
-  children?: TNode | TChildren
+  children?: TNode | TNode[]
   // Clipboard Events
   oncopy?: ClipboardEventHandler<T>
   oncut?: ClipboardEventHandler<T>
@@ -337,16 +331,16 @@ export interface AriaAttributes {
   * @see aria-atomic.
   */
   'aria-relevant'?:
-    | 'additions'
-    | 'additions removals'
-    | 'additions text'
-    | 'all'
-    | 'removals'
-    | 'removals additions'
-    | 'removals text'
-    | 'text'
-    | 'text additions'
-    | 'text removals'
+  | 'additions'
+  | 'additions removals'
+  | 'additions text'
+  | 'all'
+  | 'removals'
+  | 'removals additions'
+  | 'removals text'
+  | 'text'
+  | 'text additions'
+  | 'text removals'
 
   /** Indicates that user input is required on the element before a form may be submitted. */
   'aria-required'?: Booleanish;
@@ -472,7 +466,7 @@ export interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> 
   referrerpolicy?: ReferrerPolicy
 }
 
-interface AudioHTMLAttributes extends MediaHTMLAttributes<HTMLAudioElement> {}
+interface AudioHTMLAttributes extends MediaHTMLAttributes<HTMLAudioElement> { }
 
 interface AreaHTMLAttributes extends HTMLAttributes<HTMLAreaElement> {
   alt?: string
@@ -940,12 +934,12 @@ type HTMLWebViewElement = HTMLElement
 
 declare global {
   namespace JSX {
-    type Element = TNode | TChildren;
+    type Element = TNode | TNode[];
 
     interface ElementAttributesProperty { props: {}; }
     interface ElementChildrenAttribute { children: {}; }
 
-    interface IntrinsicAttributes extends Attributes {}
+    interface IntrinsicAttributes extends Attributes { }
 
     interface IntrinsicElements {
       a: AnchorHTMLAttributes
