@@ -2,39 +2,39 @@ import { fireEvent } from '@testing-library/dom';
 import { jest } from '@jest/globals';
 
 describe('User events', () => {
-  it('should add click handler', () => {
+  it('should add `onclick` handler', () => {
     const spy = jest.fn();
-    const btn = <button type="button" onclick={spy}>click</button>;
+    const btn = <button onclick={spy} />;
 
-    fireEvent.click(btn as any);
+    fireEvent.click(btn);
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should add double click handler', () => {
+  it('should add `ondblclick` handler', () => {
     const spy = jest.fn();
-    const btn = <button type="button" ondblclick={spy}>click</button>;
+    const btn = <button ondblclick={spy} />;
 
-    fireEvent.dblClick(btn as any);
+    fireEvent.dblClick(btn);
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should add change handler', () => {
+  it('should add `onchange` handler', () => {
     const spy = jest.fn();
-    const input = <input type="text" onchange={spy} />;
+    const input = <input onchange={spy} />;
 
-    fireEvent.change(input as any, { target: { value: 'change event' } });
+    fireEvent.change(input, { target: { value: 'change event' } });
 
     expect(spy).toHaveBeenCalledTimes(1);
     expect(input).toHaveValue('change event');
   });
 
-  it('should add submit handler', () => {
+  it('should add `onsubmit` handler', () => {
     const spy = jest.fn();
     const form = <form onsubmit={spy} />;
 
-    fireEvent.submit(form as any);
+    fireEvent.submit(form);
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
@@ -42,10 +42,10 @@ describe('User events', () => {
   it('should add a few handlers', () => {
     const spyClick = jest.fn();
     const spyChange = jest.fn();
-    const input = <input type="text" onclick={spyClick} onchange={spyChange} />;
+    const input = <input onclick={spyClick} onchange={spyChange} />;
 
-    fireEvent.click(input as any);
-    fireEvent.change(input as any, { target: { value: 'xyz' } });
+    fireEvent.click(input);
+    fireEvent.change(input, { target: { value: 'xyz' } });
 
     expect(spyClick).toHaveBeenCalledTimes(1);
     expect(spyChange).toHaveBeenCalledTimes(1);
@@ -57,14 +57,13 @@ describe('User events', () => {
     const spyChange = jest.fn();
 
     const input = <input
-      type="text"
       // @ts-expect-error
       onClick={spyClick}
       onChange={spyChange}
     />;
 
-    fireEvent.click(input as any);
-    fireEvent.change(input as any, { target: { value: 'xyz' } });
+    fireEvent.click(input);
+    fireEvent.change(input, { target: { value: 'xyz' } });
 
     expect(spyClick).toHaveBeenCalledTimes(1);
     expect(spyChange).toHaveBeenCalledTimes(1);
