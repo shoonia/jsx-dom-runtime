@@ -34,12 +34,11 @@ export const jsxPlugin = (babel) => {
         if (index > -1) {
           const attr = attrs.splice(index, 1).pop();
 
-          attrs.push(
+          attrs.splice(index, 0,
             t.jSXAttribute(
               t.jSXIdentifier('href'),
               t.stringLiteral(attr.value.value),
-            ),
-          );
+            ));
         }
 
         attrs.push(
