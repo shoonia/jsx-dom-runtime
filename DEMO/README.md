@@ -1,6 +1,6 @@
 # Demo
 
-[Live Demo](https://shoonia.github.io/jsx-dom-runtime/DEMO/dist/index.html)
+[Live Demo](https://shoonia.github.io/jsx-dom-runtime/)
 
 ```bash
 node --version # >= v18.x
