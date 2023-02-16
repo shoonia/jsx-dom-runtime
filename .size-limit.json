@@ -2,11 +2,11 @@
   {
     "path": "jsx-runtime/index.js",
     "import": "{ jsx }",
-    "limit": "462 B"
+    "limit": "460 B"
   },
   {
     "path": "jsx-runtime/index.js",
     "import": "{ jsx, Fragment }",
-    "limit": "486 B"
+    "limit": "484 B"
   }
 ]
