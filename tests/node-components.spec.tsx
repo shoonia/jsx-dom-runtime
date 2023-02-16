@@ -37,16 +37,6 @@ describe('Node Components', () => {
     expect(Item).toHaveOuterHTML('<div data-value="2"></div>');
   });
 
-  it('should update content on text node', () => {
-    const MyText = new Text();
-
-    <document.body>
-      <MyText textContent="new text" />
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML('new text');
-  });
-
   it('should update src on image', () => {
     const MyImage = new Image(100, 100);
 

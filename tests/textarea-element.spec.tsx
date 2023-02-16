@@ -74,14 +74,4 @@ describe('HTMLTextAreaElement', () => {
     <TextArea>2</TextArea>;
     expect(TextArea.textContent).toBe('12');
   });
-
-  it('should replace content', () => {
-    const TextArea = <textarea>1</textarea>;
-
-    expect(TextArea.textContent).toBe('1');
-    <TextArea textContent="2" />;
-    expect(TextArea.textContent).toBe('2');
-    <TextArea innerHTML="3" />;
-    expect(TextArea.textContent).toBe('3');
-  });
 });

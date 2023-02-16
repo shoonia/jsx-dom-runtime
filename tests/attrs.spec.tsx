@@ -76,20 +76,6 @@ describe('Props', () => {
     expect(<div innerHTML="<p>text</p>" />).toHaveOuterHTML('<div><p>text</p></div>');
   });
 
-  it('should add text content to component', () => {
-    expect(<div textContent="some string" />).toHaveTextContent('some string');
-  });
-
-  it('should add all attributes with spread', () => {
-    const props = {
-      class: 'some',
-      id: 'one',
-      textContent: 'Hello',
-    };
-
-    expect(<p {...props} />).toHaveOuterHTML('<p class="some" id="one">Hello</p>');
-  });
-
   it('should add all attributes', () => {
     const props = {
       class: 'box',

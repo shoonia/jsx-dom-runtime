@@ -391,7 +391,6 @@ export interface AriaAttributes {
 
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   innerHTML?: string
-  textContent?: string
   accessKey?: string
   accesskey?: string
   class?: string
