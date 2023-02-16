@@ -7,7 +7,7 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html --no-source-maps --no-cache --open",
-    "build": "rm -rf dist .parcel-cache && parcel build --no-source-maps --public-url /jsx-dom-runtime/DEMO/dist src/index.html"
+    "build": "rm -rf dist .parcel-cache && parcel build --no-source-maps --no-cache src/index.html"
   },
   "dependencies": {
     "jsx-dom-runtime": "latest"
