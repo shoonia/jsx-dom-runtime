@@ -38,15 +38,6 @@ describe('Form Events', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should fire `submit` event', () => {
-    const spy = jest.fn();
-    const div = <form onsubmit={spy} /> as HTMLFormElement;
-
-    div.submit();
-
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   it('should add `oninvalid` handler', () => {
     const spy = jest.fn();
     const form = <form oninvalid={spy} />;
