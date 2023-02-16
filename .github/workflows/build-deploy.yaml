@@ -5,6 +5,10 @@ on:
     branches:
       - master
 
+defaults:
+  run:
+    working-directory: ./DEMO
+
 jobs:
   tests:
     runs-on: ubuntu-20.04
@@ -18,7 +22,6 @@ jobs:
         node-version: 18
         cache: 'npm'
 
-    - run: cd DEMO
     - run: npm ci
     - run: npm run build
 
@@ -27,4 +30,4 @@ jobs:
       with:
         deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         publish_branch: gh-pages
-        publish_dir: ./DEMO/dist
+        publish_dir: ./dist
