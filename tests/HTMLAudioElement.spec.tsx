@@ -40,4 +40,9 @@ describe('HTMLAudioElement', () => {
     expect(<audio loop={false} />).not.toHaveAttribute('loop');
     expect(<audio loop={false} />).toHaveProperty('loop', false);
   });
+
+  it('should have `muted` property', () => {
+    expect(<audio muted />).toHaveProperty('muted', true);
+    expect(<audio muted={false} />).toHaveProperty('muted', false);
+  });
 });
