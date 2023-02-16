@@ -460,7 +460,6 @@ type AriaRole =
   | 'tree'
   | 'treegrid'
   | 'treeitem'
-  | (string & {});
 
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   innerHTML?: string
@@ -586,6 +585,30 @@ export type TAutocomplete =
   | 'email'
   | 'impp'
   | 'webauthn'
+
+  type HTMLInputTypeAttribute =
+  | 'button'
+  | 'checkbox'
+  | 'color'
+  | 'date'
+  | 'datetime-local'
+  | 'email'
+  | 'file'
+  | 'hidden'
+  | 'image'
+  | 'month'
+  | 'number'
+  | 'password'
+  | 'radio'
+  | 'range'
+  | 'reset'
+  | 'search'
+  | 'submit'
+  | 'tel'
+  | 'text'
+  | 'time'
+  | 'url'
+  | 'week'
 
 export interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
   download?: any
@@ -788,7 +811,7 @@ export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   size?: number
   src?: string
   step?: number | string
-  type?: string
+  type?: HTMLInputTypeAttribute
   value?: string | readonly string[] | number
   width?: number | string
   onchange?: ChangeEventHandler<HTMLInputElement>
