@@ -134,7 +134,7 @@ interface DOMAttributes<T> {
   ontimeupdate?: TEventHandler<T>
   onvolumechange?: TEventHandler<T>
   onwaiting?: TEventHandler<T>
-  // MouseEvents
+  // Mouse Events
   onauxclick?: MouseEventHandler<T>
   onclick?: MouseEventHandler<T>
   oncontextmenu?: MouseEventHandler<T>
@@ -142,6 +142,7 @@ interface DOMAttributes<T> {
   ondrag?: DragEventHandler<T>
   ondragend?: DragEventHandler<T>
   ondragenter?: DragEventHandler<T>
+  /** @deprecated Not supported */
   ondragexit?: DragEventHandler<T>
   ondragleave?: DragEventHandler<T>
   ondragover?: DragEventHandler<T>
