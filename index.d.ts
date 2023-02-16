@@ -389,6 +389,79 @@ export interface AriaAttributes {
   'aria-valuetext'?: string
 }
 
+// All the WAI-ARIA 1.1 role attribute values from https://www.w3.org/TR/wai-aria-1.1/#role_definitions
+type AriaRole =
+  | 'alert'
+  | 'alertdialog'
+  | 'application'
+  | 'article'
+  | 'banner'
+  | 'button'
+  | 'cell'
+  | 'checkbox'
+  | 'columnheader'
+  | 'combobox'
+  | 'complementary'
+  | 'contentinfo'
+  | 'definition'
+  | 'dialog'
+  | 'directory'
+  | 'document'
+  | 'feed'
+  | 'figure'
+  | 'form'
+  | 'grid'
+  | 'gridcell'
+  | 'group'
+  | 'heading'
+  | 'img'
+  | 'link'
+  | 'list'
+  | 'listbox'
+  | 'listitem'
+  | 'log'
+  | 'main'
+  | 'marquee'
+  | 'math'
+  | 'menu'
+  | 'menubar'
+  | 'menuitem'
+  | 'menuitemcheckbox'
+  | 'menuitemradio'
+  | 'navigation'
+  | 'none'
+  | 'note'
+  | 'option'
+  | 'presentation'
+  | 'progressbar'
+  | 'radio'
+  | 'radiogroup'
+  | 'region'
+  | 'row'
+  | 'rowgroup'
+  | 'rowheader'
+  | 'scrollbar'
+  | 'search'
+  | 'searchbox'
+  | 'separator'
+  | 'slider'
+  | 'spinbutton'
+  | 'status'
+  | 'switch'
+  | 'tab'
+  | 'table'
+  | 'tablist'
+  | 'tabpanel'
+  | 'term'
+  | 'textbox'
+  | 'timer'
+  | 'toolbar'
+  | 'tooltip'
+  | 'tree'
+  | 'treegrid'
+  | 'treeitem'
+  | (string & {});
+
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   innerHTML?: string
   accessKey?: string
@@ -413,7 +486,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   // Unknown
   radioGroup?: string // <command>, <menuitem>
   // WAI-ARIA
-  role?: string
+  role?: AriaRole
   // RDFa Attributes
   about?: string
   datatype?: string
@@ -998,6 +1071,13 @@ type HTMLWebViewElement = HTMLElement
 declare global {
   namespace JSX {
     type Element = HTMLElement
+    type ElementType<P = any> =
+      | {
+        [K in keyof IntrinsicElements]: P extends IntrinsicElements[K]
+        ? K
+        : never;
+      }[keyof IntrinsicElements]
+      | HTMLElement;
 
     interface ElementAttributesProperty { props: {}; }
     interface ElementChildrenAttribute { children: {}; }
