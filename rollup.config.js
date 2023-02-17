@@ -1,8 +1,8 @@
 import fse from 'fs-extra';
 import { babel } from '@rollup/plugin-babel';
 
-fse.ensureDir('./babel-preset');
-fse.ensureDir('./jsx-runtime');
+fse.emptyDirSync('./babel-preset');
+fse.emptyDirSync('./jsx-runtime');
 fse.writeFileSync('./jsx-runtime/index.d.ts', 'export * from "../index"');
 
 export default [
