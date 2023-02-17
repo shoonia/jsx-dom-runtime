@@ -207,7 +207,7 @@ Add compile options to your [`tsconfig.json`](https://www.typescriptlang.org/doc
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "jsx-dom-runtime",
-    "moduleResolution": "nodenext",
+    "moduleResolution": "node",
     "lib": [
       "DOM"
     ]
@@ -215,6 +215,8 @@ Add compile options to your [`tsconfig.json`](https://www.typescriptlang.org/doc
 }
 ```
 Example:
+
+**src/index.tsx**
 
 ```ts
 import type { FC } from 'jsx-dom-runtime';
