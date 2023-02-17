@@ -172,7 +172,9 @@ Result
 <input class="one two" data-testid="test" data-hook="text">
 ```
 
-Add support of the properties to DOM Element object.
+### properties
+
+Add support of the DOM Element object properties. By default supported [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML), [`muted`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/muted), `value`.
 
 ```js
 import { properties } from 'jsx-dom-runtime';
@@ -192,6 +194,44 @@ Result
 ```html
 <span>Hello</span>, <span>World</span>
 ```
+
+## TypeScript Support
+
+Add compile options to your [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) file.
+
+```json
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "jsx-dom-runtime",
+    "moduleResolution": "nodenext",
+    "lib": [
+      "DOM"
+    ]
+  }
+}
+```
+Example:
+
+```ts
+import type { FC } from 'jsx-dom-runtime';
+
+interface Props {
+  text: string;
+}
+
+const App: FC<Props> = ({ text }) => {
+  return (
+    <div class="card">
+      <div class="text">{text}</div>
+    </div>
+  );
+};
+
+document.body.append(<App text="Hello!" />);
+```
+
+Read more: [TypeScript JSX](https://www.typescriptlang.org/docs/handbook/jsx.html)
 
 ## License
 

@@ -41,7 +41,7 @@ export function Fragment(props: { children?: TChild | TChild[] }): DocumentFragm
 export function Template(props: { children: string }): DocumentFragment;
 
 export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> {
-  (props: PropsWithChildren<P>): T | null | string
+  (props: PropsWithChildren<P>): T | null
 }
 export { FunctionComponent as FC };
 
@@ -586,7 +586,7 @@ export type TAutocomplete =
   | 'impp'
   | 'webauthn'
 
-  type HTMLInputTypeAttribute =
+type HTMLInputTypeAttribute =
   | 'button'
   | 'checkbox'
   | 'color'
@@ -1093,7 +1093,7 @@ type HTMLWebViewElement = HTMLElement
 
 declare global {
   namespace JSX {
-    type Element = HTMLElement
+    type Element = HTMLElement | DocumentFragment | Text | Node | SVGElement
     type ElementType<P = any> =
       | {
         [K in keyof IntrinsicElements]: P extends IntrinsicElements[K]
