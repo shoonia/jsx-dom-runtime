@@ -15,6 +15,8 @@ yarn add jsx-dom-runtime
 
 ## How to use
 
+Add preset to your [`.babelrc`](https://babeljs.io/docs/en/config-files) file.
+
 **.babelrc**
 
 ```json
@@ -198,6 +200,8 @@ Result
 ## TypeScript Support
 
 Add compile options to your [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) file.
+
+**tsconfig.json**
 
 ```json
 {
