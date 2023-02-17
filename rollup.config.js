@@ -1,11 +1,9 @@
-import { rmSync, existsSync } from 'node:fs';
+import fse from 'fs-extra';
 import { babel } from '@rollup/plugin-babel';
 
-['./babel-preset', './jsx-runtime'].forEach((path) => {
-  if (existsSync(path)) {
-    rmSync(path, { recursive: true });
-  }
-});
+fse.ensureDir('./babel-preset');
+fse.ensureDir('./jsx-runtime');
+fse.writeFileSync('./jsx-runtime/index.d.ts', 'export * from "../index"');
 
 export default [
   {

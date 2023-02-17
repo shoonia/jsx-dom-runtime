@@ -188,7 +188,6 @@ properties.add('textContent');
   <span innerText="Hello" />{', '}
   <span textContent="World" />
 </document.body>;
-
 ```
 
 Result
