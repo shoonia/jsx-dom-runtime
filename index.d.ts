@@ -48,11 +48,11 @@ export { FunctionComponent as FC };
 export function createRef<T = any>(current?: T): RefObject<T>
 export { createRef as useRef };
 
-export function parseFromString(htmlOrSvg: string): DocumentFragment;
+export function parseFromString(html: string): DocumentFragment;
 
-export function useText(initContent?: string): readonly [
+export function useText<T extends string>(initContent?: T): readonly [
   Text,
-  (text: string) => void
+  (text: T) => void
 ]
 
 export function Extend(props: Record<string, (node: HTMLElement, value: any) => void>): void;
