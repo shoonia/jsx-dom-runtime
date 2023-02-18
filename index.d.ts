@@ -522,6 +522,264 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   is?: string
 }
 
+export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
+  accentHeight?: number | string
+  accumulate?: 'none' | 'sum'
+  additive?: 'replace' | 'sum'
+  alignmentBaseline?:
+  | 'auto'
+  | 'baseline'
+  | 'before-edge'
+  | 'text-before-edge'
+  | 'middle'
+  | 'central'
+  | 'after-edge'
+  | 'text-after-edge'
+  | 'ideographic'
+  | 'alphabetic'
+  | 'hanging'
+  | 'mathematical'
+  | 'inherit'
+  allowReorder?: 'no' | 'yes'
+  alphabetic?: number | string
+  amplitude?: number | string
+  arabicForm?: 'initial' | 'medial' | 'terminal' | 'isolated'
+  ascent?: number | string
+  attributeName?: string
+  attributeType?: string
+  autoReverse?: number | string
+  azimuth?: | number | string
+  baseFrequency?: number | string
+  baselineShift?: number | string
+  baseProfile?: number | string
+  bbox?: number | string
+  begin?: number | string
+  bias?: number | string
+  by?: number | string
+  calcMode?: number | string
+  capHeight?: number | string
+  clip?: number | string
+  clipPath?: string
+  clipPathUnits?: number | string
+  clipRule?: number | string
+  colorInterpolation?: number | string
+  colorInterpolationFilters?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  colorProfile?: number | string
+  colorRendering?: number | string
+  contentScriptType?: number | string
+  contentStyleType?: number | string
+  cursor?: number | string
+  cx?: number | string
+  cy?: number | string
+  d?: string
+  decelerate?: number | string
+  descent?: number | string
+  diffuseConstant?: number | string
+  direction?: number | string
+  display?: number | string
+  divisor?: number | string
+  dominantBaseline?: number | string
+  dur?: number | string
+  dx?: number | string
+  dy?: number | string
+  edgeMode?: number | string
+  elevation?: number | string
+  enableBackground?: number | string
+  end?: number | string
+  exponent?: number | string
+  externalResourcesRequired?: number | string
+  fill?: string
+  fillOpacity?: number | string
+  fillRule?: 'nonzero' | 'evenodd' | 'inherit'
+  filter?: string
+  filterRes?: number | string
+  filterUnits?: number | string
+  floodColor?: number | string
+  floodOpacity?: number | string
+  focusable?: number | string
+  fontFamily?: string
+  fontSize?: number | string
+  fontSizeAdjust?: number | string
+  fontStretch?: number | string
+  fontStyle?: number | string
+  fontVariant?: number | string
+  fontWeight?: number | string
+  format?: number | string
+  from?: number | string
+  fx?: number | string
+  fy?: number | string
+  g1?: number | string
+  g2?: number | string
+  glyphName?: number | string
+  glyphOrientationHorizontal?: number | string
+  glyphOrientationVertical?: number | string
+  glyphRef?: number | string
+  gradientTransform?: string
+  gradientUnits?: string
+  hanging?: number | string
+  horizAdvX?: number | string
+  horizOriginX?: number | string
+  ideographic?: number | string
+  imageRendering?: number | string
+  in2?: number | string
+  in?: string
+  intercept?: number | string
+  k1?: number | string
+  k2?: number | string
+  k3?: number | string
+  k4?: number | string
+  k?: number | string
+  kernelMatrix?: number | string
+  kernelUnitLength?: number | string
+  kerning?: number | string
+  keyPoints?: number | string
+  keySplines?: number | string
+  keyTimes?: number | string
+  lengthAdjust?: number | string
+  letterSpacing?: number | string
+  lightingColor?: number | string
+  limitingConeAngle?: number | string
+  local?: number | string
+  markerEnd?: string
+  markerHeight?: number | string
+  markerMid?: string
+  markerStart?: string
+  markerUnits?: number | string
+  markerWidth?: number | string
+  mask?: string
+  maskContentUnits?: number | string
+  maskUnits?: number | string
+  mathematical?: number | string
+  mode?: number | string
+  numOctaves?: number | string
+  offset?: number | string
+  opacity?: number | string
+  operator?: number | string
+  order?: number | string
+  orient?: number | string
+  orientation?: number | string
+  origin?: number | string
+  overflow?: number | string
+  overlinePosition?: number | string
+  overlineThickness?: number | string
+  paintOrder?: number | string
+  panose1?: number | string
+  pathLength?: number | string
+  patternContentUnits?: string
+  patternTransform?: number | string
+  patternUnits?: string
+  pointerEvents?: number | string
+  points?: string
+  pointsAtX?: number | string
+  pointsAtY?: number | string
+  pointsAtZ?: number | string
+  preserveAlpha?: number | string
+  preserveAspectRatio?: string
+  primitiveUnits?: number | string
+  r?: number | string
+  radius?: number | string
+  refX?: number | string
+  refY?: number | string
+  renderingIntent?: number | string
+  repeatCount?: number | string
+  repeatDur?: number | string
+  requiredExtensions?: number | string
+  requiredFeatures?: number | string
+  restart?: number | string
+  result?: string
+  rotate?: number | string
+  rx?: number | string
+  ry?: number | string
+  scale?: number | string
+  seed?: number | string
+  shapeRendering?: number | string
+  slope?: number | string
+  spacing?: number | string
+  specularConstant?: number | string
+  specularExponent?: number | string
+  speed?: number | string
+  spreadMethod?: string
+  startOffset?: number | string
+  stdDeviation?: number | string
+  stemh?: number | string
+  stemv?: number | string
+  stitchTiles?: number | string
+  stopColor?: string
+  stopOpacity?: number | string
+  strikethroughPosition?: number | string
+  strikethroughThickness?: number | string
+  string?: number | string
+  stroke?: string
+  strokeDasharray?: string | number
+  strokeDashoffset?: string | number
+  strokeLinecap?: 'butt' | 'round' | 'square' | 'inherit'
+  strokeLinejoin?: 'miter' | 'round' | 'bevel' | 'inherit'
+  strokeMiterlimit?: string | number
+  strokeOpacity?: number | string
+  strokeWidth?: number | string
+  surfaceScale?: number | string
+  systemLanguage?: number | string
+  tableValues?: number | string
+  targetX?: number | string
+  targetY?: number | string
+  textAnchor?: string
+  textDecoration?: number | string
+  textLength?: number | string
+  textRendering?: number | string
+  to?: number | string
+  transform?: string
+  u1?: number | string
+  u2?: number | string
+  underlinePosition?: number | string
+  underlineThickness?: number | string
+  unicode?: number | string
+  unicodeBidi?: number | string
+  unicodeRange?: number | string
+  unitsPerEm?: number | string
+  vAlphabetic?: number | string
+  values?: string
+  vectorEffect?: number | string
+  version?: string
+  vertAdvY?: number | string
+  vertOriginX?: number | string
+  vertOriginY?: number | string
+  vHanging?: number | string
+  vIdeographic?: number | string
+  viewBox?: string
+  viewTarget?: number | string
+  visibility?: number | string
+  vMathematical?: number | string
+  widths?: number | string
+  wordSpacing?: number | string
+  writingMode?: number | string
+  x1?: number | string
+  x2?: number | string
+  x?: number | string
+  xChannelSelector?: string
+  xHeight?: number | string
+  // xlinkActuate?: string
+  // xlinkArcrole?: string
+  // xlinkHref?: string
+  // xlinkRole?: string
+  // xlinkShow?: string
+  // xlinkTitle?: string
+  // xlinkType?: string
+  // xmlBase?: string
+  // xmlLang?: string
+  xmlns?: string
+  // xmlnsXlink?: string
+  // xmlspace?: string
+  y1?: number | string
+  y2?: number | string
+  y?: number | string
+  yChannelSelector?: string
+  z?: number | string
+  zoomAndPan?: string
+
+  height?: number | string
+  width?: number | string
+}
+
 export type HTMLAttrinuteCORS =
   | 'anonymous'
   | 'use-credentials'
@@ -1091,6 +1349,78 @@ interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
 
 type HTMLWebViewElement = HTMLElement
 
+interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
+  'clip-path'?: string
+}
+
+interface ClipPathSVGElement extends SVGAttributes<SVGClipPathElement> {
+  'clip-path'?: string
+}
+
+interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
+  'clip-path'?: string
+}
+
+interface GSVGElement extends SVGAttributes<SVGGElement> {
+  'clip-path'?: string
+}
+
+interface ImageSVGElement extends SVGAttributes<SVGImageElement> {
+  'clip-path'?: string
+}
+
+interface LineSVGElement extends SVGAttributes<SVGLineElement> {
+  'clip-path'?: string
+}
+
+interface MarkerSVGElement extends SVGAttributes<SVGMarkerElement> {
+  'clip-path'?: string
+}
+
+interface MaskSVGElement extends SVGAttributes<SVGMaskElement> {
+  'clip-path'?: string
+}
+
+interface PathSVGElement extends SVGAttributes<SVGPathElement> {
+  'clip-path'?: string
+}
+
+interface PatternSVGElement extends SVGAttributes<SVGPatternElement> {
+  'clip-path'?: string
+}
+
+interface PolygonSVGElement extends SVGAttributes<SVGPolygonElement> {
+  'clip-path'?: string
+}
+
+interface PolylineSVGElement extends SVGAttributes<SVGPolylineElement> {
+  'clip-path'?: string
+}
+
+interface RectSVGElement extends SVGAttributes<SVGRectElement> {
+  'clip-path'?: string
+}
+
+interface StopSVGElement extends SVGAttributes<SVGStopElement> {
+  'stop-color'?: string
+}
+
+interface SvgSVGElement extends SVGAttributes<SVGSVGElement> {
+  'clip-path'?: string
+}
+
+interface SymbolSVGElement extends SVGAttributes<SVGSymbolElement> {
+  'clip-path'?: string
+}
+
+interface TextSVGElement extends SVGAttributes<SVGTextElement> {
+  'clip-path'?: string
+}
+
+interface UseSVGElement extends SVGAttributes<SVGUseElement> {
+  'clip-path'?: string
+}
+
 declare global {
   namespace JSX {
     type Element = HTMLElement | DocumentFragment | Text | Node | SVGElement
@@ -1226,66 +1556,65 @@ declare global {
       wbr: HTMLAttributes<HTMLElement>
       webview: WebViewHTMLAttributes
 
-      // TODO:
-      animate: any
-      animateMotion: any
-      animateTransform: any
-      circle: any
-      clipPath: any
-      defs: any
-      desc: any
-      ellipse: any
-      feBlend: any
-      feColorMatrix: any
-      feComponentTransfer: any
-      feComposite: any
-      feConvolveMatrix: any
-      feDiffuseLighting: any
-      feDisplacementMap: any
-      feDistantLight: any
-      feDropShadow: any
-      feFlood: any
-      feFuncA: any
-      feFuncB: any
-      feFuncG: any
-      feFuncR: any
-      feGaussianBlur: any
-      feImage: any
-      feMerge: any
-      feMergeNode: any
-      feMorphology: any
-      feOffset: any
-      fePointLight: any
-      feSpecularLighting: any
-      feSpotLight: any
-      feTile: any
-      feTurbulence: any
-      filter: any
-      foreignObject: any
-      g: any
-      image: any
-      line: any
-      linearGradient: any
-      marker: any
-      mask: any
-      metadata: any
-      mpath: any
-      path: any
-      pattern: any
-      polygon: any
-      polyline: any
-      radialGradient: any
-      rect: any
-      set: any
-      stop: any
-      svg: any
-      switch: any
-      symbol: any
-      text: any
-      textPath: any
-      tspan: any
-      use: any
-      view: any
+      animate: SVGAttributes<SVGAnimateElement>
+      animateMotion: SVGAttributes<SVGAnimateMotionElement>
+      animateTransform: SVGAttributes<SVGAnimateElement>
+      circle: CircleSVGElement
+      clipPath: ClipPathSVGElement
+      defs: SVGAttributes<SVGDefsElement>
+      desc: SVGAttributes<SVGDescElement>
+      ellipse: EllipseSVGElement
+      feBlend: SVGAttributes<SVGFEBlendElement>
+      feColorMatrix: SVGAttributes<SVGFEColorMatrixElement>
+      feComponentTransfer: SVGAttributes<SVGFEComponentTransferElement>
+      feComposite: SVGAttributes<SVGFECompositeElement>
+      feConvolveMatrix: SVGAttributes<SVGFEConvolveMatrixElement>
+      feDiffuseLighting: SVGAttributes<SVGFEDiffuseLightingElement>
+      feDisplacementMap: SVGAttributes<SVGFEDisplacementMapElement>
+      feDistantLight: SVGAttributes<SVGFEDistantLightElement>
+      feDropShadow: SVGAttributes<SVGFEDropShadowElement>
+      feFlood: SVGAttributes<SVGFEFloodElement>
+      feFuncA: SVGAttributes<SVGFEFuncAElement>
+      feFuncB: SVGAttributes<SVGFEFuncBElement>
+      feFuncG: SVGAttributes<SVGFEFuncGElement>
+      feFuncR: SVGAttributes<SVGFEFuncRElement>
+      feGaussianBlur: SVGAttributes<SVGFEGaussianBlurElement>
+      feImage: SVGAttributes<SVGFEImageElement>
+      feMerge: SVGAttributes<SVGFEMergeElement>
+      feMergeNode: SVGAttributes<SVGFEMergeNodeElement>
+      feMorphology: SVGAttributes<SVGFEMorphologyElement>
+      feOffset: SVGAttributes<SVGFEOffsetElement>
+      fePointLight: SVGAttributes<SVGFEPointLightElement>
+      feSpecularLighting: SVGAttributes<SVGFESpecularLightingElement>
+      feSpotLight: SVGAttributes<SVGFESpotLightElement>
+      feTile: SVGAttributes<SVGFETileElement>
+      feTurbulence: SVGAttributes<SVGFETurbulenceElement>
+      filter: SVGAttributes<SVGFilterElement>
+      foreignObject: SVGAttributes<SVGForeignObjectElement>
+      g: GSVGElement
+      image: ImageSVGElement
+      line: LineSVGElement
+      linearGradient: SVGAttributes<SVGLinearGradientElement>
+      marker: MarkerSVGElement
+      mask: MaskSVGElement
+      metadata: SVGAttributes<SVGMetadataElement>
+      mpath: SVGAttributes<SVGMPathElement>
+      path: PathSVGElement
+      pattern: PatternSVGElement
+      polygon: PolygonSVGElement
+      polyline: PolylineSVGElement
+      radialGradient: SVGAttributes<SVGRadialGradientElement>
+      rect: RectSVGElement
+      set: SVGAttributes<SVGSetElement>
+      stop: StopSVGElement
+      svg: SvgSVGElement
+      switch: SVGAttributes<SVGSwitchElement>
+      symbol: SymbolSVGElement
+      text: TextSVGElement
+      textPath: SVGAttributes<SVGTextPathElement>
+      tspan: SVGAttributes<SVGTSpanElement>
+      use: UseSVGElement
+      view: SVGAttributes<SVGViewElement>
     }
   }
 }
