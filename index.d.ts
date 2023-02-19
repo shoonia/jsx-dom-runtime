@@ -464,10 +464,8 @@ type AriaRole =
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   innerHTML?: string
   accessKey?: string
-  accesskey?: string
   class?: string
   contentEditable?: Booleanish | 'inherit'
-  contenteditable?: Booleanish | 'inherit'
   contextMenu?: string
   dir?: string
   draggable?: Booleanish
@@ -778,7 +776,7 @@ export type HTMLAttrinuteCORS =
   | 'use-credentials'
   | ''
 
-export type TAutocomplete =
+export type HTMLAutocomplete =
   | 'on'
   | 'off'
   | 'name'
@@ -871,7 +869,6 @@ export interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> 
   target?: '_blank' | '_self' | '_parent' | '_top'
   type?: string
   referrerPolicy?: ReferrerPolicy
-  referrerpolicy?: ReferrerPolicy
 }
 
 interface AudioHTMLAttributes extends MediaHTMLAttributes<HTMLAudioElement> { }
@@ -884,7 +881,6 @@ interface AreaHTMLAttributes extends HTMLAttributes<HTMLAreaElement> {
   hrefLang?: string
   media?: string
   referrerPolicy?: ReferrerPolicy
-  referrerpolicy?: ReferrerPolicy
   rel?: string
   shape?: string
   target?: string
@@ -901,7 +897,6 @@ interface BlockquoteHTMLAttributes extends HTMLAttributes<HTMLElement> {
 
 export interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
   autoFocus?: boolean
-  autofocus?: boolean
   disabled?: boolean
   form?: string
   formAction?: string
@@ -962,8 +957,7 @@ interface FieldsetHTMLAttributes extends HTMLAttributes<HTMLFieldSetElement> {
 export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
   acceptCharset?: string
   action?: string
-  autoComplete?: TAutocomplete
-  autocomplete?: TAutocomplete
+  autocomplete?: HTMLAutocomplete
   encType?: string
   enctype?: string
   method?: string
@@ -991,7 +985,6 @@ export interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> 
   marginWidth?: number
   name?: string
   referrerPolicy?: ReferrerPolicy
-  referrerpolicy?: ReferrerPolicy
   sandbox?: string
   /** @deprecated */
   scrolling?: string
@@ -1005,12 +998,10 @@ export interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> 
 export interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
   alt?: string
   crossOrigin?: HTMLAttrinuteCORS
-  crossorigin?: HTMLAttrinuteCORS
   decoding?: 'async' | 'auto' | 'sync'
   height?: number | string
   loading?: 'eager' | 'lazy'
   referrerPolicy?: ReferrerPolicy
-  referrerpolicy?: ReferrerPolicy
   sizes?: string
   src?: string
   srcSet?: string
@@ -1027,17 +1018,13 @@ interface InsHTMLAttributes extends HTMLAttributes<HTMLModElement> {
 export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   accept?: string
   alt?: string
-  autoComplete?: TAutocomplete
-  autocomplete?: TAutocomplete
+  autocomplete?: HTMLAutocomplete
   autoFocus?: boolean
-  autofocus?: boolean
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
   checked?: boolean
-  crossorigin?: HTMLAttrinuteCORS
   crossOrigin?: HTMLAttrinuteCORS
   disabled?: boolean
   enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
-  enterkeyhint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
   form?: string
   formAction?: string
   formEncType?: string
@@ -1070,7 +1057,6 @@ export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
 
 interface KeygenHTMLAttributes extends HTMLAttributes<HTMLElement> {
   autoFocus?: boolean
-  autofocus?: boolean
   challenge?: string
   disabled?: boolean
   form?: string
@@ -1090,13 +1076,11 @@ interface LiHTMLAttributes extends HTMLAttributes<HTMLLIElement> {
 interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
   as?: string
   crossOrigin?: HTMLAttrinuteCORS
-  crossorigin?: HTMLAttrinuteCORS
   href?: string
   hrefLang?: string
   integrity?: string
   media?: string
   referrerPolicy?: ReferrerPolicy
-  referrerpolicy?: ReferrerPolicy
   rel?: string
   sizes?: string
   type?: string
@@ -1113,11 +1097,8 @@ interface MenuHTMLAttributes extends HTMLAttributes<HTMLElement> {
 
 interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
   autoPlay?: boolean
-  autoplay?: boolean
   controls?: boolean
   controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
-  controlslist?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
-  crossorigin?: HTMLAttrinuteCORS
   crossOrigin?: HTMLAttrinuteCORS
   loop?: boolean
   mediaGroup?: string
@@ -1198,23 +1179,19 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
   async?: boolean
   /** @deprecated */
   charSet?: string
-  crossorigin?: HTMLAttrinuteCORS
   crossOrigin?: HTMLAttrinuteCORS
   defer?: boolean
   integrity?: string
   noModule?: boolean
   nonce?: string
   referrerPolicy?: ReferrerPolicy
-  referrerpolicy?: ReferrerPolicy
   src?: string
   type?: string
 }
 
 interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
-  autoComplete?: TAutocomplete
-  autocomplete?: TAutocomplete
+  autocomplete?: HTMLAutocomplete
   autoFocus?: boolean
-  autofocus?: boolean
   disabled?: boolean
   form?: string
   multiple?: boolean
@@ -1253,10 +1230,8 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
 }
 
 export interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
-  autoComplete?: TAutocomplete
-  autocomplete?: TAutocomplete
+  autocomplete?: HTMLAutocomplete
   autoFocus?: boolean
-  autofocus?: boolean
   cols?: number
   dirName?: string
   disabled?: boolean
@@ -1323,7 +1298,6 @@ interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
   allowFullScreen?: boolean
   allowpopups?: boolean
   autoFocus?: boolean
-  autofocus?: boolean
   autosize?: boolean
   blinkfeatures?: string
   disableblinkfeatures?: string
@@ -1351,7 +1325,6 @@ interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
 
 interface ClipPathSVGElement extends SVGAttributes<SVGClipPathElement> {
   'clip-path'?: string
-  d?: string
 }
 
 interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
@@ -1391,6 +1364,7 @@ interface MaskSVGElement extends SVGAttributes<SVGMaskElement> {
 }
 
 interface PathSVGElement extends SVGAttributes<SVGPathElement> {
+  d?: string
   'clip-path'?: string
   'marker-start'?: string
   'marker-end'?: string
