@@ -467,7 +467,8 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   class?: string
   contentEditable?: Booleanish | 'inherit'
   contextMenu?: string
-  dir?: string
+  // https://html.spec.whatwg.org/multipage/dom.html#the-dir-attribute
+  dir?: 'ltr' | 'rtl' | 'auto'
   draggable?: Booleanish
   hidden?: boolean
   id?: string
@@ -477,7 +478,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   spellcheck?: 'true' | 'false'
   style?: string | CSSProperties
   tabIndex?: number
-  tabindex?: number
   title?: string
   translate?: 'yes' | 'no'
   // Unknown
@@ -493,8 +493,8 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   resource?: string
   typeof?: string
   vocab?: string
-  // Non-standard Attributes
-  autoCapitalize?: string
+  // https://html.spec.whatwg.org/multipage/interaction.html#autocapitalization
+  autoCapitalize?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
   autoCorrect?: string
   autoSave?: string
   color?: string
@@ -512,7 +512,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   * @see https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute
   */
   inputMode?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'
-  inputmode?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'
   /**
   * Specify that a standard HTML element should behave like a defined custom built-in element
   * @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is
