@@ -37,8 +37,8 @@ export function jsx<K extends keyof HTMLElementTagNameMap>(
 
 export { jsx as jsxs, jsx as jsxDEV };
 
-export function Fragment(props: { children?: TChild | TChild[] }): DocumentFragment;
-export function Template(props: { children: string }): DocumentFragment;
+export function Fragment(props: { children?: TChild | TChild[] }): DocumentFragment
+export function Template(props: { children: string }): DocumentFragment
 
 export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> {
   (props: PropsWithChildren<P>): T | null
@@ -48,14 +48,14 @@ export { FunctionComponent as FC };
 export function createRef<T = any>(current?: T): RefObject<T>
 export { createRef as useRef };
 
-export function parseFromString(html: string): DocumentFragment;
+export function parseFromString(html: string): DocumentFragment
 
 export function useText<T extends string>(initContent?: T): readonly [
   Text,
   (text: T) => void
 ]
 
-export function Extend(props: Record<string, (node: HTMLElement, value: any) => void>): void;
+export function Extend(props: Record<string, (node: HTMLElement, value: any) => void>): void
 
 interface CurrentTarget<T> {
   currentTarget: EventTarget & T
@@ -327,7 +327,7 @@ export interface AriaAttributes {
   * Indicates that the element is not editable, but is otherwise operable.
   * @see aria-disabled.
   */
-  'aria-readonly'?: Booleanish;
+  'aria-readonly'?: Booleanish
 
   /**
   * Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified.
@@ -346,7 +346,7 @@ export interface AriaAttributes {
   | 'text removals'
 
   /** Indicates that user input is required on the element before a form may be submitted. */
-  'aria-required'?: Booleanish;
+  'aria-required'?: Booleanish
   /** Defines a human-readable, author-localized description for the role of an element. */
   'aria-roledescription'?: string
   /**
@@ -368,7 +368,7 @@ export interface AriaAttributes {
   * Indicates the current "selected" state of various widgets.
   * @see aria-checked @see aria-pressed.
   */
-  'aria-selected'?: Booleanish;
+  'aria-selected'?: Booleanish
   /**
   * Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
   * @see aria-posinset.
@@ -571,7 +571,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   cursor?: number | string
   cx?: number | string
   cy?: number | string
-  d?: string
   decelerate?: number | string
   descent?: number | string
   diffuseConstant?: number | string
@@ -640,12 +639,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   lightingColor?: number | string
   limitingConeAngle?: number | string
   local?: number | string
-  markerEnd?: string
-  markerHeight?: number | string
-  markerMid?: string
-  markerStart?: string
-  markerUnits?: number | string
-  markerWidth?: number | string
   mask?: string
   maskContentUnits?: number | string
   maskUnits?: number | string
@@ -1351,14 +1344,21 @@ type HTMLWebViewElement = HTMLElement
 
 interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
   'clip-path'?: string
+  'marker-start'?: string
+  'marker-end'?: string
+  'marker-mid'?: string
 }
 
 interface ClipPathSVGElement extends SVGAttributes<SVGClipPathElement> {
   'clip-path'?: string
+  d?: string
 }
 
 interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
   'clip-path'?: string
+  'marker-start'?: string
+  'marker-end'?: string
+  'marker-mid'?: string
 }
 
 interface GSVGElement extends SVGAttributes<SVGGElement> {
@@ -1371,10 +1371,19 @@ interface ImageSVGElement extends SVGAttributes<SVGImageElement> {
 
 interface LineSVGElement extends SVGAttributes<SVGLineElement> {
   'clip-path'?: string
+  'marker-start'?: string
+  'marker-end'?: string
+  'marker-mid'?: string
 }
 
 interface MarkerSVGElement extends SVGAttributes<SVGMarkerElement> {
   'clip-path'?: string
+  markerEnd?: string
+  markerHeight?: number | string
+  markerMid?: string
+  markerStart?: string
+  markerUnits?: number | string
+  markerWidth?: number | string
 }
 
 interface MaskSVGElement extends SVGAttributes<SVGMaskElement> {
@@ -1383,6 +1392,9 @@ interface MaskSVGElement extends SVGAttributes<SVGMaskElement> {
 
 interface PathSVGElement extends SVGAttributes<SVGPathElement> {
   'clip-path'?: string
+  'marker-start'?: string
+  'marker-end'?: string
+  'marker-mid'?: string
 }
 
 interface PatternSVGElement extends SVGAttributes<SVGPatternElement> {
@@ -1391,14 +1403,23 @@ interface PatternSVGElement extends SVGAttributes<SVGPatternElement> {
 
 interface PolygonSVGElement extends SVGAttributes<SVGPolygonElement> {
   'clip-path'?: string
+  'marker-start'?: string
+  'marker-end'?: string
+  'marker-mid'?: string
 }
 
 interface PolylineSVGElement extends SVGAttributes<SVGPolylineElement> {
   'clip-path'?: string
+  'marker-start'?: string
+  'marker-end'?: string
+  'marker-mid'?: string
 }
 
 interface RectSVGElement extends SVGAttributes<SVGRectElement> {
   'clip-path'?: string
+  'marker-start'?: string
+  'marker-end'?: string
+  'marker-mid'?: string
 }
 
 interface StopSVGElement extends SVGAttributes<SVGStopElement> {
@@ -1428,12 +1449,12 @@ declare global {
       | {
         [K in keyof IntrinsicElements]: P extends IntrinsicElements[K]
         ? K
-        : never;
+        : never
       }[keyof IntrinsicElements]
-      | HTMLElement;
+      | HTMLElement
 
-    interface ElementAttributesProperty { props: {}; }
-    interface ElementChildrenAttribute { children: {}; }
+    interface ElementAttributesProperty { props: {} }
+    interface ElementChildrenAttribute { children: {} }
 
     interface IntrinsicAttributes extends Attributes { }
 
