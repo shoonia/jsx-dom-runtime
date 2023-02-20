@@ -4,8 +4,6 @@ import { Properties } from 'csstype';
 
 type Booleanish = boolean | 'true' | 'false'
 
-interface Attributes { }
-
 interface RefObject<T> {
   readonly current: T
 }
@@ -83,7 +81,7 @@ type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
 type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 
-interface DOMAttributes<T> {
+interface DOMAttributes<T> extends JSX.Attributes {
   ref?: RefCallback<T> | RefObject<T>
   children?: TChild | TChild[]
   // Clipboard Events
@@ -1361,9 +1359,10 @@ declare global {
       }[keyof IntrinsicElements]
       | HTMLElement
 
+    interface Attributes { }
+
     interface ElementAttributesProperty { props: {} }
     interface ElementChildrenAttribute { children: {} }
-
     interface IntrinsicAttributes extends Attributes { }
 
     interface IntrinsicElements {

@@ -168,6 +168,26 @@ document.body.append(
 );
 ```
 
+<details>
+  <summary>
+    TypeScript types definition for custom attributes and properties
+  </summary>
+
+```ts
+declare global {
+  namespace JSX {
+    interface Attributes {
+      'x-class'?: string[];
+      'x-dataset'?: Record<string, string>;
+      'x-autofocus'?: number;
+    }
+  }
+}
+
+export {};
+```
+</details>
+
 Result
 
 ```html
