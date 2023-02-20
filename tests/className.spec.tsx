@@ -1,3 +1,5 @@
+import type { FC } from '..';
+
 describe('className / class', () => {
   it('should have a class attribute', () => {
     // @ts-expect-error
@@ -11,7 +13,9 @@ describe('className / class', () => {
   });
 
   it('should have not break function componet props', () => {
-    const App = ({ className }) => <div data-test={className} />;
+    const App: FC<{ className: string }> = ({ className }) => (
+      <div data-test={className} />
+    );
 
     expect(<App className="qa" />).toHaveOuterHTML('<div data-test="qa"></div>');
   });

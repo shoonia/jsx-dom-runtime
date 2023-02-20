@@ -13,7 +13,7 @@ describe('Mouse Events', () => {
 
   it('should fire `click` event', () => {
     const spy = jest.fn();
-    const div = <div onclick={spy} />;
+    const div = <div onclick={spy} /> as HTMLDivElement;
 
     div.click();
 

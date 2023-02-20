@@ -1,4 +1,4 @@
-import { createRef } from '..';
+import { useRef } from '..';
 
 import { Driver } from './e2e.Driver';
 
@@ -6,12 +6,14 @@ const driver = new Driver();
 
 it('should add new items to list by click', () => {
   const List = () => {
-    const List = createRef();
+    const ref = useRef<HTMLUListElement>();
 
     const add = () => {
-      <List.current>
-        <li data-testid="item">item</li>
-      </List.current>;
+      ref.current.append(
+        <li data-testid="item">
+          New Item
+        </li>
+      );
     };
 
     return (
@@ -19,7 +21,7 @@ it('should add new items to list by click', () => {
         <button type="button" onclick={add} data-testid="button">
           add
         </button>
-        <ul ref={List}></ul>
+        <ul ref={ref}></ul>
       </>
     );
   };

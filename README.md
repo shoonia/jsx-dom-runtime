@@ -33,13 +33,11 @@ Add preset to your [`.babelrc`](https://babeljs.io/docs/en/config-files) file.
 import { useRef } from 'jsx-dom-runtime';
 
 const App = () => {
-  const List = useRef();
+  const ref = useRef();
 
   const addItem = () => {
-    // append to the end of the list
-    <List.current>
-      <li>New Item</li>
-    </List.current>
+    // add to the start of the list
+    ref.current.prepend(<li>New Item</li>);
   };
 
   return (
@@ -47,20 +45,18 @@ const App = () => {
       <button type="button" onclick={addItem}>
         Add Item
       </button>
-      <ul ref={List} />
+      <ul ref={ref} />
     </>
   );
 };
 
-// append to the end of the head
-<document.head>
+// add to the end of the head
+document.head.append(
   <link rel="stylesheet" href="/style.css" />
-</document.head>;
+);
 
-// append to the end the the body
-<document.body id="root">
-  <App />
-</document.body>;
+// add to the end the the body
+document.body.append(<App />);
 ```
 
 [Demo](/DEMO)
@@ -81,12 +77,14 @@ const click = () => {
   ref.current.textContent = ++i;
 };
 
-<document.body>
-  <p ref={ref}>0</p>
-  <button type="button" onclick={click}>
-    + 1
-  </button>
-</document.body>;
+document.body.append(
+  <>
+    <p ref={ref}>0</p>
+    <button type="button" onclick={click}>
+      + 1
+    </button>
+  </>
+);
 ```
 
 ### Callback Refs
@@ -102,9 +100,9 @@ const focus = (node) => {
   });
 };
 
-<document.body>
+document.body.append(
   <input type="text" ref={focus} />
-</document.body>;
+);
 ```
 
 ## Text
@@ -114,12 +112,14 @@ import { useText } from 'jsx-dom-runtime';
 
 const [text, setText] = useText('The initial text');
 
-<document.body>
-  <p>{text}</p>
-  <button type="button" onclick={() => setText('Clicked!')}>
-    Click me
-  </button>
-</document.body>;
+document.body.append(
+  <>
+    <p>{text}</p>
+    <button type="button" onclick={() => setText('Clicked!')}>
+      Click me
+    </button>
+  </>
+);
 ```
 
 ### Template
@@ -129,13 +129,13 @@ Get template from string.
 ```js
 import { Template } from 'jsx-dom-runtime';
 
-<document.body>
+document.body.append(
   <Template>
     {`<svg width="24" height="24" aria-hidden="true">
         <path d="M12 12V6h-1v6H5v1h6v6h1v-6h6v-1z"/>
       </svg>`}
   </Template>
-</document.body>
+);
 ```
 
 ## Extend
@@ -159,13 +159,13 @@ Extend({
   },
 });
 
-<document.body>
+document.body.append(
   <input
     x-class={['one', 'two']}
     x-dataset={{ testid: 'test', hook: 'text' }}
     x-autofocus={1000}
   />
-</document.body>;
+);
 ```
 
 Result
@@ -184,10 +184,13 @@ import { properties } from 'jsx-dom-runtime';
 properties.add('innerText');
 properties.add('textContent');
 
-<document.body>
-  <span innerText="Hello" />{', '}
-  <span textContent="World" />
-</document.body>;
+document.body.append(
+  <>
+    <span innerText="Hello" />
+    {', '}
+    <span textContent="World" />
+  </>
+);
 ```
 
 Result
