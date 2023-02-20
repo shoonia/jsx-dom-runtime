@@ -34,9 +34,6 @@ describe('HTMLVideoElement', () => {
     expect(<video autoPlay />).toHaveProperty('autoplay', true);
     expect(<video autoPlay={false} />).not.toHaveAttribute('autoplay');
     expect(<video autoPlay={false} />).toHaveProperty('autoplay', false);
-
-    expect(<video autoplay />).toHaveAttribute('autoplay', '');
-    expect(<video autoplay={false} />).not.toHaveAttribute('autoplay');
   });
 
   it('should have `loop` attributes', () => {
@@ -47,7 +44,6 @@ describe('HTMLVideoElement', () => {
   });
 
   it('should have `controlslist` attributes', () => {
-    expect(<video controlslist="nodownload" />).toHaveAttribute('controlslist', 'nodownload');
     expect(<video controlsList="nofullscreen" />).toHaveAttribute('controlslist', 'nofullscreen');
   });
 

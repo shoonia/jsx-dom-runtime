@@ -15,9 +15,6 @@ describe('Props', () => {
   it('should support `dateTime`', () => {
     expect(<time dateTime="2021-03-16" />).toHaveOuterHTML('<time datetime="2021-03-16"></time>');
     expect(<time dateTime="2021-03-16" />).toHaveProperty('dateTime', '2021-03-16');
-
-    expect(<time datetime="2021-03-16" />).toHaveOuterHTML('<time datetime="2021-03-16"></time>');
-    expect(<time datetime="2021-03-16" />).toHaveProperty('dateTime', '2021-03-16');
   });
 
   it('should have title', () => {
@@ -27,12 +24,10 @@ describe('Props', () => {
 
   it('should have attribute accesskey', () => {
     expect(<p accessKey="s" />).toHaveOuterHTML('<p accesskey="s"></p>');
-    expect(<p accesskey="f" />).toHaveOuterHTML('<p accesskey="f"></p>');
   });
 
   it('should have property accessKey', () => {
     expect(<p accessKey="s" />).toHaveProperty('accessKey', 's');
-    expect(<p accesskey="f" />).toHaveProperty('accessKey', 'f');
   });
 
   it('should have id', () => {
@@ -57,17 +52,9 @@ describe('Props', () => {
   it('should add contentEditable attribute', () => {
     expect(<p contentEditable="true" />).toHaveAttribute('contenteditable', 'true');
     expect(<p contentEditable="false" />).toHaveAttribute('contenteditable', 'false');
-
-    expect(<p contenteditable="true" />).toHaveAttribute('contenteditable', 'true');
-    expect(<p contenteditable="false" />).toHaveAttribute('contenteditable', 'false');
   });
 
   it('should add spellCheck attribute', () => {
-    // @ts-expect-error
-    expect(<p spellCheck="true" />).toHaveAttribute('spellcheck', 'true');
-    // @ts-expect-error
-    expect(<p spellCheck="false" />).toHaveAttribute('spellcheck', 'false');
-
     expect(<p spellcheck="true" />).toHaveAttribute('spellcheck', 'true');
     expect(<p spellcheck="false" />).toHaveAttribute('spellcheck', 'false');
   });

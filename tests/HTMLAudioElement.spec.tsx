@@ -29,9 +29,6 @@ describe('HTMLAudioElement', () => {
     expect(<audio autoPlay />).toHaveProperty('autoplay', true);
     expect(<audio autoPlay={false} />).not.toHaveAttribute('autoplay');
     expect(<audio autoPlay={false} />).toHaveProperty('autoplay', false);
-
-    expect(<audio autoplay />).toHaveAttribute('autoplay', '');
-    expect(<audio autoplay={false} />).not.toHaveAttribute('autoplay');
   });
 
   it('should have `loop` attributes', () => {

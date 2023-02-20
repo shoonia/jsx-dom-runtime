@@ -467,7 +467,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   class?: string
   contentEditable?: Booleanish | 'inherit'
   contextMenu?: string
-  // https://html.spec.whatwg.org/multipage/dom.html#the-dir-attribute
   dir?: 'ltr' | 'rtl' | 'auto'
   draggable?: Booleanish
   hidden?: boolean
@@ -493,7 +492,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   resource?: string
   typeof?: string
   vocab?: string
-  // https://html.spec.whatwg.org/multipage/interaction.html#autocapitalization
   autoCapitalize?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
   autoCorrect?: string
   autoSave?: string
@@ -775,66 +773,7 @@ export type HTMLAttrinuteCORS =
   | 'use-credentials'
   | ''
 
-export type HTMLAutocomplete =
-  | 'on'
-  | 'off'
-  | 'name'
-  | 'honorific-prefix'
-  | 'given-name'
-  | 'additional-name'
-  | 'family-name'
-  | 'honorific-suffix'
-  | 'nickname'
-  | 'username'
-  | 'new-password'
-  | 'current-password'
-  | 'one-time-code'
-  | 'organization-title'
-  | 'organization'
-  | 'street-address'
-  | 'address-line1'
-  | 'address-line2'
-  | 'address-line3'
-  | 'address-level4'
-  | 'address-level3'
-  | 'address-level2'
-  | 'address-level1'
-  | 'country'
-  | 'country-name'
-  | 'postal-code'
-  | 'cc-name'
-  | 'cc-given-name'
-  | 'cc-additional-name'
-  | 'cc-family-name'
-  | 'cc-number'
-  | 'cc-exp'
-  | 'cc-exp-month'
-  | 'cc-exp-year'
-  | 'cc-csc'
-  | 'cc-type'
-  | 'transaction-currency'
-  | 'transaction-amount'
-  | 'language'
-  | 'bday'
-  | 'bday-day'
-  | 'bday-month'
-  | 'bday-year'
-  | 'sex'
-  | 'url'
-  | 'photo'
-  | 'tel'
-  | 'tel-country-code'
-  | 'tel-national'
-  | 'tel-area-code'
-  | 'tel-local'
-  | 'tel-local-prefix'
-  | 'tel-local-suffix'
-  | 'tel-extension'
-  | 'email'
-  | 'impp'
-  | 'webauthn'
-
-type HTMLInputTypeAttribute =
+export type HTMLInputTypeAttribute =
   | 'button'
   | 'checkbox'
   | 'color'
@@ -956,7 +895,7 @@ interface FieldsetHTMLAttributes extends HTMLAttributes<HTMLFieldSetElement> {
 export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
   acceptCharset?: string
   action?: string
-  autocomplete?: HTMLAutocomplete
+  autoComplete?: string
   encType?: string
   enctype?: string
   method?: string
@@ -972,7 +911,6 @@ interface HtmlHTMLAttributes extends HTMLAttributes<HTMLHtmlElement> {
 export interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   allow?: string
   allowFullScreen?: boolean
-  allowfullscreen?: boolean
   allowTransparency?: boolean
   /** @deprecated */
   frameBorder?: number | string
@@ -1017,7 +955,7 @@ interface InsHTMLAttributes extends HTMLAttributes<HTMLModElement> {
 export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   accept?: string
   alt?: string
-  autocomplete?: HTMLAutocomplete
+  autoComplete?: string
   autoFocus?: boolean
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
   checked?: boolean
@@ -1043,7 +981,6 @@ export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   pattern?: string
   placeholder?: string
   readOnly?: boolean
-  readonly?: boolean
   required?: boolean
   size?: number
   src?: string
@@ -1189,7 +1126,7 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
 }
 
 interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
-  autocomplete?: HTMLAutocomplete
+  autoComplete?: string
   autoFocus?: boolean
   disabled?: boolean
   form?: string
@@ -1229,7 +1166,7 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
 }
 
 export interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
-  autocomplete?: HTMLAutocomplete
+  autoComplete?: string
   autoFocus?: boolean
   cols?: number
   dirName?: string
@@ -1240,7 +1177,6 @@ export interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaEleme
   name?: string
   placeholder?: string
   readOnly?: boolean
-  readonly?: boolean
   required?: boolean
   rows?: number
   value?: string | readonly string[] | number
@@ -1271,7 +1207,6 @@ interface ThHTMLAttributes extends HTMLAttributes<HTMLTableHeaderCellElement> {
 
 interface TimeHTMLAttributes extends HTMLAttributes<HTMLElement> {
   dateTime?: string
-  datetime?: string
 }
 
 interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
@@ -1417,7 +1352,7 @@ interface UseSVGElement extends SVGAttributes<SVGUseElement> {
 
 declare global {
   namespace JSX {
-    type Element = HTMLElement | DocumentFragment | Text | Node | SVGElement
+    type Element = HTMLElement | SVGElement
     type ElementType<P = any> =
       | {
         [K in keyof IntrinsicElements]: P extends IntrinsicElements[K]

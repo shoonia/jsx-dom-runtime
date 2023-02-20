@@ -20,7 +20,7 @@ describe('HTMLIFrameElement', () => {
 
   it('should support autocomplete attribute', () => {
     expect(<form autoComplete="on" />).toHaveAttribute('autocomplete', 'on');
-    expect(<form autocomplete="off" />).toHaveAttribute('autocomplete', 'off');
+    expect(<form autoComplete="off" />).toHaveAttribute('autocomplete', 'off');
   });
 
   it('should support enctype attribute', () => {

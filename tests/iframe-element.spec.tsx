@@ -13,10 +13,6 @@ describe('HTMLIFrameElement', () => {
     expect(<iframe allowFullScreen />).toHaveAttribute('allowFullScreen', '');
     expect(<iframe allowFullScreen={true} />).toHaveAttribute('allowFullScreen', '');
     expect(<iframe allowFullScreen={false} />).not.toHaveAttribute('allowFullScreen');
-
-    expect(<iframe allowfullscreen />).toHaveAttribute('allowFullScreen', '');
-    expect(<iframe allowfullscreen={true} />).toHaveAttribute('allowFullScreen', '');
-    expect(<iframe allowfullscreen={false} />).not.toHaveAttribute('allowFullScreen');
   });
 
   it('should set loading', () => {

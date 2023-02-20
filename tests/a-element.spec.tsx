@@ -21,6 +21,5 @@ describe('HTMLAnchorElement', () => {
 
   it('should have the referrerpolicy', () => {
     expect(<a referrerPolicy="origin" />).toHaveOuterHTML('<a referrerpolicy="origin"></a>');
-    expect(<a referrerpolicy="origin" />).toHaveOuterHTML('<a referrerpolicy="origin"></a>');
   });
 });
