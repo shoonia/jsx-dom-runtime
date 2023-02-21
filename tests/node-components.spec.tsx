@@ -75,18 +75,18 @@ describe('Node Components', () => {
     myFragment1.append('myFragment1');
     myDiv.append('myDiv');
 
-    <document.body>
-      {text0}
-      {text1}
-      {myImage}
-      {comment0}
-      {comment1}
-      {myFragment0}
-      {myFragment1}
-      {myDiv}
-    </document.body>;
-
-    expect(document.body).toHaveInnerHTML(
+    expect(
+      <div>
+        {text0}
+        {text1}
+        {myImage}
+        {comment0}
+        {comment1}
+        {myFragment0}
+        {myFragment1}
+        {myDiv}
+      </div>
+    ).toHaveInnerHTML(
       'tt<img width="5" height="5"><!--x--><!--y-->myFragment0myFragment1<div>myDiv</div>',
     );
   });
