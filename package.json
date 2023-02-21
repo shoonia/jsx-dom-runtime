@@ -25,11 +25,7 @@
       "import": "./jsx-runtime/index.js",
       "default": "./jsx-runtime/index.js"
     },
-    "./babel-preset": {
-      "require": "./babel-preset/index.cjs",
-      "import": "./babel-preset/index.js",
-      "default": "./babel-preset/index.js"
-    },
+    "./babel-preset": "./babel-preset/index.cjs",
     "./package.json": "./package.json"
   },
   "sideEffects": false,
@@ -56,8 +52,8 @@
     "@testing-library/dom": "^9.0.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@types/testing-library__jest-dom": "^5.14.5",
-    "@typescript-eslint/eslint-plugin": "^5.52.0",
-    "@typescript-eslint/parser": "^5.52.0",
+    "@typescript-eslint/eslint-plugin": "^5.53.0",
+    "@typescript-eslint/parser": "^5.53.0",
     "babel-jest": "^29.4.3",
     "eslint": "^8.34.0",
     "fs-extra": "^11.1.0",

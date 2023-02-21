@@ -1,6 +1,6 @@
 {
   "presets": [
     "@babel/preset-typescript",
-    "./babel-preset/index.js"
+    "./babel-preset/index.cjs"
   ]
 }

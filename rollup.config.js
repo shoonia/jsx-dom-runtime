@@ -10,11 +10,6 @@ export default [
     input: 'src/babel/index.js',
     output: [
       {
-        file: './babel-preset/index.js',
-        exports: 'default',
-        format: 'es',
-      },
-      {
         file: './babel-preset/index.cjs',
         exports: 'default',
         format: 'cjs',
