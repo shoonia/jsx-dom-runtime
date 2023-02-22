@@ -1,6 +1,6 @@
 {
   "name": "jsx-dom-runtime",
-  "version": "0.27.0",
+  "version": "0.28.0",
   "description": "A tiny in 500 bytes library to JSX syntax templates for DOM",
   "type": "module",
   "main": "jsx-runtime/index.cjs",
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.21.0",
-    "@evilmartians/lefthook": "^1.2.9",
+    "@evilmartians/lefthook": "^1.3.0",
     "@jest/globals": "^29.4.3",
     "@rollup/plugin-babel": "^6.0.3",
     "@size-limit/preset-small-lib": "^8.2.4",
