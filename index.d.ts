@@ -48,7 +48,7 @@ export { createRef as useRef };
 
 export function parseFromString(html: string): DocumentFragment
 
-export function useText<T extends string>(initContent?: T): readonly [
+export function useText<T = string>(initContent?: T): readonly [
   Text,
   (text: T) => void
 ]

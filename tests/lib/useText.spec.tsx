@@ -14,7 +14,7 @@ describe('useText', () => {
   });
 
   it('should update text', () => {
-    const [text, setText] = useText<string>('old');
+    const [text, setText] = useText('old');
 
     <document.body>
       {text}
