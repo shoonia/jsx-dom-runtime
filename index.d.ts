@@ -1346,6 +1346,7 @@ interface TextSVGElement extends SVGAttributes<SVGTextElement> {
 
 interface UseSVGElement extends SVGAttributes<SVGUseElement> {
   'clip-path'?: string
+  href?: string
 }
 
 declare global {
