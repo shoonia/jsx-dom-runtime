@@ -562,8 +562,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   contentScriptType?: number | string
   contentStyleType?: number | string
   cursor?: number | string
-  cx?: number | string
-  cy?: number | string
   decelerate?: number | string
   descent?: number | string
   diffuseConstant?: number | string
@@ -598,8 +596,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   fontWeight?: number | string
   format?: number | string
   from?: number | string
-  fx?: number | string
-  fy?: number | string
   g1?: number | string
   g2?: number | string
   glyphName?: number | string
@@ -627,7 +623,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   keyPoints?: number | string
   keySplines?: number | string
   keyTimes?: number | string
-  lengthAdjust?: number | string
   letterSpacing?: number | string
   lightingColor?: number | string
   limitingConeAngle?: number | string
@@ -662,7 +657,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   preserveAlpha?: number | string
   preserveAspectRatio?: string
   primitiveUnits?: number | string
-  r?: number | string
   radius?: number | string
   refX?: number | string
   refY?: number | string
@@ -674,8 +668,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   restart?: number | string
   result?: string
   rotate?: number | string
-  rx?: number | string
-  ry?: number | string
   scale?: number | string
   seed?: number | string
   shapeRendering?: number | string
@@ -710,7 +702,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   targetY?: number | string
   textAnchor?: string
   textDecoration?: number | string
-  textLength?: number | string
   textRendering?: number | string
   to?: number | string
   transform?: string
@@ -1249,6 +1240,9 @@ interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
 type HTMLWebViewElement = HTMLElement
 
 interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
+  cx?: number | string
+  cy?: number | string
+  r?: number | string
   'clip-path'?: string
   'marker-start'?: string
   'marker-end'?: string
@@ -1260,6 +1254,10 @@ interface ClipPathSVGElement extends SVGAttributes<SVGClipPathElement> {
 }
 
 interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
+  rx?: number | string
+  ry?: number | string
+  cx?: number | string
+  cy?: number | string
   'clip-path'?: string
   'marker-start'?: string
   'marker-end'?: string
@@ -1321,7 +1319,18 @@ interface PolylineSVGElement extends SVGAttributes<SVGPolylineElement> {
   'marker-mid'?: string
 }
 
+interface RadialGradientSVGElement extends SVGAttributes<SVGRadialGradientElement> {
+  cx?: number | string
+  cy?: number | string
+  r?: number | string
+  fx?: number | string
+  fy?: number | string
+  fr?: string
+}
+
 interface RectSVGElement extends SVGAttributes<SVGRectElement> {
+  rx?: number | string
+  ry?: number | string
   'clip-path'?: string
   'marker-start'?: string
   'marker-end'?: string
@@ -1341,12 +1350,24 @@ interface SymbolSVGElement extends SVGAttributes<SVGSymbolElement> {
 }
 
 interface TextSVGElement extends SVGAttributes<SVGTextElement> {
+  textLength?: number | string
+  lengthAdjust?: number | string
   'clip-path'?: string
 }
 
+interface TextPathSVGElement extends SVGAttributes<SVGTextPathElement> {
+  textLength?: number | string
+  lengthAdjust?: number | string
+}
+
+interface TSpanSVGElement extends SVGAttributes<SVGTSpanElement> {
+  textLength?: number | string
+  lengthAdjust?: number | string
+}
+
 interface UseSVGElement extends SVGAttributes<SVGUseElement> {
-  'clip-path'?: string
   href?: string
+  'clip-path'?: string
 }
 
 declare global {
@@ -1532,7 +1553,7 @@ declare global {
       pattern: PatternSVGElement
       polygon: PolygonSVGElement
       polyline: PolylineSVGElement
-      radialGradient: SVGAttributes<SVGRadialGradientElement>
+      radialGradient: RadialGradientSVGElement
       rect: RectSVGElement
       set: SVGAttributes<SVGSetElement>
       stop: StopSVGElement
@@ -1540,8 +1561,8 @@ declare global {
       switch: SVGAttributes<SVGSwitchElement>
       symbol: SymbolSVGElement
       text: TextSVGElement
-      textPath: SVGAttributes<SVGTextPathElement>
-      tspan: SVGAttributes<SVGTSpanElement>
+      textPath: TextPathSVGElement
+      tspan: TSpanSVGElement
       use: UseSVGElement
       view: SVGAttributes<SVGViewElement>
     }
