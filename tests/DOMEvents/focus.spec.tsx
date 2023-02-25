@@ -31,7 +31,7 @@ describe('Focus Events', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should add `focusin` handler', () => {
+  it('should add `focusout` handler', () => {
     const spy = jest.fn();
     const input = <input ref={(i: HTMLInputElement) => {
       i.addEventListener('focusout', spy);
