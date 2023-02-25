@@ -19,4 +19,26 @@ describe('Focus Events', () => {
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
+
+  it('should add `focusin` handler', () => {
+    const spy = jest.fn();
+    const input = <input ref={(i: HTMLInputElement) => {
+      i.addEventListener('focusin', spy);
+    }} />;
+
+    fireEvent.focusIn(input);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `focusin` handler', () => {
+    const spy = jest.fn();
+    const input = <input ref={(i: HTMLInputElement) => {
+      i.addEventListener('focusout', spy);
+    }} />;
+
+    fireEvent.focusOut(input);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 });
