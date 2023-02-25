@@ -1,3 +1,4 @@
+import transformReactJsx from '@babel/plugin-transform-react-jsx';
 import { declarePreset } from '@babel/helper-plugin-utils';
 import { jsxPlugin } from './jsxPlugin';
 
@@ -11,7 +12,7 @@ const index = declarePreset((api, {
     plugins: [
       jsxPlugin,
       [
-        '@babel/plugin-transform-react-jsx',
+        transformReactJsx,
         {
           runtime: 'automatic',
           importSource: 'jsx-dom-runtime',
