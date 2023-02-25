@@ -676,7 +676,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   specularConstant?: number | string
   specularExponent?: number | string
   speed?: number | string
-  spreadMethod?: string
+  spreadMethod?: 'pad' | 'reflect' | 'repeat'
   startOffset?: number | string
   stdDeviation?: number | string
   stemh?: number | string
