@@ -27,7 +27,7 @@
   },
   "targets": {
     "default": {
-      "publicUrl": "https://shoonia.github.io/jsx-dom-runtime/"
+      "publicUrl": "/jsx-dom-runtime/"
     }
   },
   "license": "MIT"
