@@ -221,7 +221,20 @@ Result
 
 ## TypeScript Support
 
-Add compile options to your [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) file.
+TypeScript is able used only for type checking. The library doesn't support compilation with TypeScript. Use [`@babel/preset-typescript`](https://babeljs.io/docs/babel-preset-typescript)
+
+**.babelrc**
+
+```json
+{
+  "presets": [
+    "@babel/typescript",
+    "jsx-dom-runtime/babel-preset"
+  ]
+}
+```
+
+To provide type checking add [`tsconfig.json`](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html) file to your project:
 
 **tsconfig.json**
 
@@ -231,12 +244,14 @@ Add compile options to your [`tsconfig.json`](https://www.typescriptlang.org/doc
     "jsx": "react-jsx",
     "jsxImportSource": "jsx-dom-runtime",
     "moduleResolution": "node",
+    "noEmit": true,
     "lib": [
       "DOM"
     ]
   }
 }
 ```
+
 Example:
 
 **src/index.tsx**
