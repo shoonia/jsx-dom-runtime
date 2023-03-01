@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 
-import { createRef } from '../..';
+import { useRef } from '../..';
 
 describe('ref', () => {
   it('should run callback ref when it is a function', () => {
@@ -13,7 +13,7 @@ describe('ref', () => {
   });
 
   it('should set up ref.current when it is an object', () => {
-    const ref = createRef();
+    const ref = useRef();
 
     const node = <td ref={ref} />;
 

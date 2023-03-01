@@ -1,4 +1,4 @@
-import { createRef } from '..';
+import { useRef } from '..';
 
 describe('HTMLTemplateElement', () => {
   it('should append child node', () => {
@@ -20,7 +20,7 @@ describe('HTMLTemplateElement', () => {
   });
 
   it('should get a child with querySelector with ref', () => {
-    const ref = createRef<HTMLTemplateElement>();
+    const ref = useRef<HTMLTemplateElement>();
 
     <template ref={ref}>
       <p>text here</p>
@@ -42,7 +42,7 @@ describe('HTMLTemplateElement', () => {
   });
 
   it('should update child node by ref', () => {
-    const I = createRef();
+    const I = useRef();
 
     const Temp = (
       <template>

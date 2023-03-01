@@ -26,8 +26,6 @@ type TChild =
 
 type PropsWithChildren<P> = P & { children?: TChild | TChild[] }
 
-export const properties: Set<string>;
-
 export function jsx<K extends keyof HTMLElementTagNameMap>(
   type: K | HTMLElementTagNameMap[K],
   props: JSX.IntrinsicElements[K],
@@ -35,25 +33,23 @@ export function jsx<K extends keyof HTMLElementTagNameMap>(
 
 export { jsx as jsxs, jsx as jsxDEV };
 
-export function Fragment(props: { children?: TChild | TChild[] }): DocumentFragment
-export function Template(props: { children: string }): DocumentFragment
-
 export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> {
   (props: PropsWithChildren<P>): T | null
 }
 export { FunctionComponent as FC };
 
-export function createRef<T = any>(current?: T): RefObject<T>
-export { createRef as useRef };
+export const properties: Set<string>;
 
-export function parseFromString(html: string): DocumentFragment
-
+export function useRef<T = any>(current?: T): RefObject<T>
 export function useText<T = string>(initContent?: T): readonly [
   Text,
   (text: T) => void
 ]
 
 export function Extend(props: Record<string, (node: HTMLElement, value: any) => void>): void
+export function parseFromString(html: string): DocumentFragment
+export function Fragment(props: { children?: TChild | TChild[] }): DocumentFragment
+export function Template(props: { children: string }): DocumentFragment
 
 interface CurrentTarget<T> {
   currentTarget: EventTarget & T

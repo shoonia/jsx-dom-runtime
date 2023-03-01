@@ -1,3 +1,3 @@
-export let createRef = (current) => {
+export let useRef = (current) => {
   return Object.seal({ current });
 };
