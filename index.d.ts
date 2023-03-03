@@ -1265,6 +1265,7 @@ interface GSVGElement extends SVGAttributes<SVGGElement> {
 }
 
 interface ImageSVGElement extends SVGAttributes<SVGImageElement> {
+  href?: string
   'clip-path'?: string
 }
 
