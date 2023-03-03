@@ -2,8 +2,8 @@ import { isSvgTag, maybeSvg } from './tags/svg';
 import { isHtmlTag } from './tags/html';
 import { isDOMEvent } from './tags/dom';
 
-export const jsxPlugin = (babel) => {
-  const { types: t } = babel;
+export const jsxPlugin = (api) => {
+  const { types: t } = api;
 
   const isSvgElement = (path) => {
     return isSvgTag(path.node.name.name) ||
@@ -32,7 +32,7 @@ export const jsxPlugin = (babel) => {
         const index = xlinkHref(attrs);
 
         if (index > -1) {
-          const attr = attrs.splice(index, 1).pop();
+          const attr = attrs.splice(index, 1)[0];
 
           attrs.splice(index, 0,
             t.jSXAttribute(
