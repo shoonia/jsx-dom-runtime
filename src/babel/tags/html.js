@@ -14,6 +14,14 @@ const tags = new Set([
   'summary', 'sup', 'table', 'template', 'tbody', 'td', 'textarea',
   'tfoot', 'th', 'thead', 'time', 'title', 'tr', 'track', 'u', 'ul',
   'var', 'video', 'wbr', 'webview',
+  // Deprecated
+  'acronym', 'applet', 'bgsound', 'big', 'blink', 'center', 'dir', 'font',
+  'frame', 'frameset', 'keygen', 'marquee', 'nobr', 'noembed', 'noframes',
+  'param', 'plaintext', 'rb', 'rtc', 'spacer', 'strike', 'tt', 'xmp',
+  // Non-standard
+  'content', 'image', 'menuitem', 'shadow',
+  // Experimental
+  'portal',
 ]);
 
 export const isHtmlTag = (tag) => tags.has(tag);
