@@ -1369,7 +1369,7 @@ interface UseSVGElement extends SVGAttributes<SVGUseElement> {
 
 declare global {
   namespace JSX {
-    type Element = HTMLElement | SVGElement
+    type Element = HTMLElement | SVGElement | DocumentFragment
     type ElementType<P = any> =
       | {
         [K in keyof IntrinsicElements]: P extends IntrinsicElements[K]
