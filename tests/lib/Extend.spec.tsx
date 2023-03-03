@@ -40,7 +40,7 @@ describe('Extend', () => {
 
   it('should set muted value', () => {
     Extend({
-      plugin_5(node, value) {
+      plugin_5(node: HTMLAudioElement, value) {
         node.muted = value;
       }
     });
