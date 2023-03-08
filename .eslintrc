@@ -8,8 +8,7 @@
   ],
   "ignorePatterns": [
     "babel-preset/**",
-    "jsx-runtime/**",
-    "jsx-dev-runtime/**"
+    "jsx-runtime/**"
   ],
   "env": {
     "es6": true,

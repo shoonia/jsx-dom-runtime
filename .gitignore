@@ -1,6 +1,5 @@
 node_modules/
 babel-preset/
-jsx-dev-runtime/
 jsx-runtime/
 dist/
 __test/

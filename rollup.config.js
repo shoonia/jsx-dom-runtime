@@ -31,7 +31,7 @@ export default [
     ],
     plugins: [
       babel({
-        extensions: ['.js', '.ts', '.jsx'],
+        extensions: ['.js', '.ts'],
         babelHelpers: 'bundled',
         presets: [
           '@babel/preset-typescript',

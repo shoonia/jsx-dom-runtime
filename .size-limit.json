@@ -8,5 +8,15 @@
     "path": "jsx-runtime/index.js",
     "import": "{ jsx, Fragment }",
     "limit": "484 B"
+  },
+  {
+    "path": "jsx-runtime/index.js",
+    "import": "{ Fragment }",
+    "limit": "108 B"
+  },
+  {
+    "path": "jsx-runtime/index.js",
+    "import": "{ appendChildren }",
+    "limit": "69 B"
   }
 ]
