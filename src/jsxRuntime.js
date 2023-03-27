@@ -50,7 +50,7 @@ export let jsx = (node, props) => {
       }
     } else if (properties.has(key) || key.startsWith('on') && key in node) {
       node[key] = val;
-    } else if (val != null && (typeof val !== 'boolean' || /^(ari|dat)a-/.test(key))) {
+    } else if (val != null && (typeof val !== 'boolean' || key[4] === '-')) {
       node.setAttribute(key, val);
     } else if (val) {
       node.setAttribute(key, '');
