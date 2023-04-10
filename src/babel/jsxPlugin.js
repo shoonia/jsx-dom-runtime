@@ -41,12 +41,13 @@ export const jsxPlugin = (api) => {
             ));
         }
 
-        attrs.push(
-          t.jSXAttribute(
-            t.jSXIdentifier('__ns'),
-            t.JSXExpressionContainer(t.numericLiteral(1)),
-          ),
-        );
+        if (attrs.every((a) => a.name.name !== '__ns')) {
+          attrs.push(
+            t.jSXAttribute(
+              t.jSXIdentifier('__ns'),
+              t.JSXExpressionContainer(t.numericLiteral(1)),
+            ));
+        }
       },
       JSXAttribute(path) {
         const attr = path.node.name;
