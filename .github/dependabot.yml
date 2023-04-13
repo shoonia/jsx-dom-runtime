@@ -5,3 +5,9 @@ updates:
     schedule:
       interval: weekly
       day: monday
+
+  - package-ecosystem: npm
+    directory: /DEMO
+    schedule:
+      interval: weekly
+      day: monday
