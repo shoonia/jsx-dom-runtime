@@ -1,9 +1,9 @@
-name: Build & Deploy DEMO
+name: Dependabot DEMO
 
 on:
-  push:
+  pull_request:
     branches:
-      - master
+      - 'dependabot/npm_and_yarn/DEMO/**'
 
 defaults:
   run:
@@ -24,10 +24,3 @@ jobs:
 
     - run: npm ci
     - run: npm run build
-
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        publish_branch: gh-pages
-        publish_dir: ./DEMO/dist
