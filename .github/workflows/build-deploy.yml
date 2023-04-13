@@ -1,10 +1,13 @@
-name: Tests
+name: Build & Deploy DEMO
 
 on:
   push:
     branches:
       - master
-  pull_request:
+
+defaults:
+  run:
+    working-directory: ./DEMO
 
 jobs:
   tests:
@@ -20,8 +23,11 @@ jobs:
         cache: npm
 
     - run: npm ci
-    - run: npm run lint
-    - run: npm run types
     - run: npm run build
-    - run: npm test
-    - run: npm run size
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        publish_branch: gh-pages
+        publish_dir: ./DEMO/dist
