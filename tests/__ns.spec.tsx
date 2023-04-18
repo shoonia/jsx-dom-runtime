@@ -24,4 +24,10 @@ describe('__ns', () => {
     expect(<a __ns={0} />).toHaveProperty(prop, HTML);
     expect(<a __ns={1} />).toHaveProperty(prop, SVG);
   });
+
+  it('should have SVG `namespaceURI` for `script` tag', () => {
+    expect(<script />).toHaveProperty(prop, HTML);
+    expect(<script __ns={0} />).toHaveProperty(prop, HTML);
+    expect(<script __ns={1} />).toHaveProperty(prop, SVG);
+  });
 });
