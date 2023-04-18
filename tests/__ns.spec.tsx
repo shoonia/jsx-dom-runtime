@@ -30,4 +30,36 @@ describe('__ns', () => {
     expect(<script __ns={0} />).toHaveProperty(prop, HTML);
     expect(<script __ns={1} />).toHaveProperty(prop, SVG);
   });
+
+  it('it should detect namespace from parent tag for `title` tag', () => {
+    const div = <div><title /></div>;
+    const svg = <svg><title /></svg>;
+
+    expect(div.firstChild).toHaveProperty(prop, HTML);
+    expect(svg.firstChild).toHaveProperty(prop, SVG);
+  });
+
+  it('it should detect namespace from parent tag for `style` tag', () => {
+    const div = <div><style /></div>;
+    const svg = <svg><style /></svg>;
+
+    expect(div.firstChild).toHaveProperty(prop, HTML);
+    expect(svg.firstChild).toHaveProperty(prop, SVG);
+  });
+
+  it('it should detect namespace from parent tag for `a` tag', () => {
+    const div = <div><a /></div>;
+    const svg = <svg><a /></svg>;
+
+    expect(div.firstChild).toHaveProperty(prop, HTML);
+    expect(svg.firstChild).toHaveProperty(prop, SVG);
+  });
+
+  it('it should detect namespace from parent tag for `script` tag', () => {
+    const div = <div><script /></div>;
+    const svg = <svg><script /></svg>;
+
+    expect(div.firstChild).toHaveProperty(prop, HTML);
+    expect(svg.firstChild).toHaveProperty(prop, SVG);
+  });
 });
