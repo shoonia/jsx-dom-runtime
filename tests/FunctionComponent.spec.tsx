@@ -1,6 +1,8 @@
+import { FC } from '..';
+
 describe('FunctionComponent', () => {
   it('should support function component', () => {
-    const Input = () => (
+    const Input: FC = () => (
       <input type="text" />
     );
 
@@ -8,7 +10,7 @@ describe('FunctionComponent', () => {
   });
 
   it('should render children nodes as text', () => {
-    const Text = ({ children }) => (
+    const Text: FC = ({ children }) => (
       <p>{children}</p>
     );
 
@@ -16,7 +18,7 @@ describe('FunctionComponent', () => {
   });
 
   it('should render children nodes', () => {
-    const Text = ({ children }) => (
+    const Text: FC = ({ children }) => (
       <p>{children}</p>
     );
 
@@ -28,7 +30,11 @@ describe('FunctionComponent', () => {
   });
 
   it('should support children node and props', () => {
-    const Text = ({ id, children }) => (
+    interface Props {
+      id: string;
+    }
+
+    const Text: FC<Props> = ({ id, children }) => (
       <p id={id}>{children}</p>
     );
 
