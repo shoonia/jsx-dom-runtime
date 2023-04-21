@@ -487,7 +487,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   resource?: string
   typeof?: string
   vocab?: string
-  autoCapitalize?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
+  autocapitalize?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
   autoCorrect?: string
   autoSave?: string
   color?: string
