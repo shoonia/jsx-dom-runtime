@@ -1,4 +1,4 @@
-describe('HTMLIFrameElement', () => {
+describe('HTMLFormElement', () => {
   it('should set src', () => {
     expect(
       <form method="GET" action="/submit">
@@ -19,12 +19,17 @@ describe('HTMLIFrameElement', () => {
   });
 
   it('should support autocomplete attribute', () => {
-    expect(<form autoComplete="on" />).toHaveAttribute('autocomplete', 'on');
-    expect(<form autoComplete="off" />).toHaveAttribute('autocomplete', 'off');
+    expect(<form autocomplete="on" />).toHaveAttribute('autocomplete', 'on');
+    expect(<form autocomplete="off" />).toHaveAttribute('autocomplete', 'off');
   });
 
   it('should support enctype attribute', () => {
     expect(<form enctype="multipart/form-data" />).toHaveAttribute('enctype', 'multipart/form-data');
-    expect(<form encType="multipart/form-data" />).toHaveAttribute('enctype', 'multipart/form-data');
+    expect(<form enctype="multipart/form-data" />).toHaveProperty('enctype', 'multipart/form-data');
+  });
+
+  it('should support enctype attribute', () => {
+    expect(<form method="GET" />).toHaveProperty('method', 'get');
+    expect(<form method="GET" />).toHaveAttribute('method', 'GET');
   });
 });

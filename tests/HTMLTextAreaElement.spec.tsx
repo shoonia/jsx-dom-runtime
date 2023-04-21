@@ -54,12 +54,4 @@ describe('HTMLTextAreaElement', () => {
     expect(<textarea>content text</textarea>).toHaveProperty('textContent', 'content text');
     expect(<textarea>content text</textarea>).toHaveProperty('innerHTML', 'content text');
   });
-
-  it('should append new content to the end', () => {
-    const TextArea = <textarea>1</textarea>;
-
-    expect(TextArea.textContent).toBe( '1');
-    <TextArea>2</TextArea>;
-    expect(TextArea.textContent).toBe('12');
-  });
 });

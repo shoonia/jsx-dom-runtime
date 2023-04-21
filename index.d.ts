@@ -882,8 +882,7 @@ interface FieldsetHTMLAttributes extends HTMLAttributes<HTMLFieldSetElement> {
 export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
   acceptCharset?: string
   action?: string
-  autoComplete?: string
-  encType?: string
+  autocomplete?: string
   enctype?: string
   method?: string
   name?: string
@@ -942,7 +941,7 @@ interface InsHTMLAttributes extends HTMLAttributes<HTMLModElement> {
 export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   accept?: string
   alt?: string
-  autoComplete?: string
+  autocomplete?: string
   autoFocus?: boolean
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
   checked?: boolean
@@ -1113,7 +1112,7 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
 }
 
 interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
-  autoComplete?: string
+  autocomplete?: string
   autoFocus?: boolean
   disabled?: boolean
   form?: string
@@ -1153,7 +1152,7 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
 }
 
 export interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
-  autoComplete?: string
+  autocomplete?: string
   autoFocus?: boolean
   cols?: number
   dirName?: string
