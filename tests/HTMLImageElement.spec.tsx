@@ -1,21 +1,25 @@
 describe('HTMLImageElement', () => {
-  it('should set src', () => {
-    expect(<img src="/url" />).toHaveOuterHTML('<img src="/url">');
+  it('should have `src` attribute', () => {
+    expect(<img src="/url" />).toHaveProperty('src', 'http://localhost/url');
   });
 
   it('should set alt', () => {
     expect(<img alt="image test" />).toHaveOuterHTML('<img alt="image test">');
   });
 
-  it('should set width and height', () => {
-    const img = <img width={123} height={123} />;
+  it('should have `width` attribute', () => {
+    expect(<img width={123} />).toHaveProperty('width', 123);
+    expect(<img width={123} />).toHaveAttribute('width', '123');
+  });
 
-    expect(img).toHaveProperty('width', 123);
-    expect(img).toHaveProperty('height', 123);
+  it('should have `height` attribute', () => {
+    expect(<img height={123} />).toHaveProperty('height', 123);
+    expect(<img height={123} />).toHaveAttribute('height', '123');
   });
 
   it('should add srcset', () => {
     expect(<img srcset="/img.pmg 2x" />).toHaveProperty('srcset', '/img.pmg 2x');
+    expect(<img srcset="/img.pmg 2x" />).toHaveAttribute('srcset', '/img.pmg 2x');
   });
 
   it('should add sizes', () => {
@@ -27,6 +31,7 @@ describe('HTMLImageElement', () => {
 
   it('should add crossorigin', () => {
     expect(<img crossOrigin="anonymous" />).toHaveProperty('crossOrigin', 'anonymous');
+    expect(<img crossOrigin="anonymous" />).toHaveAttribute('crossOrigin', 'anonymous');
   });
 
   it('should add loading', () => {
@@ -39,5 +44,10 @@ describe('HTMLImageElement', () => {
 
   it('should have the referrerpolicy', () => {
     expect(<img referrerPolicy="origin" />).toHaveOuterHTML('<img referrerpolicy="origin">');
+  });
+
+  it('should have `useMap` attribute & property', () => {
+    expect(<img useMap="#test" />).toHaveProperty('useMap', '#test');
+    expect(<img useMap="#test" />).toHaveAttribute('usemap', '#test');
   });
 });

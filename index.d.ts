@@ -927,7 +927,6 @@ export interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
   referrerPolicy?: ReferrerPolicy
   sizes?: string
   src?: string
-  srcSet?: string
   srcset?: string
   useMap?: string
   width?: number | string
@@ -1132,7 +1131,6 @@ interface SourceHTMLAttributes extends HTMLAttributes<HTMLSourceElement> {
   media?: string
   sizes?: string
   src?: string
-  srcSet?: string
   srcset?: string
   type?: string
 }
