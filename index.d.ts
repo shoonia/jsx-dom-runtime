@@ -1209,9 +1209,7 @@ export interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElemen
   poster?: string
   width?: number | string
   disablePictureInPicture?: boolean
-  disablepictureinpicture?: boolean
   disableRemotePlayback?: boolean
-  disableremoteplayback?: boolean
 }
 
 interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
