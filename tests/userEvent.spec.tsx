@@ -69,4 +69,11 @@ describe('User events', () => {
     expect(spyChange).toHaveBeenCalledTimes(1);
     expect(input).toHaveValue('xyz');
   });
+
+  it('should NOT add unknown event handler', () => {
+    const spy = jest.fn();
+
+    // @ts-expect-error
+    expect(<div onunknown={spy} />).not.toHaveProperty('onunknown');
+  });
 });
