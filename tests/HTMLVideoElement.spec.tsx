@@ -29,4 +29,51 @@ describe('HTMLVideoElement', () => {
     expect(<video />).not.toHaveAttribute('playsinline');
     expect(<video playsInline={false} />).not.toHaveAttribute('playsinline');
   });
+
+  it('should have `controls` attributes', () => {
+    expect(<video controls />).toHaveAttribute('controls', '');
+    expect(<video controls />).toHaveProperty('controls', true);
+    expect(<video controls={false} />).not.toHaveAttribute('controls');
+    expect(<video controls={false} />).toHaveProperty('controls', false);
+  });
+
+  it('should have `controls` attributes', () => {
+    expect(<video controls />).toHaveAttribute('controls', '');
+    expect(<video controls />).toHaveProperty('controls', true);
+    expect(<video controls={false} />).not.toHaveAttribute('controls');
+    expect(<video controls={false} />).toHaveProperty('controls', false);
+  });
+
+  it('should have `autoplay` attributes', () => {
+    expect(<video autoplay />).toHaveAttribute('autoplay', '');
+    expect(<video autoplay />).toHaveProperty('autoplay', true);
+    expect(<video autoplay={false} />).not.toHaveAttribute('autoplay');
+    expect(<video autoplay={false} />).toHaveProperty('autoplay', false);
+  });
+
+  it('should have `loop` attributes', () => {
+    expect(<video loop />).toHaveAttribute('loop', '');
+    expect(<video loop />).toHaveProperty('loop', true);
+    expect(<video loop={false} />).not.toHaveAttribute('loop');
+    expect(<video loop={false} />).toHaveProperty('loop', false);
+  });
+
+  it('should have `controlslist` attributes', () => {
+    expect(<video controlsList="nofullscreen" />).toHaveAttribute('controlslist', 'nofullscreen');
+  });
+
+  it('should have `preload` attributes', () => {
+    expect(<video preload="metadata" />).toHaveAttribute('preload', 'metadata');
+    expect(<video preload="auto" />).toHaveProperty('preload', 'auto');
+  });
+
+  it('should have `width` attributes', () => {
+    expect(<video width={123} />).toHaveProperty('width', 123);
+    expect(<video width={123} />).toHaveAttribute('width', '123');
+  });
+
+  it('should have `height` attributes', () => {
+    expect(<video height={123} />).toHaveProperty('height', 123);
+    expect(<video height={123} />).toHaveAttribute('height', '123');
+  });
 });

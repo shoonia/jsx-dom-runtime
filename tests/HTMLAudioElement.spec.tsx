@@ -25,10 +25,10 @@ describe('HTMLAudioElement', () => {
   });
 
   it('should have `autoplay` attributes', () => {
-    expect(<audio autoPlay />).toHaveAttribute('autoplay', '');
-    expect(<audio autoPlay />).toHaveProperty('autoplay', true);
-    expect(<audio autoPlay={false} />).not.toHaveAttribute('autoplay');
-    expect(<audio autoPlay={false} />).toHaveProperty('autoplay', false);
+    expect(<audio autoplay />).toHaveAttribute('autoplay', '');
+    expect(<audio autoplay />).toHaveProperty('autoplay', true);
+    expect(<audio autoplay={false} />).not.toHaveAttribute('autoplay');
+    expect(<audio autoplay={false} />).toHaveProperty('autoplay', false);
   });
 
   it('should have `loop` attributes', () => {

@@ -1018,7 +1018,7 @@ interface MenuHTMLAttributes extends HTMLAttributes<HTMLElement> {
 }
 
 interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
-  autoPlay?: boolean
+  autoplay?: boolean
   controls?: boolean
   controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
   crossOrigin?: HTMLAttrinuteCORS
