@@ -28,15 +28,15 @@ describe('HTMLInputElement', () => {
   });
 
   it('should have correct attribute value `autofocus`', () => {
-    expect(<input autoFocus />).toHaveProperty('autofocus', true);
-    expect(<input autoFocus />).toHaveAttribute('autofocus', '');
-    expect(<input autoFocus={true} />).toHaveProperty('autofocus', true);
-    expect(<input autoFocus={true} />).toHaveAttribute('autofocus', '');
+    expect(<input autofocus />).toHaveProperty('autofocus', true);
+    expect(<input autofocus />).toHaveAttribute('autofocus', '');
+    expect(<input autofocus={true} />).toHaveProperty('autofocus', true);
+    expect(<input autofocus={true} />).toHaveAttribute('autofocus', '');
   });
 
   it.each(off)('should not have attribute `autofocus`', (val) => {
-    expect(<input autoFocus={val} />).not.toHaveAttribute('autofocus');
-    expect(<input autoFocus={val} />).toHaveProperty('autofocus', false);
+    expect(<input autofocus={val} />).not.toHaveAttribute('autofocus');
+    expect(<input autofocus={val} />).toHaveProperty('autofocus', false);
   });
 
   it('should have correct attribute value `disabled`', () => {
