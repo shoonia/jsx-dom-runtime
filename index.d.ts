@@ -1133,6 +1133,8 @@ interface SourceHTMLAttributes extends HTMLAttributes<HTMLSourceElement> {
   src?: string
   srcset?: string
   type?: string
+  height?: number | string
+  width?: number | string
 }
 
 interface StyleHTMLAttributes extends HTMLAttributes<HTMLStyleElement> {
