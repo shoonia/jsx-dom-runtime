@@ -16,9 +16,7 @@ describe('useText', () => {
   it('should update text', () => {
     const [text, setText] = useText('old');
 
-    <document.body>
-      {text}
-    </document.body>;
+    document.body.append(text);
 
     expect(document.body).toHaveInnerHTML('old');
 
@@ -30,9 +28,7 @@ describe('useText', () => {
   it('should update empty text', () => {
     const [text, setText] = useText();
 
-    <document.body>
-      {text}
-    </document.body>;
+    document.body.append(text);
 
     expect(document.body).toHaveInnerHTML('');
 
