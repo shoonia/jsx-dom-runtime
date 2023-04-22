@@ -787,7 +787,7 @@ export type HTMLInputTypeAttribute =
 export interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
   download?: any
   href?: string
-  hrefLang?: string
+  hreflang?: string
   media?: string
   ping?: string
   rel?: string
@@ -803,7 +803,8 @@ interface AreaHTMLAttributes extends HTMLAttributes<HTMLAreaElement> {
   coords?: string
   download?: any
   href?: string
-  hrefLang?: string
+  /** @deprecated */
+  hreflang?: string
   media?: string
   referrerPolicy?: ReferrerPolicy
   rel?: string
@@ -997,7 +998,7 @@ interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
   as?: string
   crossOrigin?: HTMLAttrinuteCORS
   href?: string
-  hrefLang?: string
+  hreflang?: string
   integrity?: string
   media?: string
   referrerPolicy?: ReferrerPolicy
