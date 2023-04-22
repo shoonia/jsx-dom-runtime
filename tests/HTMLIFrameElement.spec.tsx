@@ -24,8 +24,12 @@ describe('HTMLIFrameElement', () => {
     expect(<iframe title="Page" />).toHaveProperty('title', 'Page');
   });
 
-  it('should have a srcDoc', () => {
-    expect(<iframe srcDoc="<p></p>" />).toHaveAttribute('srcdoc', '<p></p>');
+  it('should have `srcdoc` attribute', () => {
     expect(<iframe srcdoc="<p></p>" />).toHaveAttribute('srcdoc', '<p></p>');
+    expect(<iframe srcdoc="<p></p>" />).toHaveProperty('srcdoc', '<p></p>');
+  });
+
+  it('should have `sandbox` attribute', () => {
+    expect(<iframe sandbox="allow-downloads" />).toHaveAttribute('sandbox', 'allow-downloads');
   });
 });

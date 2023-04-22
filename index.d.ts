@@ -913,7 +913,6 @@ export interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> 
   scrolling?: string
   seamless?: boolean
   src?: string
-  srcDoc?: string
   srcdoc?: string
   width?: number | string
 }
