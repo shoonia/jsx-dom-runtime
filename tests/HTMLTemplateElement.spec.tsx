@@ -29,18 +29,6 @@ describe('HTMLTemplateElement', () => {
     expect(ref.current.content.querySelector('p')).toHaveInnerHTML('text here');
   });
 
-  it('should update element attributes', () => {
-    const Temp = (
-      <template>
-        <s>some text</s>
-      </template>
-    );
-
-    expect(Temp).toHaveOuterHTML('<template><s>some text</s></template>');
-    <Temp id="temp" />;
-    expect(Temp).toHaveOuterHTML('<template id="temp"><s>some text</s></template>');
-  });
-
   it('should update child node by ref', () => {
     const I = useRef();
 

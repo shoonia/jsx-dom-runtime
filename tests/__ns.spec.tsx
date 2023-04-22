@@ -62,4 +62,10 @@ describe('__ns', () => {
     expect(div.firstChild).toHaveProperty(prop, HTML);
     expect(svg.firstChild).toHaveProperty(prop, SVG);
   });
+
+  it('should add namespace wtih spred operator', () => {
+    const props = { __ns: 1 };
+
+    expect(<style {...props} />).toHaveProperty(prop, SVG);
+  });
 });

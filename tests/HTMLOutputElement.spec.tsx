@@ -1,7 +1,6 @@
 describe('HTMLOutputElement', () => {
   it('should support `for` attribute', () => {
-    // @ts-expect-error
-    const output: HTMLOutputElement = <output for="a b" />;
+    const output = <output for="a b" /> as HTMLOutputElement;
 
     expect(output).toHaveOuterHTML('<output for="a b"></output>');
     expect(output.htmlFor[0]).toBe('a');
