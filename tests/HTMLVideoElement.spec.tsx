@@ -76,4 +76,14 @@ describe('HTMLVideoElement', () => {
     expect(<video height={123} />).toHaveProperty('height', 123);
     expect(<video height={123} />).toHaveAttribute('height', '123');
   });
+
+  it('should have `disablePictureInPicture` attributes', () => {
+    expect(<video disablePictureInPicture />).toHaveAttribute('disablepictureinpicture', '');
+    expect(<video disablePictureInPicture={false} />).not.toHaveAttribute('disablepictureinpicture');
+  });
+
+  it('should have `disableRemotePlayback` attributes', () => {
+    expect(<video disableRemotePlayback />).toHaveAttribute('disableremoteplayback', '');
+    expect(<video disableRemotePlayback={false} />).not.toHaveAttribute('disableremoteplayback');
+  });
 });
