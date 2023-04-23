@@ -8,4 +8,9 @@ describe('HTMLLinkElement', () => {
     expect(<link crossOrigin="anonymous" />).toHaveProperty('crossOrigin', 'anonymous');
     expect(<link crossOrigin="anonymous" />).toHaveAttribute('crossOrigin', 'anonymous');
   });
+
+  it('should support `rel` attribute', () => {
+    expect(<link rel="stylesheet" />).toHaveProperty('rel', 'stylesheet');
+    expect(<link rel="stylesheet" />).toHaveAttribute('rel', 'stylesheet');
+  });
 });
