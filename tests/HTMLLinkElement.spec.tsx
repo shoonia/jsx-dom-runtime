@@ -24,6 +24,10 @@ describe('HTMLLinkElement', () => {
     expect(<link title="test" />).toHaveAttribute('title', 'test');
   });
 
+  it('should have `as` attribute', () => {
+    expect(<link as="fetch" />).toHaveAttribute('as', 'fetch');
+  });
+
   it('should have `media` attribute', () => {
     expect(<link media="(min-width: 600px)" />).toHaveProperty('media', '(min-width: 600px)');
     expect(<link media="(min-width: 600px)" />).toHaveAttribute('media', '(min-width: 600px)');
