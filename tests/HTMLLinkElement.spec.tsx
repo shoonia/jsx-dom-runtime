@@ -23,4 +23,9 @@ describe('HTMLLinkElement', () => {
     expect(<link title="test" />).toHaveProperty('title', 'test');
     expect(<link title="test" />).toHaveAttribute('title', 'test');
   });
+
+  it('should have `as` attribute', () => {
+    expect(<link as="fetch" />).toHaveProperty('as', 'fetch');
+    expect(<link as="fetch" />).toHaveAttribute('as', 'fetch');
+  });
 });
