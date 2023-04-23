@@ -23,4 +23,9 @@ describe('HTMLLinkElement', () => {
     expect(<link title="test" />).toHaveProperty('title', 'test');
     expect(<link title="test" />).toHaveAttribute('title', 'test');
   });
+
+  it('should have `media` attribute', () => {
+    expect(<link media="(min-width: 600px)" />).toHaveProperty('media', '(min-width: 600px)');
+    expect(<link media="(min-width: 600px)" />).toHaveAttribute('media', '(min-width: 600px)');
+  });
 });
