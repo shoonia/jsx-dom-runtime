@@ -18,4 +18,9 @@ describe('HTMLLinkElement', () => {
     expect(<link type="image/png" />).toHaveProperty('type', 'image/png');
     expect(<link type="image/png" />).toHaveAttribute('type', 'image/png');
   });
+
+  it('should have `title` attribute', () => {
+    expect(<link title="test" />).toHaveProperty('title', 'test');
+    expect(<link title="test" />).toHaveAttribute('title', 'test');
+  });
 });
