@@ -13,4 +13,9 @@ describe('HTMLLinkElement', () => {
     expect(<link rel="stylesheet" />).toHaveProperty('rel', 'stylesheet');
     expect(<link rel="stylesheet" />).toHaveAttribute('rel', 'stylesheet');
   });
+
+  it('should have `type` attribute', () => {
+    expect(<link type="image/png" />).toHaveProperty('type', 'image/png');
+    expect(<link type="image/png" />).toHaveAttribute('type', 'image/png');
+  });
 });
