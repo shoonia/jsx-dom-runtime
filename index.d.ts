@@ -1035,7 +1035,7 @@ interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
 interface MetaHTMLAttributes extends HTMLAttributes<HTMLMetaElement> {
   charset?: string;
   content?: string
-  httpEquiv?: string
+  'http-equiv'?: string;
   name?: string
 }
 
@@ -1060,7 +1060,7 @@ interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
   height?: number | string
   name?: string
   type?: string
-  useMap?: string
+  useMap?: string;
   width?: number | string
   wmode?: string
 }
@@ -1135,7 +1135,7 @@ interface SourceHTMLAttributes extends HTMLAttributes<HTMLSourceElement> {
   media?: string
   sizes?: string
   src?: string
-  srcset?: string
+  srcset?: string;
   type?: string
   height?: number | string
   width?: number | string
