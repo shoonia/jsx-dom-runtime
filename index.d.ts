@@ -865,6 +865,7 @@ interface DelHTMLAttributes extends HTMLAttributes<HTMLModElement> {
 
 interface DialogHTMLAttributes extends HTMLAttributes<HTMLDialogElement> {
   open?: boolean
+  ontoggle?: TEventHandler<HTMLDialogElement>;
 }
 
 interface EmbedHTMLAttributes extends HTMLAttributes<HTMLEmbedElement> {
