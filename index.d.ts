@@ -1095,8 +1095,8 @@ interface ParamHTMLAttributes extends HTMLAttributes<HTMLParamElement> {
 }
 
 interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
-  max?: number | string
-  value?: string | readonly string[] | number
+  max?: number | string;
+  value?: string | readonly string[] | number;
 }
 
 interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
