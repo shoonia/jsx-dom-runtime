@@ -32,4 +32,9 @@ describe('HTMLFormElement', () => {
     expect(<form method="GET" />).toHaveProperty('method', 'get');
     expect(<form method="GET" />).toHaveAttribute('method', 'GET');
   });
+
+  it('should have `accept-charset` attribute', () => {
+    expect(<form accept-charset="utf-8" />).toHaveProperty('acceptCharset', 'utf-8');
+    expect(<form accept-charset="utf-8" />).toHaveAttribute('accept-charset', 'utf-8');
+  });
 });
