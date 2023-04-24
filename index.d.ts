@@ -1073,15 +1073,15 @@ interface OlHTMLAttributes extends HTMLAttributes<HTMLOListElement> {
 }
 
 interface OptgroupHTMLAttributes extends HTMLAttributes<HTMLOptGroupElement> {
-  disabled?: boolean
-  label?: string
+  disabled?: boolean;
+  label?: string;
 }
 
 interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
-  disabled?: boolean
-  label?: string
-  selected?: boolean
-  value?: string | readonly string[] | number
+  disabled?: boolean;
+  label?: string;
+  selected?: boolean;
+  value?: string | readonly string[] | number;
 }
 
 interface OutputHTMLAttributes extends HTMLAttributes<HTMLOutputElement> {
@@ -1129,7 +1129,7 @@ interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
 }
 
 interface SlotHTMLAttributes extends HTMLAttributes<HTMLSlotElement> {
-  name?: string
+  name?: string;
 }
 
 interface SourceHTMLAttributes extends HTMLAttributes<HTMLSourceElement> {
@@ -1203,16 +1203,16 @@ interface TimeHTMLAttributes extends HTMLAttributes<HTMLTimeElement> {
 interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
   default?: boolean
   kind?: string
-  label?: string
+  label?: string;
   src?: string
-  srclang?: string
+  srclang?: string;
 }
 
 export interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
-  height?: number | string
+  height?: number | string;
   playsInline?: boolean;
-  poster?: string
-  width?: number | string
+  poster?: string;
+  width?: number | string;
   disablePictureInPicture?: boolean;
   disableRemotePlayback?: boolean;
 }
