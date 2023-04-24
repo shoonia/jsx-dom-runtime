@@ -853,9 +853,9 @@ interface DataHTMLAttributes extends HTMLAttributes<HTMLDataElement> {
   value?: string | readonly string[] | number
 }
 
-interface DetailsHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  open?: boolean
-  ontoggle?: TEventHandler<HTMLElement>
+interface DetailsHTMLAttributes extends HTMLAttributes<HTMLDetailsElement> {
+  open?: boolean;
+  ontoggle?: TEventHandler<HTMLElement>;
 }
 
 interface DelHTMLAttributes extends HTMLAttributes<HTMLModElement> {
