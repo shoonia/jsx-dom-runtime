@@ -8,18 +8,12 @@ describe('HTMLInputElement', () => {
 
   it('should have max property', () => {
     expect(<input maxLength={10} />).toHaveProperty('maxLength', 10);
-    expect(<input maxlength={10} />).toHaveProperty('maxLength', 10);
-
     expect(<input maxLength={10} />).toHaveAttribute('maxlength', '10');
-    expect(<input maxlength={10} />).toHaveAttribute('maxlength', '10');
   });
 
   it('should have min property', () => {
     expect(<input minLength={10} />).toHaveProperty('minLength', 10);
-    expect(<input minlength={10} />).toHaveProperty('minLength', 10);
-
     expect(<input minLength={10} />).toHaveAttribute('minlength', '10');
-    expect(<input minlength={10} />).toHaveAttribute('minlength', '10');
   });
 
   it('should have size', () => {

@@ -959,16 +959,14 @@ export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   height?: number | string
   list?: string
   max?: number | string
-  maxLength?: number
-  maxlength?: number
+  maxLength?: number;
   min?: number | string
-  minLength?: number
-  minlength?: number
+  minLength?: number;
   multiple?: boolean
   name?: string
   pattern?: string
   placeholder?: string
-  readOnly?: boolean
+  readOnly?: boolean;
   required?: boolean
   size?: number
   src?: string
