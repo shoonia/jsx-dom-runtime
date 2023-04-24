@@ -86,4 +86,9 @@ describe('HTMLVideoElement', () => {
     expect(<video disableRemotePlayback />).toHaveAttribute('disableremoteplayback', '');
     expect(<video disableRemotePlayback={false} />).not.toHaveAttribute('disableremoteplayback');
   });
+
+  it('should have `crossOrigin` attribute', () => {
+    expect(<video crossOrigin="anonymous" />).toHaveProperty('crossOrigin', 'anonymous');
+    expect(<video crossOrigin="anonymous" />).toHaveAttribute('crossOrigin', 'anonymous');
+  });
 });

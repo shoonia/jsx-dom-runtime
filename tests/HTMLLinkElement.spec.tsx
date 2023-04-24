@@ -32,4 +32,13 @@ describe('HTMLLinkElement', () => {
     expect(<link media="(min-width: 600px)" />).toHaveProperty('media', '(min-width: 600px)');
     expect(<link media="(min-width: 600px)" />).toHaveAttribute('media', '(min-width: 600px)');
   });
+
+  it('should have `charset` attribute', () => {
+    expect(<link charset="utf-8" />).toHaveProperty('charset', 'utf-8');
+    expect(<link charset="utf-8" />).toHaveAttribute('charset', 'utf-8');
+  });
+
+  it('should have `fetchPriority` attribute', () => {
+    expect(<link fetchPriority="high" />).toHaveAttribute('fetchpriority', 'high');
+  });
 });

@@ -42,4 +42,9 @@ describe('HTMLAudioElement', () => {
     expect(<audio muted />).toHaveProperty('muted', true);
     expect(<audio muted={false} />).toHaveProperty('muted', false);
   });
+
+  it('should have `crossOrigin` attribute', () => {
+    expect(<audio crossOrigin="anonymous" />).toHaveProperty('crossOrigin', 'anonymous');
+    expect(<audio crossOrigin="anonymous" />).toHaveAttribute('crossOrigin', 'anonymous');
+  });
 });

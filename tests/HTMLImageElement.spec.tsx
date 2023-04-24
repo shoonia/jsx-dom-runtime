@@ -50,4 +50,8 @@ describe('HTMLImageElement', () => {
     expect(<img useMap="#test" />).toHaveProperty('useMap', '#test');
     expect(<img useMap="#test" />).toHaveAttribute('usemap', '#test');
   });
+
+  it('should have `fetchPriority` attribute', () => {
+    expect(<img fetchPriority="high" />).toHaveAttribute('fetchpriority', 'high');
+  });
 });

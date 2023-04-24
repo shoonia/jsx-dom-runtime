@@ -787,13 +787,13 @@ export type HTMLInputTypeAttribute =
 export interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
   download?: any
   href?: string
-  hreflang?: string
+  hreflang?: string;
   media?: string
   ping?: string
   rel?: string
   target?: '_blank' | '_self' | '_parent' | '_top'
   type?: string
-  referrerPolicy?: ReferrerPolicy
+  referrerPolicy?: ReferrerPolicy;
 }
 
 interface AudioHTMLAttributes extends MediaHTMLAttributes<HTMLAudioElement> { }
@@ -804,9 +804,9 @@ interface AreaHTMLAttributes extends HTMLAttributes<HTMLAreaElement> {
   download?: any
   href?: string
   /** @deprecated */
-  hreflang?: string
+  hreflang?: string;
   media?: string
-  referrerPolicy?: ReferrerPolicy
+  referrerPolicy?: ReferrerPolicy;
   rel?: string
   shape?: string
   target?: string
@@ -908,7 +908,7 @@ export interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> 
   /** @deprecated */
   marginWidth?: number
   name?: string
-  referrerPolicy?: ReferrerPolicy
+  referrerPolicy?: ReferrerPolicy;
   sandbox?: string
   /** @deprecated */
   scrolling?: string
@@ -920,16 +920,17 @@ export interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> 
 
 export interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
   alt?: string
-  crossOrigin?: HTMLAttrinuteCORS
+  crossOrigin?: HTMLAttrinuteCORS;
   decoding?: 'async' | 'auto' | 'sync'
   height?: number | string
   loading?: 'eager' | 'lazy'
-  referrerPolicy?: ReferrerPolicy
+  referrerPolicy?: ReferrerPolicy;
   sizes?: string
   src?: string
   srcset?: string
-  useMap?: string
+  useMap?: string;
   width?: number | string
+  fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 interface InsHTMLAttributes extends HTMLAttributes<HTMLModElement> {
@@ -944,7 +945,7 @@ export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   autofocus?: boolean
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
   checked?: boolean
-  crossOrigin?: HTMLAttrinuteCORS
+  crossOrigin?: HTMLAttrinuteCORS;
   disabled?: boolean
   enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
   form?: string
@@ -996,16 +997,18 @@ interface LiHTMLAttributes extends HTMLAttributes<HTMLLIElement> {
 
 interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
   as?: string
-  crossOrigin?: HTMLAttrinuteCORS
+  crossOrigin?: HTMLAttrinuteCORS;
   href?: string
-  hreflang?: string
+  hreflang?: string;
   integrity?: string
   media?: string
-  referrerPolicy?: ReferrerPolicy
+  referrerPolicy?: ReferrerPolicy;
   rel?: string
   sizes?: string
   type?: string
-  charSet?: string
+  /** @deprecated */
+  charset?: string;
+  fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 interface MapHTMLAttributes extends HTMLAttributes<HTMLMapElement> {
@@ -1020,7 +1023,7 @@ interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
   autoplay?: boolean
   controls?: boolean
   controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
-  crossOrigin?: HTMLAttrinuteCORS
+  crossOrigin?: HTMLAttrinuteCORS;
   loop?: boolean
   mediaGroup?: string
   muted?: boolean
@@ -1030,7 +1033,7 @@ interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
 }
 
 interface MetaHTMLAttributes extends HTMLAttributes<HTMLMetaElement> {
-  charSet?: string
+  charset?: string;
   content?: string
   httpEquiv?: string
   name?: string
@@ -1099,15 +1102,16 @@ interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
 interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
   async?: boolean
   /** @deprecated */
-  charSet?: string
-  crossOrigin?: HTMLAttrinuteCORS
+  charset?: string;
+  crossOrigin?: HTMLAttrinuteCORS;
   defer?: boolean
   integrity?: string
   noModule?: boolean
   nonce?: string
-  referrerPolicy?: ReferrerPolicy
+  referrerPolicy?: ReferrerPolicy;
   src?: string
   type?: string
+  fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
