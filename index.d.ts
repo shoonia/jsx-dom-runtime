@@ -905,17 +905,17 @@ export interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> 
   height?: number | string
   loading?: 'eager' | 'lazy'
   /** @deprecated */
-  marginHeight?: number
+  marginHeight?: number;
   /** @deprecated */
-  marginWidth?: number
-  name?: string
+  marginWidth?: number;
+  name?: string;
   referrerPolicy?: ReferrerPolicy;
   sandbox?: string
   /** @deprecated */
   scrolling?: string
   seamless?: boolean
   src?: string
-  srcdoc?: string
+  srcdoc?: string;
   width?: number | string
 }
 

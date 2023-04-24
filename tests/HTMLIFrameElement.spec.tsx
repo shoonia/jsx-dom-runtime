@@ -24,6 +24,11 @@ describe('HTMLIFrameElement', () => {
     expect(<iframe title="Page" />).toHaveProperty('title', 'Page');
   });
 
+  it('should have `name` attribute', () => {
+    expect(<iframe name="name" />).toHaveAttribute('name', 'name');
+    expect(<iframe name="name" />).toHaveProperty('name', 'name');
+  });
+
   it('should have `srcdoc` attribute', () => {
     expect(<iframe srcdoc="<p></p>" />).toHaveAttribute('srcdoc', '<p></p>');
     expect(<iframe srcdoc="<p></p>" />).toHaveProperty('srcdoc', '<p></p>');
