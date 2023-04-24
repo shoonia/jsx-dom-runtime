@@ -10,11 +10,11 @@
     "build": "rm -rf dist .parcel-cache && parcel build --no-source-maps --no-cache src/index.html"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.32.0"
+    "jsx-dom-runtime": "^0.33.0"
   },
   "devDependencies": {
     "parcel": "^2.8.3",
-    "postcss": "^8.4.22",
+    "postcss": "^8.4.23",
     "postcss-modules": "^4.3.1"
   },
   "browser": {
