@@ -28,8 +28,6 @@ describe('Style attribute', () => {
   });
 
   it('should remove inline CSS with `cssText` property', () => {
-    const Elem = <p style="padding: 1.5em; margin: 1.5em;" />;
-
-    expect(Elem).toHaveCssText('padding: 1.5em; margin: 1.5em;');
+    expect(<p style="padding: 1.5em; margin: 1.5em;" />).toHaveCssText('padding: 1.5em; margin: 1.5em;');
   });
 });
