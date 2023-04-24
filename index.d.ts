@@ -1084,7 +1084,7 @@ interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
   value?: string | readonly string[] | number
 }
 
-interface OutputHTMLAttributes extends HTMLAttributes<HTMLElement> {
+interface OutputHTMLAttributes extends HTMLAttributes<HTMLOutputElement> {
   form?: string
   for?: string
   name?: string
