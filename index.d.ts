@@ -1020,33 +1020,33 @@ interface MenuHTMLAttributes extends HTMLAttributes<HTMLElement> {
 }
 
 interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
-  autoplay?: boolean
-  controls?: boolean
+  autoplay?: boolean;
+  controls?: boolean;
   controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
   crossOrigin?: HTMLAttrinuteCORS;
-  loop?: boolean
+  loop?: boolean;
   mediaGroup?: string
-  muted?: boolean
+  muted?: boolean;
   playsInline?: boolean
-  preload?: 'none' | 'metadata' | 'auto'
+  preload?: 'none' | 'metadata' | 'auto';
   src?: string
 }
 
 interface MetaHTMLAttributes extends HTMLAttributes<HTMLMetaElement> {
   charset?: string;
-  content?: string
+  content?: string;
   'http-equiv'?: string;
-  name?: string
+  name?: string;
 }
 
-interface MeterHTMLAttributes extends HTMLAttributes<HTMLElement> {
+interface MeterHTMLAttributes extends HTMLAttributes<HTMLMeterElement> {
   form?: string
-  high?: number
-  low?: number
-  max?: number | string
-  min?: number | string
-  optimum?: number
-  value?: string | readonly string[] | number
+  high?: number;
+  low?: number;
+  max?: number | string;
+  min?: number | string;
+  optimum?: number;
+  value?: string | readonly string[] | number;
 }
 
 interface QuoteHTMLAttributes extends HTMLAttributes<HTMLQuoteElement> {
