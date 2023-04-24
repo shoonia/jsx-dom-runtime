@@ -1205,7 +1205,7 @@ interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
   kind?: string
   label?: string
   src?: string
-  srcLang?: string
+  srclang?: string
 }
 
 export interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
