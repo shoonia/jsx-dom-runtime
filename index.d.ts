@@ -928,7 +928,7 @@ export interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
   referrerPolicy?: ReferrerPolicy;
   sizes?: string
   src?: string
-  srcset?: string
+  srcset?: string;
   useMap?: string;
   width?: number | string
   fetchPriority?: 'high' | 'low' | 'auto';
@@ -1015,8 +1015,9 @@ interface MapHTMLAttributes extends HTMLAttributes<HTMLMapElement> {
   name?: string
 }
 
-interface MenuHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  type?: string
+interface MenuHTMLAttributes extends HTMLAttributes<HTMLMenuElement> {
+  /** @deprecated */
+  type?: string;
 }
 
 interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
