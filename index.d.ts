@@ -888,7 +888,7 @@ export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
   enctype?: string;
   method?: string
   name?: string;
-  noValidate?: boolean
+  noValidate?: boolean;
   target?: string
 }
 

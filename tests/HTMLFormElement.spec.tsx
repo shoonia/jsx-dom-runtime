@@ -37,4 +37,14 @@ describe('HTMLFormElement', () => {
     expect(<form accept-charset="utf-8" />).toHaveProperty('acceptCharset', 'utf-8');
     expect(<form accept-charset="utf-8" />).toHaveAttribute('accept-charset', 'utf-8');
   });
+
+  it('should have `noValidate` attribute', () => {
+    expect(<form noValidate />).toHaveProperty('noValidate', true);
+    expect(<form noValidate />).toHaveAttribute('novalidate', '');
+  });
+
+  it('should NOT have `noValidate` attribute', () => {
+    expect(<form noValidate={false} />).toHaveProperty('noValidate', false);
+    expect(<form noValidate={false} />).not.toHaveAttribute('novalidate');
+  });
 });
