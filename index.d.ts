@@ -836,8 +836,8 @@ export interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> 
 }
 
 interface CanvasHTMLAttributes extends HTMLAttributes<HTMLCanvasElement> {
-  height?: number | string
-  width?: number | string
+  height?: number | string;
+  width?: number | string;
 }
 
 interface ColHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
@@ -1467,7 +1467,7 @@ declare global {
       output: OutputHTMLAttributes
       p: HTMLAttributes<HTMLParagraphElement>
       param: ParamHTMLAttributes
-      picture: HTMLAttributes<HTMLElement>
+      picture: HTMLAttributes<HTMLPictureElement>
       pre: HTMLAttributes<HTMLPreElement>
       progress: ProgressHTMLAttributes
       q: QuoteHTMLAttributes
