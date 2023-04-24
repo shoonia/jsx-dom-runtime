@@ -1104,9 +1104,9 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
   /** @deprecated */
   charset?: string;
   crossOrigin?: HTMLAttrinuteCORS;
-  defer?: boolean
+  defer?: boolean;
   integrity?: string
-  noModule?: boolean
+  noModule?: boolean;
   nonce?: string
   referrerPolicy?: ReferrerPolicy;
   src?: string
