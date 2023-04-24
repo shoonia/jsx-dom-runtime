@@ -858,7 +858,7 @@ interface DetailsHTMLAttributes extends HTMLAttributes<HTMLElement> {
   ontoggle?: TEventHandler<HTMLElement>
 }
 
-interface DelHTMLAttributes extends HTMLAttributes<HTMLElement> {
+interface DelHTMLAttributes extends HTMLAttributes<HTMLModElement> {
   cite?: string
   dateTime?: string;
 }
