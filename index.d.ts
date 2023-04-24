@@ -860,7 +860,7 @@ interface DetailsHTMLAttributes extends HTMLAttributes<HTMLElement> {
 
 interface DelHTMLAttributes extends HTMLAttributes<HTMLElement> {
   cite?: string
-  dateTime?: string
+  dateTime?: string;
 }
 
 interface DialogHTMLAttributes extends HTMLAttributes<HTMLDialogElement> {
@@ -935,7 +935,7 @@ export interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
 
 interface InsHTMLAttributes extends HTMLAttributes<HTMLModElement> {
   cite?: string
-  dateTime?: string
+  dateTime?: string;
 }
 
 export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
@@ -1195,8 +1195,8 @@ interface ThHTMLAttributes extends HTMLAttributes<HTMLTableHeaderCellElement> {
   abbr?: string
 }
 
-interface TimeHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  dateTime?: string
+interface TimeHTMLAttributes extends HTMLAttributes<HTMLTimeElement> {
+  dateTime?: string;
 }
 
 interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
