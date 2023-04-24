@@ -822,7 +822,7 @@ interface BlockquoteHTMLAttributes extends HTMLAttributes<HTMLElement> {
 }
 
 export interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
-  autofocus?: boolean
+  autofocus?: boolean;
   disabled?: boolean
   form?: string
   formAction?: string
@@ -942,13 +942,14 @@ interface InsHTMLAttributes extends HTMLAttributes<HTMLModElement> {
 export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   accept?: string
   alt?: string
-  autocomplete?: string
-  autofocus?: boolean
+  autocomplete?: string;
+  autofocus?: boolean;
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
   checked?: boolean
   crossOrigin?: HTMLAttrinuteCORS;
   disabled?: boolean
-  enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
+  dirName?: string;
+  enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
   form?: string
   formAction?: string
   formEncType?: string
@@ -979,7 +980,7 @@ export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
 }
 
 interface KeygenHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  autofocus?: boolean
+  autofocus?: boolean;
   challenge?: string
   disabled?: boolean
   form?: string
@@ -1116,8 +1117,8 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
 }
 
 interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
-  autocomplete?: string
-  autofocus?: boolean
+  autocomplete?: string;
+  autofocus?: boolean;
   disabled?: boolean
   form?: string
   multiple?: boolean
@@ -1157,17 +1158,17 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
 }
 
 export interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
-  autocomplete?: string
-  autofocus?: boolean
+  autocomplete?: string;
+  autofocus?: boolean;
   cols?: number
-  dirName?: string
+  dirName?: string;
   disabled?: boolean
   form?: string
-  maxLength?: number
-  minLength?: number
+  maxLength?: number;
+  minLength?: number;
   name?: string
   placeholder?: string
-  readOnly?: boolean
+  readOnly?: boolean;
   required?: boolean
   rows?: number
   value?: string | readonly string[] | number
@@ -1210,17 +1211,17 @@ interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
 
 export interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
   height?: number | string
-  playsInline?: boolean
+  playsInline?: boolean;
   poster?: string
   width?: number | string
-  disablePictureInPicture?: boolean
-  disableRemotePlayback?: boolean
+  disablePictureInPicture?: boolean;
+  disableRemotePlayback?: boolean;
 }
 
 interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
   allowFullScreen?: boolean
   allowpopups?: boolean
-  autofocus?: boolean
+  autofocus?: boolean;
   autosize?: boolean
   blinkfeatures?: string
   disableblinkfeatures?: string

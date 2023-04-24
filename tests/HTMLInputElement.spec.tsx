@@ -116,4 +116,9 @@ describe('HTMLInputElement', () => {
   it('should set list', () => {
     expect(<input list="some-id" />).toHaveAttribute('list', 'some-id');
   });
+
+  it('should support `dirName` attribute', () => {
+    expect(<input dirName="hello.dir" />).toHaveProperty('dirName', 'hello.dir');
+    expect(<input dirName="hello.dir" />).toHaveAttribute('dirname', 'hello.dir');
+  });
 });

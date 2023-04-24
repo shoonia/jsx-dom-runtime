@@ -54,4 +54,9 @@ describe('HTMLTextAreaElement', () => {
     expect(<textarea>content text</textarea>).toHaveProperty('textContent', 'content text');
     expect(<textarea>content text</textarea>).toHaveProperty('innerHTML', 'content text');
   });
+
+  it('should support `dirName` attribute', () => {
+    expect(<textarea dirName="hello.dir" />).toHaveProperty('dirName', 'hello.dir');
+    expect(<textarea dirName="hello.dir" />).toHaveAttribute('dirname', 'hello.dir');
+  });
 });
