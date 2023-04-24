@@ -876,9 +876,9 @@ interface EmbedHTMLAttributes extends HTMLAttributes<HTMLEmbedElement> {
 }
 
 interface FieldsetHTMLAttributes extends HTMLAttributes<HTMLFieldSetElement> {
-  disabled?: boolean
+  disabled?: boolean;
   form?: string
-  name?: string
+  name?: string;
 }
 
 export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
