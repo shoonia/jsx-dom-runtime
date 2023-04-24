@@ -1127,7 +1127,7 @@ interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   onchange?: ChangeEventHandler<HTMLSelectElement>
 }
 
-interface SlotHTMLAttributes extends HTMLAttributes<HTMLElement> {
+interface SlotHTMLAttributes extends HTMLAttributes<HTMLSlotElement> {
   name?: string
 }
 
