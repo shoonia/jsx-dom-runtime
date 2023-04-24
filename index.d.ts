@@ -855,7 +855,7 @@ interface DataHTMLAttributes extends HTMLAttributes<HTMLDataElement> {
 
 interface DetailsHTMLAttributes extends HTMLAttributes<HTMLDetailsElement> {
   open?: boolean;
-  ontoggle?: TEventHandler<HTMLElement>;
+  ontoggle?: TEventHandler<HTMLDetailsElement>;
 }
 
 interface DelHTMLAttributes extends HTMLAttributes<HTMLModElement> {
@@ -1086,8 +1086,8 @@ interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
 
 interface OutputHTMLAttributes extends HTMLAttributes<HTMLOutputElement> {
   form?: string
-  for?: string
-  name?: string
+  for?: string;
+  name?: string;
 }
 
 interface ParamHTMLAttributes extends HTMLAttributes<HTMLParamElement> {
