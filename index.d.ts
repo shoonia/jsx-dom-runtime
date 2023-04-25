@@ -1201,10 +1201,10 @@ interface TimeHTMLAttributes extends HTMLAttributes<HTMLTimeElement> {
 }
 
 interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
-  default?: boolean
-  kind?: string
+  default?: boolean;
+  kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata';
   label?: string;
-  src?: string
+  src?: string;
   srclang?: string;
 }
 
