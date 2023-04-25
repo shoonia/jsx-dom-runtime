@@ -986,16 +986,20 @@ interface LiHTMLAttributes extends HTMLAttributes<HTMLLIElement> {
 }
 
 interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
-  as?: string
+  title?: string;
+  as?: string;
   crossOrigin?: HTMLAttrinuteCORS;
+  disabled?: boolean;
   href?: string
   hreflang?: string;
   integrity?: string
-  media?: string
+  media?: string;
   referrerPolicy?: ReferrerPolicy;
-  rel?: string
-  sizes?: string
-  type?: string
+  rel?: string;
+  /** @deprecated */
+  rev?: string;
+  sizes?: string;
+  type?: string;
   /** @deprecated */
   charset?: string;
   fetchPriority?: 'high' | 'low' | 'auto';

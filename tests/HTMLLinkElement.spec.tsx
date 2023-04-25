@@ -33,6 +33,10 @@ describe('HTMLLinkElement', () => {
     expect(<link media="(min-width: 600px)" />).toHaveAttribute('media', '(min-width: 600px)');
   });
 
+  it('should have `sizes` attribute', () => {
+    expect(<link sizes="114x114" />).toHaveAttribute('sizes', '114x114');
+  });
+
   it('should have `charset` attribute', () => {
     expect(<link charset="utf-8" />).toHaveProperty('charset', 'utf-8');
     expect(<link charset="utf-8" />).toHaveAttribute('charset', 'utf-8');
@@ -40,5 +44,17 @@ describe('HTMLLinkElement', () => {
 
   it('should have `fetchPriority` attribute', () => {
     expect(<link fetchPriority="high" />).toHaveAttribute('fetchpriority', 'high');
+  });
+
+  it('should support `integrity` attribute', () => {
+    expect(<link integrity="dGVzdA==" />).toHaveAttribute('integrity', 'dGVzdA==');
+  });
+
+  it('should have `disabled` attribute', () => {
+    expect(<link disabled />).toHaveAttribute('disabled', '');
+  });
+
+  it('should NOT have `disabled` attribute', () => {
+    expect(<link disabled={false} />).not.toHaveAttribute('disabled');
   });
 });
