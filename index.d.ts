@@ -1153,20 +1153,20 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
 interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   autocomplete?: string;
   autofocus?: boolean;
-  cols?: number
+  cols?: number;
   dirName?: string;
-  disabled?: boolean
+  disabled?: boolean;
   form?: string
   maxLength?: number;
   minLength?: number;
-  name?: string
+  name?: string;
   placeholder?: string
   readOnly?: boolean;
-  required?: boolean
-  rows?: number
-  value?: string | readonly string[] | number
-  wrap?: string
-  onchange?: ChangeEventHandler<HTMLTextAreaElement>
+  required?: boolean;
+  rows?: number;
+  value?: string | readonly string[] | number;
+  wrap?: 'hard' | 'soft' | 'off';
+  onchange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
 interface TdHTMLAttributes extends HTMLAttributes<HTMLTableDataCellElement> {
