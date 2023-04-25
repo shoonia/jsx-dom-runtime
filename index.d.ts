@@ -784,7 +784,7 @@ export type HTMLInputTypeAttribute =
   | 'url'
   | 'week'
 
-export interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
+interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
   download?: any
   href?: string
   hreflang?: string;
@@ -821,7 +821,7 @@ interface BlockquoteHTMLAttributes extends HTMLAttributes<HTMLElement> {
   cite?: string
 }
 
-export interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
+interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
   autofocus?: boolean;
   disabled?: boolean
   form?: string
@@ -896,7 +896,7 @@ interface HtmlHTMLAttributes extends HTMLAttributes<HTMLHtmlElement> {
   manifest?: string
 }
 
-export interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
+interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   allow?: string
   allowFullScreen?: boolean
   allowTransparency?: boolean
@@ -919,7 +919,7 @@ export interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> 
   width?: number | string
 }
 
-export interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
+interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
   alt?: string
   crossOrigin?: HTMLAttrinuteCORS;
   decoding?: 'async' | 'auto' | 'sync'
@@ -939,7 +939,7 @@ interface InsHTMLAttributes extends HTMLAttributes<HTMLModElement> {
   dateTime?: string;
 }
 
-export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
+interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   accept?: string
   alt?: string
   autocomplete?: string;
@@ -977,7 +977,7 @@ export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   onchange?: ChangeEventHandler<HTMLInputElement>
 }
 
-export interface LabelHTMLAttributes extends HTMLAttributes<HTMLLabelElement> {
+interface LabelHTMLAttributes extends HTMLAttributes<HTMLLabelElement> {
   for?: string
 }
 
@@ -1146,7 +1146,7 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
   width?: number | string
 }
 
-export interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
+interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   autocomplete?: string;
   autofocus?: boolean;
   cols?: number
@@ -1198,7 +1198,7 @@ interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
   srclang?: string;
 }
 
-export interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
+interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
   height?: number | string;
   playsInline?: boolean;
   poster?: string;
@@ -1225,6 +1225,20 @@ interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
   src?: string
   useragent?: string
   webpreferences?: string
+}
+
+interface MarqueeHTMLElement extends HTMLAttributes<HTMLMarqueeElement> {
+  behavior?: 'scroll' | 'slide' | 'alternate'
+  bgColor?: string
+  direction?: 'left' | 'right' | 'up' | 'down'
+  height?: number | string
+  hspace?: number | string
+  loop?: number | string
+  scrollAmount?: number | string
+  scrollDelay?: number | string
+  trueSpeed?: boolean
+  vspace?: number | string
+  width?: number | string
 }
 
 type HTMLWebViewElement = HTMLElement
@@ -1443,8 +1457,9 @@ declare global {
       main: HTMLAttributes<HTMLElement>
       map: MapHTMLAttributes
       mark: HTMLAttributes<HTMLElement>
+      marquee: HTMLAttributes<MarqueeHTMLElement>
       menu: MenuHTMLAttributes
-      menuitem: HTMLAttributes<HTMLUnknownElement>;
+      menuitem: HTMLAttributes<HTMLUnknownElement>
       meta: MetaHTMLAttributes
       meter: MeterHTMLAttributes
       nav: HTMLAttributes<HTMLElement>
