@@ -1067,9 +1067,9 @@ interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
 }
 
 interface OlHTMLAttributes extends HTMLAttributes<HTMLOListElement> {
-  reversed?: boolean
-  start?: number
-  type?: '1' | 'a' | 'A' | 'i' | 'I'
+  reversed?: boolean;
+  start?: number;
+  type?: '1' | 'a' | 'A' | 'i' | 'I';
 }
 
 interface OptgroupHTMLAttributes extends HTMLAttributes<HTMLOptGroupElement> {
@@ -1118,14 +1118,14 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
 interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   autocomplete?: string;
   autofocus?: boolean;
-  disabled?: boolean
+  disabled?: boolean;
   form?: string
-  multiple?: boolean
-  name?: string
-  required?: boolean
-  size?: number
-  value?: string | readonly string[] | number
-  onchange?: ChangeEventHandler<HTMLSelectElement>
+  multiple?: boolean;
+  name?: string;
+  required?: boolean;
+  size?: number;
+  value?: string | readonly string[] | number;
+  onchange?: ChangeEventHandler<HTMLSelectElement>;
 }
 
 interface SlotHTMLAttributes extends HTMLAttributes<HTMLSlotElement> {
