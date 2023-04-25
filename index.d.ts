@@ -977,16 +977,6 @@ export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   onchange?: ChangeEventHandler<HTMLInputElement>
 }
 
-interface KeygenHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  autofocus?: boolean;
-  challenge?: string
-  disabled?: boolean
-  form?: string
-  keyType?: string
-  keyParams?: string
-  name?: string
-}
-
 export interface LabelHTMLAttributes extends HTMLAttributes<HTMLLabelElement> {
   for?: string
 }
@@ -1445,7 +1435,7 @@ declare global {
       input: InputHTMLAttributes
       ins: InsHTMLAttributes
       kbd: HTMLAttributes<HTMLElement>
-      keygen: KeygenHTMLAttributes
+      keygen: HTMLAttributes<HTMLUnknownElement>;
       label: LabelHTMLAttributes
       legend: HTMLAttributes<HTMLLegendElement>
       li: LiHTMLAttributes
@@ -1454,7 +1444,7 @@ declare global {
       map: MapHTMLAttributes
       mark: HTMLAttributes<HTMLElement>
       menu: MenuHTMLAttributes
-      menuitem: HTMLAttributes<HTMLElement>
+      menuitem: HTMLAttributes<HTMLUnknownElement>;
       meta: MetaHTMLAttributes
       meter: MeterHTMLAttributes
       nav: HTMLAttributes<HTMLElement>
