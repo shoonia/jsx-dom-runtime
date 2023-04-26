@@ -473,7 +473,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   spellcheck?: 'true' | 'false'
   style?: string | CSSProperties
   tabIndex?: number
-  title?: string
+  title?: string;
   translate?: 'yes' | 'no'
   // Unknown
   radioGroup?: string // <command>, <menuitem>
@@ -856,7 +856,7 @@ interface DetailsHTMLAttributes extends HTMLAttributes<HTMLDetailsElement> {
 }
 
 interface DelHTMLAttributes extends HTMLAttributes<HTMLModElement> {
-  cite?: string
+  cite?: string;
   dateTime?: string;
 }
 
@@ -895,11 +895,11 @@ interface HtmlHTMLAttributes extends HTMLAttributes<HTMLHtmlElement> {
 
 interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   allow?: string
-  allowFullScreen?: boolean
+  allowFullScreen?: boolean;
   allowTransparency?: boolean
   /** @deprecated */
   frameBorder?: number | string
-  height?: number | string
+  height?: number | string;
   loading?: 'eager' | 'lazy'
   /** @deprecated */
   marginHeight?: number;
@@ -911,23 +911,23 @@ interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   /** @deprecated */
   scrolling?: string
   seamless?: boolean
-  src?: string
+  src?: string;
   srcdoc?: string;
-  width?: number | string
+  width?: number | string;
 }
 
 interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
-  alt?: string
+  alt?: string;
   crossOrigin?: HTMLAttrinuteCORS;
-  decoding?: 'async' | 'auto' | 'sync'
-  height?: number | string
-  loading?: 'eager' | 'lazy'
+  decoding?: 'async' | 'auto' | 'sync';
+  height?: number | string;
+  loading?: 'eager' | 'lazy';
   referrerPolicy?: ReferrerPolicy;
-  sizes?: string
-  src?: string
+  sizes?: string;
+  src?: string;
   srcset?: string;
   useMap?: string;
-  width?: number | string
+  width?: number | string;
   fetchPriority?: 'high' | 'low' | 'auto';
 }
 
@@ -1019,9 +1019,9 @@ interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
   loop?: boolean;
   mediaGroup?: string
   muted?: boolean;
-  playsInline?: boolean
+  playsInline?: boolean;
   preload?: 'none' | 'metadata' | 'auto';
-  src?: string
+  src?: string;
 }
 
 interface MetaHTMLAttributes extends HTMLAttributes<HTMLMetaElement> {
@@ -1101,8 +1101,8 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
   noModule?: boolean;
   nonce?: string
   referrerPolicy?: ReferrerPolicy;
-  src?: string
-  type?: string
+  src?: string;
+  type?: string;
   fetchPriority?: 'high' | 'low' | 'auto';
 }
 
@@ -1124,13 +1124,13 @@ interface SlotHTMLAttributes extends HTMLAttributes<HTMLSlotElement> {
 }
 
 interface SourceHTMLAttributes extends HTMLAttributes<HTMLSourceElement> {
-  media?: string
-  sizes?: string
-  src?: string
+  media?: string;
+  sizes?: string;
+  src?: string;
   srcset?: string;
-  type?: string
-  height?: number | string
-  width?: number | string
+  type?: string;
+  height?: number | string;
+  width?: number | string;
 }
 
 interface StyleHTMLAttributes extends HTMLAttributes<HTMLStyleElement> {

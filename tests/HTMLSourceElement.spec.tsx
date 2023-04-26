@@ -26,4 +26,15 @@ describe('HTMLSourceElement', () => {
   it('should have `height` attribute', () => {
     expect(<source height={100} />).toHaveAttribute('height', '100');
   });
+
+  it('should have `sizes` attribute', () => {
+    expect(<source sizes="(max-width: 600px) 200px, 50vw" />).toHaveProperty(
+      'sizes',
+      '(max-width: 600px) 200px, 50vw'
+    );
+    expect(<source sizes="(max-width: 600px) 200px, 50vw" />).toHaveAttribute(
+      'sizes',
+      '(max-width: 600px) 200px, 50vw'
+    );
+  });
 });

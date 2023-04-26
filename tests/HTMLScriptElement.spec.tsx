@@ -4,6 +4,11 @@ describe('HTMLScriptElement', () => {
     expect(<script type="module" />).toHaveAttribute('type', 'module');
   });
 
+  it('should have `src` attribute', () => {
+    expect(<script src="index.js" />).toHaveProperty('src', 'http://localhost/index.js');
+    expect(<script src="index.js" />).toHaveAttribute('src', 'index.js');
+  });
+
   it('should have `defer` attribute', () => {
     expect(<script defer />).toHaveProperty('defer', true);
     expect(<script defer />).toHaveAttribute('defer', '');
