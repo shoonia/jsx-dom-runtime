@@ -817,10 +817,6 @@ interface BaseHTMLAttributes extends HTMLAttributes<HTMLBaseElement> {
   target?: string
 }
 
-interface BlockquoteHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  cite?: string
-}
-
 interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
   autofocus?: boolean;
   disabled?: boolean
@@ -1045,7 +1041,7 @@ interface MeterHTMLAttributes extends HTMLAttributes<HTMLMeterElement> {
 }
 
 interface QuoteHTMLAttributes extends HTMLAttributes<HTMLQuoteElement> {
-  cite?: string
+  cite?: string;
 }
 
 interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
@@ -1409,7 +1405,7 @@ declare global {
       bdi: HTMLAttributes<HTMLElement>
       bdo: HTMLAttributes<HTMLElement>
       big: HTMLAttributes<HTMLElement>
-      blockquote: BlockquoteHTMLAttributes
+      blockquote: QuoteHTMLAttributes
       body: HTMLAttributes<HTMLBodyElement>
       br: HTMLAttributes<HTMLBRElement>
       button: ButtonHTMLAttributes
