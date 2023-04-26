@@ -786,14 +786,13 @@ export type HTMLInputTypeAttribute =
   | 'week'
 
 interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
-  download?: any
-  href?: string
+  download?: any;
+  href?: string;
   hreflang?: string;
-  media?: string
   ping?: string
-  rel?: string
-  target?: '_blank' | '_self' | '_parent' | '_top'
-  type?: string
+  rel?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  type?: string;
   referrerPolicy?: ReferrerPolicy;
 }
 
