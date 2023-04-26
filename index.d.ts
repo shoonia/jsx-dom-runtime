@@ -979,7 +979,7 @@ interface LabelHTMLAttributes extends HTMLAttributes<HTMLLabelElement> {
 }
 
 interface LiHTMLAttributes extends HTMLAttributes<HTMLLIElement> {
-  value?: string | readonly string[] | number
+  value?: `${number}` | number;
 }
 
 interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
