@@ -6,7 +6,7 @@ beforeEach(() => {
 });
 
 expect.extend({
-  toHaveOuterHTML(node, html) {
+  toHaveOuterHTML(node: HTMLElement, html: string) {
     const val = node.outerHTML;
 
     if (val === html) {
@@ -22,7 +22,7 @@ expect.extend({
     };
   },
 
-  toHaveInnerHTML(node, html) {
+  toHaveInnerHTML(node: HTMLElement, html: string) {
     const val = node.innerHTML;
 
     if (val === html) {
@@ -38,7 +38,7 @@ expect.extend({
     };
   },
 
-  toHaveCssText(node, css) {
+  toHaveCssText(node: HTMLElement, css: string) {
     const val = node.style.cssText;
 
     if (val === css) {
@@ -52,5 +52,5 @@ expect.extend({
       message: () => `expected "${val}" to be equal style.cssText "${css}"`,
       pass: false,
     };
-  }
+  },
 });

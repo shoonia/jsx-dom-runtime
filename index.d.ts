@@ -181,7 +181,8 @@ interface DOMAttributes<T> extends JSX.Attributes {
 }
 
 export interface CSSProperties extends Properties<string | number> {
-  cssText?: string | null
+  cssText?: string | null;
+  [key: `--${string}`]: string | number;
 }
 
 export interface AriaAttributes {

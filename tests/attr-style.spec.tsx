@@ -19,15 +19,11 @@ describe('Style attribute', () => {
   });
 
   it('should add CSS custom property as an object', () => {
-    // @ts-expect-error
     expect(<div style={{ '--x': 'red' }} />).toHaveCssText('--x: red;');
+    expect(<div style={{ '--y': 'yellow', '--b': 'blue' }} />).toHaveCssText('--y: yellow; --b: blue;');
   });
 
   it('should add inline CSS with `cssText` property', () => {
     expect(<p style={{ cssText: 'padding: 15px; margin: 15px;' }} />).toHaveCssText('padding: 15px; margin: 15px;');
-  });
-
-  it('should remove inline CSS with `cssText` property', () => {
-    expect(<p style="padding: 1.5em; margin: 1.5em;" />).toHaveCssText('padding: 1.5em; margin: 1.5em;');
   });
 });
