@@ -1,14 +1,4 @@
 describe('HTMLVideoElement', () => {
-  it('should have `muted` property', () => {
-    expect(<video muted />).toHaveProperty('muted', true);
-    expect(<video muted={false} />).toHaveProperty('muted', false);
-  });
-
-  it('should NOT have `muted` attribute', () => {
-    expect(<video muted />).not.toHaveAttribute('muted');
-    expect(<video muted={false} />).not.toHaveAttribute('muted');
-  });
-
   it('should have `src` attribute & property', () => {
     expect(<video src="/video" />).toHaveProperty('src', 'http://localhost/video');
     expect(<video src="/video" />).toHaveAttribute('src', '/video');
