@@ -181,7 +181,8 @@ interface DOMAttributes<T> extends JSX.Attributes {
 }
 
 export interface CSSProperties extends Properties<string | number> {
-  cssText?: string | null
+  cssText?: string | null;
+  [key: `--${string}`]: string | number;
 }
 
 export interface AriaAttributes {
@@ -472,7 +473,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   spellcheck?: 'true' | 'false'
   style?: string | CSSProperties
   tabIndex?: number
-  title?: string
+  title?: string;
   translate?: 'yes' | 'no'
   // Unknown
   radioGroup?: string // <command>, <menuitem>
@@ -784,15 +785,14 @@ export type HTMLInputTypeAttribute =
   | 'url'
   | 'week'
 
-export interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
-  download?: any
-  href?: string
+interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
+  download?: any;
+  href?: string;
   hreflang?: string;
-  media?: string
   ping?: string
-  rel?: string
-  target?: '_blank' | '_self' | '_parent' | '_top'
-  type?: string
+  rel?: string;
+  target?: '_blank' | '_self' | '_parent' | '_top';
+  type?: string;
   referrerPolicy?: ReferrerPolicy;
 }
 
@@ -817,27 +817,23 @@ interface BaseHTMLAttributes extends HTMLAttributes<HTMLBaseElement> {
   target?: string
 }
 
-interface BlockquoteHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  cite?: string
-}
-
-export interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
-  autofocus?: boolean
-  disabled?: boolean
+interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
+  autofocus?: boolean;
+  disabled?: boolean;
   form?: string
   formAction?: string
   formEncType?: string
   formMethod?: string
   formNoValidate?: boolean
   formTarget?: string
-  name?: string
-  type?: 'submit' | 'reset' | 'button'
-  value?: string | readonly string[] | number
+  name?: string;
+  type?: 'submit' | 'reset' | 'button';
+  value?: string | number;
 }
 
 interface CanvasHTMLAttributes extends HTMLAttributes<HTMLCanvasElement> {
-  height?: number | string
-  width?: number | string
+  height?: number | string;
+  width?: number | string;
 }
 
 interface ColHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
@@ -850,21 +846,22 @@ interface ColgroupHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
 }
 
 interface DataHTMLAttributes extends HTMLAttributes<HTMLDataElement> {
-  value?: string | readonly string[] | number
+  value?: string | number;
 }
 
-interface DetailsHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  open?: boolean
-  ontoggle?: TEventHandler<HTMLElement>
+interface DetailsHTMLAttributes extends HTMLAttributes<HTMLDetailsElement> {
+  open?: boolean;
+  ontoggle?: TEventHandler<HTMLDetailsElement>;
 }
 
-interface DelHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  cite?: string
-  dateTime?: string
+interface DelHTMLAttributes extends HTMLAttributes<HTMLModElement> {
+  cite?: string;
+  dateTime?: string;
 }
 
 interface DialogHTMLAttributes extends HTMLAttributes<HTMLDialogElement> {
   open?: boolean
+  ontoggle?: TEventHandler<HTMLDialogElement>;
 }
 
 interface EmbedHTMLAttributes extends HTMLAttributes<HTMLEmbedElement> {
@@ -875,19 +872,19 @@ interface EmbedHTMLAttributes extends HTMLAttributes<HTMLEmbedElement> {
 }
 
 interface FieldsetHTMLAttributes extends HTMLAttributes<HTMLFieldSetElement> {
-  disabled?: boolean
+  disabled?: boolean;
   form?: string
-  name?: string
+  name?: string;
 }
 
 export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
-  acceptCharset?: string
-  action?: string
-  autocomplete?: string
-  enctype?: string
-  method?: string
-  name?: string
-  noValidate?: boolean
+  'accept-charset'?: string;
+  action?: string;
+  autocomplete?: string;
+  enctype?: string;
+  method?: string;
+  name?: string;
+  noValidate?: boolean;
   target?: string
 }
 
@@ -895,59 +892,60 @@ interface HtmlHTMLAttributes extends HTMLAttributes<HTMLHtmlElement> {
   manifest?: string
 }
 
-export interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
+interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   allow?: string
-  allowFullScreen?: boolean
+  allowFullScreen?: boolean;
   allowTransparency?: boolean
   /** @deprecated */
   frameBorder?: number | string
-  height?: number | string
+  height?: number | string;
   loading?: 'eager' | 'lazy'
   /** @deprecated */
-  marginHeight?: number
+  marginHeight?: number;
   /** @deprecated */
-  marginWidth?: number
-  name?: string
+  marginWidth?: number;
+  name?: string;
   referrerPolicy?: ReferrerPolicy;
   sandbox?: string
   /** @deprecated */
   scrolling?: string
   seamless?: boolean
-  src?: string
-  srcdoc?: string
-  width?: number | string
+  src?: string;
+  srcdoc?: string;
+  width?: number | string;
 }
 
-export interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
-  alt?: string
+interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
+  alt?: string;
   crossOrigin?: HTMLAttrinuteCORS;
-  decoding?: 'async' | 'auto' | 'sync'
-  height?: number | string
-  loading?: 'eager' | 'lazy'
+  decoding?: 'async' | 'auto' | 'sync';
+  height?: number | string;
+  loading?: 'eager' | 'lazy';
   referrerPolicy?: ReferrerPolicy;
-  sizes?: string
-  src?: string
-  srcset?: string
+  sizes?: string;
+  src?: string;
+  srcset?: string;
   useMap?: string;
-  width?: number | string
+  width?: number | string;
   fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 interface InsHTMLAttributes extends HTMLAttributes<HTMLModElement> {
   cite?: string
-  dateTime?: string
+  dateTime?: string;
 }
 
-export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
+interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   accept?: string
   alt?: string
-  autocomplete?: string
-  autofocus?: boolean
+  autocomplete?: string;
+  autofocus?: boolean;
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
-  checked?: boolean
+  checked?: boolean;
   crossOrigin?: HTMLAttrinuteCORS;
-  disabled?: boolean
-  enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
+  disabled?: boolean;
+  dirName?: string;
+  enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
   form?: string
   formAction?: string
   formEncType?: string
@@ -955,57 +953,49 @@ export interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   formNoValidate?: boolean
   formTarget?: string
   height?: number | string
-  list?: string
+  list?: string;
   max?: number | string
-  maxLength?: number
-  maxlength?: number
+  maxLength?: number;
   min?: number | string
-  minLength?: number
-  minlength?: number
+  minLength?: number;
   multiple?: boolean
-  name?: string
-  pattern?: string
-  placeholder?: string
-  readOnly?: boolean
-  required?: boolean
-  size?: number
+  name?: string;
+  pattern?: string;
+  placeholder?: string;
+  readOnly?: boolean;
+  required?: boolean;
+  size?: number;
   src?: string
-  step?: number | string
-  type?: HTMLInputTypeAttribute
-  value?: string | readonly string[] | number
+  step?: number | string;
+  type?: HTMLInputTypeAttribute;
+  value?: string | number;
   width?: number | string
   onchange?: ChangeEventHandler<HTMLInputElement>
 }
 
-interface KeygenHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  autofocus?: boolean
-  challenge?: string
-  disabled?: boolean
-  form?: string
-  keyType?: string
-  keyParams?: string
-  name?: string
-}
-
-export interface LabelHTMLAttributes extends HTMLAttributes<HTMLLabelElement> {
+interface LabelHTMLAttributes extends HTMLAttributes<HTMLLabelElement> {
   for?: string
 }
 
 interface LiHTMLAttributes extends HTMLAttributes<HTMLLIElement> {
-  value?: string | readonly string[] | number
+  value?: `${number}` | number;
 }
 
 interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
-  as?: string
+  title?: string;
+  as?: string;
   crossOrigin?: HTMLAttrinuteCORS;
+  disabled?: boolean;
   href?: string
   hreflang?: string;
   integrity?: string
-  media?: string
+  media?: string;
   referrerPolicy?: ReferrerPolicy;
-  rel?: string
-  sizes?: string
-  type?: string
+  rel?: string;
+  /** @deprecated */
+  rev?: string;
+  sizes?: string;
+  type?: string;
   /** @deprecated */
   charset?: string;
   fetchPriority?: 'high' | 'low' | 'auto';
@@ -1015,42 +1005,42 @@ interface MapHTMLAttributes extends HTMLAttributes<HTMLMapElement> {
   name?: string
 }
 
-interface MenuHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  type?: string
+interface MenuHTMLAttributes extends HTMLAttributes<HTMLMenuElement> {
+  /** @deprecated */
+  type?: string;
 }
 
 interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
-  autoplay?: boolean
-  controls?: boolean
+  autoplay?: boolean;
+  controls?: boolean;
   controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
   crossOrigin?: HTMLAttrinuteCORS;
-  loop?: boolean
+  loop?: boolean;
   mediaGroup?: string
-  muted?: boolean
-  playsInline?: boolean
-  preload?: 'none' | 'metadata' | 'auto'
-  src?: string
+  playsInline?: boolean;
+  preload?: 'none' | 'metadata' | 'auto';
+  src?: string;
 }
 
 interface MetaHTMLAttributes extends HTMLAttributes<HTMLMetaElement> {
   charset?: string;
-  content?: string
+  content?: string;
   'http-equiv'?: string;
-  name?: string
+  name?: string;
 }
 
-interface MeterHTMLAttributes extends HTMLAttributes<HTMLElement> {
+interface MeterHTMLAttributes extends HTMLAttributes<HTMLMeterElement> {
   form?: string
-  high?: number
-  low?: number
-  max?: number | string
-  min?: number | string
-  optimum?: number
-  value?: string | readonly string[] | number
+  high?: number;
+  low?: number;
+  max?: number | string;
+  min?: number | string;
+  optimum?: number;
+  value?: string | number;
 }
 
 interface QuoteHTMLAttributes extends HTMLAttributes<HTMLQuoteElement> {
-  cite?: string
+  cite?: string;
 }
 
 interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
@@ -1066,37 +1056,38 @@ interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
 }
 
 interface OlHTMLAttributes extends HTMLAttributes<HTMLOListElement> {
-  reversed?: boolean
-  start?: number
-  type?: '1' | 'a' | 'A' | 'i' | 'I'
+  reversed?: boolean;
+  start?: number;
+  type?: '1' | 'a' | 'A' | 'i' | 'I';
 }
 
 interface OptgroupHTMLAttributes extends HTMLAttributes<HTMLOptGroupElement> {
-  disabled?: boolean
-  label?: string
+  disabled?: boolean;
+  label?: string;
 }
 
 interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
-  disabled?: boolean
-  label?: string
-  selected?: boolean
-  value?: string | readonly string[] | number
+  disabled?: boolean;
+  label?: string;
+  selected?: boolean;
+  value?: string | number;
 }
 
-interface OutputHTMLAttributes extends HTMLAttributes<HTMLElement> {
+interface OutputHTMLAttributes extends HTMLAttributes<HTMLOutputElement> {
   form?: string
-  for?: string
-  name?: string
+  for?: string;
+  name?: string;
+  value?: string | number;
 }
 
 interface ParamHTMLAttributes extends HTMLAttributes<HTMLParamElement> {
   name?: string
-  value?: string | readonly string[] | number
+  value?: string | number
 }
 
 interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
-  max?: number | string
-  value?: string | readonly string[] | number
+  max?: number | string;
+  value?: string | number;
 }
 
 interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
@@ -1104,41 +1095,41 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
   /** @deprecated */
   charset?: string;
   crossOrigin?: HTMLAttrinuteCORS;
-  defer?: boolean
+  defer?: boolean;
   integrity?: string
-  noModule?: boolean
+  noModule?: boolean;
   nonce?: string
   referrerPolicy?: ReferrerPolicy;
-  src?: string
-  type?: string
+  src?: string;
+  type?: string;
   fetchPriority?: 'high' | 'low' | 'auto';
 }
 
 interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
-  autocomplete?: string
-  autofocus?: boolean
-  disabled?: boolean
+  autocomplete?: string;
+  autofocus?: boolean;
+  disabled?: boolean;
   form?: string
-  multiple?: boolean
-  name?: string
-  required?: boolean
-  size?: number
-  value?: string | readonly string[] | number
-  onchange?: ChangeEventHandler<HTMLSelectElement>
+  multiple?: boolean;
+  name?: string;
+  required?: boolean;
+  size?: number;
+  value?: string | number;
+  onchange?: ChangeEventHandler<HTMLSelectElement>;
 }
 
-interface SlotHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  name?: string
+interface SlotHTMLAttributes extends HTMLAttributes<HTMLSlotElement> {
+  name?: string;
 }
 
 interface SourceHTMLAttributes extends HTMLAttributes<HTMLSourceElement> {
-  media?: string
-  sizes?: string
-  src?: string
+  media?: string;
+  sizes?: string;
+  src?: string;
   srcset?: string;
-  type?: string
-  height?: number | string
-  width?: number | string
+  type?: string;
+  height?: number | string;
+  width?: number | string;
 }
 
 interface StyleHTMLAttributes extends HTMLAttributes<HTMLStyleElement> {
@@ -1155,23 +1146,23 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
   width?: number | string
 }
 
-export interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
-  autocomplete?: string
-  autofocus?: boolean
-  cols?: number
-  dirName?: string
-  disabled?: boolean
+interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
+  autocomplete?: string;
+  autofocus?: boolean;
+  cols?: number;
+  dirName?: string;
+  disabled?: boolean;
   form?: string
-  maxLength?: number
-  minLength?: number
-  name?: string
-  placeholder?: string
-  readOnly?: boolean
-  required?: boolean
-  rows?: number
-  value?: string | readonly string[] | number
-  wrap?: string
-  onchange?: ChangeEventHandler<HTMLTextAreaElement>
+  maxLength?: number;
+  minLength?: number;
+  name?: string;
+  placeholder?: string;
+  readOnly?: boolean;
+  required?: boolean;
+  rows?: number;
+  value?: string | number;
+  wrap?: 'hard' | 'soft' | 'off';
+  onchange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
 interface TdHTMLAttributes extends HTMLAttributes<HTMLTableDataCellElement> {
@@ -1195,31 +1186,34 @@ interface ThHTMLAttributes extends HTMLAttributes<HTMLTableHeaderCellElement> {
   abbr?: string
 }
 
-interface TimeHTMLAttributes extends HTMLAttributes<HTMLElement> {
-  dateTime?: string
+interface TimeHTMLAttributes extends HTMLAttributes<HTMLTimeElement> {
+  dateTime?: string;
 }
 
 interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
-  default?: boolean
-  kind?: string
-  label?: string
-  src?: string
-  srcLang?: string
+  default?: boolean;
+  kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata';
+  label?: string;
+  src?: string;
+  srclang?: string;
 }
 
-export interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
-  height?: number | string
-  playsInline?: boolean
-  poster?: string
-  width?: number | string
-  disablePictureInPicture?: boolean
-  disableRemotePlayback?: boolean
+interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
+  height?: number | string;
+  playsInline?: boolean;
+  poster?: string;
+  width?: number | string;
+  disablePictureInPicture?: boolean;
+  disableRemotePlayback?: boolean;
+
+  onenterpictureinpicture?: TEventHandler<HTMLVideoElement>;
+  onleavepictureinpicture?: TEventHandler<HTMLVideoElement>;
 }
 
 interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
   allowFullScreen?: boolean
   allowpopups?: boolean
-  autofocus?: boolean
+  autofocus?: boolean;
   autosize?: boolean
   blinkfeatures?: string
   disableblinkfeatures?: string
@@ -1234,6 +1228,20 @@ interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
   src?: string
   useragent?: string
   webpreferences?: string
+}
+
+interface MarqueeHTMLElement extends HTMLAttributes<HTMLMarqueeElement> {
+  behavior?: 'scroll' | 'slide' | 'alternate'
+  bgColor?: string
+  direction?: 'left' | 'right' | 'up' | 'down'
+  height?: number | string
+  hspace?: number | string
+  loop?: number | string
+  scrollAmount?: number | string
+  scrollDelay?: number | string
+  trueSpeed?: boolean
+  vspace?: number | string
+  width?: number | string
 }
 
 type HTMLWebViewElement = HTMLElement
@@ -1400,7 +1408,7 @@ declare global {
       bdi: HTMLAttributes<HTMLElement>
       bdo: HTMLAttributes<HTMLElement>
       big: HTMLAttributes<HTMLElement>
-      blockquote: BlockquoteHTMLAttributes
+      blockquote: QuoteHTMLAttributes
       body: HTMLAttributes<HTMLBodyElement>
       br: HTMLAttributes<HTMLBRElement>
       button: ButtonHTMLAttributes
@@ -1444,7 +1452,7 @@ declare global {
       input: InputHTMLAttributes
       ins: InsHTMLAttributes
       kbd: HTMLAttributes<HTMLElement>
-      keygen: KeygenHTMLAttributes
+      keygen: HTMLAttributes<HTMLUnknownElement>;
       label: LabelHTMLAttributes
       legend: HTMLAttributes<HTMLLegendElement>
       li: LiHTMLAttributes
@@ -1452,8 +1460,9 @@ declare global {
       main: HTMLAttributes<HTMLElement>
       map: MapHTMLAttributes
       mark: HTMLAttributes<HTMLElement>
+      marquee: HTMLAttributes<MarqueeHTMLElement>
       menu: MenuHTMLAttributes
-      menuitem: HTMLAttributes<HTMLElement>
+      menuitem: HTMLAttributes<HTMLUnknownElement>
       meta: MetaHTMLAttributes
       meter: MeterHTMLAttributes
       nav: HTMLAttributes<HTMLElement>
@@ -1466,7 +1475,7 @@ declare global {
       output: OutputHTMLAttributes
       p: HTMLAttributes<HTMLParagraphElement>
       param: ParamHTMLAttributes
-      picture: HTMLAttributes<HTMLElement>
+      picture: HTMLAttributes<HTMLPictureElement>
       pre: HTMLAttributes<HTMLPreElement>
       progress: ProgressHTMLAttributes
       q: QuoteHTMLAttributes

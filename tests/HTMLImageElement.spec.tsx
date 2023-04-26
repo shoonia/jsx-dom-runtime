@@ -5,6 +5,7 @@ describe('HTMLImageElement', () => {
 
   it('should set alt', () => {
     expect(<img alt="image test" />).toHaveOuterHTML('<img alt="image test">');
+    expect(<img alt="image test" />).toHaveProperty('alt', 'image test');
   });
 
   it('should have `width` attribute', () => {

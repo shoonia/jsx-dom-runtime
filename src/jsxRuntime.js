@@ -10,7 +10,6 @@ let internalKeys = new Set([
 export let properties = new Set([
   'innerHTML',
   'value',
-  'muted',
 ]);
 
 export let jsx = (node, props) => {

@@ -1,3 +1,5 @@
+import { jest } from '@jest/globals';
+
 describe('HTMLSelectElement', () => {
   it('should render a select', () => {
     expect(
@@ -15,20 +17,40 @@ describe('HTMLSelectElement', () => {
     );
   });
 
+  it('should have `autofocus` attribute', () => {
+    expect(<select autofocus />).toHaveProperty('autofocus', true);
+    expect(<select autofocus />).toHaveAttribute('autofocus', '');
+  });
+
+  it('should NOT have `autofocus` attribute', () => {
+    expect(<select autofocus={false} />).toHaveProperty('autofocus', false);
+    expect(<select autofocus={false} />).not.toHaveAttribute('autofocus');
+  });
+
   it('should have `multiple` attribute', () => {
     expect(<select multiple />).toHaveProperty('multiple', true);
     expect(<select multiple />).toHaveAttribute('multiple', '');
+  });
 
-    expect(<select multiple />).toHaveProperty('multiple', true);
-    expect(<select multiple={true} />).toHaveAttribute('multiple', '');
+  it('should NOT have `multiple` attribute', () => {
+    expect(<select multiple={false} />).toHaveProperty('multiple', false);
+    expect(<select multiple={false} />).not.toHaveAttribute('multiple');
   });
 
   it('should have `required` attribute', () => {
-    expect(<select required />).toHaveProperty('required', true);
-    expect(<select required />).toHaveAttribute('required', '');
+    expect(<select required />).toBeRequired();
+  });
 
-    expect(<select required />).toHaveProperty('required', true);
-    expect(<select required={true} />).toHaveAttribute('required', '');
+  it('should NOT have `required` attribute', () => {
+    expect(<select required={false} />).not.toBeRequired();
+  });
+
+  it('should have `disabled` attribute', () => {
+    expect(<select disabled />).toBeDisabled();
+  });
+
+  it('should NOT have `disabled` attribute', () => {
+    expect(<select disabled={false} />).not.toBeDisabled();
   });
 
   it('should have `size` attribute', () => {
@@ -51,5 +73,11 @@ describe('HTMLSelectElement', () => {
     );
 
     expect(select).toHaveValue('2');
+  });
+
+  it('should add `onchange` handler', () => {
+    const spy = jest.fn();
+
+    expect(<select onchange={spy} />).toHaveProperty('onchange', spy);
   });
 });

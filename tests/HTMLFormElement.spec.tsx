@@ -32,4 +32,29 @@ describe('HTMLFormElement', () => {
     expect(<form method="GET" />).toHaveProperty('method', 'get');
     expect(<form method="GET" />).toHaveAttribute('method', 'GET');
   });
+
+  it('should have `accept-charset` attribute', () => {
+    expect(<form accept-charset="utf-8" />).toHaveProperty('acceptCharset', 'utf-8');
+    expect(<form accept-charset="utf-8" />).toHaveAttribute('accept-charset', 'utf-8');
+  });
+
+  it('should have `noValidate` attribute', () => {
+    expect(<form noValidate />).toHaveProperty('noValidate', true);
+    expect(<form noValidate />).toHaveAttribute('novalidate', '');
+  });
+
+  it('should NOT have `noValidate` attribute', () => {
+    expect(<form noValidate={false} />).toHaveProperty('noValidate', false);
+    expect(<form noValidate={false} />).not.toHaveAttribute('novalidate');
+  });
+
+  it('should have `action` attribute', () => {
+    expect(<form action="/" />).toHaveProperty('action', 'http://localhost/');
+    expect(<form action="/" />).toHaveAttribute('action', '/');
+  });
+
+  it('should have `name` attribute', () => {
+    expect(<form name="form" />).toHaveProperty('name', 'form');
+    expect(<form name="form" />).toHaveAttribute('name', 'form');
+  });
 });

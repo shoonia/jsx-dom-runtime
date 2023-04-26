@@ -4,8 +4,13 @@ describe('HTMLIFrameElement', () => {
     expect(<iframe src="/doc" />).toHaveProperty('src', 'http://localhost/doc');
   });
 
-  it('should set width / height', () => {
+  it('should have `height` attribute', () => {
+    expect(<iframe height={99} />).toHaveProperty('height', '99');
     expect(<iframe height={99} />).toHaveAttribute('height', '99');
+  });
+
+  it('should have `width` attribute', () => {
+    expect(<iframe width={101} />).toHaveProperty('width', '101');
     expect(<iframe width={101} />).toHaveAttribute('width', '101');
   });
 
@@ -22,6 +27,11 @@ describe('HTMLIFrameElement', () => {
   it('should have a title', () => {
     expect(<iframe title="Page" />).toHaveAttribute('title', 'Page');
     expect(<iframe title="Page" />).toHaveProperty('title', 'Page');
+  });
+
+  it('should have `name` attribute', () => {
+    expect(<iframe name="name" />).toHaveAttribute('name', 'name');
+    expect(<iframe name="name" />).toHaveProperty('name', 'name');
   });
 
   it('should have `srcdoc` attribute', () => {

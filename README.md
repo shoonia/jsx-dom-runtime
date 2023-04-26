@@ -173,6 +173,8 @@ document.body.append(
     TypeScript types definition for custom attributes and properties
   </summary>
 
+`global.d.ts`
+
 ```ts
 declare global {
   namespace JSX {
@@ -196,28 +198,52 @@ Result
 
 ### properties
 
-Add support of the DOM Element object properties. By default supported [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML), [`muted`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/muted), `value`.
+Add support of the DOM Element object properties. By default supported [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) and `value`.
 
 ```js
 import { properties } from 'jsx-dom-runtime';
 
-properties.add('innerText');
+// https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
 properties.add('textContent');
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
+properties.add('volume');
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/muted
+properties.add('muted');
 
 document.body.append(
   <>
-    <span innerText="Hello" />
-    {', '}
-    <span textContent="World" />
+    <span textContent="Hello, world!" />
+    <audio
+      src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"
+      controls
+      volume={0.9}
+      muted
+    />
   </>
 );
 ```
 
-Result
+<details>
+  <summary>
+    TypeScript types definition for custom attributes and properties
+  </summary>
 
-```html
-<span>Hello</span>, <span>World</span>
+`global.d.ts`
+
+```ts
+declare global {
+  namespace JSX {
+    interface Attributes {
+      textContent?: string;
+      muted?: boolean;
+      volume?: number;
+    }
+  }
+}
+
+export {};
 ```
+</details>
 
 ## TypeScript Support
 

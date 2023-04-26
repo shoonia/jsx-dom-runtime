@@ -18,4 +18,10 @@ describe('HTMLProgressElement', () => {
     expect(<progress max="10">0</progress>).toHaveProperty('max', 10);
     expect(<progress max={10}>0</progress>).toHaveAttribute('max', '10');
   });
+
+  it('should have text content', () => {
+    expect(<progress max="20">11</progress>).toHaveTextContent('11');
+    expect(<progress max="20">22</progress>).toHaveInnerHTML('22');
+    expect(<progress max="20">33</progress>).toHaveProperty('textContent', '33');
+  });
 });
