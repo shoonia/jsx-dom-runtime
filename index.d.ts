@@ -1206,6 +1206,9 @@ interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
   width?: number | string;
   disablePictureInPicture?: boolean;
   disableRemotePlayback?: boolean;
+
+  onenterpictureinpicture?: TEventHandler<HTMLVideoElement>;
+  onleavepictureinpicture?: TEventHandler<HTMLVideoElement>;
 }
 
 interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
