@@ -47,4 +47,14 @@ describe('HTMLFormElement', () => {
     expect(<form noValidate={false} />).toHaveProperty('noValidate', false);
     expect(<form noValidate={false} />).not.toHaveAttribute('novalidate');
   });
+
+  it('should have `action` attribute', () => {
+    expect(<form action="/" />).toHaveProperty('action', 'http://localhost/');
+    expect(<form action="/" />).toHaveAttribute('action', '/');
+  });
+
+  it('should have `name` attribute', () => {
+    expect(<form name="form" />).toHaveProperty('name', 'form');
+    expect(<form name="form" />).toHaveAttribute('name', 'form');
+  });
 });

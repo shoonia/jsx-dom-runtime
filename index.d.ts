@@ -878,11 +878,11 @@ interface FieldsetHTMLAttributes extends HTMLAttributes<HTMLFieldSetElement> {
 }
 
 export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
-  'accept-charset'?: string
-  action?: string
+  'accept-charset'?: string;
+  action?: string;
   autocomplete?: string;
   enctype?: string;
-  method?: string
+  method?: string;
   name?: string;
   noValidate?: boolean;
   target?: string
