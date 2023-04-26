@@ -820,16 +820,16 @@ interface BaseHTMLAttributes extends HTMLAttributes<HTMLBaseElement> {
 
 interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
   autofocus?: boolean;
-  disabled?: boolean
+  disabled?: boolean;
   form?: string
   formAction?: string
   formEncType?: string
   formMethod?: string
   formNoValidate?: boolean
   formTarget?: string
-  name?: string
-  type?: 'submit' | 'reset' | 'button'
-  value?: string | readonly string[] | number
+  name?: string;
+  type?: 'submit' | 'reset' | 'button';
+  value?: string | readonly string[] | number;
 }
 
 interface CanvasHTMLAttributes extends HTMLAttributes<HTMLCanvasElement> {

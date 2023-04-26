@@ -212,10 +212,10 @@ properties.add('muted');
 
 document.body.append(
   <>
-    <span textContent="World" />
+    <span textContent="Hello, world!" />
     <audio
-      controls
       src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"
+      controls
       volume={0.9}
       muted
     />
