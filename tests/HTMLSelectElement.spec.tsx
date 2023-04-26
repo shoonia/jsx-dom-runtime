@@ -38,23 +38,19 @@ describe('HTMLSelectElement', () => {
   });
 
   it('should have `required` attribute', () => {
-    expect(<select required />).toHaveProperty('required', true);
-    expect(<select required />).toHaveAttribute('required', '');
+    expect(<select required />).toBeRequired();
   });
 
   it('should NOT have `required` attribute', () => {
-    expect(<select required={false} />).toHaveProperty('required', false);
-    expect(<select required={false} />).not.toHaveAttribute('required');
+    expect(<select required={false} />).not.toBeRequired();
   });
 
   it('should have `disabled` attribute', () => {
-    expect(<select disabled />).toHaveProperty('disabled', true);
-    expect(<select disabled />).toHaveAttribute('disabled', '');
+    expect(<select disabled />).toBeDisabled();
   });
 
   it('should NOT have `disabled` attribute', () => {
-    expect(<select disabled={false} />).toHaveProperty('disabled', false);
-    expect(<select disabled={false} />).not.toHaveAttribute('disabled');
+    expect(<select disabled={false} />).not.toBeDisabled();
   });
 
   it('should have `size` attribute', () => {

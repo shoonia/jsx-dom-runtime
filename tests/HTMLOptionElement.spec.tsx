@@ -10,13 +10,11 @@ describe('HTMLOptionElement', () => {
   });
 
   it('should have `disabled` attribute', () => {
-    expect(<option disabled />).toHaveProperty('disabled', true);
-    expect(<option disabled />).toHaveAttribute('disabled');
+    expect(<option disabled />).toBeDisabled();
   });
 
   it('should NOT have `disabled` attribute', () => {
-    expect(<option disabled={false} />).toHaveProperty('disabled', false);
-    expect(<option disabled={false} />).not.toHaveAttribute('disabled');
+    expect(<option disabled={false} />).not.toBeDisabled();
   });
 
   it('should have `label` attribute', () => {
@@ -25,7 +23,6 @@ describe('HTMLOptionElement', () => {
   });
 
   it('should have `value` attribute', () => {
-    expect(<option value="data" />).toHaveProperty('value', 'data');
-    expect(<option value="data" />).toHaveAttribute('value', 'data');
+    expect(<option value="data" />).toHaveValue('data');
   });
 });

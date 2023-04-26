@@ -942,9 +942,9 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   autocomplete?: string;
   autofocus?: boolean;
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
-  checked?: boolean
+  checked?: boolean;
   crossOrigin?: HTMLAttrinuteCORS;
-  disabled?: boolean
+  disabled?: boolean;
   dirName?: string;
   enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
   form?: string
@@ -954,22 +954,22 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   formNoValidate?: boolean
   formTarget?: string
   height?: number | string
-  list?: string
+  list?: string;
   max?: number | string
   maxLength?: number;
   min?: number | string
   minLength?: number;
   multiple?: boolean
-  name?: string
-  pattern?: string
-  placeholder?: string
+  name?: string;
+  pattern?: string;
+  placeholder?: string;
   readOnly?: boolean;
-  required?: boolean
-  size?: number
+  required?: boolean;
+  size?: number;
   src?: string
-  step?: number | string
-  type?: HTMLInputTypeAttribute
-  value?: string | readonly string[] | number
+  step?: number | string;
+  type?: HTMLInputTypeAttribute;
+  value?: string | readonly string[] | number;
   width?: number | string
   onchange?: ChangeEventHandler<HTMLInputElement>
 }

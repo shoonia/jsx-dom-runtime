@@ -21,6 +21,11 @@ describe('HTMLInputElement', () => {
     expect(<input size={24} />).toHaveAttribute('size', '24');
   });
 
+  it('should have `step attribute`', () => {
+    expect(<input step={1} />).toHaveProperty('step', '1');
+    expect(<input step={1} />).toHaveAttribute('step', '1');
+  });
+
   it('should have correct attribute value `autofocus`', () => {
     expect(<input autofocus />).toHaveProperty('autofocus', true);
     expect(<input autofocus />).toHaveAttribute('autofocus', '');
@@ -33,22 +38,18 @@ describe('HTMLInputElement', () => {
 
   it('should have correct attribute value `disabled`', () => {
     expect(<input disabled />).toBeDisabled();
-    expect(<input disabled />).toHaveAttribute('disabled', '');
   });
 
   it.each(off)('should NOT have attribute `disabled`', (val) => {
-    expect(<input disabled={val} />).not.toHaveAttribute('disabled');
     expect(<input disabled={val} />).not.toBeDisabled();
   });
 
   it('should have correct attribute value `required`', () => {
     expect(<input required />).toBeRequired();
-    expect(<input required />).toHaveAttribute('required', '');
   });
 
   it.each(off)('should NOT have attribute `required`', (val) => {
-    expect(<input required={val} />).not.toHaveAttribute('required');
-    expect(<input required={val} />).toHaveProperty('required', false);
+    expect(<input required={val} />).not.toBeRequired();
   });
 
   it('should have correct attribute value `required`', () => {
@@ -67,13 +68,13 @@ describe('HTMLInputElement', () => {
   });
 
   it('should work with checkbox', () => {
-    expect(<input type="checkbox" checked />).toHaveProperty('checked', true);
-    expect(<input type="checkbox" checked={true} />).toHaveProperty('checked', true);
+    expect(<input type="checkbox" checked />).toBeChecked();
+    expect(<input type="checkbox" />).not.toBeChecked();
   });
 
   it('should work with radio button', () => {
-    expect(<input type="radio" checked />).toHaveProperty('checked', true);
-    expect(<input type="radio" checked={true} />).toHaveProperty('checked', true);
+    expect(<input type="radio" checked />).toBeChecked();
+    expect(<input type="radio" />).not.toBeChecked();
   });
 
   it('should set inputMode', () => {
@@ -103,8 +104,13 @@ describe('HTMLInputElement', () => {
     expect(<input list="some-id" />).toHaveAttribute('list', 'some-id');
   });
 
-  it('should support `dirName` attribute', () => {
+  it('should have `dirName` attribute', () => {
     expect(<input dirName="hello.dir" />).toHaveProperty('dirName', 'hello.dir');
     expect(<input dirName="hello.dir" />).toHaveAttribute('dirname', 'hello.dir');
+  });
+
+  it('should have `placeholder` attribute', () => {
+    expect(<input placeholder="text" />).toHaveProperty('placeholder', 'text');
+    expect(<input placeholder="text" />).toHaveAttribute('placeholder', 'text');
   });
 });

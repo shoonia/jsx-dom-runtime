@@ -1,12 +1,10 @@
 describe('HTMLOptGroupElement', () => {
   it('should have `disabled` attribute', () => {
-    expect(<optgroup disabled />).toHaveProperty('disabled', true);
-    expect(<optgroup disabled />).toHaveAttribute('disabled');
+    expect(<optgroup disabled />).toBeDisabled();
   });
 
   it('should NOT have `disabled` attribute', () => {
-    expect(<optgroup disabled={false} />).toHaveProperty('disabled', false);
-    expect(<optgroup disabled={false} />).not.toHaveAttribute('disabled');
+    expect(<optgroup disabled={false} />).not.toBeDisabled();
   });
 
   it('should have `label` attribute', () => {

@@ -1,12 +1,10 @@
 describe('HTMLFieldSetElement', () => {
   it('should have `disabled` attribute', () => {
-    expect(<fieldset disabled />).toHaveProperty('disabled', true);
-    expect(<fieldset disabled />).toHaveAttribute('disabled');
+    expect(<fieldset disabled />).toBeDisabled();
   });
 
   it('should NOT have `disabled` attribute', () => {
-    expect(<fieldset disabled={false} />).toHaveProperty('disabled', false);
-    expect(<fieldset disabled={false} />).not.toHaveAttribute('disabled');
+    expect(<fieldset disabled={false} />).not.toBeDisabled();
   });
 
   it('should have `name` attribute', () => {
