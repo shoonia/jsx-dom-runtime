@@ -828,7 +828,7 @@ interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
   formTarget?: string
   name?: string;
   type?: 'submit' | 'reset' | 'button';
-  value?: string | readonly string[] | number;
+  value?: string | number;
 }
 
 interface CanvasHTMLAttributes extends HTMLAttributes<HTMLCanvasElement> {
@@ -846,7 +846,7 @@ interface ColgroupHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
 }
 
 interface DataHTMLAttributes extends HTMLAttributes<HTMLDataElement> {
-  value?: string | readonly string[] | number
+  value?: string | number;
 }
 
 interface DetailsHTMLAttributes extends HTMLAttributes<HTMLDetailsElement> {
@@ -968,7 +968,7 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   src?: string
   step?: number | string;
   type?: HTMLInputTypeAttribute;
-  value?: string | readonly string[] | number;
+  value?: string | number;
   width?: number | string
   onchange?: ChangeEventHandler<HTMLInputElement>
 }
@@ -1036,7 +1036,7 @@ interface MeterHTMLAttributes extends HTMLAttributes<HTMLMeterElement> {
   max?: number | string;
   min?: number | string;
   optimum?: number;
-  value?: string | readonly string[] | number;
+  value?: string | number;
 }
 
 interface QuoteHTMLAttributes extends HTMLAttributes<HTMLQuoteElement> {
@@ -1070,23 +1070,24 @@ interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
   disabled?: boolean;
   label?: string;
   selected?: boolean;
-  value?: string | readonly string[] | number;
+  value?: string | number;
 }
 
 interface OutputHTMLAttributes extends HTMLAttributes<HTMLOutputElement> {
   form?: string
   for?: string;
   name?: string;
+  value?: string | number;
 }
 
 interface ParamHTMLAttributes extends HTMLAttributes<HTMLParamElement> {
   name?: string
-  value?: string | readonly string[] | number
+  value?: string | number
 }
 
 interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
   max?: number | string;
-  value?: string | readonly string[] | number;
+  value?: string | number;
 }
 
 interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
@@ -1113,7 +1114,7 @@ interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   name?: string;
   required?: boolean;
   size?: number;
-  value?: string | readonly string[] | number;
+  value?: string | number;
   onchange?: ChangeEventHandler<HTMLSelectElement>;
 }
 
@@ -1155,11 +1156,11 @@ interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   maxLength?: number;
   minLength?: number;
   name?: string;
-  placeholder?: string
+  placeholder?: string;
   readOnly?: boolean;
   required?: boolean;
   rows?: number;
-  value?: string | readonly string[] | number;
+  value?: string | number;
   wrap?: 'hard' | 'soft' | 'off';
   onchange?: ChangeEventHandler<HTMLTextAreaElement>;
 }

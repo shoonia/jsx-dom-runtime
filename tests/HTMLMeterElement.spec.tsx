@@ -25,7 +25,6 @@ describe('HTMLMeterElement', () => {
   });
 
   it('should have `value` property', () => {
-    expect(<meter value={15} max="100" />).toHaveProperty('value', 15);
-    expect(<meter value={15} max="100" />).toHaveAttribute('value', '15');
+    expect(<meter value={15} max="100" />).toHaveValue(15);
   });
 });

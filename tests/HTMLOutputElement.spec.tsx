@@ -11,4 +11,8 @@ describe('HTMLOutputElement', () => {
     expect(<output name="hello" />).toHaveProperty('name', 'hello');
     expect(<output name="hello" />).toHaveAttribute('name', 'hello');
   });
+
+  it('should have `value` property', () => {
+    expect(<output value="11" />).toHaveValue('11');
+  });
 });
