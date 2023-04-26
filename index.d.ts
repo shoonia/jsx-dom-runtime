@@ -1018,7 +1018,6 @@ interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
   crossOrigin?: HTMLAttrinuteCORS;
   loop?: boolean;
   mediaGroup?: string
-  muted?: boolean;
   playsInline?: boolean;
   preload?: 'none' | 'metadata' | 'auto';
   src?: string;
