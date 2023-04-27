@@ -523,7 +523,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
   /** @deprecated */
   ascent?: number | `${number}`
-  attributeType?: string
   autoReverse?: number | string
   azimuth?: | number | string
   baseFrequency?: number | string
@@ -1250,6 +1249,8 @@ interface AnimateSVGElement extends SVGAttributes<SVGAnimateElement> {
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
   attributeName?: string
+  /** @deprecated */
+  attributeType?: 'CSS' | 'XML' | 'auto'
 }
 
 interface AnimateMotionSVGElement extends SVGAttributes<SVGAnimateMotionElement> {
@@ -1261,6 +1262,8 @@ interface AnimateTransformSVGElement extends SVGAttributes<SVGAnimateTransformEl
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
   attributeName?: string
+  /** @deprecated */
+  attributeType?: 'CSS' | 'XML' | 'auto'
 }
 
 interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
@@ -1380,6 +1383,8 @@ interface RectSVGElement extends SVGAttributes<SVGRectElement> {
 
 interface SetSVGElement extends SVGAttributes<SVGSetElement> {
   attributeName?: string
+  /** @deprecated */
+  attributeType?: 'CSS' | 'XML' | 'auto'
 }
 
 interface StopSVGElement extends SVGAttributes<SVGStopElement> {
