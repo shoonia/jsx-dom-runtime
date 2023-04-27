@@ -524,9 +524,8 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   ascent?: number | `${number}`
   autoReverse?: number | string
+  /** @deprecated */
   bbox?: number | string
-  begin?: number | string
-  bias?: number | string
   by?: number | string
   calcMode?: number | string
   capHeight?: number | string
@@ -1247,11 +1246,13 @@ interface AnimateSVGElement extends SVGAttributes<SVGAnimateElement> {
   attributeName?: string
   /** @deprecated */
   attributeType?: 'CSS' | 'XML' | 'auto'
+  begin?: number | string
 }
 
 interface AnimateMotionSVGElement extends SVGAttributes<SVGAnimateMotionElement> {
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
+  begin?: number | string
 }
 
 interface AnimateTransformSVGElement extends SVGAttributes<SVGAnimateTransformElement> {
@@ -1260,6 +1261,7 @@ interface AnimateTransformSVGElement extends SVGAttributes<SVGAnimateTransformEl
   attributeName?: string
   /** @deprecated */
   attributeType?: 'CSS' | 'XML' | 'auto'
+  begin?: number | string
 }
 
 interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
@@ -1285,6 +1287,10 @@ interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
+}
+
+interface FEConvolveMatrixSVGElement extends SVGAttributes<SVGFEConvolveMatrixElement> {
+  bias?: number | `${number}`
 }
 
 interface FEDistantLightSVGElement extends SVGAttributes<SVGFEDistantLightElement> {
@@ -1390,6 +1396,7 @@ interface SetSVGElement extends SVGAttributes<SVGSetElement> {
   attributeName?: string
   /** @deprecated */
   attributeType?: 'CSS' | 'XML' | 'auto'
+  begin?: number | string
 }
 
 interface StopSVGElement extends SVGAttributes<SVGStopElement> {
@@ -1580,7 +1587,7 @@ declare global {
       feColorMatrix: SVGAttributes<SVGFEColorMatrixElement>
       feComponentTransfer: SVGAttributes<SVGFEComponentTransferElement>
       feComposite: SVGAttributes<SVGFECompositeElement>
-      feConvolveMatrix: SVGAttributes<SVGFEConvolveMatrixElement>
+      feConvolveMatrix: FEConvolveMatrixSVGElement
       feDiffuseLighting: SVGAttributes<SVGFEDiffuseLightingElement>
       feDisplacementMap: SVGAttributes<SVGFEDisplacementMapElement>
       feDistantLight: FEDistantLightSVGElement
