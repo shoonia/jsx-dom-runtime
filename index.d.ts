@@ -518,7 +518,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   accentHeight?: number | string
   allowReorder?: 'no' | 'yes'
   alphabetic?: number | string
-  amplitude?: number | string
   arabicForm?: 'initial' | 'medial' | 'terminal' | 'isolated'
   ascent?: number | string
   attributeName?: string
@@ -1285,6 +1284,22 @@ interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
   'marker-mid'?: string
 }
 
+interface FEFuncASVGElement extends SVGAttributes<SVGFEFuncAElement> {
+  amplitude?: number | `${number}`
+}
+
+interface FEFuncBSVGElement extends SVGAttributes<SVGFEFuncBElement> {
+  amplitude?: number | `${number}`
+}
+
+interface FEFuncGSVGElement extends SVGAttributes<SVGFEFuncGElement> {
+  amplitude?: number | `${number}`
+}
+
+interface FEFuncRSVGElement extends SVGAttributes<SVGFEFuncRElement> {
+  amplitude?: number | `${number}`
+}
+
 interface GSVGElement extends SVGAttributes<SVGGElement> {
   'clip-path'?: string
 }
@@ -1549,10 +1564,10 @@ declare global {
       feDistantLight: SVGAttributes<SVGFEDistantLightElement>
       feDropShadow: SVGAttributes<SVGFEDropShadowElement>
       feFlood: SVGAttributes<SVGFEFloodElement>
-      feFuncA: SVGAttributes<SVGFEFuncAElement>
-      feFuncB: SVGAttributes<SVGFEFuncBElement>
-      feFuncG: SVGAttributes<SVGFEFuncGElement>
-      feFuncR: SVGAttributes<SVGFEFuncRElement>
+      feFuncA: FEFuncASVGElement
+      feFuncB: FEFuncBSVGElement
+      feFuncG: FEFuncGSVGElement
+      feFuncR: FEFuncRSVGElement
       feGaussianBlur: SVGAttributes<SVGFEGaussianBlurElement>
       feImage: SVGAttributes<SVGFEImageElement>
       feMerge: SVGAttributes<SVGFEMergeElement>
