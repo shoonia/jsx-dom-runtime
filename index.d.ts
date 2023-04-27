@@ -524,7 +524,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   ascent?: number | `${number}`
   autoReverse?: number | string
-  azimuth?: | number | string
   baseFrequency?: number | string
   baselineShift?: number | string
   baseProfile?: number | string
@@ -1291,6 +1290,10 @@ interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
   'marker-mid'?: string
 }
 
+interface FEDistantLightSVGElement extends SVGAttributes<SVGFEDistantLightElement> {
+  azimuth?: | number | `${number}`
+}
+
 interface FEFuncASVGElement extends SVGAttributes<SVGFEFuncAElement> {
   amplitude?: number | `${number}`
 }
@@ -1574,7 +1577,7 @@ declare global {
       feConvolveMatrix: SVGAttributes<SVGFEConvolveMatrixElement>
       feDiffuseLighting: SVGAttributes<SVGFEDiffuseLightingElement>
       feDisplacementMap: SVGAttributes<SVGFEDisplacementMapElement>
-      feDistantLight: SVGAttributes<SVGFEDistantLightElement>
+      feDistantLight: FEDistantLightSVGElement
       feDropShadow: SVGAttributes<SVGFEDropShadowElement>
       feFlood: SVGAttributes<SVGFEFloodElement>
       feFuncA: FEFuncASVGElement
