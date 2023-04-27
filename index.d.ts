@@ -526,7 +526,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   autoReverse?: number | string
   /** @deprecated */
   bbox?: number | string
-  calcMode?: number | string
   capHeight?: number | string
   clip?: number | string
   clipPath?: string
@@ -1247,6 +1246,7 @@ interface AnimateSVGElement extends SVGAttributes<SVGAnimateElement> {
   attributeType?: 'CSS' | 'XML' | 'auto'
   begin?: number | string
   by?: number | string
+  calcMode?: 'discrete' | 'linear' | 'paced' | 'spline'
 }
 
 interface AnimateMotionSVGElement extends SVGAttributes<SVGAnimateMotionElement> {
@@ -1254,6 +1254,7 @@ interface AnimateMotionSVGElement extends SVGAttributes<SVGAnimateMotionElement>
   additive?: 'replace' | 'sum'
   begin?: number | string
   by?: number | string
+  calcMode?: 'discrete' | 'linear' | 'paced' | 'spline'
 }
 
 interface AnimateTransformSVGElement extends SVGAttributes<SVGAnimateTransformElement> {
@@ -1264,6 +1265,7 @@ interface AnimateTransformSVGElement extends SVGAttributes<SVGAnimateTransformEl
   attributeType?: 'CSS' | 'XML' | 'auto'
   begin?: number | string
   by?: number | string
+  calcMode?: 'discrete' | 'linear' | 'paced' | 'spline'
 }
 
 interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
