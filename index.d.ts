@@ -518,7 +518,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   accentHeight?: number | string
   allowReorder?: 'no' | 'yes'
   alphabetic?: number | string
-  arabicForm?: 'initial' | 'medial' | 'terminal' | 'isolated'
+  'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
   ascent?: number | string
   attributeName?: string
   attributeType?: string
