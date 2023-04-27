@@ -524,7 +524,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   ascent?: number | `${number}`
   autoReverse?: number | string
-  baseFrequency?: number | string
   baselineShift?: number | string
   baseProfile?: number | string
   bbox?: number | string
@@ -1310,6 +1309,10 @@ interface FEFuncRSVGElement extends SVGAttributes<SVGFEFuncRElement> {
   amplitude?: number | `${number}`
 }
 
+interface FETurbulenceSVGElement extends SVGAttributes<SVGFETurbulenceElement> {
+  baseFrequency?: number | string
+}
+
 interface GSVGElement extends SVGAttributes<SVGGElement> {
   'clip-path'?: string
 }
@@ -1594,7 +1597,7 @@ declare global {
       feSpecularLighting: SVGAttributes<SVGFESpecularLightingElement>
       feSpotLight: SVGAttributes<SVGFESpotLightElement>
       feTile: SVGAttributes<SVGFETileElement>
-      feTurbulence: SVGAttributes<SVGFETurbulenceElement>
+      feTurbulence: FETurbulenceSVGElement
       filter: SVGAttributes<SVGFilterElement>
       foreignObject: SVGAttributes<SVGForeignObjectElement>
       g: GSVGElement
