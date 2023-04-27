@@ -516,8 +516,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
   __ns?: 1,
   accentHeight?: number | string
-  accumulate?: 'none' | 'sum'
-  additive?: 'replace' | 'sum'
   alignmentBaseline?:
   | 'auto'
   | 'baseline'
@@ -1246,6 +1244,21 @@ interface MarqueeHTMLElement extends HTMLAttributes<HTMLMarqueeElement> {
 
 type HTMLWebViewElement = HTMLElement
 
+interface AnimateSVGElement extends SVGAttributes<SVGAnimateElement> {
+  accumulate?: 'none' | 'sum'
+  additive?: 'replace' | 'sum'
+}
+
+interface AnimateMotionSVGElement extends SVGAttributes<SVGAnimateMotionElement> {
+  accumulate?: 'none' | 'sum'
+  additive?: 'replace' | 'sum'
+}
+
+interface AnimateTransformSVGElement extends SVGAttributes<SVGAnimateTransformElement> {
+  accumulate?: 'none' | 'sum'
+  additive?: 'replace' | 'sum'
+}
+
 interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
   cx?: number | string
   cy?: number | string
@@ -1515,9 +1528,9 @@ declare global {
       wbr: HTMLAttributes<HTMLElement>
       webview: WebViewHTMLAttributes
 
-      animate: SVGAttributes<SVGAnimateElement>
-      animateMotion: SVGAttributes<SVGAnimateMotionElement>
-      animateTransform: SVGAttributes<SVGAnimateElement>
+      animate: AnimateSVGElement
+      animateMotion: AnimateMotionSVGElement
+      animateTransform: AnimateTransformSVGElement
       circle: CircleSVGElement
       clipPath: ClipPathSVGElement
       defs: SVGAttributes<SVGDefsElement>
