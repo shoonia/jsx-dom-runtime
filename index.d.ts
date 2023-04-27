@@ -517,10 +517,12 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   __ns?: 1,
   accentHeight?: number | string
   allowReorder?: 'no' | 'yes'
+  /** @deprecated */
   alphabetic?: number | string
+  /** @deprecated */
   'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
-  ascent?: number | string
-  attributeName?: string
+  /** @deprecated */
+  ascent?: number | `${number}`
   attributeType?: string
   autoReverse?: number | string
   azimuth?: | number | string
@@ -1247,6 +1249,7 @@ type SVGAlignmentBaselineAttribute =
 interface AnimateSVGElement extends SVGAttributes<SVGAnimateElement> {
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
+  attributeName?: string
 }
 
 interface AnimateMotionSVGElement extends SVGAttributes<SVGAnimateMotionElement> {
@@ -1257,6 +1260,7 @@ interface AnimateMotionSVGElement extends SVGAttributes<SVGAnimateMotionElement>
 interface AnimateTransformSVGElement extends SVGAttributes<SVGAnimateTransformElement> {
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
+  attributeName?: string
 }
 
 interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
@@ -1372,6 +1376,10 @@ interface RectSVGElement extends SVGAttributes<SVGRectElement> {
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
+}
+
+interface SetSVGElement extends SVGAttributes<SVGSetElement> {
+  attributeName?: string
 }
 
 interface StopSVGElement extends SVGAttributes<SVGStopElement> {
@@ -1595,7 +1603,7 @@ declare global {
       polyline: PolylineSVGElement
       radialGradient: RadialGradientSVGElement
       rect: RectSVGElement
-      set: SVGAttributes<SVGSetElement>
+      set: SetSVGElement
       stop: StopSVGElement
       svg: SvgSVGElement
       switch: SVGAttributes<SVGSwitchElement>
