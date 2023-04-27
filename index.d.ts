@@ -524,7 +524,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   ascent?: number | `${number}`
   autoReverse?: number | string
-  baselineShift?: number | string
   baseProfile?: number | string
   bbox?: number | string
   begin?: number | string
@@ -1310,6 +1309,7 @@ interface FEFuncRSVGElement extends SVGAttributes<SVGFEFuncRElement> {
 }
 
 interface FETurbulenceSVGElement extends SVGAttributes<SVGFETurbulenceElement> {
+  type?: string
   baseFrequency?: number | string
 }
 
@@ -1413,12 +1413,14 @@ interface TextSVGElement extends SVGAttributes<SVGTextElement> {
 
 interface TextPathSVGElement extends SVGAttributes<SVGTextPathElement> {
   'alignment-baseline'?: SVGAlignmentBaselineAttribute
+  'baseline-shift'?: number | string
   textLength?: number | string
   lengthAdjust?: number | string
 }
 
 interface TSpanSVGElement extends SVGAttributes<SVGTSpanElement> {
   'alignment-baseline'?: SVGAlignmentBaselineAttribute
+  'baseline-shift'?: number | string
   textLength?: number | string
   lengthAdjust?: number | string
 }
