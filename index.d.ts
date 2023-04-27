@@ -524,7 +524,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   ascent?: number | `${number}`
   autoReverse?: number | string
-  baseProfile?: number | string
   bbox?: number | string
   begin?: number | string
   bias?: number | string
@@ -1398,6 +1397,8 @@ interface StopSVGElement extends SVGAttributes<SVGStopElement> {
 }
 
 interface SvgSVGElement extends SVGAttributes<SVGSVGElement> {
+  /** @deprecated */
+  baseProfile?: number | string
   'clip-path'?: string
 }
 
