@@ -526,8 +526,9 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   autoReverse?: number | string
   /** @deprecated */
   bbox?: number | string
-  capHeight?: number | string
-  clip?: number | string
+  /** @deprecated */
+  'cap-height'?: number | string
+  class?: string
   clipPath?: string
   clipPathUnits?: number | string
   clipRule?: number | string
@@ -1322,12 +1323,19 @@ interface FETurbulenceSVGElement extends SVGAttributes<SVGFETurbulenceElement> {
   baseFrequency?: number | string
 }
 
+interface ForeignObjectSVGElement extends SVGAttributes<SVGForeignObjectElement> {
+  /** @deprecated */
+  clip?: 'auto' | string
+}
+
 interface GSVGElement extends SVGAttributes<SVGGElement> {
   'clip-path'?: string
 }
 
 interface ImageSVGElement extends SVGAttributes<SVGImageElement> {
   href?: string
+  /** @deprecated */
+  clip?: 'auto' | string
   'clip-path'?: string
 }
 
@@ -1339,6 +1347,8 @@ interface LineSVGElement extends SVGAttributes<SVGLineElement> {
 }
 
 interface MarkerSVGElement extends SVGAttributes<SVGMarkerElement> {
+  /** @deprecated */
+  clip?: 'auto' | string
   'clip-path'?: string
   markerEnd?: string
   markerHeight?: number | string
@@ -1361,6 +1371,8 @@ interface PathSVGElement extends SVGAttributes<SVGPathElement> {
 }
 
 interface PatternSVGElement extends SVGAttributes<SVGPatternElement> {
+  /** @deprecated */
+  clip?: 'auto' | string
   'clip-path'?: string
 }
 
@@ -1410,10 +1422,14 @@ interface StopSVGElement extends SVGAttributes<SVGStopElement> {
 interface SvgSVGElement extends SVGAttributes<SVGSVGElement> {
   /** @deprecated */
   baseProfile?: number | string
+  /** @deprecated */
+  clip?: 'auto' | string
   'clip-path'?: string
 }
 
 interface SymbolSVGElement extends SVGAttributes<SVGSymbolElement> {
+  /** @deprecated */
+  clip?: 'auto' | string
   'clip-path'?: string
 }
 
@@ -1613,7 +1629,7 @@ declare global {
       feTile: SVGAttributes<SVGFETileElement>
       feTurbulence: FETurbulenceSVGElement
       filter: SVGAttributes<SVGFilterElement>
-      foreignObject: SVGAttributes<SVGForeignObjectElement>
+      foreignObject: ForeignObjectSVGElement
       g: GSVGElement
       image: ImageSVGElement
       line: LineSVGElement
