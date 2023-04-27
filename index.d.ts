@@ -516,20 +516,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
   __ns?: 1,
   accentHeight?: number | string
-  alignmentBaseline?:
-  | 'auto'
-  | 'baseline'
-  | 'before-edge'
-  | 'text-before-edge'
-  | 'middle'
-  | 'central'
-  | 'after-edge'
-  | 'text-after-edge'
-  | 'ideographic'
-  | 'alphabetic'
-  | 'hanging'
-  | 'mathematical'
-  | 'inherit'
   allowReorder?: 'no' | 'yes'
   alphabetic?: number | string
   amplitude?: number | string
@@ -1244,6 +1230,21 @@ interface MarqueeHTMLElement extends HTMLAttributes<HTMLMarqueeElement> {
 
 type HTMLWebViewElement = HTMLElement
 
+type SVGAlignmentBaselineAttribute =
+  | 'auto'
+  | 'baseline'
+  | 'before-edge'
+  | 'text-before-edge'
+  | 'middle'
+  | 'central'
+  | 'after-edge'
+  | 'text-after-edge'
+  | 'ideographic'
+  | 'alphabetic'
+  | 'hanging'
+  | 'mathematical'
+  | 'inherit'
+
 interface AnimateSVGElement extends SVGAttributes<SVGAnimateElement> {
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
@@ -1377,11 +1378,13 @@ interface TextSVGElement extends SVGAttributes<SVGTextElement> {
 }
 
 interface TextPathSVGElement extends SVGAttributes<SVGTextPathElement> {
+  'alignment-baseline'?: SVGAlignmentBaselineAttribute
   textLength?: number | string
   lengthAdjust?: number | string
 }
 
 interface TSpanSVGElement extends SVGAttributes<SVGTSpanElement> {
+  'alignment-baseline'?: SVGAlignmentBaselineAttribute
   textLength?: number | string
   lengthAdjust?: number | string
 }
