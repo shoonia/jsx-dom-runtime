@@ -529,7 +529,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   'cap-height'?: number | string
   class?: string
-  clipPathUnits?: number | string
   colorInterpolation?: number | string
   colorInterpolationFilters?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
   colorProfile?: number | string
@@ -1281,6 +1280,7 @@ interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
 interface ClipPathSVGElement extends SVGAttributes<SVGClipPathElement> {
   'clip-path'?: string
   'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
+  clipPathUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
 }
 
 interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
