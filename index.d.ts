@@ -529,9 +529,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   'cap-height'?: number | string
   class?: string
-  clipPath?: string
   clipPathUnits?: number | string
-  clipRule?: number | string
   colorInterpolation?: number | string
   colorInterpolationFilters?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
   colorProfile?: number | string
@@ -1274,6 +1272,7 @@ interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
   cy?: number | string
   r?: number | string
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
@@ -1281,6 +1280,7 @@ interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
 
 interface ClipPathSVGElement extends SVGAttributes<SVGClipPathElement> {
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
 }
 
 interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
@@ -1289,6 +1289,7 @@ interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
   cx?: number | string
   cy?: number | string
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
@@ -1330,6 +1331,7 @@ interface ForeignObjectSVGElement extends SVGAttributes<SVGForeignObjectElement>
 
 interface GSVGElement extends SVGAttributes<SVGGElement> {
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
 }
 
 interface ImageSVGElement extends SVGAttributes<SVGImageElement> {
@@ -1337,10 +1339,12 @@ interface ImageSVGElement extends SVGAttributes<SVGImageElement> {
   /** @deprecated */
   clip?: 'auto' | string
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
 }
 
 interface LineSVGElement extends SVGAttributes<SVGLineElement> {
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
@@ -1350,6 +1354,7 @@ interface MarkerSVGElement extends SVGAttributes<SVGMarkerElement> {
   /** @deprecated */
   clip?: 'auto' | string
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
   markerEnd?: string
   markerHeight?: number | string
   markerMid?: string
@@ -1360,11 +1365,13 @@ interface MarkerSVGElement extends SVGAttributes<SVGMarkerElement> {
 
 interface MaskSVGElement extends SVGAttributes<SVGMaskElement> {
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
 }
 
 interface PathSVGElement extends SVGAttributes<SVGPathElement> {
   d?: string
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
@@ -1374,10 +1381,12 @@ interface PatternSVGElement extends SVGAttributes<SVGPatternElement> {
   /** @deprecated */
   clip?: 'auto' | string
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
 }
 
 interface PolygonSVGElement extends SVGAttributes<SVGPolygonElement> {
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
@@ -1385,6 +1394,7 @@ interface PolygonSVGElement extends SVGAttributes<SVGPolygonElement> {
 
 interface PolylineSVGElement extends SVGAttributes<SVGPolylineElement> {
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
@@ -1403,6 +1413,7 @@ interface RectSVGElement extends SVGAttributes<SVGRectElement> {
   rx?: number | string
   ry?: number | string
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
@@ -1425,18 +1436,21 @@ interface SvgSVGElement extends SVGAttributes<SVGSVGElement> {
   /** @deprecated */
   clip?: 'auto' | string
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
 }
 
 interface SymbolSVGElement extends SVGAttributes<SVGSymbolElement> {
   /** @deprecated */
   clip?: 'auto' | string
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
 }
 
 interface TextSVGElement extends SVGAttributes<SVGTextElement> {
   textLength?: number | string
   lengthAdjust?: number | string
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
 }
 
 interface TextPathSVGElement extends SVGAttributes<SVGTextPathElement> {
@@ -1456,6 +1470,7 @@ interface TSpanSVGElement extends SVGAttributes<SVGTSpanElement> {
 interface UseSVGElement extends SVGAttributes<SVGUseElement> {
   href?: string
   'clip-path'?: string
+  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
 }
 
 declare global {
