@@ -37,7 +37,7 @@ export const jsxPlugin = (api) => {
           attrs.splice(index, 0,
             t.jSXAttribute(
               t.jSXIdentifier('href'),
-              t.stringLiteral(attr.value.value),
+              attr.value
             ));
         }
 
