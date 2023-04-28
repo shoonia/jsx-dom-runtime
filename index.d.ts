@@ -520,7 +520,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   alphabetic?: number | string
   /** @deprecated */
-  'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
+  'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated' | 'inherit'
   /** @deprecated */
   ascent?: number | `${number}`
   autoReverse?: number | string
@@ -530,7 +530,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'cap-height'?: number | string
   class?: string
   color?: string
-  colorInterpolationFilters?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
   colorProfile?: number | string
   colorRendering?: number | string
   contentScriptType?: number | string
@@ -1303,12 +1302,45 @@ interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
   'marker-mid'?: string
 }
 
+interface FEBlendSVGElement extends SVGAttributes<SVGFEBlendElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FEColorMatrixSVGElement extends SVGAttributes<SVGFEColorMatrixElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FEComponentTransferSVGElement extends SVGAttributes<SVGFEComponentTransferElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FECompositeSVGElement extends SVGAttributes<SVGFECompositeElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
 interface FEConvolveMatrixSVGElement extends SVGAttributes<SVGFEConvolveMatrixElement> {
   bias?: number | `${number}`
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FEDiffuseLightingSVGElement extends SVGAttributes<SVGFEDiffuseLightingElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FEDisplacementMapSVGElement extends SVGAttributes<SVGFEDisplacementMapElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
 }
 
 interface FEDistantLightSVGElement extends SVGAttributes<SVGFEDistantLightElement> {
   azimuth?: | number | `${number}`
+}
+
+interface FEDropShadowSVGElement extends SVGAttributes<SVGFEDropShadowElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FEFloodSVGElement extends SVGAttributes<SVGFEFloodElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
 }
 
 interface FEFuncASVGElement extends SVGAttributes<SVGFEFuncAElement> {
@@ -1327,9 +1359,42 @@ interface FEFuncRSVGElement extends SVGAttributes<SVGFEFuncRElement> {
   amplitude?: number | `${number}`
 }
 
+interface FEGaussianBlurSVGElement extends SVGAttributes<SVGFEGaussianBlurElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FEImageSVGElement extends SVGAttributes<SVGFEImageElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FEMergeSVGElement extends SVGAttributes<SVGFEMergeElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FEMorphologySVGElement extends SVGAttributes<SVGFEMorphologyElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FEOffsetSVGElement extends SVGAttributes<SVGFEOffsetElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FESpecularLightingSVGElement extends SVGAttributes<SVGFESpecularLightingElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
 interface FETurbulenceSVGElement extends SVGAttributes<SVGFETurbulenceElement> {
   type?: string
   baseFrequency?: number | string
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FESpotLightSVGElement extends SVGAttributes<SVGFESpotLightElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+}
+
+interface FETileSVGElement extends SVGAttributes<SVGFETileElement> {
+  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
 }
 
 interface ForeignObjectSVGElement extends SVGAttributes<SVGForeignObjectElement> {
@@ -1647,30 +1712,30 @@ declare global {
       defs: DefsSVGElement
       desc: SVGAttributes<SVGDescElement>
       ellipse: EllipseSVGElement
-      feBlend: SVGAttributes<SVGFEBlendElement>
-      feColorMatrix: SVGAttributes<SVGFEColorMatrixElement>
-      feComponentTransfer: SVGAttributes<SVGFEComponentTransferElement>
-      feComposite: SVGAttributes<SVGFECompositeElement>
+      feBlend: FEBlendSVGElement
+      feColorMatrix: FEColorMatrixSVGElement
+      feComponentTransfer: FEComponentTransferSVGElement
+      feComposite: FECompositeSVGElement
       feConvolveMatrix: FEConvolveMatrixSVGElement
-      feDiffuseLighting: SVGAttributes<SVGFEDiffuseLightingElement>
-      feDisplacementMap: SVGAttributes<SVGFEDisplacementMapElement>
+      feDiffuseLighting: FEDiffuseLightingSVGElement
+      feDisplacementMap: FEDisplacementMapSVGElement
       feDistantLight: FEDistantLightSVGElement
-      feDropShadow: SVGAttributes<SVGFEDropShadowElement>
-      feFlood: SVGAttributes<SVGFEFloodElement>
+      feDropShadow: FEDropShadowSVGElement
+      feFlood: FEFloodSVGElement
       feFuncA: FEFuncASVGElement
       feFuncB: FEFuncBSVGElement
       feFuncG: FEFuncGSVGElement
       feFuncR: FEFuncRSVGElement
-      feGaussianBlur: SVGAttributes<SVGFEGaussianBlurElement>
-      feImage: SVGAttributes<SVGFEImageElement>
-      feMerge: SVGAttributes<SVGFEMergeElement>
+      feGaussianBlur: FEGaussianBlurSVGElement
+      feImage: FEImageSVGElement
+      feMerge: FEMergeSVGElement
       feMergeNode: SVGAttributes<SVGFEMergeNodeElement>
-      feMorphology: SVGAttributes<SVGFEMorphologyElement>
-      feOffset: SVGAttributes<SVGFEOffsetElement>
+      feMorphology: FEMorphologySVGElement
+      feOffset: FEOffsetSVGElement
       fePointLight: SVGAttributes<SVGFEPointLightElement>
-      feSpecularLighting: SVGAttributes<SVGFESpecularLightingElement>
-      feSpotLight: SVGAttributes<SVGFESpotLightElement>
-      feTile: SVGAttributes<SVGFETileElement>
+      feSpecularLighting: FESpecularLightingSVGElement
+      feSpotLight: FESpotLightSVGElement
+      feTile: FETileSVGElement
       feTurbulence: FETurbulenceSVGElement
       filter: SVGAttributes<SVGFilterElement>
       foreignObject: ForeignObjectSVGElement
