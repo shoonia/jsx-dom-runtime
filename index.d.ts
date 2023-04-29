@@ -1,8 +1,9 @@
 /// <reference lib="dom" />
 /// <reference lib="es2022" />
-import { Properties } from 'csstype';
+import { Properties, SvgProperties } from 'csstype';
 
 type Booleanish = boolean | 'true' | 'false'
+type Numeric = number | `${number}`
 
 interface RefObject<T> {
   readonly current: T
@@ -184,6 +185,8 @@ export interface CSSProperties extends Properties<string | number> {
   cssText?: string | null;
   [key: `--${string}`]: string | number;
 }
+
+export interface SVGProperties extends SvgProperties<string | number> { }
 
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
@@ -518,71 +521,70 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   accentHeight?: number | string
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
-  alignmentBaseline?:
-  | 'auto'
-  | 'baseline'
-  | 'before-edge'
-  | 'text-before-edge'
-  | 'middle'
-  | 'central'
-  | 'after-edge'
-  | 'text-after-edge'
-  | 'ideographic'
-  | 'alphabetic'
-  | 'hanging'
-  | 'mathematical'
-  | 'inherit'
+  'alignment-baseline'?: SVGProperties['alignmentBaseline']
   allowReorder?: 'no' | 'yes'
+  /** @deprecated */
   alphabetic?: number | string
-  amplitude?: number | string
-  arabicForm?: 'initial' | 'medial' | 'terminal' | 'isolated'
-  ascent?: number | string
+  amplitude?: Numeric
+  /** @deprecated */
+  'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
+  /** @deprecated */
+  ascent?: Numeric
   attributeName?: string
-  attributeType?: string
+  /** @deprecated */
+  attributeType?: 'CSS' | 'XML' | 'auto'
   autoReverse?: number | string
-  azimuth?: | number | string
+  azimuth?: Numeric
   baseFrequency?: number | string
-  baselineShift?: number | string
+  'baseline-shift'?: SVGProperties['baselineShift']
   baseProfile?: number | string
+  /** @deprecated */
   bbox?: number | string
   begin?: number | string
-  bias?: number | string
+  bias?: Numeric
   by?: number | string
-  calcMode?: number | string
-  capHeight?: number | string
-  clip?: number | string
-  clipPath?: string
-  clipPathUnits?: number | string
-  clipRule?: number | string
-  colorInterpolation?: number | string
-  colorInterpolationFilters?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
-  colorProfile?: number | string
+  calcMode?: 'discrete' | 'linear' | 'paced' | 'spline'
+  /** @deprecated */
+  'cap-height'?: number | string
+  /** @deprecated */
+  clip?: SVGProperties['clip']
+  'clip-path'?: SVGProperties['clipPath']
+  clipPathUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
+  /** @deprecated */
+  'color-profile'?: string
   colorRendering?: number | string
-  contentScriptType?: number | string
-  contentStyleType?: number | string
-  cursor?: number | string
+  /** @deprecated */
+  contentScriptType?: string
+  /** @deprecated */
+  contentStyleType?: string
+  cursor?: SVGProperties['cursor']
   decelerate?: number | string
   descent?: number | string
-  diffuseConstant?: number | string
-  direction?: number | string
-  display?: number | string
+  diffuseConstant?: Numeric
+  direction?: 'ltr' | 'rtl'
+  display?: SVGProperties['display']
   divisor?: number | string
-  dominantBaseline?: number | string
+  'dominant-baseline'?: SVGProperties['dominantBaseline']
   dur?: number | string
   dx?: number | string
   dy?: number | string
-  edgeMode?: number | string
-  elevation?: number | string
-  enableBackground?: number | string
+  edgeMode?: 'duplicate' | 'wrap' | 'none'
+  elevation?: Numeric
+  /** @deprecated */
+  'enable-background'?: number | string
   end?: number | string
-  exponent?: number | string
+  exponent?: Numeric
   externalResourcesRequired?: number | string
-  fill?: string
-  fillOpacity?: number | string
-  fillRule?: 'nonzero' | 'evenodd' | 'inherit'
+  fill?: SVGProperties['fill']
+  'fill-opacity'?: SVGProperties['fillOpacity']
+  'fill-rule'?: SVGProperties['fillRule']
   filter?: string
+  /** @deprecated */
   filterRes?: number | string
-  filterUnits?: number | string
+  filterUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   floodColor?: number | string
   floodOpacity?: number | string
   focusable?: number | string
@@ -681,12 +683,12 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   stemh?: number | string
   stemv?: number | string
   stitchTiles?: number | string
-  stopColor?: string
+  'stop-color'?: SVGProperties['stopColor']
   stopOpacity?: number | string
   strikethroughPosition?: number | string
   strikethroughThickness?: number | string
   string?: number | string
-  stroke?: string
+  stroke?: SVGProperties['stroke']
   strokeDasharray?: string | number
   strokeDashoffset?: string | number
   strokeLinecap?: 'butt' | 'round' | 'square' | 'inherit'
@@ -1309,24 +1311,6 @@ interface PathSVGElement extends SVGAttributes<SVGPathElement> {
   'marker-mid'?: string
 }
 
-interface PatternSVGElement extends SVGAttributes<SVGPatternElement> {
-  'clip-path'?: string
-}
-
-interface PolygonSVGElement extends SVGAttributes<SVGPolygonElement> {
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface PolylineSVGElement extends SVGAttributes<SVGPolylineElement> {
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
 interface RadialGradientSVGElement extends SVGAttributes<SVGRadialGradientElement> {
   cx?: number | string
   cy?: number | string
@@ -1559,9 +1543,9 @@ declare global {
       metadata: SVGAttributes<SVGMetadataElement>
       mpath: SVGAttributes<SVGMPathElement>
       path: PathSVGElement
-      pattern: PatternSVGElement
-      polygon: PolygonSVGElement
-      polyline: PolylineSVGElement
+      pattern: SVGAttributes<SVGPatternElement>
+      polygon: SVGAttributes<SVGPolygonElement>
+      polyline: SVGAttributes<SVGPolylineElement>
       radialGradient: RadialGradientSVGElement
       rect: RectSVGElement
       set: SVGAttributes<SVGSetElement>
