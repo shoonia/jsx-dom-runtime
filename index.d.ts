@@ -540,7 +540,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   decelerate?: number | string
   /** @deprecated */
   descent?: number | string
-  direction?: number | string
   display?: number | string
   divisor?: number | string
   dominantBaseline?: number | string
@@ -1547,12 +1546,14 @@ interface TextSVGElement extends SVGAttributes<SVGTextElement> {
   'clip-path'?: string
   'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
   'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  direction?: 'ltr' | 'rtl'
 }
 
 interface TextPathSVGElement extends SVGAttributes<SVGTextPathElement> {
   'alignment-baseline'?: SVGAlignmentBaselineAttribute
   'baseline-shift'?: number | string
   'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  direction?: 'ltr' | 'rtl'
   textLength?: number | string
   lengthAdjust?: number | string
 }
@@ -1563,6 +1564,7 @@ interface TSpanSVGElement extends SVGAttributes<SVGTSpanElement> {
   'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
   textLength?: number | string
   lengthAdjust?: number | string
+  direction?: 'ltr' | 'rtl'
 }
 
 interface UseSVGElement extends SVGAttributes<SVGUseElement> {
