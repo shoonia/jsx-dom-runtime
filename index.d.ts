@@ -532,7 +532,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   'cap-height'?: number | string
   class?: string
-  color?: string
+  color?: SVGProperties['color']
   colorRendering?: number | string
   /** @deprecated */
   contentScriptType?: string
@@ -544,7 +544,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   descent?: number | string
   display?: SVGProperties['display']
   divisor?: number | string
-  dominantBaseline?: number | string
   dur?: number | string
   dx?: number | string
   dy?: number | string
@@ -1261,9 +1260,9 @@ interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
   'clip-path'?: SVGProperties['clipPath']
   'clip-rule'?: SVGProperties['clipRule']
   'color-interpolation'?: SVGProperties['colorInterpolation']
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
+  'marker-start'?: SVGProperties['markerStart']
+  'marker-end'?:  SVGProperties['markerEnd']
+  'marker-mid'?: SVGProperties['markerMid']
 }
 
 interface ClipPathSVGElement extends SVGAttributes<SVGClipPathElement> {
@@ -1285,9 +1284,9 @@ interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
   'clip-path'?: SVGProperties['clipPath']
   'clip-rule'?: SVGProperties['clipRule']
   'color-interpolation'?: SVGProperties['colorInterpolation']
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
+  'marker-start'?: SVGProperties['markerStart']
+  'marker-end'?:  SVGProperties['markerEnd']
+  'marker-mid'?: SVGProperties['markerMid']
 }
 
 interface FEBlendSVGElement extends SVGAttributes<SVGFEBlendElement> {
@@ -1401,7 +1400,7 @@ interface GSVGElement extends SVGAttributes<SVGGElement> {
 interface ImageSVGElement extends SVGAttributes<SVGImageElement> {
   href?: string
   /** @deprecated */
-  clip?: 'auto' | string
+  clip?: SVGProperties['clip']
   'clip-path'?: SVGProperties['clipPath']
   'clip-rule'?: SVGProperties['clipRule']
   'color-interpolation'?: SVGProperties['colorInterpolation']
@@ -1413,9 +1412,9 @@ interface LineSVGElement extends SVGAttributes<SVGLineElement> {
   'clip-path'?: SVGProperties['clipPath']
   'clip-rule'?: SVGProperties['clipRule']
   'color-interpolation'?: SVGProperties['colorInterpolation']
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
+  'marker-start'?: SVGProperties['markerStart']
+  'marker-end'?: SVGProperties['markerEnd']
+  'marker-mid'?: SVGProperties['markerMid']
 }
 
 interface LinearGradientSVGElement extends SVGAttributes<SVGLinearGradientElement> {
@@ -1424,7 +1423,7 @@ interface LinearGradientSVGElement extends SVGAttributes<SVGLinearGradientElemen
 
 interface MarkerSVGElement extends SVGAttributes<SVGMarkerElement> {
   /** @deprecated */
-  clip?: 'auto' | string
+  clip?: SVGProperties['clip']
   'clip-path'?: SVGProperties['clipPath']
   'clip-rule'?: SVGProperties['clipRule']
   'color-interpolation'?: SVGProperties['colorInterpolation']
@@ -1447,9 +1446,9 @@ interface PathSVGElement extends SVGAttributes<SVGPathElement> {
   'clip-path'?: SVGProperties['clipPath']
   'clip-rule'?: SVGProperties['clipRule']
   'color-interpolation'?: SVGProperties['colorInterpolation']
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
+  'marker-start'?: SVGProperties['markerStart']
+  'marker-end'?:  SVGProperties['markerEnd']
+  'marker-mid'?: SVGProperties['markerMid']
 }
 
 interface PatternSVGElement extends SVGAttributes<SVGPatternElement> {
@@ -1464,17 +1463,17 @@ interface PolygonSVGElement extends SVGAttributes<SVGPolygonElement> {
   'clip-path'?: SVGProperties['clipPath']
   'clip-rule'?: SVGProperties['clipRule']
   'color-interpolation'?: SVGProperties['colorInterpolation']
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
+  'marker-start'?: SVGProperties['markerStart']
+  'marker-end'?:  SVGProperties['markerEnd']
+  'marker-mid'?: SVGProperties['markerMid']
 }
 
 interface PolylineSVGElement extends SVGAttributes<SVGPolylineElement> {
   'clip-path'?: SVGProperties['clipPath']
   'clip-rule'?: SVGProperties['clipRule']
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
+  'marker-start'?: SVGProperties['markerStart']
+  'marker-end'?:  SVGProperties['markerEnd']
+  'marker-mid'?: SVGProperties['markerMid']
 }
 
 interface RadialGradientSVGElement extends SVGAttributes<SVGRadialGradientElement> {
@@ -1493,9 +1492,9 @@ interface RectSVGElement extends SVGAttributes<SVGRectElement> {
   'clip-path'?: SVGProperties['clipPath']
   'clip-rule'?: SVGProperties['clipRule']
   'color-interpolation'?: SVGProperties['colorInterpolation']
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
+  'marker-start'?: SVGProperties['markerStart']
+  'marker-end'?:  SVGProperties['markerEnd']
+  'marker-mid'?: SVGProperties['markerMid']
 }
 
 interface SetSVGElement extends SVGAttributes<SVGSetElement> {
@@ -1506,7 +1505,7 @@ interface SetSVGElement extends SVGAttributes<SVGSetElement> {
 }
 
 interface StopSVGElement extends SVGAttributes<SVGStopElement> {
-  'stop-color'?: string
+  'stop-color'?: SVGProperties['stopColor']
 }
 
 interface SvgSVGElement extends SVGAttributes<SVGSVGElement> {
@@ -1534,24 +1533,27 @@ interface TextSVGElement extends SVGAttributes<SVGTextElement> {
   'clip-rule'?: SVGProperties['clipRule']
   'color-interpolation'?: SVGProperties['colorInterpolation']
   direction?: 'ltr' | 'rtl'
+  'dominant-baseline'?: SVGProperties['dominantBaseline']
 }
 
 interface TextPathSVGElement extends SVGAttributes<SVGTextPathElement> {
   'alignment-baseline'?: SVGProperties['alignmentBaseline']
-  'baseline-shift'?: number | string
+  'baseline-shift'?: SVGProperties['baselineShift']
   'color-interpolation'?: SVGProperties['colorInterpolation']
   direction?: 'ltr' | 'rtl'
   textLength?: number | string
   lengthAdjust?: number | string
+  'dominant-baseline'?: SVGProperties['dominantBaseline']
 }
 
 interface TSpanSVGElement extends SVGAttributes<SVGTSpanElement> {
   'alignment-baseline'?: SVGProperties['alignmentBaseline']
-  'baseline-shift'?: number | string
+  'baseline-shift'?: SVGProperties['baselineShift']
   'color-interpolation'?: SVGProperties['colorInterpolation']
   textLength?: number | string
   lengthAdjust?: number | string
   direction?: 'ltr' | 'rtl'
+  'dominant-baseline'?: SVGProperties['dominantBaseline']
 }
 
 interface UseSVGElement extends SVGAttributes<SVGUseElement> {
