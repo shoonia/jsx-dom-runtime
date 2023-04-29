@@ -3,6 +3,7 @@
 import { Properties } from 'csstype';
 
 type Booleanish = boolean | 'true' | 'false'
+type Numeric = number | `${number}`
 
 interface RefObject<T> {
   readonly current: T
@@ -522,7 +523,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated' | 'inherit'
   /** @deprecated */
-  ascent?: number | `${number}`
+  ascent?: Numeric
   autoReverse?: number | string
   /** @deprecated */
   bbox?: number | string
@@ -531,12 +532,14 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   class?: string
   color?: string
   colorRendering?: number | string
-  contentScriptType?: number | string
-  contentStyleType?: number | string
-  cursor?: number | string
+  /** @deprecated */
+  contentScriptType?: string
+  /** @deprecated */
+  contentStyleType?: string
+  cursor?:  string
   decelerate?: number | string
+  /** @deprecated */
   descent?: number | string
-  diffuseConstant?: number | string
   direction?: number | string
   display?: number | string
   divisor?: number | string
@@ -1318,12 +1321,13 @@ interface FECompositeSVGElement extends SVGAttributes<SVGFECompositeElement> {
 }
 
 interface FEConvolveMatrixSVGElement extends SVGAttributes<SVGFEConvolveMatrixElement> {
-  bias?: number | `${number}`
+  bias?: Numeric
   'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
 }
 
 interface FEDiffuseLightingSVGElement extends SVGAttributes<SVGFEDiffuseLightingElement> {
   'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  diffuseConstant?: Numeric
 }
 
 interface FEDisplacementMapSVGElement extends SVGAttributes<SVGFEDisplacementMapElement> {
@@ -1331,7 +1335,7 @@ interface FEDisplacementMapSVGElement extends SVGAttributes<SVGFEDisplacementMap
 }
 
 interface FEDistantLightSVGElement extends SVGAttributes<SVGFEDistantLightElement> {
-  azimuth?: | number | `${number}`
+  azimuth?: Numeric
 }
 
 interface FEDropShadowSVGElement extends SVGAttributes<SVGFEDropShadowElement> {
@@ -1343,19 +1347,19 @@ interface FEFloodSVGElement extends SVGAttributes<SVGFEFloodElement> {
 }
 
 interface FEFuncASVGElement extends SVGAttributes<SVGFEFuncAElement> {
-  amplitude?: number | `${number}`
+  amplitude?: Numeric
 }
 
 interface FEFuncBSVGElement extends SVGAttributes<SVGFEFuncBElement> {
-  amplitude?: number | `${number}`
+  amplitude?: Numeric
 }
 
 interface FEFuncGSVGElement extends SVGAttributes<SVGFEFuncGElement> {
-  amplitude?: number | `${number}`
+  amplitude?: Numeric
 }
 
 interface FEFuncRSVGElement extends SVGAttributes<SVGFEFuncRElement> {
-  amplitude?: number | `${number}`
+  amplitude?: Numeric
 }
 
 interface FEGaussianBlurSVGElement extends SVGAttributes<SVGFEGaussianBlurElement> {
