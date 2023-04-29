@@ -530,7 +530,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'cap-height'?: number | string
   class?: string
   color?: string
-  colorProfile?: number | string
   colorRendering?: number | string
   contentScriptType?: number | string
   contentStyleType?: number | string
@@ -1416,6 +1415,8 @@ interface ImageSVGElement extends SVGAttributes<SVGImageElement> {
   'clip-path'?: string
   'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
   'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  /** @deprecated */
+  'color-profile'?: string
 }
 
 interface LineSVGElement extends SVGAttributes<SVGLineElement> {
