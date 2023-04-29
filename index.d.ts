@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2022" />
-import { Properties } from 'csstype';
+import { Properties, SvgProperties } from 'csstype';
 
 type Booleanish = boolean | 'true' | 'false'
 type Numeric = number | `${number}`
@@ -185,6 +185,8 @@ export interface CSSProperties extends Properties<string | number> {
   cssText?: string | null;
   [key: `--${string}`]: string | number;
 }
+
+export interface SVGProperties extends SvgProperties<string, number> { }
 
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
@@ -536,11 +538,11 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   contentScriptType?: string
   /** @deprecated */
   contentStyleType?: string
-  cursor?:  string
+  cursor?: SVGProperties['cursor']
   decelerate?: number | string
   /** @deprecated */
   descent?: number | string
-  display?: number | string
+  display?: SVGProperties['display']
   divisor?: number | string
   dominantBaseline?: number | string
   dur?: number | string
@@ -1221,21 +1223,6 @@ interface MarqueeHTMLElement extends HTMLAttributes<HTMLMarqueeElement> {
 
 type HTMLWebViewElement = HTMLElement
 
-type SVGAlignmentBaselineAttribute =
-  | 'auto'
-  | 'baseline'
-  | 'before-edge'
-  | 'text-before-edge'
-  | 'middle'
-  | 'central'
-  | 'after-edge'
-  | 'text-after-edge'
-  | 'ideographic'
-  | 'alphabetic'
-  | 'hanging'
-  | 'mathematical'
-  | 'inherit'
-
 interface AnimateSVGElement extends SVGAttributes<SVGAnimateElement> {
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
@@ -1245,7 +1232,7 @@ interface AnimateSVGElement extends SVGAttributes<SVGAnimateElement> {
   begin?: number | string
   by?: number | string
   calcMode?: 'discrete' | 'linear' | 'paced' | 'spline'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation'?: SVGProperties['colorInterpolation']
 }
 
 interface AnimateMotionSVGElement extends SVGAttributes<SVGAnimateMotionElement> {
@@ -1271,23 +1258,23 @@ interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
   cx?: number | string
   cy?: number | string
   r?: number | string
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
 }
 
 interface ClipPathSVGElement extends SVGAttributes<SVGClipPathElement> {
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
   clipPathUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation'?: SVGProperties['colorInterpolation']
 }
 
 interface DefsSVGElement extends SVGAttributes<SVGDefsElement> {
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation'?: SVGProperties['colorInterpolation']
 }
 
 interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
@@ -1295,42 +1282,42 @@ interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
   ry?: number | string
   cx?: number | string
   cy?: number | string
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
 }
 
 interface FEBlendSVGElement extends SVGAttributes<SVGFEBlendElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FEColorMatrixSVGElement extends SVGAttributes<SVGFEColorMatrixElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FEComponentTransferSVGElement extends SVGAttributes<SVGFEComponentTransferElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FECompositeSVGElement extends SVGAttributes<SVGFECompositeElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FEConvolveMatrixSVGElement extends SVGAttributes<SVGFEConvolveMatrixElement> {
   bias?: Numeric
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FEDiffuseLightingSVGElement extends SVGAttributes<SVGFEDiffuseLightingElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
   diffuseConstant?: Numeric
 }
 
 interface FEDisplacementMapSVGElement extends SVGAttributes<SVGFEDisplacementMapElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FEDistantLightSVGElement extends SVGAttributes<SVGFEDistantLightElement> {
@@ -1338,11 +1325,11 @@ interface FEDistantLightSVGElement extends SVGAttributes<SVGFEDistantLightElemen
 }
 
 interface FEDropShadowSVGElement extends SVGAttributes<SVGFEDropShadowElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FEFloodSVGElement extends SVGAttributes<SVGFEFloodElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FEFuncASVGElement extends SVGAttributes<SVGFEFuncAElement> {
@@ -1362,85 +1349,85 @@ interface FEFuncRSVGElement extends SVGAttributes<SVGFEFuncRElement> {
 }
 
 interface FEGaussianBlurSVGElement extends SVGAttributes<SVGFEGaussianBlurElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FEImageSVGElement extends SVGAttributes<SVGFEImageElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FEMergeSVGElement extends SVGAttributes<SVGFEMergeElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FEMorphologySVGElement extends SVGAttributes<SVGFEMorphologyElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FEOffsetSVGElement extends SVGAttributes<SVGFEOffsetElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FESpecularLightingSVGElement extends SVGAttributes<SVGFESpecularLightingElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FETurbulenceSVGElement extends SVGAttributes<SVGFETurbulenceElement> {
   type?: string
   baseFrequency?: number | string
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FESpotLightSVGElement extends SVGAttributes<SVGFESpotLightElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface FETileSVGElement extends SVGAttributes<SVGFETileElement> {
-  'color-interpolation-filters'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
 }
 
 interface ForeignObjectSVGElement extends SVGAttributes<SVGForeignObjectElement> {
   /** @deprecated */
-  clip?: 'auto' | string
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  clip?: SVGProperties['clip']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
 }
 
 interface GSVGElement extends SVGAttributes<SVGGElement> {
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
 }
 
 interface ImageSVGElement extends SVGAttributes<SVGImageElement> {
   href?: string
   /** @deprecated */
   clip?: 'auto' | string
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   /** @deprecated */
   'color-profile'?: string
 }
 
 interface LineSVGElement extends SVGAttributes<SVGLineElement> {
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
 }
 
 interface LinearGradientSVGElement extends SVGAttributes<SVGLinearGradientElement> {
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation'?: SVGProperties['colorInterpolation']
 }
 
 interface MarkerSVGElement extends SVGAttributes<SVGMarkerElement> {
   /** @deprecated */
   clip?: 'auto' | string
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   markerEnd?: string
   markerHeight?: number | string
   markerMid?: string
@@ -1450,16 +1437,16 @@ interface MarkerSVGElement extends SVGAttributes<SVGMarkerElement> {
 }
 
 interface MaskSVGElement extends SVGAttributes<SVGMaskElement> {
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
 }
 
 interface PathSVGElement extends SVGAttributes<SVGPathElement> {
   d?: string
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
@@ -1467,31 +1454,31 @@ interface PathSVGElement extends SVGAttributes<SVGPathElement> {
 
 interface PatternSVGElement extends SVGAttributes<SVGPatternElement> {
   /** @deprecated */
-  clip?: 'auto' | string
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  clip?: SVGProperties['clip']
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
 }
 
 interface PolygonSVGElement extends SVGAttributes<SVGPolygonElement> {
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
 }
 
 interface PolylineSVGElement extends SVGAttributes<SVGPolylineElement> {
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
 }
 
 interface RadialGradientSVGElement extends SVGAttributes<SVGRadialGradientElement> {
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   cx?: number | string
   cy?: number | string
   r?: number | string
@@ -1503,9 +1490,9 @@ interface RadialGradientSVGElement extends SVGAttributes<SVGRadialGradientElemen
 interface RectSVGElement extends SVGAttributes<SVGRectElement> {
   rx?: number | string
   ry?: number | string
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   'marker-start'?: string
   'marker-end'?: string
   'marker-mid'?: string
@@ -1526,42 +1513,42 @@ interface SvgSVGElement extends SVGAttributes<SVGSVGElement> {
   /** @deprecated */
   baseProfile?: number | string
   /** @deprecated */
-  clip?: 'auto' | string
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  clip?: SVGProperties['clip']
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
 }
 
 interface SymbolSVGElement extends SVGAttributes<SVGSymbolElement> {
   /** @deprecated */
-  clip?: 'auto' | string
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  clip?: SVGProperties['clip']
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
 }
 
 interface TextSVGElement extends SVGAttributes<SVGTextElement> {
   textLength?: number | string
   lengthAdjust?: number | string
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   direction?: 'ltr' | 'rtl'
 }
 
 interface TextPathSVGElement extends SVGAttributes<SVGTextPathElement> {
-  'alignment-baseline'?: SVGAlignmentBaselineAttribute
+  'alignment-baseline'?: SVGProperties['alignmentBaseline']
   'baseline-shift'?: number | string
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   direction?: 'ltr' | 'rtl'
   textLength?: number | string
   lengthAdjust?: number | string
 }
 
 interface TSpanSVGElement extends SVGAttributes<SVGTSpanElement> {
-  'alignment-baseline'?: SVGAlignmentBaselineAttribute
+  'alignment-baseline'?: SVGProperties['alignmentBaseline']
   'baseline-shift'?: number | string
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'color-interpolation'?: SVGProperties['colorInterpolation']
   textLength?: number | string
   lengthAdjust?: number | string
   direction?: 'ltr' | 'rtl'
@@ -1569,9 +1556,9 @@ interface TSpanSVGElement extends SVGAttributes<SVGTSpanElement> {
 
 interface UseSVGElement extends SVGAttributes<SVGUseElement> {
   href?: string
-  'clip-path'?: string
-  'clip-rule'?: 'nonzero' | 'evenodd' | 'inherit'
-  'color-interpolation'?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
+  'clip-path'?: SVGProperties['clipPath']
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
 }
 
 declare global {
