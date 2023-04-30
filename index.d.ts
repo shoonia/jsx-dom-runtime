@@ -528,15 +528,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   fy?: number | string
   fr?: string
   d?: string
-  marker?: SVGProperties['marker']
-  'marker-start'?: SVGProperties['markerStart']
-  'marker-end'?: SVGProperties['markerEnd']
-  'marker-mid'?: SVGProperties['markerMid']
-  markerHeight?: number | string
-  markerUnits?: number | string
-  markerWidth?: number | string
   textLength?: number | string
-  lengthAdjust?: number | string
   accentHeight?: number | string
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
@@ -642,41 +634,60 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   ideographic?: Numeric
   'image-rendering'?: SVGProperties['imageRendering']
-  in2?: number | string
+  in2?: string
   in?: string
-  intercept?: number | string
-  k1?: number | string
-  k2?: number | string
-  k3?: number | string
-  k4?: number | string
-  k?: number | string
+  intercept?: Numeric
+  k1?: Numeric
+  k2?: Numeric
+  k3?: Numeric
+  k4?: Numeric
+  /** @deprecated */
+  k?: Numeric
   kernelMatrix?: number | string
+  /** @deprecated */
   kernelUnitLength?: number | string
+  /** @deprecated */
   kerning?: number | string
   keyPoints?: number | string
   keySplines?: number | string
   keyTimes?: number | string
-  letterSpacing?: number | string
-  lightingColor?: number | string
-  limitingConeAngle?: number | string
-  local?: number | string
-  mask?: string
-  maskContentUnits?: number | string
-  maskUnits?: number | string
-  mathematical?: number | string
-  mode?: number | string
+  lang?: string
+  lengthAdjust?: 'spacing' | 'spacingAndGlyphs'
+  'letter-spacing'?:  SVGProperties['letterSpacing']
+  'lighting-color'?: SVGProperties['lightingColor']
+  limitingConeAngle?: Numeric
+  marker?: SVGProperties['marker']
+  'marker-start'?: SVGProperties['markerStart']
+  'marker-end'?: SVGProperties['markerEnd']
+  'marker-mid'?: SVGProperties['markerMid']
+  markerHeight?: number | string
+  markerUnits?: 'userSpaceOnUse' | 'strokeWidth'
+  markerWidth?: number | string
+  local?: string
+  mask?: SVGProperties['mask']
+  maskContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  maskUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  /** @deprecated */
+  mathematical?: Numeric
+  max?: string
+  min?: string
+  media?: string
+  method?: 'align' | 'stretch'
+  mode?: string
+  name?: string
   numOctaves?: number | string
   offset?: number | string
-  opacity?: number | string
-  operator?: number | string
+  opacity?: SVGProperties['opacity']
+  operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic'
   order?: number | string
-  orient?: number | string
-  orientation?: number | string
-  origin?: number | string
-  overflow?: number | string
-  overlinePosition?: number | string
-  overlineThickness?: number | string
-  paintOrder?: number | string
+  orient?: 'auto' | 'auto-start-reverse' | number | string
+  /** @deprecated */
+  orientation?: 'h' | 'v'
+  origin?: 'default' | string
+  overflow?: SVGProperties['overflow']
+  'overline-position'?: Numeric
+  'overline-thickness'?: Numeric
+  'paint-order'?: SVGProperties['paintOrder']
   panose1?: number | string
   pathLength?: number | string
   patternContentUnits?: string
