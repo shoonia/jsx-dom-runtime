@@ -604,31 +604,44 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   filterRes?: number | string
   filterUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  floodColor?: number | string
-  floodOpacity?: number | string
+  'flood-color'?: SVGProperties['floodColor']
+  'flood-opacity'?: SVGProperties['floodOpacity']
   focusable?: number | string
-  fontFamily?: string
-  fontSize?: number | string
-  fontSizeAdjust?: number | string
-  fontStretch?: number | string
-  fontStyle?: number | string
-  fontVariant?: number | string
-  fontWeight?: number | string
-  format?: number | string
+  'font-family'?: SVGProperties['fontFamily']
+  'font-size'?: SVGProperties['fontSize']
+  'font-size-adjust'?:SVGProperties['fontSizeAdjust']
+  'font-stretch'?: SVGProperties['fontStretch']
+  'font-style'?: SVGProperties['fontStyle']
+  'font-variant'?: SVGProperties['fontVariant']
+  'font-weight'?: SVGProperties['fontWeight']
+  /** @deprecated */
+  format?: string
   from?: number | string
+  /** @deprecated */
   g1?: number | string
+  /** @deprecated */
   g2?: number | string
-  glyphName?: number | string
-  glyphOrientationHorizontal?: number | string
-  glyphOrientationVertical?: number | string
-  glyphRef?: number | string
+  /** @deprecated */
+  'glyph-name'?: string
+  /** @deprecated */
+  'glyph-orientation-horizontal'?: string
+  /** @deprecated */
+  'glyph-orientation-vertical'?:  string
+  /** @deprecated */
+  glyphRef?: string
   gradientTransform?: string
-  gradientUnits?: string
-  hanging?: number | string
-  horizAdvX?: number | string
-  horizOriginX?: number | string
-  ideographic?: number | string
-  imageRendering?: number | string
+  gradientUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  /** @deprecated */
+  hanging?: Numeric
+  /** @deprecated */
+  'horiz-adv-x'?: Numeric
+  /** @deprecated */
+  'horiz-origin-x'?: Numeric
+  /** @deprecated */
+  'horiz-origin-y'?: Numeric
+  /** @deprecated */
+  ideographic?: Numeric
+  'image-rendering'?: SVGProperties['imageRendering']
   in2?: number | string
   in?: string
   intercept?: number | string
