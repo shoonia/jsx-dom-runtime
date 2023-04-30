@@ -518,6 +518,25 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
   __ns?: 1,
+  href?: string
+  rx?: number | string
+  ry?: number | string
+  cx?: number | string
+  cy?: number | string
+  r?: number | string
+  fx?: number | string
+  fy?: number | string
+  fr?: string
+  d?: string
+  marker?: SVGProperties['marker']
+  'marker-start'?: SVGProperties['markerStart']
+  'marker-end'?: SVGProperties['markerEnd']
+  'marker-mid'?: SVGProperties['markerMid']
+  markerHeight?: number | string
+  markerUnits?: number | string
+  markerWidth?: number | string
+  textLength?: number | string
+  lengthAdjust?: number | string
   accentHeight?: number | string
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
@@ -1248,120 +1267,6 @@ interface MarqueeHTMLElement extends HTMLAttributes<HTMLMarqueeElement> {
 
 type HTMLWebViewElement = HTMLElement
 
-interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
-  cx?: number | string
-  cy?: number | string
-  r?: number | string
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface ClipPathSVGElement extends SVGAttributes<SVGClipPathElement> {
-  'clip-path'?: string
-}
-
-interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
-  rx?: number | string
-  ry?: number | string
-  cx?: number | string
-  cy?: number | string
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface GSVGElement extends SVGAttributes<SVGGElement> {
-  'clip-path'?: string
-}
-
-interface ImageSVGElement extends SVGAttributes<SVGImageElement> {
-  href?: string
-  'clip-path'?: string
-}
-
-interface LineSVGElement extends SVGAttributes<SVGLineElement> {
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface MarkerSVGElement extends SVGAttributes<SVGMarkerElement> {
-  'clip-path'?: string
-  markerEnd?: string
-  markerHeight?: number | string
-  markerMid?: string
-  markerStart?: string
-  markerUnits?: number | string
-  markerWidth?: number | string
-}
-
-interface MaskSVGElement extends SVGAttributes<SVGMaskElement> {
-  'clip-path'?: string
-}
-
-interface PathSVGElement extends SVGAttributes<SVGPathElement> {
-  d?: string
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface RadialGradientSVGElement extends SVGAttributes<SVGRadialGradientElement> {
-  cx?: number | string
-  cy?: number | string
-  r?: number | string
-  fx?: number | string
-  fy?: number | string
-  fr?: string
-}
-
-interface RectSVGElement extends SVGAttributes<SVGRectElement> {
-  rx?: number | string
-  ry?: number | string
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface StopSVGElement extends SVGAttributes<SVGStopElement> {
-  'stop-color'?: string
-}
-
-interface SvgSVGElement extends SVGAttributes<SVGSVGElement> {
-  'clip-path'?: string
-}
-
-interface SymbolSVGElement extends SVGAttributes<SVGSymbolElement> {
-  'clip-path'?: string
-}
-
-interface TextSVGElement extends SVGAttributes<SVGTextElement> {
-  textLength?: number | string
-  lengthAdjust?: number | string
-  'clip-path'?: string
-}
-
-interface TextPathSVGElement extends SVGAttributes<SVGTextPathElement> {
-  textLength?: number | string
-  lengthAdjust?: number | string
-}
-
-interface TSpanSVGElement extends SVGAttributes<SVGTSpanElement> {
-  textLength?: number | string
-  lengthAdjust?: number | string
-}
-
-interface UseSVGElement extends SVGAttributes<SVGUseElement> {
-  href?: string
-  'clip-path'?: string
-}
-
 declare global {
   namespace JSX {
     type Element = HTMLElement | SVGElement | DocumentFragment
@@ -1502,11 +1407,11 @@ declare global {
       animate: SVGAttributes<SVGAnimateElement>
       animateMotion: SVGAttributes<SVGAnimateMotionElement>
       animateTransform: SVGAttributes<SVGAnimateElement>
-      circle: CircleSVGElement
-      clipPath: ClipPathSVGElement
+      circle: SVGAttributes<SVGCircleElement>
+      clipPath: SVGAttributes<SVGClipPathElement>
       defs: SVGAttributes<SVGDefsElement>
       desc: SVGAttributes<SVGDescElement>
-      ellipse: EllipseSVGElement
+      ellipse: SVGAttributes<SVGEllipseElement>
       feBlend: SVGAttributes<SVGFEBlendElement>
       feColorMatrix: SVGAttributes<SVGFEColorMatrixElement>
       feComponentTransfer: SVGAttributes<SVGFEComponentTransferElement>
@@ -1534,29 +1439,29 @@ declare global {
       feTurbulence: SVGAttributes<SVGFETurbulenceElement>
       filter: SVGAttributes<SVGFilterElement>
       foreignObject: SVGAttributes<SVGForeignObjectElement>
-      g: GSVGElement
-      image: ImageSVGElement
-      line: LineSVGElement
+      g: SVGAttributes<SVGGElement>
+      image: SVGAttributes<SVGImageElement>
+      line: SVGAttributes<SVGLineElement>
       linearGradient: SVGAttributes<SVGLinearGradientElement>
-      marker: MarkerSVGElement
-      mask: MaskSVGElement
+      marker: SVGAttributes<SVGMarkerElement>
+      mask: SVGAttributes<SVGMaskElement>
       metadata: SVGAttributes<SVGMetadataElement>
       mpath: SVGAttributes<SVGMPathElement>
-      path: PathSVGElement
+      path: SVGAttributes<SVGPathElement>
       pattern: SVGAttributes<SVGPatternElement>
       polygon: SVGAttributes<SVGPolygonElement>
       polyline: SVGAttributes<SVGPolylineElement>
-      radialGradient: RadialGradientSVGElement
-      rect: RectSVGElement
+      radialGradient: SVGAttributes<SVGRadialGradientElement>
+      rect: SVGAttributes<SVGRectElement>
       set: SVGAttributes<SVGSetElement>
-      stop: StopSVGElement
-      svg: SvgSVGElement
+      stop: SVGAttributes<SVGStopElement>
+      svg: SVGAttributes<SVGSVGElement>
       switch: SVGAttributes<SVGSwitchElement>
-      symbol: SymbolSVGElement
-      text: TextSVGElement
-      textPath: TextPathSVGElement
-      tspan: TSpanSVGElement
-      use: UseSVGElement
+      symbol: SVGAttributes<SVGSymbolElement>
+      text: SVGAttributes<SVGTextElement>
+      textPath: SVGAttributes<SVGTextPathElement>
+      tspan: SVGAttributes<SVGTSpanElement>
+      use: SVGAttributes<SVGUseElement>
       view: SVGAttributes<SVGViewElement>
     }
   }
