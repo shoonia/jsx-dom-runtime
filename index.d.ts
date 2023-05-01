@@ -1,8 +1,9 @@
 /// <reference lib="dom" />
 /// <reference lib="es2022" />
-import { Properties } from 'csstype';
+import { Properties, SvgProperties } from 'csstype';
 
 type Booleanish = boolean | 'true' | 'false'
+type Numeric = number | `${number}`
 
 interface RefObject<T> {
   readonly current: T
@@ -184,6 +185,8 @@ export interface CSSProperties extends Properties<string | number> {
   cssText?: string | null;
   [key: `--${string}`]: string | number;
 }
+
+export interface SVGProperties extends SvgProperties<string | number> { }
 
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
@@ -472,7 +475,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   slot?: string
   spellcheck?: 'true' | 'false'
   style?: string | CSSProperties
-  tabIndex?: number
+  tabIndex?: Numeric
   title?: string;
   translate?: 'yes' | 'no'
   // Unknown
@@ -515,224 +518,294 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
   __ns?: 1,
+  href?: string
+  cx?: number | string
+  cy?: number | string
+  fx?: number | string
+  fy?: number | string
+  fr?: string
+  d?: string
   accentHeight?: number | string
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
-  alignmentBaseline?:
-  | 'auto'
-  | 'baseline'
-  | 'before-edge'
-  | 'text-before-edge'
-  | 'middle'
-  | 'central'
-  | 'after-edge'
-  | 'text-after-edge'
-  | 'ideographic'
-  | 'alphabetic'
-  | 'hanging'
-  | 'mathematical'
-  | 'inherit'
+  'alignment-baseline'?: SVGProperties['alignmentBaseline']
   allowReorder?: 'no' | 'yes'
+  /** @deprecated */
   alphabetic?: number | string
-  amplitude?: number | string
-  arabicForm?: 'initial' | 'medial' | 'terminal' | 'isolated'
-  ascent?: number | string
+  amplitude?: Numeric
+  /** @deprecated */
+  'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
+  /** @deprecated */
+  ascent?: Numeric
   attributeName?: string
-  attributeType?: string
+  /** @deprecated */
+  attributeType?: 'CSS' | 'XML' | 'auto'
   autoReverse?: number | string
-  azimuth?: | number | string
+  azimuth?: Numeric
   baseFrequency?: number | string
-  baselineShift?: number | string
+  'baseline-shift'?: SVGProperties['baselineShift']
   baseProfile?: number | string
+  /** @deprecated */
   bbox?: number | string
   begin?: number | string
-  bias?: number | string
+  bias?: Numeric
   by?: number | string
-  calcMode?: number | string
-  capHeight?: number | string
-  clip?: number | string
-  clipPath?: string
-  clipPathUnits?: number | string
-  clipRule?: number | string
-  colorInterpolation?: number | string
-  colorInterpolationFilters?: 'auto' | 'sRGB' | 'linearRGB' | 'inherit'
-  colorProfile?: number | string
+  calcMode?: 'discrete' | 'linear' | 'paced' | 'spline'
+  /** @deprecated */
+  'cap-height'?: number | string
+  /** @deprecated */
+  clip?: SVGProperties['clip']
+  'clip-path'?: SVGProperties['clipPath']
+  clipPathUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  'clip-rule'?: SVGProperties['clipRule']
+  'color-interpolation'?: SVGProperties['colorInterpolation']
+  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
+  /** @deprecated */
+  'color-profile'?: string
   colorRendering?: number | string
-  contentScriptType?: number | string
-  contentStyleType?: number | string
-  cursor?: number | string
+  /** @deprecated */
+  contentScriptType?: string
+  /** @deprecated */
+  contentStyleType?: string
+  cursor?: SVGProperties['cursor']
   decelerate?: number | string
   descent?: number | string
-  diffuseConstant?: number | string
-  direction?: number | string
-  display?: number | string
+  diffuseConstant?: Numeric
+  direction?: 'ltr' | 'rtl'
+  display?: SVGProperties['display']
   divisor?: number | string
-  dominantBaseline?: number | string
+  'dominant-baseline'?: SVGProperties['dominantBaseline']
   dur?: number | string
   dx?: number | string
   dy?: number | string
-  edgeMode?: number | string
-  elevation?: number | string
-  enableBackground?: number | string
+  edgeMode?: 'duplicate' | 'wrap' | 'none'
+  elevation?: Numeric
+  /** @deprecated */
+  'enable-background'?: number | string
   end?: number | string
-  exponent?: number | string
+  exponent?: Numeric
   externalResourcesRequired?: number | string
-  fill?: string
-  fillOpacity?: number | string
-  fillRule?: 'nonzero' | 'evenodd' | 'inherit'
+  fill?: SVGProperties['fill']
+  'fill-opacity'?: SVGProperties['fillOpacity']
+  'fill-rule'?: SVGProperties['fillRule']
   filter?: string
+  /** @deprecated */
   filterRes?: number | string
-  filterUnits?: number | string
-  floodColor?: number | string
-  floodOpacity?: number | string
+  filterUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  'flood-color'?: SVGProperties['floodColor']
+  'flood-opacity'?: SVGProperties['floodOpacity']
   focusable?: number | string
-  fontFamily?: string
-  fontSize?: number | string
-  fontSizeAdjust?: number | string
-  fontStretch?: number | string
-  fontStyle?: number | string
-  fontVariant?: number | string
-  fontWeight?: number | string
-  format?: number | string
+  'font-family'?: SVGProperties['fontFamily']
+  'font-size'?: SVGProperties['fontSize']
+  'font-size-adjust'?:SVGProperties['fontSizeAdjust']
+  'font-stretch'?: SVGProperties['fontStretch']
+  'font-style'?: SVGProperties['fontStyle']
+  'font-variant'?: SVGProperties['fontVariant']
+  'font-weight'?: SVGProperties['fontWeight']
+  /** @deprecated */
+  format?: string
   from?: number | string
+  /** @deprecated */
   g1?: number | string
+  /** @deprecated */
   g2?: number | string
-  glyphName?: number | string
-  glyphOrientationHorizontal?: number | string
-  glyphOrientationVertical?: number | string
-  glyphRef?: number | string
+  /** @deprecated */
+  'glyph-name'?: string
+  /** @deprecated */
+  'glyph-orientation-horizontal'?: string
+  /** @deprecated */
+  'glyph-orientation-vertical'?:  string
+  /** @deprecated */
+  glyphRef?: string
   gradientTransform?: string
-  gradientUnits?: string
-  hanging?: number | string
-  horizAdvX?: number | string
-  horizOriginX?: number | string
-  ideographic?: number | string
-  imageRendering?: number | string
-  in2?: number | string
+  gradientUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  /** @deprecated */
+  hanging?: Numeric
+  /** @deprecated */
+  'horiz-adv-x'?: Numeric
+  /** @deprecated */
+  'horiz-origin-x'?: Numeric
+  /** @deprecated */
+  'horiz-origin-y'?: Numeric
+  /** @deprecated */
+  ideographic?: Numeric
+  'image-rendering'?: SVGProperties['imageRendering']
+  in2?: string
   in?: string
-  intercept?: number | string
-  k1?: number | string
-  k2?: number | string
-  k3?: number | string
-  k4?: number | string
-  k?: number | string
+  intercept?: Numeric
+  k1?: Numeric
+  k2?: Numeric
+  k3?: Numeric
+  k4?: Numeric
+  /** @deprecated */
+  k?: Numeric
   kernelMatrix?: number | string
+  /** @deprecated */
   kernelUnitLength?: number | string
+  /** @deprecated */
   kerning?: number | string
   keyPoints?: number | string
   keySplines?: number | string
   keyTimes?: number | string
-  letterSpacing?: number | string
-  lightingColor?: number | string
-  limitingConeAngle?: number | string
-  local?: number | string
-  mask?: string
-  maskContentUnits?: number | string
-  maskUnits?: number | string
-  mathematical?: number | string
-  mode?: number | string
+  lang?: string
+  lengthAdjust?: 'spacing' | 'spacingAndGlyphs'
+  'letter-spacing'?:  SVGProperties['letterSpacing']
+  'lighting-color'?: SVGProperties['lightingColor']
+  limitingConeAngle?: Numeric
+  marker?: SVGProperties['marker']
+  'marker-start'?: SVGProperties['markerStart']
+  'marker-end'?: SVGProperties['markerEnd']
+  'marker-mid'?: SVGProperties['markerMid']
+  markerHeight?: number | string
+  markerUnits?: 'userSpaceOnUse' | 'strokeWidth'
+  markerWidth?: number | string
+  local?: string
+  mask?: SVGProperties['mask']
+  maskContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  maskUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  /** @deprecated */
+  mathematical?: Numeric
+  max?: string
+  min?: string
+  media?: string
+  method?: 'align' | 'stretch'
+  mode?: string
+  name?: string
   numOctaves?: number | string
   offset?: number | string
-  opacity?: number | string
-  operator?: number | string
+  opacity?: SVGProperties['opacity']
+  operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic'
   order?: number | string
-  orient?: number | string
-  orientation?: number | string
-  origin?: number | string
-  overflow?: number | string
-  overlinePosition?: number | string
-  overlineThickness?: number | string
-  paintOrder?: number | string
-  panose1?: number | string
-  pathLength?: number | string
-  patternContentUnits?: string
-  patternTransform?: number | string
-  patternUnits?: string
-  pointerEvents?: number | string
+  orient?: 'auto' | 'auto-start-reverse' | number | string
+  /** @deprecated */
+  orientation?: 'h' | 'v'
+  origin?: 'default' | string
+  overflow?: SVGProperties['overflow']
+  'overline-position'?: Numeric
+  'overline-thickness'?: Numeric
+  'paint-order'?: SVGProperties['paintOrder']
+  /** @deprecated */
+  'panose-1'?: string
+  path?: string
+  pathLength?: Numeric
+  patternContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  patternTransform?: string
+  patternUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  'pointer-events'?: SVGProperties['pointerEvents']
   points?: string
-  pointsAtX?: number | string
-  pointsAtY?: number | string
-  pointsAtZ?: number | string
-  preserveAlpha?: number | string
+  pointsAtX?: Numeric
+  pointsAtY?: Numeric
+  pointsAtZ?: Numeric
+  preserveAlpha?: 'true' | 'false'
   preserveAspectRatio?: string
-  primitiveUnits?: number | string
+  primitiveUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  r?: number | string
   radius?: number | string
-  refX?: number | string
-  refY?: number | string
+  refX?: number | string | 'left' | 'center' | 'right'
+  refY?: number | string | 'top' | 'center' | 'bottom'
   renderingIntent?: number | string
-  repeatCount?: number | string
-  repeatDur?: number | string
+  repeatCount?: Numeric | 'indefinite'
+  repeatDur?: number | string | 'indefinite'
   requiredExtensions?: number | string
-  requiredFeatures?: number | string
-  restart?: number | string
+  /** @deprecated */
+  requiredFeatures?: string
+  restart?: 'always' | 'whenNotActive' | 'never'
   result?: string
-  rotate?: number | string
-  scale?: number | string
-  seed?: number | string
-  shapeRendering?: number | string
-  slope?: number | string
-  spacing?: number | string
-  specularConstant?: number | string
-  specularExponent?: number | string
+  rotate?: Numeric | 'auto' | 'auto-reverse'
+  rx?: number | string | 'auto'
+  ry?: number | string | 'auto'
+  scale?: Numeric
+  seed?: Numeric
+  'shape-rendering'?: SVGProperties['shapeRendering']
+  side?: 'left' | 'right'
+  /** @deprecated */
+  slope?: Numeric
+  spacing?: 'auto' | 'exact'
+  specularConstant?: Numeric
+  specularExponent?: Numeric
   speed?: number | string
   spreadMethod?: 'pad' | 'reflect' | 'repeat'
   startOffset?: number | string
   stdDeviation?: number | string
-  stemh?: number | string
-  stemv?: number | string
-  stitchTiles?: number | string
-  stopColor?: string
-  stopOpacity?: number | string
-  strikethroughPosition?: number | string
-  strikethroughThickness?: number | string
+  /** @deprecated */
+  stemh?: Numeric
+  /** @deprecated */
+  stemv?: Numeric
+  stitchTiles?: 'noStitch' | 'stitch'
+  'stop-color'?: SVGProperties['stopColor']
+  'stop-opacity'?: SVGProperties['stopOpacity']
+  'strikethrough-position'?: Numeric
+  'strikethrough-thickness'?: Numeric
+  /** @deprecated */
   string?: number | string
-  stroke?: string
-  strokeDasharray?: string | number
-  strokeDashoffset?: string | number
-  strokeLinecap?: 'butt' | 'round' | 'square' | 'inherit'
-  strokeLinejoin?: 'miter' | 'round' | 'bevel' | 'inherit'
-  strokeMiterlimit?: string | number
-  strokeOpacity?: number | string
-  strokeWidth?: number | string
-  surfaceScale?: number | string
-  systemLanguage?: number | string
+  stroke?: SVGProperties['stroke']
+  'stroke-dasharray'?: SVGProperties['strokeDasharray']
+  'stroke-dashoffset'?: SVGProperties['strokeDashoffset']
+  'stroke-linecap'?: SVGProperties['strokeLinecap']
+  'stroke-linejoin'?: SVGProperties['strokeLinejoin']
+  'stroke-miterlimit'?: SVGProperties['strokeMiterlimit']
+  'stroke-opacity'?: SVGProperties['strokeOpacity']
+  'stroke-width'?: SVGProperties['strokeWidth']
+  surfaceScale?: Numeric
+  systemLanguage?: string
+  tabindex?: Numeric
   tableValues?: number | string
+  target?: string | '_self' | '_parent' | '_top' | '_blank'
   targetX?: number | string
   targetY?: number | string
-  textAnchor?: string
-  textDecoration?: number | string
-  textRendering?: number | string
-  to?: number | string
+  'text-anchor'?: SVGProperties['textAnchor']
+  'text-decoration'?: SVGProperties['textDecoration']
+  'text-rendering'?: SVGProperties['textRendering']
+  textLength?: number | string
+  to?: string
   transform?: string
-  u1?: number | string
-  u2?: number | string
-  underlinePosition?: number | string
-  underlineThickness?: number | string
-  unicode?: number | string
-  unicodeBidi?: number | string
-  unicodeRange?: number | string
-  unitsPerEm?: number | string
-  vAlphabetic?: number | string
+  'transform-origin'?: string
+  type?: string | 'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY'
+  /** @deprecated */
+  u1?: string
+  /** @deprecated */
+  u2?: string
+  'underline-position'?: Numeric
+  'underline-thickness'?: Numeric
+  unicode?: string
+  'unicode-bidi'?: SVGProperties['unicodeBidi']
+  /** @deprecated */
+  'unicode-range'?: string
+  /** @deprecated */
+  'units-per-em'?: Numeric
+  /** @deprecated */
+  'v-alphabetic'?: Numeric
+  /** @deprecated */
+  'v-hanging'?: Numeric
+  /** @deprecated */
+  'v-ideographic'?: Numeric
+  /** @deprecated */
+  'v-mathematical'?: Numeric
   values?: string
-  vectorEffect?: number | string
-  version?: string
-  vertAdvY?: number | string
-  vertOriginX?: number | string
-  vertOriginY?: number | string
-  vHanging?: number | string
-  vIdeographic?: number | string
+  'vector-effect'?: SVGProperties['vectorEffect']
+  /** @deprecated */
+  version?: '1.0' | '1.1'
+  /** @deprecated */
+  'vert-adv-y'?: Numeric
+  /** @deprecated */
+  'vert-origin-x'?: Numeric
+  /** @deprecated */
+  'vert-origin-y'?: Numeric
   viewBox?: string
-  viewTarget?: number | string
-  visibility?: number | string
-  vMathematical?: number | string
-  widths?: number | string
-  wordSpacing?: number | string
-  writingMode?: number | string
+  /** @deprecated */
+  viewTarget?: string
+  visibility?: SVGProperties['visibility']
+  /** @deprecated */
+  widths?: Numeric
+  'word-spacing'?: SVGProperties['wordSpacing']
+  'writing-mode'?: SVGProperties['writingMode']
   x1?: number | string
   x2?: number | string
   x?: number | string
-  xChannelSelector?: string
-  xHeight?: number | string
+  /** @deprecated */
+  'x-height'?: Numeric
+  xChannelSelector?: 'R' | 'G' | 'B' | 'A'
+  yChannelSelector?: 'R' | 'G' | 'B' | 'A'
   // xlinkActuate?: string
   // xlinkArcrole?: string
   // xlinkHref?: string
@@ -742,16 +815,15 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   // xlinkType?: string
   // xmlBase?: string
   // xmlLang?: string
-  xmlns?: string
   // xmlnsXlink?: string
   // xmlspace?: string
+  xmlns?: string
   y1?: number | string
   y2?: number | string
   y?: number | string
-  yChannelSelector?: string
-  z?: number | string
-  zoomAndPan?: string
-
+  z?: Numeric
+  /** @deprecated */
+  zoomAndPan?: 'disable' | 'magnify'
   height?: number | string
   width?: number | string
 }
@@ -1246,138 +1318,6 @@ interface MarqueeHTMLElement extends HTMLAttributes<HTMLMarqueeElement> {
 
 type HTMLWebViewElement = HTMLElement
 
-interface CircleSVGElement extends SVGAttributes<SVGCircleElement> {
-  cx?: number | string
-  cy?: number | string
-  r?: number | string
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface ClipPathSVGElement extends SVGAttributes<SVGClipPathElement> {
-  'clip-path'?: string
-}
-
-interface EllipseSVGElement extends SVGAttributes<SVGEllipseElement> {
-  rx?: number | string
-  ry?: number | string
-  cx?: number | string
-  cy?: number | string
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface GSVGElement extends SVGAttributes<SVGGElement> {
-  'clip-path'?: string
-}
-
-interface ImageSVGElement extends SVGAttributes<SVGImageElement> {
-  href?: string
-  'clip-path'?: string
-}
-
-interface LineSVGElement extends SVGAttributes<SVGLineElement> {
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface MarkerSVGElement extends SVGAttributes<SVGMarkerElement> {
-  'clip-path'?: string
-  markerEnd?: string
-  markerHeight?: number | string
-  markerMid?: string
-  markerStart?: string
-  markerUnits?: number | string
-  markerWidth?: number | string
-}
-
-interface MaskSVGElement extends SVGAttributes<SVGMaskElement> {
-  'clip-path'?: string
-}
-
-interface PathSVGElement extends SVGAttributes<SVGPathElement> {
-  d?: string
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface PatternSVGElement extends SVGAttributes<SVGPatternElement> {
-  'clip-path'?: string
-}
-
-interface PolygonSVGElement extends SVGAttributes<SVGPolygonElement> {
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface PolylineSVGElement extends SVGAttributes<SVGPolylineElement> {
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface RadialGradientSVGElement extends SVGAttributes<SVGRadialGradientElement> {
-  cx?: number | string
-  cy?: number | string
-  r?: number | string
-  fx?: number | string
-  fy?: number | string
-  fr?: string
-}
-
-interface RectSVGElement extends SVGAttributes<SVGRectElement> {
-  rx?: number | string
-  ry?: number | string
-  'clip-path'?: string
-  'marker-start'?: string
-  'marker-end'?: string
-  'marker-mid'?: string
-}
-
-interface StopSVGElement extends SVGAttributes<SVGStopElement> {
-  'stop-color'?: string
-}
-
-interface SvgSVGElement extends SVGAttributes<SVGSVGElement> {
-  'clip-path'?: string
-}
-
-interface SymbolSVGElement extends SVGAttributes<SVGSymbolElement> {
-  'clip-path'?: string
-}
-
-interface TextSVGElement extends SVGAttributes<SVGTextElement> {
-  textLength?: number | string
-  lengthAdjust?: number | string
-  'clip-path'?: string
-}
-
-interface TextPathSVGElement extends SVGAttributes<SVGTextPathElement> {
-  textLength?: number | string
-  lengthAdjust?: number | string
-}
-
-interface TSpanSVGElement extends SVGAttributes<SVGTSpanElement> {
-  textLength?: number | string
-  lengthAdjust?: number | string
-}
-
-interface UseSVGElement extends SVGAttributes<SVGUseElement> {
-  href?: string
-  'clip-path'?: string
-}
-
 declare global {
   namespace JSX {
     type Element = HTMLElement | SVGElement | DocumentFragment
@@ -1518,11 +1458,11 @@ declare global {
       animate: SVGAttributes<SVGAnimateElement>
       animateMotion: SVGAttributes<SVGAnimateMotionElement>
       animateTransform: SVGAttributes<SVGAnimateElement>
-      circle: CircleSVGElement
-      clipPath: ClipPathSVGElement
+      circle: SVGAttributes<SVGCircleElement>
+      clipPath: SVGAttributes<SVGClipPathElement>
       defs: SVGAttributes<SVGDefsElement>
       desc: SVGAttributes<SVGDescElement>
-      ellipse: EllipseSVGElement
+      ellipse: SVGAttributes<SVGEllipseElement>
       feBlend: SVGAttributes<SVGFEBlendElement>
       feColorMatrix: SVGAttributes<SVGFEColorMatrixElement>
       feComponentTransfer: SVGAttributes<SVGFEComponentTransferElement>
@@ -1550,29 +1490,29 @@ declare global {
       feTurbulence: SVGAttributes<SVGFETurbulenceElement>
       filter: SVGAttributes<SVGFilterElement>
       foreignObject: SVGAttributes<SVGForeignObjectElement>
-      g: GSVGElement
-      image: ImageSVGElement
-      line: LineSVGElement
+      g: SVGAttributes<SVGGElement>
+      image: SVGAttributes<SVGImageElement>
+      line: SVGAttributes<SVGLineElement>
       linearGradient: SVGAttributes<SVGLinearGradientElement>
-      marker: MarkerSVGElement
-      mask: MaskSVGElement
+      marker: SVGAttributes<SVGMarkerElement>
+      mask: SVGAttributes<SVGMaskElement>
       metadata: SVGAttributes<SVGMetadataElement>
       mpath: SVGAttributes<SVGMPathElement>
-      path: PathSVGElement
-      pattern: PatternSVGElement
-      polygon: PolygonSVGElement
-      polyline: PolylineSVGElement
-      radialGradient: RadialGradientSVGElement
-      rect: RectSVGElement
+      path: SVGAttributes<SVGPathElement>
+      pattern: SVGAttributes<SVGPatternElement>
+      polygon: SVGAttributes<SVGPolygonElement>
+      polyline: SVGAttributes<SVGPolylineElement>
+      radialGradient: SVGAttributes<SVGRadialGradientElement>
+      rect: SVGAttributes<SVGRectElement>
       set: SVGAttributes<SVGSetElement>
-      stop: StopSVGElement
-      svg: SvgSVGElement
+      stop: SVGAttributes<SVGStopElement>
+      svg: SVGAttributes<SVGSVGElement>
       switch: SVGAttributes<SVGSwitchElement>
-      symbol: SymbolSVGElement
-      text: TextSVGElement
-      textPath: TextPathSVGElement
-      tspan: TSpanSVGElement
-      use: UseSVGElement
+      symbol: SVGAttributes<SVGSymbolElement>
+      text: SVGAttributes<SVGTextElement>
+      textPath: SVGAttributes<SVGTextPathElement>
+      tspan: SVGAttributes<SVGTSpanElement>
+      use: SVGAttributes<SVGUseElement>
       view: SVGAttributes<SVGViewElement>
     }
   }
