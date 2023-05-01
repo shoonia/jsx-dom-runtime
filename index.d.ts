@@ -475,7 +475,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   slot?: string
   spellcheck?: 'true' | 'false'
   style?: string | CSSProperties
-  tabIndex?: number
+  tabIndex?: Numeric
   title?: string;
   translate?: 'yes' | 'no'
   // Unknown
@@ -519,16 +519,12 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
   __ns?: 1,
   href?: string
-  rx?: number | string
-  ry?: number | string
   cx?: number | string
   cy?: number | string
-  r?: number | string
   fx?: number | string
   fy?: number | string
   fr?: string
   d?: string
-  textLength?: number | string
   accentHeight?: number | string
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
@@ -688,96 +684,128 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'overline-position'?: Numeric
   'overline-thickness'?: Numeric
   'paint-order'?: SVGProperties['paintOrder']
-  panose1?: number | string
-  pathLength?: number | string
-  patternContentUnits?: string
-  patternTransform?: number | string
-  patternUnits?: string
-  pointerEvents?: number | string
+  /** @deprecated */
+  'panose-1'?: string
+  path?: string
+  pathLength?: Numeric
+  patternContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  patternTransform?: string
+  patternUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  'pointer-events'?: SVGProperties['pointerEvents']
   points?: string
-  pointsAtX?: number | string
-  pointsAtY?: number | string
-  pointsAtZ?: number | string
-  preserveAlpha?: number | string
+  pointsAtX?: Numeric
+  pointsAtY?: Numeric
+  pointsAtZ?: Numeric
+  preserveAlpha?: 'true' | 'false'
   preserveAspectRatio?: string
-  primitiveUnits?: number | string
+  primitiveUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+  r?: number | string
   radius?: number | string
-  refX?: number | string
-  refY?: number | string
+  refX?: number | string | 'left' | 'center' | 'right'
+  refY?: number | string | 'top' | 'center' | 'bottom'
   renderingIntent?: number | string
-  repeatCount?: number | string
-  repeatDur?: number | string
+  repeatCount?: Numeric | 'indefinite'
+  repeatDur?: number | string | 'indefinite'
   requiredExtensions?: number | string
-  requiredFeatures?: number | string
-  restart?: number | string
+  /** @deprecated */
+  requiredFeatures?: string
+  restart?: 'always' | 'whenNotActive' | 'never'
   result?: string
-  rotate?: number | string
-  scale?: number | string
-  seed?: number | string
-  shapeRendering?: number | string
-  slope?: number | string
-  spacing?: number | string
-  specularConstant?: number | string
-  specularExponent?: number | string
+  rotate?: Numeric | 'auto' | 'auto-reverse'
+  rx?: number | string | 'auto'
+  ry?: number | string | 'auto'
+  scale?: Numeric
+  seed?: Numeric
+  'shape-rendering'?: SVGProperties['shapeRendering']
+  side?: 'left' | 'right'
+  /** @deprecated */
+  slope?: Numeric
+  spacing?: 'auto' | 'exact'
+  specularConstant?: Numeric
+  specularExponent?: Numeric
   speed?: number | string
   spreadMethod?: 'pad' | 'reflect' | 'repeat'
   startOffset?: number | string
   stdDeviation?: number | string
-  stemh?: number | string
-  stemv?: number | string
-  stitchTiles?: number | string
+  /** @deprecated */
+  stemh?: Numeric
+  /** @deprecated */
+  stemv?: Numeric
+  stitchTiles?: 'noStitch' | 'stitch'
   'stop-color'?: SVGProperties['stopColor']
-  stopOpacity?: number | string
-  strikethroughPosition?: number | string
-  strikethroughThickness?: number | string
+  'stop-opacity'?: SVGProperties['stopOpacity']
+  'strikethrough-position'?: Numeric
+  'strikethrough-thickness'?: Numeric
+  /** @deprecated */
   string?: number | string
   stroke?: SVGProperties['stroke']
-  strokeDasharray?: string | number
-  strokeDashoffset?: string | number
-  strokeLinecap?: 'butt' | 'round' | 'square' | 'inherit'
-  strokeLinejoin?: 'miter' | 'round' | 'bevel' | 'inherit'
-  strokeMiterlimit?: string | number
-  strokeOpacity?: number | string
-  strokeWidth?: number | string
-  surfaceScale?: number | string
-  systemLanguage?: number | string
+  'stroke-dasharray'?: SVGProperties['strokeDasharray']
+  'stroke-dashoffset'?: SVGProperties['strokeDashoffset']
+  'stroke-linecap'?: SVGProperties['strokeLinecap']
+  'stroke-linejoin'?: SVGProperties['strokeLinejoin']
+  'stroke-miterlimit'?: SVGProperties['strokeMiterlimit']
+  'stroke-opacity'?: SVGProperties['strokeOpacity']
+  'stroke-width'?: SVGProperties['strokeWidth']
+  surfaceScale?: Numeric
+  systemLanguage?: string
+  tabindex?: Numeric
   tableValues?: number | string
+  target?: string | '_self' | '_parent' | '_top' | '_blank'
   targetX?: number | string
   targetY?: number | string
-  textAnchor?: string
-  textDecoration?: number | string
-  textRendering?: number | string
-  to?: number | string
+  'text-anchor'?: SVGProperties['textAnchor']
+  'text-decoration'?: SVGProperties['textDecoration']
+  'text-rendering'?: SVGProperties['textRendering']
+  textLength?: number | string
+  to?: string
   transform?: string
-  u1?: number | string
-  u2?: number | string
-  underlinePosition?: number | string
-  underlineThickness?: number | string
-  unicode?: number | string
-  unicodeBidi?: number | string
-  unicodeRange?: number | string
-  unitsPerEm?: number | string
-  vAlphabetic?: number | string
+  'transform-origin'?: string
+  type?: string | 'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY'
+  /** @deprecated */
+  u1?: string
+  /** @deprecated */
+  u2?: string
+  'underline-position'?: Numeric
+  'underline-thickness'?: Numeric
+  unicode?: string
+  'unicode-bidi'?: SVGProperties['unicodeBidi']
+  /** @deprecated */
+  'unicode-range'?: string
+  /** @deprecated */
+  'units-per-em'?: Numeric
+  /** @deprecated */
+  'v-alphabetic'?: Numeric
+  /** @deprecated */
+  'v-hanging'?: Numeric
+  /** @deprecated */
+  'v-ideographic'?: Numeric
+  /** @deprecated */
+  'v-mathematical'?: Numeric
   values?: string
-  vectorEffect?: number | string
-  version?: string
-  vertAdvY?: number | string
-  vertOriginX?: number | string
-  vertOriginY?: number | string
-  vHanging?: number | string
-  vIdeographic?: number | string
+  'vector-effect'?: SVGProperties['vectorEffect']
+  /** @deprecated */
+  version?: '1.0' | '1.1'
+  /** @deprecated */
+  'vert-adv-y'?: Numeric
+  /** @deprecated */
+  'vert-origin-x'?: Numeric
+  /** @deprecated */
+  'vert-origin-y'?: Numeric
   viewBox?: string
-  viewTarget?: number | string
-  visibility?: number | string
-  vMathematical?: number | string
-  widths?: number | string
-  wordSpacing?: number | string
-  writingMode?: number | string
+  /** @deprecated */
+  viewTarget?: string
+  visibility?: SVGProperties['visibility']
+  /** @deprecated */
+  widths?: Numeric
+  'word-spacing'?: SVGProperties['wordSpacing']
+  'writing-mode'?: SVGProperties['writingMode']
   x1?: number | string
   x2?: number | string
   x?: number | string
-  xChannelSelector?: string
-  xHeight?: number | string
+  /** @deprecated */
+  'x-height'?: Numeric
+  xChannelSelector?: 'R' | 'G' | 'B' | 'A'
+  yChannelSelector?: 'R' | 'G' | 'B' | 'A'
   // xlinkActuate?: string
   // xlinkArcrole?: string
   // xlinkHref?: string
@@ -787,16 +815,15 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   // xlinkType?: string
   // xmlBase?: string
   // xmlLang?: string
-  xmlns?: string
   // xmlnsXlink?: string
   // xmlspace?: string
+  xmlns?: string
   y1?: number | string
   y2?: number | string
   y?: number | string
-  yChannelSelector?: string
-  z?: number | string
-  zoomAndPan?: string
-
+  z?: Numeric
+  /** @deprecated */
+  zoomAndPan?: 'disable' | 'magnify'
   height?: number | string
   width?: number | string
 }
