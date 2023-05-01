@@ -41,6 +41,11 @@ describe('HTMLSelectElement', () => {
     expect(<select required />).toBeRequired();
   });
 
+  it('should have `required` with string value', () => {
+    expect(<select required="" />).toBeRequired();
+    expect(<select required="required" />).toBeRequired();
+  });
+
   it('should NOT have `required` attribute', () => {
     expect(<select required={false} />).not.toBeRequired();
   });

@@ -48,6 +48,11 @@ describe('HTMLInputElement', () => {
     expect(<input required />).toBeRequired();
   });
 
+  it('should have correct attribute value `required` with string value', () => {
+    expect(<input required="" />).toBeRequired();
+    expect(<input required="required" />).toBeRequired();
+  });
+
   it.each(off)('should NOT have attribute `required`', (val) => {
     expect(<input required={val} />).not.toBeRequired();
   });
@@ -55,6 +60,11 @@ describe('HTMLInputElement', () => {
   it('should have correct attribute value `required`', () => {
     expect(<input readOnly />).toHaveAttribute('readonly', '');
     expect(<input readOnly />).toHaveProperty('readOnly', true);
+  });
+
+  it('should have correct attribute value `readOnly` string value', () => {
+    expect(<input readOnly="readonly" />).toHaveProperty('readOnly', true);
+    expect(<input readOnly="" />).toHaveProperty('readOnly', true);
   });
 
   it.each(off)('should NOT have attribute `readonly`', (val) => {
@@ -112,5 +122,20 @@ describe('HTMLInputElement', () => {
   it('should have `placeholder` attribute', () => {
     expect(<input placeholder="text" />).toHaveProperty('placeholder', 'text');
     expect(<input placeholder="text" />).toHaveAttribute('placeholder', 'text');
+  });
+
+  it('should have `formNoValidate` attribute', () => {
+    expect(<input formNoValidate />).toHaveProperty('formNoValidate', true);
+    expect(<input formNoValidate />).toHaveAttribute('formnovalidate', '');
+  });
+
+  it('should have `formNoValidate` attribute with string value', () => {
+    expect(<input formNoValidate="" />).toHaveProperty('formNoValidate', true);
+    expect(<input formNoValidate="formnovalidate" />).toHaveProperty('formNoValidate', true);
+  });
+
+  it('should NOT have `formNoValidate` attribute', () => {
+    expect(<input formNoValidate={false} />).toHaveProperty('formNoValidate', false);
+    expect(<input formNoValidate={false} />).not.toHaveAttribute('formnovalidate');
   });
 });
