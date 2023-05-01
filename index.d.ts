@@ -597,7 +597,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   focusable?: number | string
   'font-family'?: SVGProperties['fontFamily']
   'font-size'?: SVGProperties['fontSize']
-  'font-size-adjust'?:SVGProperties['fontSizeAdjust']
+  'font-size-adjust'?: SVGProperties['fontSizeAdjust']
   'font-stretch'?: SVGProperties['fontStretch']
   'font-style'?: SVGProperties['fontStyle']
   'font-variant'?: SVGProperties['fontVariant']
@@ -614,7 +614,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   'glyph-orientation-horizontal'?: string
   /** @deprecated */
-  'glyph-orientation-vertical'?:  string
+  'glyph-orientation-vertical'?: string
   /** @deprecated */
   glyphRef?: string
   gradientTransform?: string
@@ -649,7 +649,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   keyTimes?: number | string
   lang?: string
   lengthAdjust?: 'spacing' | 'spacingAndGlyphs'
-  'letter-spacing'?:  SVGProperties['letterSpacing']
+  'letter-spacing'?: SVGProperties['letterSpacing']
   'lighting-color'?: SVGProperties['lightingColor']
   limitingConeAngle?: Numeric
   marker?: SVGProperties['marker']
