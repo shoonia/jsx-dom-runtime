@@ -459,6 +459,7 @@ type AriaRole =
   | 'tree'
   | 'treegrid'
   | 'treeitem'
+  | 'none presentation'
 
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   innerHTML?: string
@@ -468,8 +469,9 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   contextMenu?: string
   dir?: 'ltr' | 'rtl' | 'auto'
   draggable?: Booleanish
-  hidden?: boolean
+  hidden?: boolean | 'hidden'| 'until-found'
   id?: string
+  inert?: boolean
   lang?: string
   placeholder?: string
   slot?: string
@@ -896,7 +898,7 @@ interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
   formAction?: string
   formEncType?: string
   formMethod?: string
-  formNoValidate?: boolean
+  formNoValidate?: boolean | 'formnovalidate' | ''
   formTarget?: string
   name?: string;
   type?: 'submit' | 'reset' | 'button';
@@ -1022,7 +1024,7 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   formAction?: string
   formEncType?: string
   formMethod?: string
-  formNoValidate?: boolean
+  formNoValidate?: boolean | 'formnovalidate' | ''
   formTarget?: string
   height?: number | string
   list?: string;
@@ -1034,8 +1036,8 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   name?: string;
   pattern?: string;
   placeholder?: string;
-  readOnly?: boolean;
-  required?: boolean;
+  readOnly?: boolean | 'readonly' | '';
+  required?: boolean | 'required' | '';
   size?: number;
   src?: string
   step?: number | string;
@@ -1184,7 +1186,7 @@ interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   form?: string
   multiple?: boolean;
   name?: string;
-  required?: boolean;
+  required?: boolean | 'required' | '';
   size?: number;
   value?: string | number;
   onchange?: ChangeEventHandler<HTMLSelectElement>;
@@ -1229,8 +1231,8 @@ interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   minLength?: number;
   name?: string;
   placeholder?: string;
-  readOnly?: boolean;
-  required?: boolean;
+  readOnly?: boolean | 'readonly' | '';
+  required?: boolean | 'required' | '';
   rows?: number;
   value?: string | number;
   wrap?: 'hard' | 'soft' | 'off';
