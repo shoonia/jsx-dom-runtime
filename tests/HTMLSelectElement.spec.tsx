@@ -32,6 +32,11 @@ describe('HTMLSelectElement', () => {
     expect(<select multiple />).toHaveAttribute('multiple', '');
   });
 
+  it('should have `multiple` attribute with string value', () => {
+    expect(<select multiple="" />).toHaveProperty('multiple', true);
+    expect(<select multiple="multiple" />).toHaveProperty('multiple', true);
+  });
+
   it('should NOT have `multiple` attribute', () => {
     expect(<select multiple={false} />).toHaveProperty('multiple', false);
     expect(<select multiple={false} />).not.toHaveAttribute('multiple');

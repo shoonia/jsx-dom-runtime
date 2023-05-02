@@ -1032,7 +1032,7 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   maxLength?: number;
   min?: number | string
   minLength?: number;
-  multiple?: boolean
+  multiple?: boolean | 'multiple' | '';
   name?: string;
   pattern?: string;
   placeholder?: string;
@@ -1184,7 +1184,7 @@ interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   autofocus?: boolean;
   disabled?: boolean | 'disabled' | '';
   form?: string
-  multiple?: boolean;
+  multiple?: boolean | 'multiple' | '';
   name?: string;
   required?: boolean | 'required' | '';
   size?: number;
