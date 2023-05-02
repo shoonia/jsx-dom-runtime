@@ -673,10 +673,10 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   method?: 'align' | 'stretch'
   mode?: string
   name?: string
-  numOctaves?: number | string
+  numOctaves?: Numeric
   offset?: number | string
   opacity?: SVGProperties['opacity']
-  operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic'
+  operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic' | 'erode' | 'dilate'
   order?: number | string
   orient?: 'auto' | 'auto-start-reverse' | number | string
   /** @deprecated */
