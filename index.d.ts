@@ -893,7 +893,7 @@ interface BaseHTMLAttributes extends HTMLAttributes<HTMLBaseElement> {
 
 interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
   autofocus?: boolean;
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   form?: string
   formAction?: string
   formEncType?: string
@@ -946,7 +946,7 @@ interface EmbedHTMLAttributes extends HTMLAttributes<HTMLEmbedElement> {
 }
 
 interface FieldsetHTMLAttributes extends HTMLAttributes<HTMLFieldSetElement> {
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   form?: string
   name?: string;
 }
@@ -1017,7 +1017,7 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
   checked?: boolean;
   crossOrigin?: HTMLAttrinuteCORS;
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   dirName?: string;
   enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
   form?: string
@@ -1059,7 +1059,7 @@ interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
   title?: string;
   as?: string;
   crossOrigin?: HTMLAttrinuteCORS;
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   href?: string
   hreflang?: string;
   integrity?: string
@@ -1136,12 +1136,12 @@ interface OlHTMLAttributes extends HTMLAttributes<HTMLOListElement> {
 }
 
 interface OptgroupHTMLAttributes extends HTMLAttributes<HTMLOptGroupElement> {
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   label?: string;
 }
 
 interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   label?: string;
   selected?: boolean;
   value?: string | number;
@@ -1182,7 +1182,7 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
 interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   autocomplete?: string;
   autofocus?: boolean;
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   form?: string
   multiple?: boolean;
   name?: string;
@@ -1225,7 +1225,7 @@ interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   autofocus?: boolean;
   cols?: number;
   dirName?: string;
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   form?: string
   maxLength?: number;
   minLength?: number;

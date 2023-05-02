@@ -17,6 +17,11 @@ describe('HTMLButtonElement', () => {
     expect(<button disabled />).toBeDisabled();
   });
 
+  it('should have `disabled` attribute with string value', () => {
+    expect(<button disabled="" />).toBeDisabled();
+    expect(<button disabled="disabled" />).toBeDisabled();
+  });
+
   it('should NOT have `disabled` attribute', () => {
     expect(<button disabled={false} />).not.toBeDisabled();
   });

@@ -54,6 +54,11 @@ describe('HTMLSelectElement', () => {
     expect(<select disabled />).toBeDisabled();
   });
 
+  it('should have `disabled` attribute with string value', () => {
+    expect(<select disabled="" />).toBeDisabled();
+    expect(<select disabled="disabled" />).toBeDisabled();
+  });
+
   it('should NOT have `disabled` attribute', () => {
     expect(<select disabled={false} />).not.toBeDisabled();
   });

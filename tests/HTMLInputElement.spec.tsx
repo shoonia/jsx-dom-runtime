@@ -40,6 +40,11 @@ describe('HTMLInputElement', () => {
     expect(<input disabled />).toBeDisabled();
   });
 
+  it('should have `disabled` attribute with string value', () => {
+    expect(<input disabled="" />).toBeDisabled();
+    expect(<input disabled="disabled" />).toBeDisabled();
+  });
+
   it.each(off)('should NOT have attribute `disabled`', (val) => {
     expect(<input disabled={val} />).not.toBeDisabled();
   });
