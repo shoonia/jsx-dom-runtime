@@ -38,7 +38,7 @@
     "dev": "npm run lint && npm run types && npm run build && npm test && npm run size"
   },
   "dependencies": {
-    "@babel/core": "^7.21.5",
+    "@babel/core": "^7.21.8",
     "@babel/helper-plugin-utils": "^7.21.5",
     "@babel/plugin-transform-react-jsx": "^7.21.5",
     "csstype": "^3.1.2",
@@ -55,14 +55,14 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@types/svg-tags": "^1.0.0",
     "@types/testing-library__jest-dom": "^5.14.5",
-    "@typescript-eslint/eslint-plugin": "^5.59.1",
-    "@typescript-eslint/parser": "^5.59.1",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^5.59.2",
     "babel-jest": "^29.5.0",
     "eslint": "^8.39.0",
     "fs-extra": "^11.1.1",
     "jest": "^29.5.0",
     "jest-environment-jsdom": "^29.5.0",
-    "rollup": "^3.21.2",
+    "rollup": "^3.21.3",
     "size-limit": "^8.2.4",
     "typescript": "^5.0.4"
   },
