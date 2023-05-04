@@ -181,12 +181,12 @@ interface DOMAttributes<T> extends JSX.Attributes {
   ontransitionend?: TransitionEventHandler<T>
 }
 
-export interface CSSProperties extends Properties<string | number> {
+export interface CSSProperties extends Properties<number | string> {
   cssText?: string | null;
-  [key: `--${string}`]: string | number;
+  [key: `--${string}`]: number | string;
 }
 
-export interface SVGProperties extends SvgProperties<string | number> { }
+export interface SVGProperties extends SvgProperties<number | string> { }
 
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
@@ -290,7 +290,7 @@ export interface AriaAttributes {
   */
   'aria-labelledby'?: string
   /** Defines the hierarchical level of an element within a structure. */
-  'aria-level'?: number
+  'aria-level'?: Numeric
   /** Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region. */
   'aria-live'?: 'off' | 'assertive' | 'polite'
   /** Indicates whether an element is modal when displayed. */
@@ -902,7 +902,7 @@ interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
   formTarget?: string
   name?: string;
   type?: 'submit' | 'reset' | 'button';
-  value?: string | number;
+  value?: number | string;
 }
 
 interface CanvasHTMLAttributes extends HTMLAttributes<HTMLCanvasElement> {
@@ -920,7 +920,7 @@ interface ColgroupHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
 }
 
 interface DataHTMLAttributes extends HTMLAttributes<HTMLDataElement> {
-  value?: string | number;
+  value?: number | string;
 }
 
 interface DetailsHTMLAttributes extends HTMLAttributes<HTMLDetailsElement> {
@@ -1043,7 +1043,7 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   src?: string
   step?: number | string;
   type?: HTMLInputTypeAttribute;
-  value?: string | number;
+  value?: number | string;
   width?: number | string
   onchange?: ChangeEventHandler<HTMLInputElement>
 }
@@ -1110,7 +1110,7 @@ interface MeterHTMLAttributes extends HTMLAttributes<HTMLMeterElement> {
   max?: number | string;
   min?: number | string;
   optimum?: Numeric;
-  value?: string | number;
+  value?: number | string;
 }
 
 interface QuoteHTMLAttributes extends HTMLAttributes<HTMLQuoteElement> {
@@ -1144,19 +1144,19 @@ interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
   disabled?: boolean | 'disabled' | '';
   label?: string;
   selected?: boolean | 'selected' | '';
-  value?: string | number;
+  value?: number | string;
 }
 
 interface OutputHTMLAttributes extends HTMLAttributes<HTMLOutputElement> {
   form?: string
   for?: string;
   name?: string;
-  value?: string | number;
+  value?: number | string;
 }
 
 interface ParamHTMLAttributes extends HTMLAttributes<HTMLParamElement> {
   name?: string
-  value?: string | number
+  value?: number | string
 }
 
 interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
@@ -1188,7 +1188,7 @@ interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   name?: string;
   required?: boolean | 'required' | '';
   size?: Numeric;
-  value?: string | number;
+  value?: number | string;
   onchange?: ChangeEventHandler<HTMLSelectElement>;
 }
 
@@ -1234,7 +1234,7 @@ interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   readOnly?: boolean | 'readonly' | '';
   required?: boolean | 'required' | '';
   rows?: Numeric;
-  value?: string | number;
+  value?: number | string;
   wrap?: 'hard' | 'soft' | 'off';
   onchange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
