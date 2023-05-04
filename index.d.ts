@@ -1085,13 +1085,12 @@ interface MenuHTMLAttributes extends HTMLAttributes<HTMLMenuElement> {
 }
 
 interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
-  autoplay?: boolean;
-  controls?: boolean;
+  autoplay?: boolean | 'autoplay' | '';
+  controls?: boolean | 'controls' | '';
   controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
   crossOrigin?: HTMLAttrinuteCORS;
-  loop?: boolean;
+  loop?: boolean | 'loop' | '';
   mediaGroup?: string
-  playsInline?: boolean;
   preload?: 'none' | 'metadata' | 'auto';
   src?: string;
 }
@@ -1274,7 +1273,7 @@ interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
 
 interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
   height?: number | string;
-  playsInline?: boolean;
+  playsInline?: boolean | 'playsinline' | '';
   poster?: string;
   width?: number | string;
   disablePictureInPicture?: boolean;
