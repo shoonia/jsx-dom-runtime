@@ -40,8 +40,8 @@ const events = new Set([
 ]);
 
 const boolAttrs = new Set([
-  'autofocus', 'disabled', 'formNoValidate', 'readOnly', 'multiple',
-  'required', 'hidden', 'open', 'selected'
+  'async', 'autofocus', 'defer', 'disabled', 'formNoValidate', 'readOnly', 'multiple',
+  'required', 'hidden', 'open', 'selected', 'noModule'
 ]);
 
 export const isDOMEvent = (name) => events.has(name);

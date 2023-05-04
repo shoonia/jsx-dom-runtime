@@ -1165,13 +1165,13 @@ interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
 }
 
 interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
-  async?: boolean
+  async?: boolean | 'async' | ''
   /** @deprecated */
   charset?: string;
   crossOrigin?: HTMLAttrinuteCORS;
-  defer?: boolean;
+  defer?: boolean | 'defer' | '';
   integrity?: string
-  noModule?: boolean;
+  noModule?: boolean | 'nomodule' | ''
   nonce?: string
   referrerPolicy?: ReferrerPolicy;
   src?: string;
