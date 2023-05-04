@@ -471,7 +471,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   draggable?: Booleanish
   hidden?: boolean | 'hidden'| 'until-found' | ''
   id?: string
-  inert?: boolean
+  inert?: boolean | 'inert' | ''
   lang?: string
   placeholder?: string
   slot?: string
