@@ -27,6 +27,11 @@ describe('HTMLSelectElement', () => {
     expect(<select autofocus={false} />).not.toHaveAttribute('autofocus');
   });
 
+  it('should have `autofocus` attribute with string value', () => {
+    expect(<select autofocus="" />).toHaveProperty('autofocus', true);
+    expect(<select autofocus="autofocus" />).toHaveProperty('autofocus', true);
+  });
+
   it('should have `multiple` attribute', () => {
     expect(<select multiple />).toHaveProperty('multiple', true);
     expect(<select multiple />).toHaveAttribute('multiple', '');

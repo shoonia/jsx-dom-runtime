@@ -892,7 +892,7 @@ interface BaseHTMLAttributes extends HTMLAttributes<HTMLBaseElement> {
 }
 
 interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
-  autofocus?: boolean;
+  autofocus?: boolean | 'autofocus' | '';
   disabled?: boolean | 'disabled' | '';
   form?: string
   formAction?: string
@@ -1013,7 +1013,7 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   accept?: string
   alt?: string
   autocomplete?: string;
-  autofocus?: boolean;
+  autofocus?: boolean | 'autofocus' | '';
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
   checked?: boolean;
   crossOrigin?: HTMLAttrinuteCORS;
@@ -1181,7 +1181,7 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
 
 interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   autocomplete?: string;
-  autofocus?: boolean;
+  autofocus?: boolean | 'autofocus' | '';
   disabled?: boolean | 'disabled' | '';
   form?: string
   multiple?: boolean | 'multiple' | '';
@@ -1222,7 +1222,7 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
 
 interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   autocomplete?: string;
-  autofocus?: boolean;
+  autofocus?: boolean | 'autofocus' | '';
   cols?: number;
   dirName?: string;
   disabled?: boolean | 'disabled' | '';
@@ -1287,7 +1287,7 @@ interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
 interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
   allowFullScreen?: boolean
   allowpopups?: boolean
-  autofocus?: boolean;
+  autofocus?: boolean | 'autofocus' | '';
   autosize?: boolean
   blinkfeatures?: string
   disableblinkfeatures?: string

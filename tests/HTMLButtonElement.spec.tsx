@@ -31,6 +31,11 @@ describe('HTMLButtonElement', () => {
     expect(<button autofocus />).toHaveAttribute('autofocus', '');
   });
 
+  it('should have `autofocus` attribute with string value', () => {
+    expect(<button autofocus="" />).toHaveProperty('autofocus', true);
+    expect(<button autofocus="autofocus" />).toHaveProperty('autofocus', true);
+  });
+
   it('should NOT have `autofocus` attribute', () => {
     expect(<button autofocus={false} />).toHaveProperty('autofocus', false);
     expect(<button autofocus={false} />).not.toHaveAttribute('autofocus');

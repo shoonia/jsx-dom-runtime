@@ -69,6 +69,11 @@ describe('HTMLTextAreaElement', () => {
     expect(<textarea autofocus={false} />).not.toHaveAttribute('autofocus');
   });
 
+  it('should have `autofocus` attribute with string value', () => {
+    expect(<textarea autofocus="" />).toHaveProperty('autofocus', true);
+    expect(<textarea autofocus="autofocus" />).toHaveProperty('autofocus', true);
+  });
+
   it('should set text content', () => {
     expect(<textarea>content text</textarea>).toHaveValue('content text');
     expect(<textarea>content text</textarea>).toHaveTextContent('content text');
