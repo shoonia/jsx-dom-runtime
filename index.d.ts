@@ -209,17 +209,17 @@ export interface AriaAttributes {
   * Defines the total number of columns in a table, grid, or treegrid.
   * @see aria-colindex.
   */
-  'aria-colcount'?: number
+  'aria-colcount'?: Numeric
   /**
   * Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid.
   * @see aria-colcount @see aria-colspan.
   */
-  'aria-colindex'?: number
+  'aria-colindex'?: Numeric
   /**
   * Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.
   * @see aria-colindex @see aria-rowspan.
   */
-  'aria-colspan'?: number
+  'aria-colspan'?: Numeric
   /**
   * Identifies the element (or elements) whose contents or presence are controlled by the current element.
   * @see aria-owns.
@@ -316,7 +316,7 @@ export interface AriaAttributes {
   * Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
   * @see aria-setsize.
   */
-  'aria-posinset'?: number
+  'aria-posinset'?: Numeric
   /**
   * Indicates the current "pressed" state of toggle buttons.
   * @see aria-checked @see aria-selected.
@@ -352,17 +352,17 @@ export interface AriaAttributes {
   * Defines the total number of rows in a table, grid, or treegrid.
   * @see aria-rowindex.
   */
-  'aria-rowcount'?: number
+  'aria-rowcount'?: Numeric
   /**
   * Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid.
   * @see aria-rowcount @see aria-rowspan.
   */
-  'aria-rowindex'?: number
+  'aria-rowindex'?: Numeric
   /**
   * Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.
   * @see aria-rowindex @see aria-colspan.
   */
-  'aria-rowspan'?: number
+  'aria-rowspan'?: Numeric
   /**
   * Indicates the current "selected" state of various widgets.
   * @see aria-checked @see aria-pressed.
@@ -372,18 +372,18 @@ export interface AriaAttributes {
   * Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
   * @see aria-posinset.
   */
-  'aria-setsize'?: number
+  'aria-setsize'?: Numeric
   /** Indicates if items in a table or grid are sorted in ascending or descending order. */
   'aria-sort'?: 'none' | 'ascending' | 'descending' | 'other'
   /** Defines the maximum allowed value for a range widget. */
-  'aria-valuemax'?: number
+  'aria-valuemax'?: Numeric
   /** Defines the minimum allowed value for a range widget. */
-  'aria-valuemin'?: number
+  'aria-valuemin'?: Numeric
   /**
   * Defines the current value for a range widget.
   * @see aria-valuetext.
   */
-  'aria-valuenow'?: number
+  'aria-valuenow'?: Numeric
   /** Defines the human readable text alternative of aria-valuenow for a range widget. */
   'aria-valuetext'?: string
 }
@@ -502,7 +502,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   itemType?: string
   itemID?: string
   itemRef?: string
-  results?: number
+  results?: Numeric
   security?: string
   unselectable?: 'on' | 'off'
   // Living Standard
@@ -911,12 +911,12 @@ interface CanvasHTMLAttributes extends HTMLAttributes<HTMLCanvasElement> {
 }
 
 interface ColHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
-  span?: number
+  span?: Numeric
   width?: number | string
 }
 
 interface ColgroupHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
-  span?: number
+  span?: Numeric
 }
 
 interface DataHTMLAttributes extends HTMLAttributes<HTMLDataElement> {
@@ -975,9 +975,9 @@ interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   height?: number | string;
   loading?: 'eager' | 'lazy'
   /** @deprecated */
-  marginHeight?: number;
+  marginHeight?: Numeric;
   /** @deprecated */
-  marginWidth?: number;
+  marginWidth?: Numeric;
   name?: string;
   referrerPolicy?: ReferrerPolicy;
   sandbox?: string
@@ -1030,16 +1030,16 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   height?: number | string
   list?: string;
   max?: number | string
-  maxLength?: number;
+  maxLength?: Numeric;
   min?: number | string
-  minLength?: number;
+  minLength?: Numeric;
   multiple?: boolean | 'multiple' | '';
   name?: string;
   pattern?: string;
   placeholder?: string;
   readOnly?: boolean | 'readonly' | '';
   required?: boolean | 'required' | '';
-  size?: number;
+  size?: Numeric;
   src?: string
   step?: number | string;
   type?: HTMLInputTypeAttribute;
@@ -1053,7 +1053,7 @@ interface LabelHTMLAttributes extends HTMLAttributes<HTMLLabelElement> {
 }
 
 interface LiHTMLAttributes extends HTMLAttributes<HTMLLIElement> {
-  value?: `${number}` | number;
+  value?: Numeric;
 }
 
 interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
@@ -1105,11 +1105,11 @@ interface MetaHTMLAttributes extends HTMLAttributes<HTMLMetaElement> {
 
 interface MeterHTMLAttributes extends HTMLAttributes<HTMLMeterElement> {
   form?: string
-  high?: number;
-  low?: number;
+  high?: Numeric;
+  low?: Numeric;
   max?: number | string;
   min?: number | string;
-  optimum?: number;
+  optimum?: Numeric;
   value?: string | number;
 }
 
@@ -1131,7 +1131,7 @@ interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
 
 interface OlHTMLAttributes extends HTMLAttributes<HTMLOListElement> {
   reversed?: boolean | 'reversed' | '';
-  start?: number;
+  start?: Numeric;
   type?: '1' | 'a' | 'A' | 'i' | 'I';
 }
 
@@ -1161,7 +1161,7 @@ interface ParamHTMLAttributes extends HTMLAttributes<HTMLParamElement> {
 
 interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
   max?: number | string;
-  value?: string | number;
+  value?: number | string;
 }
 
 interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
@@ -1187,7 +1187,7 @@ interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   multiple?: boolean | 'multiple' | '';
   name?: string;
   required?: boolean | 'required' | '';
-  size?: number;
+  size?: Numeric;
   value?: string | number;
   onchange?: ChangeEventHandler<HTMLSelectElement>;
 }
@@ -1223,17 +1223,17 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
 interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   autocomplete?: string;
   autofocus?: boolean | 'autofocus' | '';
-  cols?: number;
+  cols?: Numeric;
   dirName?: string;
   disabled?: boolean | 'disabled' | '';
   form?: string
-  maxLength?: number;
-  minLength?: number;
+  maxLength?: Numeric;
+  minLength?: Numeric;
   name?: string;
   placeholder?: string;
   readOnly?: boolean | 'readonly' | '';
   required?: boolean | 'required' | '';
-  rows?: number;
+  rows?: Numeric;
   value?: string | number;
   wrap?: 'hard' | 'soft' | 'off';
   onchange?: ChangeEventHandler<HTMLTextAreaElement>;
@@ -1241,9 +1241,9 @@ interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
 
 interface TdHTMLAttributes extends HTMLAttributes<HTMLTableDataCellElement> {
   align?: 'left' | 'center' | 'right' | 'justify' | 'char'
-  colSpan?: number
+  colSpan?: Numeric
   headers?: string
-  rowSpan?: number
+  rowSpan?: Numeric
   scope?: string
   abbr?: string
   height?: number | string
@@ -1253,9 +1253,9 @@ interface TdHTMLAttributes extends HTMLAttributes<HTMLTableDataCellElement> {
 
 interface ThHTMLAttributes extends HTMLAttributes<HTMLTableHeaderCellElement> {
   align?: 'left' | 'center' | 'right' | 'justify' | 'char'
-  colSpan?: number
+  colSpan?: Numeric
   headers?: string
-  rowSpan?: number
+  rowSpan?: Numeric
   scope?: string
   abbr?: string
 }
