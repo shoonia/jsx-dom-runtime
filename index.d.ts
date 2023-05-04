@@ -1143,7 +1143,7 @@ interface OptgroupHTMLAttributes extends HTMLAttributes<HTMLOptGroupElement> {
 interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
   disabled?: boolean | 'disabled' | '';
   label?: string;
-  selected?: boolean;
+  selected?: boolean | 'selected' | '';
   value?: string | number;
 }
 
