@@ -469,7 +469,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   contextMenu?: string
   dir?: 'ltr' | 'rtl' | 'auto'
   draggable?: Booleanish
-  hidden?: boolean | 'hidden'| 'until-found'
+  hidden?: boolean | 'hidden'| 'until-found' | ''
   id?: string
   inert?: boolean
   lang?: string
@@ -924,7 +924,7 @@ interface DataHTMLAttributes extends HTMLAttributes<HTMLDataElement> {
 }
 
 interface DetailsHTMLAttributes extends HTMLAttributes<HTMLDetailsElement> {
-  open?: boolean;
+  open?: boolean | 'open' | '';
   ontoggle?: TEventHandler<HTMLDetailsElement>;
 }
 
@@ -934,7 +934,7 @@ interface DelHTMLAttributes extends HTMLAttributes<HTMLModElement> {
 }
 
 interface DialogHTMLAttributes extends HTMLAttributes<HTMLDialogElement> {
-  open?: boolean
+  open?: boolean | 'open' | '';
   ontoggle?: TEventHandler<HTMLDialogElement>;
 }
 
