@@ -39,4 +39,10 @@ const events = new Set([
   'ontransitionend',
 ]);
 
+const boolAttrs = new Set([
+  'autofocus', 'disabled', 'formNoValidate', 'readOnly', 'multiple',
+  'required', 'hidden', 'open', 'selected'
+]);
+
 export const isDOMEvent = (name) => events.has(name);
+export const isBoolAttribute = (name) => boolAttrs.has(name);
