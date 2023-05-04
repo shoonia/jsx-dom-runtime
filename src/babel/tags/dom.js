@@ -37,6 +37,10 @@ const events = new Set([
   'onanimationstart', 'onanimationend', 'onanimationiteration',
   // Transition Events
   'ontransitionend',
+  // HTMLVideoElement
+  'onenterpictureinpicture', 'onleavepictureinpicture',
+  // HTMLDetailsElement & HTMLDialogElement
+  'ontoggle',
 ]);
 
 const boolAttrs = new Set([
