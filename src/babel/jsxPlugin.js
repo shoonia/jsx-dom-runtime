@@ -1,6 +1,6 @@
 import { isSvgTag, maybeSvg } from './tags/svg';
 import { isHtmlTag } from './tags/html';
-import { isDOMEvent } from './tags/dom';
+import { isBoolAttribute, isDOMEvent } from './tags/dom';
 
 export const jsxPlugin = (api) => {
   const { types: t } = api;
@@ -68,6 +68,12 @@ export const jsxPlugin = (api) => {
           if (tag === 'label' || tag === 'output') {
             attr.name = 'for';
           }
+          return;
+        }
+
+        if (isBoolAttribute(attr.name) && path.node.value === null) {
+          path.node.value = t.stringLiteral('');
+
           return;
         }
 

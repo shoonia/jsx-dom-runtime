@@ -459,6 +459,7 @@ type AriaRole =
   | 'tree'
   | 'treegrid'
   | 'treeitem'
+  | 'none presentation'
 
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   innerHTML?: string
@@ -468,8 +469,9 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   contextMenu?: string
   dir?: 'ltr' | 'rtl' | 'auto'
   draggable?: Booleanish
-  hidden?: boolean
+  hidden?: boolean | 'hidden'| 'until-found' | ''
   id?: string
+  inert?: boolean | 'inert' | ''
   lang?: string
   placeholder?: string
   slot?: string
@@ -671,10 +673,10 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   method?: 'align' | 'stretch'
   mode?: string
   name?: string
-  numOctaves?: number | string
+  numOctaves?: Numeric
   offset?: number | string
   opacity?: SVGProperties['opacity']
-  operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic'
+  operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic' | 'erode' | 'dilate'
   order?: number | string
   orient?: 'auto' | 'auto-start-reverse' | number | string
   /** @deprecated */
@@ -890,13 +892,13 @@ interface BaseHTMLAttributes extends HTMLAttributes<HTMLBaseElement> {
 }
 
 interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
-  autofocus?: boolean;
-  disabled?: boolean;
+  autofocus?: boolean | 'autofocus' | '';
+  disabled?: boolean | 'disabled' | '';
   form?: string
   formAction?: string
   formEncType?: string
   formMethod?: string
-  formNoValidate?: boolean
+  formNoValidate?: boolean | 'formnovalidate' | ''
   formTarget?: string
   name?: string;
   type?: 'submit' | 'reset' | 'button';
@@ -922,7 +924,7 @@ interface DataHTMLAttributes extends HTMLAttributes<HTMLDataElement> {
 }
 
 interface DetailsHTMLAttributes extends HTMLAttributes<HTMLDetailsElement> {
-  open?: boolean;
+  open?: boolean | 'open' | '';
   ontoggle?: TEventHandler<HTMLDetailsElement>;
 }
 
@@ -932,7 +934,7 @@ interface DelHTMLAttributes extends HTMLAttributes<HTMLModElement> {
 }
 
 interface DialogHTMLAttributes extends HTMLAttributes<HTMLDialogElement> {
-  open?: boolean
+  open?: boolean | 'open' | '';
   ontoggle?: TEventHandler<HTMLDialogElement>;
 }
 
@@ -944,7 +946,7 @@ interface EmbedHTMLAttributes extends HTMLAttributes<HTMLEmbedElement> {
 }
 
 interface FieldsetHTMLAttributes extends HTMLAttributes<HTMLFieldSetElement> {
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   form?: string
   name?: string;
 }
@@ -956,7 +958,7 @@ export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
   enctype?: string;
   method?: string;
   name?: string;
-  noValidate?: boolean;
+  noValidate?: boolean | 'novalidate' | '';
   target?: string
 }
 
@@ -981,6 +983,7 @@ interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   sandbox?: string
   /** @deprecated */
   scrolling?: string
+  /** @deprecated */
   seamless?: boolean
   src?: string;
   srcdoc?: string;
@@ -1011,18 +1014,18 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   accept?: string
   alt?: string
   autocomplete?: string;
-  autofocus?: boolean;
+  autofocus?: boolean | 'autofocus' | '';
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
-  checked?: boolean;
+  checked?: boolean | 'checked' | '';
   crossOrigin?: HTMLAttrinuteCORS;
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   dirName?: string;
   enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
   form?: string
   formAction?: string
   formEncType?: string
   formMethod?: string
-  formNoValidate?: boolean
+  formNoValidate?: boolean | 'formnovalidate' | ''
   formTarget?: string
   height?: number | string
   list?: string;
@@ -1030,12 +1033,12 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   maxLength?: number;
   min?: number | string
   minLength?: number;
-  multiple?: boolean
+  multiple?: boolean | 'multiple' | '';
   name?: string;
   pattern?: string;
   placeholder?: string;
-  readOnly?: boolean;
-  required?: boolean;
+  readOnly?: boolean | 'readonly' | '';
+  required?: boolean | 'required' | '';
   size?: number;
   src?: string
   step?: number | string;
@@ -1057,7 +1060,7 @@ interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
   title?: string;
   as?: string;
   crossOrigin?: HTMLAttrinuteCORS;
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   href?: string
   hreflang?: string;
   integrity?: string
@@ -1083,13 +1086,12 @@ interface MenuHTMLAttributes extends HTMLAttributes<HTMLMenuElement> {
 }
 
 interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
-  autoplay?: boolean;
-  controls?: boolean;
+  autoplay?: boolean | 'autoplay' | '';
+  controls?: boolean | 'controls' | '';
   controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
   crossOrigin?: HTMLAttrinuteCORS;
-  loop?: boolean;
+  loop?: boolean | 'loop' | '';
   mediaGroup?: string
-  playsInline?: boolean;
   preload?: 'none' | 'metadata' | 'auto';
   src?: string;
 }
@@ -1128,20 +1130,20 @@ interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
 }
 
 interface OlHTMLAttributes extends HTMLAttributes<HTMLOListElement> {
-  reversed?: boolean;
+  reversed?: boolean | 'reversed' | '';
   start?: number;
   type?: '1' | 'a' | 'A' | 'i' | 'I';
 }
 
 interface OptgroupHTMLAttributes extends HTMLAttributes<HTMLOptGroupElement> {
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   label?: string;
 }
 
 interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   label?: string;
-  selected?: boolean;
+  selected?: boolean | 'selected' | '';
   value?: string | number;
 }
 
@@ -1163,13 +1165,13 @@ interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
 }
 
 interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
-  async?: boolean
+  async?: boolean | 'async' | ''
   /** @deprecated */
   charset?: string;
   crossOrigin?: HTMLAttrinuteCORS;
-  defer?: boolean;
+  defer?: boolean | 'defer' | '';
   integrity?: string
-  noModule?: boolean;
+  noModule?: boolean | 'nomodule' | ''
   nonce?: string
   referrerPolicy?: ReferrerPolicy;
   src?: string;
@@ -1179,12 +1181,12 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
 
 interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   autocomplete?: string;
-  autofocus?: boolean;
-  disabled?: boolean;
+  autofocus?: boolean | 'autofocus' | '';
+  disabled?: boolean | 'disabled' | '';
   form?: string
-  multiple?: boolean;
+  multiple?: boolean | 'multiple' | '';
   name?: string;
-  required?: boolean;
+  required?: boolean | 'required' | '';
   size?: number;
   value?: string | number;
   onchange?: ChangeEventHandler<HTMLSelectElement>;
@@ -1220,17 +1222,17 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
 
 interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   autocomplete?: string;
-  autofocus?: boolean;
+  autofocus?: boolean | 'autofocus' | '';
   cols?: number;
   dirName?: string;
-  disabled?: boolean;
+  disabled?: boolean | 'disabled' | '';
   form?: string
   maxLength?: number;
   minLength?: number;
   name?: string;
   placeholder?: string;
-  readOnly?: boolean;
-  required?: boolean;
+  readOnly?: boolean | 'readonly' | '';
+  required?: boolean | 'required' | '';
   rows?: number;
   value?: string | number;
   wrap?: 'hard' | 'soft' | 'off';
@@ -1272,7 +1274,7 @@ interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
 
 interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
   height?: number | string;
-  playsInline?: boolean;
+  playsInline?: boolean | 'playsinline' | '';
   poster?: string;
   width?: number | string;
   disablePictureInPicture?: boolean;
@@ -1285,7 +1287,7 @@ interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
 interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
   allowFullScreen?: boolean
   allowpopups?: boolean
-  autofocus?: boolean;
+  autofocus?: boolean | 'autofocus' | '';
   autosize?: boolean
   blinkfeatures?: string
   disableblinkfeatures?: string

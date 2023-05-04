@@ -27,9 +27,19 @@ describe('HTMLSelectElement', () => {
     expect(<select autofocus={false} />).not.toHaveAttribute('autofocus');
   });
 
+  it('should have `autofocus` attribute with string value', () => {
+    expect(<select autofocus="" />).toHaveProperty('autofocus', true);
+    expect(<select autofocus="autofocus" />).toHaveProperty('autofocus', true);
+  });
+
   it('should have `multiple` attribute', () => {
     expect(<select multiple />).toHaveProperty('multiple', true);
     expect(<select multiple />).toHaveAttribute('multiple', '');
+  });
+
+  it('should have `multiple` attribute with string value', () => {
+    expect(<select multiple="" />).toHaveProperty('multiple', true);
+    expect(<select multiple="multiple" />).toHaveProperty('multiple', true);
   });
 
   it('should NOT have `multiple` attribute', () => {
@@ -41,12 +51,22 @@ describe('HTMLSelectElement', () => {
     expect(<select required />).toBeRequired();
   });
 
+  it('should have `required` with string value', () => {
+    expect(<select required="" />).toBeRequired();
+    expect(<select required="required" />).toBeRequired();
+  });
+
   it('should NOT have `required` attribute', () => {
     expect(<select required={false} />).not.toBeRequired();
   });
 
   it('should have `disabled` attribute', () => {
     expect(<select disabled />).toBeDisabled();
+  });
+
+  it('should have `disabled` attribute with string value', () => {
+    expect(<select disabled="" />).toBeDisabled();
+    expect(<select disabled="disabled" />).toBeDisabled();
   });
 
   it('should NOT have `disabled` attribute', () => {

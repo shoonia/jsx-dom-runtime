@@ -37,6 +37,17 @@ const events = new Set([
   'onanimationstart', 'onanimationend', 'onanimationiteration',
   // Transition Events
   'ontransitionend',
+  // HTMLVideoElement
+  'onenterpictureinpicture', 'onleavepictureinpicture',
+  // HTMLDetailsElement & HTMLDialogElement
+  'ontoggle',
+]);
+
+const boolAttrs = new Set([
+  'async', 'autofocus', 'autoplay', 'controls', 'checked', 'defer', 'disabled',
+  'formNoValidate', 'readOnly', 'multiple', 'loop', 'required', 'hidden',
+  'open', 'selected', 'noModule', 'noValidate', 'playsInline', 'reversed', 'inert',
 ]);
 
 export const isDOMEvent = (name) => events.has(name);
+export const isBoolAttribute = (name) => boolAttrs.has(name);

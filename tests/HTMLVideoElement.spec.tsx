@@ -11,41 +11,62 @@ describe('HTMLVideoElement', () => {
 
   it('should have `playsInline` attribure & property', () => {
     expect(<video playsInline />).toHaveProperty('playsInline', true);
-    expect(<video playsInline={false} />).toHaveProperty('playsInline', false);
     expect(<video playsInline />).toHaveAttribute('playsinline', '');
   });
 
   it('should NOT have `playsInline` attribute', () => {
-    expect(<video />).not.toHaveAttribute('playsinline');
     expect(<video playsInline={false} />).not.toHaveAttribute('playsinline');
+    expect(<video playsInline={false} />).toHaveProperty('playsInline', false);
+  });
+
+  it('should have `playsInline` attribure with string value', () => {
+    expect(<video playsInline="" />).toHaveProperty('playsInline', true);
+    expect(<video playsInline="playsinline" />).toHaveProperty('playsInline', true);
   });
 
   it('should have `controls` attributes', () => {
     expect(<video controls />).toHaveAttribute('controls', '');
     expect(<video controls />).toHaveProperty('controls', true);
+  });
+
+  it('should NOT have `controls` attributes', () => {
     expect(<video controls={false} />).not.toHaveAttribute('controls');
     expect(<video controls={false} />).toHaveProperty('controls', false);
   });
 
-  it('should have `controls` attributes', () => {
-    expect(<video controls />).toHaveAttribute('controls', '');
-    expect(<video controls />).toHaveProperty('controls', true);
-    expect(<video controls={false} />).not.toHaveAttribute('controls');
-    expect(<video controls={false} />).toHaveProperty('controls', false);
+  it('should have `controls` attributes with string value', () => {
+    expect(<video controls="" />).toHaveProperty('controls', true);
+    expect(<video controls="controls" />).toHaveProperty('controls', true);
   });
 
   it('should have `autoplay` attributes', () => {
     expect(<video autoplay />).toHaveAttribute('autoplay', '');
     expect(<video autoplay />).toHaveProperty('autoplay', true);
+  });
+
+  it('should NOT have `autoplay` attributes', () => {
     expect(<video autoplay={false} />).not.toHaveAttribute('autoplay');
     expect(<video autoplay={false} />).toHaveProperty('autoplay', false);
+  });
+
+  it('should have `autoplay` attributes with string value', () => {
+    expect(<video autoplay="" />).toHaveProperty('autoplay', true);
+    expect(<video autoplay="autoplay" />).toHaveProperty('autoplay', true);
   });
 
   it('should have `loop` attributes', () => {
     expect(<video loop />).toHaveAttribute('loop', '');
     expect(<video loop />).toHaveProperty('loop', true);
+  });
+
+  it('should NOT have `loop` attributes', () => {
     expect(<video loop={false} />).not.toHaveAttribute('loop');
     expect(<video loop={false} />).toHaveProperty('loop', false);
+  });
+
+  it('should have `loop` attributes with string value', () => {
+    expect(<video loop="" />).toHaveProperty('loop', true);
+    expect(<video loop="loop" />).toHaveProperty('loop', true);
   });
 
   it('should have `controlslist` attributes', () => {

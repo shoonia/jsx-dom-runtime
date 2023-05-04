@@ -59,6 +59,12 @@ describe('Props', () => {
     expect(<p spellcheck="false" />).toHaveAttribute('spellcheck', 'false');
   });
 
+  it('should have `hidden` attribute', () => {
+    expect(<strong hidden />).toHaveProperty('hidden', true);
+    expect(<strong hidden="" />).toHaveProperty('hidden', true);
+    expect(<strong hidden="hidden" />).toHaveProperty('hidden', true);
+  });
+
   it('should add html to component', () => {
     expect(<div innerHTML="<p>text</p>" />).toHaveOuterHTML('<div><p>text</p></div>');
   });

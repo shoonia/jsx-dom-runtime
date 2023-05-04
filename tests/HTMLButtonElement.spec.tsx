@@ -17,6 +17,11 @@ describe('HTMLButtonElement', () => {
     expect(<button disabled />).toBeDisabled();
   });
 
+  it('should have `disabled` attribute with string value', () => {
+    expect(<button disabled="" />).toBeDisabled();
+    expect(<button disabled="disabled" />).toBeDisabled();
+  });
+
   it('should NOT have `disabled` attribute', () => {
     expect(<button disabled={false} />).not.toBeDisabled();
   });
@@ -26,8 +31,28 @@ describe('HTMLButtonElement', () => {
     expect(<button autofocus />).toHaveAttribute('autofocus', '');
   });
 
+  it('should have `autofocus` attribute with string value', () => {
+    expect(<button autofocus="" />).toHaveProperty('autofocus', true);
+    expect(<button autofocus="autofocus" />).toHaveProperty('autofocus', true);
+  });
+
   it('should NOT have `autofocus` attribute', () => {
     expect(<button autofocus={false} />).toHaveProperty('autofocus', false);
     expect(<button autofocus={false} />).not.toHaveAttribute('autofocus');
+  });
+
+  it('should have `formNoValidate` attribute', () => {
+    expect(<button formNoValidate />).toHaveProperty('formNoValidate', true);
+    expect(<button formNoValidate />).toHaveAttribute('formnovalidate', '');
+  });
+
+  it('should have `formNoValidate` attribute with string value', () => {
+    expect(<button formNoValidate="" />).toHaveProperty('formNoValidate', true);
+    expect(<button formNoValidate="formnovalidate" />).toHaveProperty('formNoValidate', true);
+  });
+
+  it('should NOT have `formNoValidate` attribute', () => {
+    expect(<button formNoValidate={false} />).toHaveProperty('formNoValidate', false);
+    expect(<button formNoValidate={false} />).not.toHaveAttribute('formnovalidate');
   });
 });

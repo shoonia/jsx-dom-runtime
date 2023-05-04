@@ -20,22 +20,46 @@ describe('HTMLAudioElement', () => {
   it('should have `controls` attributes', () => {
     expect(<audio controls />).toHaveAttribute('controls', '');
     expect(<audio controls />).toHaveProperty('controls', true);
+  });
+
+  it('should NOT have `controls` attributes', () => {
     expect(<audio controls={false} />).not.toHaveAttribute('controls');
     expect(<audio controls={false} />).toHaveProperty('controls', false);
+  });
+
+  it('should have `controls` attributes with string value', () => {
+    expect(<audio controls="" />).toHaveProperty('controls', true);
+    expect(<audio controls="controls" />).toHaveProperty('controls', true);
   });
 
   it('should have `autoplay` attributes', () => {
     expect(<audio autoplay />).toHaveAttribute('autoplay', '');
     expect(<audio autoplay />).toHaveProperty('autoplay', true);
+  });
+
+  it('should NOT have `autoplay` attributes', () => {
     expect(<audio autoplay={false} />).not.toHaveAttribute('autoplay');
     expect(<audio autoplay={false} />).toHaveProperty('autoplay', false);
+  });
+
+  it('should have `autoplay` attributes with string value', () => {
+    expect(<audio autoplay="" />).toHaveProperty('autoplay', true);
+    expect(<audio autoplay="autoplay" />).toHaveProperty('autoplay', true);
   });
 
   it('should have `loop` attributes', () => {
     expect(<audio loop />).toHaveAttribute('loop', '');
     expect(<audio loop />).toHaveProperty('loop', true);
+  });
+
+  it('should NOT have `loop` attributes', () => {
     expect(<audio loop={false} />).not.toHaveAttribute('loop');
     expect(<audio loop={false} />).toHaveProperty('loop', false);
+  });
+
+  it('should have `loop` attributes with string value', () => {
+    expect(<audio loop="" />).toHaveProperty('loop', true);
+    expect(<audio loop="loop" />).toHaveProperty('loop', true);
   });
 
   it('should have `crossOrigin` attribute', () => {

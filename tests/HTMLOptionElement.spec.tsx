@@ -9,8 +9,18 @@ describe('HTMLOptionElement', () => {
     expect(<option selected={false} />).not.toHaveAttribute('selected', '');
   });
 
+  it('should have `selected` attribute with string value', () => {
+    expect(<option selected="" />).toHaveProperty('selected', true);
+    expect(<option selected="selected" />).toHaveProperty('selected', true);
+  });
+
   it('should have `disabled` attribute', () => {
     expect(<option disabled />).toBeDisabled();
+  });
+
+  it('should have `disabled` attribute with string value', () => {
+    expect(<option disabled="" />).toBeDisabled();
+    expect(<option disabled="disabled" />).toBeDisabled();
   });
 
   it('should NOT have `disabled` attribute', () => {
