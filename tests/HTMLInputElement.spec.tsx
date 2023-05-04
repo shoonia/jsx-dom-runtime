@@ -87,16 +87,6 @@ describe('HTMLInputElement', () => {
     expect(<input type="text" placeholder="noop" />).toHaveAttribute('placeholder', 'noop');
   });
 
-  it('should work with checkbox', () => {
-    expect(<input type="checkbox" checked />).toBeChecked();
-    expect(<input type="checkbox" />).not.toBeChecked();
-  });
-
-  it('should work with radio button', () => {
-    expect(<input type="radio" checked />).toBeChecked();
-    expect(<input type="radio" />).not.toBeChecked();
-  });
-
   it('should set inputMode', () => {
     expect(<input inputMode="numeric" />).toHaveProperty('inputMode', 'numeric');
     expect(<input inputMode="numeric" />).toHaveAttribute('inputmode', 'numeric');
@@ -147,5 +137,35 @@ describe('HTMLInputElement', () => {
   it('should NOT have `formNoValidate` attribute', () => {
     expect(<input formNoValidate={false} />).toHaveProperty('formNoValidate', false);
     expect(<input formNoValidate={false} />).not.toHaveAttribute('formnovalidate');
+  });
+
+  describe('checkbox', () => {
+    it('should have `checked` attribute', () => {
+      expect(<input type="checkbox" checked />).toBeChecked();
+    });
+
+    it('should have `checked` attribute with string value', () => {
+      expect(<input type="checkbox" checked="" />).toBeChecked();
+      expect(<input type="checkbox" checked="checked" />).toBeChecked();
+    });
+
+    it('should NOT have `checked` attribute', () => {
+      expect(<input type="checkbox" checked={false} />).not.toBeChecked();
+    });
+  });
+
+  describe('radio', () => {
+    it('should have `checked` attribute', () => {
+      expect(<input type="radio" checked />).toBeChecked();
+    });
+
+    it('should have `checked` attribute with string value', () => {
+      expect(<input type="radio" checked="" />).toBeChecked();
+      expect(<input type="radio" checked="checked" />).toBeChecked();
+    });
+
+    it('should NOT have `checked` attribute', () => {
+      expect(<input type="radio" checked={false} />).not.toBeChecked();
+    });
   });
 });

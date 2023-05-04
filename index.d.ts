@@ -983,6 +983,7 @@ interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   sandbox?: string
   /** @deprecated */
   scrolling?: string
+  /** @deprecated */
   seamless?: boolean
   src?: string;
   srcdoc?: string;
@@ -1015,7 +1016,7 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   autocomplete?: string;
   autofocus?: boolean | 'autofocus' | '';
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
-  checked?: boolean;
+  checked?: boolean | 'checked' | '';
   crossOrigin?: HTMLAttrinuteCORS;
   disabled?: boolean | 'disabled' | '';
   dirName?: string;
