@@ -1129,7 +1129,7 @@ interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
 }
 
 interface OlHTMLAttributes extends HTMLAttributes<HTMLOListElement> {
-  reversed?: boolean;
+  reversed?: boolean | 'reversed' | '';
   start?: number;
   type?: '1' | 'a' | 'A' | 'i' | 'I';
 }
