@@ -32,13 +32,12 @@ export const jsxPlugin = (api) => {
         const index = xlinkHref(attrs);
 
         if (index > -1) {
-          const attr = attrs.splice(index, 1)[0];
+          const attr = attrs[index];
 
-          attrs.splice(index, 0,
-            t.jSXAttribute(
-              t.jSXIdentifier('href'),
-              attr.value
-            ));
+          attrs[index] = t.jSXAttribute(
+            t.jSXIdentifier('href'),
+            attr.value,
+          );
         }
 
         if (attrs.every((a) => a.name.name !== '__ns')) {
@@ -73,7 +72,6 @@ export const jsxPlugin = (api) => {
 
         if (isBoolAttribute(attr.name) && path.node.value === null) {
           path.node.value = t.stringLiteral('');
-
           return;
         }
 
