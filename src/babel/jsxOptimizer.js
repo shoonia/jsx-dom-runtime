@@ -39,7 +39,7 @@ export const jsxOptimizer = (babel) => {
                   t.identifier(attr.name.name),
                   t.isJSXExpressionContainer(attr.value)
                     ? attr.value.expression
-                    : attr.value
+                    : attr.value || t.booleanLiteral(true),
                 );
               });
 
