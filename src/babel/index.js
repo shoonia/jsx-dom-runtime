@@ -1,6 +1,8 @@
 import transformReactJsx from '@babel/plugin-transform-react-jsx';
 import { declarePreset } from '@babel/helper-plugin-utils';
+
 import { jsxPlugin } from './jsxPlugin';
+import { jsxOptimizer } from './jsxOptimizer';
 
 const index = declarePreset((api, {
   useBuiltIns,
@@ -11,6 +13,7 @@ const index = declarePreset((api, {
   return {
     plugins: [
       jsxPlugin,
+      jsxOptimizer,
       [
         transformReactJsx,
         {
