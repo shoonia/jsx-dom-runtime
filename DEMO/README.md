@@ -3,7 +3,7 @@
 [Live Demo](https://shoonia.github.io/jsx-dom-runtime/)
 
 ```bash
-node --version # >= v18.x
+node --version # >= v20.x
 npm --version # >= v9.x
 npx --version # >= v9.x
 ```
