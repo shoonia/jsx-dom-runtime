@@ -1041,7 +1041,7 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   required?: boolean | 'required' | '';
   size?: Numeric;
   src?: string
-  step?: number | string;
+  step?: Numeric
   type?: HTMLInputTypeAttribute;
   value?: number | string;
   width?: number | string
@@ -1160,8 +1160,8 @@ interface ParamHTMLAttributes extends HTMLAttributes<HTMLParamElement> {
 }
 
 interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
-  max?: number | string;
-  value?: number | string;
+  max?: Numeric;
+  value?: Numeric;
 }
 
 interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
