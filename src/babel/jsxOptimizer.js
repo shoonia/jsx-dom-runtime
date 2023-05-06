@@ -11,6 +11,11 @@ export const jsxOptimizer = (babel) => {
           return;
         }
 
+        // TODO: handling `children` props
+        if (path.container.children.length > 0) {
+          return;
+        }
+
         const charCode = element.name.charCodeAt(0);
 
         if (charCode >= 65 && charCode <= 90) {
@@ -38,36 +43,37 @@ export const jsxOptimizer = (babel) => {
                 );
               });
 
-              const children = path.container.children.reduce((acc, item) => {
-                if (t.isJSXText(item)) {
-                  const text = item.value.trim();
+              // TODO: handling `children` props
+              // const children = path.container.children.reduce((acc, item) => {
+              //   if (t.isJSXText(item)) {
+              //     const text = item.value.trim();
 
-                  if (text !== '') {
-                    acc.push(t.stringLiteral(text));
-                  }
-                } else if (t.isJSXExpressionContainer(item) || t.isJSXSpreadChild(item)) {
-                  const exp = item.expression;
+              //     if (text !== '') {
+              //       acc.push(t.stringLiteral(text));
+              //     }
+              //   } else if (t.isJSXExpressionContainer(item) || t.isJSXSpreadChild(item)) {
+              //     const exp = item.expression;
 
-                  if (!t.isJSXEmptyExpression(exp)) {
-                    acc.push(exp);
-                  }
-                } else {
-                  acc.push(item);
-                }
+              //     if (!t.isJSXEmptyExpression(exp)) {
+              //       acc.push(exp);
+              //     }
+              //   } else {
+              //     acc.push(item);
+              //   }
 
-                return acc;
-              }, []);
+              //   return acc;
+              // }, []);
 
-              if (children.length > 0) {
-                params.push(
-                  t.objectProperty(
-                    t.identifier('children'),
-                    children.length === 1
-                      ? children[0]
-                      : t.arrayExpression(children)
-                  )
-                );
-              }
+              // if (children.length > 0) {
+              //   params.push(
+              //     t.objectProperty(
+              //       t.identifier('children'),
+              //       children.length === 1
+              //         ? children[0]
+              //         : t.arrayExpression(children)
+              //     )
+              //   );
+              // }
 
               parent.children[index] = t.jsxExpressionContainer(
                 t.callExpression(

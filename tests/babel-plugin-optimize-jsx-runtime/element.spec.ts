@@ -15,14 +15,4 @@ describe('babel-plugin-optimize-jsx-runtime: Element', () => {
     const result = await t('<span><App key="value" /></span>;');
     expect(result).toBe('<span>{App({key:"value"})}</span>;');
   });
-
-  it('should inline with children', async () => {
-    const result = await t('<div><App>hello</App></div>;');
-    expect(result).toBe('<div>{App({children:"hello"})}</div>;');
-  });
-
-  it('should inline with attributes & children', async () => {
-    const result = await t('<form><App key="value">hello</App></form>;');
-    expect(result).toBe('<form>{App({key:"value",children:"hello"})}</form>;');
-  });
 });
