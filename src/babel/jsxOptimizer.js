@@ -2,6 +2,7 @@ export const jsxOptimizer = (babel) => {
   const { types: t } = babel;
 
   return {
+    name: 'babel-plugin-optimize-jsx-runtime',
     visitor: {
       JSXOpeningElement(path) {
         const element = path.node.name;

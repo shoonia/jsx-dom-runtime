@@ -22,6 +22,7 @@ export const jsxPlugin = (api) => {
   };
 
   return {
+    name: 'jsx-dom-runtime/babel-plugin',
     visitor: {
       JSXOpeningElement(path) {
         if (!isSvgElement(path)) {
