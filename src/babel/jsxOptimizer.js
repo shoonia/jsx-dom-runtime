@@ -57,12 +57,16 @@ export const jsxOptimizer = (babel) => {
                 return acc;
               }, []);
 
-              params.push(
-                t.objectProperty(
-                  t.identifier('children'),
-                  t.arrayExpression(children),
-                ),
-              );
+              if (children.length > 0) {
+                params.push(
+                  t.objectProperty(
+                    t.identifier('children'),
+                    children.length === 1
+                      ? children[0]
+                      : t.arrayExpression(children)
+                  )
+                );
+              }
 
               parent.children[index] = t.jsxExpressionContainer(
                 t.callExpression(
