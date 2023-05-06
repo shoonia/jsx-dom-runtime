@@ -498,7 +498,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   autoSave?: string
   color?: string
   itemProp?: string
-  itemScope?: boolean
+  itemScope?: boolean | ''
   itemType?: string
   itemID?: string
   itemRef?: string
@@ -968,8 +968,18 @@ interface HtmlHTMLAttributes extends HTMLAttributes<HTMLHtmlElement> {
 
 interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   allow?: string
-  allowFullScreen?: boolean;
-  allowTransparency?: boolean
+  /**
+   * This attribute is considered a legacy attribute and redefined as `allow="fullscreen"`
+   * @deprecated
+   */
+  allowFullScreen?: boolean | '';
+  /**
+   * This attribute is considered a legacy attribute and redefined as `allow="payment"`
+   * @deprecated
+   */
+  allowPaymentRequest?: boolean | ''
+  /** @deprecated  */
+  allowTransparency?: boolean | ''
   /** @deprecated */
   frameBorder?: number | string
   height?: number | string;
@@ -984,7 +994,7 @@ interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   /** @deprecated */
   scrolling?: string
   /** @deprecated */
-  seamless?: boolean
+  seamless?: boolean | ''
   src?: string;
   srcdoc?: string;
   width?: number | string;
@@ -1209,7 +1219,8 @@ interface SourceHTMLAttributes extends HTMLAttributes<HTMLSourceElement> {
 interface StyleHTMLAttributes extends HTMLAttributes<HTMLStyleElement> {
   media?: string
   nonce?: string
-  scoped?: boolean
+  scoped?: boolean | ''
+  /** @deprecated */
   type?: string
 }
 
@@ -1265,7 +1276,7 @@ interface TimeHTMLAttributes extends HTMLAttributes<HTMLTimeElement> {
 }
 
 interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
-  default?: boolean;
+  default?: boolean | '';
   kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata';
   label?: string;
   src?: string;
@@ -1277,8 +1288,8 @@ interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
   playsInline?: boolean | 'playsinline' | '';
   poster?: string;
   width?: number | string;
-  disablePictureInPicture?: boolean;
-  disableRemotePlayback?: boolean;
+  disablePictureInPicture?: boolean | '';
+  disableRemotePlayback?: boolean | '';
 
   onenterpictureinpicture?: TEventHandler<HTMLVideoElement>;
   onleavepictureinpicture?: TEventHandler<HTMLVideoElement>;
@@ -1313,7 +1324,7 @@ interface MarqueeHTMLElement extends HTMLAttributes<HTMLMarqueeElement> {
   loop?: number | string
   scrollAmount?: number | string
   scrollDelay?: number | string
-  trueSpeed?: boolean
+  trueSpeed?: boolean | ''
   vspace?: number | string
   width?: number | string
 }
