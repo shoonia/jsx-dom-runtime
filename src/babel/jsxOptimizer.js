@@ -21,7 +21,6 @@ export const jsxOptimizer = (babel) => {
 
             const index = parent.children.findIndex((item) => {
               return (
-                t.isJSXElement(item) &&
                 t.isJSXOpeningElement(item.openingElement) &&
                 item.openingElement.name.loc.start.index === start &&
                 item.openingElement.name.loc.end.index === end
@@ -30,11 +29,12 @@ export const jsxOptimizer = (babel) => {
 
             if (index > -1) {
               const params = path.node.attributes.map((attr) => {
-                const value = t.isJSXExpressionContainer(attr.value)
-                  ? attr.value.expression
-                  : attr.value;
-
-                return t.objectProperty(t.identifier(attr.name.name), value);
+                return t.objectProperty(
+                  t.identifier(attr.name.name),
+                  t.isJSXExpressionContainer(attr.value)
+                    ? attr.value.expression
+                    : attr.value
+                );
               });
 
               const children = path.container.children.reduce((acc, item) => {
@@ -58,11 +58,17 @@ export const jsxOptimizer = (babel) => {
               }, []);
 
               params.push(
-                t.objectProperty(t.identifier('children'), t.arrayExpression(children)),
+                t.objectProperty(
+                  t.identifier('children'),
+                  t.arrayExpression(children),
+                ),
               );
 
               parent.children[index] = t.jsxExpressionContainer(
-                t.callExpression(t.identifier(element.name), [t.objectExpression(params)])
+                t.callExpression(
+                  t.identifier(element.name),
+                  [t.objectExpression(params)]
+                ),
               );
             }
           }
