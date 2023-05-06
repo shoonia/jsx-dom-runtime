@@ -35,4 +35,29 @@ describe('babel-plugin-optimize-jsx-runtime: Frament', () => {
     const result = await t('<><App index={false} /></>;');
     expect(result).toBe('<>{App({index:false})}</>;');
   });
+
+  it('should inline with attibute array literal', async () => {
+    const result = await t('<><App list={[]} /></>;');
+    expect(result).toBe('<>{App({list:[]})}</>;');
+  });
+
+  it('should inline with attibute object literal', async () => {
+    const result = await t('<><App list={{}} /></>;');
+    expect(result).toBe('<>{App({list:{}})}</>;');
+  });
+
+  it('should inline with attibute regexp literal', async () => {
+    const result = await t('<><App param={/a-z/} /></>;');
+    expect(result).toBe('<>{App({param:/a-z/})}</>;');
+  });
+
+  it('should inline with attibute null literal', async () => {
+    const result = await t('<><App param={null} /></>;');
+    expect(result).toBe('<>{App({param:null})}</>;');
+  });
+
+  it('should inline with attibute undefined literal', async () => {
+    const result = await t('<><App param={undefined} /></>;');
+    expect(result).toBe('<>{App({param:undefined})}</>;');
+  });
 });

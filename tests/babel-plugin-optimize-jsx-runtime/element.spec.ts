@@ -35,4 +35,29 @@ describe('babel-plugin-optimize-jsx-runtime: Element', () => {
     const result = await t('<div><App index={false} /></div>;');
     expect(result).toBe('<div>{App({index:false})}</div>;');
   });
+
+  it('should inline with attibute array literal', async () => {
+    const result = await t('<p><App list={[]} /></p>;');
+    expect(result).toBe('<p>{App({list:[]})}</p>;');
+  });
+
+  it('should inline with attibute object literal', async () => {
+    const result = await t('<p><App list={{}} /></p>;');
+    expect(result).toBe('<p>{App({list:{}})}</p>;');
+  });
+
+  it('should inline with attibute regexp literal', async () => {
+    const result = await t('<p><App param={/a-z/} /></p>;');
+    expect(result).toBe('<p>{App({param:/a-z/})}</p>;');
+  });
+
+  it('should inline with attibute null literal', async () => {
+    const result = await t('<p><App param={null} /></p>;');
+    expect(result).toBe('<p>{App({param:null})}</p>;');
+  });
+
+  it('should inline with attibute undefined literal', async () => {
+    const result = await t('<p><App param={undefined} /></p>;');
+    expect(result).toBe('<p>{App({param:undefined})}</p>;');
+  });
 });
