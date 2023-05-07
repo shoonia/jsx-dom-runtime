@@ -469,7 +469,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   contextMenu?: string
   dir?: 'ltr' | 'rtl' | 'auto'
   draggable?: Booleanish
-  hidden?: boolean | 'hidden'| 'until-found' | ''
+  hidden?: boolean | 'hidden' | 'until-found' | ''
   id?: string
   inert?: boolean | 'inert' | ''
   lang?: string
@@ -810,7 +810,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   yChannelSelector?: 'R' | 'G' | 'B' | 'A'
   /** @deprecated Not Supported */
   'xlink:arcrole'?: string
-   /**
+  /**
    * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
    * @deprecated
    */
