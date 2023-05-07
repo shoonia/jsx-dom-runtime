@@ -811,8 +811,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated Not Supported */
   'xlink:arcrole'?: string
    /**
-   * SVG 2 removed the need for the `xlink` namespace,
-   * so instead of `xlink:href` you should use `href`
+   * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
    * @deprecated
    */
   'xlink:href'?: string
@@ -820,14 +819,20 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'xlink:show'?: 'new' | 'replace' | 'embed' | 'other' | 'none'
   /** @deprecated Not Supported */
   'xlink:title'?: string
-  /** @deprecated Not Supported */
+  /**
+   * New content should use a `<title>` child element rather than a `xlink:title` attribute
+   * @deprecated
+   */
   'xlink:type'?: string
   /** @deprecated Not Supported */
   'xml:base'?: string
   /** @deprecated Not Supported */
   'xml:lang'?: string
-  /** @deprecated Not Supported */
-  'xml:space'?: string
+  /**
+   * Instead of using the `xml:space` attribute, use the `white-space` CSS property
+   * @deprecated
+   */
+  'xml:space'?: 'default' | 'preserve'
   xmlns?: string
   y1?: number | string
   y2?: number | string
@@ -878,8 +883,7 @@ interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
   type?: string;
   referrerPolicy?: ReferrerPolicy;
   /**
-   * SVG 2 removed the need for the `xlink` namespace,
-   * so instead of `xlink:href` you should use `href`
+   * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
    * @deprecated
    */
   'xlink:href'?: string
