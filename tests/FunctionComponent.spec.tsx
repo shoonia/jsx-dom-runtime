@@ -17,7 +17,7 @@ describe('FunctionComponent', () => {
     expect(<Text>hello</Text>).toHaveOuterHTML('<p>hello</p>');
   });
 
-  it('should render children nodes', () => {
+  it('should render children node', () => {
     const Text: FC = ({ children }) => (
       <p>{children}</p>
     );
@@ -27,6 +27,20 @@ describe('FunctionComponent', () => {
         <b>message</b>
       </Text>
     ).toHaveOuterHTML('<p><b>message</b></p>');
+  });
+
+  it('should render a few children nodes', () => {
+    const Text: FC = ({ children }) => (
+      <p>{children}</p>
+    );
+
+    expect(
+      <Text>
+        <b>message</b>
+        <b>message</b>
+        message
+      </Text>
+    ).toHaveOuterHTML('<p><b>message</b><b>message</b>message</p>');
   });
 
   it('should support children node and props', () => {
