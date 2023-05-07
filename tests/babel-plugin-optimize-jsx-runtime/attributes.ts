@@ -5,4 +5,9 @@ describe('babel-plugin-optimize-jsx-runtime: attributes', () => {
     const result = await t('<><App x:id="hello"/></>;');
     expect(result).toBe('<>{App({"x:id":"hello"})}</>;');
   });
+
+  it('should work with dashes attributes', async () => {
+    const result = await t('<><App x-id="hello"/></>;');
+    expect(result).toBe('<>{App({"x-id":"hello"})}</>;');
+  });
 });

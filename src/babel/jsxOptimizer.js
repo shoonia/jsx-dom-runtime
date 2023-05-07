@@ -26,7 +26,7 @@ export const jsxOptimizer = (babel) => {
                 return t.objectProperty(
                   t.identifier(
                     t.isJSXNamespacedName(attr.name)
-                      ? JSON.stringify(attr.name.namespace.name + ':' + attr.name.name.name)
+                      ? attr.name.namespace.name + ':' + attr.name.name.name
                       : attr.name.name,
                   ),
                   t.isJSXExpressionContainer(attr.value)
