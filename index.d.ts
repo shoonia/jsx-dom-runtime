@@ -138,7 +138,7 @@ interface DOMAttributes<T> extends JSX.Attributes {
   ondrag?: DragEventHandler<T>
   ondragend?: DragEventHandler<T>
   ondragenter?: DragEventHandler<T>
-  /** @deprecated Not supported */
+  /** @deprecated Not Supported */
   ondragexit?: DragEventHandler<T>
   ondragleave?: DragEventHandler<T>
   ondragover?: DragEventHandler<T>
@@ -808,17 +808,26 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'x-height'?: Numeric
   xChannelSelector?: 'R' | 'G' | 'B' | 'A'
   yChannelSelector?: 'R' | 'G' | 'B' | 'A'
-  // xlinkActuate?: string
-  // xlinkArcrole?: string
-  // xlinkHref?: string
-  // xlinkRole?: string
-  // xlinkShow?: string
-  // xlinkTitle?: string
-  // xlinkType?: string
-  // xmlBase?: string
-  // xmlLang?: string
-  // xmlnsXlink?: string
-  // xmlspace?: string
+  /** @deprecated Not Supported */
+  'xlink:arcrole'?: string
+   /**
+   * SVG 2 removed the need for the `xlink` namespace,
+   * so instead of `xlink:href` you should use `href`
+   * @deprecated
+   */
+  'xlink:href'?: string
+  /** @deprecated Not Supported */
+  'xlink:show'?: 'new' | 'replace' | 'embed' | 'other' | 'none'
+  /** @deprecated Not Supported */
+  'xlink:title'?: string
+  /** @deprecated Not Supported */
+  'xlink:type'?: string
+  /** @deprecated Not Supported */
+  'xml:base'?: string
+  /** @deprecated Not Supported */
+  'xml:lang'?: string
+  /** @deprecated Not Supported */
+  'xml:space'?: string
   xmlns?: string
   y1?: number | string
   y2?: number | string
@@ -868,6 +877,12 @@ interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
   target?: '_blank' | '_self' | '_parent' | '_top';
   type?: string;
   referrerPolicy?: ReferrerPolicy;
+  /**
+   * SVG 2 removed the need for the `xlink` namespace,
+   * so instead of `xlink:href` you should use `href`
+   * @deprecated
+   */
+  'xlink:href'?: string
 }
 
 interface AudioHTMLAttributes extends MediaHTMLAttributes<HTMLAudioElement> { }

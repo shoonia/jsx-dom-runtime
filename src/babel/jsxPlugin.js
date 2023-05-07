@@ -39,7 +39,6 @@ export const jsxPlugin = (api) => {
 
         if (t.isJSXNamespacedName(attr)) {
           if (
-            tag === 'a' &&
             attr.namespace.name === 'xlink' &&
             attr.name.name === 'href'
           ) {
