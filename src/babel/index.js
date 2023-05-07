@@ -19,7 +19,7 @@ const index = declarePreset((api, {
         {
           runtime: 'automatic',
           importSource: 'jsx-dom-runtime',
-          throwIfNamespace: true,
+          throwIfNamespace: false,
           useBuiltIns,
           useSpread,
         },
