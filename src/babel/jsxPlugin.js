@@ -13,14 +13,6 @@ export const jsxPlugin = (api) => {
       );
   };
 
-  const xlinkHref = (attrs) => {
-    return attrs.findIndex((attr) => {
-      return t.isJSXNamespacedName(attr.name) &&
-        attr.name.namespace.name === 'xlink' &&
-        attr.name.name.name === 'href';
-    });
-  };
-
   return {
     name: 'jsx-dom-runtime/babel-plugin',
     visitor: {
@@ -30,61 +22,75 @@ export const jsxPlugin = (api) => {
         }
 
         const attrs = path.node.attributes;
-        const index = xlinkHref(attrs);
+        const noNs = attrs.every((i) => i.name.name !== '__ns');
 
-        if (index > -1) {
-          const attr = attrs[index];
-
-          attrs[index] = t.jSXAttribute(
-            t.jSXIdentifier('href'),
-            attr.value,
-          );
-        }
-
-        if (attrs.every((a) => a.name.name !== '__ns')) {
+        if (noNs) {
           attrs.push(
             t.jSXAttribute(
               t.jSXIdentifier('__ns'),
               t.JSXExpressionContainer(t.numericLiteral(1)),
-            ));
+            ),
+          );
         }
       },
       JSXAttribute(path) {
         const attr = path.node.name;
         const tag = path.parent.name.name;
 
-        if (!t.isJSXIdentifier(attr)) {
-          return;
-        }
+        if (t.isJSXNamespacedName(attr)) {
+          if (
+            tag === 'a' &&
+            attr.namespace.name === 'xlink' &&
+            attr.name.name === 'href'
+          ) {
+            const attrs = path.parent.attributes;
+            const index = attrs.findIndex((i) => i === path.node);
 
-        if (attr.name === 'className') {
-          if (isHtmlTag(tag) || isSvgTag(tag)) {
-            attr.name = 'class';
+            if (index > -1) {
+              const attr = attrs[index];
+
+              attrs[index] = t.jSXAttribute(
+                t.jSXIdentifier('href'),
+                attr.value
+              );
+            }
+
+            return;
           }
+
           return;
         }
 
-        if (attr.name === 'htmlFor') {
-          if (tag === 'label' || tag === 'output') {
-            attr.name = 'for';
+        if (t.isJSXIdentifier(attr)) {
+          if (attr.name === 'className') {
+            if (isHtmlTag(tag) || isSvgTag(tag)) {
+              attr.name = 'class';
+            }
+            return;
           }
-          return;
-        }
 
-        if (isBoolAttribute(attr.name) && path.node.value === null) {
-          path.node.value = t.stringLiteral('');
-          return;
-        }
-
-        if (isHtmlTag(tag)) {
-          const attrName = attr.name.toLowerCase();
-
-          if (isDOMEvent(attrName)) {
-            attr.name = attrName;
+          if (attr.name === 'htmlFor') {
+            if (tag === 'label' || tag === 'output') {
+              attr.name = 'for';
+            }
+            return;
           }
-          return;
+
+          if (isBoolAttribute(attr.name) && path.node.value === null) {
+            path.node.value = t.stringLiteral('');
+            return;
+          }
+
+          if (isHtmlTag(tag)) {
+            const attrName = attr.name.toLowerCase();
+
+            if (isDOMEvent(attrName)) {
+              attr.name = attrName;
+            }
+            return;
+          }
         }
-      }
-    }
+      },
+    },
   };
 };
