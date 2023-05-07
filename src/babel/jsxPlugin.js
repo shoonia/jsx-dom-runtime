@@ -2,35 +2,28 @@ import { isSvgTag, maybeSvg } from './tags/svg';
 import { isHtmlTag } from './tags/html';
 import { isBoolAttribute, isDOMEvent } from './tags/dom';
 
-export const jsxPlugin = (api) => {
-  const { types: t } = api;
-
-  const isSvgElement = (path) => {
-    return isSvgTag(path.node.name.name) ||
-      maybeSvg(path.node.name.name) &&
-      path.parentPath.parent.openingElement?.attributes.some(
-        (a) => a.name.name === '__ns' && a.value.expression?.value === 1
-      );
-  };
-
+export const jsxPlugin = ({ types: t }) => {
   return {
     name: 'jsx-dom-runtime/babel-plugin',
     visitor: {
       JSXOpeningElement(path) {
-        if (!isSvgElement(path)) {
-          return;
-        }
+        const node = path.node;
 
-        const attrs = path.node.attributes;
-        const noNs = attrs.every((i) => i.name.name !== '__ns');
-
-        if (noNs) {
-          attrs.push(
-            t.jSXAttribute(
-              t.jSXIdentifier('__ns'),
-              t.jSXExpressionContainer(t.numericLiteral(1)),
-            ),
-          );
+        if (
+          isSvgTag(node.name.name) ||
+          maybeSvg(node.name.name) &&
+          path.parentPath.parent.openingElement?.attributes.some(
+            (i) => i.name.name === '__ns' && i.value.expression?.value === 1
+          )
+        ) {
+          if (node.attributes.every((i) => i.name.name !== '__ns')) {
+            node.attributes.push(
+              t.jSXAttribute(
+                t.jSXIdentifier('__ns'),
+                t.jSXExpressionContainer(t.numericLiteral(1)),
+              ),
+            );
+          }
         }
       },
       JSXAttribute(path) {
