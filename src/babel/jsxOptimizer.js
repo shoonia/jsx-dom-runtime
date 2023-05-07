@@ -24,7 +24,11 @@ export const jsxOptimizer = (babel) => {
             if (index > -1) {
               const params = path.node.attributes.map((attr) => {
                 return t.objectProperty(
-                  t.identifier(attr.name.name),
+                  t.identifier(
+                    t.isJSXNamespacedName(attr.name)
+                      ? JSON.stringify(attr.name.namespace.name + ':' + attr.name.name.name)
+                      : attr.name.name,
+                  ),
                   t.isJSXExpressionContainer(attr.value)
                     ? attr.value.expression
                     : attr.value || t.booleanLiteral(true),
