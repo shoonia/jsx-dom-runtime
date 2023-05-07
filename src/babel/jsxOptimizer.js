@@ -39,21 +39,21 @@ export const jsxOptimizer = (babel) => {
                     t.identifier('children'),
                     children.length === 1
                       ? children[0]
-                      : t.arrayExpression(children)
-                  )
+                      : t.arrayExpression(children),
+                  ),
                 );
               }
 
               parent.children[index] = t.jsxExpressionContainer(
                 t.callExpression(
                   t.identifier(element.name),
-                  [t.objectExpression(params)]
+                  [t.objectExpression(params)],
                 ),
               );
             }
           }
         }
-      }
-    }
+      },
+    },
   };
 };
