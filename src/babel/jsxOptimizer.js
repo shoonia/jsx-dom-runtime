@@ -22,15 +22,8 @@ export const jsxOptimizer = (babel) => {
           const { parent } = path.parentPath;
 
           if (t.isJSXElement(parent) || t.isJSXFragment(parent)) {
-            const start = element.loc.start.index;
-            const end = element.loc.end.index;
-
             const index = parent.children.findIndex((item) => {
-              return (
-                t.isJSXOpeningElement(item.openingElement) &&
-                item.openingElement.name.loc.start.index === start &&
-                item.openingElement.name.loc.end.index === end
-              );
+              return item.openingElement === path.node;
             });
 
             if (index > -1) {
