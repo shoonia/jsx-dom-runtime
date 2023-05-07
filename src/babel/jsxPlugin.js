@@ -28,7 +28,7 @@ export const jsxPlugin = (api) => {
           attrs.push(
             t.jSXAttribute(
               t.jSXIdentifier('__ns'),
-              t.JSXExpressionContainer(t.numericLiteral(1)),
+              t.jSXExpressionContainer(t.numericLiteral(1)),
             ),
           );
         }
@@ -53,8 +53,6 @@ export const jsxPlugin = (api) => {
                 attr.value
               );
             }
-
-            return;
           }
 
           return;
