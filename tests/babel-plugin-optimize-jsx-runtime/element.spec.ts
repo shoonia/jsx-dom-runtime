@@ -16,6 +16,11 @@ describe('babel-plugin-optimize-jsx-runtime: Element', () => {
     expect(result).toBe('<span>{App({key:"value"})}</span>;');
   });
 
+  it('should inline with two attributes', async () => {
+    const result = await t('<span><App key="value" name="data" /></span>;');
+    expect(result).toBe('<span>{App({key:"value",name:"data"})}</span>;');
+  });
+
   it('should inline with attibute number literal', async () => {
     const result = await t('<div><App index={1} /></div>;');
     expect(result).toBe('<div>{App({index:1})}</div>;');
@@ -59,5 +64,15 @@ describe('babel-plugin-optimize-jsx-runtime: Element', () => {
   it('should inline with attibute undefined literal', async () => {
     const result = await t('<p><App param={undefined} /></p>;');
     expect(result).toBe('<p>{App({param:undefined})}</p>;');
+  });
+
+  it('should inline with attibute arrow function literal', async () => {
+    const result = await t('<aside><App cd={() => {}} /></aside>;');
+    expect(result).toBe('<aside>{App({cd:()=>{}})}</aside>;');
+  });
+
+  it('should inline with attibute function declaration literal', async () => {
+    const result = await t('<aside><App cd={function() {}} /></aside>;');
+    expect(result).toBe('<aside>{App({cd:function(){}})}</aside>;');
   });
 });

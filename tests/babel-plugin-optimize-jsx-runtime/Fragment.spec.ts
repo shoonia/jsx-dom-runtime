@@ -16,6 +16,11 @@ describe('babel-plugin-optimize-jsx-runtime: Frament', () => {
     expect(result).toBe('<>{App({key:"value"})}</>;');
   });
 
+  it('should inline with two attributes', async () => {
+    const result = await t('<><App key="value" name="data" /></>;');
+    expect(result).toBe('<>{App({key:"value",name:"data"})}</>;');
+  });
+
   it('should inline with attibute number literal', async () => {
     const result = await t('<><App index={1} /></>;');
     expect(result).toBe('<>{App({index:1})}</>;');
@@ -59,5 +64,15 @@ describe('babel-plugin-optimize-jsx-runtime: Frament', () => {
   it('should inline with attibute undefined literal', async () => {
     const result = await t('<><App param={undefined} /></>;');
     expect(result).toBe('<>{App({param:undefined})}</>;');
+  });
+
+  it('should inline with attibute arrow function literal', async () => {
+    const result = await t('<><App cd={() => {}} /></>;');
+    expect(result).toBe('<>{App({cd:()=>{}})}</>;');
+  });
+
+  it('should inline with attibute function declaration literal', async () => {
+    const result = await t('<><App cd={function() {}} /></>;');
+    expect(result).toBe('<>{App({cd:function(){}})}</>;');
   });
 });
