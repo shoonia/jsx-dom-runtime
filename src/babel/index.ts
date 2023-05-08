@@ -28,4 +28,5 @@ const index = (api: ConfigAPI, {
   };
 };
 
+index.jsxOptimizer = jsxOptimizer;
 export { index as default };
