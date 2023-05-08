@@ -68,11 +68,14 @@ export const jsxOptimizer = (): PluginObj => {
           const { parent } = path.parentPath;
 
           const isJsx = t.isJSXElement(parent) || t.isJSXFragment(parent);
+          const isArr = t.isArrayExpression(parent);
 
-          if (isJsx || t.isArrayExpression(parent)) {
+          if (isJsx || isArr || t.isSequenceExpression(parent)) {
             const list = isJsx
               ? parent.children
-              : parent.elements;
+              : isArr
+                ? parent.elements
+                : parent.expressions;
 
             const index = list.indexOf(path.parent as any);
 
