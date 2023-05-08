@@ -50,5 +50,5 @@ const boolAttrs = new Set([
   'inert', 'disablePictureInPicture', 'disableRemotePlayback'
 ]);
 
-export const isDOMEvent = (name) => events.has(name);
-export const isBoolAttribute = (name) => boolAttrs.has(name);
+export const isDOMEvent = (name: string) => events.has(name);
+export const isBoolAttribute = (name: string) => boolAttrs.has(name);

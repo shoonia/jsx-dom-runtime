@@ -63,9 +63,29 @@ describe('__ns', () => {
     expect(svg.firstChild).toHaveProperty(prop, SVG);
   });
 
-  it('should add namespace wtih spred operator', () => {
+  // spread
+
+  it('should add namespace wtih spread operator', () => {
     const props = { __ns: 1 };
 
     expect(<style {...props} />).toHaveProperty(prop, SVG);
+  });
+
+  it('should not break code if spread identifier has the same name SVG', () => {
+    const __ns = { __ns: 1 };
+
+    expect(<style {...__ns} />).toHaveProperty(prop, SVG);
+  });
+
+  it('should not break code if spread identifier has the same name HTML', () => {
+    const __ns = { __ns: 0 };
+
+    expect(<style {...__ns} />).toHaveProperty(prop, HTML);
+  });
+
+  it('should not break code if spread identifier has name `__ns`', () => {
+    const __ns = { id: 'param' };
+
+    expect(<style {...__ns} />).toHaveProperty(prop, HTML);
   });
 });

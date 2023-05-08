@@ -1,13 +1,13 @@
+import type { ConfigAPI, TransformOptions } from '@babel/core';
 import transformReactJsx from '@babel/plugin-transform-react-jsx';
-import { declarePreset } from '@babel/helper-plugin-utils';
 
 import { jsxPlugin } from './jsxPlugin';
 import { jsxOptimizer } from './jsxOptimizer';
 
-const index = declarePreset((api, {
+const index = (api: ConfigAPI, {
   useBuiltIns,
   useSpread,
-}) => {
+}): TransformOptions => {
   api.assertVersion(7);
 
   return {
@@ -26,6 +26,7 @@ const index = declarePreset((api, {
       ],
     ],
   };
-});
+};
 
+index.jsxOptimizer = jsxOptimizer;
 export { index as default };

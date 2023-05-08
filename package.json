@@ -39,8 +39,8 @@
   },
   "dependencies": {
     "@babel/core": "^7.21.8",
-    "@babel/helper-plugin-utils": "^7.21.5",
     "@babel/plugin-transform-react-jsx": "^7.21.5",
+    "@babel/types": "^7.21.5",
     "csstype": "^3.1.2",
     "html-tags": "^3.3.1",
     "svg-tags": "^1.0.0"
@@ -50,6 +50,7 @@
     "@evilmartians/lefthook": "^1.3.12",
     "@jest/globals": "^29.5.0",
     "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-node-resolve": "^15.0.2",
     "@size-limit/preset-small-lib": "^8.2.4",
     "@testing-library/dom": "^9.2.0",
     "@testing-library/jest-dom": "^5.16.5",
