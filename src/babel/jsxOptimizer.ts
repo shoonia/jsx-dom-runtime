@@ -108,6 +108,12 @@ export const jsxOptimizer = (): PluginObj => {
           // TODO: UnaryExpression
           // TODO: SequenceExpression
           // TODO: CallExpression
+          // TODO: IfStatement
+          // TODO: WhileStatement
+          // TODO: SwitchStatement
+          // TODO: ForOfStatement
+          // TODO: ForInStatement
+          // TODO: YieldExpression
         }
       },
     },
