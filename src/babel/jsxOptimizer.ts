@@ -93,8 +93,13 @@ export const jsxOptimizer = (): PluginObj => {
             return;
           }
 
+          if (t.isVariableDeclarator(parent)) {
+            parent.init = createCallExpression(element.name, path);
+
+            return;
+          }
+
           // TODO: ConditionalExpression
-          // TODO: VariableDeclarator
           // TODO: ArrayExpression
           // TODO: ObjectProperty
           // TODO: AssignmentExpression
