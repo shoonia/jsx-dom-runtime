@@ -77,6 +77,12 @@ export const jsxOptimizer = (): PluginObj => {
                 createCallExpression(element.name, path),
               );
             }
+
+            return;
+          }
+
+          if (t.isReturnStatement(parent)) {
+            parent.argument = createCallExpression(element.name, path);
           }
         }
       },
