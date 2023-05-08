@@ -67,15 +67,23 @@ export const jsxOptimizer = (): PluginObj => {
         if (charCode >= 65 && charCode <= 90) {
           const { parent } = path.parentPath;
 
-          if (t.isJSXElement(parent) || t.isJSXFragment(parent)) {
-            const index = parent.children.findIndex((i) => {
+          const isJsx = t.isJSXElement(parent) || t.isJSXFragment(parent);
+
+          if (isJsx || t.isArrayExpression(parent)) {
+            const list = isJsx
+              ? parent.children
+              : parent.elements;
+
+            const index = list.findIndex((i) => {
               return t.isJSXElement(i) && i.openingElement === path.node;
             });
 
             if (index > -1) {
-              parent.children[index] = t.jsxExpressionContainer(
-                createCallExpression(element.name, path),
-              );
+              const expression = createCallExpression(element.name, path);
+
+              list[index] = isJsx
+                ? t.jsxExpressionContainer(expression)
+                : expression;
             }
 
             return;
@@ -108,7 +116,6 @@ export const jsxOptimizer = (): PluginObj => {
           }
 
           // TODO: ConditionalExpression
-          // TODO: ArrayExpression
           // TODO: ObjectProperty
           // TODO: ExpressionStatement
           // TODO: BinaryExpression
