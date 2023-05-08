@@ -15,4 +15,14 @@ describe('babel-plugin-optimize-jsx-runtime: ConditionalExpression', () => {
     const result = await t('<One /> ? <Two /> : <Three />;');
     expect(result).toBe('One({})?Two({}):Three({});');
   });
+
+  it('should work with children', async () => {
+    const result = await t('<One /> ? <Two /> : <Three><p>hello</p></Three>;');
+    expect(result).toBe('One({})?Two({}):Three({children:<p>hello</p>});');
+  });
+
+  it('should work with children #2', async () => {
+    const result = await t('<One /> ? <Two /> : <Three><p>hello</p><p>world</p></Three>;');
+    expect(result).toBe('One({})?Two({}):Three({children:[<p>hello</p>,<p>world</p>]});');
+  });
 });
