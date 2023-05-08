@@ -20,4 +20,9 @@ describe('babel-plugin-optimize-jsx-runtime: UnaryExpression', () => {
     const result = await t('! <App />;');
     expect(result).toBe('!App({});');
   });
+
+  it('should work with ~', async () => {
+    const result = await t('~ <App />;');
+    expect(result).toBe('~App({});');
+  });
 });

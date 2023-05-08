@@ -126,9 +126,14 @@ export const jsxOptimizer = (): PluginObj => {
             return;
           }
 
-          if (t.isAssignmentExpression(parent)) {
+          if (
+            t.isAssignmentExpression(parent) ||
+            t.isBinaryExpression(parent)
+          ) {
             if (parent.right === path.parent) {
               parent.right = createCallExpression(element.name, path);
+            } else if (parent.left === path.parent) {
+              parent.left = createCallExpression(element.name, path);
             }
 
             return;
@@ -153,7 +158,6 @@ export const jsxOptimizer = (): PluginObj => {
             return;
           }
 
-          // TODO: BinaryExpression
           // TODO: LogicalExpression
           // TODO: SequenceExpression
           // TODO: CallExpression
