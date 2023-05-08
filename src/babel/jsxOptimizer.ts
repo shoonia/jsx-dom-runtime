@@ -83,7 +83,21 @@ export const jsxOptimizer = (): PluginObj => {
 
           if (t.isReturnStatement(parent)) {
             parent.argument = createCallExpression(element.name, path);
+
+            return;
           }
+
+          // TODO: ArrowFunctionExpression
+          // TODO: ConditionalExpression
+          // TODO: VariableDeclarator
+          // TODO: ArrayExpression
+          // TODO: ObjectProperty
+          // TODO: AssignmentExpression
+          // TODO: ExpressionStatement
+          // TODO: BinaryExpression
+          // TODO: UnaryExpression
+          // TODO: SequenceExpression
+          // TODO: CallExpression
         }
       },
     },
