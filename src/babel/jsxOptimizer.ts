@@ -101,6 +101,18 @@ export const jsxOptimizer = (): PluginObj => {
             return;
           }
 
+          if (t.isConditionalExpression(parent)) {
+            if (parent.consequent === path.parent) {
+              parent.consequent = createCallExpression(element.name, path);
+            } else if (parent.alternate === path.parent) {
+              parent.alternate = createCallExpression(element.name, path);
+            } else if (parent.test === path.parent) {
+              parent.test = createCallExpression(element.name, path);
+            }
+
+            return;
+          }
+
           if (t.isVariableDeclarator(parent)) {
             parent.init = createCallExpression(element.name, path);
 
@@ -115,7 +127,6 @@ export const jsxOptimizer = (): PluginObj => {
             return;
           }
 
-          // TODO: ConditionalExpression
           // TODO: ObjectProperty
           // TODO: ExpressionStatement
           // TODO: BinaryExpression
