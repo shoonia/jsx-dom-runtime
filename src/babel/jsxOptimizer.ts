@@ -148,10 +148,7 @@ export const jsxOptimizer = (): PluginObj => {
             return;
           }
 
-          if (
-            t.isExpressionStatement(parent) ||
-            t.isJSXExpressionContainer(parent)
-          ) {
+          if (t.isExpressionStatement(parent)) {
             if (parent.expression === path.parent) {
               parent.expression = createCallExpression(element.name, path);
             }
@@ -160,7 +157,8 @@ export const jsxOptimizer = (): PluginObj => {
           }
 
           // TODO: SequenceExpression
-          // TODO: CallExpression
+          // FIXME: JSXExpressionContainer
+          // FIXME: CallExpression
           // TODO: AssignmentPattern
           // TODO: IfStatement
           // TODO: WhileStatement
