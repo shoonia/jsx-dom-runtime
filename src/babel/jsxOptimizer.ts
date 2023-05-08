@@ -99,10 +99,17 @@ export const jsxOptimizer = (): PluginObj => {
             return;
           }
 
+          if (t.isAssignmentExpression(parent)) {
+            if (parent.right === path.parent) {
+              parent.right = createCallExpression(element.name, path);
+            }
+
+            return;
+          }
+
           // TODO: ConditionalExpression
           // TODO: ArrayExpression
           // TODO: ObjectProperty
-          // TODO: AssignmentExpression
           // TODO: ExpressionStatement
           // TODO: BinaryExpression
           // TODO: UnaryExpression
