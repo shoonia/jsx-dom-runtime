@@ -128,6 +128,7 @@ export const jsxOptimizer = (): PluginObj => {
 
           if (
             t.isAssignmentExpression(parent) ||
+            t.isLogicalExpression(parent) ||
             t.isBinaryExpression(parent)
           ) {
             if (parent.right === path.parent) {
@@ -158,7 +159,6 @@ export const jsxOptimizer = (): PluginObj => {
             return;
           }
 
-          // TODO: LogicalExpression
           // TODO: SequenceExpression
           // TODO: CallExpression
           // TODO: AssignmentPattern
