@@ -1,0 +1,18 @@
+import { t } from './transform';
+
+describe('babel-plugin-optimize-jsx-runtime: ObjectProperty', () => {
+  it('should work as a property value', async () => {
+    const result = await t('let x = { y: <App /> };');
+    expect(result).toBe('let x={y:App({})};');
+  });
+
+  it('should work as a property value #2', async () => {
+    const result = await t('let x = {"y": <App /> };');
+    expect(result).toBe('let x={"y":App({})};');
+  });
+
+  it('should work as a property value #3', async () => {
+    const result = await t('let x = {[y]: <App /> };');
+    expect(result).toBe('let x={[y]:App({})};');
+  });
+});
