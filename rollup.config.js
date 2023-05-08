@@ -5,6 +5,16 @@ fse.emptyDirSync('./babel-preset');
 fse.emptyDirSync('./jsx-runtime');
 fse.writeFileSync('./jsx-runtime/index.d.ts', 'export * from "../index"');
 
+const plugins =  [
+  babel({
+    extensions: ['.js', '.ts'],
+    babelHelpers: 'bundled',
+    presets: [
+      '@babel/preset-typescript',
+    ],
+  }),
+];
+
 export default [
   {
     input: 'src/babel/index.js',
@@ -15,6 +25,7 @@ export default [
         format: 'cjs',
       },
     ],
+    plugins,
   },
   {
     input: 'src/index.js',
@@ -29,14 +40,6 @@ export default [
         esModule: false,
       },
     ],
-    plugins: [
-      babel({
-        extensions: ['.js', '.ts'],
-        babelHelpers: 'bundled',
-        presets: [
-          '@babel/preset-typescript',
-        ],
-      }),
-    ],
+    plugins,
   },
 ];
