@@ -21,6 +21,7 @@ export const jsxPlugin = (): PluginObj => {
           maybeSvg(node.name.name) &&
           t.isJSXElement(path.parentPath.parent) &&
           path.parentPath.parent.openingElement.attributes.some((i) => {
+            // @ts-expect-error
             return t.isJSXAttribute(i) && i.name.name === '__ns' && i.value.expression?.value === 1;
           })
         ) {
@@ -50,6 +51,7 @@ export const jsxPlugin = (): PluginObj => {
 
         if (t.isJSXNamespacedName(attr)) {
           if (
+            tag === 'a' &&
             attr.namespace.name === 'xlink' &&
             attr.name.name === 'href'
           ) {
