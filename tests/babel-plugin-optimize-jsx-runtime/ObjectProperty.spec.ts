@@ -15,4 +15,9 @@ describe('babel-plugin-optimize-jsx-runtime: ObjectProperty', () => {
     const result = await t('let x = {[y]: <App /> };');
     expect(result).toBe('let x={[y]:App({})};');
   });
+
+  it('should work as a property value with children', async () => {
+    const result = await t('let x = {y: <App>{1} hello</App> };');
+    expect(result).toBe('let x={y:App({children:[1," hello"]})};');
+  });
 });
