@@ -88,13 +88,20 @@ export const jsxOptimizer = (): PluginObj => {
           }
 
           if (t.isArrowFunctionExpression(parent)) {
-            parent.body = createCallExpression(element.name, path);
+            if (parent.body === path.parent) {
+              parent.body = createCallExpression(element.name, path);
+            }
 
             return;
           }
 
-          if (t.isReturnStatement(parent)) {
-            parent.argument = createCallExpression(element.name, path);
+          if (
+            t.isReturnStatement(parent) ||
+            t.isUnaryExpression(parent)
+          ) {
+            if (parent.argument === path.parent) {
+              parent.argument = createCallExpression(element.name, path);
+            }
 
             return;
           }
@@ -112,7 +119,9 @@ export const jsxOptimizer = (): PluginObj => {
           }
 
           if (t.isVariableDeclarator(parent)) {
-            parent.init = createCallExpression(element.name, path);
+            if (parent.init === path.parent) {
+              parent.init = createCallExpression(element.name, path);
+            }
 
             return;
           }
@@ -145,7 +154,7 @@ export const jsxOptimizer = (): PluginObj => {
           }
 
           // TODO: BinaryExpression
-          // TODO: UnaryExpression
+          // TODO: LogicalExpression
           // TODO: SequenceExpression
           // TODO: CallExpression
           // TODO: AssignmentPattern
