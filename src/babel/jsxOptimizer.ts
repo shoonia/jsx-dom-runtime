@@ -37,7 +37,9 @@ export const jsxOptimizer = (): PluginObj => {
                         : JSON.stringify(attr.name.name),
                   ),
                   t.isJSXExpressionContainer(attr.value)
-                    ? attr.value.expression
+                    ? t.isJSXEmptyExpression(attr.value.expression)
+                      ? t.nullLiteral()
+                      : attr.value.expression
                     : attr.value || t.booleanLiteral(true),
                 );
               });
