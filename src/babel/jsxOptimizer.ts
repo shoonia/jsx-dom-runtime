@@ -159,16 +159,18 @@ export const jsxOptimizer = (): PluginObj => {
             return;
           }
 
-          // TODO: SequenceExpression
           // FIXME: JSXExpressionContainer
           // FIXME: CallExpression
           // TODO: AssignmentPattern
+          // TODO: TemplateLiteral
           // TODO: IfStatement
           // TODO: WhileStatement
           // TODO: SwitchStatement
           // TODO: ForOfStatement
           // TODO: ForInStatement
           // TODO: YieldExpression
+          // TODO: AwaitExpression
+          // TODO: SwitchCase
         }
       },
     },

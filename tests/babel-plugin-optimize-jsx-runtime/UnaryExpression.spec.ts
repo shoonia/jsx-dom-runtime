@@ -6,6 +6,11 @@ describe('babel-plugin-optimize-jsx-runtime: UnaryExpression', () => {
     expect(result).toBe('void App({});');
   });
 
+  it('should work with delete', async () => {
+    const result = await t('delete <App />;');
+    expect(result).toBe('delete App({});');
+  });
+
   it('should work with +', async () => {
     const result = await t('+ <App />;');
     expect(result).toBe('+App({});');
