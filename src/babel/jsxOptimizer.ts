@@ -24,6 +24,10 @@ export const jsxOptimizer = (): PluginObj => {
 
             if (index > -1) {
               const props = path.node.attributes.map((attr) => {
+                if (t.isJSXSpreadAttribute(attr)) {
+                  return t.spreadElement(attr.argument);
+                }
+
                 return t.objectProperty(
                   t.identifier(
                     t.isJSXNamespacedName(attr.name)

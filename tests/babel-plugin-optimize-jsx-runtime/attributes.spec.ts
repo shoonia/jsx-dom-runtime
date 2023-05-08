@@ -10,4 +10,19 @@ describe('babel-plugin-optimize-jsx-runtime: attributes', () => {
     const result = await t('<><App x-id="hello"/></>;');
     expect(result).toBe('<>{App({"x-id":"hello"})}</>;');
   });
+
+  it('should work with spread attributes on the end', async () => {
+    const result = await t('<><App id="id" {...data} /></>;');
+    expect(result).toBe('<>{App({id:"id",...data})}</>;');
+  });
+
+  it('should work with spread attributes on the start', async () => {
+    const result = await t('<><App {...data} id="id" /></>;');
+    expect(result).toBe('<>{App({...data,id:"id"})}</>;');
+  });
+
+  it('should work with spread between attributes', async () => {
+    const result = await t('<><App title="title" {...data} id="id" /></>;');
+    expect(result).toBe('<>{App({title:"title",...data,id:"id"})}</>;');
+  });
 });
