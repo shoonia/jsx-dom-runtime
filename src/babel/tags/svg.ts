@@ -1,4 +1,4 @@
-import svgTags from 'svg-tags/lib/svg-tags.json';
+import svgTags from 'svg-tags';
 
 const maybe = new Set(['a', 'script', 'style', 'title']);
 const svg = new Set(svgTags.filter((i) => !maybe.has(i)));

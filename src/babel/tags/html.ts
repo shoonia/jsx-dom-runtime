@@ -1,4 +1,4 @@
-import htmlTags from 'html-tags/html-tags.json';
+import htmlTags from 'html-tags';
 
 const html = new Set(htmlTags);
 
