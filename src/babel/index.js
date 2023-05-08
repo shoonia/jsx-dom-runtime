@@ -1,10 +1,9 @@
 import transformReactJsx from '@babel/plugin-transform-react-jsx';
-import { declarePreset } from '@babel/helper-plugin-utils';
 
 import { jsxPlugin } from './jsxPlugin';
 import { jsxOptimizer } from './jsxOptimizer';
 
-const index = declarePreset((api, {
+const index = (api, {
   useBuiltIns,
   useSpread,
 }) => {
@@ -26,6 +25,6 @@ const index = declarePreset((api, {
       ],
     ],
   };
-});
+};
 
 export { index as default };
