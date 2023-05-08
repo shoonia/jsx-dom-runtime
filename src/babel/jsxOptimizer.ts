@@ -45,7 +45,11 @@ export const jsxOptimizer = (): PluginObj => {
               });
 
               if (t.isJSXElement(path.container)) {
-                const children = t.react.buildChildren(path.container);
+                const children = t.react.buildChildren(path.container).map((child) => {
+                  return t.isJSXSpreadChild(child)
+                    ? child.expression
+                    : child;
+                });
 
                 if (children.length > 0) {
                   props.push(
