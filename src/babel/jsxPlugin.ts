@@ -1,8 +1,7 @@
 import type { PluginObj } from '@babel/core';
 import t, { type JSXAttribute } from '@babel/types';
 
-import { isSvgTag, maybeSvg } from './tags/svg';
-import { isHtmlTag } from './tags/html';
+import { isHtmlTag, sureSvg, maybeSvg } from './tags/tags';
 import { isBoolAttribute, isDOMEvent } from './tags/dom';
 
 export const jsxPlugin = (): PluginObj => {
@@ -17,7 +16,7 @@ export const jsxPlugin = (): PluginObj => {
         }
 
         if (
-          isSvgTag(node.name.name) ||
+          sureSvg(node.name.name) ||
           maybeSvg(node.name.name) &&
           t.isJSXElement(path.parentPath.parent) &&
           path.parentPath.parent.openingElement.attributes.some((i) => {
@@ -46,8 +45,13 @@ export const jsxPlugin = (): PluginObj => {
           return;
         }
 
-        const attr = path.node.name;
         const tag = parent.name.name;
+
+        if (!(isHtmlTag(tag) || sureSvg(tag))) {
+          return;
+        }
+
+        const attr = path.node.name;
 
         if (t.isJSXNamespacedName(attr)) {
           if (
@@ -73,9 +77,7 @@ export const jsxPlugin = (): PluginObj => {
 
         if (t.isJSXIdentifier(attr)) {
           if (attr.name === 'className') {
-            if (isHtmlTag(tag) || isSvgTag(tag)) {
-              attr.name = 'class';
-            }
+            attr.name = 'class';
             return;
           }
 
@@ -91,13 +93,10 @@ export const jsxPlugin = (): PluginObj => {
             return;
           }
 
-          if (isHtmlTag(tag)) {
-            const attrName = attr.name.toLowerCase();
+          const attrName = attr.name.toLowerCase();
 
-            if (isDOMEvent(attrName)) {
-              attr.name = attrName;
-            }
-            return;
+          if (isDOMEvent(attrName)) {
+            attr.name = attrName;
           }
         }
       },
