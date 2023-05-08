@@ -44,17 +44,19 @@ export const jsxOptimizer = (): PluginObj => {
                 );
               });
 
-              const children = t.react.buildChildren(path.container);
+              if (t.isJSXElement(path.container)) {
+                const children = t.react.buildChildren(path.container);
 
-              if (children.length > 0) {
-                props.push(
-                  t.objectProperty(
-                    t.identifier('children'),
-                    children.length === 1
-                      ? children[0]
-                      : t.arrayExpression(children),
-                  ),
-                );
+                if (children.length > 0) {
+                  props.push(
+                    t.objectProperty(
+                      t.identifier('children'),
+                      children.length === 1
+                        ? children[0]
+                        : t.arrayExpression(children),
+                    ),
+                  );
+                }
               }
 
               parent.children[index] = t.jsxExpressionContainer(
