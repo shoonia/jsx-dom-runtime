@@ -1,10 +1,11 @@
+import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
 import { isSvgTag, maybeSvg } from './tags/svg';
 import { isHtmlTag } from './tags/html';
 import { isBoolAttribute, isDOMEvent } from './tags/dom';
 
-export const jsxPlugin = () => {
+export const jsxPlugin = (): PluginObj => {
   return {
     name: 'jsx-dom-runtime/babel-plugin',
     visitor: {

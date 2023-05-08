@@ -1,6 +1,7 @@
+import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
-export const jsxOptimizer = () => {
+export const jsxOptimizer = (): PluginObj => {
   return {
     name: 'babel-plugin-optimize-jsx-runtime',
     visitor: {
