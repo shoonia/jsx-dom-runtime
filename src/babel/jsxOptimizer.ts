@@ -23,12 +23,14 @@ export const jsxOptimizer = (): PluginObj => {
             });
 
             if (index > -1) {
-              const properties = path.node.attributes.map((attr) => {
+              const props = path.node.attributes.map((attr) => {
                 return t.objectProperty(
                   t.identifier(
                     t.isJSXNamespacedName(attr.name)
-                      ? attr.name.namespace.name + ':' + attr.name.name.name
-                      : attr.name.name,
+                      ? JSON.stringify(attr.name.namespace.name + ':' + attr.name.name.name)
+                      : t.isValidIdentifier(attr.name.name)
+                        ? attr.name.name
+                        : JSON.stringify(attr.name.name),
                   ),
                   t.isJSXExpressionContainer(attr.value)
                     ? attr.value.expression
@@ -39,7 +41,7 @@ export const jsxOptimizer = (): PluginObj => {
               const children = t.react.buildChildren(path.container);
 
               if (children.length > 0) {
-                properties.push(
+                props.push(
                   t.objectProperty(
                     t.identifier('children'),
                     children.length === 1
@@ -52,7 +54,7 @@ export const jsxOptimizer = (): PluginObj => {
               parent.children[index] = t.jsxExpressionContainer(
                 t.callExpression(
                   t.identifier(element.name),
-                  [t.objectExpression(properties)],
+                  [t.objectExpression(props)],
                 ),
               );
             }
