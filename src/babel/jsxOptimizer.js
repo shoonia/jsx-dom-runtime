@@ -1,4 +1,6 @@
-export const jsxOptimizer = ({ types: t }) => {
+import t from '@babel/types';
+
+export const jsxOptimizer = () => {
   return {
     name: 'babel-plugin-optimize-jsx-runtime',
     visitor: {

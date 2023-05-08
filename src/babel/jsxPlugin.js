@@ -1,8 +1,10 @@
+import t from '@babel/types';
+
 import { isSvgTag, maybeSvg } from './tags/svg';
 import { isHtmlTag } from './tags/html';
 import { isBoolAttribute, isDOMEvent } from './tags/dom';
 
-export const jsxPlugin = ({ types: t }) => {
+export const jsxPlugin = () => {
   return {
     name: 'jsx-dom-runtime/babel-plugin',
     visitor: {
