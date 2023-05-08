@@ -74,9 +74,7 @@ export const jsxOptimizer = (): PluginObj => {
               ? parent.children
               : parent.elements;
 
-            const index = list.findIndex((i) => {
-              return t.isJSXElement(i) && i.openingElement === path.node;
-            });
+            const index = list.indexOf(path.parent as any);
 
             if (index > -1) {
               const expression = createCallExpression(element.name, path);
