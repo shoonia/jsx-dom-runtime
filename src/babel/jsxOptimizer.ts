@@ -135,7 +135,14 @@ export const jsxOptimizer = (): PluginObj => {
             return;
           }
 
-          // TODO: ExpressionStatement
+          if (t.isExpressionStatement(parent)) {
+            if (parent.expression === path.parent) {
+              parent.expression = createCallExpression(element.name, path);
+            }
+
+            return;
+          }
+
           // TODO: BinaryExpression
           // TODO: UnaryExpression
           // TODO: SequenceExpression
