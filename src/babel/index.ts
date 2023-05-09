@@ -1,6 +1,7 @@
 import type { ConfigAPI, TransformOptions } from '@babel/core';
-import transformReactJsx from '@babel/plugin-transform-react-jsx';
+import jsx from '@babel/plugin-syntax-jsx';
 
+import { jsxSyntax } from './jsxSyntax';
 import { jsxPlugin } from './jsxPlugin';
 import { jsxOptimizer } from './jsxOptimizer';
 
@@ -12,17 +13,20 @@ const index = (api: ConfigAPI, {
 
   return {
     plugins: [
+      jsx,
       jsxPlugin,
       jsxOptimizer,
       [
-        transformReactJsx,
-        {
+        jsxSyntax({
+          name: 'transform-react-jsx',
+          development: false,
+        }), {
           runtime: 'automatic',
           importSource: 'jsx-dom-runtime',
           throwIfNamespace: false,
           useBuiltIns,
           useSpread,
-        },
+        }
       ],
     ],
   };

@@ -32,7 +32,10 @@ export default [
       },
     ],
     external: [
-      '@babel/plugin-transform-react-jsx',
+      '@babel/core',
+      '@babel/helper-annotate-as-pure',
+      '@babel/helper-module-imports',
+      '@babel/plugin-syntax-jsx',
       '@babel/types',
       'svg-tags',
       'html-tags',
