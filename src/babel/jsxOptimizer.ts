@@ -56,121 +56,41 @@ export const jsxOptimizer = (): PluginObj => {
     name: 'babel-plugin-optimize-jsx-runtime',
     visitor: {
       JSXOpeningElement(path) {
+        const node = path.parentPath.parent;
         const element = path.node.name;
 
-        if (!t.isJSXIdentifier(element)) {
+        if (
+          !t.isJSXIdentifier(element) ||
+          t.isCallExpression(node) || // FIXME:
+          t.isAssignmentPattern(node) || // TODO: Add tests before remove
+          t.isIfStatement(node) || // TODO: Add tests before remove
+          t.isWhileStatement(node) || // TODO: Add tests before remove
+          t.isSwitchStatement(node) || // TODO: Add tests before remove
+          t.isForOfStatement(node) || // TODO: Add tests before remove
+          t.isForInStatement(node) || // TODO: Add tests before remove
+          t.isYieldExpression(node) || // TODO: Add tests before remove
+          t.isAwaitExpression(node) || // TODO: Add tests before remove
+          t.isSwitchCase(node) // TODO: Add tests before remove
+        ) {
           return;
         }
 
         const charCode = element.name.charCodeAt(0);
 
         if (charCode >= 65 && charCode <= 90) {
-          const { parent } = path.parentPath;
+          if (t.isJSXElement(node) || t.isJSXFragment(node)) {
+            const index = node.children.indexOf(path.parent as any);
 
-          const isJsx = t.isJSXElement(parent) || t.isJSXFragment(parent);
-          const isArr = t.isArrayExpression(parent);
-
-          if (isJsx || isArr || t.isSequenceExpression(parent)) {
-            const list = isJsx
-              ? parent.children
-              : isArr
-                ? parent.elements
-                : parent.expressions;
-
-            const index = list.indexOf(path.parent as any);
-
-            if (index > -1) {
-              const expression = createCallExpression(element.name, path);
-
-              list[index] = isJsx
-                ? t.jsxExpressionContainer(expression)
-                : expression;
-            }
+            node.children[index] = t.jsxExpressionContainer(
+              createCallExpression(element.name, path),
+            );
 
             return;
           }
 
-          if (t.isArrowFunctionExpression(parent)) {
-            if (parent.body === path.parent) {
-              parent.body = createCallExpression(element.name, path);
-            }
-
-            return;
-          }
-
-          if (
-            t.isReturnStatement(parent) ||
-            t.isUnaryExpression(parent)
-          ) {
-            if (parent.argument === path.parent) {
-              parent.argument = createCallExpression(element.name, path);
-            }
-
-            return;
-          }
-
-          if (t.isConditionalExpression(parent)) {
-            if (parent.consequent === path.parent) {
-              parent.consequent = createCallExpression(element.name, path);
-            } else if (parent.alternate === path.parent) {
-              parent.alternate = createCallExpression(element.name, path);
-            } else if (parent.test === path.parent) {
-              parent.test = createCallExpression(element.name, path);
-            }
-
-            return;
-          }
-
-          if (t.isVariableDeclarator(parent)) {
-            if (parent.init === path.parent) {
-              parent.init = createCallExpression(element.name, path);
-            }
-
-            return;
-          }
-
-          if (
-            t.isAssignmentExpression(parent) ||
-            t.isLogicalExpression(parent) ||
-            t.isBinaryExpression(parent)
-          ) {
-            if (parent.right === path.parent) {
-              parent.right = createCallExpression(element.name, path);
-            } else if (parent.left === path.parent) {
-              parent.left = createCallExpression(element.name, path);
-            }
-
-            return;
-          }
-
-          if (t.isObjectProperty(parent)) {
-            if (parent.value === path.parent) {
-              parent.value = createCallExpression(element.name, path);
-            }
-
-            return;
-          }
-
-          if (t.isExpressionStatement(parent)) {
-            if (parent.expression === path.parent) {
-              parent.expression = createCallExpression(element.name, path);
-            }
-
-            return;
-          }
-
-          // FIXME: JSXExpressionContainer
-          // FIXME: CallExpression
-          // TODO: AssignmentPattern
-          // TODO: TemplateLiteral
-          // TODO: IfStatement
-          // TODO: WhileStatement
-          // TODO: SwitchStatement
-          // TODO: ForOfStatement
-          // TODO: ForInStatement
-          // TODO: YieldExpression
-          // TODO: AwaitExpression
-          // TODO: SwitchCase
+          path.parentPath.replaceWith(
+            createCallExpression(element.name, path),
+          );
         }
       },
     },
