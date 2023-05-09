@@ -1,5 +1,5 @@
 import type { PluginObj } from '@babel/core';
-import t, { type JSXAttribute } from '@babel/types';
+import t from '@babel/types';
 
 import { isHtmlTag, sureSvg, maybeSvg } from './tags/tags';
 import { isBoolAttribute, isDOMEvent } from './tags/dom';
@@ -59,17 +59,12 @@ export const jsxPlugin = (): PluginObj => {
             attr.namespace.name === 'xlink' &&
             attr.name.name === 'href'
           ) {
-            const attrs = parent.attributes;
-            const index = attrs.findIndex((i) => i === path.node);
-
-            if (index > -1) {
-              const attr = attrs[index] as JSXAttribute;
-
-              attrs[index] = t.jSXAttribute(
+            path.replaceWith(
+              t.jSXAttribute(
                 t.jSXIdentifier('href'),
-                attr.value
-              );
-            }
+                path.node.value,
+              ),
+            );
           }
 
           return;
