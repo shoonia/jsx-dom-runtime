@@ -64,7 +64,6 @@ export const jsxOptimizer = (): PluginObj => {
           t.isCallExpression(node) || // FIXME:
           t.isForOfStatement(node) || // TODO: Add tests before remove
           t.isForInStatement(node) || // TODO: Add tests before remove
-          t.isYieldExpression(node) || // TODO: Add tests before remove
           t.isSwitchCase(node) // TODO: Add tests before remove
         ) {
           return;
