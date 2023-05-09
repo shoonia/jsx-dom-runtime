@@ -2,7 +2,7 @@ import { t } from './transform';
 
 describe('babel-plugin-optimize-jsx-runtime: ForStatement', () => {
   it('should work with `for` loop, init', async () => {
-    const result = await t('for (<App />;;) {};');
+    const result = await t('for (<App />; ;) {};');
     expect(result).toBe('for(App({});;){};');
   });
 
@@ -12,7 +12,7 @@ describe('babel-plugin-optimize-jsx-runtime: ForStatement', () => {
   });
 
   it('should work with `for` loop, update', async () => {
-    const result = await t('for (;;<App />) {};');
+    const result = await t('for (; ;<App />) {};');
     expect(result).toBe('for(;;App({})){};');
   });
 
