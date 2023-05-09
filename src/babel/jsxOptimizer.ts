@@ -61,8 +61,7 @@ export const jsxOptimizer = (): PluginObj => {
 
         if (
           !t.isJSXIdentifier(element) ||
-          t.isCallExpression(node) || // FIXME:
-          t.isSwitchCase(node) // TODO: Add tests before remove
+          t.isCallExpression(node) // FIXME:
         ) {
           return;
         }
