@@ -6,43 +6,39 @@ const createCallExpression = (
   path: NodePath<t.JSXElement>,
 ): t.CallExpression => {
   const props = path.node.openingElement.attributes.map((attr) => {
-    if (t.isJSXSpreadAttribute(attr)) {
-      return t.spreadElement(attr.argument);
-    }
-
-    return t.objectProperty(
-      t.identifier(
-        t.isJSXNamespacedName(attr.name)
-          ? JSON.stringify(attr.name.namespace.name + ':' + attr.name.name.name)
-          : t.isValidIdentifier(attr.name.name)
-            ? attr.name.name
-            : JSON.stringify(attr.name.name),
-      ),
-      t.isJSXExpressionContainer(attr.value)
-        ? t.isJSXEmptyExpression(attr.value.expression)
-          ? t.nullLiteral()
-          : attr.value.expression
-        : attr.value || t.booleanLiteral(true),
-    );
+    return t.isJSXSpreadAttribute(attr)
+      ? t.spreadElement(attr.argument)
+      : t.objectProperty(
+        t.identifier(
+          t.isJSXNamespacedName(attr.name)
+            ? JSON.stringify(attr.name.namespace.name + ':' + attr.name.name.name)
+            : t.isValidIdentifier(attr.name.name)
+              ? attr.name.name
+              : JSON.stringify(attr.name.name),
+        ),
+        t.isJSXExpressionContainer(attr.value)
+          ? t.isJSXEmptyExpression(attr.value.expression)
+            ? t.nullLiteral()
+            : attr.value.expression
+          : attr.value || t.booleanLiteral(true),
+      );
   });
 
-  if (t.isJSXElement(path.node)) {
-    const children = t.react.buildChildren(path.node).map((child) => {
-      return t.isJSXSpreadChild(child)
-        ? child.expression
-        : child;
-    });
+  const children = t.react.buildChildren(path.node).map((child) => {
+    return t.isJSXSpreadChild(child)
+      ? child.expression
+      : child;
+  });
 
-    if (children.length > 0) {
-      props.push(
-        t.objectProperty(
-          t.identifier('children'),
-          children.length === 1
-            ? children[0]
-            : t.arrayExpression(children),
-        ),
-      );
-    }
+  if (children.length > 0) {
+    props.push(
+      t.objectProperty(
+        t.identifier('children'),
+        children.length === 1
+          ? children[0]
+          : t.arrayExpression(children),
+      ),
+    );
   }
 
   return t.callExpression(
