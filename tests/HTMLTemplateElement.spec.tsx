@@ -28,18 +28,4 @@ describe('HTMLTemplateElement', () => {
 
     expect(ref.current.content.querySelector('p')).toHaveInnerHTML('text here');
   });
-
-  it('should update child node by ref', () => {
-    const I = useRef();
-
-    const Temp = (
-      <template>
-        <i ref={I}>some text</i>
-      </template>
-    );
-
-    expect(Temp).toHaveOuterHTML('<template><i>some text</i></template>');
-    <I.current class="one two" />;
-    expect(Temp).toHaveOuterHTML('<template><i class="one two">some text</i></template>');
-  });
 });

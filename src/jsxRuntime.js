@@ -12,18 +12,10 @@ export let properties = new Set([
   'value',
 ]);
 
-export let jsx = (node, props) => {
-  if (typeof node === 'function') {
-    return node(props);
-  }
-
-  let key, val;
-
-  node = typeof node === 'string'
-    ? props.__ns
-      ? document.createElementNS('http://www.w3.org/2000/svg', node)
-      : document.createElement(node)
-    : node;
+export let jsx = (tag, props) => {
+  let key, val, node = props.__ns
+    ? document.createElementNS('http://www.w3.org/2000/svg', tag)
+    : document.createElement(tag);
 
   for (key in props) {
     if (internalKeys.has(key)) {
