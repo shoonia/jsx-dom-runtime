@@ -1,4 +1,5 @@
 import type { PluginObj, PluginPass, NodePath } from '@babel/core';
+import jsx from '@babel/plugin-syntax-jsx';
 import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 import t from '@babel/types';
 
@@ -29,6 +30,7 @@ const hasProto = (node: t.ObjectExpression) => {
 export const jsxSyntax = (): PluginObj => {
   return {
     name: 'jsx-dom-runtime/jsx-syntax',
+    inherits: jsx.default || jsx,
     visitor: {
       Program: {
         enter(path, state) {

@@ -1,5 +1,4 @@
 import type { ConfigAPI } from '@babel/core';
-import jsx from '@babel/plugin-syntax-jsx';
 
 import { jsxSyntax } from './jsxSyntax';
 import { jsxPlugin } from './jsxPlugin';
@@ -10,7 +9,6 @@ const index = (api: ConfigAPI) => {
 
   return {
     plugins: [
-      jsx,
       jsxPlugin,
       jsxOptimizer,
       jsxSyntax,
