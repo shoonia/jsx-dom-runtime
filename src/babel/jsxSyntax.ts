@@ -1,11 +1,10 @@
-import type { NodePath, Scope, Visitor } from '@babel/traverse';
-import { template, type PluginPass  } from '@babel/core';
+import type { NodePath } from '@babel/traverse';
+import type { PluginPass  } from '@babel/core';
 import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 // import annotateAsPure from '@babel/helper-annotate-as-pure';
 import t from '@babel/types';
 import type {
   CallExpression,
-  Class,
   Expression,
   Identifier,
   JSXAttribute,
@@ -58,7 +57,6 @@ export interface Options {
 }
 export const jsxSyntax = ({
   name,
-  development,
 }: {
   name: string;
   development: boolean;
@@ -70,28 +68,6 @@ export const jsxSyntax = ({
       runtime: RUNTIME_DEFAULT =  'automatic',
       importSource: IMPORT_SOURCE_DEFAULT = 'jsx-dom-runtime',
     } = options;
-
-    const injectMetaPropertiesVisitor: Visitor<PluginPass> = {
-      JSXOpeningElement(path, state) {
-        const attributes = [];
-        if (isThisAllowed(path.scope)) {
-          attributes.push(
-            t.jsxAttribute(
-              t.jsxIdentifier('__self'),
-              t.jsxExpressionContainer(t.thisExpression()),
-            ),
-          );
-        }
-        attributes.push(
-          t.jsxAttribute(
-            t.jsxIdentifier('__source'),
-            t.jsxExpressionContainer(makeSource(path, state)),
-          ),
-        );
-        path.pushContainer('attributes', attributes);
-      },
-    };
-
     return {
       name,
       // inherits: jsx,
@@ -159,16 +135,11 @@ You can set `throwIfNamespace: false` to bypass this warning.',
             const define = (name: string, id: string) =>
               set(state, name, createImportLazily(state, path, id, source));
 
-            define('id/jsx', development ? 'jsxDEV' : 'jsx');
-            define('id/jsxs', development ? 'jsxDEV' : 'jsxs');
+            define('id/jsx', 'jsx');
+            define('id/jsxs', 'jsx');
             define('id/createElement', 'createElement');
             define('id/fragment', 'Fragment');
-
             set(state, 'defaultPure', source === DEFAULT.importSource);
-
-            if (development) {
-              path.traverse(injectMetaPropertiesVisitor, state);
-            }
           },
         },
 
@@ -204,38 +175,7 @@ You can set `throwIfNamespace: false` to bypass this warning.',
       },
     };
 
-    // Returns whether the class has specified a superclass.
-    function isDerivedClass(classPath: NodePath<Class>) {
-      return classPath.node.superClass !== null;
-    }
-
     // Returns whether `this` is allowed at given scope.
-    function isThisAllowed(scope: Scope) {
-      // This specifically skips arrow functions as they do not rewrite `this`.
-      do {
-        const { path } = scope;
-        if (path.isFunctionParent() && !path.isArrowFunctionExpression()) {
-          if (!path.isMethod()) {
-            // If the closest parent is a regular function, `this` will be rebound, therefore it is fine to use `this`.
-            return true;
-          }
-          // Current node is within a method, so we need to check if the method is a constructor.
-          if (path.node.kind !== 'constructor') {
-            // We are not in a constructor, therefore it is always fine to use `this`.
-            return true;
-          }
-          // Now we are in a constructor. If it is a derived class, we do not reference `this`.
-          return !isDerivedClass(path.parentPath.parentPath as NodePath<Class>);
-        }
-        if (path.isTSModuleBlock()) {
-          // If the closest parent is a TS Module block, `this` will not be allowed.
-          return false;
-        }
-      } while ((scope = scope.parent));
-      // We are not in a method or function. It is fine to use `this`.
-      return true;
-    }
-
     function call(
       pass: PluginPass,
       name: string,
@@ -450,25 +390,11 @@ You can set `throwIfNamespace: false` to bypass this warning.',
 
       args.push(attribs);
 
-      if (development) {
-        // isStaticChildren, __source, and __self are only used in development
-        // automatically include __source and __self in this plugin
-        // so we can eliminate the need for separate Babel plugins in Babel 8
-        args.push(
-          extracted.key ?? path.scope.buildUndefinedNode(),
-          t.booleanLiteral(children.length > 1),
-        );
-        if (extracted.__source) {
-          args.push(extracted.__source);
-          if (extracted.__self) args.push(extracted.__self);
-        } else if (extracted.__self) {
-          args.push(path.scope.buildUndefinedNode(), extracted.__self);
-        }
-      } else if (extracted.key !== undefined) {
+      if (extracted.key !== undefined) {
         args.push(extracted.key);
       }
 
-      return call(file, children.length > 1 ? 'jsxs' : 'jsx', args);
+      return call(file, 'jsx', args);
     }
 
     // Builds props for React.jsx. This function adds children into the props
@@ -513,14 +439,7 @@ You can set `throwIfNamespace: false` to bypass this warning.',
         ),
       );
 
-      if (development) {
-        args.push(
-          path.scope.buildUndefinedNode(),
-          t.booleanLiteral(children.length > 1),
-        );
-      }
-
-      return call(file, children.length > 1 ? 'jsxs' : 'jsx', args);
+      return call(file, 'jsx', args);
     }
 
     // Builds JSX into:
@@ -605,20 +524,6 @@ You can set `throwIfNamespace: false` to bypass this warning.',
     }
   };
 
-  function getSource(source: string, importName: string) {
-    switch (importName) {
-      case 'Fragment':
-        return `${source}/${development ? 'jsx-dev-runtime' : 'jsx-runtime'}`;
-      case 'jsxDEV':
-        return `${source}/jsx-dev-runtime`;
-      case 'jsx':
-      case 'jsxs':
-        return `${source}/jsx-runtime`;
-      case 'createElement':
-        return source;
-    }
-  }
-
   function createImportLazily(
     pass: PluginPass,
     path: NodePath<Program>,
@@ -626,7 +531,8 @@ You can set `throwIfNamespace: false` to bypass this warning.',
     source: string,
   ): () => Identifier | MemberExpression {
     return () => {
-      const actualSource = getSource(source, importName);
+      const actualSource = `${source}/jsx-runtime`;
+
       if (isModule(path)) {
         let reference = get(pass, `imports/${importName}`);
         if (reference) return t.cloneNode(reference);
@@ -654,54 +560,6 @@ You can set `throwIfNamespace: false` to bypass this warning.',
     };
   }
 };
-
-function makeSource(path: NodePath, state: PluginPass) {
-  const location = path.node.loc;
-  if (!location) {
-    // the element was generated and doesn't have location information
-    return path.scope.buildUndefinedNode();
-  }
-
-  // @ts-expect-error todo: avoid mutating PluginPass
-  if (!state.fileNameIdentifier) {
-    const { filename = '' } = state;
-
-    const fileNameIdentifier = path.scope.generateUidIdentifier('_jsxFileName');
-    path.scope.getProgramParent().push({
-      id: fileNameIdentifier,
-      init: t.stringLiteral(filename),
-    });
-    // @ts-expect-error todo: avoid mutating PluginPass
-    state.fileNameIdentifier = fileNameIdentifier;
-  }
-
-  return makeTrace(
-    t.cloneNode(
-      // @ts-expect-error todo: avoid mutating PluginPass
-      state.fileNameIdentifier,
-    ),
-    location.start.line,
-    location.start.column,
-  );
-}
-
-function makeTrace(
-  fileNameIdentifier: Identifier,
-  lineNumber?: number,
-  column0Based?: number,
-) {
-  const fileLineLiteral =
-    lineNumber != null ? t.numericLiteral(lineNumber) : t.nullLiteral();
-
-  const fileColumnLiteral =
-    column0Based != null ? t.numericLiteral(column0Based + 1) : t.nullLiteral();
-
-  return template.expression.ast`{
-    fileName: ${fileNameIdentifier},
-    lineNumber: ${fileLineLiteral},
-    columnNumber: ${fileColumnLiteral},
-  }`;
-}
 
 function sourceSelfError(path: NodePath, name: string) {
   const pluginName = `transform-react-jsx-${name.slice(2)}`;
