@@ -1,5 +1,14 @@
 import t from '@babel/types';
 
+export const buildChildrenProperty = (children: t.Expression[]): t.ObjectProperty => {
+  return t.objectProperty(
+    t.identifier('children'),
+    children.length === 1
+      ? children[0]
+      : t.arrayExpression(children),
+  );
+};
+
 export const convertJSXIdentifier = (
   node: t.JSXIdentifier | t.JSXMemberExpression | t.JSXNamespacedName,
   parent: t.JSXOpeningElement | t.JSXMemberExpression,

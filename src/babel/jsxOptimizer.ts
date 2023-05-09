@@ -1,7 +1,7 @@
 import type { NodePath, PluginObj } from '@babel/core';
 import t from '@babel/types';
 
-import { convertJSXIdentifier } from './util';
+import { buildChildrenProperty, convertJSXIdentifier } from './util';
 
 const createCallExpression = (path: NodePath<t.JSXElement>): t.CallExpression => {
   const props = path.node.openingElement.attributes.map((attr) => {
@@ -30,14 +30,7 @@ const createCallExpression = (path: NodePath<t.JSXElement>): t.CallExpression =>
   });
 
   if (children.length > 0) {
-    props.push(
-      t.objectProperty(
-        t.identifier('children'),
-        children.length === 1
-          ? children[0]
-          : t.arrayExpression(children),
-      ),
-    );
+    props.push(buildChildrenProperty(children));
   }
 
   return t.callExpression(

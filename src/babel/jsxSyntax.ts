@@ -2,7 +2,7 @@ import type { PluginObj, PluginPass, NodePath } from '@babel/core';
 import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 import t from '@babel/types';
 
-import { convertJSXIdentifier } from './util';
+import { buildChildrenProperty, convertJSXIdentifier } from './util';
 
 const annotateAsPure = (node: t.Node): void => {
   t.addComment(node, 'leading', '#__PURE__');
@@ -19,15 +19,6 @@ const hasProto = (node: t.ObjectExpression) => {
       t.isObjectProperty(value, { computed: false, shorthand: false }) &&
       (t.isIdentifier(value.key, { name: '__proto__' }) ||
         t.isStringLiteral(value.key, { value: '__proto__' })),
-  );
-};
-
-const buildChildrenProperty = (children: t.Expression[]): t.ObjectProperty => {
-  return t.objectProperty(
-    t.identifier('children'),
-    children.length === 1
-      ? children[0]
-      : t.arrayExpression(children),
   );
 };
 
