@@ -1,5 +1,5 @@
 import type { NodePath } from '@babel/traverse';
-import type { PluginPass } from '@babel/core';
+import type { PluginObj, PluginPass } from '@babel/core';
 import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 // import annotateAsPure from '@babel/helper-annotate-as-pure';
 import t from '@babel/types';
@@ -18,16 +18,14 @@ function hasProto(node: t.ObjectExpression) {
   );
 }
 
-export const jsxSyntax = () => {
+export const jsxSyntax = (): PluginObj => {
   return {
     name: 'jsx-dom-runtime/jsx-syntax',
     visitor: {
       Program: {
         enter(path, state) {
-          const source: string = 'jsx-dom-runtime';
-
           const define = (name: string, id: string) =>
-            set(state, name, createImportLazily(state, path, id, source));
+            set(state, name, createImportLazily(state, path, id, 'jsx-dom-runtime'));
 
           define('id/jsx', 'jsx');
           define('id/fragment', 'Fragment');
@@ -45,14 +43,9 @@ export const jsxSyntax = () => {
 
       JSXElement: {
         exit(path, file) {
-          let callExpr;
-          if (shouldUseCreateElement(path)) {
-            callExpr = buildCreateElementCall(path, file);
-          } else {
-            callExpr = buildJSXElementCall(path, file);
-          }
-
-          path.replaceWith(t.inherits(callExpr, path.node));
+          path.replaceWith(
+            t.inherits(buildJSXElementCall(path, file), path.node),
+          );
         },
       },
 
@@ -73,31 +66,6 @@ export const jsxSyntax = () => {
     // FIXME:
     // if (PURE_ANNOTATION ?? get(pass, 'defaultPure')) annotateAsPure(node);
     return node;
-  }
-
-  // We want to use React.createElement, even in the case of
-  // jsx, for <div {...props} key={key} /> to distinguish it
-  // from <div key={key} {...props} />. This is an intermediary
-  // step while we deprecate key spread from props. Afterwards,
-  // we will stop using createElement in the transform.
-  function shouldUseCreateElement(path: NodePath<t.JSXElement>) {
-    const openingPath = path.get('openingElement');
-    const attributes = openingPath.node.attributes;
-
-    let seenPropsSpread = false;
-    for (let i = 0; i < attributes.length; i++) {
-      const attr = attributes[i];
-      if (
-        seenPropsSpread &&
-        t.isJSXAttribute(attr) &&
-        attr.name.name === 'key'
-      ) {
-        return true;
-      } else if (t.isJSXSpreadAttribute(attr)) {
-        seenPropsSpread = true;
-      }
-    }
-    return false;
   }
 
   function convertJSXIdentifier(
@@ -330,27 +298,6 @@ export const jsxSyntax = () => {
     return call(file, args);
   }
 
-  // Builds JSX into:
-  // Production: React.createElement(type, arguments, children)
-  // Development: React.createElement(type, arguments, children, source, self)
-  function buildCreateElementCall(
-    path: NodePath<t.JSXElement>,
-    file: PluginPass,
-  ) {
-    const openingPath = path.get('openingElement');
-
-    return call(file, [
-      getTag(openingPath),
-      buildCreateElementOpeningElementAttributes(
-        file,
-        path,
-        openingPath.get('attributes'),
-      ),
-      // @ts-expect-error JSXSpreadChild has been transformed in convertAttributeValue
-      ...t.react.buildChildren(path.node),
-    ]);
-  }
-
   function getTag(openingPath: NodePath<t.JSXOpeningElement>) {
     const tagExpr = convertJSXIdentifier(
       openingPath.node.name,
@@ -368,47 +315,6 @@ export const jsxSyntax = () => {
       return t.stringLiteral(tagName);
     }
     return tagExpr;
-
-  }
-
-  /**
-   * The logic for this is quite terse. It's because we need to
-   * support spread elements. We loop over all attributes,
-   * breaking on spreads, we then push a new object containing
-   * all prior attributes to an array for later processing.
-   */
-  function buildCreateElementOpeningElementAttributes(
-    file: PluginPass,
-    path: NodePath<t.JSXElement>,
-    attribs: NodePath<t.JSXAttribute | t.JSXSpreadAttribute>[],
-  ) {
-    const props: t.ObjectExpression['properties'] = [];
-    const found = Object.create(null);
-
-    for (const attr of attribs) {
-      const name =
-        t.isJSXAttribute(attr) &&
-        t.isJSXIdentifier(attr.name) &&
-        attr.name.name;
-
-      if ((name === '__source' || name === '__self')) {
-        if (found[name]) throw sourceSelfError(path, name);
-        found[name] = true;
-      }
-
-      accumulateAttribute(props, attr);
-    }
-
-    return props.length === 1 &&
-      t.isSpreadElement(props[0]) &&
-      // If an object expression is spread element's argument
-      // it is very likely to contain __proto__ and we should stop
-      // optimizing spread element
-      !t.isObjectExpression(props[0].argument)
-      ? props[0].argument
-      : props.length > 0
-        ? t.objectExpression(props)
-        : t.nullLiteral();
   }
 };
 
