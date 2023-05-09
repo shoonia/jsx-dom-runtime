@@ -58,10 +58,7 @@ export const jsxOptimizer = (): PluginObj => {
       JSXElement(path) {
         const { name } = path.node.openingElement;
 
-        if (
-          !t.isJSXIdentifier(name) ||
-          t.isCallExpression(path.parent) // FIXME:
-        ) {
+        if (!t.isJSXIdentifier(name)) {
           return;
         }
 
