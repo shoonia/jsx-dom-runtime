@@ -9,14 +9,14 @@ const get = (pass: PluginPass, name: string) =>
 const set = (pass: PluginPass, name: string, v: any) =>
   pass.set(`@babel/plugin-react-jsx/${name}`, v);
 
-function hasProto(node: t.ObjectExpression) {
+const hasProto = (node: t.ObjectExpression) => {
   return node.properties.some(
     value =>
       t.isObjectProperty(value, { computed: false, shorthand: false }) &&
       (t.isIdentifier(value.key, { name: '__proto__' }) ||
         t.isStringLiteral(value.key, { value: '__proto__' })),
   );
-}
+};
 
 const buildChildrenProperty = (children: t.Expression[]): t.ObjectProperty => {
   return t.objectProperty(
@@ -33,8 +33,9 @@ export const jsxSyntax = (): PluginObj => {
     visitor: {
       Program: {
         enter(path, state) {
-          const define = (name: string, id: string) =>
+          const define = (name: string, id: string) => {
             set(state, name, createImportLazily(state, path, id));
+          };
 
           define('id/jsx', 'jsx');
           define('id/fragment', 'Fragment');
@@ -44,9 +45,18 @@ export const jsxSyntax = (): PluginObj => {
 
       JSXFragment: {
         exit(path, file) {
-          path.replaceWith(
-            t.inherits(buildJSXFragmentCall(path, file), path.node),
-          );
+          const children = t.react.buildChildren(path.node) as t.Expression[];
+          const child = t.callExpression(
+            get(file, 'id/fragment')(),
+            [
+              t.objectExpression(
+                children.length > 0
+                  ? [buildChildrenProperty(children)]
+                  : [],
+              ),
+            ]);
+
+          path.replaceWith(t.inherits(child, path.node));
         },
       },
 
@@ -199,27 +209,6 @@ export const jsxSyntax = (): PluginObj => {
     return t.objectExpression(props);
   }
 
-  // Builds JSX Fragment <></> into
-  // Production: React.jsx(type, arguments)
-  // Development: React.jsxDEV(type, { children })
-  function buildJSXFragmentCall(
-    path: NodePath<t.JSXFragment>,
-    file: PluginPass,
-  ) {
-    const children = t.react.buildChildren(path.node) as t.Expression[];
-
-    const args = [
-      get(file, 'id/fragment')(),
-      t.objectExpression(
-        children.length > 0
-          ? [buildChildrenProperty(children)]
-          : [],
-      )
-    ];
-
-    return call(file, args);
-  }
-
   function getTag(openingPath: NodePath<t.JSXOpeningElement>) {
     const tagExpr = convertJSXIdentifier(
       openingPath.node.name,
@@ -248,7 +237,7 @@ function createImportLazily(
   importName: string,
 ): () => t.Identifier | t.MemberExpression {
   return () => {
-    const source = 'jsx-dom-runtime/jsx-runtime';
+    const source = 'jsx-dom-runtime';
 
     if (isModule(path)) {
       let reference = get(pass, `imports/${importName}`);
