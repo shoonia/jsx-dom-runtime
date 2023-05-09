@@ -47,7 +47,6 @@ function hasProto(node: t.ObjectExpression) {
 }
 
 export interface Options {
-  filter?: (node: t.Node, pass: PluginPass) => boolean;
   importSource?: string;
   pragma?: string;
   pragmaFrag?: string;
@@ -68,72 +67,9 @@ export const jsxSyntax = ({
     const {
       // pure: PURE_ANNOTATION = '#__PURE__', // FIXME:
       throwIfNamespace = false,
-      filter,
-      runtime: RUNTIME_DEFAULT = process.env.BABEL_8_BREAKING
-        ? 'automatic'
-        : development
-          ? 'automatic'
-          : 'classic',
-
-      importSource: IMPORT_SOURCE_DEFAULT = DEFAULT.importSource,
-      pragma: PRAGMA_DEFAULT = DEFAULT.pragma,
-      pragmaFrag: PRAGMA_FRAG_DEFAULT = DEFAULT.pragmaFrag,
+      runtime: RUNTIME_DEFAULT =  'automatic',
+      importSource: IMPORT_SOURCE_DEFAULT = 'jsx-dom-runtime',
     } = options;
-
-    if (process.env.BABEL_8_BREAKING) {
-      if ('useSpread' in options) {
-        throw new Error(
-          '@babel/plugin-transform-react-jsx: Since Babel 8, an inline object with spread elements is always used, and the "useSpread" option is no longer available. Please remove it from your config.',
-        );
-      }
-
-      if ('useBuiltIns' in options) {
-        const useBuiltInsFormatted = JSON.stringify(options.useBuiltIns);
-        throw new Error(
-          `@babel/plugin-transform-react-jsx: Since "useBuiltIns" is removed in Babel 8, you can remove it from the config.
-- Babel 8 now transforms JSX spread to object spread. If you need to transpile object spread with
-\`useBuiltIns: ${useBuiltInsFormatted}\`, you can use the following config
-{
-  "plugins": [
-    "@babel/plugin-transform-react-jsx"
-    ["@babel/plugin-proposal-object-rest-spread", { "loose": true, "useBuiltIns": ${useBuiltInsFormatted} }]
-  ]
-}`,
-        );
-      }
-
-      if (filter != null && RUNTIME_DEFAULT === 'automatic') {
-        throw new Error(
-          '@babel/plugin-transform-react-jsx: "filter" option can not be used with automatic runtime. If you are upgrading from Babel 7, please specify `runtime: "classic"`.',
-        );
-      }
-    } else {
-      // eslint-disable-next-line no-var
-      var { useSpread = false, useBuiltIns = false } = options;
-
-      if (RUNTIME_DEFAULT === 'classic') {
-        if (typeof useSpread !== 'boolean') {
-          throw new Error(
-            'transform-react-jsx currently only accepts a boolean option for ' +
-            'useSpread (defaults to false)',
-          );
-        }
-
-        if (typeof useBuiltIns !== 'boolean') {
-          throw new Error(
-            'transform-react-jsx currently only accepts a boolean option for ' +
-            'useBuiltIns (defaults to false)',
-          );
-        }
-
-        if (useSpread && useBuiltIns) {
-          throw new Error(
-            'transform-react-jsx currently only accepts useBuiltIns or useSpread ' +
-            'but not both',
-          );
-        }
-      }
-    }
 
     const injectMetaPropertiesVisitor: Visitor<PluginPass> = {
       JSXOpeningElement(path, state) {
@@ -181,10 +117,6 @@ You can set `throwIfNamespace: false` to bypass this warning.',
             let runtime: string = RUNTIME_DEFAULT;
 
             let source: string = IMPORT_SOURCE_DEFAULT;
-            let pragma: string = PRAGMA_DEFAULT;
-            let pragmaFrag: string = PRAGMA_FRAG_DEFAULT;
-
-            let sourceSet = !!options.importSource;
             let pragmaSet = !!options.pragma;
             let pragmaFragSet = !!options.pragmaFrag;
 
@@ -195,7 +127,6 @@ You can set `throwIfNamespace: false` to bypass this warning.',
                 );
                 if (sourceMatches) {
                   source = sourceMatches[1];
-                  sourceSet = true;
                 }
 
                 const runtimeMatches = JSX_RUNTIME_ANNOTATION_REGEX.exec(
@@ -207,89 +138,45 @@ You can set `throwIfNamespace: false` to bypass this warning.',
 
                 const jsxMatches = JSX_ANNOTATION_REGEX.exec(comment.value);
                 if (jsxMatches) {
-                  pragma = jsxMatches[1];
                   pragmaSet = true;
                 }
                 const jsxFragMatches = JSX_FRAG_ANNOTATION_REGEX.exec(
                   comment.value,
                 );
                 if (jsxFragMatches) {
-                  pragmaFrag = jsxFragMatches[1];
                   pragmaFragSet = true;
                 }
               }
             }
 
             set(state, 'runtime', runtime);
-            if (runtime === 'classic') {
-              if (sourceSet) {
-                throw path.buildCodeFrameError(
-                  'importSource cannot be set when runtime is classic.',
-                );
-              }
-
-              const createElement = toMemberExpression(pragma);
-              const fragment = toMemberExpression(pragmaFrag);
-
-              set(state, 'id/createElement', () => t.cloneNode(createElement));
-              set(state, 'id/fragment', () => t.cloneNode(fragment));
-
-              set(state, 'defaultPure', pragma === DEFAULT.pragma);
-            } else if (runtime === 'automatic') {
-              if (pragmaSet || pragmaFragSet) {
-                throw path.buildCodeFrameError(
-                  'pragma and pragmaFrag cannot be set when runtime is automatic.',
-                );
-              }
-
-              const define = (name: string, id: string) =>
-                set(state, name, createImportLazily(state, path, id, source));
-
-              define('id/jsx', development ? 'jsxDEV' : 'jsx');
-              define('id/jsxs', development ? 'jsxDEV' : 'jsxs');
-              define('id/createElement', 'createElement');
-              define('id/fragment', 'Fragment');
-
-              set(state, 'defaultPure', source === DEFAULT.importSource);
-            } else {
+            if (pragmaSet || pragmaFragSet) {
               throw path.buildCodeFrameError(
-                'Runtime must be either "classic" or "automatic".',
+                'pragma and pragmaFrag cannot be set when runtime is automatic.',
               );
             }
+
+            const define = (name: string, id: string) =>
+              set(state, name, createImportLazily(state, path, id, source));
+
+            define('id/jsx', development ? 'jsxDEV' : 'jsx');
+            define('id/jsxs', development ? 'jsxDEV' : 'jsxs');
+            define('id/createElement', 'createElement');
+            define('id/fragment', 'Fragment');
+
+            set(state, 'defaultPure', source === DEFAULT.importSource);
 
             if (development) {
               path.traverse(injectMetaPropertiesVisitor, state);
             }
           },
-
-          // TODO(Babel 8): Decide if this should be removed or brought back.
-          // see: https://github.com/babel/babel/pull/12253#discussion_r513086528
-          //
-          // exit(path, state) {
-          //   if (
-          //     get(state, "runtime") === "classic" &&
-          //     get(state, "pragmaSet") &&
-          //     get(state, "usedFragment") &&
-          //     !get(state, "pragmaFragSet")
-          //   ) {
-          //     throw new Error(
-          //       "transform-react-jsx: pragma has been set but " +
-          //         "pragmaFrag has not been set",
-          //     );
-          //   }
-          // },
         },
 
         JSXFragment: {
           exit(path, file) {
-            let callExpr;
-            if (get(file, 'runtime') === 'classic') {
-              callExpr = buildCreateElementFragmentCall(path, file);
-            } else {
-              callExpr = buildJSXFragmentCall(path, file);
-            }
-
-            path.replaceWith(t.inherits(callExpr, path.node));
+            path.replaceWith(
+              t.inherits(buildJSXFragmentCall(path, file), path.node),
+            );
           },
         },
 
@@ -636,21 +523,6 @@ You can set `throwIfNamespace: false` to bypass this warning.',
       return call(file, children.length > 1 ? 'jsxs' : 'jsx', args);
     }
 
-    // Builds JSX Fragment <></> into
-    // React.createElement(React.Fragment, null, ...children)
-    function buildCreateElementFragmentCall(
-      path: NodePath<JSXFragment>,
-      file: PluginPass,
-    ) {
-      if (filter && !filter(path.node, file)) return;
-
-      return call(file, 'createElement', [
-        get(file, 'id/fragment')(),
-        t.nullLiteral(),
-        ...t.react.buildChildren(path.node),
-      ]);
-    }
-
     // Builds JSX into:
     // Production: React.createElement(type, arguments, children)
     // Development: React.createElement(type, arguments, children, source, self)
@@ -703,63 +575,6 @@ You can set `throwIfNamespace: false` to bypass this warning.',
       path: NodePath<JSXElement>,
       attribs: NodePath<JSXAttribute | JSXSpreadAttribute>[],
     ) {
-      const runtime = get(file, 'runtime');
-      if (!process.env.BABEL_8_BREAKING) {
-        if (runtime !== 'automatic') {
-          const objs = [];
-          const props = attribs.reduce(accumulateAttribute, []);
-
-          if (!useSpread) {
-            // Convert syntax to use multiple objects instead of spread
-            let start = 0;
-            props.forEach((prop, i) => {
-              if (t.isSpreadElement(prop)) {
-                if (i > start) {
-                  objs.push(t.objectExpression(props.slice(start, i)));
-                }
-                objs.push(prop.argument);
-                start = i + 1;
-              }
-            });
-            if (props.length > start) {
-              objs.push(t.objectExpression(props.slice(start)));
-            }
-          } else if (props.length) {
-            objs.push(t.objectExpression(props));
-          }
-
-          if (!objs.length) {
-            return t.nullLiteral();
-          }
-
-          if (objs.length === 1) {
-            if (
-              !(
-                t.isSpreadElement(props[0]) &&
-                // If an object expression is spread element's argument
-                // it is very likely to contain __proto__ and we should stop
-                // optimizing spread element
-                t.isObjectExpression(props[0].argument)
-              )
-            ) {
-              return objs[0];
-            }
-          }
-
-          // looks like we have multiple objects
-          if (!t.isObjectExpression(objs[0])) {
-            objs.unshift(t.objectExpression([]));
-          }
-
-          const helper = useBuiltIns
-            ? t.memberExpression(t.identifier('Object'), t.identifier('assign'))
-            : file.addHelper('extends');
-
-          // spread it
-          return t.callExpression(helper, objs);
-        }
-      }
-
       const props: ObjectExpression['properties'] = [];
       const found = Object.create(null);
 
@@ -769,10 +584,7 @@ You can set `throwIfNamespace: false` to bypass this warning.',
           t.isJSXIdentifier(attr.name) &&
           attr.name.name;
 
-        if (
-          runtime === 'automatic' &&
-          (name === '__source' || name === '__self')
-        ) {
+        if ((name === '__source' || name === '__self')) {
           if (found[name]) throw sourceSelfError(path, name);
           found[name] = true;
         }
@@ -842,17 +654,6 @@ You can set `throwIfNamespace: false` to bypass this warning.',
     };
   }
 };
-
-function toMemberExpression(id: string): Identifier | MemberExpression {
-  return (
-    id
-      .split('.')
-      .map(name => t.identifier(name))
-      // @ts-expect-error - The Array#reduce does not have a signature
-      // where the type of initial value differs from callback return type
-      .reduce((object, property) => t.memberExpression(object, property))
-  );
-}
 
 function makeSource(path: NodePath, state: PluginPass) {
   const location = path.node.loc;
