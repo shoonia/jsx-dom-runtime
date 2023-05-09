@@ -62,7 +62,6 @@ export const jsxOptimizer = (): PluginObj => {
         if (
           !t.isJSXIdentifier(element) ||
           t.isCallExpression(node) || // FIXME:
-          t.isAssignmentPattern(node) || // TODO: Add tests before remove
           t.isWhileStatement(node) || // TODO: Add tests before remove
           t.isSwitchStatement(node) || // TODO: Add tests before remove
           t.isForOfStatement(node) || // TODO: Add tests before remove
