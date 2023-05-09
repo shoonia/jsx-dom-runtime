@@ -18,6 +18,15 @@ function hasProto(node: t.ObjectExpression) {
   );
 }
 
+const buildChildrenProperty = (children: t.Expression[]): t.ObjectProperty => {
+  return t.objectProperty(
+    t.identifier('children'),
+    children.length === 1
+      ? children[0]
+      : t.arrayExpression(children),
+  );
+};
+
 export const jsxSyntax = (): PluginObj => {
   return {
     name: 'jsx-dom-runtime/jsx-syntax',
@@ -25,7 +34,7 @@ export const jsxSyntax = (): PluginObj => {
       Program: {
         enter(path, state) {
           const define = (name: string, id: string) =>
-            set(state, name, createImportLazily(state, path, id, 'jsx-dom-runtime'));
+            set(state, name, createImportLazily(state, path, id));
 
           define('id/jsx', 'jsx');
           define('id/fragment', 'Fragment');
@@ -102,11 +111,7 @@ export const jsxSyntax = (): PluginObj => {
   function convertAttributeValue(
     node: t.JSXAttribute['value'] | t.BooleanLiteral,
   ) {
-    if (t.isJSXExpressionContainer(node)) {
-      return node.expression;
-    }
-    return node;
-
+    return t.isJSXExpressionContainer(node) ? node.expression : node;
   }
 
   function accumulateAttribute(
@@ -125,16 +130,8 @@ export const jsxSyntax = (): PluginObj => {
     }
 
     const value = convertAttributeValue(
-      attribute.node.name.name !== 'key'
-        ? attribute.node.value || t.booleanLiteral(true)
-        : attribute.node.value,
+      attribute.node.value || t.booleanLiteral(true),
     );
-
-    if (attribute.node.name.name === 'key' && value === null) {
-      throw attribute.buildCodeFrameError(
-        'Please provide an explicit key value. Using "key" as a shorthand for "key={true}" is not allowed.',
-      );
-    }
 
     if (
       t.isStringLiteral(value) &&
@@ -149,9 +146,7 @@ export const jsxSyntax = (): PluginObj => {
     if (t.isJSXNamespacedName(attribute.node.name)) {
       // @ts-expect-error mutating AST
       attribute.node.name = t.stringLiteral(
-        attribute.node.name.namespace.name +
-        ':' +
-        attribute.node.name.name.name,
+        attribute.node.name.namespace.name + ':' + attribute.node.name.name.name,
       );
     } else if (t.isValidIdentifier(attribute.node.name.name, false)) {
       // @ts-expect-error mutating AST
@@ -174,83 +169,19 @@ export const jsxSyntax = (): PluginObj => {
     return array;
   }
 
-  function buildChildrenProperty(children: t.Expression[]) {
-    let childrenNode;
-    if (children.length === 1) {
-      childrenNode = children[0];
-    } else if (children.length > 1) {
-      childrenNode = t.arrayExpression(children);
-    } else {
-      return undefined;
-    }
-
-    return t.objectProperty(t.identifier('children'), childrenNode);
-  }
-
   // Builds JSX into:
   // Production: React.jsx(type, arguments, key)
-  // Development: React.jsxDEV(type, arguments, key, isStaticChildren, source, self)
   function buildJSXElementCall(path: NodePath<t.JSXElement>, file: PluginPass) {
     const openingPath = path.get('openingElement');
-    const args: t.Expression[] = [getTag(openingPath)];
 
-    const attribsArray = [];
-    const extracted = Object.create(null);
-
-    // for React.jsx, key, __source (dev), and __self (dev) is passed in as
-    // a separate argument rather than in the args object. We go through the
-    // props and filter out these three keywords so we can pass them in
-    // as separate arguments later
-    for (const attr of openingPath.get('attributes')) {
-      if (attr.isJSXAttribute() && t.isJSXIdentifier(attr.node.name)) {
-        const { name } = attr.node.name;
-        switch (name) {
-          case '__source':
-          case '__self':
-            if (extracted[name]) throw sourceSelfError(path, name);
-          /* falls through */
-          case 'key': {
-            const keyValue = convertAttributeValue(attr.node.value);
-            if (keyValue === null) {
-              throw attr.buildCodeFrameError(
-                'Please provide an explicit key value. Using "key" as a shorthand for "key={true}" is not allowed.',
-              );
-            }
-
-            extracted[name] = keyValue;
-            break;
-          }
-          default:
-            attribsArray.push(attr);
-        }
-      } else {
-        attribsArray.push(attr);
-      }
-    }
-
+    const attribsArray = openingPath.get('attributes');
     const children = t.react.buildChildren(path.node);
 
-    let attribs: t.ObjectExpression;
+    const attribs = attribsArray.length || children.length
+      ? buildJSXOpeningElementAttributes(attribsArray, children as t.Expression[])
+      : t.objectExpression([]);
 
-    if (attribsArray.length || children.length) {
-      attribs = buildJSXOpeningElementAttributes(
-        attribsArray,
-        //@ts-expect-error The children here contains JSXSpreadChild,
-        // which will be thrown later
-        children,
-      );
-    } else {
-      // attributes should never be null
-      attribs = t.objectExpression([]);
-    }
-
-    args.push(attribs);
-
-    if (extracted.key !== undefined) {
-      args.push(extracted.key);
-    }
-
-    return call(file, args);
+    return call(file, [getTag(openingPath), attribs]);
   }
 
   // Builds props for React.jsx. This function adds children into the props
@@ -261,9 +192,7 @@ export const jsxSyntax = (): PluginObj => {
   ) {
     const props = attribs.reduce(accumulateAttribute, []);
 
-    // In React.jsx, children is no longer a separate argument, but passed in
-    // through the argument object
-    if (children?.length > 0) {
+    if (children.length > 0) {
       props.push(buildChildrenProperty(children));
     }
 
@@ -277,23 +206,16 @@ export const jsxSyntax = (): PluginObj => {
     path: NodePath<t.JSXFragment>,
     file: PluginPass,
   ) {
-    const args = [get(file, 'id/fragment')()];
+    const children = t.react.buildChildren(path.node) as t.Expression[];
 
-    const children = t.react.buildChildren(path.node);
-
-    args.push(
+    const args = [
+      get(file, 'id/fragment')(),
       t.objectExpression(
         children.length > 0
-          ? [
-            buildChildrenProperty(
-              //@ts-expect-error The children here contains JSXSpreadChild,
-              // which will be thrown later
-              children,
-            ),
-          ]
+          ? [buildChildrenProperty(children)]
           : [],
-      ),
-    );
+      )
+    ];
 
     return call(file, args);
   }
@@ -305,6 +227,7 @@ export const jsxSyntax = (): PluginObj => {
     );
 
     let tagName: string;
+
     if (t.isIdentifier(tagExpr)) {
       tagName = tagExpr.name;
     } else if (t.isStringLiteral(tagExpr)) {
@@ -314,6 +237,7 @@ export const jsxSyntax = (): PluginObj => {
     if (t.react.isCompatTag(tagName)) {
       return t.stringLiteral(tagName);
     }
+
     return tagExpr;
   }
 };
@@ -322,16 +246,15 @@ function createImportLazily(
   pass: PluginPass,
   path: NodePath<t.Program>,
   importName: string,
-  source: string,
 ): () => t.Identifier | t.MemberExpression {
   return () => {
-    const actualSource = `${source}/jsx-runtime`;
+    const source = 'jsx-dom-runtime/jsx-runtime';
 
     if (isModule(path)) {
       let reference = get(pass, `imports/${importName}`);
       if (reference) return t.cloneNode(reference);
 
-      reference = addNamed(path, importName, actualSource, {
+      reference = addNamed(path, importName, source, {
         importedInterop: 'uncompiled',
         importPosition: 'after',
       });
@@ -339,24 +262,18 @@ function createImportLazily(
 
       return reference;
     }
-    let reference = get(pass, `requires/${actualSource}`);
+
+    let reference = get(pass, `requires/${source}`);
+
     if (reference) {
       reference = t.cloneNode(reference);
     } else {
-      reference = addNamespace(path, actualSource, {
+      reference = addNamespace(path, source, {
         importedInterop: 'uncompiled',
       });
-      set(pass, `requires/${actualSource}`, reference);
+      set(pass, `requires/${source}`, reference);
     }
 
     return t.memberExpression(reference, t.identifier(importName));
   };
-}
-
-function sourceSelfError(path: NodePath, name: string) {
-  const pluginName = `transform-react-jsx-${name.slice(2)}`;
-
-  return path.buildCodeFrameError(
-    `Duplicate ${name} prop found. You are most likely using the deprecated ${pluginName} Babel plugin. Both __source and __self are automatically set when using the automatic runtime. Please remove transform-react-jsx-source and transform-react-jsx-self from your Babel config.`,
-  );
 }
