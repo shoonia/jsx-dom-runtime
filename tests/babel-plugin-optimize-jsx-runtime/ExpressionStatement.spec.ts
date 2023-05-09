@@ -20,4 +20,14 @@ describe('babel-plugin-optimize-jsx-runtime: ExpressionStatement', () => {
     const result = await t('{ <App />; <Two />; };');
     expect(result).toBe('{App({});Two({})};');
   });
+
+  it('should work LabeledStatement', async () => {
+    const result = await t('name: <App />;');
+    expect(result).toBe('name:App({});');
+  });
+
+  it('should work DebuggerStatement', async () => {
+    const result = await t('debugger; <App />;');
+    expect(result).toBe('debugger;App({});');
+  });
 });
