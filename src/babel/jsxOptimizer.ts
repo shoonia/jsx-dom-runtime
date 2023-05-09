@@ -63,11 +63,11 @@ export const jsxOptimizer = (): PluginObj => {
         if (charCode >= 65 && charCode <= 90) {
           const callExp = createCallExpression(name.name, path);
 
-          path.replaceWith(
-            t.isJSXElement(path.parent) || t.isJSXFragment(path.parent)
-              ? t.jsxExpressionContainer(callExp)
-              : callExp,
-          );
+          const node = t.isJSXElement(path.parent) || t.isJSXFragment(path.parent)
+            ? t.jsxExpressionContainer(callExp)
+            : callExp;
+
+          path.replaceWith(t.inherits(node, path.node));
         }
       },
     },

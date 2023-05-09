@@ -61,9 +61,21 @@ export const jsxSyntax = (): PluginObj => {
 
       JSXElement: {
         exit(path, file) {
-          path.replaceWith(
-            t.inherits(buildJSXElementCall(path, file), path.node),
+          const openingPath = path.get('openingElement');
+          const attribsArray = openingPath.get('attributes');
+          const children = t.react.buildChildren(path.node) as t.Expression[];
+
+          const attribs = attribsArray.length || children.length
+            ? buildJSXOpeningElementAttributes(attribsArray, children)
+            : t.objectExpression([]);
+
+          const node = t.callExpression(
+            get(file, 'id/jsx')(),
+            [getTag(openingPath), attribs],
           );
+
+          annotateAsPure(node);
+          path.replaceWith(t.inherits(node, path.node));
         },
       },
 
@@ -106,87 +118,54 @@ export const jsxSyntax = (): PluginObj => {
     return node;
   }
 
-  function convertAttributeValue(
-    node: t.JSXAttribute['value'] | t.BooleanLiteral,
-  ) {
-    return t.isJSXExpressionContainer(node) ? node.expression : node;
-  }
-
   function accumulateAttribute(
     array: t.ObjectExpression['properties'],
-    attribute: NodePath<t.JSXAttribute | t.JSXSpreadAttribute>,
+    attr: NodePath<t.JSXAttribute | t.JSXSpreadAttribute>,
   ) {
-    if (t.isJSXSpreadAttribute(attribute.node)) {
-      const arg = attribute.node.argument;
+    if (t.isJSXSpreadAttribute(attr.node)) {
+      const arg = attr.node.argument;
       // Collect properties into props array if spreading object expression
       if (t.isObjectExpression(arg) && !hasProto(arg)) {
-        array.push(...arg.properties);
+        Array.prototype.push.apply(array, arg.properties);
       } else {
         array.push(t.spreadElement(arg));
       }
       return array;
     }
 
-    const value = convertAttributeValue(
-      attribute.node.value || t.booleanLiteral(true),
-    );
+    const value = t.isJSXExpressionContainer(attr.node.value)
+      ? attr.node.value.expression
+      : attr.node.value || t.booleanLiteral(true);
 
-    if (
-      t.isStringLiteral(value) &&
-      !t.isJSXExpressionContainer(attribute.node.value)
-    ) {
+    if (t.isStringLiteral(value)) {
       value.value = value.value.replace(/\n\s+/g, ' ');
-
-      // "raw" JSXText should not be used from a StringLiteral because it needs to be escaped.
-      delete value.extra?.raw;
     }
 
-    if (t.isJSXNamespacedName(attribute.node.name)) {
+    if (t.isJSXNamespacedName(attr.node.name)) {
       // @ts-expect-error mutating AST
-      attribute.node.name = t.stringLiteral(
-        attribute.node.name.namespace.name + ':' + attribute.node.name.name.name,
+      attr.node.name = t.stringLiteral(
+        attr.node.name.namespace.name + ':' + attr.node.name.name.name,
       );
-    } else if (t.isValidIdentifier(attribute.node.name.name, false)) {
+    } else if (t.isValidIdentifier(attr.node.name.name, false)) {
       // @ts-expect-error mutating AST
-      attribute.node.name.type = 'Identifier';
+      attr.node.name.type = 'Identifier';
     } else {
       // @ts-expect-error mutating AST
-      attribute.node.name = t.stringLiteral(attribute.node.name.name);
+      attr.node.name = t.stringLiteral(attr.node.name.name);
     }
 
     array.push(
       t.inherits(
         t.objectProperty(
           // @ts-expect-error The attribute.node.name is an Identifier now
-          attribute.node.name,
+          attr.node.name,
           value,
         ),
-        attribute.node,
+        attr.node,
       ),
     );
+
     return array;
-  }
-
-  // Builds JSX into:
-  // Production: React.jsx(type, arguments, key)
-  function buildJSXElementCall(path: NodePath<t.JSXElement>, file: PluginPass) {
-    const openingPath = path.get('openingElement');
-
-    const attribsArray = openingPath.get('attributes');
-    const children = t.react.buildChildren(path.node);
-
-    const attribs = attribsArray.length || children.length
-      ? buildJSXOpeningElementAttributes(attribsArray, children as t.Expression[])
-      : t.objectExpression([]);
-
-    const node = t.callExpression(
-      get(file, 'id/jsx')(),
-      [getTag(openingPath), attribs],
-    );
-
-    annotateAsPure(node);
-
-    return node;
   }
 
   // Builds props for React.jsx. This function adds children into the props
