@@ -3,9 +3,9 @@ import t from '@babel/types';
 
 const createCallExpression = (
   name: string,
-  path: NodePath<t.JSXOpeningElement>,
+  path: NodePath<t.JSXElement>,
 ): t.CallExpression => {
-  const props = path.node.attributes.map((attr) => {
+  const props = path.node.openingElement.attributes.map((attr) => {
     if (t.isJSXSpreadAttribute(attr)) {
       return t.spreadElement(attr.argument);
     }
@@ -26,8 +26,8 @@ const createCallExpression = (
     );
   });
 
-  if (t.isJSXElement(path.container)) {
-    const children = t.react.buildChildren(path.container).map((child) => {
+  if (t.isJSXElement(path.node)) {
+    const children = t.react.buildChildren(path.node).map((child) => {
       return t.isJSXSpreadChild(child)
         ? child.expression
         : child;
@@ -55,32 +55,25 @@ export const jsxOptimizer = (): PluginObj => {
   return {
     name: 'babel-plugin-optimize-jsx-runtime',
     visitor: {
-      JSXOpeningElement(path) {
-        const node = path.parentPath.parent;
-        const element = path.node.name;
+      JSXElement(path) {
+        const { name } = path.node.openingElement;
 
         if (
-          !t.isJSXIdentifier(element) ||
-          t.isCallExpression(node) // FIXME:
+          !t.isJSXIdentifier(name) ||
+          t.isCallExpression(path.parent) // FIXME:
         ) {
           return;
         }
 
-        const charCode = element.name.charCodeAt(0);
+        const charCode = name.name.charCodeAt(0);
 
         if (charCode >= 65 && charCode <= 90) {
-          if (t.isJSXElement(node) || t.isJSXFragment(node)) {
-            const index = node.children.indexOf(path.parent as any);
+          const callExp = createCallExpression(name.name, path);
 
-            node.children[index] = t.jsxExpressionContainer(
-              createCallExpression(element.name, path),
-            );
-
-            return;
-          }
-
-          path.parentPath.replaceWith(
-            createCallExpression(element.name, path),
+          path.replaceWith(
+            t.isJSXElement(path.parent) || t.isJSXFragment(path.parent)
+              ? t.jsxExpressionContainer(callExp)
+              : callExp,
           );
         }
       },
