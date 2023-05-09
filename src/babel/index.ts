@@ -1,29 +1,19 @@
-import type { ConfigAPI, TransformOptions } from '@babel/core';
-import transformReactJsx from '@babel/plugin-transform-react-jsx';
+import type { ConfigAPI } from '@babel/core';
+import jsx from '@babel/plugin-syntax-jsx';
 
+import { jsxSyntax } from './jsxSyntax';
 import { jsxPlugin } from './jsxPlugin';
 import { jsxOptimizer } from './jsxOptimizer';
 
-const index = (api: ConfigAPI, {
-  useBuiltIns,
-  useSpread,
-}): TransformOptions => {
+const index = (api: ConfigAPI) => {
   api.assertVersion(7);
 
   return {
     plugins: [
+      jsx,
       jsxPlugin,
       jsxOptimizer,
-      [
-        transformReactJsx,
-        {
-          runtime: 'automatic',
-          importSource: 'jsx-dom-runtime',
-          throwIfNamespace: false,
-          useBuiltIns,
-          useSpread,
-        },
-      ],
+      jsxSyntax,
     ],
   };
 };

@@ -32,7 +32,8 @@ export default [
       },
     ],
     external: [
-      '@babel/plugin-transform-react-jsx',
+      '@babel/helper-module-imports',
+      '@babel/plugin-syntax-jsx',
       '@babel/types',
       'svg-tags',
       'html-tags',

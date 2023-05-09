@@ -32,8 +32,6 @@ export function jsx<K extends keyof HTMLElementTagNameMap>(
   props: HTMLElementTagNameMap[K],
 ): HTMLElementTagNameMap[K]
 
-export { jsx as jsxs, jsx as jsxDEV };
-
 export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> {
   (props: PropsWithChildren<P>): T | null
 }
