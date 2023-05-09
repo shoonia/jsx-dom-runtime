@@ -1,13 +1,16 @@
 import type { NodePath } from '@babel/traverse';
 import type { PluginObj, PluginPass } from '@babel/core';
 import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
-// import annotateAsPure from '@babel/helper-annotate-as-pure';
 import t from '@babel/types';
 
+const annotateAsPure = (node: t.Node): void => {
+  t.addComment(node, 'leading', '#__PURE__');
+};
+
 const get = (pass: PluginPass, name: string) =>
-  pass.get(`@babel/plugin-react-jsx/${name}`);
+  pass.get(`jsx-dom-runtime/jsx-syntax/${name}`);
 const set = (pass: PluginPass, name: string, v: any) =>
-  pass.set(`@babel/plugin-react-jsx/${name}`, v);
+  pass.set(`jsx-dom-runtime/jsx-syntax/${name}`, v);
 
 const hasProto = (node: t.ObjectExpression) => {
   return node.properties.some(
@@ -33,13 +36,8 @@ export const jsxSyntax = (): PluginObj => {
     visitor: {
       Program: {
         enter(path, state) {
-          const define = (name: string, id: string) => {
-            set(state, name, createImportLazily(state, path, id));
-          };
-
-          define('id/jsx', 'jsx');
-          define('id/fragment', 'Fragment');
-          // set(state, 'defaultPure', false);
+          set(state, 'id/jsx', createImportLazily(state, path, 'jsx'));
+          set(state, 'id/fragment', createImportLazily(state, path, 'Fragment'));
         },
       },
 
@@ -56,6 +54,7 @@ export const jsxSyntax = (): PluginObj => {
               ),
             ]);
 
+          annotateAsPure(child);
           path.replaceWith(t.inherits(child, path.node));
         },
       },
@@ -75,17 +74,6 @@ export const jsxSyntax = (): PluginObj => {
       },
     },
   };
-
-  // Returns whether `this` is allowed at given scope.
-  function call(
-    pass: PluginPass,
-    args: t.CallExpression['arguments'],
-  ) {
-    const node = t.callExpression(get(pass, 'id/jsx')(), args);
-    // FIXME:
-    // if (PURE_ANNOTATION ?? get(pass, 'defaultPure')) annotateAsPure(node);
-    return node;
-  }
 
   function convertJSXIdentifier(
     node: t.JSXIdentifier | t.JSXMemberExpression | t.JSXNamespacedName,
@@ -191,7 +179,14 @@ export const jsxSyntax = (): PluginObj => {
       ? buildJSXOpeningElementAttributes(attribsArray, children as t.Expression[])
       : t.objectExpression([]);
 
-    return call(file, [getTag(openingPath), attribs]);
+    const node = t.callExpression(
+      get(file, 'id/jsx')(),
+      [getTag(openingPath), attribs],
+    );
+
+    annotateAsPure(node);
+
+    return node;
   }
 
   // Builds props for React.jsx. This function adds children into the props
@@ -241,12 +236,16 @@ function createImportLazily(
 
     if (isModule(path)) {
       let reference = get(pass, `imports/${importName}`);
-      if (reference) return t.cloneNode(reference);
+
+      if (reference) {
+        return t.cloneNode(reference);
+      }
 
       reference = addNamed(path, importName, source, {
         importedInterop: 'uncompiled',
         importPosition: 'after',
       });
+
       set(pass, `imports/${importName}`, reference);
 
       return reference;

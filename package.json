@@ -39,7 +39,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.21.8",
-    "@babel/helper-annotate-as-pure": "^7.18.6",
     "@babel/helper-module-imports": "^7.21.4",
     "@babel/plugin-syntax-jsx": "^7.21.4",
     "@babel/types": "^7.21.5",

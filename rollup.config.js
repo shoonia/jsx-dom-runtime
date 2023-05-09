@@ -32,7 +32,6 @@ export default [
       },
     ],
     external: [
-      '@babel/helper-annotate-as-pure',
       '@babel/helper-module-imports',
       '@babel/plugin-syntax-jsx',
       '@babel/types',
