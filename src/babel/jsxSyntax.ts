@@ -2,7 +2,11 @@ import type { PluginObj, PluginPass, NodePath } from '@babel/core';
 import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 import t from '@babel/types';
 
-import { buildChildrenProperty, convertJSXIdentifier } from './util';
+import {
+  buildChildren,
+  buildChildrenProperty,
+  convertJSXIdentifier,
+} from './util';
 
 const annotateAsPure = (node: t.Node): void => {
   t.addComment(node, 'leading', '#__PURE__');
@@ -35,7 +39,8 @@ export const jsxSyntax = (): PluginObj => {
 
       JSXFragment: {
         exit(path, file) {
-          const children = t.react.buildChildren(path.node) as t.Expression[];
+          const children = buildChildren(path.node);
+
           const child = t.callExpression(
             get(file, 'id/fragment')(),
             [
@@ -55,7 +60,7 @@ export const jsxSyntax = (): PluginObj => {
         exit(path, file) {
           const openingPath = path.get('openingElement');
           const attribsArray = openingPath.get('attributes');
-          const children = t.react.buildChildren(path.node) as t.Expression[];
+          const children = buildChildren(path.node);
 
           const attribs = attribsArray.length || children.length
             ? buildJSXOpeningElementAttributes(attribsArray, children)

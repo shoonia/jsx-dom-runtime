@@ -1,5 +1,13 @@
 import t from '@babel/types';
 
+export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[] => {
+  return t.react.buildChildren(node).map((child) => {
+    return t.isJSXSpreadChild(child)
+      ? child.expression
+      : child;
+  });
+};
+
 export const buildChildrenProperty = (children: t.Expression[]): t.ObjectProperty => {
   return t.objectProperty(
     t.identifier('children'),
