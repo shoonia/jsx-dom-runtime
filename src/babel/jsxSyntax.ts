@@ -3,19 +3,6 @@ import type { PluginPass } from '@babel/core';
 import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 // import annotateAsPure from '@babel/helper-annotate-as-pure';
 import t from '@babel/types';
-import type {
-  CallExpression,
-  Expression,
-  Identifier,
-  JSXAttribute,
-  JSXElement,
-  JSXFragment,
-  JSXOpeningElement,
-  JSXSpreadAttribute,
-  MemberExpression,
-  ObjectExpression,
-  Program,
-} from '@babel/types';
 
 const get = (pass: PluginPass, name: string) =>
   pass.get(`@babel/plugin-react-jsx/${name}`);
@@ -80,7 +67,7 @@ export const jsxSyntax = () => {
   // Returns whether `this` is allowed at given scope.
   function call(
     pass: PluginPass,
-    args: CallExpression['arguments'],
+    args: t.CallExpression['arguments'],
   ) {
     const node = t.callExpression(get(pass, 'id/jsx')(), args);
     // FIXME:
@@ -93,7 +80,7 @@ export const jsxSyntax = () => {
   // from <div key={key} {...props} />. This is an intermediary
   // step while we deprecate key spread from props. Afterwards,
   // we will stop using createElement in the transform.
-  function shouldUseCreateElement(path: NodePath<JSXElement>) {
+  function shouldUseCreateElement(path: NodePath<t.JSXElement>) {
     const openingPath = path.get('openingElement');
     const attributes = openingPath.node.attributes;
 
@@ -155,8 +142,8 @@ export const jsxSyntax = () => {
   }
 
   function accumulateAttribute(
-    array: ObjectExpression['properties'],
-    attribute: NodePath<JSXAttribute | JSXSpreadAttribute>,
+    array: t.ObjectExpression['properties'],
+    attribute: NodePath<t.JSXAttribute | t.JSXSpreadAttribute>,
   ) {
     if (t.isJSXSpreadAttribute(attribute.node)) {
       const arg = attribute.node.argument;
@@ -219,7 +206,7 @@ export const jsxSyntax = () => {
     return array;
   }
 
-  function buildChildrenProperty(children: Expression[]) {
+  function buildChildrenProperty(children: t.Expression[]) {
     let childrenNode;
     if (children.length === 1) {
       childrenNode = children[0];
@@ -235,7 +222,7 @@ export const jsxSyntax = () => {
   // Builds JSX into:
   // Production: React.jsx(type, arguments, key)
   // Development: React.jsxDEV(type, arguments, key, isStaticChildren, source, self)
-  function buildJSXElementCall(path: NodePath<JSXElement>, file: PluginPass) {
+  function buildJSXElementCall(path: NodePath<t.JSXElement>, file: PluginPass) {
     const openingPath = path.get('openingElement');
     const args: t.Expression[] = [getTag(openingPath)];
 
@@ -301,8 +288,8 @@ export const jsxSyntax = () => {
   // Builds props for React.jsx. This function adds children into the props
   // and ensures that props is always an object
   function buildJSXOpeningElementAttributes(
-    attribs: NodePath<JSXAttribute | JSXSpreadAttribute>[],
-    children: Expression[],
+    attribs: NodePath<t.JSXAttribute | t.JSXSpreadAttribute>[],
+    children: t.Expression[],
   ) {
     const props = attribs.reduce(accumulateAttribute, []);
 
@@ -319,7 +306,7 @@ export const jsxSyntax = () => {
   // Production: React.jsx(type, arguments)
   // Development: React.jsxDEV(type, { children })
   function buildJSXFragmentCall(
-    path: NodePath<JSXFragment>,
+    path: NodePath<t.JSXFragment>,
     file: PluginPass,
   ) {
     const args = [get(file, 'id/fragment')()];
@@ -347,7 +334,7 @@ export const jsxSyntax = () => {
   // Production: React.createElement(type, arguments, children)
   // Development: React.createElement(type, arguments, children, source, self)
   function buildCreateElementCall(
-    path: NodePath<JSXElement>,
+    path: NodePath<t.JSXElement>,
     file: PluginPass,
   ) {
     const openingPath = path.get('openingElement');
@@ -364,7 +351,7 @@ export const jsxSyntax = () => {
     ]);
   }
 
-  function getTag(openingPath: NodePath<JSXOpeningElement>) {
+  function getTag(openingPath: NodePath<t.JSXOpeningElement>) {
     const tagExpr = convertJSXIdentifier(
       openingPath.node.name,
       openingPath.node,
@@ -392,10 +379,10 @@ export const jsxSyntax = () => {
    */
   function buildCreateElementOpeningElementAttributes(
     file: PluginPass,
-    path: NodePath<JSXElement>,
-    attribs: NodePath<JSXAttribute | JSXSpreadAttribute>[],
+    path: NodePath<t.JSXElement>,
+    attribs: NodePath<t.JSXAttribute | t.JSXSpreadAttribute>[],
   ) {
-    const props: ObjectExpression['properties'] = [];
+    const props: t.ObjectExpression['properties'] = [];
     const found = Object.create(null);
 
     for (const attr of attribs) {
@@ -427,10 +414,10 @@ export const jsxSyntax = () => {
 
 function createImportLazily(
   pass: PluginPass,
-  path: NodePath<Program>,
+  path: NodePath<t.Program>,
   importName: string,
   source: string,
-): () => Identifier | MemberExpression {
+): () => t.Identifier | t.MemberExpression {
   return () => {
     const actualSource = `${source}/jsx-runtime`;
 
