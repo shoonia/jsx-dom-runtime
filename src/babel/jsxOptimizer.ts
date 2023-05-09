@@ -1,10 +1,9 @@
 import type { NodePath, PluginObj } from '@babel/core';
 import t from '@babel/types';
 
-const createCallExpression = (
-  name: string,
-  path: NodePath<t.JSXElement>,
-): t.CallExpression => {
+import { convertJSXIdentifier } from './util';
+
+const createCallExpression = (path: NodePath<t.JSXElement>): t.CallExpression => {
   const props = path.node.openingElement.attributes.map((attr) => {
     return t.isJSXSpreadAttribute(attr)
       ? t.spreadElement(attr.argument)
@@ -42,9 +41,17 @@ const createCallExpression = (
   }
 
   return t.callExpression(
-    t.identifier(name),
+    convertJSXIdentifier(
+      path.node.openingElement.name,
+      path.node.openingElement
+    ),
     [t.objectExpression(props)],
   );
+};
+
+const isCapitalLetter = (name: t.JSXIdentifier): boolean => {
+  const charCode = name.name.charCodeAt(0);
+  return charCode >= 65 && charCode <= 90;
 };
 
 export const jsxOptimizer = (): PluginObj => {
@@ -54,14 +61,12 @@ export const jsxOptimizer = (): PluginObj => {
       JSXElement(path) {
         const { name } = path.node.openingElement;
 
-        if (!t.isJSXIdentifier(name)) {
+        if (t.isJSXNamespacedName(name)) {
           return;
         }
 
-        const charCode = name.name.charCodeAt(0);
-
-        if (charCode >= 65 && charCode <= 90) {
-          const callExp = createCallExpression(name.name, path);
+        if (t.isJSXMemberExpression(name) || isCapitalLetter(name)) {
+          const callExp = createCallExpression(path);
 
           const node = t.isJSXElement(path.parent) || t.isJSXFragment(path.parent)
             ? t.jsxExpressionContainer(callExp)
