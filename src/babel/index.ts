@@ -13,10 +13,7 @@ const index = (api: ConfigAPI) => {
       jsx,
       jsxPlugin,
       jsxOptimizer,
-      jsxSyntax({
-        name: 'transform-react-jsx',
-        development: false,
-      }),
+      jsxSyntax,
     ],
   };
 };
