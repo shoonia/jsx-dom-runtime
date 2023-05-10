@@ -12,11 +12,12 @@ export let properties = new Set([
   'value',
 ]);
 
-export let jsx = (tag, props) => {
-  let key, val, node = props.__ns
-    ? document.createElementNS('http://www.w3.org/2000/svg', tag)
-    : document.createElement(tag);
+export let jsx = (key, props) => {
+  let val, node = props.__ns
+    ? document.createElementNS('http://www.w3.org/2000/svg', key)
+    : document.createElement(key);
 
+  // reuse `key` variable
   for (key in props) {
     if (internalKeys.has(key)) {
       continue;

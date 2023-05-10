@@ -72,6 +72,5 @@ export const convertJSXIdentifier = (
     return t.stringLiteral(node.namespace.name + ':' + node.name.name);
   }
 
-  // todo: this branch should be unreachable
   return node;
 };

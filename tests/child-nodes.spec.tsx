@@ -99,4 +99,6 @@ describe('Child nodes', () => {
     expect(<article />).toHaveOuterHTML('<article></article>');
     expect(<article></article>).toHaveOuterHTML('<article></article>');
   });
+
+  it.todo('test JSXSpreadChild');
 });
