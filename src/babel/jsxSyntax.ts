@@ -10,90 +10,24 @@ import {
   convertJSXIdentifier,
 } from './util';
 
-const annotateAsPure = (node: t.Node): void => {
+const addPureAnnotate = (node: t.Node): void => {
   t.addComment(node, 'leading', '#__PURE__');
 };
 
-const get = (pass: PluginPass, name: string) =>
-  pass.get(`jsx-dom-runtime/jsx-syntax/${name}`);
-const set = (pass: PluginPass, name: string, v: any) =>
-  pass.set(`jsx-dom-runtime/jsx-syntax/${name}`, v);
-
-export const jsxSyntax = (): PluginObj => {
-  return {
-    name: 'jsx-dom-runtime/jsx-syntax',
-    inherits: jsx.default || jsx,
-    visitor: {
-      Program: {
-        enter(path, state) {
-          set(state, 'id/jsx', createImportLazily(state, path, 'jsx'));
-          set(state, 'id/fragment', createImportLazily(state, path, 'Fragment'));
-        },
-      },
-
-      JSXFragment: {
-        exit(path, file) {
-          const children = buildChildren(path.node);
-          const props = children.length > 0
-            ? [buildChildrenProperty(children)]
-            : [];
-
-          const child = t.callExpression(
-            get(file, 'id/fragment')(),
-            [t.objectExpression(props)],
-          );
-
-          annotateAsPure(child);
-          path.replaceWith(t.inherits(child, path.node));
-        },
-      },
-
-      JSXElement: {
-        exit(path, file) {
-          const node = t.callExpression(
-            get(file, 'id/jsx')(),
-            [getTag(path.node), buildProps(path.node)],
-          );
-
-          annotateAsPure(node);
-          path.replaceWith(t.inherits(node, path.node));
-        },
-      },
-
-      JSXAttribute(path) {
-        if (t.isJSXElement(path.node.value)) {
-          path.node.value = t.jsxExpressionContainer(path.node.value);
-        }
-      },
-    },
-  };
-
-  function getTag(node: t.JSXElement) {
-    const tagExpr = convertJSXIdentifier(
-      node.openingElement.name,
-      node.openingElement,
-    );
-
-    const tagName = t.isIdentifier(tagExpr)
-      ? tagExpr.name
-      : t.isStringLiteral(tagExpr)
-        ? tagExpr.value
-        : undefined;
-
-    if (t.react.isCompatTag(tagName)) {
-      return t.stringLiteral(tagName);
-    }
-
-    return tagExpr;
-  }
+const get = (state: PluginPass, name: string) => {
+  return state.get(`jsx-dom-runtime/jsx-syntax/${name}`);
 };
 
-function createImportLazily(
-  pass: PluginPass,
+const set = (state: PluginPass, name: string, v: any) => {
+  state.set(`jsx-dom-runtime/jsx-syntax/${name}`, v);
+};
+
+const createImport = (
   path: NodePath<t.Program>,
+  pass: PluginPass,
   importName: string,
-): () => t.Identifier | t.MemberExpression {
-  return () => {
+) => {
+  return (): t.Identifier | t.MemberExpression => {
     const source = 'jsx-dom-runtime';
 
     if (isModule(path)) {
@@ -126,4 +60,73 @@ function createImportLazily(
 
     return t.memberExpression(reference, t.identifier(importName));
   };
-}
+};
+
+const getTag = (node: t.JSXElement) => {
+  const tagExpr = convertJSXIdentifier(
+    node.openingElement.name,
+    node.openingElement,
+  );
+
+  const tagName = t.isIdentifier(tagExpr)
+    ? tagExpr.name
+    : t.isStringLiteral(tagExpr)
+      ? tagExpr.value
+      : undefined;
+
+  if (t.react.isCompatTag(tagName)) {
+    return t.stringLiteral(tagName);
+  }
+
+  return tagExpr;
+};
+
+export const jsxSyntax = (): PluginObj => {
+  return {
+    name: 'jsx-dom-runtime/jsx-syntax',
+    inherits: jsx.default || jsx,
+    visitor: {
+      Program: {
+        enter(path, state) {
+          set(state, 'id/jsx', createImport(path, state, 'jsx'));
+          set(state, 'id/fragment', createImport(path, state, 'Fragment'));
+        },
+      },
+
+      JSXFragment: {
+        exit(path, state) {
+          const children = buildChildren(path.node);
+          const props = children.length > 0
+            ? [buildChildrenProperty(children)]
+            : [];
+
+          const child = t.callExpression(
+            get(state, 'id/fragment')(),
+            [t.objectExpression(props)],
+          );
+
+          addPureAnnotate(child);
+          path.replaceWith(t.inherits(child, path.node));
+        },
+      },
+
+      JSXElement: {
+        exit(path, state) {
+          const node = t.callExpression(
+            get(state, 'id/jsx')(),
+            [getTag(path.node), buildProps(path.node)],
+          );
+
+          addPureAnnotate(node);
+          path.replaceWith(t.inherits(node, path.node));
+        },
+      },
+
+      JSXAttribute(path) {
+        if (t.isJSXElement(path.node.value)) {
+          path.node.value = t.jsxExpressionContainer(path.node.value);
+        }
+      },
+    },
+  };
+};
