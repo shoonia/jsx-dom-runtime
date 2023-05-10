@@ -47,6 +47,23 @@ describe('Child nodes', () => {
     );
   });
 
+  it.each([
+    [[[], undefined, null, false, ''], '<p></p>'],
+    [[0, 1, 5.5, -1, 126, 1n], /*****/ '<p>015.5-11261</p>'],
+    [[Infinity, -Infinity, NaN], /***/ '<p>Infinity-InfinityNaN</p>'],
+    [[true], /***********************/ '<p>true</p>'],
+    [[{}], /*************************/ '<p>[object Object]</p>'],
+    [['text'], /*********************/ '<p>text</p>'],
+    [['text', 'test'], /*************/ '<p>texttest</p>'],
+    [[new Text('text')], /***********/ '<p>text</p>'],
+    [[new Comment('x')], /***********/ '<p><!--x--></p>'],
+    [[<s>text</s>], /****************/ '<p><s>text</s></p>'],
+    [[<s>text</s>, <b>test</b>], /***/ '<p><s>text</s><b>test</b></p>'],
+  ])('should work with JSXSpreadChild = %s', (val, html) => {
+    // @ts-expect-error
+    expect(<p>{...val}</p>).toHaveOuterHTML(html);
+  });
+
   it('should have two children nodes with text', () => {
     expect(
       <pre>
@@ -99,6 +116,4 @@ describe('Child nodes', () => {
     expect(<article />).toHaveOuterHTML('<article></article>');
     expect(<article></article>).toHaveOuterHTML('<article></article>');
   });
-
-  it.todo('test JSXSpreadChild');
 });
