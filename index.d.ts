@@ -45,9 +45,9 @@ export function useText<T = string>(initContent?: T): readonly [
   (text: T) => void
 ]
 
-export function Extend(props: Record<string, (node: HTMLElement, value: any) => void>): undefined
+export function Extend(props: Record<string, (node: HTMLElement, value: any) => void>): void
 export function parseFromString(html: string): DocumentFragment
-export function Fragment(props: { children?: TChild | TChild[] }): DocumentFragment
+export function Fragment(children?: TChild | TChild[]): DocumentFragment
 export function Template(props: { children: string }): DocumentFragment
 
 interface CurrentTarget<T> {
