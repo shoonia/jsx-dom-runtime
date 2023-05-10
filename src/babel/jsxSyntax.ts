@@ -6,6 +6,7 @@ import t from '@babel/types';
 import {
   buildChildren,
   buildChildrenProperty,
+  buildProps,
   convertJSXIdentifier,
 } from './util';
 
@@ -17,15 +18,6 @@ const get = (pass: PluginPass, name: string) =>
   pass.get(`jsx-dom-runtime/jsx-syntax/${name}`);
 const set = (pass: PluginPass, name: string, v: any) =>
   pass.set(`jsx-dom-runtime/jsx-syntax/${name}`, v);
-
-const hasProto = (node: t.ObjectExpression) => {
-  return node.properties.some(
-    value =>
-      t.isObjectProperty(value, { computed: false, shorthand: false }) &&
-      (t.isIdentifier(value.key, { name: '__proto__' }) ||
-        t.isStringLiteral(value.key, { value: '__proto__' })),
-  );
-};
 
 export const jsxSyntax = (): PluginObj => {
   return {
@@ -42,16 +34,14 @@ export const jsxSyntax = (): PluginObj => {
       JSXFragment: {
         exit(path, file) {
           const children = buildChildren(path.node);
+          const props = children.length > 0
+            ? [buildChildrenProperty(children)]
+            : [];
 
           const child = t.callExpression(
             get(file, 'id/fragment')(),
-            [
-              t.objectExpression(
-                children.length > 0
-                  ? [buildChildrenProperty(children)]
-                  : [],
-              ),
-            ]);
+            [t.objectExpression(props)],
+          );
 
           annotateAsPure(child);
           path.replaceWith(t.inherits(child, path.node));
@@ -60,17 +50,9 @@ export const jsxSyntax = (): PluginObj => {
 
       JSXElement: {
         exit(path, file) {
-          const openingPath = path.get('openingElement');
-          const attribsArray = openingPath.get('attributes');
-          const children = buildChildren(path.node);
-
-          const attribs = attribsArray.length || children.length
-            ? buildJSXOpeningElementAttributes(attribsArray, children)
-            : t.objectExpression([]);
-
           const node = t.callExpression(
             get(file, 'id/jsx')(),
-            [getTag(openingPath), attribs],
+            [getTag(path.node), buildProps(path.node)],
           );
 
           annotateAsPure(node);
@@ -86,84 +68,17 @@ export const jsxSyntax = (): PluginObj => {
     },
   };
 
-  function accumulateAttribute(
-    array: t.ObjectExpression['properties'],
-    attr: NodePath<t.JSXAttribute | t.JSXSpreadAttribute>,
-  ) {
-    if (t.isJSXSpreadAttribute(attr.node)) {
-      const arg = attr.node.argument;
-      // Collect properties into props array if spreading object expression
-      if (t.isObjectExpression(arg) && !hasProto(arg)) {
-        Array.prototype.push.apply(array, arg.properties);
-      } else {
-        array.push(t.spreadElement(arg));
-      }
-      return array;
-    }
-
-    const value = t.isJSXExpressionContainer(attr.node.value)
-      ? attr.node.value.expression
-      : attr.node.value || t.booleanLiteral(true);
-
-    if (t.isStringLiteral(value)) {
-      value.value = value.value.replace(/\n\s+/g, ' ');
-    }
-
-    if (t.isJSXNamespacedName(attr.node.name)) {
-      // @ts-expect-error mutating AST
-      attr.node.name = t.stringLiteral(
-        attr.node.name.namespace.name + ':' + attr.node.name.name.name,
-      );
-    } else if (t.isValidIdentifier(attr.node.name.name, false)) {
-      // @ts-expect-error mutating AST
-      attr.node.name.type = 'Identifier';
-    } else {
-      // @ts-expect-error mutating AST
-      attr.node.name = t.stringLiteral(attr.node.name.name);
-    }
-
-    array.push(
-      t.inherits(
-        t.objectProperty(
-          // @ts-expect-error The attribute.node.name is an Identifier now
-          attr.node.name,
-          value,
-        ),
-        attr.node,
-      ),
-    );
-
-    return array;
-  }
-
-  // Builds props for React.jsx. This function adds children into the props
-  // and ensures that props is always an object
-  function buildJSXOpeningElementAttributes(
-    attribs: NodePath<t.JSXAttribute | t.JSXSpreadAttribute>[],
-    children: t.Expression[],
-  ) {
-    const props = attribs.reduce(accumulateAttribute, []);
-
-    if (children.length > 0) {
-      props.push(buildChildrenProperty(children));
-    }
-
-    return t.objectExpression(props);
-  }
-
-  function getTag(openingPath: NodePath<t.JSXOpeningElement>) {
+  function getTag(node: t.JSXElement) {
     const tagExpr = convertJSXIdentifier(
-      openingPath.node.name,
-      openingPath.node,
+      node.openingElement.name,
+      node.openingElement,
     );
 
-    let tagName: string;
-
-    if (t.isIdentifier(tagExpr)) {
-      tagName = tagExpr.name;
-    } else if (t.isStringLiteral(tagExpr)) {
-      tagName = tagExpr.value;
-    }
+    const tagName = t.isIdentifier(tagExpr)
+      ? tagExpr.name
+      : t.isStringLiteral(tagExpr)
+        ? tagExpr.value
+        : undefined;
 
     if (t.react.isCompatTag(tagName)) {
       return t.stringLiteral(tagName);
@@ -182,20 +97,20 @@ function createImportLazily(
     const source = 'jsx-dom-runtime';
 
     if (isModule(path)) {
-      let reference = get(pass, `imports/${importName}`);
+      const ref = get(pass, `imports/${importName}`);
 
-      if (reference) {
-        return t.cloneNode(reference);
+      if (ref) {
+        return t.cloneNode(ref);
       }
 
-      reference = addNamed(path, importName, source, {
+      const uncompiledRef = addNamed(path, importName, source, {
         importedInterop: 'uncompiled',
         importPosition: 'after',
       });
 
-      set(pass, `imports/${importName}`, reference);
+      set(pass, `imports/${importName}`, uncompiledRef);
 
-      return reference;
+      return uncompiledRef;
     }
 
     let reference = get(pass, `requires/${source}`);

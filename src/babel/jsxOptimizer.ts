@@ -1,46 +1,7 @@
-import type { NodePath, PluginObj } from '@babel/core';
+import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
-import {
-  buildChildren,
-  buildChildrenProperty,
-  convertJSXIdentifier,
-} from './util';
-
-const createCallExpression = (path: NodePath<t.JSXElement>): t.CallExpression => {
-  const props = path.node.openingElement.attributes.map((attr) => {
-    return t.isJSXSpreadAttribute(attr)
-      ? t.spreadElement(attr.argument)
-      : t.objectProperty(
-        t.identifier(
-          t.isJSXNamespacedName(attr.name)
-            ? JSON.stringify(attr.name.namespace.name + ':' + attr.name.name.name)
-            : t.isValidIdentifier(attr.name.name)
-              ? attr.name.name
-              : JSON.stringify(attr.name.name),
-        ),
-        t.isJSXExpressionContainer(attr.value)
-          ? t.isJSXEmptyExpression(attr.value.expression)
-            ? t.nullLiteral()
-            : attr.value.expression
-          : attr.value || t.booleanLiteral(true),
-      );
-  });
-
-  const children = buildChildren(path.node);
-
-  if (children.length > 0) {
-    props.push(buildChildrenProperty(children));
-  }
-
-  return t.callExpression(
-    convertJSXIdentifier(
-      path.node.openingElement.name,
-      path.node.openingElement
-    ),
-    [t.objectExpression(props)],
-  );
-};
+import { buildProps, convertJSXIdentifier } from './util';
 
 const isCapitalLetter = (name: t.JSXIdentifier): boolean => {
   const charCode = name.name.charCodeAt(0);
@@ -59,7 +20,10 @@ export const jsxOptimizer = (): PluginObj => {
         }
 
         if (t.isJSXMemberExpression(name) || isCapitalLetter(name)) {
-          const callExp = createCallExpression(path);
+          const callExp = t.callExpression(
+            convertJSXIdentifier(name, path.node.openingElement),
+            [buildProps(path.node)],
+          );
 
           const node = t.isJSXElement(path.parent) || t.isJSXFragment(path.parent)
             ? t.jsxExpressionContainer(callExp)

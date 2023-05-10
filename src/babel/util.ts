@@ -2,19 +2,51 @@ import t from '@babel/types';
 
 export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[] => {
   return t.react.buildChildren(node).map((child) => {
-    return t.isJSXSpreadChild(child)
-      ? child.expression
-      : child;
+    return t.isJSXSpreadChild(child) ? child.expression : child;
   });
 };
 
 export const buildChildrenProperty = (children: t.Expression[]): t.ObjectProperty => {
   return t.objectProperty(
     t.identifier('children'),
-    children.length === 1
-      ? children[0]
-      : t.arrayExpression(children),
+    children.length === 1 ? children[0] : t.arrayExpression(children),
   );
+};
+
+export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
+  const props = node.openingElement.attributes.map((attr) => {
+    if (t.isJSXSpreadAttribute(attr)) {
+      return t.spreadElement(attr.argument);
+    }
+
+    const name = t.identifier(
+      t.isJSXNamespacedName(attr.name)
+        ? JSON.stringify(attr.name.namespace.name + ':' + attr.name.name.name)
+        : t.isValidIdentifier(attr.name.name)
+          ? attr.name.name
+          : JSON.stringify(attr.name.name),
+    );
+
+    const value = t.isJSXExpressionContainer(attr.value)
+      ? t.isJSXEmptyExpression(attr.value.expression)
+        ? t.nullLiteral()
+        : attr.value.expression
+      : attr.value || t.booleanLiteral(true);
+
+    if (t.isStringLiteral(value)) {
+      value.value = value.value.replace(/\n\s+/g, ' ');
+    }
+
+    return t.objectProperty(name, value);
+  });
+
+  const children = buildChildren(node);
+
+  if (children.length > 0) {
+    props.push(buildChildrenProperty(children));
+  }
+
+  return t.objectExpression(props);
 };
 
 export const convertJSXIdentifier = (
