@@ -6,13 +6,6 @@ export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[
   });
 };
 
-export const buildChildrenProperty = (children: t.Expression[]): t.ObjectProperty => {
-  return t.objectProperty(
-    t.identifier('children'),
-    children.length === 1 ? children[0] : t.arrayExpression(children),
-  );
-};
-
 export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
   const props = node.openingElement.attributes.map((attr) => {
     if (t.isJSXSpreadAttribute(attr)) {
@@ -43,7 +36,12 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
   const children = buildChildren(node);
 
   if (children.length > 0) {
-    props.push(buildChildrenProperty(children));
+    props.push(
+      t.objectProperty(
+        t.identifier('children'),
+        children.length === 1 ? children[0] : t.arrayExpression(children),
+      ),
+    );
   }
 
   return t.objectExpression(props);

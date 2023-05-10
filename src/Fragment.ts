@@ -1,8 +1,8 @@
 import { appendChildren } from './appendChildren';
 
-export let Fragment = (props) => {
+export let Fragment = (children) => {
   let fragment = new DocumentFragment();
 
-  appendChildren(fragment, props.children);
+  appendChildren(fragment, children);
   return fragment;
 };

@@ -5,7 +5,6 @@ import t from '@babel/types';
 
 import {
   buildChildren,
-  buildChildrenProperty,
   buildProps,
   convertJSXIdentifier,
 } from './util';
@@ -96,13 +95,16 @@ export const jsxSyntax = (): PluginObj => {
       JSXFragment: {
         exit(path, state) {
           const children = buildChildren(path.node);
-          const props = children.length > 0
-            ? [buildChildrenProperty(children)]
-            : [];
+
+          const props = children.length > 0 ? [
+            children.length === 1
+              ? children[0]
+              : t.arrayExpression(children)
+          ] : [];
 
           const child = t.callExpression(
             get(state, 'id/fragment')(),
-            [t.objectExpression(props)],
+            props,
           );
 
           addPureAnnotate(child);

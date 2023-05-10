@@ -90,15 +90,15 @@ describe('Fragment', () => {
     ).toHaveInnerHTML('<p>1</p><p>2</p><p>3</p><p>4</p><p>5</p>');
   });
 
-  it('should work with component Fragment', () => {
+  it('should work with function Fragment', () => {
     const { Fragment } = createRequire(import.meta.url)('../jsx-runtime/index.cjs');
 
     expect(
       <div>
-        <Fragment>
-          <p>a</p>
-        </Fragment>
+        {Fragment()}
+        {Fragment(<p>a</p>)}
+        {Fragment([<p>b</p>, 'c'])}
       </div>
-    ).toHaveInnerHTML('<p>a</p>');
+    ).toHaveInnerHTML('<p>a</p><p>b</p>c');
   });
 });
