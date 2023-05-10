@@ -1,6 +1,6 @@
 import type { ConfigAPI } from '@babel/core';
+import jsx from '@babel/plugin-syntax-jsx';
 
-import { jsxOptimizer } from './jsxOptimizer';
 import { jsxSyntax } from './jsxSyntax';
 
 const index = (api: ConfigAPI) => {
@@ -8,11 +8,10 @@ const index = (api: ConfigAPI) => {
 
   return {
     plugins: [
-      jsxOptimizer,
+      jsx,
       jsxSyntax,
     ],
   };
 };
 
-index.jsxOptimizer = jsxOptimizer;
 export { index as default };

@@ -72,3 +72,22 @@ export const convertJSXIdentifier = (
 
   return node;
 };
+
+export const getTag = (node: t.JSXElement) => {
+  const tagExpr = convertJSXIdentifier(
+    node.openingElement.name,
+    node.openingElement,
+  );
+
+  const tagName = t.isIdentifier(tagExpr)
+    ? tagExpr.name
+    : t.isStringLiteral(tagExpr)
+      ? tagExpr.value
+      : undefined;
+
+  if (t.react.isCompatTag(tagName)) {
+    return t.stringLiteral(tagName);
+  }
+
+  return tagExpr;
+};
