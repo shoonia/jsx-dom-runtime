@@ -15,11 +15,11 @@ const addPureAnnotate = (node: t.Node): void => {
 };
 
 const get = (state: PluginPass, name: string) => {
-  return state.get(`jsx-dom-runtime/jsx-syntax/${name}`);
+  return state.get(`jsx-dom-runtime/babel-plugin-jsx-syntax/${name}`);
 };
 
 const set = (state: PluginPass, name: string, v: any) => {
-  state.set(`jsx-dom-runtime/jsx-syntax/${name}`, v);
+  state.set(`jsx-dom-runtime/babel-plugin-jsx-syntax/${name}`, v);
 };
 
 const createImport = (
@@ -83,7 +83,7 @@ const getTag = (node: t.JSXElement) => {
 
 export const jsxSyntax = (): PluginObj => {
   return {
-    name: 'jsx-dom-runtime/jsx-syntax',
+    name: 'jsx-dom-runtime/babel-plugin-jsx-syntax',
     inherits: jsx.default || jsx,
     visitor: {
       Program: {

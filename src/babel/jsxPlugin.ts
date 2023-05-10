@@ -3,11 +3,37 @@ import t from '@babel/types';
 
 import { isHtmlTag, sureSvg, maybeSvg } from './tags/tags';
 import { isBoolAttribute, isDOMEvent } from './tags/dom';
+import { buildProps, convertJSXIdentifier } from './util';
 
-export const jsxPlugin = (): PluginObj => {
+const isCapitalLetter = (name: t.JSXIdentifier): boolean => {
+  const charCode = name.name.charCodeAt(0);
+  return charCode >= 65 && charCode <= 90;
+};
+
+export const jsxOptimizer = (): PluginObj => {
   return {
-    name: 'jsx-dom-runtime/babel-plugin',
+    name: 'jsx-dom-runtime/babel-plugin-optimize-jsx-runtime',
     visitor: {
+      JSXElement(path) {
+        const { name } = path.node.openingElement;
+
+        if (t.isJSXNamespacedName(name)) {
+          return;
+        }
+
+        if (t.isJSXMemberExpression(name) || isCapitalLetter(name)) {
+          const callExp = t.callExpression(
+            convertJSXIdentifier(name, path.node.openingElement),
+            [buildProps(path.node)],
+          );
+
+          const node = t.isJSXElement(path.parent) || t.isJSXFragment(path.parent)
+            ? t.jsxExpressionContainer(callExp)
+            : callExp;
+
+          path.replaceWith(t.inherits(node, path.node));
+        }
+      },
       JSXOpeningElement(path) {
         const node = path.node;
 
