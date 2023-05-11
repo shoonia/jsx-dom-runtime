@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "jsx-dom-runtime",
+    "moduleResolution": "node",
+    "noEmit": true,
+    "strict": true,
+    "lib": [
+      "DOM"
+    ]
+  }
+}
