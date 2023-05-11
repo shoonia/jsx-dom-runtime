@@ -56,20 +56,17 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
 
 export const convertJSXIdentifier = (
   node: t.JSXIdentifier | t.JSXMemberExpression | t.JSXNamespacedName,
-  parent: t.JSXOpeningElement | t.JSXMemberExpression,
-): t.ThisExpression | t.StringLiteral | t.MemberExpression | t.Identifier => {
+): t.StringLiteral | t.MemberExpression | t.Identifier => {
   if (t.isJSXIdentifier(node)) {
-    if (node.name === 'this' && t.isReferenced(node, parent)) {
-      return t.thisExpression();
-    } else if (t.isValidIdentifier(node.name, false)) {
+    if (t.isValidIdentifier(node.name, false)) {
       return toIdentifier(node);
     }
 
     return t.stringLiteral(node.name);
   } else if (t.isJSXMemberExpression(node)) {
     return t.memberExpression(
-      convertJSXIdentifier(node.object, node),
-      convertJSXIdentifier(node.property, node),
+      convertJSXIdentifier(node.object),
+      convertJSXIdentifier(node.property),
     );
   } else if (t.isJSXNamespacedName(node)) {
     return t.stringLiteral(node.namespace.name + ':' + node.name.name);
@@ -79,10 +76,7 @@ export const convertJSXIdentifier = (
 };
 
 export const getTag = (node: t.JSXElement) => {
-  const tagExpr = convertJSXIdentifier(
-    node.openingElement.name,
-    node.openingElement,
-  );
+  const tagExpr = convertJSXIdentifier(node.openingElement.name);
 
   const tagName = t.isIdentifier(tagExpr)
     ? tagExpr.name
