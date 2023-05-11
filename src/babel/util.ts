@@ -1,5 +1,16 @@
 import t from '@babel/types';
 
+const toIdentifier = (node: t.JSXIdentifier): t.Identifier => {
+  // @ts-expect-error cast AST type to Identifier
+  node.type = 'Identifier';
+
+  return node as unknown as t.Identifier;
+};
+
+const toStringLiteral = (node: t.JSXNamespacedName): t.StringLiteral => {
+  return t.stringLiteral(node.namespace.name + ':' + node.name.name);
+};
+
 export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[] => {
   return t.react.buildChildren(node).map((child) => {
     return t.isJSXSpreadChild(child) ? child.expression : child;
@@ -12,13 +23,11 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
       return t.spreadElement(attr.argument);
     }
 
-    const name = t.identifier(
-      t.isJSXNamespacedName(attr.name)
-        ? JSON.stringify(attr.name.namespace.name + ':' + attr.name.name.name)
-        : t.isValidIdentifier(attr.name.name)
-          ? attr.name.name
-          : JSON.stringify(attr.name.name),
-    );
+    const name = t.isJSXNamespacedName(attr.name)
+      ? toStringLiteral(attr.name)
+      : t.isValidIdentifier(attr.name.name, false)
+        ? toIdentifier(attr.name)
+        : t.stringLiteral(attr.name.name);
 
     const value = t.isJSXExpressionContainer(attr.value)
       ? t.isJSXEmptyExpression(attr.value.expression)
@@ -39,7 +48,9 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
     props.push(
       t.objectProperty(
         t.identifier('children'),
-        children.length === 1 ? children[0] : t.arrayExpression(children),
+        children.length === 1
+          ? children[0]
+          : t.arrayExpression(children),
       ),
     );
   }
@@ -49,35 +60,27 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
 
 export const convertJSXIdentifier = (
   node: t.JSXIdentifier | t.JSXMemberExpression | t.JSXNamespacedName,
-  parent: t.JSXOpeningElement | t.JSXMemberExpression,
-): t.ThisExpression | t.StringLiteral | t.MemberExpression | t.Identifier => {
+): t.StringLiteral | t.MemberExpression | t.Identifier => {
   if (t.isJSXIdentifier(node)) {
-    if (node.name === 'this' && t.isReferenced(node, parent)) {
-      return t.thisExpression();
-    } else if (t.isValidIdentifier(node.name, false)) {
-      // @ts-expect-error cast AST type to Identifier
-      node.type = 'Identifier';
-      return node as unknown as t.Identifier;
+    if (t.isValidIdentifier(node.name, false)) {
+      return toIdentifier(node);
     }
-    return t.stringLiteral(node.name);
 
+    return t.stringLiteral(node.name);
   } else if (t.isJSXMemberExpression(node)) {
     return t.memberExpression(
-      convertJSXIdentifier(node.object, node),
-      convertJSXIdentifier(node.property, node),
+      convertJSXIdentifier(node.object),
+      convertJSXIdentifier(node.property),
     );
   } else if (t.isJSXNamespacedName(node)) {
-    return t.stringLiteral(node.namespace.name + ':' + node.name.name);
+    return toStringLiteral(node);
   }
 
   return node;
 };
 
 export const getTag = (node: t.JSXElement) => {
-  const tagExpr = convertJSXIdentifier(
-    node.openingElement.name,
-    node.openingElement,
-  );
+  const tagExpr = convertJSXIdentifier(node.openingElement.name);
 
   const tagName = t.isIdentifier(tagExpr)
     ? tagExpr.name

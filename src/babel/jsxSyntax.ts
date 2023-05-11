@@ -109,7 +109,7 @@ export const jsxSyntax = (): PluginObj => {
 
           if (t.isJSXMemberExpression(name) || isCapitalLetter(name)) {
             const callExp = t.callExpression(
-              convertJSXIdentifier(name, path.node.openingElement),
+              convertJSXIdentifier(name),
               [buildProps(path.node)],
             );
 
