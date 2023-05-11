@@ -30,4 +30,9 @@ describe('babel-plugin-jsx-syntax: UnaryExpression', () => {
     const result = await t('~ <App />;');
     expect(result).toBe('~App({});');
   });
+
+  it('should work with `typeof`', async () => {
+    const result = await t('typeof <App />;');
+    expect(result).toBe('typeof App({});');
+  });
 });
