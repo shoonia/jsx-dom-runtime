@@ -39,7 +39,9 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
     props.push(
       t.objectProperty(
         t.identifier('children'),
-        children.length === 1 ? children[0] : t.arrayExpression(children),
+        children.length === 1
+          ? children[0]
+          : t.arrayExpression(children),
       ),
     );
   }
@@ -57,10 +59,11 @@ export const convertJSXIdentifier = (
     } else if (t.isValidIdentifier(node.name, false)) {
       // @ts-expect-error cast AST type to Identifier
       node.type = 'Identifier';
+
       return node as unknown as t.Identifier;
     }
-    return t.stringLiteral(node.name);
 
+    return t.stringLiteral(node.name);
   } else if (t.isJSXMemberExpression(node)) {
     return t.memberExpression(
       convertJSXIdentifier(node.object, node),
