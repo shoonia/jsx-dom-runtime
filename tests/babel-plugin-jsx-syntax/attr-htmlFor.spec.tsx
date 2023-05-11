@@ -1,9 +1,9 @@
-import { FC } from '../..';
+import { t } from './transform';
 
 describe('Babel transform `htmlFor` to `for`', () => {
   it('should transform `htmlFor` attribute in <label />', () => {
     // @ts-expect-error
-    const label: HTMLLabelElement = <label htmlFor="some" />;
+    const label = <label htmlFor="some" />;
 
     expect(label).toHaveOuterHTML('<label for="some"></label>');
     expect(label).toHaveProperty('htmlFor', 'some');
@@ -18,10 +18,10 @@ describe('Babel transform `htmlFor` to `for`', () => {
     expect(output.htmlFor[1]).toBe('b');
   });
 
-  it('should not transform `htmlFor` attribute in FC', () => {
-    const MyElem: FC<any, any> = (props) => Object.keys(props).join('');
+  it('should not transform `htmlFor` attribute in FC', async () => {
+    const result = await t('<MyElem htmlFor="" />');
 
-    expect(<MyElem htmlFor="" />).toBe('htmlFor');
+    expect(result).toBe('MyElem({htmlFor:""});');
   });
 
   it('should not transform `htmlFor` attribute in Web Component', () => {

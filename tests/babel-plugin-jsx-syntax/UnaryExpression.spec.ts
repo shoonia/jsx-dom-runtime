@@ -11,6 +11,11 @@ describe('babel-plugin-jsx-syntax: UnaryExpression', () => {
     expect(result).toBe('delete App({});');
   });
 
+  it('should work with `typeof`', async () => {
+    const result = await t('typeof <App />;');
+    expect(result).toBe('typeof App({});');
+  });
+
   it('should work with +', async () => {
     const result = await t('+ <App />;');
     expect(result).toBe('+App({});');
@@ -29,10 +34,5 @@ describe('babel-plugin-jsx-syntax: UnaryExpression', () => {
   it('should work with ~', async () => {
     const result = await t('~ <App />;');
     expect(result).toBe('~App({});');
-  });
-
-  it('should work with `typeof`', async () => {
-    const result = await t('typeof <App />;');
-    expect(result).toBe('typeof App({});');
   });
 });
