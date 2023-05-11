@@ -15,9 +15,13 @@ const addPureAnnotate = (node: t.Node): void => {
   t.addComment(node, 'leading', '#__PURE__');
 };
 
-const isCapitalLetter = (name: t.JSXIdentifier): boolean => {
+const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
   const charCode = name.name.charCodeAt(0);
-  return charCode >= 65 && charCode <= 90;
+
+  // A-Z, $ or _
+  return (charCode >= 65 && charCode <= 90) ||
+    charCode === 36 ||
+    charCode === 95;
 };
 
 const get = (state: PluginPass, name: string) => {
@@ -107,7 +111,7 @@ export const jsxSyntax = (): PluginObj => {
             return;
           }
 
-          if (t.isJSXMemberExpression(name) || isCapitalLetter(name)) {
+          if (t.isJSXMemberExpression(name) || isFunctionComponent(name)) {
             const callExp = t.callExpression(
               convertJSXIdentifier(name),
               [buildProps(path.node)],
