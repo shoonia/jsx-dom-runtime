@@ -57,6 +57,7 @@ export const convertJSXIdentifier = (
     if (t.isValidIdentifier(node.name, false)) {
       // @ts-expect-error cast AST type to Identifier
       node.type = 'Identifier';
+
       return node as unknown as t.Identifier;
     }
 
