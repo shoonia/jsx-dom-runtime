@@ -807,6 +807,8 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   xChannelSelector?: 'R' | 'G' | 'B' | 'A'
   yChannelSelector?: 'R' | 'G' | 'B' | 'A'
   /** @deprecated Not Supported */
+  'xlink:actuate'?: 'onLoad'
+  /** @deprecated Not Supported */
   'xlink:arcrole'?: string
   /**
    * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
@@ -815,16 +817,21 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'xlink:href'?: string
   /** @deprecated Not Supported */
   'xlink:show'?: 'new' | 'replace' | 'embed' | 'other' | 'none'
-  /** @deprecated Not Supported */
-  'xlink:title'?: string
   /**
    * New content should use a `<title>` child element rather than a `xlink:title` attribute
    * @deprecated
    */
-  'xlink:type'?: string
+ 'xlink:title'?: string
+ /** @deprecated Not Supported */
+  'xlink:type'?: 'simple'
+  /** @deprecated Not Supported */
+  'xlink:role'?: string
   /** @deprecated Not Supported */
   'xml:base'?: string
-  /** @deprecated Not Supported */
+  /**
+   * Not Supported. There is also a `lang` attribute (without namespace)
+   * @deprecated
+   */
   'xml:lang'?: string
   /**
    * Instead of using the `xml:space` attribute, use the `white-space` CSS property
