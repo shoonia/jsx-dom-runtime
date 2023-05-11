@@ -46,8 +46,6 @@ export let jsx = (key, props) => {
       node.setAttribute(key, val);
     } else if (val) {
       node.setAttribute(key, '');
-    } else {
-      node.removeAttribute(key);
     }
   }
 
