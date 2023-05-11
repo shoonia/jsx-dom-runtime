@@ -7,6 +7,10 @@ const toIdentifier = (node: t.JSXIdentifier): t.Identifier => {
   return node as unknown as t.Identifier;
 };
 
+const toStringLiteral = (node: t.JSXNamespacedName): t.StringLiteral => {
+  return t.stringLiteral(node.namespace.name + ':' + node.name.name);
+};
+
 export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[] => {
   return t.react.buildChildren(node).map((child) => {
     return t.isJSXSpreadChild(child) ? child.expression : child;
@@ -20,7 +24,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
     }
 
     const name = t.isJSXNamespacedName(attr.name)
-      ? t.stringLiteral(attr.name.namespace.name + ':' + attr.name.name.name)
+      ? toStringLiteral(attr.name)
       : t.isValidIdentifier(attr.name.name, false)
         ? toIdentifier(attr.name)
         : t.stringLiteral(attr.name.name);
@@ -69,7 +73,7 @@ export const convertJSXIdentifier = (
       convertJSXIdentifier(node.property),
     );
   } else if (t.isJSXNamespacedName(node)) {
-    return t.stringLiteral(node.namespace.name + ':' + node.name.name);
+    return toStringLiteral(node);
   }
 
   return node;
