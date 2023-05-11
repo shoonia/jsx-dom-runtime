@@ -1,11 +1,15 @@
-import { useRef } from 'jsx-dom-runtime';
+import { type FC, useRef } from 'jsx-dom-runtime';
 
 import * as s from './ListItem.module.css';
 
-export const ListItem = ({ text }) => {
-  const ref = useRef();
+interface Props {
+  text: string;
+}
 
-  const remove = () => {
+export const ListItem: FC<Props> = ({ text }) => {
+  const ref = useRef<HTMLLIElement>();
+
+  const remove: EventListener = () => {
     ref.current.remove();
   };
 
@@ -18,7 +22,7 @@ export const ListItem = ({ text }) => {
         onclick={remove}
         aria-label="remove"
       >
-        <svg width="24" height="24" fill="#8e21b1" aria-hidden="true">
+        <svg width="24" height="24" fill="#8e21b1" aria-hidden>
           <path d="M17 17a3 3 0 01-3 3H9a3 3 0 01-3-3V7H5V6h13v1h-1v10zM9 9h1v7H9V9zm2 0h1v7h-1V9zm2 0h1v7h-1V9zm-6 8a2 2 0 002 2h5a2 2 0 002-2V7H7v10zm6-11V5h-3v1H9V5a1 1 0 011-1h3a1 1 0 011 1v1h-1z" />
         </svg>
       </button>

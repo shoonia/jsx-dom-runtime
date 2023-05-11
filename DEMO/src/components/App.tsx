@@ -1,11 +1,11 @@
-import { useRef } from 'jsx-dom-runtime';
+import { type FC, useRef } from 'jsx-dom-runtime';
 
 import * as s from './App.module.css';
 import { ListItem } from './ListItem';
 
-export const App = () => {
-  const inputRef = useRef();
-  const ulRef = useRef();
+export const App: FC = () => {
+  const inputRef = useRef<HTMLInputElement>();
+  const ulRef = useRef<HTMLUListElement>();
 
   const addItem = () => {
     const input = inputRef.current;
@@ -19,7 +19,7 @@ export const App = () => {
     }
   };
 
-  const pressEnter = (event) => {
+  const pressEnter = (event: KeyboardEvent) => {
     if (event.key === 'Enter') {
       addItem();
     }
