@@ -1,5 +1,12 @@
 import t from '@babel/types';
 
+const toIdentifier = (node: t.JSXIdentifier): t.Identifier => {
+  // @ts-expect-error cast AST type to Identifier
+  node.type = 'Identifier';
+
+  return node as unknown as t.Identifier;
+};
+
 export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[] => {
   return t.react.buildChildren(node).map((child) => {
     return t.isJSXSpreadChild(child) ? child.expression : child;
@@ -12,13 +19,11 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
       return t.spreadElement(attr.argument);
     }
 
-    const name = t.identifier(
-      t.isJSXNamespacedName(attr.name)
-        ? JSON.stringify(attr.name.namespace.name + ':' + attr.name.name.name)
-        : t.isValidIdentifier(attr.name.name)
-          ? attr.name.name
-          : JSON.stringify(attr.name.name),
-    );
+    const name = t.isJSXNamespacedName(attr.name)
+      ? t.stringLiteral(attr.name.namespace.name + ':' + attr.name.name.name)
+      : t.isValidIdentifier(attr.name.name, false)
+        ? toIdentifier(attr.name)
+        : t.stringLiteral(attr.name.name);
 
     const value = t.isJSXExpressionContainer(attr.value)
       ? t.isJSXEmptyExpression(attr.value.expression)
@@ -57,10 +62,7 @@ export const convertJSXIdentifier = (
     if (node.name === 'this' && t.isReferenced(node, parent)) {
       return t.thisExpression();
     } else if (t.isValidIdentifier(node.name, false)) {
-      // @ts-expect-error cast AST type to Identifier
-      node.type = 'Identifier';
-
-      return node as unknown as t.Identifier;
+      return toIdentifier(node);
     }
 
     return t.stringLiteral(node.name);
