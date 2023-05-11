@@ -39,7 +39,9 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
     props.push(
       t.objectProperty(
         t.identifier('children'),
-        children.length === 1 ? children[0] : t.arrayExpression(children),
+        children.length === 1
+          ? children[0]
+          : t.arrayExpression(children),
       ),
     );
   }
