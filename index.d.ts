@@ -2,9 +2,6 @@
 /// <reference lib="es2022" />
 import { Properties, SvgProperties } from 'csstype';
 
-type Booleanish = boolean | 'true' | 'false'
-type Numeric = number | `${number}`
-
 interface RefObject<T> {
   readonly current: T
 }
@@ -190,41 +187,41 @@ export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
   'aria-activedescendant'?: string
   /** Indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the aria-relevant attribute. */
-  'aria-atomic'?: Booleanish
+  'aria-atomic'?: boolean | 'true' | 'false'
   /**
   * Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be
   * presented if they are made.
   */
   'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both'
   /** Indicates an element is being modified and that assistive technologies MAY want to wait until the modifications are complete before exposing them to the user. */
-  'aria-busy'?: Booleanish
+  'aria-busy'?: boolean | 'true' | 'false'
   /**
   * Indicates the current "checked" state of checkboxes, radio buttons, and other widgets.
   * @see aria-pressed @see aria-selected.
   */
-  'aria-checked'?: Booleanish | 'mixed'
+  'aria-checked'?: boolean | 'true' | 'false' | 'mixed'
   /**
   * Defines the total number of columns in a table, grid, or treegrid.
   * @see aria-colindex.
   */
-  'aria-colcount'?: Numeric
+  'aria-colcount'?: number | `${number}`
   /**
   * Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid.
   * @see aria-colcount @see aria-colspan.
   */
-  'aria-colindex'?: Numeric
+  'aria-colindex'?: number | `${number}`
   /**
   * Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.
   * @see aria-colindex @see aria-rowspan.
   */
-  'aria-colspan'?: Numeric
+  'aria-colspan'?: number | `${number}`
   /**
   * Identifies the element (or elements) whose contents or presence are controlled by the current element.
   * @see aria-owns.
   */
   'aria-controls'?: string
   /** Indicates the element that represents the current item within a container or set of related elements. */
-  'aria-current'?: Booleanish | 'page' | 'step' | 'location' | 'date' | 'time'
+  'aria-current'?: boolean | 'true' | 'false' | 'page' | 'step' | 'location' | 'date' | 'time'
   /**
   * Identifies the element (or elements) that describes the object.
   * @see aria-labelledby
@@ -239,7 +236,7 @@ export interface AriaAttributes {
   * Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable.
   * @see aria-hidden @see aria-readonly.
   */
-  'aria-disabled'?: Booleanish
+  'aria-disabled'?: boolean | 'true' | 'false'
   /**
   * Indicates what functions can be performed when a dragged object is released on the drop target.
   * @deprecated in ARIA 1.1
@@ -251,7 +248,7 @@ export interface AriaAttributes {
   */
   'aria-errormessage'?: string
   /** Indicates whether the element, or another grouping element it controls, is currently expanded or collapsed. */
-  'aria-expanded'?: Booleanish
+  'aria-expanded'?: boolean | 'true' | 'false'
   /**
   * Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion,
   * allows assistive technology to override the general default of reading in document source order.
@@ -261,20 +258,20 @@ export interface AriaAttributes {
   * Indicates an element's "grabbed" state in a drag-and-drop operation.
   * @deprecated in ARIA 1.1
   */
-  'aria-grabbed'?: Booleanish
+  'aria-grabbed'?: boolean | 'true' | 'false'
 
   /** Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by an element. */
-  'aria-haspopup'?: Booleanish | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
+  'aria-haspopup'?: boolean | 'true' | 'false' | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
   /**
   * Indicates whether the element is exposed to an accessibility API.
   * @see aria-disabled.
   */
-  'aria-hidden'?: Booleanish
+  'aria-hidden'?: boolean | 'true' | 'false'
   /**
   * Indicates the entered value does not conform to the format expected by the application.
   * @see aria-errormessage.
   */
-  'aria-invalid'?: Booleanish | 'grammar' | 'spelling'
+  'aria-invalid'?: boolean | 'true' | 'false' | 'grammar' | 'spelling'
   /** Indicates keyboard shortcuts that an author has implemented to activate or give focus to an element. */
   'aria-keyshortcuts'?: string
   /**
@@ -288,15 +285,15 @@ export interface AriaAttributes {
   */
   'aria-labelledby'?: string
   /** Defines the hierarchical level of an element within a structure. */
-  'aria-level'?: Numeric
+  'aria-level'?: number | `${number}`
   /** Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region. */
   'aria-live'?: 'off' | 'assertive' | 'polite'
   /** Indicates whether an element is modal when displayed. */
-  'aria-modal'?: Booleanish
+  'aria-modal'?: boolean | 'true' | 'false'
   /** Indicates whether a text box accepts multiple lines of input or only a single line. */
-  'aria-multiline'?: Booleanish
+  'aria-multiline'?: boolean | 'true' | 'false'
   /** Indicates that the user may select more than one item from the current selectable descendants. */
-  'aria-multiselectable'?: Booleanish
+  'aria-multiselectable'?: boolean | 'true' | 'false'
   /** Indicates whether the element's orientation is horizontal, vertical, or unknown/ambiguous. */
   'aria-orientation'?: 'horizontal' | 'vertical'
   /**
@@ -314,17 +311,17 @@ export interface AriaAttributes {
   * Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
   * @see aria-setsize.
   */
-  'aria-posinset'?: Numeric
+  'aria-posinset'?: number | `${number}`
   /**
   * Indicates the current "pressed" state of toggle buttons.
   * @see aria-checked @see aria-selected.
   */
-  'aria-pressed'?: Booleanish | 'mixed'
+  'aria-pressed'?: boolean | 'true' | 'false' | 'mixed'
   /**
   * Indicates that the element is not editable, but is otherwise operable.
   * @see aria-disabled.
   */
-  'aria-readonly'?: Booleanish
+  'aria-readonly'?: boolean | 'true' | 'false'
 
   /**
   * Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified.
@@ -343,51 +340,71 @@ export interface AriaAttributes {
   | 'text removals'
 
   /** Indicates that user input is required on the element before a form may be submitted. */
-  'aria-required'?: Booleanish
+  'aria-required'?: boolean | 'true' | 'false'
   /** Defines a human-readable, author-localized description for the role of an element. */
   'aria-roledescription'?: string
   /**
   * Defines the total number of rows in a table, grid, or treegrid.
   * @see aria-rowindex.
   */
-  'aria-rowcount'?: Numeric
+  'aria-rowcount'?: number | `${number}`
   /**
   * Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid.
   * @see aria-rowcount @see aria-rowspan.
   */
-  'aria-rowindex'?: Numeric
+  'aria-rowindex'?: number | `${number}`
   /**
   * Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.
   * @see aria-rowindex @see aria-colspan.
   */
-  'aria-rowspan'?: Numeric
+  'aria-rowspan'?: number | `${number}`
   /**
   * Indicates the current "selected" state of various widgets.
   * @see aria-checked @see aria-pressed.
   */
-  'aria-selected'?: Booleanish
+  'aria-selected'?: boolean | 'true' | 'false'
   /**
   * Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
   * @see aria-posinset.
   */
-  'aria-setsize'?: Numeric
+  'aria-setsize'?: number | `${number}`
   /** Indicates if items in a table or grid are sorted in ascending or descending order. */
   'aria-sort'?: 'none' | 'ascending' | 'descending' | 'other'
   /** Defines the maximum allowed value for a range widget. */
-  'aria-valuemax'?: Numeric
+  'aria-valuemax'?: number | `${number}`
   /** Defines the minimum allowed value for a range widget. */
-  'aria-valuemin'?: Numeric
+  'aria-valuemin'?: number | `${number}`
   /**
   * Defines the current value for a range widget.
   * @see aria-valuetext.
   */
-  'aria-valuenow'?: Numeric
+  'aria-valuenow'?: number | `${number}`
   /** Defines the human readable text alternative of aria-valuenow for a range widget. */
   'aria-valuetext'?: string
 }
 
-// All the WAI-ARIA 1.1 role attribute values from https://www.w3.org/TR/wai-aria-1.1/#role_definitions
-type AriaRole =
+export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
+  innerHTML?: string
+  accessKey?: string
+  class?: string
+  contentEditable?: boolean | 'true' | 'false' | 'inherit'
+  contextMenu?: string
+  dir?: 'ltr' | 'rtl' | 'auto'
+  draggable?: boolean | 'true' | 'false'
+  hidden?: boolean | 'hidden' | 'until-found' | ''
+  id?: string
+  inert?: boolean | 'inert' | ''
+  lang?: string
+  placeholder?: string
+  slot?: string
+  spellcheck?: 'true' | 'false'
+  style?: string | CSSProperties
+  tabIndex?: number | `${number}`
+  title?: string;
+  translate?: 'yes' | 'no'
+  // Unknown
+  radioGroup?: string // <command>, <menuitem>
+  role?: // All the WAI-ARIA 1.1 role attribute values from https://www.w3.org/TR/wai-aria-1.1/#role_definitions
   | 'alert'
   | 'alertdialog'
   | 'application'
@@ -458,30 +475,6 @@ type AriaRole =
   | 'treegrid'
   | 'treeitem'
   | 'none presentation'
-
-export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-  innerHTML?: string
-  accessKey?: string
-  class?: string
-  contentEditable?: Booleanish | 'inherit'
-  contextMenu?: string
-  dir?: 'ltr' | 'rtl' | 'auto'
-  draggable?: Booleanish
-  hidden?: boolean | 'hidden' | 'until-found' | ''
-  id?: string
-  inert?: boolean | 'inert' | ''
-  lang?: string
-  placeholder?: string
-  slot?: string
-  spellcheck?: 'true' | 'false'
-  style?: string | CSSProperties
-  tabIndex?: Numeric
-  title?: string;
-  translate?: 'yes' | 'no'
-  // Unknown
-  radioGroup?: string // <command>, <menuitem>
-  // WAI-ARIA
-  role?: AriaRole
   // RDFa Attributes
   about?: string
   datatype?: string
@@ -500,7 +493,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   itemType?: string
   itemID?: string
   itemRef?: string
-  results?: Numeric
+  results?: number | `${number}`
   security?: string
   unselectable?: 'on' | 'off'
   // Living Standard
@@ -532,23 +525,23 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   allowReorder?: 'no' | 'yes'
   /** @deprecated */
   alphabetic?: number | string
-  amplitude?: Numeric
+  amplitude?: number | `${number}`
   /** @deprecated */
   'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
   /** @deprecated */
-  ascent?: Numeric
+  ascent?: number | `${number}`
   attributeName?: string
   /** @deprecated */
   attributeType?: 'CSS' | 'XML' | 'auto'
   autoReverse?: number | string
-  azimuth?: Numeric
+  azimuth?: number | `${number}`
   baseFrequency?: number | string
   'baseline-shift'?: SVGProperties['baselineShift']
   baseProfile?: number | string
   /** @deprecated */
   bbox?: number | string
   begin?: number | string
-  bias?: Numeric
+  bias?: number | `${number}`
   by?: number | string
   calcMode?: 'discrete' | 'linear' | 'paced' | 'spline'
   /** @deprecated */
@@ -570,7 +563,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   cursor?: SVGProperties['cursor']
   decelerate?: number | string
   descent?: number | string
-  diffuseConstant?: Numeric
+  diffuseConstant?: number | `${number}`
   direction?: 'ltr' | 'rtl'
   display?: SVGProperties['display']
   divisor?: number | string
@@ -579,11 +572,11 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   dx?: number | string
   dy?: number | string
   edgeMode?: 'duplicate' | 'wrap' | 'none'
-  elevation?: Numeric
+  elevation?: number | `${number}`
   /** @deprecated */
   'enable-background'?: number | string
   end?: number | string
-  exponent?: Numeric
+  exponent?: number | `${number}`
   externalResourcesRequired?: number | string
   fill?: SVGProperties['fill']
   'fill-opacity'?: SVGProperties['fillOpacity']
@@ -620,25 +613,25 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   gradientTransform?: string
   gradientUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   /** @deprecated */
-  hanging?: Numeric
+  hanging?: number | `${number}`
   /** @deprecated */
-  'horiz-adv-x'?: Numeric
+  'horiz-adv-x'?: number | `${number}`
   /** @deprecated */
-  'horiz-origin-x'?: Numeric
+  'horiz-origin-x'?: number | `${number}`
   /** @deprecated */
-  'horiz-origin-y'?: Numeric
+  'horiz-origin-y'?: number | `${number}`
   /** @deprecated */
-  ideographic?: Numeric
+  ideographic?: number | `${number}`
   'image-rendering'?: SVGProperties['imageRendering']
   in2?: string
   in?: string
-  intercept?: Numeric
-  k1?: Numeric
-  k2?: Numeric
-  k3?: Numeric
-  k4?: Numeric
+  intercept?: number | `${number}`
+  k1?: number | `${number}`
+  k2?: number | `${number}`
+  k3?: number | `${number}`
+  k4?: number | `${number}`
   /** @deprecated */
-  k?: Numeric
+  k?: number | `${number}`
   kernelMatrix?: number | string
   /** @deprecated */
   kernelUnitLength?: number | string
@@ -651,7 +644,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   lengthAdjust?: 'spacing' | 'spacingAndGlyphs'
   'letter-spacing'?: SVGProperties['letterSpacing']
   'lighting-color'?: SVGProperties['lightingColor']
-  limitingConeAngle?: Numeric
+  limitingConeAngle?: number | `${number}`
   marker?: SVGProperties['marker']
   'marker-start'?: SVGProperties['markerStart']
   'marker-end'?: SVGProperties['markerEnd']
@@ -664,14 +657,14 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   maskContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   maskUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   /** @deprecated */
-  mathematical?: Numeric
+  mathematical?: number | `${number}`
   max?: string
   min?: string
   media?: string
   method?: 'align' | 'stretch'
   mode?: string
   name?: string
-  numOctaves?: Numeric
+  numOctaves?: number | `${number}`
   offset?: number | string
   opacity?: SVGProperties['opacity']
   operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic' | 'erode' | 'dilate'
@@ -681,21 +674,21 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   orientation?: 'h' | 'v'
   origin?: 'default' | string
   overflow?: SVGProperties['overflow']
-  'overline-position'?: Numeric
-  'overline-thickness'?: Numeric
+  'overline-position'?: number | `${number}`
+  'overline-thickness'?: number | `${number}`
   'paint-order'?: SVGProperties['paintOrder']
   /** @deprecated */
   'panose-1'?: string
   path?: string
-  pathLength?: Numeric
+  pathLength?: number | `${number}`
   patternContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   patternTransform?: string
   patternUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   'pointer-events'?: SVGProperties['pointerEvents']
   points?: string
-  pointsAtX?: Numeric
-  pointsAtY?: Numeric
-  pointsAtZ?: Numeric
+  pointsAtX?: number | `${number}`
+  pointsAtY?: number | `${number}`
+  pointsAtZ?: number | `${number}`
   preserveAlpha?: 'true' | 'false'
   preserveAspectRatio?: string
   primitiveUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
@@ -704,38 +697,38 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   refX?: number | string | 'left' | 'center' | 'right'
   refY?: number | string | 'top' | 'center' | 'bottom'
   renderingIntent?: number | string
-  repeatCount?: Numeric | 'indefinite'
+  repeatCount?: number | `${number}` | 'indefinite'
   repeatDur?: number | string | 'indefinite'
   requiredExtensions?: number | string
   /** @deprecated */
   requiredFeatures?: string
   restart?: 'always' | 'whenNotActive' | 'never'
   result?: string
-  rotate?: Numeric | 'auto' | 'auto-reverse'
+  rotate?: number | `${number}` | 'auto' | 'auto-reverse'
   rx?: number | string | 'auto'
   ry?: number | string | 'auto'
-  scale?: Numeric
-  seed?: Numeric
+  scale?: number | `${number}`
+  seed?: number | `${number}`
   'shape-rendering'?: SVGProperties['shapeRendering']
   side?: 'left' | 'right'
   /** @deprecated */
-  slope?: Numeric
+  slope?: number | `${number}`
   spacing?: 'auto' | 'exact'
-  specularConstant?: Numeric
-  specularExponent?: Numeric
+  specularConstant?: number | `${number}`
+  specularExponent?: number | `${number}`
   speed?: number | string
   spreadMethod?: 'pad' | 'reflect' | 'repeat'
   startOffset?: number | string
   stdDeviation?: number | string
   /** @deprecated */
-  stemh?: Numeric
+  stemh?: number | `${number}`
   /** @deprecated */
-  stemv?: Numeric
+  stemv?: number | `${number}`
   stitchTiles?: 'noStitch' | 'stitch'
   'stop-color'?: SVGProperties['stopColor']
   'stop-opacity'?: SVGProperties['stopOpacity']
-  'strikethrough-position'?: Numeric
-  'strikethrough-thickness'?: Numeric
+  'strikethrough-position'?: number | `${number}`
+  'strikethrough-thickness'?: number | `${number}`
   /** @deprecated */
   string?: number | string
   stroke?: SVGProperties['stroke']
@@ -746,9 +739,9 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'stroke-miterlimit'?: SVGProperties['strokeMiterlimit']
   'stroke-opacity'?: SVGProperties['strokeOpacity']
   'stroke-width'?: SVGProperties['strokeWidth']
-  surfaceScale?: Numeric
+  surfaceScale?: number | `${number}`
   systemLanguage?: string
-  tabindex?: Numeric
+  tabindex?: number | `${number}`
   tableValues?: number | string
   target?: string | '_self' | '_parent' | '_top' | '_blank'
   targetX?: number | string
@@ -765,45 +758,45 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   u1?: string
   /** @deprecated */
   u2?: string
-  'underline-position'?: Numeric
-  'underline-thickness'?: Numeric
+  'underline-position'?: number | `${number}`
+  'underline-thickness'?: number | `${number}`
   unicode?: string
   'unicode-bidi'?: SVGProperties['unicodeBidi']
   /** @deprecated */
   'unicode-range'?: string
   /** @deprecated */
-  'units-per-em'?: Numeric
+  'units-per-em'?: number | `${number}`
   /** @deprecated */
-  'v-alphabetic'?: Numeric
+  'v-alphabetic'?: number | `${number}`
   /** @deprecated */
-  'v-hanging'?: Numeric
+  'v-hanging'?: number | `${number}`
   /** @deprecated */
-  'v-ideographic'?: Numeric
+  'v-ideographic'?: number | `${number}`
   /** @deprecated */
-  'v-mathematical'?: Numeric
+  'v-mathematical'?: number | `${number}`
   values?: string
   'vector-effect'?: SVGProperties['vectorEffect']
   /** @deprecated */
   version?: '1.0' | '1.1'
   /** @deprecated */
-  'vert-adv-y'?: Numeric
+  'vert-adv-y'?: number | `${number}`
   /** @deprecated */
-  'vert-origin-x'?: Numeric
+  'vert-origin-x'?: number | `${number}`
   /** @deprecated */
-  'vert-origin-y'?: Numeric
+  'vert-origin-y'?: number | `${number}`
   viewBox?: string
   /** @deprecated */
   viewTarget?: string
   visibility?: SVGProperties['visibility']
   /** @deprecated */
-  widths?: Numeric
+  widths?: number | `${number}`
   'word-spacing'?: SVGProperties['wordSpacing']
   'writing-mode'?: SVGProperties['writingMode']
   x1?: number | string
   x2?: number | string
   x?: number | string
   /** @deprecated */
-  'x-height'?: Numeric
+  'x-height'?: number | `${number}`
   xChannelSelector?: 'R' | 'G' | 'B' | 'A'
   yChannelSelector?: 'R' | 'G' | 'B' | 'A'
   /** @deprecated Not Supported */
@@ -821,8 +814,8 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
    * New content should use a `<title>` child element rather than a `xlink:title` attribute
    * @deprecated
    */
- 'xlink:title'?: string
- /** @deprecated Not Supported */
+  'xlink:title'?: string
+  /** @deprecated Not Supported */
   'xlink:type'?: 'simple'
   /** @deprecated Not Supported */
   'xlink:role'?: string
@@ -842,41 +835,12 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   y1?: number | string
   y2?: number | string
   y?: number | string
-  z?: Numeric
+  z?: number | `${number}`
   /** @deprecated */
   zoomAndPan?: 'disable' | 'magnify'
   height?: number | string
   width?: number | string
 }
-
-export type HTMLAttrinuteCORS =
-  | 'anonymous'
-  | 'use-credentials'
-  | ''
-
-export type HTMLInputTypeAttribute =
-  | 'button'
-  | 'checkbox'
-  | 'color'
-  | 'date'
-  | 'datetime-local'
-  | 'email'
-  | 'file'
-  | 'hidden'
-  | 'image'
-  | 'month'
-  | 'number'
-  | 'password'
-  | 'radio'
-  | 'range'
-  | 'reset'
-  | 'search'
-  | 'submit'
-  | 'tel'
-  | 'text'
-  | 'time'
-  | 'url'
-  | 'week'
 
 interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
   download?: any;
@@ -935,12 +899,12 @@ interface CanvasHTMLAttributes extends HTMLAttributes<HTMLCanvasElement> {
 }
 
 interface ColHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
-  span?: Numeric
+  span?: number | `${number}`
   width?: number | string
 }
 
 interface ColgroupHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
-  span?: Numeric
+  span?: number | `${number}`
 }
 
 interface DataHTMLAttributes extends HTMLAttributes<HTMLDataElement> {
@@ -1009,9 +973,9 @@ interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   height?: number | string;
   loading?: 'eager' | 'lazy'
   /** @deprecated */
-  marginHeight?: Numeric;
+  marginHeight?: number | `${number}`;
   /** @deprecated */
-  marginWidth?: Numeric;
+  marginWidth?: number | `${number}`;
   name?: string;
   referrerPolicy?: ReferrerPolicy;
   sandbox?: string
@@ -1026,7 +990,7 @@ interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
 
 interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
   alt?: string;
-  crossOrigin?: HTMLAttrinuteCORS;
+  crossOrigin?: 'anonymous' | 'use-credentials' | '';
   decoding?: 'async' | 'auto' | 'sync';
   height?: number | string;
   loading?: 'eager' | 'lazy';
@@ -1051,7 +1015,7 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   autofocus?: boolean | 'autofocus' | '';
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
   checked?: boolean | 'checked' | '';
-  crossOrigin?: HTMLAttrinuteCORS;
+  crossOrigin?: 'anonymous' | 'use-credentials' | '';
   disabled?: boolean | 'disabled' | '';
   dirName?: string;
   enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
@@ -1064,19 +1028,41 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   height?: number | string
   list?: string;
   max?: number | string
-  maxLength?: Numeric;
+  maxLength?: number | `${number}`;
   min?: number | string
-  minLength?: Numeric;
+  minLength?: number | `${number}`;
   multiple?: boolean | 'multiple' | '';
   name?: string;
   pattern?: string;
   placeholder?: string;
   readOnly?: boolean | 'readonly' | '';
   required?: boolean | 'required' | '';
-  size?: Numeric;
+  size?: number | `${number}`;
   src?: string
-  step?: Numeric
-  type?: HTMLInputTypeAttribute;
+  step?: number | `${number}`
+  type?:
+  | 'button'
+  | 'checkbox'
+  | 'color'
+  | 'date'
+  | 'datetime-local'
+  | 'email'
+  | 'file'
+  | 'hidden'
+  | 'image'
+  | 'month'
+  | 'number'
+  | 'password'
+  | 'radio'
+  | 'range'
+  | 'reset'
+  | 'search'
+  | 'submit'
+  | 'tel'
+  | 'text'
+  | 'time'
+  | 'url'
+  | 'week';
   value?: number | string;
   width?: number | string
   onchange?: ChangeEventHandler<HTMLInputElement>
@@ -1087,13 +1073,13 @@ interface LabelHTMLAttributes extends HTMLAttributes<HTMLLabelElement> {
 }
 
 interface LiHTMLAttributes extends HTMLAttributes<HTMLLIElement> {
-  value?: Numeric;
+  value?: number | `${number}`;
 }
 
 interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
   title?: string;
   as?: string;
-  crossOrigin?: HTMLAttrinuteCORS;
+  crossOrigin?: 'anonymous' | 'use-credentials' | '';
   disabled?: boolean | 'disabled' | '';
   href?: string
   hreflang?: string;
@@ -1123,7 +1109,7 @@ interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
   autoplay?: boolean | 'autoplay' | '';
   controls?: boolean | 'controls' | '';
   controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
-  crossOrigin?: HTMLAttrinuteCORS;
+  crossOrigin?: 'anonymous' | 'use-credentials' | '';
   loop?: boolean | 'loop' | '';
   mediaGroup?: string
   preload?: 'none' | 'metadata' | 'auto';
@@ -1139,11 +1125,11 @@ interface MetaHTMLAttributes extends HTMLAttributes<HTMLMetaElement> {
 
 interface MeterHTMLAttributes extends HTMLAttributes<HTMLMeterElement> {
   form?: string
-  high?: Numeric;
-  low?: Numeric;
+  high?: number | `${number}`;
+  low?: number | `${number}`;
   max?: number | string;
   min?: number | string;
-  optimum?: Numeric;
+  optimum?: number | `${number}`;
   value?: number | string;
 }
 
@@ -1165,7 +1151,7 @@ interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
 
 interface OlHTMLAttributes extends HTMLAttributes<HTMLOListElement> {
   reversed?: boolean | 'reversed' | '';
-  start?: Numeric;
+  start?: number | `${number}`;
   type?: '1' | 'a' | 'A' | 'i' | 'I';
 }
 
@@ -1194,15 +1180,15 @@ interface ParamHTMLAttributes extends HTMLAttributes<HTMLParamElement> {
 }
 
 interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
-  max?: Numeric;
-  value?: Numeric;
+  max?: number | `${number}`;
+  value?: number | `${number}`;
 }
 
 interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
   async?: boolean | 'async' | ''
   /** @deprecated */
   charset?: string;
-  crossOrigin?: HTMLAttrinuteCORS;
+  crossOrigin?: 'anonymous' | 'use-credentials' | '';
   defer?: boolean | 'defer' | '';
   integrity?: string
   noModule?: boolean | 'nomodule' | ''
@@ -1221,7 +1207,7 @@ interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   multiple?: boolean | 'multiple' | '';
   name?: string;
   required?: boolean | 'required' | '';
-  size?: Numeric;
+  size?: number | `${number}`;
   value?: number | string;
   onchange?: ChangeEventHandler<HTMLSelectElement>;
 }
@@ -1258,17 +1244,17 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
 interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   autocomplete?: string;
   autofocus?: boolean | 'autofocus' | '';
-  cols?: Numeric;
+  cols?: number | `${number}`;
   dirName?: string;
   disabled?: boolean | 'disabled' | '';
   form?: string
-  maxLength?: Numeric;
-  minLength?: Numeric;
+  maxLength?: number | `${number}`;
+  minLength?: number | `${number}`;
   name?: string;
   placeholder?: string;
   readOnly?: boolean | 'readonly' | '';
   required?: boolean | 'required' | '';
-  rows?: Numeric;
+  rows?: number | `${number}`;
   value?: number | string;
   wrap?: 'hard' | 'soft' | 'off';
   onchange?: ChangeEventHandler<HTMLTextAreaElement>;
@@ -1276,9 +1262,9 @@ interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
 
 interface TdHTMLAttributes extends HTMLAttributes<HTMLTableDataCellElement> {
   align?: 'left' | 'center' | 'right' | 'justify' | 'char'
-  colSpan?: Numeric
+  colSpan?: number | `${number}`
   headers?: string
-  rowSpan?: Numeric
+  rowSpan?: number | `${number}`
   scope?: string
   abbr?: string
   height?: number | string
@@ -1288,9 +1274,9 @@ interface TdHTMLAttributes extends HTMLAttributes<HTMLTableDataCellElement> {
 
 interface ThHTMLAttributes extends HTMLAttributes<HTMLTableHeaderCellElement> {
   align?: 'left' | 'center' | 'right' | 'justify' | 'char'
-  colSpan?: Numeric
+  colSpan?: number | `${number}`
   headers?: string
-  rowSpan?: Numeric
+  rowSpan?: number | `${number}`
   scope?: string
   abbr?: string
 }
