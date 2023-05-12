@@ -45,9 +45,9 @@ const events = new Set([
 
 const boolAttrs = new Set([
   'async', 'autofocus', 'autoplay', 'controls', 'checked', 'defer', 'disabled',
-  'formNoValidate', 'readOnly', 'multiple', 'loop', 'required', 'hidden',
-  'open', 'selected', 'noModule', 'noValidate', 'playsInline', 'reversed',
-  'inert', 'disablePictureInPicture', 'disableRemotePlayback'
+  'formnovalidate', 'readonly', 'multiple', 'loop', 'required', 'hidden',
+  'open', 'selected', 'nomodule', 'novalidate', 'playsinline', 'reversed',
+  'inert','disablepictureinpicture', 'disableremoteplayback'
 ]);
 
 export const isDOMEvent = (name: string) => events.has(name);

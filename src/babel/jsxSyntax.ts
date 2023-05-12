@@ -217,12 +217,12 @@ export const jsxSyntax = (): PluginObj => {
             return;
           }
 
-          if (isBoolAttribute(attr.name) && path.node.value === null) {
-            path.node.value = t.stringLiteral('');
+          const attrName = attr.name.toLowerCase();
+
+          if (isBoolAttribute(attr.name)) {
+            path.node.value ??= t.stringLiteral('');
             return;
           }
-
-          const attrName = attr.name.toLowerCase();
 
           if (isDOMEvent(attrName)) {
             attr.name = attrName;

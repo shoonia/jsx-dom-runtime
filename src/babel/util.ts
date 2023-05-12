@@ -33,7 +33,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
       ? t.isJSXEmptyExpression(attr.value.expression)
         ? t.nullLiteral()
         : attr.value.expression
-      : attr.value || t.booleanLiteral(true);
+      : attr.value ?? t.booleanLiteral(true);
 
     if (t.isStringLiteral(value)) {
       value.value = value.value.replace(/\n\s+/g, ' ');
