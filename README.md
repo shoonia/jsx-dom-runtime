@@ -198,7 +198,7 @@ Result
 
 ### properties
 
-Add support of the DOM Element object properties. By default supported [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) and `value`.
+Add support of the DOM Element object properties. By default supported property `value`.
 
 ```js
 import { properties } from 'jsx-dom-runtime';
