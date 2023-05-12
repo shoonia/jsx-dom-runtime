@@ -389,14 +389,22 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   contentEditable?: true | '' | 'true' | 'false' | 'inherit'
   contextMenu?: string
   dir?: 'ltr' | 'rtl' | 'auto'
-  draggable?: boolean | 'true' | 'false'
+  /**
+   * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<img draggable>` is forbidden. The correct usage is `<img draggable="true">`
+   * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
+   */
+  draggable?: 'true' | 'false';
   hidden?: boolean | 'hidden' | 'until-found' | ''
   id?: string
   inert?: boolean | 'inert' | ''
   lang?: string
   placeholder?: string
   slot?: string
-  spellcheck?: 'true' | 'false'
+  /**
+   * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<input spellcheck>` is forbidden. The correct usage is `<input spellcheck="true">`
+   * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
+   */
+  spellcheck?: 'true' | 'false';
   style?: string | CSSProperties
   tabIndex?: number | `${number}`
   title?: string;

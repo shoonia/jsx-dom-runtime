@@ -54,9 +54,14 @@ describe('Props', () => {
     expect(<p contentEditable="false" />).toHaveAttribute('contenteditable', 'false');
   });
 
-  it('should add spellCheck attribute', () => {
+  it('should add `spellcheck` attribute', () => {
     expect(<p spellcheck="true" />).toHaveAttribute('spellcheck', 'true');
     expect(<p spellcheck="false" />).toHaveAttribute('spellcheck', 'false');
+  });
+
+  it('should add `draggable` attribute', () => {
+    expect(<p draggable="true" />).toHaveAttribute('draggable', 'true');
+    expect(<p draggable="false" />).toHaveAttribute('draggable', 'false');
   });
 
   it('should have `hidden` attribute', () => {
