@@ -386,7 +386,7 @@ export interface AriaAttributes {
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   accessKey?: string
   class?: string
-  contentEditable?: boolean | 'true' | 'false' | 'inherit'
+  contentEditable?: true | '' | 'true' | 'false' | 'inherit'
   contextMenu?: string
   dir?: 'ltr' | 'rtl' | 'auto'
   draggable?: boolean | 'true' | 'false'
