@@ -26,6 +26,11 @@ describe('babel-plugin-jsx-syntax: AssignmentExpression', () => {
     expect(result).toBe('x&=App({});');
   });
 
+  it('should work with ^=', async () => {
+    const result = await t('x ^= <App />;');
+    expect(result).toBe('x^=App({});');
+  });
+
   it('should work with &&=', async () => {
     const result = await t('x &&= <App />;');
     expect(result).toBe('x&&=App({});');
@@ -34,6 +39,16 @@ describe('babel-plugin-jsx-syntax: AssignmentExpression', () => {
   it('should work with *=', async () => {
     const result = await t('x *= <App />;');
     expect(result).toBe('x*=App({});');
+  });
+
+  it('should work with **=', async () => {
+    const result = await t('x **= <App />;');
+    expect(result).toBe('x**=App({});');
+  });
+
+  it('should work with %=', async () => {
+    const result = await t('x %= <App />;');
+    expect(result).toBe('x%=App({});');
   });
 
   it('should work with /=', async () => {
@@ -54,5 +69,20 @@ describe('babel-plugin-jsx-syntax: AssignmentExpression', () => {
   it('should work with ??=', async () => {
     const result = await t('x ??= <App />;');
     expect(result).toBe('x??=App({});');
+  });
+
+  it('should work with <<=', async () => {
+    const result = await t('x <<= <App />;');
+    expect(result).toBe('x<<=App({});');
+  });
+
+  it('should work with >>=', async () => {
+    const result = await t('x >>= <App />;');
+    expect(result).toBe('x>>=App({});');
+  });
+
+  it('should work with >>>=', async () => {
+    const result = await t('x >>>= <App />;');
+    expect(result).toBe('x>>>=App({});');
   });
 });
