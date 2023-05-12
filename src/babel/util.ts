@@ -67,16 +67,16 @@ export const convertJSXIdentifier = (
     }
 
     return t.stringLiteral(node.name);
-  } else if (t.isJSXMemberExpression(node)) {
+  }
+
+  if (t.isJSXMemberExpression(node)) {
     return t.memberExpression(
       convertJSXIdentifier(node.object),
       convertJSXIdentifier(node.property),
     );
-  } else if (t.isJSXNamespacedName(node)) {
-    return toStringLiteral(node);
   }
 
-  return node;
+  return toStringLiteral(node);
 };
 
 export const getTag = (node: t.JSXElement) => {
