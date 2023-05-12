@@ -3,7 +3,7 @@ import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 import t from '@babel/types';
 
 import { boolAttrs, DOMEvents } from './tags/dom';
-import { html, sureSvg } from './tags/tags';
+import { sureSvg } from './tags/tags';
 import {
   buildChildren,
   buildProps,
@@ -171,9 +171,9 @@ export const jsxSyntax = (): PluginObj => {
 
         const tag = parent.name.name;
 
-        if (!(html.has(tag) || sureSvg.has(tag))) {
-          return;
-        }
+        // if (!(html.has(tag) || sureSvg.has(tag))) {
+        //   return;
+        // }
 
         const attr = path.node.name;
 
