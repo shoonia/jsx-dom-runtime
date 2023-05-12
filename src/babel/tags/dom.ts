@@ -1,4 +1,4 @@
-const events = new Set([
+export const DOMEvents = new Set([
   'oncopy', 'oncut', 'onpaste',
   // Composition Events
   'oncompositionend', 'oncompositionstart', 'oncompositionupdate',
@@ -43,12 +43,9 @@ const events = new Set([
   'ontoggle',
 ]);
 
-const boolAttrs = new Set([
+export const boolAttrs = new Set([
   'async', 'autofocus', 'autoplay', 'controls', 'checked', 'defer', 'disabled',
   'formnovalidate', 'readonly', 'multiple', 'loop', 'required', 'hidden',
   'open', 'selected', 'nomodule', 'novalidate', 'playsinline', 'reversed',
   'inert','disablepictureinpicture', 'disableremoteplayback'
 ]);
-
-export const isDOMEvent = (name: string) => events.has(name);
-export const isBoolAttribute = (name: string) => boolAttrs.has(name);

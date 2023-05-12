@@ -2,8 +2,8 @@ import type { PluginObj, PluginPass, NodePath } from '@babel/core';
 import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 import t from '@babel/types';
 
-import { isBoolAttribute, isDOMEvent } from './tags/dom';
-import { isHtmlTag, maybeSvg, sureSvg } from './tags/tags';
+import { boolAttrs, DOMEvents } from './tags/dom';
+import { html, maybeSvg, sureSvg } from './tags/tags';
 import {
   buildChildren,
   buildProps,
@@ -144,8 +144,8 @@ export const jsxSyntax = (): PluginObj => {
         }
 
         if (
-          sureSvg(node.name.name) ||
-          maybeSvg(node.name.name) &&
+          sureSvg.has(node.name.name) ||
+          maybeSvg.has(node.name.name) &&
           t.isJSXElement(path.parentPath.parent) &&
           path.parentPath.parent.openingElement.attributes.some((i) => {
             // @ts-expect-error
@@ -176,7 +176,7 @@ export const jsxSyntax = (): PluginObj => {
 
         const tag = parent.name.name;
 
-        if (!(isHtmlTag(tag) || sureSvg(tag))) {
+        if (!(html.has(tag) || sureSvg.has(tag))) {
           return;
         }
 
@@ -214,12 +214,12 @@ export const jsxSyntax = (): PluginObj => {
 
           const attrName = attr.name.toLowerCase();
 
-          if (isBoolAttribute(attr.name)) {
+          if (boolAttrs.has(attr.name)) {
             path.node.value ??= t.stringLiteral('');
             return;
           }
 
-          if (isDOMEvent(attrName)) {
+          if (DOMEvents.has(attrName)) {
             attr.name = attrName;
           }
         }
