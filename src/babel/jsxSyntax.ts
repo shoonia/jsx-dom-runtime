@@ -177,23 +177,6 @@ export const jsxSyntax = (): PluginObj => {
 
         const attr = path.node.name;
 
-        if (t.isJSXNamespacedName(attr)) {
-          if (
-            tag === 'a' &&
-            attr.namespace.name === 'xlink' &&
-            attr.name.name === 'href'
-          ) {
-            path.replaceWith(
-              t.jSXAttribute(
-                t.jSXIdentifier('href'),
-                path.node.value,
-              ),
-            );
-          }
-
-          return;
-        }
-
         if (t.isJSXIdentifier(attr)) {
           if (attr.name === 'className') {
             attr.name = 'class';
@@ -209,14 +192,30 @@ export const jsxSyntax = (): PluginObj => {
 
           const attrName = attr.name.toLowerCase();
 
-          if (boolAttrs.has(attr.name)) {
-            path.node.value ??= t.stringLiteral('');
+          if (DOMEvents.has(attrName)) {
+            attr.name = attrName;
             return;
           }
 
-          if (DOMEvents.has(attrName)) {
-            attr.name = attrName;
+          if (boolAttrs.has(attr.name)) {
+            path.node.value ??= t.stringLiteral('');
           }
+
+          return;
+        }
+
+        if (
+          tag === 'a' &&
+          t.isJSXNamespacedName(attr) &&
+          attr.name.name === 'href' &&
+          attr.namespace.name === 'xlink'
+        ) {
+          path.replaceWith(
+            t.jSXAttribute(
+              t.jSXIdentifier('href'),
+              path.node.value,
+            ),
+          );
         }
       },
     },
