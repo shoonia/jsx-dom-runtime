@@ -203,14 +203,10 @@ Add support of the DOM Element object properties. By default supported property 
 ```js
 import { properties } from 'jsx-dom-runtime';
 
-// https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
-properties.add('textContent');
-// https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
-properties.add('innerHTML');
-// https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
-properties.add('volume');
-// https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/muted
-properties.add('muted');
+properties.add('textContent') // https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
+  .add('innerHTML') // https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
+  .add('volume') // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
+  .add('muted'); // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/muted
 
 document.body.append(
   <>
