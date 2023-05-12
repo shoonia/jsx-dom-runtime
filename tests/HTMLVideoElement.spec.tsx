@@ -102,4 +102,9 @@ describe('HTMLVideoElement', () => {
     expect(<video crossOrigin="anonymous" />).toHaveProperty('crossOrigin', 'anonymous');
     expect(<video crossOrigin="anonymous" />).toHaveAttribute('crossOrigin', 'anonymous');
   });
+
+  it('should have `crossOrigin` attribute', () => {
+    expect(<video crossOrigin />).toHaveProperty('crossOrigin', '');
+    expect(<video crossOrigin />).toHaveAttribute('crossOrigin', '');
+  });
 });

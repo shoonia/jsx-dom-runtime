@@ -32,4 +32,9 @@ describe('HTMLScriptElement', () => {
     expect(<script crossOrigin="anonymous" />).toHaveProperty('crossOrigin', 'anonymous');
     expect(<script crossOrigin="anonymous" />).toHaveAttribute('crossOrigin', 'anonymous');
   });
+
+  it('should have `crossOrigin` attribute', () => {
+    expect(<script crossOrigin />).toHaveProperty('crossOrigin', '');
+    expect(<script crossOrigin />).toHaveAttribute('crossOrigin', '');
+  });
 });

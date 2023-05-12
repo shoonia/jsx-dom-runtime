@@ -9,6 +9,11 @@ describe('HTMLLinkElement', () => {
     expect(<link crossOrigin="anonymous" />).toHaveAttribute('crossOrigin', 'anonymous');
   });
 
+  it('should have `crossOrigin` attribute', () => {
+    expect(<link crossOrigin />).toHaveProperty('crossOrigin', '');
+    expect(<link crossOrigin />).toHaveAttribute('crossOrigin', '');
+  });
+
   it('should support `rel` attribute', () => {
     expect(<link rel="stylesheet" />).toHaveProperty('rel', 'stylesheet');
     expect(<link rel="stylesheet" />).toHaveAttribute('rel', 'stylesheet');

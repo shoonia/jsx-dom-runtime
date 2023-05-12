@@ -35,6 +35,11 @@ describe('HTMLImageElement', () => {
     expect(<img crossOrigin="anonymous" />).toHaveAttribute('crossOrigin', 'anonymous');
   });
 
+  it('should have `crossOrigin` attribute', () => {
+    expect(<img crossOrigin />).toHaveProperty('crossOrigin', '');
+    expect(<img crossOrigin />).toHaveAttribute('crossOrigin', '');
+  });
+
   it('should add loading', () => {
     expect(<img loading="lazy" />).toHaveAttribute('loading', 'lazy');
   });

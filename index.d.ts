@@ -989,7 +989,7 @@ interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
 
 interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
   alt?: string;
-  crossOrigin?: 'anonymous' | 'use-credentials' | '';
+  crossOrigin?: true | '' | 'anonymous' | 'use-credentials';
   decoding?: 'async' | 'auto' | 'sync';
   height?: number | string;
   loading?: 'eager' | 'lazy';
@@ -1014,7 +1014,7 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   autofocus?: boolean | 'autofocus' | '';
   capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
   checked?: boolean | 'checked' | '';
-  crossOrigin?: 'anonymous' | 'use-credentials' | '';
+  crossOrigin?: true | '' | 'anonymous' | 'use-credentials';
   disabled?: boolean | 'disabled' | '';
   dirName?: string;
   enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
@@ -1078,7 +1078,7 @@ interface LiHTMLAttributes extends HTMLAttributes<HTMLLIElement> {
 interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
   title?: string;
   as?: string;
-  crossOrigin?: 'anonymous' | 'use-credentials' | '';
+  crossOrigin?: true | '' | 'anonymous' | 'use-credentials';
   disabled?: boolean | 'disabled' | '';
   href?: string
   hreflang?: string;
@@ -1108,7 +1108,7 @@ interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
   autoplay?: boolean | 'autoplay' | '';
   controls?: boolean | 'controls' | '';
   controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
-  crossOrigin?: 'anonymous' | 'use-credentials' | '';
+  crossOrigin?: true | '' | 'anonymous' | 'use-credentials';
   loop?: boolean | 'loop' | '';
   mediaGroup?: string
   preload?: 'none' | 'metadata' | 'auto';
@@ -1187,7 +1187,7 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
   async?: boolean | 'async' | ''
   /** @deprecated */
   charset?: string;
-  crossOrigin?: 'anonymous' | 'use-credentials' | '';
+  crossOrigin?: true | '' | 'anonymous' | 'use-credentials';
   defer?: boolean | 'defer' | '';
   integrity?: string
   noModule?: boolean | 'nomodule' | ''
