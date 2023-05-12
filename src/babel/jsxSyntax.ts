@@ -168,11 +168,6 @@ export const jsxSyntax = (): PluginObj => {
       },
 
       JSXAttribute(path) {
-        if (t.isJSXElement(path.node.value)) {
-          path.node.value = t.jsxExpressionContainer(path.node.value);
-          return;
-        }
-
         const { parent } = path;
 
         if (!t.isJSXOpeningElement(parent) || !t.isJSXIdentifier(parent.name)) {
