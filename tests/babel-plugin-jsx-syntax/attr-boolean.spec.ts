@@ -27,4 +27,14 @@ describe('Babel transform HTML boolean attribute value `true` to empty string `"
     const result = await t('<img contentEditable="false" />');
     expect(result).toBe(_jsx + '_jsx("img",{contentEditable:"false"});');
   });
+
+  it('should transform `capture` attribute', async () => {
+    const result = await t('<input capture />');
+    expect(result).toBe(_jsx + '_jsx("input",{capture:""});');
+  });
+
+  it('should NOT transform `capture` attribute', async () => {
+    const result = await t('<input capture="user" />');
+    expect(result).toBe(_jsx + '_jsx("input",{capture:"user"});');
+  });
 });

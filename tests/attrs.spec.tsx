@@ -1,6 +1,6 @@
 describe('Props', () => {
   it('should have two attributes', () => {
-    expect(<img src="/test" alt="test"/>).toHaveOuterHTML('<img src="/test" alt="test">');
+    expect(<img src="/test" alt="test" />).toHaveOuterHTML('<img src="/test" alt="test">');
   });
 
   it('should have the role attribute', () => {
@@ -68,6 +68,12 @@ describe('Props', () => {
     expect(<strong hidden />).toHaveProperty('hidden', true);
     expect(<strong hidden="" />).toHaveProperty('hidden', true);
     expect(<strong hidden="hidden" />).toHaveProperty('hidden', true);
+  });
+
+  it('should have `capture` attribute', () => {
+    expect(<input capture />).toHaveAttribute('capture', '');
+    expect(<input capture="" />).toHaveAttribute('capture', '');
+    expect(<input capture="user" />).toHaveAttribute('capture', 'user');
   });
 
   it('should add all attributes', () => {

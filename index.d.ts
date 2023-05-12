@@ -411,7 +411,11 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   translate?: 'yes' | 'no'
   // Unknown
   radioGroup?: string // <command>, <menuitem>
-  role?: // All the WAI-ARIA 1.1 role attribute values from https://www.w3.org/TR/wai-aria-1.1/#role_definitions
+  /**
+   * All the WAI-ARIA 1.1 role attribute values
+   * @see https://www.w3.org/TR/wai-aria-1.1/#role_definitions
+   */
+  role?:
   | 'alert'
   | 'alertdialog'
   | 'application'
@@ -1020,7 +1024,7 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   alt?: string
   autocomplete?: string;
   autofocus?: boolean | 'autofocus' | '';
-  capture?: boolean | string // https://www.w3.org/TR/html-media-capture/#the-capture-attribute
+  capture?: boolean | 'user' | 'environment' | ''
   checked?: boolean | 'checked' | '';
   crossOrigin?: true | '' | 'anonymous' | 'use-credentials';
   disabled?: boolean | 'disabled' | '';

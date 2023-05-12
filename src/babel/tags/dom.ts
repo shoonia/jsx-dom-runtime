@@ -45,7 +45,7 @@ export const DOMEvents = new Set([
 
 export const boolAttrs = new Set([
   'async', 'autofocus', 'autoplay', 'controls', 'checked', 'crossorigin',
-  'defer', 'disabled', 'contenteditable', 'formnovalidate', 'readonly',
+  'capture', 'defer', 'disabled', 'contenteditable', 'formnovalidate', 'readonly',
   'multiple', 'loop', 'required', 'hidden', 'open', 'selected', 'nomodule',
   'novalidate', 'playsinline', 'reversed', 'inert', 'disablepictureinpicture',
   'disableremoteplayback'
