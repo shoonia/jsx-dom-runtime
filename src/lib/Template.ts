@@ -1,7 +1,11 @@
 import { jsx } from '../jsxRuntime';
 
 export let parseFromString = (html: string): DocumentFragment => {
-  return jsx('template', { innerHTML: html }).content;
+  const template = jsx('template', {});
+
+  template.innerHTML = html;
+
+  return template.content;
 };
 
 export let Template = (props): DocumentFragment => {

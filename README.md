@@ -205,6 +205,8 @@ import { properties } from 'jsx-dom-runtime';
 
 // https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent
 properties.add('textContent');
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
+properties.add('innerHTML');
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
 properties.add('volume');
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/muted
@@ -213,6 +215,7 @@ properties.add('muted');
 document.body.append(
   <>
     <span textContent="Hello, world!" />
+    <span innerHTML="<p>Hello, world!</p>" />
     <audio
       src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"
       controls
@@ -235,6 +238,7 @@ declare global {
   namespace JSX {
     interface Attributes {
       textContent?: string;
+      innerHTML?: string;
       muted?: boolean;
       volume?: number;
     }

@@ -65,10 +65,6 @@ describe('Props', () => {
     expect(<strong hidden="hidden" />).toHaveProperty('hidden', true);
   });
 
-  it('should add html to component', () => {
-    expect(<div innerHTML="<p>text</p>" />).toHaveOuterHTML('<div><p>text</p></div>');
-  });
-
   it('should add all attributes', () => {
     const props = {
       class: 'box',

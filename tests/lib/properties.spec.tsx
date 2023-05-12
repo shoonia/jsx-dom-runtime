@@ -4,6 +4,7 @@ declare global {
   namespace JSX {
     interface Attributes {
       textContent?: string;
+      innerHTML?: string;
       volume?: number;
       muted?: boolean;
     }
@@ -21,6 +22,18 @@ describe('properties', () => {
     expect(<div textContent="hello" />).toHaveTextContent('hello');
 
     properties.delete('textContent');
+  });
+
+  it('should add html to component', () => {
+    expect(<div innerHTML="<p>text</p>" />).toHaveAttribute('innerhtml', '<p>text</p>');
+    expect(<div innerHTML="<p>text</p>" />).toHaveInnerHTML('');
+
+    properties.add('innerHTML');
+
+    expect(<div innerHTML="<p>text</p>" />).not.toHaveAttribute('innerhtml');
+    expect(<div innerHTML="<p>text</p>" />).toHaveInnerHTML('<p>text</p>');
+
+    properties.delete('innerHTML');
   });
 
   it('should add support of `volume` property', () => {

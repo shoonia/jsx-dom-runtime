@@ -8,7 +8,6 @@ let internalKeys = new Set([
 ]);
 
 export let properties = new Set([
-  'innerHTML',
   'value',
 ]);
 
