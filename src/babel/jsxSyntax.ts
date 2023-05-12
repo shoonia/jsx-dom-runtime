@@ -3,7 +3,7 @@ import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 import t from '@babel/types';
 
 import { boolAttrs, DOMEvents } from './tags/dom';
-import { html, maybeSvg, sureSvg } from './tags/tags';
+import { html, sureSvg } from './tags/tags';
 import {
   buildChildren,
   buildProps,
@@ -73,6 +73,8 @@ const createImport = (
 };
 
 export const jsxSyntax = (): PluginObj => {
+  const nsMap = new WeakMap<t.Node, number>();
+
   return {
     name: 'jsx-dom-runtime/babel-plugin-jsx-syntax',
     visitor: {
@@ -112,9 +114,10 @@ export const jsxSyntax = (): PluginObj => {
           }
 
           if (t.isJSXMemberExpression(name) || isFunctionComponent(name)) {
+            const props = buildProps(path.node);
             const callExp = t.callExpression(
               convertJSXIdentifier(name),
-              [buildProps(path.node)],
+              [t.objectExpression(props)],
             );
 
             const node = t.isJSXElement(path.parent) || t.isJSXFragment(path.parent)
@@ -122,49 +125,41 @@ export const jsxSyntax = (): PluginObj => {
               : callExp;
 
             path.replaceWith(t.inherits(node, path.node));
+          } else if (sureSvg.has(name.name)) {
+            nsMap.set(path.node, 1);
           }
         },
 
         exit(path, state) {
-          const node = t.callExpression(
-            get(state, 'id/jsx')(),
-            [getTag(path.node), buildProps(path.node)],
-          );
+          const node = path.node;
+          const props = buildProps(node);
 
-          addPureAnnotate(node);
-          path.replaceWith(t.inherits(node, path.node));
-        },
-      },
-
-      JSXOpeningElement(path) {
-        const node = path.node;
-
-        if (!t.isJSXIdentifier(node.name)) {
-          return;
-        }
-
-        if (
-          sureSvg.has(node.name.name) ||
-          maybeSvg.has(node.name.name) &&
-          t.isJSXElement(path.parentPath.parent) &&
-          path.parentPath.parent.openingElement.attributes.some((i) => {
+          const noNs = props.every((i) => {
             // @ts-expect-error
-            return t.isJSXAttribute(i) && i.name.name === '__ns' && i.value.expression?.value === 1;
-          })
-        ) {
-          const noNs = node.attributes.every((i) => {
-            return !t.isJSXAttribute(i) || i.name.name !== '__ns';
+            return i.key?.name !== '__ns';
           });
 
           if (noNs) {
-            node.attributes.push(
-              t.jSXAttribute(
-                t.jSXIdentifier('__ns'),
-                t.jSXExpressionContainer(t.numericLiteral(1)),
-              ),
-            );
+            const ns = nsMap.get(path.node) ?? nsMap.get(path.parent);
+
+            if (typeof ns === 'number') {
+              props.push(
+                t.objectProperty(
+                  t.identifier('__ns'),
+                  t.numericLiteral(ns),
+                ),
+              );
+            }
           }
-        }
+
+          const callExp = t.callExpression(
+            get(state, 'id/jsx')(),
+            [getTag(node), t.objectExpression(props)],
+          );
+
+          addPureAnnotate(callExp);
+          path.replaceWith(t.inherits(callExp, node));
+        },
       },
 
       JSXAttribute(path) {

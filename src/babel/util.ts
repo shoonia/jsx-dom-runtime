@@ -17,7 +17,7 @@ export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[
   });
 };
 
-export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
+export const buildProps = (node: t.JSXElement): (t.ObjectProperty | t.SpreadElement)[] => {
   const props = node.openingElement.attributes.map((attr) => {
     if (t.isJSXSpreadAttribute(attr)) {
       return t.spreadElement(attr.argument);
@@ -55,7 +55,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
     );
   }
 
-  return t.objectExpression(props);
+  return props;
 };
 
 export const convertJSXIdentifier = (
