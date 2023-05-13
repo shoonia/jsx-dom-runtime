@@ -1589,7 +1589,7 @@ declare global {
 
       animate: SVGAttributes<SVGAnimateElement>
       animateMotion: SVGAttributes<SVGAnimateMotionElement>
-      animateTransform: SVGAttributes<SVGAnimateElement>
+      animateTransform: SVGAttributes<SVGAnimateTransformElement>
       circle: SVGAttributes<SVGCircleElement>
       clipPath: SVGAttributes<SVGClipPathElement>
       defs: SVGAttributes<SVGDefsElement>
