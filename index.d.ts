@@ -1440,6 +1440,8 @@ declare global {
     interface IntrinsicElements {
       a: AnchorHTMLAttributes
       abbr: HTMLAttributes<HTMLElement>
+      /** @deprecated */
+      acronym: HTMLAttributes<HTMLElement>
       address: HTMLAttributes<HTMLElement>
       area: AreaHTMLAttributes
       article: HTMLAttributes<HTMLElement>
@@ -1449,13 +1451,18 @@ declare global {
       base: BaseHTMLAttributes
       bdi: HTMLAttributes<HTMLElement>
       bdo: HTMLAttributes<HTMLElement>
+      /** @deprecated */
       big: HTMLAttributes<HTMLElement>
+      /** @deprecated */
+      blink: HTMLAttributes<HTMLUnknownElement>
       blockquote: QuoteHTMLAttributes
       body: HTMLAttributes<HTMLBodyElement>
       br: HTMLAttributes<HTMLBRElement>
       button: ButtonHTMLAttributes
       canvas: CanvasHTMLAttributes
       caption: HTMLAttributes<HTMLElement>
+      /** @deprecated */
+      center: HTMLAttributes<HTMLElement>
       cite: HTMLAttributes<HTMLElement>
       code: HTMLAttributes<HTMLElement>
       col: ColHTMLAttributes
@@ -1467,6 +1474,8 @@ declare global {
       details: DetailsHTMLAttributes
       dfn: HTMLAttributes<HTMLElement>
       dialog: DialogHTMLAttributes
+      /** @deprecated */
+      dir: HTMLAttributes<HTMLDirectoryElement>
       div: HTMLAttributes<HTMLDivElement>
       dl: HTMLAttributes<HTMLDListElement>
       dt: HTMLAttributes<HTMLElement>
@@ -1475,6 +1484,8 @@ declare global {
       fieldset: FieldsetHTMLAttributes
       figcaption: HTMLAttributes<HTMLElement>
       figure: HTMLAttributes<HTMLElement>
+      /** @deprecated */
+      font: HTMLAttributes<HTMLFontElement>
       footer: HTMLAttributes<HTMLElement>
       form: FormHTMLAttributes
       h1: HTMLAttributes<HTMLHeadingElement>
@@ -1494,6 +1505,7 @@ declare global {
       input: InputHTMLAttributes
       ins: InsHTMLAttributes
       kbd: HTMLAttributes<HTMLElement>
+      /** @deprecated */
       keygen: HTMLAttributes<HTMLUnknownElement>;
       label: LabelHTMLAttributes
       legend: HTMLAttributes<HTMLLegendElement>
@@ -1502,25 +1514,37 @@ declare global {
       main: HTMLAttributes<HTMLElement>
       map: MapHTMLAttributes
       mark: HTMLAttributes<HTMLElement>
+      /** @deprecated */
       marquee: HTMLAttributes<MarqueeHTMLElement>
       menu: MenuHTMLAttributes
       menuitem: HTMLAttributes<HTMLUnknownElement>
       meta: MetaHTMLAttributes
       meter: MeterHTMLAttributes
       nav: HTMLAttributes<HTMLElement>
+      /** @deprecated */
+      nobr: HTMLAttributes<HTMLElement>
+      /** @deprecated */
+      noembed: HTMLAttributes<null>
+      /** @deprecated */
+      noframes: HTMLAttributes<HTMLUnknownElement>
       noindex: HTMLAttributes<HTMLElement>
-      noscript: HTMLAttributes<HTMLElement>
+      noscript: HTMLAttributes<HTMLUnknownElement>
       object: ObjectHTMLAttributes
       ol: OlHTMLAttributes
       optgroup: OptgroupHTMLAttributes
       option: OptionHTMLAttributes
       output: OutputHTMLAttributes
       p: HTMLAttributes<HTMLParagraphElement>
+      /** @deprecated */
       param: ParamHTMLAttributes
       picture: HTMLAttributes<HTMLPictureElement>
+      /** @deprecated */
+      plaintext: HTMLAttributes<HTMLElement>
       pre: HTMLAttributes<HTMLPreElement>
       progress: ProgressHTMLAttributes
       q: QuoteHTMLAttributes
+      /** @deprecated */
+      rb: HTMLAttributes<HTMLElement>
       rp: HTMLAttributes<HTMLElement>
       rt: HTMLAttributes<HTMLElement>
       ruby: HTMLAttributes<HTMLElement>
@@ -1533,6 +1557,8 @@ declare global {
       small: HTMLAttributes<HTMLElement>
       source: SourceHTMLAttributes
       span: HTMLAttributes<HTMLSpanElement>
+      /** @deprecated */
+      strike: HTMLAttributes<HTMLElement>
       strong: HTMLAttributes<HTMLElement>
       style: StyleHTMLAttributes
       sub: HTMLAttributes<HTMLElement>
@@ -1550,11 +1576,15 @@ declare global {
       title: HTMLAttributes<HTMLTitleElement>
       tr: HTMLAttributes<HTMLTableRowElement>
       track: TrackHTMLAttributes
+      /** @deprecated */
+      tt: HTMLAttributes<HTMLElement>
       u: HTMLAttributes<HTMLElement>
       ul: HTMLAttributes<HTMLUListElement>
       var: HTMLAttributes<HTMLElement>
       video: VideoHTMLAttributes
       wbr: HTMLAttributes<HTMLElement>
+      /** @deprecated */
+      xmp: HTMLAttributes<HTMLElement>
       webview: WebViewHTMLAttributes
 
       animate: SVGAttributes<SVGAnimateElement>
