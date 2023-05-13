@@ -70,7 +70,13 @@ describe('User events', () => {
     expect(input).toHaveValue('xyz');
   });
 
-  it('should NOT add unknown event handler', () => {
+  it('should add property', () => {
+    const spy = jest.fn();
+
+    expect(<div onclick={spy} />).toHaveProperty('onclick', spy);
+  });
+
+  it('should NOT add unknown event property', () => {
     const spy = jest.fn();
 
     // @ts-expect-error
