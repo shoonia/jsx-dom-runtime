@@ -13,4 +13,9 @@ describe('babel-plugin-jsx-syntax: isFunctionComponent', () => {
 
     await Promise.all(tests);
   });
+
+  it('should work with lowercase JSXMemberExpression', async () => {
+    const result = await t('<member.expression lowerCase />');
+    expect(result).toBe('member.expression({lowerCase:true});');
+  });
 });
