@@ -1,8 +1,8 @@
-import type { PluginObj, PluginPass, NodePath } from '@babel/core';
-import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
+import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
 import { boolAttrs, DOMEvents, htmlTags, svgTags } from './collections';
+import { createImport } from './createImport';
 import {
   buildChildren,
   buildProps,
@@ -23,56 +23,22 @@ const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
     charCode === 95;
 };
 
-const get = (state: PluginPass, name: string) => {
-  return state.get(`jsx-dom-runtime/babel-plugin-jsx-syntax/${name}`);
-};
-
-const set = (state: PluginPass, name: string, v: any): void => {
-  state.set(`jsx-dom-runtime/babel-plugin-jsx-syntax/${name}`, v);
-};
-
-const createImport = (path: NodePath<t.Program>) => {
-  const cache = new Map();
-
-  return (importName: string) => {
-    const source = 'jsx-dom-runtime';
-    const isMod = isModule(path);
-
-    const key = isMod ? importName : source;
-
-    if (cache.has(key)) {
-      return t.cloneNode(cache.get(key));
-    }
-
-    const newImport = isMod
-      ? addNamed(path, importName, source, {
-        importedInterop: 'uncompiled',
-        importPosition: 'after',
-      })
-      : addNamespace(path, source, {
-        importedInterop: 'uncompiled',
-      });
-
-    cache.set(key, newImport);
-
-    return newImport;
-  };
-};
-
 export const jsxSyntax = (): PluginObj => {
-  const nsSvg = new WeakSet<t.Node>();
+  let nsSvg: WeakSet<t.Node>;
+  let addImport: ReturnType<typeof createImport>;
 
   return {
     name: 'jsx-dom-runtime/babel-plugin-jsx-syntax',
     visitor: {
       Program: {
-        enter(path, state) {
-          set(state, 'imports', createImport(path));
+        enter(path) {
+          nsSvg = new WeakSet();
+          addImport = createImport(path);
         },
       },
 
       JSXFragment: {
-        exit(path, state) {
+        exit(path) {
           const children = buildChildren(path.node);
 
           const props = children.length > 0 ? [
@@ -82,7 +48,7 @@ export const jsxSyntax = (): PluginObj => {
           ] : [];
 
           const child = t.callExpression(
-            get(state, 'imports')('Fragment'),
+            addImport('Fragment'),
             props,
           );
 
@@ -116,7 +82,7 @@ export const jsxSyntax = (): PluginObj => {
           }
         },
 
-        exit(path, state) {
+        exit(path) {
           const node = path.node;
           const props = buildProps(node);
 
@@ -135,7 +101,7 @@ export const jsxSyntax = (): PluginObj => {
           }
 
           const callExp = t.callExpression(
-            get(state, 'imports')('jsx'),
+            addImport('jsx'),
             [getTag(node), t.objectExpression(props)],
           );
 
