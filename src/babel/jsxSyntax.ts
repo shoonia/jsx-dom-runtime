@@ -2,7 +2,7 @@ import type { PluginObj, PluginPass, NodePath } from '@babel/core';
 import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 import t from '@babel/types';
 
-import { boolAttrs, DOMEvents,  htmlTags, svgTags } from './collections';
+import { boolAttrs, DOMEvents, htmlTags, svgTags } from './collections';
 import {
   buildChildren,
   buildProps,
@@ -27,47 +27,35 @@ const get = (state: PluginPass, name: string) => {
   return state.get(`jsx-dom-runtime/babel-plugin-jsx-syntax/${name}`);
 };
 
-const set = (state: PluginPass, name: string, v: any) => {
+const set = (state: PluginPass, name: string, v: any): void => {
   state.set(`jsx-dom-runtime/babel-plugin-jsx-syntax/${name}`, v);
 };
 
-const createImport = (
-  path: NodePath<t.Program>,
-  state: PluginPass,
-  importName: string,
-) => {
-  return (): t.Identifier | t.MemberExpression => {
+const createImport = (path: NodePath<t.Program>) => {
+  const cache = new Map();
+
+  return (importName: string) => {
     const source = 'jsx-dom-runtime';
+    const isMod = isModule(path);
 
-    if (isModule(path)) {
-      const ref = get(state, `imports/${importName}`);
+    const key = isMod ? importName : source;
 
-      if (ref) {
-        return t.cloneNode(ref);
-      }
+    if (cache.has(key)) {
+      return t.cloneNode(cache.get(key));
+    }
 
-      const uncompiledRef = addNamed(path, importName, source, {
+    const newImport = isMod
+      ? addNamed(path, importName, source, {
         importedInterop: 'uncompiled',
         importPosition: 'after',
-      });
-
-      set(state, `imports/${importName}`, uncompiledRef);
-
-      return uncompiledRef;
-    }
-
-    let reference = get(state, `requires/${source}`);
-
-    if (reference) {
-      reference = t.cloneNode(reference);
-    } else {
-      reference = addNamespace(path, source, {
+      })
+      : addNamespace(path, source, {
         importedInterop: 'uncompiled',
       });
-      set(state, `requires/${source}`, reference);
-    }
 
-    return t.memberExpression(reference, t.identifier(importName));
+    cache.set(key, newImport);
+
+    return newImport;
   };
 };
 
@@ -79,8 +67,7 @@ export const jsxSyntax = (): PluginObj => {
     visitor: {
       Program: {
         enter(path, state) {
-          set(state, 'id/jsx', createImport(path, state, 'jsx'));
-          set(state, 'id/fragment', createImport(path, state, 'Fragment'));
+          set(state, 'imports', createImport(path));
         },
       },
 
@@ -95,7 +82,7 @@ export const jsxSyntax = (): PluginObj => {
           ] : [];
 
           const child = t.callExpression(
-            get(state, 'id/fragment')(),
+            get(state, 'imports')('Fragment'),
             props,
           );
 
@@ -148,7 +135,7 @@ export const jsxSyntax = (): PluginObj => {
           }
 
           const callExp = t.callExpression(
-            get(state, 'id/jsx')(),
+            get(state, 'imports')('jsx'),
             [getTag(node), t.objectExpression(props)],
           );
 
