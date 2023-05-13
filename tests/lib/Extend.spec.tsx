@@ -48,6 +48,7 @@ describe('Extend', () => {
   });
 
   it('should work as JSX tag', () => {
+    // @ts-expect-error
     <Extend
       plugin-6={(node, value) => {
         node.setAttribute('data-plugin', value);
