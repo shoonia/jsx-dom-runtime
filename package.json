@@ -1,6 +1,6 @@
 {
   "name": "jsx-dom-runtime",
-  "version": "0.44.1",
+  "version": "0.45.0",
   "description": "A tiny in 500 bytes library to JSX syntax templates for DOM",
   "type": "module",
   "main": "jsx-runtime/index.cjs",
@@ -56,7 +56,7 @@
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@size-limit/preset-small-lib": "^8.2.4",
-    "@testing-library/dom": "^9.2.0",
+    "@testing-library/dom": "^9.3.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@types/svg-tags": "^1.0.0",
     "@types/testing-library__jest-dom": "^5.14.5",
