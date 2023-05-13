@@ -1271,25 +1271,93 @@ interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   onchange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
-interface TdHTMLAttributes extends HTMLAttributes<HTMLTableDataCellElement> {
-  align?: 'left' | 'center' | 'right' | 'justify' | 'char'
+interface TdHTMLAttributes extends HTMLAttributes<HTMLTableCellElement> {
   colSpan?: number | `${number}`
   headers?: string
   rowSpan?: number | `${number}`
-  scope?: string
+  /**
+   * Do not use this attribute as it is obsolete in the latest standard. Alternatively, you can put the abbreviated description inside the cell and place the long content in the title attribute.
+   * @deprecated
+   */
   abbr?: string
+  /**
+   * To achieve the same effect as the `left`, `center`, `right` or `justify` values, apply the CSS `text-align` property to the element, the `char` value, give the `text-align` property the same value you would use for the `char`.
+   * @deprecated
+   */
+  align?: 'left' | 'center' | 'right' | 'justify' | 'char'
+  /** @deprecated */
+  axis?: string;
+  /**
+   * To achieve a similar effect, use the CSS `background-color` property
+   * @deprecated
+   */
+  bgColor?: string;
+  /**
+   * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
+   * @deprecated
+   */
+  char?: string;
+  /** @deprecated */
+  charoff?: string
+  /** @deprecated */
+  scope?: string
+  /**
+   * To achieve a similar effect, use the CSS `height` property instead.
+   * @deprecated
+   */
   height?: number | string
+  /**
+   * To achieve a similar effect,use the CSS `width` property instead
+   * @deprecated
+   */
   width?: number | string
+  /**
+   * To achieve a similar effect, use the CSS `vertical-align` property
+   * @deprecated
+   */
   valign?: 'top' | 'middle' | 'bottom' | 'baseline'
 }
 
-interface ThHTMLAttributes extends HTMLAttributes<HTMLTableHeaderCellElement> {
-  align?: 'left' | 'center' | 'right' | 'justify' | 'char'
+interface ThHTMLAttributes extends HTMLAttributes<HTMLTableCellElement> {
+  abbr?: string
   colSpan?: number | `${number}`
   headers?: string
   rowSpan?: number | `${number}`
   scope?: string
-  abbr?: string
+  /**
+   * To achieve the same effect as the `left`, `center`, `right` or `justify` values, apply the CSS `text-align` property to the element, the `char` value, give the `text-align` property the same value you would use for the `char`.
+   * @deprecated
+   */
+  align?: 'left' | 'center' | 'right' | 'justify' | 'char'
+  /** @deprecated */
+  axis?: string;
+  /**
+   * To achieve a similar effect, use the CSS `background-color` property
+   * @deprecated
+   */
+  bgColor?: string;
+  /**
+   * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
+   * @deprecated
+   */
+  char?: string;
+  /** @deprecated */
+  charoff?: string
+  /**
+   * To achieve a similar effect, use the CSS `height` property instead.
+   * @deprecated
+   */
+  height?: number | string
+  /**
+   * To achieve a similar effect,use the CSS `width` property instead
+   * @deprecated
+   */
+  width?: number | string
+  /**
+   * To achieve a similar effect, use the CSS `vertical-align` property
+   * @deprecated
+   */
+  valign?: 'top' | 'middle' | 'bottom' | 'baseline'
 }
 
 interface TimeHTMLAttributes extends HTMLAttributes<HTMLTimeElement> {

@@ -13,10 +13,10 @@ describe('ref', () => {
   });
 
   it('should set up ref.current when it is an object', () => {
-    const ref = useRef();
+    const ref = useRef<HTMLTableCellElement>();
 
     const node = <td ref={ref} />;
 
-    expect(node).toBe(ref.current);
+    expect(ref.current).toBe(node);
   });
 });
