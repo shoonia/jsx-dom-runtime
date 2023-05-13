@@ -173,7 +173,10 @@ interface DOMAttributes<T> extends JSX.Attributes {
   onanimationend?: AnimationEventHandler<T>
   onanimationiteration?: AnimationEventHandler<T>
   // Transition Events
+  ontransitionstart?: TransitionEventHandler<T>
   ontransitionend?: TransitionEventHandler<T>
+  ontransitionrun?: TransitionEventHandler<T>
+  ontransitioncancel?: TransitionEventHandler<T>
 }
 
 export interface CSSProperties extends Properties<number | string> {

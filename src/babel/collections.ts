@@ -45,7 +45,7 @@ export const DOMEvents = new Set([
   // Animation Events
   'onanimationstart', 'onanimationend', 'onanimationiteration',
   // Transition Events
-  'ontransitionend',
+  'ontransitionend', 'ontransitionstart', 'ontransitioncancel', 'ontransitionrun',
   // HTMLVideoElement
   'onenterpictureinpicture', 'onleavepictureinpicture',
   // HTMLDetailsElement & HTMLDialogElement
