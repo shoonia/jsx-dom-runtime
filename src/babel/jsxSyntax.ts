@@ -2,8 +2,7 @@ import type { PluginObj, PluginPass, NodePath } from '@babel/core';
 import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 import t from '@babel/types';
 
-import { boolAttrs, DOMEvents } from './tags/dom';
-import { html, sureSvg } from './tags/tags';
+import { boolAttrs, DOMEvents,  htmlTags, svgTags } from './collections';
 import {
   buildChildren,
   buildProps,
@@ -125,7 +124,7 @@ export const jsxSyntax = (): PluginObj => {
               : callExp;
 
             path.replaceWith(t.inherits(node, path.node));
-          } else if (sureSvg.has(name.name)) {
+          } else if (svgTags.has(name.name)) {
             nsMap.set(path.node, 1);
           }
         },
@@ -171,7 +170,7 @@ export const jsxSyntax = (): PluginObj => {
 
         const tag = parent.name.name;
 
-        if (!(html.has(tag) || sureSvg.has(tag))) {
+        if (!(htmlTags.has(tag) || svgTags.has(tag))) {
           return;
         }
 

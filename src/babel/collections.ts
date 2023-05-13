@@ -1,3 +1,12 @@
+import svg from 'svg-tags';
+import html from 'html-tags';
+
+// The tags, that exist in HTML and SVG too
+const crossTags = new Set(['a', 'script', 'style', 'title']);
+
+export const svgTags = new Set(svg.filter((i) => !crossTags.has(i)));
+export const htmlTags = new Set<string>(html);
+
 export const DOMEvents = new Set([
   'oncopy', 'oncut', 'onpaste',
   // Composition Events
