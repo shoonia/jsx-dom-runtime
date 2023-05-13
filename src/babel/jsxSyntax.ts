@@ -72,7 +72,7 @@ const createImport = (
 };
 
 export const jsxSyntax = (): PluginObj => {
-  const nsMap = new WeakMap<t.Node, number>();
+  const nsSvg = new WeakSet<t.Node>();
 
   return {
     name: 'jsx-dom-runtime/babel-plugin-jsx-syntax',
@@ -125,7 +125,7 @@ export const jsxSyntax = (): PluginObj => {
 
             path.replaceWith(t.inherits(node, path.node));
           } else if (svgTags.has(name.name)) {
-            nsMap.set(path.node, 1);
+            nsSvg.add(path.node);
           }
         },
 
@@ -138,17 +138,13 @@ export const jsxSyntax = (): PluginObj => {
             return i.key?.name !== '__ns';
           });
 
-          if (noNs) {
-            const ns = nsMap.get(path.node) ?? nsMap.get(path.parent);
-
-            if (typeof ns === 'number') {
-              props.push(
-                t.objectProperty(
-                  t.identifier('__ns'),
-                  t.numericLiteral(ns),
-                ),
-              );
-            }
+          if (noNs && nsSvg.has(path.node) || nsSvg.has(path.parent)) {
+            props.push(
+              t.objectProperty(
+                t.identifier('__ns'),
+                t.numericLiteral(1),
+              ),
+            );
           }
 
           const callExp = t.callExpression(
