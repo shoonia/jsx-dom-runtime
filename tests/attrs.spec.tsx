@@ -80,6 +80,16 @@ describe('Props', () => {
     expect(<img height={0} width={0} />).toHaveOuterHTML('<img height="0" width="0">');
   });
 
+  it('should replace new line `\n` symbol to space', () => {
+    expect(
+      <img
+        alt="
+          hello
+        "
+      />
+    ).toHaveOuterHTML('<img alt=" hello ">');
+  });
+
   it('should add all attributes', () => {
     const props = {
       class: 'box',
