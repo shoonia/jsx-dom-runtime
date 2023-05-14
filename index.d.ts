@@ -1568,7 +1568,7 @@ declare global {
       /** @deprecated */
       nobr: HTMLAttributes<HTMLElement>
       /** @deprecated */
-      noembed: HTMLAttributes<null>
+      noembed: HTMLAttributes<HTMLUnknownElement>
       /** @deprecated */
       noframes: HTMLAttributes<HTMLUnknownElement>
       noindex: HTMLAttributes<HTMLElement>
