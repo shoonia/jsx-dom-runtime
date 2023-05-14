@@ -1,13 +1,6 @@
 import t from '@babel/types';
 
-const toIdentifier = (node: t.JSXIdentifier): t.Identifier => {
-  // @ts-expect-error cast AST type to Identifier
-  node.type = 'Identifier';
-
-  return node as unknown as t.Identifier;
-};
-
-const toStringLiteral = (node: t.JSXNamespacedName): t.StringLiteral => {
+const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral => {
   return t.stringLiteral(node.namespace.name + ':' + node.name.name);
 };
 
@@ -24,9 +17,9 @@ export const buildProps = (node: t.JSXElement): (t.ObjectProperty | t.SpreadElem
     }
 
     const name = t.isJSXNamespacedName(attr.name)
-      ? toStringLiteral(attr.name)
+      ? convertJSXNamespacedName(attr.name)
       : t.isValidIdentifier(attr.name.name, false)
-        ? toIdentifier(attr.name)
+        ? t.identifier(attr.name.name)
         : t.stringLiteral(attr.name.name);
 
     const value = t.isJSXExpressionContainer(attr.value)
@@ -63,7 +56,7 @@ export const convertJSXIdentifier = (
 ): t.StringLiteral | t.MemberExpression | t.Identifier => {
   if (t.isJSXIdentifier(node)) {
     if (t.isValidIdentifier(node.name, false)) {
-      return toIdentifier(node);
+      return t.identifier(node.name);
     }
 
     return t.stringLiteral(node.name);
@@ -76,10 +69,10 @@ export const convertJSXIdentifier = (
     );
   }
 
-  return toStringLiteral(node);
+  return convertJSXNamespacedName(node);
 };
 
-export const getTag = (node: t.JSXElement) => {
+export const getTag = (node: t.JSXElement): t.StringLiteral | t.MemberExpression => {
   const tagExpr = convertJSXIdentifier(node.openingElement.name);
 
   return t.isIdentifier(tagExpr)

@@ -87,8 +87,7 @@ export const jsxSyntax = (): PluginObj => {
           const props = buildProps(node);
 
           const noNs = props.every((i) => {
-            // @ts-expect-error
-            return i.key?.name !== '__ns';
+            return !(t.isObjectProperty(i) && t.isIdentifier(i.key) && i.key.name === '__ns');
           });
 
           if (noNs && nsSvg.has(path.node) || nsSvg.has(path.parent)) {
