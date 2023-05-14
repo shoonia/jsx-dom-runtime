@@ -1249,10 +1249,51 @@ interface StyleHTMLAttributes extends HTMLAttributes<HTMLStyleElement> {
 }
 
 interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
-  cellPadding?: number | string
-  cellSpacing?: number | string
+  /**
+   * To achieve a similar effect, use the CSS properties `margin-left` and `margin-right` to `auto` or `margin` to `0 auto`.
+   * @deprecated
+   */
+  align?: 'left' | 'center' | 'right'
+  /**
+   * To achieve a similar effect, use the CSS `background-color` property.
+   * @deprecated
+   */
+  bgColor?: string;
+  /**
+   * To achieve a similar effect, use the CSS `border` property.
+   * @deprecated
+   */
+  border?: string;
+  /**
+   * To achieve a similar effect, apply the `border-collapse` CSS property to the `<table>` element, with its value set to collapse, and the `padding` property to the `<td>` elements.
+   * @deprecated
+   */
+  cellPadding?: number | string;
+  /**
+   * To achieve a similar effect, apply the `border-spacing` CSS property to the `<table>` element. `border-spacing` does not have any effect if `border-collapse` is set to `collapse`.
+   * @deprecated
+   */
+  cellSpacing?: number | string;
+  /**
+   * To achieve a similar effect, use the CSS the `border-style` and `border-width` properties.
+   * @deprecated
+   */
+  frame?: string;
+  /**
+   * Use the `<caption>` element instead
+   * @deprecated
+   */
   summary?: string
-  width?: number | string
+  /**
+   * To achieve a similar effect, use the CSS `width` property instead.
+   * @deprecated
+   */
+  width?: number | string;
+  /**
+   * To achieve a similar effect, apply the CSS `border` property to the appropriate `<thead>`, `<tbody>`, `<tfoot>`, `<col>`, or `<colgroup>` elements.
+   * @deprecated
+   */
+  rules?: 'none' | 'groups' | 'rows' | 'cols' | 'all'
 }
 
 interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {

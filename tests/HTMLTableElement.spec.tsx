@@ -20,8 +20,18 @@ describe('HTMLTableElement', () => {
     );
   });
 
-  it('should add cellPadding', () => {
-    expect(<table cellPadding={5}/>).toHaveProperty('cellPadding', '5');
-    expect(<table cellPadding={5}/>).toHaveAttribute('cellpadding', '5');
+  it('should have `cellPadding` attribute', () => {
+    expect(<table cellPadding={5} />).toHaveProperty('cellPadding', '5');
+    expect(<table cellPadding={5} />).toHaveAttribute('cellpadding', '5');
+  });
+
+  it('should have `cellSpacing` attribute', () => {
+    expect(<table cellSpacing={1} />).toHaveProperty('cellSpacing', '1');
+    expect(<table cellSpacing={1} />).toHaveAttribute('cellspacing', '1');
+  });
+
+  it('should have `width` attribute', () => {
+    expect(<table width="100%" />).toHaveProperty('width', '100%');
+    expect(<table width={1} />).toHaveAttribute('width', '1');
   });
 });
