@@ -10,6 +10,10 @@ import {
   getTag,
 } from './util';
 
+const ns = {
+  name: '__ns',
+} as const;
+
 const addPureAnnotate = (node: t.Node): void => {
   t.addComment(node, 'leading', '#__PURE__');
 };
@@ -87,13 +91,13 @@ export const jsxSyntax = (): PluginObj => {
           const props = buildProps(node);
 
           const noNs = props.every((i) => {
-            return !(t.isObjectProperty(i) && t.isIdentifier(i.key) && i.key.name === '__ns');
+            return !(t.isObjectProperty(i) && t.isIdentifier(i.key, ns));
           });
 
           if (noNs && nsSvg.has(path.node) || nsSvg.has(path.parent)) {
             props.push(
               t.objectProperty(
-                t.identifier('__ns'),
+                t.identifier(ns.name),
                 t.numericLiteral(1),
               ),
             );
