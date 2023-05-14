@@ -76,6 +76,10 @@ describe('Props', () => {
     expect(<input capture="user" />).toHaveAttribute('capture', 'user');
   });
 
+  it('should set zero to attribute', () => {
+    expect(<img height={0} width={0} />).toHaveOuterHTML('<img height="0" width="0">');
+  });
+
   it('should add all attributes', () => {
     const props = {
       class: 'box',

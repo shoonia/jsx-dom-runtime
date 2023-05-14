@@ -11,8 +11,12 @@ describe('ARIA attribute', () => {
     expect(<b aria-hidden="false" />).toHaveOuterHTML('<b aria-hidden="false"></b>');
   });
 
-  it('shoud not set attribute with null or undefined', () => {
+  it('shoud NOT set attribute with null or undefined', () => {
     expect(<span aria-disabled={null} />).toHaveOuterHTML('<span></span>');
     expect(<span aria-disabled={undefined} />).toHaveOuterHTML('<span></span>');
+  });
+
+  it('should set zero to attribute', () => {
+    expect(<div aria-colindex={0} />).toHaveOuterHTML('<div aria-colindex="0"></div>');
   });
 });
