@@ -147,13 +147,13 @@ export const jsxSyntax = (): PluginObj => {
 
           if (boolAttrs.has(attrName)) {
             path.node.value ??= t.stringLiteral('');
+            return;
           }
-
-          return;
         }
 
         if (
           tag === 'a' &&
+          attr.name === 'xlinkHref' ||
           t.isJSXNamespacedName(attr) &&
           attr.name.name === 'href' &&
           attr.namespace.name === 'xlink'
