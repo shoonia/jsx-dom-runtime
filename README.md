@@ -4,6 +4,7 @@ A tiny in 500 bytes library to JSX syntax templates for DOM.
 
 [![test status](https://github.com/shoonia/jsx-dom-runtime/workflows/tests/badge.svg)](https://github.com/shoonia/jsx-dom-runtime/actions)
 [![npm version](https://badgen.net/npm/v/jsx-dom-runtime)](https://www.npmjs.com/package/jsx-dom-runtime)
+[![Stand with Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua/)
 
 ## Install
 
@@ -47,7 +48,11 @@ document.body.append(
 
 ## Syntax
 
-Function Components
+Support general [JSX syntax](https://facebook.github.io/jsx/).
+
+## Function Components
+
+Function components must start with a capital letter or they won’t work.
 
 ```js
 const App = ({ name }) => (
@@ -59,7 +64,7 @@ document.body.append(<App name="Bob" />);
 
 ### Fragments
 
-Use `<>...</>` syntax, to group multiple elements together. Under the hood, it use [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) interface
+Use `<>...</>` syntax, to group multiple elements together. Under the hood, it use [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) interface.
 
 ```js
 document.body.append(
@@ -97,7 +102,7 @@ document.body.append(
 ### Callback Refs
 
 ```js
-const ready = (node) => {
+const callbackRef = (node) => {
   node.addEventListener('focusin', () => {
     node.style.backgroundColor = 'pink';
   });
@@ -108,11 +113,13 @@ const ready = (node) => {
 };
 
 document.body.append(
-  <input type="text" ref={ready} />
+  <input type="text" ref={callbackRef} />
 );
 ```
 
-## Text
+### Text
+
+Use the [Text](https://developer.mozilla.org/en-US/docs/Web/API/Text) node in a DOM tree.
 
 ```js
 import { useText } from 'jsx-dom-runtime';
@@ -133,7 +140,7 @@ document.body.append(
 
 ### Template
 
-Get template from string.
+Get template from a string.
 
 ```js
 import { Template } from 'jsx-dom-runtime';
@@ -147,7 +154,7 @@ document.body.append(
 );
 ```
 
-## Extend
+## extensions
 
 Add custom attributes in `JSX.Element`.
 
@@ -307,8 +314,6 @@ const App: FC<Props> = ({ text }) => (
 
 document.body.append(<App text="Hello!" />);
 ```
-
-Read more: [TypeScript JSX](https://www.typescriptlang.org/docs/handbook/jsx.html)
 
 ## License
 
