@@ -1,18 +1,18 @@
 import { appendChildren } from './appendChildren';
 
-let internalKeys = new Set([
+const internalKeys = new Set([
   'ref',
   'children',
   '__ns',
 ]);
 
-export let extensions = new Map();
+export const extensions = new Map();
 
-export let properties = new Set([
+export const properties = new Set([
   'value',
 ]);
 
-export let jsx = (tag, props) => {
+export const jsx = (tag, props) => {
   let key, val, node = props.__ns
     ? document.createElementNS(props.__ns, tag)
     : document.createElement(tag);
