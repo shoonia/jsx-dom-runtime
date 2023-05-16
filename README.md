@@ -50,7 +50,7 @@ document.body.append(
 
 Support general [JSX syntax](https://facebook.github.io/jsx/).
 
-## Function Components
+### Function Components
 
 Function components must start with a capital letter or they won’t work.
 
@@ -154,7 +154,7 @@ document.body.append(
 );
 ```
 
-## extensions
+### extensions
 
 Add custom attributes in `JSX.Element`.
 
