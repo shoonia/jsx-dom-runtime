@@ -11,10 +11,12 @@ type RefCallback<T> = (instance: T) => void
 type TChild =
   | Node
   | Element
+  | HTMLElement
   | SVGElement
   | DocumentFragment
-  | Comment
   | Text
+  | Comment
+  | MathMLElement
   | TChild[]
   | string
   | number
@@ -24,13 +26,22 @@ type TChild =
 
 type PropsWithChildren<P> = P & { children?: TChild | TChild[] }
 
-export function jsx<K extends keyof HTMLElementTagNameMap>(
-  type: K | HTMLElementTagNameMap[K],
-  props: HTMLElementTagNameMap[K],
-): HTMLElementTagNameMap[K]
+export function jsx<
+  K extends keyof JSX.IntrinsicElements,
+  R = K extends keyof HTMLElementTagNameMap
+  ? HTMLElementTagNameMap[K]
+  : K extends keyof HTMLElementDeprecatedTagNameMap
+  ? HTMLElementDeprecatedTagNameMap[K]
+  : K extends keyof SVGElementTagNameMap
+  ? SVGElementTagNameMap[K]
+  : Element
+>(
+  type: K,
+  props: PropsWithChildren<JSX.IntrinsicElements[K]>,
+): R
 
 export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> {
-  (props: PropsWithChildren<P>): T | null
+  (props: PropsWithChildren<P>): T | null | undefined
 }
 export { FunctionComponent as FC };
 
@@ -134,7 +145,6 @@ interface DOMAttributes<T> extends JSX.Attributes {
   ondrag?: DragEventHandler<T>
   ondragend?: DragEventHandler<T>
   ondragenter?: DragEventHandler<T>
-  /** @deprecated Not Supported */
   ondragexit?: DragEventHandler<T>
   ondragleave?: DragEventHandler<T>
   ondragover?: DragEventHandler<T>
@@ -857,7 +867,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   width?: number | string
 }
 
-interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
+interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
   download?: any;
   href?: string;
   hreflang?: string;
@@ -873,9 +883,9 @@ interface AnchorHTMLAttributes extends HTMLAttributes<HTMLAnchorElement> {
   'xlink:href'?: string
 }
 
-interface AudioHTMLAttributes extends MediaHTMLAttributes<HTMLAudioElement> { }
+interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> { }
 
-interface AreaHTMLAttributes extends HTMLAttributes<HTMLAreaElement> {
+interface HTMLAreaElementAttributes extends HTMLAttributes<HTMLAreaElement> {
   alt?: string
   coords?: string
   download?: any
@@ -889,12 +899,12 @@ interface AreaHTMLAttributes extends HTMLAttributes<HTMLAreaElement> {
   target?: string
 }
 
-interface BaseHTMLAttributes extends HTMLAttributes<HTMLBaseElement> {
+interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
   href?: string
   target?: string
 }
 
-interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
+interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
   autofocus?: boolean | 'autofocus' | '';
   disabled?: boolean | 'disabled' | '';
   form?: string
@@ -908,53 +918,49 @@ interface ButtonHTMLAttributes extends HTMLAttributes<HTMLButtonElement> {
   value?: number | string;
 }
 
-interface CanvasHTMLAttributes extends HTMLAttributes<HTMLCanvasElement> {
+interface HTMLCanvasElementAttributes extends HTMLAttributes<HTMLCanvasElement> {
   height?: number | string;
   width?: number | string;
 }
 
-interface ColHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
+interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
   span?: number | `${number}`
   width?: number | string
 }
 
-interface ColgroupHTMLAttributes extends HTMLAttributes<HTMLTableColElement> {
-  span?: number | `${number}`
-}
-
-interface DataHTMLAttributes extends HTMLAttributes<HTMLDataElement> {
+interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
   value?: number | string;
 }
 
-interface DetailsHTMLAttributes extends HTMLAttributes<HTMLDetailsElement> {
+interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
   open?: boolean | 'open' | '';
   ontoggle?: TEventHandler<HTMLDetailsElement>;
 }
 
-interface DelHTMLAttributes extends HTMLAttributes<HTMLModElement> {
+interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
   cite?: string;
   dateTime?: string;
 }
 
-interface DialogHTMLAttributes extends HTMLAttributes<HTMLDialogElement> {
+interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
   open?: boolean | 'open' | '';
   ontoggle?: TEventHandler<HTMLDialogElement>;
 }
 
-interface EmbedHTMLAttributes extends HTMLAttributes<HTMLEmbedElement> {
+interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
   height?: number | string
   src?: string
   type?: string
   width?: number | string
 }
 
-interface FieldsetHTMLAttributes extends HTMLAttributes<HTMLFieldSetElement> {
+interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
   disabled?: boolean | 'disabled' | '';
   form?: string
   name?: string;
 }
 
-export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
+export interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
   'accept-charset'?: string;
   action?: string;
   autocomplete?: string;
@@ -965,11 +971,11 @@ export interface FormHTMLAttributes extends HTMLAttributes<HTMLFormElement> {
   target?: string
 }
 
-interface HtmlHTMLAttributes extends HTMLAttributes<HTMLHtmlElement> {
+interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
   manifest?: string
 }
 
-interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
+interface HTMLIFrameElementAttributes extends HTMLAttributes<HTMLIFrameElement> {
   allow?: string
   /**
    * This attribute is considered a legacy attribute and redefined as `allow="fullscreen"`
@@ -1003,9 +1009,9 @@ interface IframeHTMLAttributes extends HTMLAttributes<HTMLIFrameElement> {
   width?: number | string;
 }
 
-interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
+interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
   alt?: string;
-  crossOrigin?: true | '' | 'anonymous' | 'use-credentials';
+  crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
   decoding?: 'async' | 'auto' | 'sync';
   height?: number | string;
   loading?: 'eager' | 'lazy';
@@ -1018,19 +1024,14 @@ interface ImgHTMLAttributes extends HTMLAttributes<HTMLImageElement> {
   fetchPriority?: 'high' | 'low' | 'auto';
 }
 
-interface InsHTMLAttributes extends HTMLAttributes<HTMLModElement> {
-  cite?: string
-  dateTime?: string;
-}
-
-interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
+interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
   accept?: string
   alt?: string
   autocomplete?: string;
   autofocus?: boolean | 'autofocus' | '';
   capture?: boolean | 'user' | 'environment' | ''
   checked?: boolean | 'checked' | '';
-  crossOrigin?: true | '' | 'anonymous' | 'use-credentials';
+  crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
   disabled?: boolean | 'disabled' | '';
   dirName?: string;
   enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
@@ -1083,18 +1084,18 @@ interface InputHTMLAttributes extends HTMLAttributes<HTMLInputElement> {
   onchange?: ChangeEventHandler<HTMLInputElement>
 }
 
-interface LabelHTMLAttributes extends HTMLAttributes<HTMLLabelElement> {
+interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
   for?: string
 }
 
-interface LiHTMLAttributes extends HTMLAttributes<HTMLLIElement> {
+interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
   value?: number | `${number}`;
 }
 
-interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
+interface HTMLLinkElementAttributes extends HTMLAttributes<HTMLLinkElement> {
   title?: string;
   as?: string;
-  crossOrigin?: true | '' | 'anonymous' | 'use-credentials';
+  crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
   disabled?: boolean | 'disabled' | '';
   href?: string
   hreflang?: string;
@@ -1111,34 +1112,34 @@ interface LinkHTMLAttributes extends HTMLAttributes<HTMLLinkElement> {
   fetchPriority?: 'high' | 'low' | 'auto';
 }
 
-interface MapHTMLAttributes extends HTMLAttributes<HTMLMapElement> {
+interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
   name?: string
 }
 
-interface MenuHTMLAttributes extends HTMLAttributes<HTMLMenuElement> {
+interface HTMLMenuElementAttributes extends HTMLAttributes<HTMLMenuElement> {
   /** @deprecated */
   type?: string;
 }
 
-interface MediaHTMLAttributes<T> extends HTMLAttributes<T> {
+interface HTMLMediaAttributes<T> extends HTMLAttributes<T> {
   autoplay?: boolean | 'autoplay' | '';
   controls?: boolean | 'controls' | '';
   controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
-  crossOrigin?: true | '' | 'anonymous' | 'use-credentials';
+  crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
   loop?: boolean | 'loop' | '';
   mediaGroup?: string
   preload?: 'none' | 'metadata' | 'auto';
   src?: string;
 }
 
-interface MetaHTMLAttributes extends HTMLAttributes<HTMLMetaElement> {
+interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
   charset?: string;
   content?: string;
   'http-equiv'?: string;
   name?: string;
 }
 
-interface MeterHTMLAttributes extends HTMLAttributes<HTMLMeterElement> {
+interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
   form?: string
   high?: number | `${number}`;
   low?: number | `${number}`;
@@ -1148,11 +1149,11 @@ interface MeterHTMLAttributes extends HTMLAttributes<HTMLMeterElement> {
   value?: number | string;
 }
 
-interface QuoteHTMLAttributes extends HTMLAttributes<HTMLQuoteElement> {
+interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
   cite?: string;
 }
 
-interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
+interface HTMLObjectElementAttributes extends HTMLAttributes<HTMLObjectElement> {
   classID?: string
   data?: string
   form?: string
@@ -1164,46 +1165,46 @@ interface ObjectHTMLAttributes extends HTMLAttributes<HTMLObjectElement> {
   wmode?: string
 }
 
-interface OlHTMLAttributes extends HTMLAttributes<HTMLOListElement> {
+interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
   reversed?: boolean | 'reversed' | '';
   start?: number | `${number}`;
   type?: '1' | 'a' | 'A' | 'i' | 'I';
 }
 
-interface OptgroupHTMLAttributes extends HTMLAttributes<HTMLOptGroupElement> {
+interface HTMLOptGroupElementAttributes extends HTMLAttributes<HTMLOptGroupElement> {
   disabled?: boolean | 'disabled' | '';
   label?: string;
 }
 
-interface OptionHTMLAttributes extends HTMLAttributes<HTMLOptionElement> {
+interface HTMLOptionElementAttributes extends HTMLAttributes<HTMLOptionElement> {
   disabled?: boolean | 'disabled' | '';
   label?: string;
   selected?: boolean | 'selected' | '';
   value?: number | string;
 }
 
-interface OutputHTMLAttributes extends HTMLAttributes<HTMLOutputElement> {
+interface HTMLOutputElementAttributes extends HTMLAttributes<HTMLOutputElement> {
   form?: string
   for?: string;
   name?: string;
   value?: number | string;
 }
 
-interface ParamHTMLAttributes extends HTMLAttributes<HTMLParamElement> {
+interface HTMLParamElementAttributes extends HTMLAttributes<HTMLParamElement> {
   name?: string
   value?: number | string
 }
 
-interface ProgressHTMLAttributes extends HTMLAttributes<HTMLProgressElement> {
+interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
   max?: number | `${number}`;
   value?: number | `${number}`;
 }
 
-interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
+interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
   async?: boolean | 'async' | ''
   /** @deprecated */
   charset?: string;
-  crossOrigin?: true | '' | 'anonymous' | 'use-credentials';
+  crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
   defer?: boolean | 'defer' | '';
   integrity?: string
   noModule?: boolean | 'nomodule' | ''
@@ -1214,7 +1215,7 @@ interface ScriptHTMLAttributes extends HTMLAttributes<HTMLScriptElement> {
   fetchPriority?: 'high' | 'low' | 'auto';
 }
 
-interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
+interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
   autocomplete?: string;
   autofocus?: boolean | 'autofocus' | '';
   disabled?: boolean | 'disabled' | '';
@@ -1227,11 +1228,11 @@ interface SelectHTMLAttributes extends HTMLAttributes<HTMLSelectElement> {
   onchange?: ChangeEventHandler<HTMLSelectElement>;
 }
 
-interface SlotHTMLAttributes extends HTMLAttributes<HTMLSlotElement> {
+interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {
   name?: string;
 }
 
-interface SourceHTMLAttributes extends HTMLAttributes<HTMLSourceElement> {
+interface HTMLSourceElementAttributes extends HTMLAttributes<HTMLSourceElement> {
   media?: string;
   sizes?: string;
   src?: string;
@@ -1241,7 +1242,7 @@ interface SourceHTMLAttributes extends HTMLAttributes<HTMLSourceElement> {
   width?: number | string;
 }
 
-interface StyleHTMLAttributes extends HTMLAttributes<HTMLStyleElement> {
+interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
   media?: string
   nonce?: string
   scoped?: boolean | ''
@@ -1249,7 +1250,7 @@ interface StyleHTMLAttributes extends HTMLAttributes<HTMLStyleElement> {
   type?: string
 }
 
-interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
+interface HTMLTableElementAttributes extends HTMLAttributes<HTMLTableElement> {
   /**
    * To achieve a similar effect, use the CSS properties `margin-left` and `margin-right` to `auto` or `margin` to `0 auto`.
    * @deprecated
@@ -1297,7 +1298,7 @@ interface TableHTMLAttributes extends HTMLAttributes<HTMLTableElement> {
   rules?: 'none' | 'groups' | 'rows' | 'cols' | 'all'
 }
 
-interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
+interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   autocomplete?: string;
   autofocus?: boolean | 'autofocus' | '';
   cols?: number | `${number}`;
@@ -1316,7 +1317,7 @@ interface TextareaHTMLAttributes extends HTMLAttributes<HTMLTextAreaElement> {
   onchange?: ChangeEventHandler<HTMLTextAreaElement>;
 }
 
-interface TdHTMLAttributes extends HTMLAttributes<HTMLTableCellElement> {
+interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
   colSpan?: number | `${number}`
   headers?: string
   rowSpan?: number | `${number}`
@@ -1363,7 +1364,7 @@ interface TdHTMLAttributes extends HTMLAttributes<HTMLTableCellElement> {
   valign?: 'top' | 'middle' | 'bottom' | 'baseline'
 }
 
-interface ThHTMLAttributes extends HTMLAttributes<HTMLTableCellElement> {
+interface HTMLTableHeaderCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
   abbr?: string
   colSpan?: number | `${number}`
   headers?: string
@@ -1405,11 +1406,11 @@ interface ThHTMLAttributes extends HTMLAttributes<HTMLTableCellElement> {
   valign?: 'top' | 'middle' | 'bottom' | 'baseline'
 }
 
-interface TimeHTMLAttributes extends HTMLAttributes<HTMLTimeElement> {
+interface HTMLTimeElementAttributes extends HTMLAttributes<HTMLTimeElement> {
   dateTime?: string;
 }
 
-interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
+interface HTMLTrackElementAttributes extends HTMLAttributes<HTMLTrackElement> {
   default?: boolean | '';
   kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata';
   label?: string;
@@ -1417,19 +1418,18 @@ interface TrackHTMLAttributes extends HTMLAttributes<HTMLTrackElement> {
   srclang?: string;
 }
 
-interface VideoHTMLAttributes extends MediaHTMLAttributes<HTMLVideoElement> {
+interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
   height?: number | string;
   playsInline?: boolean | 'playsinline' | '';
   poster?: string;
   width?: number | string;
   disablePictureInPicture?: boolean | '';
   disableRemotePlayback?: boolean | '';
-
   onenterpictureinpicture?: TEventHandler<HTMLVideoElement>;
   onleavepictureinpicture?: TEventHandler<HTMLVideoElement>;
 }
 
-interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
+interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
   allowFullScreen?: boolean
   allowpopups?: boolean
   autofocus?: boolean | 'autofocus' | '';
@@ -1449,7 +1449,7 @@ interface WebViewHTMLAttributes extends HTMLAttributes<HTMLWebViewElement> {
   webpreferences?: string
 }
 
-interface MarqueeHTMLElement extends HTMLAttributes<HTMLMarqueeElement> {
+interface HTMLMarqueeElementAttributes extends HTMLAttributes<HTMLMarqueeElement> {
   behavior?: 'scroll' | 'slide' | 'alternate'
   bgColor?: string
   direction?: 'left' | 'right' | 'up' | 'down'
@@ -1467,14 +1467,7 @@ type HTMLWebViewElement = HTMLElement
 
 declare global {
   namespace JSX {
-    type Element = HTMLElement | SVGElement | DocumentFragment
-    type ElementType<P = any> =
-      | {
-        [K in keyof IntrinsicElements]: P extends IntrinsicElements[K]
-        ? K
-        : never
-      }[keyof IntrinsicElements]
-      | FunctionComponent<P>
+    type Element = HTMLElement | SVGElement
 
     interface Attributes { }
 
@@ -1483,56 +1476,56 @@ declare global {
     interface IntrinsicAttributes extends Attributes { }
 
     interface IntrinsicElements {
-      a: AnchorHTMLAttributes
+      a: HTMLAnchorElementAttributes
       abbr: HTMLAttributes<HTMLElement>
       /** @deprecated */
       acronym: HTMLAttributes<HTMLElement>
       address: HTMLAttributes<HTMLElement>
-      area: AreaHTMLAttributes
+      area: HTMLAreaElementAttributes
       article: HTMLAttributes<HTMLElement>
       aside: HTMLAttributes<HTMLElement>
-      audio: AudioHTMLAttributes
+      audio: HTMLAudioElementAttributes
       b: HTMLAttributes<HTMLElement>
-      base: BaseHTMLAttributes
+      base: HTMLBaseElementAttributes
       bdi: HTMLAttributes<HTMLElement>
       bdo: HTMLAttributes<HTMLElement>
       /** @deprecated */
       big: HTMLAttributes<HTMLElement>
       /** @deprecated */
       blink: HTMLAttributes<HTMLUnknownElement>
-      blockquote: QuoteHTMLAttributes
+      blockquote: HTMLQuoteElementAttributes
       body: HTMLAttributes<HTMLBodyElement>
       br: HTMLAttributes<HTMLBRElement>
-      button: ButtonHTMLAttributes
-      canvas: CanvasHTMLAttributes
+      button: HTMLButtonElementAttributes
+      canvas: HTMLCanvasElementAttributes
       caption: HTMLAttributes<HTMLElement>
       /** @deprecated */
       center: HTMLAttributes<HTMLElement>
       cite: HTMLAttributes<HTMLElement>
       code: HTMLAttributes<HTMLElement>
-      col: ColHTMLAttributes
-      colgroup: ColgroupHTMLAttributes
-      data: DataHTMLAttributes
+      col: HTMLTableColElementAttributes
+      colgroup: HTMLTableColElementAttributes
+      data: HTMLDataElementAttributes
       datalist: HTMLAttributes<HTMLDataListElement>
       dd: HTMLAttributes<HTMLElement>
-      del: DelHTMLAttributes
-      details: DetailsHTMLAttributes
+      del: HTMLModElementAttributes
+      details: HTMLDetailsElementAttributes
       dfn: HTMLAttributes<HTMLElement>
-      dialog: DialogHTMLAttributes
+      dialog: HTMLDialogElementAttributes
       /** @deprecated */
       dir: HTMLAttributes<HTMLDirectoryElement>
       div: HTMLAttributes<HTMLDivElement>
       dl: HTMLAttributes<HTMLDListElement>
       dt: HTMLAttributes<HTMLElement>
       em: HTMLAttributes<HTMLElement>
-      embed: EmbedHTMLAttributes
-      fieldset: FieldsetHTMLAttributes
+      embed: HTMLEmbedElementAttributes
+      fieldset: HTMLFieldSetElementAttributes
       figcaption: HTMLAttributes<HTMLElement>
       figure: HTMLAttributes<HTMLElement>
       /** @deprecated */
       font: HTMLAttributes<HTMLFontElement>
       footer: HTMLAttributes<HTMLElement>
-      form: FormHTMLAttributes
+      form: HTMLFormElementAttributes
       h1: HTMLAttributes<HTMLHeadingElement>
       h2: HTMLAttributes<HTMLHeadingElement>
       h3: HTMLAttributes<HTMLHeadingElement>
@@ -1543,28 +1536,28 @@ declare global {
       header: HTMLAttributes<HTMLElement>
       hgroup: HTMLAttributes<HTMLElement>
       hr: HTMLAttributes<HTMLHRElement>
-      html: HtmlHTMLAttributes
+      html: HTMLHtmlElementAttributes
       i: HTMLAttributes<HTMLElement>
-      iframe: IframeHTMLAttributes
-      img: ImgHTMLAttributes
-      input: InputHTMLAttributes
-      ins: InsHTMLAttributes
+      iframe: HTMLIFrameElementAttributes
+      img: HTMLImageElementAttributes
+      input: HTMLInputElementAttributes
+      ins: HTMLModElementAttributes
       kbd: HTMLAttributes<HTMLElement>
       /** @deprecated */
       keygen: HTMLAttributes<HTMLUnknownElement>;
-      label: LabelHTMLAttributes
+      label: HTMLLabelElementAttributes
       legend: HTMLAttributes<HTMLLegendElement>
-      li: LiHTMLAttributes
-      link: LinkHTMLAttributes
+      li: HTMLLIElementAttributes
+      link: HTMLLinkElementAttributes
       main: HTMLAttributes<HTMLElement>
-      map: MapHTMLAttributes
+      map: HTMLMapElementAttributes
       mark: HTMLAttributes<HTMLElement>
       /** @deprecated */
-      marquee: HTMLAttributes<MarqueeHTMLElement>
-      menu: MenuHTMLAttributes
+      marquee: HTMLAttributes<HTMLMarqueeElementAttributes>
+      menu: HTMLMenuElementAttributes
       menuitem: HTMLAttributes<HTMLUnknownElement>
-      meta: MetaHTMLAttributes
-      meter: MeterHTMLAttributes
+      meta: HTMLMetaElementAttributes
+      meter: HTMLMeterElementAttributes
       nav: HTMLAttributes<HTMLElement>
       /** @deprecated */
       nobr: HTMLAttributes<HTMLElement>
@@ -1574,20 +1567,20 @@ declare global {
       noframes: HTMLAttributes<HTMLUnknownElement>
       noindex: HTMLAttributes<HTMLElement>
       noscript: HTMLAttributes<HTMLUnknownElement>
-      object: ObjectHTMLAttributes
-      ol: OlHTMLAttributes
-      optgroup: OptgroupHTMLAttributes
-      option: OptionHTMLAttributes
-      output: OutputHTMLAttributes
+      object: HTMLObjectElementAttributes
+      ol: HTMLOListElementAttributes
+      optgroup: HTMLOptGroupElementAttributes
+      option: HTMLOptionElementAttributes
+      output: HTMLOutputElementAttributes
       p: HTMLAttributes<HTMLParagraphElement>
       /** @deprecated */
-      param: ParamHTMLAttributes
+      param: HTMLParamElementAttributes
       picture: HTMLAttributes<HTMLPictureElement>
       /** @deprecated */
       plaintext: HTMLAttributes<HTMLElement>
       pre: HTMLAttributes<HTMLPreElement>
-      progress: ProgressHTMLAttributes
-      q: QuoteHTMLAttributes
+      progress: HTMLProgressElementAttributes
+      q: HTMLQuoteElementAttributes
       /** @deprecated */
       rb: HTMLAttributes<HTMLElement>
       rp: HTMLAttributes<HTMLElement>
@@ -1595,42 +1588,42 @@ declare global {
       ruby: HTMLAttributes<HTMLElement>
       s: HTMLAttributes<HTMLElement>
       samp: HTMLAttributes<HTMLElement>
-      script: ScriptHTMLAttributes
+      script: HTMLScriptElementAttributes
       section: HTMLAttributes<HTMLElement>
-      select: SelectHTMLAttributes
-      slot: SlotHTMLAttributes
+      select: HTMLSelectElementAttributes
+      slot: HTMLSlotElementAttributes
       small: HTMLAttributes<HTMLElement>
-      source: SourceHTMLAttributes
+      source: HTMLSourceElementAttributes
       span: HTMLAttributes<HTMLSpanElement>
       /** @deprecated */
       strike: HTMLAttributes<HTMLElement>
       strong: HTMLAttributes<HTMLElement>
-      style: StyleHTMLAttributes
+      style: HTMLStyleElementAttributes
       sub: HTMLAttributes<HTMLElement>
       summary: HTMLAttributes<HTMLElement>
       sup: HTMLAttributes<HTMLElement>
-      table: TableHTMLAttributes
+      table: HTMLTableElementAttributes
       template: HTMLAttributes<HTMLTemplateElement>
       tbody: HTMLAttributes<HTMLTableSectionElement>
-      td: TdHTMLAttributes
-      textarea: TextareaHTMLAttributes
+      td: HTMLTableDataCellElementAttributes
+      textarea: HTMLTextAreaElementAttributes
       tfoot: HTMLAttributes<HTMLTableSectionElement>
-      th: ThHTMLAttributes
+      th: HTMLTableHeaderCellElementAttributes
       thead: HTMLAttributes<HTMLTableSectionElement>
-      time: TimeHTMLAttributes
+      time: HTMLTimeElementAttributes
       title: HTMLAttributes<HTMLTitleElement>
       tr: HTMLAttributes<HTMLTableRowElement>
-      track: TrackHTMLAttributes
+      track: HTMLTrackElementAttributes
       /** @deprecated */
       tt: HTMLAttributes<HTMLElement>
       u: HTMLAttributes<HTMLElement>
       ul: HTMLAttributes<HTMLUListElement>
       var: HTMLAttributes<HTMLElement>
-      video: VideoHTMLAttributes
+      video: HTMLVideoElementAttributes
       wbr: HTMLAttributes<HTMLElement>
       /** @deprecated */
-      xmp: HTMLAttributes<HTMLElement>
-      webview: WebViewHTMLAttributes
+      xmp: HTMLAttributes<HTMLPreElement>
+      webview: HTMLWebViewElementAttributes
 
       animate: SVGAttributes<SVGAnimateElement>
       animateMotion: SVGAttributes<SVGAnimateMotionElement>
