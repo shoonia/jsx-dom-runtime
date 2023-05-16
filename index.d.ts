@@ -48,6 +48,10 @@ export { FunctionComponent as FC };
 export const properties: Set<string>;
 export const extensions: Map<string, (node: HTMLElement | SVGElement, value: any) => void>;
 
+export const xhtmlNS = 'http://www.w3.org/1999/xhtml';
+export const svgNS = 'http://www.w3.org/2000/svg';
+export const mathmlNS = 'http://www.w3.org/1998/Math/MathML';
+
 export function useRef<T = any>(current?: T): RefObject<T>
 export function useText<T = string>(initContent?: T): readonly [
   Text,
@@ -86,7 +90,7 @@ type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 
 interface DOMAttributes<T> extends JSX.Attributes {
-  __ns?: number;
+  __ns?: typeof xhtmlNS | typeof svgNS | typeof mathmlNS;
   ref?: RefCallback<T> | RefObject<T>
   children?: TChild | TChild[]
   // Clipboard Events
@@ -535,7 +539,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 }
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
-  __ns?: 1,
+  __ns?: typeof svgNS,
   href?: string
   cx?: number | string
   cy?: number | string

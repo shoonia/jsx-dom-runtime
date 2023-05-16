@@ -97,7 +97,7 @@ export const jsxSyntax = (): PluginObj => {
             props.push(
               t.objectProperty(
                 t.identifier(ns.name),
-                t.numericLiteral(1),
+                addImport('svgNS'),
               ),
             );
           }

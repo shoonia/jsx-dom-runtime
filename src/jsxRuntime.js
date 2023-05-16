@@ -14,7 +14,7 @@ export let properties = new Set([
 
 export let jsx = (tag, props) => {
   let key, val, node = props.__ns
-    ? document.createElementNS('http://www.w3.org/2000/svg', tag)
+    ? document.createElementNS(props.__ns, tag)
     : document.createElement(tag);
 
   for (key in props) {
