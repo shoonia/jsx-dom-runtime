@@ -1,11 +1,12 @@
 import { appendChildren } from './appendChildren';
-import { extensions } from './Extend';
 
 let internalKeys = new Set([
   'ref',
   'children',
   '__ns',
 ]);
+
+export let extensions = new Map();
 
 export let properties = new Set([
   'value',

@@ -1,4 +1,4 @@
-export let extensions = new Map();
+import { extensions } from './jsxRuntime';
 
 export let Extend = (props) => {
   for (let key in props) {

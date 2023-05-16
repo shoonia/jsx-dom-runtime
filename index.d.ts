@@ -35,6 +35,7 @@ export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> 
 export { FunctionComponent as FC };
 
 export const properties: Set<string>;
+export const extensions: Map<string, (node: HTMLElement | SVGElement, value: any) => void>;
 
 export function useRef<T = any>(current?: T): RefObject<T>
 export function useText<T = string>(initContent?: T): readonly [

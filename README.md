@@ -143,21 +143,22 @@ document.body.append(
 Add custom attributes in `JSX.Element`.
 
 ```js
-import { Extend } from 'jsx-dom-runtime';
+import { extensions } from 'jsx-dom-runtime';
 
-Extend({
-  'x-class': (node, value) => {
+extensions
+  .set('x-class', (node, value) => {
     node.setAttribute('class', value.filter(Boolean).join(' '));
-  },
-  'x-dataset': (node, value) => {
+  })
+  .set('x-dataset', (node, value) => {
     for (let key in value) {
-      node.dataset[key] = value[key];
+      if (value[key] != null) {
+        node.dataset[key] = value[key];
+      }
     }
-  },
-  'x-autofocus': (node, value) => {
+  })
+  .set('x-autofocus', (node, value) => {
     setTimeout(() => node.focus(), value);
-  },
-});
+  });
 
 document.body.append(
   <input

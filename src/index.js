@@ -1,5 +1,5 @@
 export { Fragment } from './Fragment';
-export { jsx, properties } from './jsxRuntime';
+export { jsx, properties, extensions } from './jsxRuntime';
 export { appendChildren } from './appendChildren';
 export { Extend } from './Extend';
 export { useRef } from './lib/useRef.ts';
