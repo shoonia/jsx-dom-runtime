@@ -30,38 +30,45 @@ Add preset to your [`.babelrc`](https://babeljs.io/docs/en/config-files) file.
 ## Example
 
 ```js
-import { useRef } from 'jsx-dom-runtime';
-
-const App = () => {
-  const ref = useRef();
-
-  const addItem = () => {
-    // add to the start of the list
-    ref.current.prepend(<li>New Item</li>);
-  };
-
-  return (
-    <>
-      <button type="button" onclick={addItem}>
-        Add Item
-      </button>
-      <ul ref={ref} />
-    </>
-  );
-};
-
 // add to the end of the head
 document.head.append(
   <link rel="stylesheet" href="/style.css" />
 );
 
 // add to the end the the body
-document.body.append(<App />);
+document.body.append(
+  <main class="box">
+    <h1 class="title">Hello World!</h1>
+  </main>
+);
 ```
 
 [Demo](/DEMO)
 
 ## Syntax
+
+Function Components
+
+```js
+const App = ({ name }) => (
+  <div>Hello {name}</div>
+);
+
+document.body.append(<App name="Bob" />);
+```
+
+### Fragments
+
+Use `<>...</>` syntax, to group multiple elements together. Under the hood, it use [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) interface
+
+```js
+document.body.append(
+  <>
+    <p>Hello</p>
+    <p>World</p>
+  </>
+);
+```
 
 ### Creating Refs
 
@@ -70,19 +77,19 @@ Adding a reference to a DOM Element
 ```js
 import { useRef } from 'jsx-dom-runtime';
 
-let i = 0;
-
 const ref = useRef();
-const click = () => {
-  ref.current.textContent = ++i;
+
+const addItem = () => {
+  // add to the start of the list
+  ref.current.prepend(<li>New Item</li>);
 };
 
 document.body.append(
   <>
-    <p ref={ref}>0</p>
-    <button type="button" onclick={click}>
-      + 1
+    <button type="button" onclick={addItem}>
+      Add Item
     </button>
+    <ul ref={ref} />
   </>
 );
 ```
@@ -90,7 +97,7 @@ document.body.append(
 ### Callback Refs
 
 ```js
-const focus = (node) => {
+const ready = (node) => {
   node.addEventListener('focusin', () => {
     node.style.backgroundColor = 'pink';
   });
@@ -101,7 +108,7 @@ const focus = (node) => {
 };
 
 document.body.append(
-  <input type="text" ref={focus} />
+  <input type="text" ref={ready} />
 );
 ```
 
@@ -115,7 +122,9 @@ const [text, setText] = useText('The initial text');
 document.body.append(
   <>
     <p>{text}</p>
-    <button type="button" onclick={() => setText('Clicked!')}>
+    <button type="button" onclick={() => {
+      setText('Clicked!');
+    }}>
       Click me
     </button>
   </>
@@ -290,13 +299,11 @@ interface Props {
   text: string;
 }
 
-const App: FC<Props> = ({ text }) => {
-  return (
-    <div class="card">
-      <div class="text">{text}</div>
-    </div>
-  );
-};
+const App: FC<Props> = ({ text }) => (
+  <div class="card">
+    <div class="text">{text}</div>
+  </div>
+);
 
 document.body.append(<App text="Hello!" />);
 ```
