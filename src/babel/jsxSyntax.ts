@@ -87,8 +87,7 @@ export const jsxSyntax = (): PluginObj => {
         },
 
         exit(path) {
-          const node = path.node;
-          const props = buildProps(node);
+          const props = buildProps(path.node);
 
           const noNs = props.every((i) => {
             return !(t.isObjectProperty(i) && t.isIdentifier(i.key, ns));
@@ -105,11 +104,11 @@ export const jsxSyntax = (): PluginObj => {
 
           const callExp = t.callExpression(
             addImport('jsx'),
-            [getTag(node), t.objectExpression(props)],
+            [getTag(path.node), t.objectExpression(props)],
           );
 
           addPureAnnotate(callExp);
-          path.replaceWith(t.inherits(callExp, node));
+          path.replaceWith(t.inherits(callExp, path.node));
         },
       },
 
