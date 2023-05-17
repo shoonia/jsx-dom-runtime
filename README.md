@@ -1,6 +1,6 @@
 # jsx-dom-runtime
 
-A tiny in 500 bytes library to JSX syntax templates for DOM. Support [HTML](https://html.spec.whatwg.org/multipage/), [SVG](https://www.w3.org/TR/SVG/) and [MathML](https://www.w3.org/TR/MathML3/) tags.
+A tiny in 500 bytes library to [JSX](https://facebook.github.io/jsx/) syntax templates for [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model). Support [HTML](https://html.spec.whatwg.org/multipage/), [SVG](https://www.w3.org/TR/SVG/) and [MathML](https://www.w3.org/TR/MathML3/) tags.
 
 [![test status](https://github.com/shoonia/jsx-dom-runtime/workflows/tests/badge.svg)](https://github.com/shoonia/jsx-dom-runtime/actions)
 [![npm version](https://badgen.net/npm/v/jsx-dom-runtime)](https://www.npmjs.com/package/jsx-dom-runtime)
