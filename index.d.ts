@@ -34,6 +34,8 @@ export function jsx<
   ? HTMLElementDeprecatedTagNameMap[K]
   : K extends keyof SVGElementTagNameMap
   ? SVGElementTagNameMap[K]
+  : K extends keyof MathMLElementTagNameMap
+  ? MathMLElementTagNameMap[K]
   : Element
 >(
   type: K,
@@ -871,6 +873,10 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   width?: number | string
 }
 
+export interface MathMLAttributes {
+  [key: string]: any
+}
+
 interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
   download?: any;
   href?: string;
@@ -1480,6 +1486,7 @@ declare global {
     interface IntrinsicAttributes extends Attributes { }
 
     interface IntrinsicElements {
+      // HTML
       a: HTMLAnchorElementAttributes
       abbr: HTMLAttributes<HTMLElement>
       /** @deprecated */
@@ -1629,6 +1636,7 @@ declare global {
       xmp: HTMLAttributes<HTMLPreElement>
       webview: HTMLWebViewElementAttributes
 
+      // SVG
       animate: SVGAttributes<SVGAnimateElement>
       animateMotion: SVGAttributes<SVGAnimateMotionElement>
       animateTransform: SVGAttributes<SVGAnimateTransformElement>
@@ -1688,6 +1696,38 @@ declare global {
       tspan: SVGAttributes<SVGTSpanElement>
       use: SVGAttributes<SVGUseElement>
       view: SVGAttributes<SVGViewElement>
+
+      // MathML
+      annotation: MathMLAttributes
+      'annotation-xml': MathMLAttributes
+      maction: MathMLAttributes
+      math: MathMLAttributes
+      merror: MathMLAttributes
+      mfrac: MathMLAttributes
+      mi: MathMLAttributes
+      mmultiscripts: MathMLAttributes
+      mn: MathMLAttributes
+      mo: MathMLAttributes
+      mover: MathMLAttributes
+      mpadded: MathMLAttributes
+      mphantom: MathMLAttributes
+      mprescripts: MathMLAttributes
+      mroot: MathMLAttributes
+      mrow: MathMLAttributes
+      ms: MathMLAttributes
+      mspace: MathMLAttributes
+      msqrt: MathMLAttributes
+      mstyle: MathMLAttributes
+      msub: MathMLAttributes
+      msubsup: MathMLAttributes
+      msup: MathMLAttributes
+      mtable: MathMLAttributes
+      mtd: MathMLAttributes
+      mtext: MathMLAttributes
+      mtr: MathMLAttributes
+      munder: MathMLAttributes
+      munderover: MathMLAttributes
+      semantics: MathMLAttributes
     }
   }
 }
