@@ -874,6 +874,34 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
 }
 
 export interface MathMLAttributes {
+  dir?: 'ltr' | 'rtl'
+  displaystyle?: 'true' | 'false'
+  /** @deprecated */
+  mathbackground?: SvgProperties['color']
+  /** @deprecated */
+  mathcolor?: SvgProperties['color']
+  /** @deprecated */
+  mathsize?: number | string
+  mathvariant?:
+  | 'normal'
+  | 'bold'
+  | 'italic'
+  | 'bold-italic'
+  | 'double-struck'
+  | 'bold-fraktur'
+  | 'script'
+  | 'bold-script'
+  | 'fraktur'
+  | 'sans-serif'
+  | 'bold-sans-serif'
+  | 'sans-serif-italic'
+  | 'sans-serif-bold-italic'
+  | 'monospace'
+  | 'initial'
+  | 'tailed'
+  | 'looped'
+  | 'stretched'
+  scriptlevel?: number | string
   [key: string]: any
 }
 
