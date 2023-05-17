@@ -1,3 +1,3 @@
-export let useRef = (current) => {
+export const useRef = (current) => {
   return Object.seal({ current });
 };

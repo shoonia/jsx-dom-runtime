@@ -7,6 +7,13 @@ const crossTags = new Set(['a', 'script', 'style', 'title']);
 export const svgTags = new Set(svg.filter((i) => !crossTags.has(i)));
 export const htmlTags = new Set<string>(html);
 
+export const mathmlTags = new Set([
+  'annotation', 'annotation-xml', 'maction', 'math', 'merror', 'mfrac', 'mi',
+  'mmultiscripts', 'mn', 'mo', 'mover', 'mpadded', 'mphantom', 'mprescripts',
+  'mroot', 'mrow', 'ms', 'mspace', 'msqrt', 'mstyle', 'msub', 'msubsup', 'msup',
+  'mtable', 'mtd', 'mtext', 'mtr', 'munder', 'munderover', 'semantics',
+]);
+
 export const DOMEvents = new Set([
   'oncopy', 'oncut', 'onpaste',
   // Composition Events

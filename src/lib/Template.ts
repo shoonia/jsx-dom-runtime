@@ -1,6 +1,6 @@
 import { jsx } from '../jsxRuntime';
 
-export let parseFromString = (html: string): DocumentFragment => {
+export const parseFromString = (html: string): DocumentFragment => {
   const template = jsx('template', {});
 
   template.innerHTML = html;
@@ -8,6 +8,6 @@ export let parseFromString = (html: string): DocumentFragment => {
   return template.content;
 };
 
-export let Template = (props): DocumentFragment => {
+export const Template = (props): DocumentFragment => {
   return parseFromString(props.children);
 };

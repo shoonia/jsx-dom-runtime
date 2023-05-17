@@ -1,7 +1,7 @@
 import { appendChildren } from './appendChildren';
 
-export let Fragment = (children) => {
-  let fragment = new DocumentFragment();
+export const Fragment = (children) => {
+  const fragment = new DocumentFragment();
 
   appendChildren(fragment, children);
   return fragment;

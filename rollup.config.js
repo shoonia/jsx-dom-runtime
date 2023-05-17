@@ -41,7 +41,7 @@ export default [
     plugins,
   },
   {
-    input: 'src/index.js',
+    input: 'src/index.ts',
     output: [
       {
         file: './jsx-runtime/index.js',

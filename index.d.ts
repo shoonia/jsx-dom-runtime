@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2022" />
-import { Properties, SvgProperties } from 'csstype';
+import { Properties, SvgProperties, Property } from 'csstype';
 
 interface RefObject<T> {
   readonly current: T
@@ -34,6 +34,8 @@ export function jsx<
   ? HTMLElementDeprecatedTagNameMap[K]
   : K extends keyof SVGElementTagNameMap
   ? SVGElementTagNameMap[K]
+  : K extends keyof MathMLElementTagNameMap
+  ? MathMLElementTagNameMap[K]
   : Element
 >(
   type: K,
@@ -47,6 +49,10 @@ export { FunctionComponent as FC };
 
 export const properties: Set<string>;
 export const extensions: Map<string, (node: HTMLElement | SVGElement, value: any) => void>;
+
+export const xhtmlNS = 'http://www.w3.org/1999/xhtml';
+export const svgNS = 'http://www.w3.org/2000/svg';
+export const mathmlNS = 'http://www.w3.org/1998/Math/MathML';
 
 export function useRef<T = any>(current?: T): RefObject<T>
 export function useText<T = string>(initContent?: T): readonly [
@@ -86,7 +92,7 @@ type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 
 interface DOMAttributes<T> extends JSX.Attributes {
-  __ns?: number;
+  __ns?: typeof xhtmlNS | typeof svgNS | typeof mathmlNS;
   ref?: RefCallback<T> | RefObject<T>
   children?: TChild | TChild[]
   // Clipboard Events
@@ -400,7 +406,7 @@ export interface AriaAttributes {
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   accessKey?: string
   class?: string
-  contentEditable?: true | '' | 'true' | 'false' | 'inherit'
+  contentEditable?: boolean | '' | 'true' | 'false' | 'inherit'
   contextMenu?: string
   dir?: 'ltr' | 'rtl' | 'auto'
   /**
@@ -512,7 +518,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   autocapitalize?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
   autoCorrect?: string
   autoSave?: string
-  color?: string
+  color?: Property.Color
   itemProp?: string
   itemScope?: boolean | ''
   itemType?: string
@@ -535,7 +541,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 }
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
-  __ns?: 1,
+  __ns?: typeof svgNS,
   href?: string
   cx?: number | string
   cy?: number | string
@@ -865,6 +871,38 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   zoomAndPan?: 'disable' | 'magnify'
   height?: number | string
   width?: number | string
+}
+
+export interface MathMLAttributes {
+  dir?: 'ltr' | 'rtl'
+  displaystyle?: 'true' | 'false'
+  /** @deprecated */
+  mathbackground?: Property.Color
+  /** @deprecated */
+  mathcolor?: Property.Color
+  /** @deprecated */
+  mathsize?: number | string
+  mathvariant?:
+  | 'normal'
+  | 'bold'
+  | 'italic'
+  | 'bold-italic'
+  | 'double-struck'
+  | 'bold-fraktur'
+  | 'script'
+  | 'bold-script'
+  | 'fraktur'
+  | 'sans-serif'
+  | 'bold-sans-serif'
+  | 'sans-serif-italic'
+  | 'sans-serif-bold-italic'
+  | 'monospace'
+  | 'initial'
+  | 'tailed'
+  | 'looped'
+  | 'stretched'
+  scriptlevel?: number | string
+  [key: string]: any
 }
 
 interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
@@ -1260,7 +1298,7 @@ interface HTMLTableElementAttributes extends HTMLAttributes<HTMLTableElement> {
    * To achieve a similar effect, use the CSS `background-color` property.
    * @deprecated
    */
-  bgColor?: string;
+  bgColor?: Property.Color;
   /**
    * To achieve a similar effect, use the CSS `border` property.
    * @deprecated
@@ -1337,7 +1375,7 @@ interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCel
    * To achieve a similar effect, use the CSS `background-color` property
    * @deprecated
    */
-  bgColor?: string;
+  bgColor?: Property.Color;
   /**
    * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
    * @deprecated
@@ -1381,7 +1419,7 @@ interface HTMLTableHeaderCellElementAttributes extends HTMLAttributes<HTMLTableC
    * To achieve a similar effect, use the CSS `background-color` property
    * @deprecated
    */
-  bgColor?: string;
+  bgColor?: Property.Color;
   /**
    * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
    * @deprecated
@@ -1451,7 +1489,7 @@ interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement
 
 interface HTMLMarqueeElementAttributes extends HTMLAttributes<HTMLMarqueeElement> {
   behavior?: 'scroll' | 'slide' | 'alternate'
-  bgColor?: string
+  bgColor?: Property.Color
   direction?: 'left' | 'right' | 'up' | 'down'
   height?: number | string
   hspace?: number | string
@@ -1476,6 +1514,7 @@ declare global {
     interface IntrinsicAttributes extends Attributes { }
 
     interface IntrinsicElements {
+      // HTML
       a: HTMLAnchorElementAttributes
       abbr: HTMLAttributes<HTMLElement>
       /** @deprecated */
@@ -1625,6 +1664,7 @@ declare global {
       xmp: HTMLAttributes<HTMLPreElement>
       webview: HTMLWebViewElementAttributes
 
+      // SVG
       animate: SVGAttributes<SVGAnimateElement>
       animateMotion: SVGAttributes<SVGAnimateMotionElement>
       animateTransform: SVGAttributes<SVGAnimateTransformElement>
@@ -1684,6 +1724,38 @@ declare global {
       tspan: SVGAttributes<SVGTSpanElement>
       use: SVGAttributes<SVGUseElement>
       view: SVGAttributes<SVGViewElement>
+
+      // MathML
+      annotation: MathMLAttributes
+      'annotation-xml': MathMLAttributes
+      maction: MathMLAttributes
+      math: MathMLAttributes
+      merror: MathMLAttributes
+      mfrac: MathMLAttributes
+      mi: MathMLAttributes
+      mmultiscripts: MathMLAttributes
+      mn: MathMLAttributes
+      mo: MathMLAttributes
+      mover: MathMLAttributes
+      mpadded: MathMLAttributes
+      mphantom: MathMLAttributes
+      mprescripts: MathMLAttributes
+      mroot: MathMLAttributes
+      mrow: MathMLAttributes
+      ms: MathMLAttributes
+      mspace: MathMLAttributes
+      msqrt: MathMLAttributes
+      mstyle: MathMLAttributes
+      msub: MathMLAttributes
+      msubsup: MathMLAttributes
+      msup: MathMLAttributes
+      mtable: MathMLAttributes
+      mtd: MathMLAttributes
+      mtext: MathMLAttributes
+      mtr: MathMLAttributes
+      munder: MathMLAttributes
+      munderover: MathMLAttributes
+      semantics: MathMLAttributes
     }
   }
 }

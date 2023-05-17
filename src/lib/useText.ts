@@ -1,5 +1,5 @@
-export let useText = (initContent?: string) => {
-  let text = new Text(initContent);
+export const useText = (initContent?: string) => {
+  const text = new Text(initContent);
 
   return [
     text,

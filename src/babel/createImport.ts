@@ -2,10 +2,12 @@ import type { NodePath } from '@babel/core';
 import t from '@babel/types';
 import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 
+export type TImportName = 'jsx' | 'Fragment' | 'svgNS' | 'mathmlNS' | 'xhtmlNS';
+
 export const createImport = (path: NodePath<t.Program>) => {
   const cache = new Map();
 
-  return (importName: 'jsx' | 'Fragment'): t.Identifier | t.StringLiteral => {
+  return (importName: TImportName): t.Identifier | t.StringLiteral => {
     const source = 'jsx-dom-runtime';
     const isMod = isModule(path);
 

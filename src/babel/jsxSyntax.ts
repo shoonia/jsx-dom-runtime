@@ -1,8 +1,8 @@
 import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
-import { boolAttrs, DOMEvents, htmlTags, svgTags } from './collections';
-import { createImport } from './createImport';
+import { boolAttrs, DOMEvents, htmlTags, mathmlTags, svgTags } from './collections';
+import { createImport, type TImportName } from './createImport';
 import {
   buildChildren,
   buildProps,
@@ -28,7 +28,7 @@ const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
 };
 
 export const jsxSyntax = (): PluginObj => {
-  let nsSvg: WeakSet<t.Node>;
+  let nsMap: WeakMap<t.Node, TImportName>;
   let addImport: ReturnType<typeof createImport>;
 
   return {
@@ -36,7 +36,7 @@ export const jsxSyntax = (): PluginObj => {
     visitor: {
       Program: {
         enter(path) {
-          nsSvg = new WeakSet();
+          nsMap = new WeakMap();
           addImport = createImport(path);
         },
       },
@@ -82,7 +82,9 @@ export const jsxSyntax = (): PluginObj => {
 
             path.replaceWith(t.inherits(node, path.node));
           } else if (svgTags.has(name.name)) {
-            nsSvg.add(path.node);
+            nsMap.set(path.node, 'svgNS');
+          } else if (mathmlTags.has(name.name)) {
+            nsMap.set(path.node, 'mathmlNS');
           }
         },
 
@@ -93,13 +95,17 @@ export const jsxSyntax = (): PluginObj => {
             return !(t.isObjectProperty(i) && t.isIdentifier(i.key, ns));
           });
 
-          if (noNs && nsSvg.has(path.node) || nsSvg.has(path.parent)) {
-            props.push(
-              t.objectProperty(
-                t.identifier(ns.name),
-                t.numericLiteral(1),
-              ),
-            );
+          if (noNs) {
+            const importName = nsMap.get(path.node) ?? nsMap.get(path.parent);
+
+            if (importName) {
+              props.push(
+                t.objectProperty(
+                  t.identifier(ns.name),
+                  addImport(importName),
+                ),
+              );
+            }
           }
 
           const callExp = t.callExpression(
