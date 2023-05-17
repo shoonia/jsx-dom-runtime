@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2022" />
-import { Properties, SvgProperties } from 'csstype';
+import { Properties, SvgProperties, Property } from 'csstype';
 
 interface RefObject<T> {
   readonly current: T
@@ -406,7 +406,7 @@ export interface AriaAttributes {
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   accessKey?: string
   class?: string
-  contentEditable?: true | '' | 'true' | 'false' | 'inherit'
+  contentEditable?: boolean | '' | 'true' | 'false' | 'inherit'
   contextMenu?: string
   dir?: 'ltr' | 'rtl' | 'auto'
   /**
@@ -518,7 +518,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   autocapitalize?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
   autoCorrect?: string
   autoSave?: string
-  color?: string
+  color?: Property.Color
   itemProp?: string
   itemScope?: boolean | ''
   itemType?: string
@@ -877,9 +877,9 @@ export interface MathMLAttributes {
   dir?: 'ltr' | 'rtl'
   displaystyle?: 'true' | 'false'
   /** @deprecated */
-  mathbackground?: SvgProperties['color']
+  mathbackground?: Property.Color
   /** @deprecated */
-  mathcolor?: SvgProperties['color']
+  mathcolor?: Property.Color
   /** @deprecated */
   mathsize?: number | string
   mathvariant?:
@@ -1298,7 +1298,7 @@ interface HTMLTableElementAttributes extends HTMLAttributes<HTMLTableElement> {
    * To achieve a similar effect, use the CSS `background-color` property.
    * @deprecated
    */
-  bgColor?: string;
+  bgColor?: Property.Color;
   /**
    * To achieve a similar effect, use the CSS `border` property.
    * @deprecated
@@ -1375,7 +1375,7 @@ interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCel
    * To achieve a similar effect, use the CSS `background-color` property
    * @deprecated
    */
-  bgColor?: string;
+  bgColor?: Property.Color;
   /**
    * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
    * @deprecated
@@ -1419,7 +1419,7 @@ interface HTMLTableHeaderCellElementAttributes extends HTMLAttributes<HTMLTableC
    * To achieve a similar effect, use the CSS `background-color` property
    * @deprecated
    */
-  bgColor?: string;
+  bgColor?: Property.Color;
   /**
    * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
    * @deprecated
@@ -1489,7 +1489,7 @@ interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement
 
 interface HTMLMarqueeElementAttributes extends HTMLAttributes<HTMLMarqueeElement> {
   behavior?: 'scroll' | 'slide' | 'alternate'
-  bgColor?: string
+  bgColor?: Property.Color
   direction?: 'left' | 'right' | 'up' | 'down'
   height?: number | string
   hspace?: number | string
