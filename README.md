@@ -1,6 +1,6 @@
 # jsx-dom-runtime
 
-A tiny in 500 bytes library to JSX syntax templates for DOM.
+A tiny in 500 bytes library to JSX syntax templates for DOM. Support [HTML](https://html.spec.whatwg.org/multipage/), [SVG](https://www.w3.org/TR/SVG/) and [MathML](https://www.w3.org/TR/MathML3/) tags.
 
 [![test status](https://github.com/shoonia/jsx-dom-runtime/workflows/tests/badge.svg)](https://github.com/shoonia/jsx-dom-runtime/actions)
 [![npm version](https://badgen.net/npm/v/jsx-dom-runtime)](https://www.npmjs.com/package/jsx-dom-runtime)
@@ -227,8 +227,8 @@ properties.add('textContent') // https://developer.mozilla.org/en-US/docs/Web/AP
 
 document.body.append(
   <>
-    <span textContent="Hello, world!" />
-    <span innerHTML="<p>Hello, world!</p>" />
+    <div textContent="Hello, world!" />
+    <div innerHTML="<p>Hello, world!</p>" />
     <audio
       src="https://interactive-examples.mdn.mozilla.net/media/cc0-audio/t-rex-roar.mp3"
       controls

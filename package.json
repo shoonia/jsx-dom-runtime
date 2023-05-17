@@ -1,7 +1,7 @@
 {
   "name": "jsx-dom-runtime",
   "version": "0.48.0",
-  "description": "A tiny in 500 bytes library to JSX syntax templates for DOM",
+  "description": "A tiny in 500 bytes library to JSX syntax templates for DOM. Support HTML, SVG and MathML tags",
   "type": "module",
   "main": "jsx-runtime/index.cjs",
   "module": "jsx-runtime/index.js",
@@ -78,9 +78,9 @@
   ],
   "keywords": [
     "jsx",
-    "jsxdom",
     "jsx-dom",
-    "jsx-runtime"
+    "jsx-runtime",
+    "babel-plugin"
   ],
   "repository": {
     "type": "git",
