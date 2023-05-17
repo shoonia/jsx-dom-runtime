@@ -43,7 +43,7 @@ export function jsx<
 ): R
 
 export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> {
-  (props: PropsWithChildren<P>): T | null | undefined
+  (props: PropsWithChildren<P>): T | null
 }
 export { FunctionComponent as FC };
 
