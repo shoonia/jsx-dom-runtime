@@ -1,4 +1,4 @@
-import { extensions } from './jsxRuntime';
+import { extensions } from '../jsxRuntime';
 
 export const Extend = (props) => {
   for (let key in props) {
