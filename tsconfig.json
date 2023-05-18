@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "esModuleInterop": true,
     "sourceMap": false,
     "target": "ES2022",
@@ -19,5 +20,11 @@
     "./tests/**/*.ts",
     "./tests/**/*.tsx",
     "./src/**/*.ts"
+  ],
+  "exclude": [
+    "babel-preset/",
+    "DEMO/",
+    "jsx-runtime/",
+    "node_modules/"
   ]
 }
