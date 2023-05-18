@@ -4,15 +4,13 @@ import { t } from '../utils';
 describe('XML Namespaces', () => {
   it('should NOT break build process, and build correct string', () => {
     expect(
-      <div>
-        <h:table>
-          <h:tr>
-            <h:td>Apples</h:td>
-            <h:td>Bananas</h:td>
-          </h:tr>
-        </h:table>
-      </div>
-    ).toHaveInnerHTML('<h:table><h:tr><h:td>Apples</h:td><h:td>Bananas</h:td></h:tr></h:table>');
+      <h:table>
+        <h:tr>
+          <h:td>Apples</h:td>
+          <h:td>Bananas</h:td>
+        </h:tr>
+      </h:table>
+    ).toHaveOuterHTML('<h:table><h:tr><h:td>Apples</h:td><h:td>Bananas</h:td></h:tr></h:table>');
   });
 
   it('should transform namespaced tag to string', async () => {

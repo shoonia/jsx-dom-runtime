@@ -40,4 +40,14 @@ describe('babel-plugin-jsx-syntax: Element', () => {
     const result = await t('<App>start {...items} end</App>');
     expect(result).toBe('App({children:["start ",items," end"]});');
   });
+
+  it('should return elemet with two JSXSpreadChild', async () => {
+    const result = await t('<App>{...one}{...two}</App>');
+    expect(result).toBe('App({children:[one,two]});');
+  });
+
+  it('should return elemet with array', async () => {
+    const result = await t('<App>{[...a, ...b]}{...c}</App>');
+    expect(result).toBe('App({children:[[...a,...b],c]});');
+  });
 });
