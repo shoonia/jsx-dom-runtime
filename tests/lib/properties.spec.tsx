@@ -2,9 +2,14 @@ import { properties } from '../../jsx-runtime';
 
 declare global {
   namespace JSX {
+    // it should add types for all JSX elements
     interface Attributes {
       textContent?: string;
       innerHTML?: string;
+    }
+
+    // it should add types only for Audio element
+    interface HTMLAudioElementAttributes {
       volume?: number;
       muted?: boolean;
     }
