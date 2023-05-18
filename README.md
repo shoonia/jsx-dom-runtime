@@ -44,7 +44,7 @@ document.body.append(
 );
 ```
 
-[Demo](/DEMO)
+[Demo](https://github.com/shoonia/jsx-dom-runtime/tree/master/DEMO)
 
 ## Documentation
 
@@ -52,7 +52,6 @@ document.body.append(
 - [APIs](https://github.com/shoonia/jsx-dom-runtime/wiki#apis)
 - [TypeScript Support](https://github.com/shoonia/jsx-dom-runtime/wiki#typescript-support)
 
-
 ## License
 
-[MIT](./LICENSE)
+[MIT](https://github.com/shoonia/jsx-dom-runtime/blob/master/LICENSE)

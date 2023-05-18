@@ -10,7 +10,7 @@
     "build": "rm -rf dist .parcel-cache && parcel build --no-source-maps --no-cache src/index.html"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.48.0"
+    "jsx-dom-runtime": "^0.49.0"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.21.5",
