@@ -1,4 +1,4 @@
-import { t } from './transform';
+import { t } from '../utils';
 
 describe('babel-plugin-jsx-syntax: Element', () => {
   it('should NOT have children', async () => {

@@ -1,4 +1,4 @@
-import { t } from './transform';
+import { t } from '../utils';
 
 describe('Babel transform `htmlFor` to `for`', () => {
   it('should transform `htmlFor` attribute in <label />', () => {

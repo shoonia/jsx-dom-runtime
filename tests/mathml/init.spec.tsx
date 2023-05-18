@@ -1,4 +1,4 @@
-import { t } from '../babel-plugin-jsx-syntax/transform';
+import { t } from '../utils';
 
 const start = 'import{mathmlNS as _mathmlNS}from"jsx-dom-runtime";import{jsx as _jsx}from"jsx-dom-runtime";';
 

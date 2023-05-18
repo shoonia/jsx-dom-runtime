@@ -1,4 +1,4 @@
-import { t } from './transform';
+import { t } from '../utils';
 
 describe('babel-plugin-jsx-syntax: ArrowFunctionExpression', () => {
   it('should work with ArrowFunctionExpression', async () => {

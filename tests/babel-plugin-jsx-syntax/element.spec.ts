@@ -1,4 +1,4 @@
-import { t } from './transform';
+import { t } from '../utils';
 
 const start = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
 

@@ -1,4 +1,4 @@
-import { t } from './transform';
+import { t } from '../utils';
 
 describe('babel-plugin-jsx-syntax: ForStatement', () => {
   it('should work with `for` loop, init', async () => {

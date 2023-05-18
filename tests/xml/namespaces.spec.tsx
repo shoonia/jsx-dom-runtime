@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { t } from '../babel-plugin-jsx-syntax/transform';
+import { t } from '../utils';
 
 const _jsx = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
 

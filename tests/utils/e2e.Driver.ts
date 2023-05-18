@@ -1,7 +1,7 @@
 import { fireEvent, getAllByTestId, getByTestId } from '@testing-library/dom';
 
 export class Driver {
-  render(node: any) {
+  render(node: JSX.Element): void {
     document.body.append(node);
   }
 
@@ -13,7 +13,7 @@ export class Driver {
     return getAllByTestId(document.body, dataId);
   }
 
-  click(dataId: string) {
+  click(dataId: string): void {
     fireEvent.click(this.get(dataId));
   }
 }

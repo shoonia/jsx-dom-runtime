@@ -1,4 +1,4 @@
-import { t } from './transform';
+import { t } from '../utils';
 
 describe('babel-plugin-jsx-syntax: JSXExpressionContainer', () => {
   it('should work in JSX attribute value', async () => {

@@ -1,4 +1,4 @@
-import { t } from './transform';
+import { t } from '../utils';
 
 const list = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ_$'.split('');
 

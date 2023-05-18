@@ -1,4 +1,4 @@
-import { t } from './transform';
+import { t } from '../utils';
 
 describe('babel-plugin-jsx-syntax: AssignmentPattern', () => {
   it('should work with default parameters', async () => {

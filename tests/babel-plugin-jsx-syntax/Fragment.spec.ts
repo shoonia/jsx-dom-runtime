@@ -1,4 +1,4 @@
-import { t } from './transform';
+import { t } from '../utils';
 
 const start = 'import{Fragment as _Fragment}from"jsx-dom-runtime";/*#__PURE__*/';
 

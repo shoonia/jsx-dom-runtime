@@ -4,7 +4,7 @@ const config = {
     '\\.[jt]sx?$': 'babel-jest',
   },
   setupFilesAfterEnv: [
-    '<rootDir>/jest-setup.ts'
+    '<rootDir>/utils/jest-setup.ts'
   ],
   testEnvironment: 'jest-environment-jsdom',
   extensionsToTreatAsEsm: ['.tsx', '.ts'],

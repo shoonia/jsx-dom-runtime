@@ -1,38 +1,38 @@
-import { useRef } from '..';
+import { type FC, useRef } from '..';
+import { Driver } from './utils';
 
-import { Driver } from './e2e.Driver';
+describe('e2e test', () => {
+  it('should add new items to list by click', () => {
+    const driver = new Driver();
 
-const driver = new Driver();
+    const List: FC = () => {
+      const ref = useRef<HTMLUListElement>();
 
-it('should add new items to list by click', () => {
-  const List = () => {
-    const ref = useRef<HTMLUListElement>();
+      const add: EventListener = () => {
+        ref.current.append(
+          <li data-testid="item">
+            New Item
+          </li>
+        );
+      };
 
-    const add = () => {
-      ref.current.append(
-        <li data-testid="item">
-          New Item
-        </li>
+      return (
+        <>
+          <button type="button" onclick={add} data-testid="button">
+          add
+          </button>
+          <ul ref={ref}></ul>
+        </>
       );
     };
 
-    return (
-      <>
-        <button type="button" onclick={add} data-testid="button">
-          add
-        </button>
-        <ul ref={ref}></ul>
-      </>
-    );
-  };
+    driver.render(<List />);
+    driver.click('button');
 
-  driver.render(<List />);
+    expect(driver.getAll('item')).toHaveLength(1);
 
-  driver.click('button');
+    driver.click('button');
 
-  expect(driver.getAll('item')).toHaveLength(1);
-
-  driver.click('button');
-
-  expect(driver.getAll('item')).toHaveLength(2);
+    expect(driver.getAll('item')).toHaveLength(2);
+  });
 });

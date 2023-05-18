@@ -1,4 +1,4 @@
-import { t } from './transform';
+import { t } from '../utils';
 
 describe('babel-plugin-jsx-syntax: JSXMemberExpression', () => {
   it('should work with object methods', async () => {
