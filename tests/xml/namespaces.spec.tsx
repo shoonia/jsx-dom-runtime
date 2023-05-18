@@ -1,8 +1,6 @@
 // @ts-nocheck
 import { t } from '../utils';
 
-const _jsx = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
-
 describe('XML Namespaces', () => {
   it('should NOT break build process, and build correct string', () => {
     expect(
@@ -18,7 +16,13 @@ describe('XML Namespaces', () => {
   });
 
   it('should transform namespaced tag to string', async () => {
-    const result = await t('<namespaced:tag namespaced:attribute="value">content</namespaced:tag>');
-    expect(result).toBe(_jsx + '_jsx("namespaced:tag",{"namespaced:attribute":"value",children:"content"});');
+    const result = await t`
+    <namespaced:tag namespaced:attribute="value">
+      content
+    </namespaced:tag>`;
+
+    expect(result).toBe(
+      'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("namespaced:tag",{"namespaced:attribute":"value",children:"content"});',
+    );
   });
 });
