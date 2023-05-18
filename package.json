@@ -26,7 +26,7 @@
     "test": "npx jest --clearCache && node --experimental-vm-modules node_modules/.bin/jest --no-cache",
     "build": "rollup -c",
     "size": "size-limit",
-    "types": "tsc index.d.ts --skipLibCheck",
+    "types": "tsc --noEmit",
     "dev": "npm run lint && npm run types && npm run build && npm test && npm run size"
   },
   "dependencies": {

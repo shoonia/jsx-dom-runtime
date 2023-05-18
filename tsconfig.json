@@ -1,7 +1,5 @@
 {
   "compilerOptions": {
-    "checkJs": true,
-    "allowJs": true,
     "esModuleInterop": true,
     "sourceMap": false,
     "target": "ES2022",
@@ -11,6 +9,7 @@
     "forceConsistentCasingInFileNames": true,
     "jsx": "react-jsx",
     "jsxImportSource": "jsx-dom-runtime",
+    "skipLibCheck": true,
     "lib": [
       "ES2022",
       "DOM"
