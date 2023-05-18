@@ -19,5 +19,11 @@
     "./tests/**/*.ts",
     "./tests/**/*.tsx",
     "./src/**/*.ts"
+  ],
+  "exclude": [
+    "babel-preset/",
+    "DEMO/",
+    "jsx-runtime/",
+    "node_modules/"
   ]
 }
