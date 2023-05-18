@@ -1511,13 +1511,9 @@ type HTMLWebViewElement = HTMLElement
 
 declare global {
   namespace JSX {
-    type Element = HTMLElement | SVGElement
-
+    type Element = HTMLElement | SVGElement | MathMLElement | DocumentFragment
     interface Attributes { }
-
-    interface ElementAttributesProperty { props: {} }
     interface ElementChildrenAttribute { children: {} }
-    interface IntrinsicAttributes extends Attributes { }
 
     interface IntrinsicElements {
       // HTML
