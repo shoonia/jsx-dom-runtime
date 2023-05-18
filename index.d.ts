@@ -911,609 +911,609 @@ export interface MathMLAttributes extends AriaAttributes, DOMAttributes<MathMLEl
   [key: string]: any
 }
 
-interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
-  download?: any;
-  href?: string;
-  hreflang?: string;
-  ping?: string
-  rel?: string;
-  target?: '_blank' | '_self' | '_parent' | '_top';
-  type?: string;
-  referrerPolicy?: ReferrerPolicy;
-  /**
-   * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
-   * @deprecated
-   */
-  'xlink:href'?: string
-}
-
-interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> { }
-
-interface HTMLAreaElementAttributes extends HTMLAttributes<HTMLAreaElement> {
-  alt?: string
-  coords?: string
-  download?: any
-  href?: string
-  /** @deprecated */
-  hreflang?: string;
-  media?: string
-  referrerPolicy?: ReferrerPolicy;
-  rel?: string
-  shape?: string
-  target?: string
-}
-
-interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
-  href?: string
-  target?: string
-}
-
-interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
-  autofocus?: boolean | 'autofocus' | '';
-  disabled?: boolean | 'disabled' | '';
-  form?: string
-  formAction?: string
-  formEncType?: string
-  formMethod?: string
-  formNoValidate?: boolean | 'formnovalidate' | ''
-  formTarget?: string
-  name?: string;
-  type?: 'submit' | 'reset' | 'button';
-  value?: number | string;
-}
-
-interface HTMLCanvasElementAttributes extends HTMLAttributes<HTMLCanvasElement> {
-  height?: number | string;
-  width?: number | string;
-}
-
-interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
-  span?: number | `${number}`
-  width?: number | string
-}
-
-interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
-  value?: number | string;
-}
-
-interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
-  open?: boolean | 'open' | '';
-  ontoggle?: TEventHandler<HTMLDetailsElement>;
-}
-
-interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
-  cite?: string;
-  dateTime?: string;
-}
-
-interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
-  open?: boolean | 'open' | '';
-  ontoggle?: TEventHandler<HTMLDialogElement>;
-}
-
-interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
-  height?: number | string
-  src?: string
-  type?: string
-  width?: number | string
-}
-
-interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
-  disabled?: boolean | 'disabled' | '';
-  form?: string
-  name?: string;
-}
-
-export interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
-  'accept-charset'?: string;
-  action?: string;
-  autocomplete?: string;
-  enctype?: string;
-  method?: string;
-  name?: string;
-  noValidate?: boolean | 'novalidate' | '';
-  target?: string
-}
-
-interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
-  manifest?: string
-}
-
-interface HTMLIFrameElementAttributes extends HTMLAttributes<HTMLIFrameElement> {
-  allow?: string
-  /**
-   * This attribute is considered a legacy attribute and redefined as `allow="fullscreen"`
-   * @deprecated
-   */
-  allowFullScreen?: boolean | '';
-  /**
-   * This attribute is considered a legacy attribute and redefined as `allow="payment"`
-   * @deprecated
-   */
-  allowPaymentRequest?: boolean | ''
-  /** @deprecated  */
-  allowTransparency?: boolean | ''
-  /** @deprecated */
-  frameBorder?: number | string
-  height?: number | string;
-  loading?: 'eager' | 'lazy'
-  /** @deprecated */
-  marginHeight?: number | `${number}`;
-  /** @deprecated */
-  marginWidth?: number | `${number}`;
-  name?: string;
-  referrerPolicy?: ReferrerPolicy;
-  sandbox?: string
-  /** @deprecated */
-  scrolling?: string
-  /** @deprecated */
-  seamless?: boolean | ''
-  src?: string;
-  srcdoc?: string;
-  width?: number | string;
-}
-
-interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
-  alt?: string;
-  crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-  decoding?: 'async' | 'auto' | 'sync';
-  height?: number | string;
-  loading?: 'eager' | 'lazy';
-  referrerPolicy?: ReferrerPolicy;
-  sizes?: string;
-  src?: string;
-  srcset?: string;
-  useMap?: string;
-  width?: number | string;
-  fetchPriority?: 'high' | 'low' | 'auto';
-}
-
-interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
-  accept?: string
-  alt?: string
-  autocomplete?: string;
-  autofocus?: boolean | 'autofocus' | '';
-  capture?: boolean | 'user' | 'environment' | ''
-  checked?: boolean | 'checked' | '';
-  crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-  disabled?: boolean | 'disabled' | '';
-  dirName?: string;
-  enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
-  form?: string
-  formAction?: string
-  formEncType?: string
-  formMethod?: string
-  formNoValidate?: boolean | 'formnovalidate' | ''
-  formTarget?: string
-  height?: number | string
-  list?: string;
-  max?: number | string
-  maxLength?: number | `${number}`;
-  min?: number | string
-  minLength?: number | `${number}`;
-  multiple?: boolean | 'multiple' | '';
-  name?: string;
-  pattern?: string;
-  placeholder?: string;
-  readOnly?: boolean | 'readonly' | '';
-  required?: boolean | 'required' | '';
-  size?: number | `${number}`;
-  src?: string
-  step?: number | `${number}`
-  type?:
-  | 'button'
-  | 'checkbox'
-  | 'color'
-  | 'date'
-  | 'datetime-local'
-  | 'email'
-  | 'file'
-  | 'hidden'
-  | 'image'
-  | 'month'
-  | 'number'
-  | 'password'
-  | 'radio'
-  | 'range'
-  | 'reset'
-  | 'search'
-  | 'submit'
-  | 'tel'
-  | 'text'
-  | 'time'
-  | 'url'
-  | 'week';
-  value?: number | string;
-  width?: number | string
-  onchange?: ChangeEventHandler<HTMLInputElement>
-}
-
-interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
-  for?: string
-}
-
-interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
-  value?: number | `${number}`;
-}
-
-interface HTMLLinkElementAttributes extends HTMLAttributes<HTMLLinkElement> {
-  title?: string;
-  as?: string;
-  crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-  disabled?: boolean | 'disabled' | '';
-  href?: string
-  hreflang?: string;
-  integrity?: string
-  media?: string;
-  referrerPolicy?: ReferrerPolicy;
-  rel?: string;
-  /** @deprecated */
-  rev?: string;
-  sizes?: string;
-  type?: string;
-  /** @deprecated */
-  charset?: string;
-  fetchPriority?: 'high' | 'low' | 'auto';
-}
-
-interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
-  name?: string
-}
-
-interface HTMLMenuElementAttributes extends HTMLAttributes<HTMLMenuElement> {
-  /** @deprecated */
-  type?: string;
-}
-
-interface HTMLMediaAttributes<T> extends HTMLAttributes<T> {
-  autoplay?: boolean | 'autoplay' | '';
-  controls?: boolean | 'controls' | '';
-  controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
-  crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-  loop?: boolean | 'loop' | '';
-  mediaGroup?: string
-  preload?: 'none' | 'metadata' | 'auto';
-  src?: string;
-}
-
-interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
-  charset?: string;
-  content?: string;
-  'http-equiv'?: string;
-  name?: string;
-}
-
-interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
-  form?: string
-  high?: number | `${number}`;
-  low?: number | `${number}`;
-  max?: number | string;
-  min?: number | string;
-  optimum?: number | `${number}`;
-  value?: number | string;
-}
-
-interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
-  cite?: string;
-}
-
-interface HTMLObjectElementAttributes extends HTMLAttributes<HTMLObjectElement> {
-  classID?: string
-  data?: string
-  form?: string
-  height?: number | string
-  name?: string
-  type?: string
-  useMap?: string;
-  width?: number | string
-  wmode?: string
-}
-
-interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
-  reversed?: boolean | 'reversed' | '';
-  start?: number | `${number}`;
-  type?: '1' | 'a' | 'A' | 'i' | 'I';
-}
-
-interface HTMLOptGroupElementAttributes extends HTMLAttributes<HTMLOptGroupElement> {
-  disabled?: boolean | 'disabled' | '';
-  label?: string;
-}
-
-interface HTMLOptionElementAttributes extends HTMLAttributes<HTMLOptionElement> {
-  disabled?: boolean | 'disabled' | '';
-  label?: string;
-  selected?: boolean | 'selected' | '';
-  value?: number | string;
-}
-
-interface HTMLOutputElementAttributes extends HTMLAttributes<HTMLOutputElement> {
-  form?: string
-  for?: string;
-  name?: string;
-  value?: number | string;
-}
-
-interface HTMLParamElementAttributes extends HTMLAttributes<HTMLParamElement> {
-  name?: string
-  value?: number | string
-}
-
-interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
-  max?: number | `${number}`;
-  value?: number | `${number}`;
-}
-
-interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
-  async?: boolean | 'async' | ''
-  /** @deprecated */
-  charset?: string;
-  crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-  defer?: boolean | 'defer' | '';
-  integrity?: string
-  noModule?: boolean | 'nomodule' | ''
-  nonce?: string
-  referrerPolicy?: ReferrerPolicy;
-  src?: string;
-  type?: string;
-  fetchPriority?: 'high' | 'low' | 'auto';
-}
-
-interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
-  autocomplete?: string;
-  autofocus?: boolean | 'autofocus' | '';
-  disabled?: boolean | 'disabled' | '';
-  form?: string
-  multiple?: boolean | 'multiple' | '';
-  name?: string;
-  required?: boolean | 'required' | '';
-  size?: number | `${number}`;
-  value?: number | string;
-  onchange?: ChangeEventHandler<HTMLSelectElement>;
-}
-
-interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {
-  name?: string;
-}
-
-interface HTMLSourceElementAttributes extends HTMLAttributes<HTMLSourceElement> {
-  media?: string;
-  sizes?: string;
-  src?: string;
-  srcset?: string;
-  type?: string;
-  height?: number | string;
-  width?: number | string;
-}
-
-interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
-  media?: string
-  nonce?: string
-  scoped?: boolean | ''
-  /** @deprecated */
-  type?: string
-}
-
-interface HTMLTableElementAttributes extends HTMLAttributes<HTMLTableElement> {
-  /**
-   * To achieve a similar effect, use the CSS properties `margin-left` and `margin-right` to `auto` or `margin` to `0 auto`.
-   * @deprecated
-   */
-  align?: 'left' | 'center' | 'right'
-  /**
-   * To achieve a similar effect, use the CSS `background-color` property.
-   * @deprecated
-   */
-  bgColor?: Property.Color;
-  /**
-   * To achieve a similar effect, use the CSS `border` property.
-   * @deprecated
-   */
-  border?: string;
-  /**
-   * To achieve a similar effect, apply the `border-collapse` CSS property to the `<table>` element, with its value set to collapse, and the `padding` property to the `<td>` elements.
-   * @deprecated
-   */
-  cellPadding?: number | string;
-  /**
-   * To achieve a similar effect, apply the `border-spacing` CSS property to the `<table>` element. `border-spacing` does not have any effect if `border-collapse` is set to `collapse`.
-   * @deprecated
-   */
-  cellSpacing?: number | string;
-  /**
-   * To achieve a similar effect, use the CSS the `border-style` and `border-width` properties.
-   * @deprecated
-   */
-  frame?: string;
-  /**
-   * Use the `<caption>` element instead
-   * @deprecated
-   */
-  summary?: string
-  /**
-   * To achieve a similar effect, use the CSS `width` property instead.
-   * @deprecated
-   */
-  width?: number | string;
-  /**
-   * To achieve a similar effect, apply the CSS `border` property to the appropriate `<thead>`, `<tbody>`, `<tfoot>`, `<col>`, or `<colgroup>` elements.
-   * @deprecated
-   */
-  rules?: 'none' | 'groups' | 'rows' | 'cols' | 'all'
-}
-
-interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
-  autocomplete?: string;
-  autofocus?: boolean | 'autofocus' | '';
-  cols?: number | `${number}`;
-  dirName?: string;
-  disabled?: boolean | 'disabled' | '';
-  form?: string
-  maxLength?: number | `${number}`;
-  minLength?: number | `${number}`;
-  name?: string;
-  placeholder?: string;
-  readOnly?: boolean | 'readonly' | '';
-  required?: boolean | 'required' | '';
-  rows?: number | `${number}`;
-  value?: number | string;
-  wrap?: 'hard' | 'soft' | 'off';
-  onchange?: ChangeEventHandler<HTMLTextAreaElement>;
-}
-
-interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
-  colSpan?: number | `${number}`
-  headers?: string
-  rowSpan?: number | `${number}`
-  /**
-   * Do not use this attribute as it is obsolete in the latest standard. Alternatively, you can put the abbreviated description inside the cell and place the long content in the title attribute.
-   * @deprecated
-   */
-  abbr?: string
-  /**
-   * To achieve the same effect as the `left`, `center`, `right` or `justify` values, apply the CSS `text-align` property to the element, the `char` value, give the `text-align` property the same value you would use for the `char`.
-   * @deprecated
-   */
-  align?: 'left' | 'center' | 'right' | 'justify' | 'char'
-  /** @deprecated */
-  axis?: string;
-  /**
-   * To achieve a similar effect, use the CSS `background-color` property
-   * @deprecated
-   */
-  bgColor?: Property.Color;
-  /**
-   * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
-   * @deprecated
-   */
-  char?: string;
-  /** @deprecated */
-  charoff?: string
-  /** @deprecated */
-  scope?: string
-  /**
-   * To achieve a similar effect, use the CSS `height` property instead.
-   * @deprecated
-   */
-  height?: number | string
-  /**
-   * To achieve a similar effect,use the CSS `width` property instead
-   * @deprecated
-   */
-  width?: number | string
-  /**
-   * To achieve a similar effect, use the CSS `vertical-align` property
-   * @deprecated
-   */
-  valign?: 'top' | 'middle' | 'bottom' | 'baseline'
-}
-
-interface HTMLTableHeaderCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
-  abbr?: string
-  colSpan?: number | `${number}`
-  headers?: string
-  rowSpan?: number | `${number}`
-  scope?: string
-  /**
-   * To achieve the same effect as the `left`, `center`, `right` or `justify` values, apply the CSS `text-align` property to the element, the `char` value, give the `text-align` property the same value you would use for the `char`.
-   * @deprecated
-   */
-  align?: 'left' | 'center' | 'right' | 'justify' | 'char'
-  /** @deprecated */
-  axis?: string;
-  /**
-   * To achieve a similar effect, use the CSS `background-color` property
-   * @deprecated
-   */
-  bgColor?: Property.Color;
-  /**
-   * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
-   * @deprecated
-   */
-  char?: string;
-  /** @deprecated */
-  charoff?: string
-  /**
-   * To achieve a similar effect, use the CSS `height` property instead.
-   * @deprecated
-   */
-  height?: number | string
-  /**
-   * To achieve a similar effect,use the CSS `width` property instead
-   * @deprecated
-   */
-  width?: number | string
-  /**
-   * To achieve a similar effect, use the CSS `vertical-align` property
-   * @deprecated
-   */
-  valign?: 'top' | 'middle' | 'bottom' | 'baseline'
-}
-
-interface HTMLTimeElementAttributes extends HTMLAttributes<HTMLTimeElement> {
-  dateTime?: string;
-}
-
-interface HTMLTrackElementAttributes extends HTMLAttributes<HTMLTrackElement> {
-  default?: boolean | '';
-  kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata';
-  label?: string;
-  src?: string;
-  srclang?: string;
-}
-
-interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
-  height?: number | string;
-  playsInline?: boolean | 'playsinline' | '';
-  poster?: string;
-  width?: number | string;
-  disablePictureInPicture?: boolean | '';
-  disableRemotePlayback?: boolean | '';
-  onenterpictureinpicture?: TEventHandler<HTMLVideoElement>;
-  onleavepictureinpicture?: TEventHandler<HTMLVideoElement>;
-}
-
-interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
-  allowFullScreen?: boolean
-  allowpopups?: boolean
-  autofocus?: boolean | 'autofocus' | '';
-  autosize?: boolean
-  blinkfeatures?: string
-  disableblinkfeatures?: string
-  disableguestresize?: boolean
-  disablewebsecurity?: boolean
-  guestinstance?: string
-  httpreferrer?: string
-  nodeintegration?: boolean
-  partition?: string
-  plugins?: boolean
-  preload?: string
-  src?: string
-  useragent?: string
-  webpreferences?: string
-}
-
-interface HTMLMarqueeElementAttributes extends HTMLAttributes<HTMLMarqueeElement> {
-  behavior?: 'scroll' | 'slide' | 'alternate'
-  bgColor?: Property.Color
-  direction?: 'left' | 'right' | 'up' | 'down'
-  height?: number | string
-  hspace?: number | string
-  loop?: number | string
-  scrollAmount?: number | string
-  scrollDelay?: number | string
-  trueSpeed?: boolean | ''
-  vspace?: number | string
-  width?: number | string
-}
-
-type HTMLWebViewElement = HTMLElement
-
 declare global {
   namespace JSX {
     type Element = HTMLElement | SVGElement | MathMLElement | DocumentFragment
     interface Attributes { }
     interface ElementChildrenAttribute { children: {} }
+
+    interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
+      download?: any;
+      href?: string;
+      hreflang?: string;
+      ping?: string
+      rel?: string;
+      target?: '_blank' | '_self' | '_parent' | '_top';
+      type?: string;
+      referrerPolicy?: ReferrerPolicy;
+      /**
+       * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
+       * @deprecated
+       */
+      'xlink:href'?: string
+    }
+
+    interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> { }
+
+    interface HTMLAreaElementAttributes extends HTMLAttributes<HTMLAreaElement> {
+      alt?: string
+      coords?: string
+      download?: any
+      href?: string
+      /** @deprecated */
+      hreflang?: string;
+      media?: string
+      referrerPolicy?: ReferrerPolicy;
+      rel?: string
+      shape?: string
+      target?: string
+    }
+
+    interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
+      href?: string
+      target?: string
+    }
+
+    interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
+      autofocus?: boolean | 'autofocus' | '';
+      disabled?: boolean | 'disabled' | '';
+      form?: string
+      formAction?: string
+      formEncType?: string
+      formMethod?: string
+      formNoValidate?: boolean | 'formnovalidate' | ''
+      formTarget?: string
+      name?: string;
+      type?: 'submit' | 'reset' | 'button';
+      value?: number | string;
+    }
+
+    interface HTMLCanvasElementAttributes extends HTMLAttributes<HTMLCanvasElement> {
+      height?: number | string;
+      width?: number | string;
+    }
+
+    interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
+      span?: number | `${number}`
+      width?: number | string
+    }
+
+    interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
+      value?: number | string;
+    }
+
+    interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
+      open?: boolean | 'open' | '';
+      ontoggle?: TEventHandler<HTMLDetailsElement>;
+    }
+
+    interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
+      cite?: string;
+      dateTime?: string;
+    }
+
+    interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
+      open?: boolean | 'open' | '';
+      ontoggle?: TEventHandler<HTMLDialogElement>;
+    }
+
+    interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
+      height?: number | string
+      src?: string
+      type?: string
+      width?: number | string
+    }
+
+    interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
+      disabled?: boolean | 'disabled' | '';
+      form?: string
+      name?: string;
+    }
+
+    export interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
+      'accept-charset'?: string;
+      action?: string;
+      autocomplete?: string;
+      enctype?: string;
+      method?: string;
+      name?: string;
+      noValidate?: boolean | 'novalidate' | '';
+      target?: string
+    }
+
+    interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
+      manifest?: string
+    }
+
+    interface HTMLIFrameElementAttributes extends HTMLAttributes<HTMLIFrameElement> {
+      allow?: string
+      /**
+       * This attribute is considered a legacy attribute and redefined as `allow="fullscreen"`
+       * @deprecated
+       */
+      allowFullScreen?: boolean | '';
+      /**
+       * This attribute is considered a legacy attribute and redefined as `allow="payment"`
+       * @deprecated
+       */
+      allowPaymentRequest?: boolean | ''
+      /** @deprecated  */
+      allowTransparency?: boolean | ''
+      /** @deprecated */
+      frameBorder?: number | string
+      height?: number | string;
+      loading?: 'eager' | 'lazy'
+      /** @deprecated */
+      marginHeight?: number | `${number}`;
+      /** @deprecated */
+      marginWidth?: number | `${number}`;
+      name?: string;
+      referrerPolicy?: ReferrerPolicy;
+      sandbox?: string
+      /** @deprecated */
+      scrolling?: string
+      /** @deprecated */
+      seamless?: boolean | ''
+      src?: string;
+      srcdoc?: string;
+      width?: number | string;
+    }
+
+    interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
+      alt?: string;
+      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
+      decoding?: 'async' | 'auto' | 'sync';
+      height?: number | string;
+      loading?: 'eager' | 'lazy';
+      referrerPolicy?: ReferrerPolicy;
+      sizes?: string;
+      src?: string;
+      srcset?: string;
+      useMap?: string;
+      width?: number | string;
+      fetchPriority?: 'high' | 'low' | 'auto';
+    }
+
+    interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
+      accept?: string
+      alt?: string
+      autocomplete?: string;
+      autofocus?: boolean | 'autofocus' | '';
+      capture?: boolean | 'user' | 'environment' | ''
+      checked?: boolean | 'checked' | '';
+      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
+      disabled?: boolean | 'disabled' | '';
+      dirName?: string;
+      enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
+      form?: string
+      formAction?: string
+      formEncType?: string
+      formMethod?: string
+      formNoValidate?: boolean | 'formnovalidate' | ''
+      formTarget?: string
+      height?: number | string
+      list?: string;
+      max?: number | string
+      maxLength?: number | `${number}`;
+      min?: number | string
+      minLength?: number | `${number}`;
+      multiple?: boolean | 'multiple' | '';
+      name?: string;
+      pattern?: string;
+      placeholder?: string;
+      readOnly?: boolean | 'readonly' | '';
+      required?: boolean | 'required' | '';
+      size?: number | `${number}`;
+      src?: string
+      step?: number | `${number}`
+      type?:
+      | 'button'
+      | 'checkbox'
+      | 'color'
+      | 'date'
+      | 'datetime-local'
+      | 'email'
+      | 'file'
+      | 'hidden'
+      | 'image'
+      | 'month'
+      | 'number'
+      | 'password'
+      | 'radio'
+      | 'range'
+      | 'reset'
+      | 'search'
+      | 'submit'
+      | 'tel'
+      | 'text'
+      | 'time'
+      | 'url'
+      | 'week';
+      value?: number | string;
+      width?: number | string
+      onchange?: ChangeEventHandler<HTMLInputElement>
+    }
+
+    interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
+      for?: string
+    }
+
+    interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
+      value?: number | `${number}`;
+    }
+
+    interface HTMLLinkElementAttributes extends HTMLAttributes<HTMLLinkElement> {
+      title?: string;
+      as?: string;
+      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
+      disabled?: boolean | 'disabled' | '';
+      href?: string
+      hreflang?: string;
+      integrity?: string
+      media?: string;
+      referrerPolicy?: ReferrerPolicy;
+      rel?: string;
+      /** @deprecated */
+      rev?: string;
+      sizes?: string;
+      type?: string;
+      /** @deprecated */
+      charset?: string;
+      fetchPriority?: 'high' | 'low' | 'auto';
+    }
+
+    interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
+      name?: string
+    }
+
+    interface HTMLMenuElementAttributes extends HTMLAttributes<HTMLMenuElement> {
+      /** @deprecated */
+      type?: string;
+    }
+
+    interface HTMLMediaAttributes<T> extends HTMLAttributes<T> {
+      autoplay?: boolean | 'autoplay' | '';
+      controls?: boolean | 'controls' | '';
+      controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
+      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
+      loop?: boolean | 'loop' | '';
+      mediaGroup?: string
+      preload?: 'none' | 'metadata' | 'auto';
+      src?: string;
+    }
+
+    interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
+      charset?: string;
+      content?: string;
+      'http-equiv'?: string;
+      name?: string;
+    }
+
+    interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
+      form?: string
+      high?: number | `${number}`;
+      low?: number | `${number}`;
+      max?: number | string;
+      min?: number | string;
+      optimum?: number | `${number}`;
+      value?: number | string;
+    }
+
+    interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
+      cite?: string;
+    }
+
+    interface HTMLObjectElementAttributes extends HTMLAttributes<HTMLObjectElement> {
+      classID?: string
+      data?: string
+      form?: string
+      height?: number | string
+      name?: string
+      type?: string
+      useMap?: string;
+      width?: number | string
+      wmode?: string
+    }
+
+    interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
+      reversed?: boolean | 'reversed' | '';
+      start?: number | `${number}`;
+      type?: '1' | 'a' | 'A' | 'i' | 'I';
+    }
+
+    interface HTMLOptGroupElementAttributes extends HTMLAttributes<HTMLOptGroupElement> {
+      disabled?: boolean | 'disabled' | '';
+      label?: string;
+    }
+
+    interface HTMLOptionElementAttributes extends HTMLAttributes<HTMLOptionElement> {
+      disabled?: boolean | 'disabled' | '';
+      label?: string;
+      selected?: boolean | 'selected' | '';
+      value?: number | string;
+    }
+
+    interface HTMLOutputElementAttributes extends HTMLAttributes<HTMLOutputElement> {
+      form?: string
+      for?: string;
+      name?: string;
+      value?: number | string;
+    }
+
+    interface HTMLParamElementAttributes extends HTMLAttributes<HTMLParamElement> {
+      name?: string
+      value?: number | string
+    }
+
+    interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
+      max?: number | `${number}`;
+      value?: number | `${number}`;
+    }
+
+    interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
+      async?: boolean | 'async' | ''
+      /** @deprecated */
+      charset?: string;
+      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
+      defer?: boolean | 'defer' | '';
+      integrity?: string
+      noModule?: boolean | 'nomodule' | ''
+      nonce?: string
+      referrerPolicy?: ReferrerPolicy;
+      src?: string;
+      type?: string;
+      fetchPriority?: 'high' | 'low' | 'auto';
+    }
+
+    interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
+      autocomplete?: string;
+      autofocus?: boolean | 'autofocus' | '';
+      disabled?: boolean | 'disabled' | '';
+      form?: string
+      multiple?: boolean | 'multiple' | '';
+      name?: string;
+      required?: boolean | 'required' | '';
+      size?: number | `${number}`;
+      value?: number | string;
+      onchange?: ChangeEventHandler<HTMLSelectElement>;
+    }
+
+    interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {
+      name?: string;
+    }
+
+    interface HTMLSourceElementAttributes extends HTMLAttributes<HTMLSourceElement> {
+      media?: string;
+      sizes?: string;
+      src?: string;
+      srcset?: string;
+      type?: string;
+      height?: number | string;
+      width?: number | string;
+    }
+
+    interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
+      media?: string
+      nonce?: string
+      scoped?: boolean | ''
+      /** @deprecated */
+      type?: string
+    }
+
+    interface HTMLTableElementAttributes extends HTMLAttributes<HTMLTableElement> {
+      /**
+       * To achieve a similar effect, use the CSS properties `margin-left` and `margin-right` to `auto` or `margin` to `0 auto`.
+       * @deprecated
+       */
+      align?: 'left' | 'center' | 'right'
+      /**
+       * To achieve a similar effect, use the CSS `background-color` property.
+       * @deprecated
+       */
+      bgColor?: Property.Color;
+      /**
+       * To achieve a similar effect, use the CSS `border` property.
+       * @deprecated
+       */
+      border?: string;
+      /**
+       * To achieve a similar effect, apply the `border-collapse` CSS property to the `<table>` element, with its value set to collapse, and the `padding` property to the `<td>` elements.
+       * @deprecated
+       */
+      cellPadding?: number | string;
+      /**
+       * To achieve a similar effect, apply the `border-spacing` CSS property to the `<table>` element. `border-spacing` does not have any effect if `border-collapse` is set to `collapse`.
+       * @deprecated
+       */
+      cellSpacing?: number | string;
+      /**
+       * To achieve a similar effect, use the CSS the `border-style` and `border-width` properties.
+       * @deprecated
+       */
+      frame?: string;
+      /**
+       * Use the `<caption>` element instead
+       * @deprecated
+       */
+      summary?: string
+      /**
+       * To achieve a similar effect, use the CSS `width` property instead.
+       * @deprecated
+       */
+      width?: number | string;
+      /**
+       * To achieve a similar effect, apply the CSS `border` property to the appropriate `<thead>`, `<tbody>`, `<tfoot>`, `<col>`, or `<colgroup>` elements.
+       * @deprecated
+       */
+      rules?: 'none' | 'groups' | 'rows' | 'cols' | 'all'
+    }
+
+    interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
+      autocomplete?: string;
+      autofocus?: boolean | 'autofocus' | '';
+      cols?: number | `${number}`;
+      dirName?: string;
+      disabled?: boolean | 'disabled' | '';
+      form?: string
+      maxLength?: number | `${number}`;
+      minLength?: number | `${number}`;
+      name?: string;
+      placeholder?: string;
+      readOnly?: boolean | 'readonly' | '';
+      required?: boolean | 'required' | '';
+      rows?: number | `${number}`;
+      value?: number | string;
+      wrap?: 'hard' | 'soft' | 'off';
+      onchange?: ChangeEventHandler<HTMLTextAreaElement>;
+    }
+
+    interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
+      colSpan?: number | `${number}`
+      headers?: string
+      rowSpan?: number | `${number}`
+      /**
+       * Do not use this attribute as it is obsolete in the latest standard. Alternatively, you can put the abbreviated description inside the cell and place the long content in the title attribute.
+       * @deprecated
+       */
+      abbr?: string
+      /**
+       * To achieve the same effect as the `left`, `center`, `right` or `justify` values, apply the CSS `text-align` property to the element, the `char` value, give the `text-align` property the same value you would use for the `char`.
+       * @deprecated
+       */
+      align?: 'left' | 'center' | 'right' | 'justify' | 'char'
+      /** @deprecated */
+      axis?: string;
+      /**
+       * To achieve a similar effect, use the CSS `background-color` property
+       * @deprecated
+       */
+      bgColor?: Property.Color;
+      /**
+       * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
+       * @deprecated
+       */
+      char?: string;
+      /** @deprecated */
+      charoff?: string
+      /** @deprecated */
+      scope?: string
+      /**
+       * To achieve a similar effect, use the CSS `height` property instead.
+       * @deprecated
+       */
+      height?: number | string
+      /**
+       * To achieve a similar effect,use the CSS `width` property instead
+       * @deprecated
+       */
+      width?: number | string
+      /**
+       * To achieve a similar effect, use the CSS `vertical-align` property
+       * @deprecated
+       */
+      valign?: 'top' | 'middle' | 'bottom' | 'baseline'
+    }
+
+    interface HTMLTableHeaderCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
+      abbr?: string
+      colSpan?: number | `${number}`
+      headers?: string
+      rowSpan?: number | `${number}`
+      scope?: string
+      /**
+       * To achieve the same effect as the `left`, `center`, `right` or `justify` values, apply the CSS `text-align` property to the element, the `char` value, give the `text-align` property the same value you would use for the `char`.
+       * @deprecated
+       */
+      align?: 'left' | 'center' | 'right' | 'justify' | 'char'
+      /** @deprecated */
+      axis?: string;
+      /**
+       * To achieve a similar effect, use the CSS `background-color` property
+       * @deprecated
+       */
+      bgColor?: Property.Color;
+      /**
+       * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
+       * @deprecated
+       */
+      char?: string;
+      /** @deprecated */
+      charoff?: string
+      /**
+       * To achieve a similar effect, use the CSS `height` property instead.
+       * @deprecated
+       */
+      height?: number | string
+      /**
+       * To achieve a similar effect,use the CSS `width` property instead
+       * @deprecated
+       */
+      width?: number | string
+      /**
+       * To achieve a similar effect, use the CSS `vertical-align` property
+       * @deprecated
+       */
+      valign?: 'top' | 'middle' | 'bottom' | 'baseline'
+    }
+
+    interface HTMLTimeElementAttributes extends HTMLAttributes<HTMLTimeElement> {
+      dateTime?: string;
+    }
+
+    interface HTMLTrackElementAttributes extends HTMLAttributes<HTMLTrackElement> {
+      default?: boolean | '';
+      kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata';
+      label?: string;
+      src?: string;
+      srclang?: string;
+    }
+
+    interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
+      height?: number | string;
+      playsInline?: boolean | 'playsinline' | '';
+      poster?: string;
+      width?: number | string;
+      disablePictureInPicture?: boolean | '';
+      disableRemotePlayback?: boolean | '';
+      onenterpictureinpicture?: TEventHandler<HTMLVideoElement>;
+      onleavepictureinpicture?: TEventHandler<HTMLVideoElement>;
+    }
+
+    interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
+      allowFullScreen?: boolean
+      allowpopups?: boolean
+      autofocus?: boolean | 'autofocus' | '';
+      autosize?: boolean
+      blinkfeatures?: string
+      disableblinkfeatures?: string
+      disableguestresize?: boolean
+      disablewebsecurity?: boolean
+      guestinstance?: string
+      httpreferrer?: string
+      nodeintegration?: boolean
+      partition?: string
+      plugins?: boolean
+      preload?: string
+      src?: string
+      useragent?: string
+      webpreferences?: string
+    }
+
+    interface HTMLMarqueeElementAttributes extends HTMLAttributes<HTMLMarqueeElement> {
+      behavior?: 'scroll' | 'slide' | 'alternate'
+      bgColor?: Property.Color
+      direction?: 'left' | 'right' | 'up' | 'down'
+      height?: number | string
+      hspace?: number | string
+      loop?: number | string
+      scrollAmount?: number | string
+      scrollDelay?: number | string
+      trueSpeed?: boolean | ''
+      vspace?: number | string
+      width?: number | string
+    }
+
+    type HTMLWebViewElement = HTMLElement
 
     interface IntrinsicElements {
       // HTML
