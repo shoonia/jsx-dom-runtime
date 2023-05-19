@@ -127,7 +127,7 @@ export const jsxSyntax = (): PluginObj => {
 
         const tag = parent.name.name;
 
-        if (!(htmlTags.has(tag) || svgTags.has(tag))) {
+        if (!(htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag))) {
           return;
         }
 
