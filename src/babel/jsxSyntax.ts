@@ -21,7 +21,7 @@ const addPureAnnotate = (node: t.Node): void => {
 const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
   const charCode = name.name.charCodeAt(0);
 
-  // A-Z, $ or _
+  // [A-Z], [$] or [_]
   return (charCode >= 65 && charCode <= 90) ||
     charCode === 36 ||
     charCode === 95;
