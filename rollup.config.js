@@ -2,9 +2,12 @@ import fse from 'fs-extra';
 import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 
-fse.emptyDirSync('./babel-preset');
-fse.emptyDirSync('./jsx-runtime');
-fse.writeFileSync('./jsx-runtime/index.d.ts', 'export * from "../index"');
+await Promise.all([
+  fse.emptyDir('./babel-preset'),
+  fse.emptyDir('./jsx-runtime'),
+]);
+
+fse.writeFile('./jsx-runtime/index.d.ts', 'export * from "../index"');
 
 const extensions = ['.js', '.ts'];
 
