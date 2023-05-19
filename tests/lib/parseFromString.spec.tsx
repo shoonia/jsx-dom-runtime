@@ -32,4 +32,8 @@ describe('parseFromString', () => {
       'one<div><span>two</span></div>three',
     );
   });
+
+  it('should be DocumentFragment instance', () => {
+    expect(parseFromString('<div />')).toBeInstanceOf(DocumentFragment);
+  });
 });
