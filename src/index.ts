@@ -1,7 +1,6 @@
 export * from './Fragment';
 export * from './jsxRuntime';
 export * from './appendChildren';
-export * from './lib/Extend';
 export * from './lib/useRef';
 export * from './lib/Template';
 export * from './lib/useText';

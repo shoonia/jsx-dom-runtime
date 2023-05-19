@@ -38,7 +38,7 @@ export function jsx<
   ? MathMLElementTagNameMap[K]
   : Element
 >(
-  type: K,
+  tag: K,
   props: PropsWithChildren<JSX.IntrinsicElements[K]>,
 ): R
 
@@ -48,7 +48,7 @@ export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> 
 export { FunctionComponent as FC };
 
 export const properties: Set<string>;
-export const extensions: Map<string, (node: HTMLElement | SVGElement, value: any) => void>;
+export const extensions: Map<string, (node: HTMLElement | SVGElement | MathMLElement, value?: any) => void>;
 
 export const xhtmlNS = 'http://www.w3.org/1999/xhtml';
 export const svgNS = 'http://www.w3.org/2000/svg';
@@ -60,7 +60,6 @@ export function useText<T = string>(initContent?: T): readonly [
   (text: T) => void
 ]
 
-export function Extend(props: Record<string, (node: HTMLElement, value: any) => void>): void
 export function parseFromString(html: string): DocumentFragment
 export function Fragment(children?: TChild | TChild[]): DocumentFragment
 export function Template(props: { children: string }): DocumentFragment
