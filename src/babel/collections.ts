@@ -11,7 +11,7 @@ export const mathmlTags = new Set([
   'annotation', 'annotation-xml', 'maction', 'math', 'merror', 'mfrac', 'mi',
   'mmultiscripts', 'mn', 'mo', 'mover', 'mpadded', 'mphantom', 'mprescripts',
   'mroot', 'mrow', 'ms', 'mspace', 'msqrt', 'mstyle', 'msub', 'msubsup', 'msup',
-  'mtable', 'mtd', 'mtext', 'mtr', 'munder', 'munderover', 'semantics',
+  'mtable', 'mtd', 'mtext', 'mtr', 'munder', 'munderover', 'semantics', 'mfenced',
 ]);
 
 export const DOMEvents = new Set([

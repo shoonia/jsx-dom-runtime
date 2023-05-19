@@ -1729,7 +1729,6 @@ declare global {
       // MathML
       annotation: MathMLAttributes
       'annotation-xml': MathMLAttributes
-      maction: MathMLAttributes
       math: MathMLAttributes
       merror: MathMLAttributes
       mfrac: MathMLAttributes
@@ -1757,6 +1756,10 @@ declare global {
       munder: MathMLAttributes
       munderover: MathMLAttributes
       semantics: MathMLAttributes
+      /** @deprecated */
+      maction: MathMLAttributes
+      /** @deprecated */
+      mfenced: MathMLAttributes
     }
   }
 }
