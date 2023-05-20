@@ -1,3 +1,4 @@
+/* eslint-disable no-cond-assign */
 import { appendChildren } from './appendChildren';
 
 const internalKeys = new Set([
@@ -54,9 +55,7 @@ export const jsx = (tag, props) => {
   );
 
   // reuse `val` variable
-  val = props.ref;
-
-  if (val) {
+  if (val = props.ref) {
     if (typeof val === 'function') {
       val(node);
     } else {
