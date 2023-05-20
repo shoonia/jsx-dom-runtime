@@ -18,6 +18,7 @@ const plugins =  [
     presets: [
       '@babel/preset-typescript',
     ],
+    comments: false,
   }),
   nodeResolve({
     extensions,
