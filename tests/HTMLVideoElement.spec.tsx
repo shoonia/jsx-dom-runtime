@@ -1,3 +1,5 @@
+import { jest } from '@jest/globals';
+
 describe('HTMLVideoElement', () => {
   it('should have `src` attribute & property', () => {
     expect(<video src="/video" />).toHaveProperty('src', 'http://localhost/video');
@@ -106,5 +108,10 @@ describe('HTMLVideoElement', () => {
   it('should have `crossOrigin` attribute', () => {
     expect(<video crossOrigin />).toHaveProperty('crossOrigin', '');
     expect(<video crossOrigin />).toHaveAttribute('crossOrigin', '');
+  });
+
+  it('should add `onresize` handler', () => {
+    const spy = jest.fn();
+    expect(<video onresize={spy} />).toHaveProperty('onresize', spy);
   });
 });

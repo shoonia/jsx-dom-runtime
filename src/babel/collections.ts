@@ -53,8 +53,8 @@ export const DOMEvents = new Set([
   'onanimationstart', 'onanimationend', 'onanimationiteration',
   // Transition Events
   'ontransitionend', 'ontransitionstart', 'ontransitioncancel', 'ontransitionrun',
-  // HTMLVideoElement
-  'onenterpictureinpicture', 'onleavepictureinpicture',
+  // PictureInPicture Events
+  'onenterpictureinpicture', 'onleavepictureinpicture', 'onresize',
   // HTMLDetailsElement & HTMLDialogElement
   'ontoggle',
   // HTMLDialogElement

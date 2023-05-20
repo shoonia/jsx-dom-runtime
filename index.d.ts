@@ -1479,6 +1479,7 @@ declare global {
       disableRemotePlayback?: boolean | '';
       onenterpictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>;
       onleavepictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>;
+      onresize?: PictureInPictureEventHandler<HTMLVideoElement>;
     }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
