@@ -57,6 +57,8 @@ export const DOMEvents = new Set([
   'onenterpictureinpicture', 'onleavepictureinpicture',
   // HTMLDetailsElement & HTMLDialogElement
   'ontoggle',
+  // HTMLDialogElement
+  'oncancel', 'onclose'
 ]);
 
 export const boolAttrs = new Set([

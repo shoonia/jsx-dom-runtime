@@ -994,6 +994,8 @@ declare global {
     interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
       open?: boolean | 'open' | '';
       ontoggle?: TEventHandler<HTMLDialogElement>;
+      onclose?: TEventHandler<HTMLDialogElement>;
+      oncancel?: TEventHandler<HTMLDialogElement>;
     }
 
     interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
