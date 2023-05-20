@@ -89,6 +89,7 @@ type UIEventHandler<T = Element> = EventHandler<UIEvent, T>
 type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
 type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
+type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
 
 interface DOMAttributes<T> extends JSX.Attributes {
   __ns?: typeof xhtmlNS | typeof svgNS | typeof mathmlNS;
@@ -1476,8 +1477,8 @@ declare global {
       width?: number | string;
       disablePictureInPicture?: boolean | '';
       disableRemotePlayback?: boolean | '';
-      onenterpictureinpicture?: TEventHandler<HTMLVideoElement>;
-      onleavepictureinpicture?: TEventHandler<HTMLVideoElement>;
+      onenterpictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>;
+      onleavepictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>;
     }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
