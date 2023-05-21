@@ -5,16 +5,16 @@ import { addNamed, addNamespace, isModule } from '@babel/helper-module-imports';
 export type TImportName = 'jsx' | 'Fragment' | 'svgNS' | 'mathmlNS' | 'xhtmlNS';
 
 export const createImport = (path: NodePath<t.Program>) => {
-  const cache = new Map();
+  const cache = new Map<string, t.Identifier>();
 
-  return (importName: TImportName): t.Identifier | t.StringLiteral => {
+  return (importName: TImportName): t.Identifier => {
     const source = 'jsx-dom-runtime';
     const isMod = isModule(path);
 
     const key = isMod ? importName : source;
 
     if (cache.has(key)) {
-      return t.cloneNode(cache.get(key));
+      return cache.get(key);
     }
 
     const newImport = isMod

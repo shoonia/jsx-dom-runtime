@@ -10,9 +10,7 @@ import {
   getTag,
 } from './util';
 
-const ns = {
-  name: 'ns',
-} as const;
+const ns = t.identifier('ns');
 
 const addPureAnnotate = (node: t.Node): void => {
   t.addComment(node, 'leading', '#__PURE__');
@@ -51,13 +49,13 @@ export const jsxSyntax = (): PluginObj => {
               : t.arrayExpression(children)
           ] : [];
 
-          const child = t.callExpression(
+          const callExp = t.callExpression(
             addImport('Fragment'),
             props,
           );
 
-          addPureAnnotate(child);
-          path.replaceWith(t.inherits(child, path.node));
+          addPureAnnotate(callExp);
+          path.replaceWith(callExp);
         },
       },
 
@@ -80,7 +78,7 @@ export const jsxSyntax = (): PluginObj => {
               ? t.jsxExpressionContainer(callExp)
               : callExp;
 
-            path.replaceWith(t.inherits(node, path.node));
+            path.replaceWith(node);
           } else if (svgTags.has(name.name)) {
             nsMap.set(path.node, 'svgNS');
           } else if (mathmlTags.has(name.name)) {
@@ -101,7 +99,7 @@ export const jsxSyntax = (): PluginObj => {
             if (importName) {
               props.push(
                 t.objectProperty(
-                  t.identifier(ns.name),
+                  ns,
                   addImport(importName),
                 ),
               );
@@ -114,7 +112,7 @@ export const jsxSyntax = (): PluginObj => {
           );
 
           addPureAnnotate(callExp);
-          path.replaceWith(t.inherits(callExp, path.node));
+          path.replaceWith(callExp);
         },
       },
 
