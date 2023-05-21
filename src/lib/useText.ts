@@ -4,7 +4,9 @@ export const useText = (initContent?: string) => {
   return [
     text,
     (content: string): void => {
-      text.textContent = content;
+      if (initContent !== content) {
+        text.textContent = initContent = content;
+      }
     },
   ] as const;
 };

@@ -57,7 +57,7 @@ export const mathmlNS = 'http://www.w3.org/1998/Math/MathML';
 export function useRef<T = any>(current?: T): RefObject<T>
 export function useText<T = string>(initContent?: T): readonly [
   Text,
-  (text: T) => void
+  (content: T) => void
 ]
 
 export function parseFromString(html: string): DocumentFragment
