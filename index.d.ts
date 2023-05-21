@@ -92,7 +92,7 @@ type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
 
 interface DOMAttributes<T> extends JSX.Attributes {
-  __ns?: typeof xhtmlNS | typeof svgNS | typeof mathmlNS;
+  ns?: typeof xhtmlNS | typeof svgNS | typeof mathmlNS;
   ref?: RefCallback<T> | RefObject<T>
   children?: TChild | TChild[]
   // Clipboard Events
@@ -541,7 +541,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 }
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
-  __ns?: typeof svgNS,
+  ns?: typeof svgNS,
   href?: string
   cx?: number | string
   cy?: number | string
@@ -874,7 +874,8 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
 }
 
 export interface MathMLAttributes extends AriaAttributes, DOMAttributes<MathMLElement> {
-  __ns?: typeof mathmlNS;
+  ns?: typeof mathmlNS;
+  xmlns?: typeof mathmlNS
   id?: string
   class?: string
   style?: string | CSSProperties

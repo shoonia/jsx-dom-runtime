@@ -11,7 +11,7 @@ import {
 } from './util';
 
 const ns = {
-  name: '__ns',
+  name: 'ns',
 } as const;
 
 const addPureAnnotate = (node: t.Node): void => {
