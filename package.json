@@ -1,6 +1,6 @@
 {
   "name": "jsx-dom-runtime",
-  "version": "0.51.0",
+  "version": "0.52.0-beta.0",
   "description": "A tiny in 500 bytes library to JSX syntax templates for DOM. Support HTML, SVG and MathML tags",
   "type": "module",
   "main": "jsx-runtime/index.cjs",
@@ -16,6 +16,11 @@
       "types": "./index.d.ts",
       "import": "./jsx-runtime/index.js",
       "require": "./jsx-runtime/index.cjs"
+    },
+    "./extensions/*": {
+      "types": "./extensions/*.d.ts",
+      "import": "./extensions/*.js",
+      "require": "./extensions/*.cjs"
     },
     "./babel-preset": "./babel-preset/index.cjs",
     "./package.json": "./package.json"
@@ -65,6 +70,7 @@
   },
   "files": [
     "babel-preset",
+    "extensions",
     "jsx-runtime",
     "index.d.ts"
   ],
