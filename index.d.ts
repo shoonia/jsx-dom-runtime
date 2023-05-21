@@ -830,30 +830,36 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'x-height'?: number | `${number}`
   xChannelSelector?: 'R' | 'G' | 'B' | 'A'
   yChannelSelector?: 'R' | 'G' | 'B' | 'A'
-  /** @deprecated Not Supported */
-  'xlink:actuate'?: 'onLoad'
-  /** @deprecated Not Supported */
+  /** @deprecated */
+  'xlink:actuate'?: 'onLoad' | 'onRequest' | 'other' | 'none'
+  /** @deprecated */
   'xlink:arcrole'?: string
   /**
    * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
    * @deprecated
    */
   'xlink:href'?: string
-  /** @deprecated Not Supported */
+  /** @deprecated */
   'xlink:show'?: 'new' | 'replace' | 'embed' | 'other' | 'none'
   /**
    * New content should use a `<title>` child element rather than a `xlink:title` attribute
    * @deprecated
    */
   'xlink:title'?: string
-  /** @deprecated Not Supported */
-  'xlink:type'?: 'simple'
-  /** @deprecated Not Supported */
+  /** @deprecated */
+  'xlink:type'?: 'simple' | 'extended' | 'locator' | 'arc' | 'resource' | 'title' | 'none'
+  /** @deprecated */
   'xlink:role'?: string
-  /** @deprecated Not Supported */
+  /** @deprecated */
+  'xlink:label'?: string
+  /** @deprecated */
+  'xlink:from'?: string
+  /** @deprecated */
+  'xlink:to'?: string
+  /** @deprecated */
   'xml:base'?: string
   /**
-   * Not Supported. There is also a `lang` attribute (without namespace)
+   * There is also a `lang` attribute (without namespace)
    * @deprecated
    */
   'xml:lang'?: string
