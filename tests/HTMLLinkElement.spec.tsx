@@ -59,6 +59,10 @@ describe('HTMLLinkElement', () => {
     expect(<link disabled />).toHaveAttribute('disabled', '');
   });
 
+  it('should have `disabled` attribute string value', () => {
+    expect(<link disabled="" />).toHaveAttribute('disabled', '');
+  });
+
   it('should NOT have `disabled` attribute', () => {
     expect(<link disabled={false} />).not.toHaveAttribute('disabled');
   });

@@ -1032,6 +1032,9 @@ declare global {
 
     interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
       manifest?: string
+      /** @deprecated */
+      version?: string
+      xmlns?: string
     }
 
     interface HTMLIFrameElementAttributes extends HTMLAttributes<HTMLIFrameElement> {
