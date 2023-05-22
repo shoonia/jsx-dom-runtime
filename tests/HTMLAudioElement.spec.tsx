@@ -29,7 +29,6 @@ describe('HTMLAudioElement', () => {
 
   it('should have `controls` attributes with string value', () => {
     expect(<audio controls="" />).toHaveProperty('controls', true);
-    expect(<audio controls="controls" />).toHaveProperty('controls', true);
   });
 
   it('should have `autoplay` attributes', () => {
@@ -44,7 +43,6 @@ describe('HTMLAudioElement', () => {
 
   it('should have `autoplay` attributes with string value', () => {
     expect(<audio autoplay="" />).toHaveProperty('autoplay', true);
-    expect(<audio autoplay="autoplay" />).toHaveProperty('autoplay', true);
   });
 
   it('should have `loop` attributes', () => {
@@ -59,7 +57,6 @@ describe('HTMLAudioElement', () => {
 
   it('should have `loop` attributes with string value', () => {
     expect(<audio loop="" />).toHaveProperty('loop', true);
-    expect(<audio loop="loop" />).toHaveProperty('loop', true);
   });
 
   it('should have `crossOrigin` attribute', () => {

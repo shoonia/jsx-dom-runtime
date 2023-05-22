@@ -38,7 +38,6 @@ describe('HTMLInputElement', () => {
 
   it('should have `autofocus` attribute with string value', () => {
     expect(<input autofocus="" />).toHaveProperty('autofocus', true);
-    expect(<input autofocus="autofocus" />).toHaveProperty('autofocus', true);
   });
 
   it('should have correct attribute value `disabled`', () => {
@@ -47,7 +46,6 @@ describe('HTMLInputElement', () => {
 
   it('should have `disabled` attribute with string value', () => {
     expect(<input disabled="" />).toBeDisabled();
-    expect(<input disabled="disabled" />).toBeDisabled();
   });
 
   it.each(off)('should NOT have attribute `disabled`', (val) => {
@@ -60,7 +58,6 @@ describe('HTMLInputElement', () => {
 
   it('should have correct attribute value `required` with string value', () => {
     expect(<input required="" />).toBeRequired();
-    expect(<input required="required" />).toBeRequired();
   });
 
   it.each(off)('should NOT have attribute `required`', (val) => {
@@ -73,7 +70,6 @@ describe('HTMLInputElement', () => {
   });
 
   it('should have correct attribute value `readOnly` string value', () => {
-    expect(<input readOnly="readonly" />).toHaveProperty('readOnly', true);
     expect(<input readOnly="" />).toHaveProperty('readOnly', true);
   });
 
@@ -131,7 +127,6 @@ describe('HTMLInputElement', () => {
 
   it('should have `formNoValidate` attribute with string value', () => {
     expect(<input formNoValidate="" />).toHaveProperty('formNoValidate', true);
-    expect(<input formNoValidate="formnovalidate" />).toHaveProperty('formNoValidate', true);
   });
 
   it('should NOT have `formNoValidate` attribute', () => {

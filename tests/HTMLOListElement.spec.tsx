@@ -21,6 +21,5 @@ describe('HTMLOListElement', () => {
 
   it('should have `reversed` attribute with string value', () => {
     expect(<ol reversed="" />).toHaveProperty('reversed', true);
-    expect(<ol reversed="reversed" />).toHaveProperty('reversed', true);
   });
 });

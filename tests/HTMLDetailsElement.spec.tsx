@@ -22,7 +22,6 @@ describe('HTMLDetailsElement', () => {
 
   it('should have `open` attribute with string value', () => {
     expect(<details open="" />).toHaveProperty('open', true);
-    expect(<details open="open" />).toHaveProperty('open', true);
   });
 
   it('should add `ontoggle` handler', () => {

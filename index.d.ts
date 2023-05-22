@@ -491,7 +491,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   draggable?: 'true' | 'false';
   hidden?: boolean | 'hidden' | 'until-found' | ''
   id?: string
-  inert?: boolean | 'inert' | ''
+  inert?: boolean | ''
   lang?: string
   placeholder?: string
   slot?: string
@@ -962,13 +962,13 @@ declare global {
     }
 
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
-      autofocus?: boolean | 'autofocus' | '';
-      disabled?: boolean | 'disabled' | '';
+      autofocus?: boolean | '';
+      disabled?: boolean | '';
       form?: string
       formAction?: string
       formEncType?: string
       formMethod?: string
-      formNoValidate?: boolean | 'formnovalidate' | ''
+      formNoValidate?: boolean | ''
       formTarget?: string
       name?: string;
       type?: 'submit' | 'reset' | 'button';
@@ -990,7 +990,7 @@ declare global {
     }
 
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
-      open?: boolean | 'open' | '';
+      open?: boolean | '';
       ontoggle?: TEventHandler<HTMLDetailsElement>;
     }
 
@@ -1000,7 +1000,7 @@ declare global {
     }
 
     interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
-      open?: boolean | 'open' | '';
+      open?: boolean | '';
       ontoggle?: TEventHandler<HTMLDialogElement>;
       onclose?: TEventHandler<HTMLDialogElement>;
       oncancel?: TEventHandler<HTMLDialogElement>;
@@ -1014,7 +1014,7 @@ declare global {
     }
 
     interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
-      disabled?: boolean | 'disabled' | '';
+      disabled?: boolean | '';
       form?: string
       name?: string;
     }
@@ -1026,7 +1026,7 @@ declare global {
       enctype?: string;
       method?: string;
       name?: string;
-      noValidate?: boolean | 'novalidate' | '';
+      noValidate?: boolean | '';
       target?: string
     }
 
@@ -1087,18 +1087,18 @@ declare global {
       accept?: string
       alt?: string
       autocomplete?: string;
-      autofocus?: boolean | 'autofocus' | '';
+      autofocus?: boolean | '';
       capture?: boolean | 'user' | 'environment' | ''
       checked?: boolean | 'checked' | '';
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-      disabled?: boolean | 'disabled' | '';
+      disabled?: boolean | '';
       dirName?: string;
       enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
       form?: string
       formAction?: string
       formEncType?: string
       formMethod?: string
-      formNoValidate?: boolean | 'formnovalidate' | ''
+      formNoValidate?: boolean | ''
       formTarget?: string
       height?: number | string
       list?: string;
@@ -1106,12 +1106,12 @@ declare global {
       maxLength?: number | `${number}`;
       min?: number | string
       minLength?: number | `${number}`;
-      multiple?: boolean | 'multiple' | '';
+      multiple?: boolean | '';
       name?: string;
       pattern?: string;
       placeholder?: string;
-      readOnly?: boolean | 'readonly' | '';
-      required?: boolean | 'required' | '';
+      readOnly?: boolean | '';
+      required?: boolean | '';
       size?: number | `${number}`;
       src?: string
       step?: number | `${number}`
@@ -1155,7 +1155,7 @@ declare global {
       title?: string;
       as?: string;
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-      disabled?: boolean | 'disabled' | '';
+      disabled?: boolean | '';
       href?: string
       hreflang?: string;
       integrity?: string
@@ -1181,11 +1181,11 @@ declare global {
     }
 
     interface HTMLMediaAttributes<T> extends HTMLAttributes<T> {
-      autoplay?: boolean | 'autoplay' | '';
-      controls?: boolean | 'controls' | '';
+      autoplay?: boolean | '';
+      controls?: boolean | '';
       controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-      loop?: boolean | 'loop' | '';
+      loop?: boolean | '';
       mediaGroup?: string
       preload?: 'none' | 'metadata' | 'auto';
       src?: string;
@@ -1225,20 +1225,20 @@ declare global {
     }
 
     interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
-      reversed?: boolean | 'reversed' | '';
+      reversed?: boolean | '';
       start?: number | `${number}`;
       type?: '1' | 'a' | 'A' | 'i' | 'I';
     }
 
     interface HTMLOptGroupElementAttributes extends HTMLAttributes<HTMLOptGroupElement> {
-      disabled?: boolean | 'disabled' | '';
+      disabled?: boolean | '';
       label?: string;
     }
 
     interface HTMLOptionElementAttributes extends HTMLAttributes<HTMLOptionElement> {
-      disabled?: boolean | 'disabled' | '';
+      disabled?: boolean | '';
       label?: string;
-      selected?: boolean | 'selected' | '';
+      selected?: boolean | '';
       value?: number | string;
     }
 
@@ -1260,13 +1260,13 @@ declare global {
     }
 
     interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
-      async?: boolean | 'async' | ''
+      async?: boolean | ''
       /** @deprecated */
       charset?: string;
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-      defer?: boolean | 'defer' | '';
+      defer?: boolean | '';
       integrity?: string
-      noModule?: boolean | 'nomodule' | ''
+      noModule?: boolean | ''
       nonce?: string
       referrerPolicy?: ReferrerPolicy;
       src?: string;
@@ -1276,12 +1276,12 @@ declare global {
 
     interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
       autocomplete?: string;
-      autofocus?: boolean | 'autofocus' | '';
-      disabled?: boolean | 'disabled' | '';
+      autofocus?: boolean | '';
+      disabled?: boolean | '';
       form?: string
-      multiple?: boolean | 'multiple' | '';
+      multiple?: boolean | '';
       name?: string;
-      required?: boolean | 'required' | '';
+      required?: boolean | '';
       size?: number | `${number}`;
       value?: number | string;
       onchange?: ChangeEventHandler<HTMLSelectElement>;
@@ -1359,17 +1359,17 @@ declare global {
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
       autocomplete?: string;
-      autofocus?: boolean | 'autofocus' | '';
+      autofocus?: boolean | '';
       cols?: number | `${number}`;
       dirName?: string;
-      disabled?: boolean | 'disabled' | '';
+      disabled?: boolean | '';
       form?: string
       maxLength?: number | `${number}`;
       minLength?: number | `${number}`;
       name?: string;
       placeholder?: string;
-      readOnly?: boolean | 'readonly' | '';
-      required?: boolean | 'required' | '';
+      readOnly?: boolean | '';
+      required?: boolean | '';
       rows?: number | `${number}`;
       value?: number | string;
       wrap?: 'hard' | 'soft' | 'off';
@@ -1479,7 +1479,7 @@ declare global {
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
       height?: number | string;
-      playsInline?: boolean | 'playsinline' | '';
+      playsInline?: boolean | '';
       poster?: string;
       width?: number | string;
       disablePictureInPicture?: boolean | '';
@@ -1492,7 +1492,7 @@ declare global {
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
       allowFullScreen?: boolean
       allowpopups?: boolean
-      autofocus?: boolean | 'autofocus' | '';
+      autofocus?: boolean | '';
       autosize?: boolean
       blinkfeatures?: string
       disableblinkfeatures?: string

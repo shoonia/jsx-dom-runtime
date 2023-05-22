@@ -13,7 +13,6 @@ describe('HTMLDialogElement', () => {
 
   it('should have `open` attribute with string value', () => {
     expect(<dialog open="" />).toHaveProperty('open', true);
-    expect(<dialog open="open" />).toHaveProperty('open', true);
   });
 
   it('should add `ontoggle` handler', () => {

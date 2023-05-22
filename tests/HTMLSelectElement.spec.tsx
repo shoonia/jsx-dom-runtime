@@ -29,7 +29,6 @@ describe('HTMLSelectElement', () => {
 
   it('should have `autofocus` attribute with string value', () => {
     expect(<select autofocus="" />).toHaveProperty('autofocus', true);
-    expect(<select autofocus="autofocus" />).toHaveProperty('autofocus', true);
   });
 
   it('should have `multiple` attribute', () => {
@@ -39,7 +38,6 @@ describe('HTMLSelectElement', () => {
 
   it('should have `multiple` attribute with string value', () => {
     expect(<select multiple="" />).toHaveProperty('multiple', true);
-    expect(<select multiple="multiple" />).toHaveProperty('multiple', true);
   });
 
   it('should NOT have `multiple` attribute', () => {
@@ -53,7 +51,6 @@ describe('HTMLSelectElement', () => {
 
   it('should have `required` with string value', () => {
     expect(<select required="" />).toBeRequired();
-    expect(<select required="required" />).toBeRequired();
   });
 
   it('should NOT have `required` attribute', () => {
@@ -66,7 +63,6 @@ describe('HTMLSelectElement', () => {
 
   it('should have `disabled` attribute with string value', () => {
     expect(<select disabled="" />).toBeDisabled();
-    expect(<select disabled="disabled" />).toBeDisabled();
   });
 
   it('should NOT have `disabled` attribute', () => {

@@ -50,7 +50,6 @@ describe('HTMLFormElement', () => {
 
   it('should have `noValidate` attribute with string value', () => {
     expect(<form noValidate="" />).toHaveProperty('noValidate', true);
-    expect(<form noValidate="novalidate" />).toHaveProperty('noValidate', true);
   });
 
   it('should have `action` attribute', () => {

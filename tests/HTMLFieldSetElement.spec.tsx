@@ -5,7 +5,6 @@ describe('HTMLFieldSetElement', () => {
 
   it('should have `disabled` attribute with string value', () => {
     expect(<fieldset disabled="" />).toBeDisabled();
-    expect(<fieldset disabled="disabled" />).toBeDisabled();
   });
 
   it('should NOT have `disabled` attribute', () => {

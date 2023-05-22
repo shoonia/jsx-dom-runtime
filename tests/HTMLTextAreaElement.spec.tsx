@@ -37,7 +37,6 @@ describe('HTMLTextAreaElement', () => {
 
   it('should have `required` attribute with string value', () => {
     expect(<textarea required="" />).toBeRequired();
-    expect(<textarea required="required" />).toBeRequired();
   });
 
   it('should NOT have `required` attribute', () => {
@@ -50,7 +49,6 @@ describe('HTMLTextAreaElement', () => {
   });
 
   it('should have correct attribute value `readOnly` with string value', () => {
-    expect(<textarea readOnly="readonly" />).toHaveProperty('readOnly', true);
     expect(<textarea readOnly="" />).toHaveProperty('readOnly', true);
   });
 
@@ -71,7 +69,6 @@ describe('HTMLTextAreaElement', () => {
 
   it('should have `autofocus` attribute with string value', () => {
     expect(<textarea autofocus="" />).toHaveProperty('autofocus', true);
-    expect(<textarea autofocus="autofocus" />).toHaveProperty('autofocus', true);
   });
 
   it('should set text content', () => {

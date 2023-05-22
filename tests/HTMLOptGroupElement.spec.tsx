@@ -9,7 +9,6 @@ describe('HTMLOptGroupElement', () => {
 
   it('should have `disabled` attribute with string value', () => {
     expect(<optgroup disabled="" />).toBeDisabled();
-    expect(<optgroup disabled="disabled" />).toBeDisabled();
   });
 
   it('should have `label` attribute', () => {

@@ -23,7 +23,6 @@ describe('HTMLVideoElement', () => {
 
   it('should have `playsInline` attribure with string value', () => {
     expect(<video playsInline="" />).toHaveProperty('playsInline', true);
-    expect(<video playsInline="playsinline" />).toHaveProperty('playsInline', true);
   });
 
   it('should have `controls` attributes', () => {
@@ -38,7 +37,6 @@ describe('HTMLVideoElement', () => {
 
   it('should have `controls` attributes with string value', () => {
     expect(<video controls="" />).toHaveProperty('controls', true);
-    expect(<video controls="controls" />).toHaveProperty('controls', true);
   });
 
   it('should have `autoplay` attributes', () => {
@@ -53,7 +51,6 @@ describe('HTMLVideoElement', () => {
 
   it('should have `autoplay` attributes with string value', () => {
     expect(<video autoplay="" />).toHaveProperty('autoplay', true);
-    expect(<video autoplay="autoplay" />).toHaveProperty('autoplay', true);
   });
 
   it('should have `loop` attributes', () => {
@@ -68,7 +65,6 @@ describe('HTMLVideoElement', () => {
 
   it('should have `loop` attributes with string value', () => {
     expect(<video loop="" />).toHaveProperty('loop', true);
-    expect(<video loop="loop" />).toHaveProperty('loop', true);
   });
 
   it('should have `controlslist` attributes', () => {
