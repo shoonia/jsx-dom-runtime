@@ -68,10 +68,9 @@ export const jsxSyntax = (): PluginObj => {
           }
 
           if (t.isJSXMemberExpression(name) || isFunctionComponent(name)) {
-            const props = buildProps(path.node);
             const callExp = t.callExpression(
               convertJSXIdentifier(name),
-              [t.objectExpression(props)],
+              [buildProps(path.node)],
             );
 
             const node = t.isJSXElement(path.parent) || t.isJSXFragment(path.parent)
@@ -89,7 +88,7 @@ export const jsxSyntax = (): PluginObj => {
         exit(path) {
           const props = buildProps(path.node);
 
-          const noNs = props.every((i) => {
+          const noNs = props.properties.every((i) => {
             return !(t.isObjectProperty(i) && t.isIdentifier(i.key, ns));
           });
 
@@ -97,7 +96,7 @@ export const jsxSyntax = (): PluginObj => {
             const importName = nsMap.get(path.node) ?? nsMap.get(path.parent);
 
             if (importName) {
-              props.push(
+              props.properties.push(
                 t.objectProperty(
                   ns,
                   addImport(importName),
@@ -108,7 +107,7 @@ export const jsxSyntax = (): PluginObj => {
 
           const callExp = t.callExpression(
             addImport('jsx'),
-            [getTag(path.node), t.objectExpression(props)],
+            [getTag(path.node), props],
           );
 
           addPureAnnotate(callExp);
