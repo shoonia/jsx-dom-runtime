@@ -618,7 +618,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   filterUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   'flood-color'?: SVGProperties['floodColor']
   'flood-opacity'?: SVGProperties['floodOpacity']
-  focusable?: number | string
+  focusable?: 'true' | 'false' | 'auto'
   'font-family'?: SVGProperties['fontFamily']
   'font-size'?: SVGProperties['fontSize']
   'font-size-adjust'?: SVGProperties['fontSizeAdjust']
