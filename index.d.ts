@@ -619,6 +619,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'flood-color'?: SVGProperties['floodColor']
   'flood-opacity'?: SVGProperties['floodOpacity']
   focusable?: 'true' | 'false' | 'auto'
+  focusHighlight?: 'auto' | 'none'
   'font-family'?: SVGProperties['fontFamily']
   'font-size'?: SVGProperties['fontSize']
   'font-size-adjust'?: SVGProperties['fontSizeAdjust']
