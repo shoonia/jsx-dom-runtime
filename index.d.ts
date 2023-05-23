@@ -213,6 +213,16 @@ export interface AriaAttributes {
    * presented if they are made.
    */
   'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both'
+  /**
+   * Defines a string value that labels the current element, which is intended to be converted into Braille.
+   * @see aria-label.
+   */
+  'aria-braillelabel'?: string
+  /**
+   * Defines a human-readable, author-localized abbreviated description for the role of an element, which is intended to be converted into Braille.
+   * @see aria-roledescription.
+   */
+  'aria-brailleroledescription'?: string
   /** Indicates an element is being modified and that assistive technologies MAY want to wait until the modifications are complete before exposing them to the user. */
   'aria-busy'?: boolean | 'true' | 'false'
   /**
