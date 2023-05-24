@@ -1,7 +1,7 @@
 import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
-import { boolAttrs, DOMEvents, htmlTags, mathmlTags, svgTags } from './collections';
+import { boolAttrs, DOMEvents, htmlTags, mathmlTags, SVGDOMAttributeNames, svgTags } from './collections';
 import { createImport, type TImportName } from './createImport';
 import {
   buildChildren,
@@ -156,10 +156,12 @@ export const jsxSyntax = (): PluginObj => {
           }
         }
 
+        const isNamespacedName = t.isJSXNamespacedName(attr);
+
         if (
           tag === 'a' &&
           attr.name === 'xlinkHref' ||
-          t.isJSXNamespacedName(attr) &&
+          isNamespacedName &&
           attr.name.name === 'href' &&
           attr.namespace.name === 'xlink'
         ) {
@@ -169,6 +171,15 @@ export const jsxSyntax = (): PluginObj => {
               path.node.value,
             ),
           );
+          return;
+        }
+
+        if (
+          !isNamespacedName &&
+          SVGDOMAttributeNames.has(attr.name) &&
+          svgTags.has(tag)
+        ) {
+          attr.name = SVGDOMAttributeNames.get(attr.name);
         }
       },
     },
