@@ -165,12 +165,7 @@ export const jsxSyntax = (): PluginObj => {
           attr.name.name === 'href' &&
           attr.namespace.name === 'xlink'
         ) {
-          path.replaceWith(
-            t.jSXAttribute(
-              t.jSXIdentifier('href'),
-              path.node.value,
-            ),
-          );
+          path.node.name = t.jSXIdentifier('href');
           return;
         }
 
