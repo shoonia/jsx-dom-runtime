@@ -1,8 +1,16 @@
 import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
-import { boolAttrs, DOMEvents, htmlTags, mathmlTags, SVGDOMAttributeNames, svgTags } from './collections';
 import { createImport, type TImportName } from './createImport';
+import {
+  boolAttrs,
+  DOMEvents,
+  htmlTags,
+  mathmlTags,
+  htmlDOMAttributes,
+  svgDOMAttributes,
+  svgTags,
+} from './collections';
 import {
   buildChildren,
   buildProps,
@@ -131,15 +139,8 @@ export const jsxSyntax = (): PluginObj => {
         const attr = path.node.name;
 
         if (t.isJSXIdentifier(attr)) {
-          if (attr.name === 'className') {
-            attr.name = 'class';
-            return;
-          }
-
-          if (attr.name === 'htmlFor') {
-            if (tag === 'label' || tag === 'output') {
-              attr.name = 'for';
-            }
+          if (htmlDOMAttributes.has(attr.name)) {
+            attr.name = htmlDOMAttributes.get(attr.name);
             return;
           }
 
@@ -171,10 +172,10 @@ export const jsxSyntax = (): PluginObj => {
 
         if (
           !isNamespacedName &&
-          SVGDOMAttributeNames.has(attr.name) &&
+          svgDOMAttributes.has(attr.name) &&
           svgTags.has(tag)
         ) {
-          attr.name = SVGDOMAttributeNames.get(attr.name);
+          attr.name = svgDOMAttributes.get(attr.name);
         }
       },
     },

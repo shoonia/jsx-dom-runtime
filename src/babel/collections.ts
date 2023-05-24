@@ -69,7 +69,7 @@ export const boolAttrs = new Set([
   'disableremoteplayback'
 ]);
 
-export const SVGDOMAttributeNames = new Map(
+export const svgDOMAttributes = new Map(
   Object.entries({
     accentHeight: 'accent-height',
     alignmentBaseline: 'alignment-baseline',
@@ -153,5 +153,14 @@ export const SVGDOMAttributeNames = new Map(
     xmlBase: 'xml:base',
     xmlLang: 'xml:lang',
     xmlSpace: 'xml:space',
+  }),
+);
+
+export const htmlDOMAttributes = new Map(
+  Object.entries({
+    acceptCharset: 'accept-charset',
+    className: 'class',
+    httpEquiv: 'http-equiv',
+    htmlFor: 'for',
   }),
 );

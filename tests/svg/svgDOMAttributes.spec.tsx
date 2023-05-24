@@ -1,4 +1,4 @@
-describe('SVGDOMAttributeNames', () => {
+describe('svgDOMAttributes', () => {
   it('should transform SVGDOM propertis to Attributes', () => {
     expect(
       // @ts-expect-error
