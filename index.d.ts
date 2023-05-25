@@ -48,7 +48,10 @@ export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> 
 export { FunctionComponent as FC };
 
 export const properties: Set<string>;
-export const extensions: Map<string, (node: HTMLElement | SVGElement | MathMLElement, value?: any) => void>;
+export const extensions: Map<
+  string,
+  (node: HTMLElement | SVGElement | MathMLElement, value: any, key: string) => void
+>;
 
 export const xhtmlNS = 'http://www.w3.org/1999/xhtml';
 export const svgNS = 'http://www.w3.org/2000/svg';
