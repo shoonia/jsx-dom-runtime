@@ -26,7 +26,7 @@ export const jsx = (tag, props) => {
     val = props[key];
 
     if (extensions.has(key)) {
-      extensions.get(key)(node, val);
+      extensions.get(key)(node, val, key);
     } else if (key === 'style') {
       if (typeof val === 'string') {
         node.style.cssText = val;
