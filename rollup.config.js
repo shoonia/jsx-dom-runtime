@@ -1,6 +1,10 @@
+import { createRequire } from 'node:module';
 import fse from 'fs-extra';
 import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+
+/** @type {import('./package.json')} */
+const pkg = createRequire(import.meta.url)('./package.json');
 
 await Promise.all([
   fse.emptyDir('./babel-preset'),
@@ -35,13 +39,7 @@ export default [
         format: 'cjs',
       },
     ],
-    external: [
-      '@babel/helper-module-imports',
-      '@babel/plugin-syntax-jsx',
-      '@babel/types',
-      'svg-tags',
-      'html-tags',
-    ],
+    external: Object.keys(pkg.dependencies),
     plugins,
   },
   {
