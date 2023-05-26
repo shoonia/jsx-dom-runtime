@@ -50,8 +50,8 @@ export const jsx = (tag, props) => {
   }
 
   appendChildren(
-    tag === 'template' ? node.content : node,
     props.children,
+    tag === 'template' ? node.content : node,
   );
 
   // reuse `val` variable

@@ -3,6 +3,6 @@ import { appendChildren } from './appendChildren';
 export const Fragment = (children) => {
   const fragment = new DocumentFragment();
 
-  appendChildren(fragment, children);
+  appendChildren(children, fragment);
   return fragment;
 };
