@@ -10,22 +10,15 @@
     "build": "rm -rf dist .parcel-cache && parcel build --no-source-maps --no-cache src/index.html"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.51.0"
+    "jsx-dom-runtime": "^0.52.0"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.21.5",
-    "parcel": "^2.8.3",
+    "parcel": "^2.9.0",
     "postcss": "^8.4.23",
-    "postcss-modules": "^4.3.1"
+    "postcss-modules": "^4.3.0"
   },
-  "browser": {
-    "engines": {
-      "browsers": [
-        "> 1%",
-        "not dead"
-      ]
-    }
-  },
+  "browserslist": "> 1%, not dead",
   "targets": {
     "default": {
       "publicUrl": "/jsx-dom-runtime/"
