@@ -152,6 +152,7 @@ export const jsxSyntax = (): PluginObj => {
           }
 
           if (boolAttrs.has(attrName)) {
+            attr.name = attrName;
             path.node.value ??= t.stringLiteral('');
             return;
           }
