@@ -22,6 +22,11 @@
       "import": "./extensions/xlink.js",
       "require": "./extensions/xlink.cjs"
     },
+    "./extensions/dataset": {
+      "types": "./extensions/dataset.d.ts",
+      "import": "./extensions/dataset.js",
+      "require": "./extensions/dataset.cjs"
+    },
     "./babel-preset": "./babel-preset/index.cjs",
     "./package.json": "./package.json"
   },
@@ -32,7 +37,7 @@
     "build": "rollup -c",
     "size": "size-limit",
     "types": "tsc --noEmit",
-    "emitDeclaration": "npx tsc ./src/extensions/*.ts --declaration --emitDeclarationOnly --declarationDir ./extensions",
+    "emitDeclaration": "npx tsc ./src/_extensions/*.ts --declaration --emitDeclarationOnly --declarationDir ./extensions",
     "dev": "npm run lint && npm run types && npm run build && npm test && npm run size"
   },
   "dependencies": {

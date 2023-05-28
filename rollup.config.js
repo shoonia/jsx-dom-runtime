@@ -7,7 +7,8 @@ import { nodeResolve } from '@rollup/plugin-node-resolve';
 /** @type {import('./package.json')} */
 const pkg = createRequire(import.meta.url)('./package.json');
 
-await Promise.all([
+const [ext] = await Promise.all([
+  fse.readdir('./src/_extensions'),
   fse.emptyDir('./babel-preset'),
   fse.emptyDir('./extensions'),
   fse.emptyDir('./jsx-runtime'),
@@ -62,20 +63,24 @@ export default [
     ],
     plugins,
   },
-  {
-    input: './src/extensions/xlink.ts',
-    output: [
-      {
-        file: pkg.exports['./extensions/xlink'].import,
-        format: 'es',
-      },
-      {
-        file: pkg.exports['./extensions/xlink'].require,
-        format: 'cjs',
-        esModule: false,
-      },
-    ],
-    external: ['../jsx-runtime'],
-    plugins,
-  }
+  ...ext.map((file) => {
+    const exp = pkg.exports[`./extensions/${file.slice(0, -3)}`];
+
+    return {
+      input: `./src/_extensions/${file}`,
+      output: [
+        {
+          file: exp.import,
+          format: 'es',
+        },
+        {
+          file: exp.require,
+          format: 'cjs',
+          esModule: false,
+        },
+      ],
+      external: ['../jsx-runtime'],
+      plugins,
+    };
+  }),
 ];

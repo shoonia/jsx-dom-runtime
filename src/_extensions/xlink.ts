@@ -1,4 +1,3 @@
-// @ts-ignore
 import { extensions } from '../jsx-runtime';
 
 export const ns = 'http://www.w3.org/1999/xlink';
