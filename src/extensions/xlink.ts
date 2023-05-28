@@ -3,11 +3,10 @@ import { extensions } from '../jsx-runtime';
 
 export const xlinkNS = 'http://www.w3.org/1999/xlink';
 
-const xLink = (node: SVGElement, value: string, key: string): void => {
+const handler = (node: SVGElement, value: string, key: string): void =>
   node.setAttributeNS(xlinkNS, key, value);
-};
 
-export const xLinkNamespace = (): void => [
+export const xLink = (): void => [
   'actuate',
   'arcrole',
   'href',
@@ -18,4 +17,4 @@ export const xLinkNamespace = (): void => [
   'label',
   'from',
   'to',
-].forEach((key) => extensions.set('xlink:' + key, xLink));
+].forEach((key) => extensions.set('xlink:' + key, handler));
