@@ -244,6 +244,11 @@ export interface AriaAttributes {
    */
   'aria-colindex'?: number | `${number}`
   /**
+   * Defines a human readable text alternative of aria-colindex.
+   * @see aria-rowindextext.
+   */
+  'aria-colindextext'?: string;
+  /**
    * Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.
    * @see aria-colindex @see aria-rowspan.
    */
@@ -260,6 +265,11 @@ export interface AriaAttributes {
    * @see aria-labelledby
    */
   'aria-describedby'?: string
+  /**
+   * Defines a string value that describes or annotates the current element.
+   * @see related aria-describedby.
+   */
+  'aria-description'?: string;
   /**
    * Identifies the element that provides a detailed, extended description for the object.
    * @see aria-describedby.
@@ -386,6 +396,11 @@ export interface AriaAttributes {
    * @see aria-rowcount @see aria-rowspan.
    */
   'aria-rowindex'?: number | `${number}`
+  /**
+   * Defines a human readable text alternative of aria-rowindex.
+   * @see aria-colindextext.
+   */
+  'aria-rowindextext'?: string;
   /**
    * Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.
    * @see aria-rowindex @see aria-colspan.
