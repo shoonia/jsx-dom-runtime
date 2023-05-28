@@ -11,11 +11,11 @@ await Promise.all([
   fse.emptyDir('./jsx-runtime'),
 ]);
 
-fse.writeFile('./jsx-runtime/index.d.ts', 'export * from "../index"');
+await fse.writeFile('./jsx-runtime/index.d.ts', 'export * from "../index"');
 
 const extensions = ['.js', '.ts'];
 
-const plugins =  [
+const plugins = [
   babel({
     extensions,
     babelHelpers: 'bundled',
@@ -34,7 +34,7 @@ export default [
     input: 'src/babel/index.ts',
     output: [
       {
-        file: './babel-preset/index.cjs',
+        file: pkg.exports['./babel-preset'],
         exports: 'default',
         format: 'cjs',
       },
@@ -46,11 +46,11 @@ export default [
     input: 'src/index.ts',
     output: [
       {
-        file: './jsx-runtime/index.js',
+        file: pkg.module,
         format: 'es',
       },
       {
-        file: './jsx-runtime/index.cjs',
+        file: pkg.main,
         format: 'cjs',
         esModule: false,
       },
