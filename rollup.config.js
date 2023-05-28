@@ -1,4 +1,5 @@
 import { createRequire } from 'node:module';
+import { exec } from 'node:child_process';
 import fse from 'fs-extra';
 import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
@@ -8,10 +9,14 @@ const pkg = createRequire(import.meta.url)('./package.json');
 
 await Promise.all([
   fse.emptyDir('./babel-preset'),
+  fse.emptyDir('./extensions'),
   fse.emptyDir('./jsx-runtime'),
 ]);
 
-await fse.writeFile('./jsx-runtime/index.d.ts', 'export * from "../index"');
+await Promise.all([
+  fse.writeFile('./jsx-runtime/index.d.ts', 'export * from "../index"'),
+  exec(pkg.scripts.emitDeclaration),
+]);
 
 const extensions = ['.js', '.ts'];
 
@@ -57,4 +62,20 @@ export default [
     ],
     plugins,
   },
+  {
+    input: './src/extensions/xlink.ts',
+    output: [
+      {
+        file: pkg.exports['./extensions/xlink'].import,
+        format: 'es',
+      },
+      {
+        file: pkg.exports['./extensions/xlink'].require,
+        format: 'cjs',
+        esModule: false,
+      },
+    ],
+    external: ['../jsx-runtime'],
+    plugins,
+  }
 ];
