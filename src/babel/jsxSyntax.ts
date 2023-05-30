@@ -3,7 +3,8 @@ import t from '@babel/types';
 
 import { createImport, type TImportName } from './createImport';
 import {
-  boolAttrs,
+  ariaAttributes,
+  booleanAttributes,
   DOMEvents,
   htmlTags,
   mathmlTags,
@@ -144,6 +145,14 @@ export const jsxSyntax = (): PluginObj => {
             return;
           }
 
+          if (ariaAttributes.has(attr.name)) {
+            if (path.node.value === null) {
+              path.node.value = t.stringLiteral('true');
+            }
+
+            return;
+          }
+
           const attrName = attr.name.toLowerCase();
 
           if (DOMEvents.has(attrName)) {
@@ -151,7 +160,7 @@ export const jsxSyntax = (): PluginObj => {
             return;
           }
 
-          if (boolAttrs.has(attrName)) {
+          if (booleanAttributes.has(attrName)) {
             attr.name = attrName;
             path.node.value ??= t.stringLiteral('');
             return;

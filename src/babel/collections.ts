@@ -61,12 +61,26 @@ export const DOMEvents = new Set([
   'oncancel', 'onclose'
 ]);
 
-export const boolAttrs = new Set([
+export const booleanAttributes = new Set([
   'async', 'autofocus', 'autoplay', 'controls', 'checked', 'crossorigin',
   'capture', 'defer', 'disabled', 'contenteditable', 'formnovalidate', 'readonly',
   'multiple', 'loop', 'required', 'hidden', 'open', 'selected', 'nomodule',
   'novalidate', 'playsinline', 'reversed', 'inert', 'disablepictureinpicture',
   'disableremoteplayback'
+]);
+
+export const ariaAttributes = new Set([
+  'aria-atomic', 'aria-braillelabel', 'aria-brailleroledescription', 'aria-busy',
+  'aria-controls', 'aria-current', 'aria-describedby', 'aria-description', 'aria-details',
+  'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed',
+  'aria-haspopup', 'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label',
+  'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant', 'aria-roledescription',
+  'aria-autocomplete', 'aria-checked', 'aria-expanded', 'aria-level', 'aria-modal',
+  'aria-multiline', 'aria-multiselectable', 'aria-orientation', 'aria-placeholder',
+  'aria-pressed', 'aria-readonly', 'aria-required', 'aria-selected', 'aria-sort',
+  'aria-valuemax', 'aria-valuemin', 'aria-valuenow', 'aria-valuetext', 'aria-activedescendant',
+  'aria-colcount', 'aria-colindex', 'aria-colindextext', 'aria-colspan', 'aria-posinset',
+  'aria-rowcount', 'aria-rowindex', 'aria-rowindextext', 'aria-rowspan', 'aria-setsize',
 ]);
 
 export const svgDOMAttributes = new Map(
