@@ -66,7 +66,7 @@ export const booleanAttributes = new Set([
   'capture', 'defer', 'disabled', 'contenteditable', 'formnovalidate', 'readonly',
   'multiple', 'loop', 'required', 'hidden', 'open', 'selected', 'nomodule',
   'novalidate', 'playsinline', 'reversed', 'inert', 'disablepictureinpicture',
-  'disableremoteplayback'
+  'disableremoteplayback', 'popover'
 ]);
 
 export const ariaAttributes = new Set([

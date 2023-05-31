@@ -141,7 +141,6 @@ describe('HTMLInputElement', () => {
 
     it('should have `checked` attribute with string value', () => {
       expect(<input type="checkbox" checked="" />).toBeChecked();
-      expect(<input type="checkbox" checked="checked" />).toBeChecked();
     });
 
     it('should NOT have `checked` attribute', () => {
@@ -156,7 +155,6 @@ describe('HTMLInputElement', () => {
 
     it('should have `checked` attribute with string value', () => {
       expect(<input type="radio" checked="" />).toBeChecked();
-      expect(<input type="radio" checked="checked" />).toBeChecked();
     });
 
     it('should NOT have `checked` attribute', () => {

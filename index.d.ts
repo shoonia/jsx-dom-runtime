@@ -1124,7 +1124,7 @@ declare global {
       autocomplete?: string;
       autofocus?: boolean | '';
       capture?: boolean | 'user' | 'environment' | ''
-      checked?: boolean | 'checked' | '';
+      checked?: boolean | '';
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
       disabled?: boolean | '';
       dirName?: string;
