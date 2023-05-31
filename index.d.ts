@@ -566,6 +566,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
    * @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is
    */
   is?: string
+  popover?: boolean | 'auto' | 'manual' | ''
 }
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
@@ -1002,6 +1003,8 @@ declare global {
       name?: string;
       type?: 'submit' | 'reset' | 'button';
       value?: number | string;
+      popovertarget?: string
+      popovertargetaction?: 'hide' | 'show' | 'toggle'
     }
 
     interface HTMLCanvasElementAttributes extends HTMLAttributes<HTMLCanvasElement> {
@@ -1172,6 +1175,8 @@ declare global {
       | 'week';
       value?: number | string;
       width?: number | string
+      popovertarget?: string
+      popovertargetaction?: 'hide' | 'show' | 'toggle'
       onchange?: ChangeEventHandler<HTMLInputElement>
     }
 
