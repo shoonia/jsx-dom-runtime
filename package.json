@@ -61,7 +61,7 @@
     "jest-environment-jsdom": "^29.5.0",
     "rollup": "^3.22.0",
     "size-limit": "^8.2.4",
-    "typescript": "^5.1.0-beta"
+    "typescript": "^5.1.3"
   },
   "files": [
     "babel-preset",
