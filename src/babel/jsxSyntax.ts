@@ -41,31 +41,27 @@ export const jsxSyntax = (): PluginObj => {
   return {
     name: 'jsx-dom-runtime/babel-plugin-jsx-syntax',
     visitor: {
-      Program: {
-        enter(path) {
-          nsMap = new WeakMap();
-          addImport = createImport(path);
-        },
+      Program(path) {
+        nsMap = new WeakMap();
+        addImport = createImport(path);
       },
 
-      JSXFragment: {
-        exit(path) {
-          const children = buildChildren(path.node);
+      JSXFragment(path) {
+        const children = buildChildren(path.node);
 
-          const props = children.length > 0 ? [
-            children.length === 1
-              ? children[0]
-              : t.arrayExpression(children)
-          ] : [];
+        const props = children.length > 0 ? [
+          children.length === 1
+            ? children[0]
+            : t.arrayExpression(children)
+        ] : [];
 
-          const callExp = t.callExpression(
-            addImport('Fragment'),
-            props,
-          );
+        const callExp = t.callExpression(
+          addImport('Fragment'),
+          props,
+        );
 
-          addPureAnnotate(callExp);
-          path.replaceWith(callExp);
-        },
+        addPureAnnotate(callExp);
+        path.replaceWith(callExp);
       },
 
       JSXElement: {
