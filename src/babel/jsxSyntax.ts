@@ -73,16 +73,12 @@ export const jsxSyntax = (): PluginObj => {
           }
 
           if (t.isJSXMemberExpression(name) || isFunctionComponent(name)) {
-            const callExp = t.callExpression(
-              convertJSXIdentifier(name),
-              [buildProps(path.node)],
+            path.replaceWith(
+              t.callExpression(
+                convertJSXIdentifier(name),
+                [buildProps(path.node)],
+              ),
             );
-
-            const node = t.isJSXElement(path.parent) || t.isJSXFragment(path.parent)
-              ? t.jsxExpressionContainer(callExp)
-              : callExp;
-
-            path.replaceWith(node);
           } else if (svgTags.has(name.name)) {
             nsMap.set(path.node, 'svgNS');
           } else if (mathmlTags.has(name.name)) {
