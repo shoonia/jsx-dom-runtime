@@ -34,12 +34,12 @@ const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
     charCode === 95;
 };
 
-export const jsxSyntax = (): PluginObj => {
+export const jsxTransform = (): PluginObj => {
   let nsMap: WeakMap<t.Node, TImportName>;
   let addImport: ReturnType<typeof createImport>;
 
   return {
-    name: 'jsx-dom-runtime/babel-plugin-jsx-syntax',
+    name: 'jsx-dom-runtime/babel-plugin-transform-jsx',
     visitor: {
       Program(path) {
         nsMap = new WeakMap();
