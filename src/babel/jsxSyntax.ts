@@ -138,8 +138,21 @@ export const jsxSyntax = (): PluginObj => {
           }
 
           if (ariaAttributes.has(attr.name)) {
-            if (path.node.value === null) {
+            const val = path.node.value;
+
+            if (val === null) {
               path.node.value = t.stringLiteral('true');
+              return;
+            }
+
+            if (
+              t.isJSXExpressionContainer(val, null) &&
+              (
+                t.isBooleanLiteral(val.expression, null) ||
+                t.isNumericLiteral(val.expression, null)
+              )
+            ) {
+              path.node.value = t.stringLiteral(String(val.expression.value));
             }
 
             return;
