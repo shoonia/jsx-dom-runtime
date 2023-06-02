@@ -137,7 +137,10 @@ export const jsxSyntax = (): PluginObj => {
             return;
           }
 
-          if (ariaAttributes.has(attr.name)) {
+          if (
+            ariaAttributes.has(attr.name) ||
+            attr.name.startsWith('data-')
+          ) {
             const val = path.node.value;
 
             if (val === null) {
