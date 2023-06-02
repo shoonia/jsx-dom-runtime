@@ -37,4 +37,14 @@ describe('Babel transform HTML boolean attribute value `true` to empty string `"
     const result = await t('<input capture="user" />');
     expect(result).toBe(_jsx + '_jsx("input",{capture:"user"});');
   });
+
+  it('should transform `popover` attribute', async () => {
+    const result = await t`<div popover />`;
+    expect(result).toBe(_jsx + '_jsx("div",{popover:""});');
+  });
+
+  it('should transform `itemScope` attribute', async () => {
+    const result = await t`<div itemScope />`;
+    expect(result).toBe(_jsx + '_jsx("div",{itemscope:""});');
+  });
 });
