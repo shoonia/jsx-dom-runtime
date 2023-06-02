@@ -185,7 +185,7 @@ export const jsxTransform = (): PluginObj => {
           attr.name.name === 'href' &&
           attr.namespace.name === 'xlink'
         ) {
-          path.node.name = t.jSXIdentifier('href');
+          path.node.name = t.jsxIdentifier('href');
           return;
         }
 
