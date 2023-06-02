@@ -17,9 +17,4 @@ describe('Babel transform data-* attributes', () => {
     const result = await t('<div data-hidden={false} />');
     expect(result).toBe(_jsx + '_jsx("div",{"data-hidden":"false"});');
   });
-
-  it('should transform `data-*` attribute number value to string', async () => {
-    const result = await t('<div data-colindex={1} />');
-    expect(result).toBe(_jsx + '_jsx("div",{"data-colindex":"1"});');
-  });
 });

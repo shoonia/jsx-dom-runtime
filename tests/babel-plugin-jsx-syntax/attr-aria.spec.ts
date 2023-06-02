@@ -17,9 +17,4 @@ describe('Babel transform aria-* attributes', () => {
     const result = await t('<div aria-hidden={false} />');
     expect(result).toBe(_jsx + '_jsx("div",{"aria-hidden":"false"});');
   });
-
-  it('should transform `aria-*` attribute number value to string', async () => {
-    const result = await t('<div aria-colindex={1} />');
-    expect(result).toBe(_jsx + '_jsx("div",{"aria-colindex":"1"});');
-  });
 });

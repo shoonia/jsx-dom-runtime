@@ -150,10 +150,7 @@ export const jsxSyntax = (): PluginObj => {
 
             if (
               t.isJSXExpressionContainer(val, null) &&
-              (
-                t.isBooleanLiteral(val.expression, null) ||
-                t.isNumericLiteral(val.expression, null)
-              )
+              t.isBooleanLiteral(val.expression, null)
             ) {
               path.node.value = t.stringLiteral(String(val.expression.value));
             }
