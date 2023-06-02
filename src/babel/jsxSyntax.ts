@@ -137,11 +137,28 @@ export const jsxSyntax = (): PluginObj => {
             return;
           }
 
+          const attrName = attr.name.toLowerCase();
+
+          if (DOMEvents.has(attrName)) {
+            attr.name = attrName;
+            return;
+          }
+
+          if (booleanAttributes.has(attrName)) {
+            attr.name = attrName;
+            path.node.value ??= t.stringLiteral('');
+            return;
+          }
+
           if (
-            ariaAttributes.has(attr.name) ||
-            attr.name.startsWith('data-')
+            ariaAttributes.has(attrName) ||
+            attrName === 'draggable' ||
+            attrName === 'spellcheck' ||
+            attrName.startsWith('data-')
           ) {
             const val = path.node.value;
+
+            attr.name = attrName;
 
             if (val === null) {
               path.node.value = t.stringLiteral('true');
@@ -155,19 +172,6 @@ export const jsxSyntax = (): PluginObj => {
               path.node.value = t.stringLiteral(String(val.expression.value));
             }
 
-            return;
-          }
-
-          const attrName = attr.name.toLowerCase();
-
-          if (DOMEvents.has(attrName)) {
-            attr.name = attrName;
-            return;
-          }
-
-          if (booleanAttributes.has(attrName)) {
-            attr.name = attrName;
-            path.node.value ??= t.stringLiteral('');
             return;
           }
         }
