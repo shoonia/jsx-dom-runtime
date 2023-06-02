@@ -22,7 +22,7 @@ import {
 const ns = t.identifier('ns');
 
 const addPureAnnotate = <T extends t.Node>(node: T): T => {
-  return t.addComment<T>(node, 'leading', '#__PURE__');
+  return t.addComment<T>(node, 'leading', '#__PURE__', false);
 };
 
 const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
@@ -67,11 +67,11 @@ export const jsxSyntax = (): PluginObj => {
         enter(path) {
           const { name } = path.node.openingElement;
 
-          if (t.isJSXNamespacedName(name)) {
+          if (t.isJSXNamespacedName(name, null)) {
             return;
           }
 
-          if (t.isJSXMemberExpression(name) || isFunctionComponent(name)) {
+          if (t.isJSXMemberExpression(name, null) || isFunctionComponent(name)) {
             path.replaceWith(
               t.callExpression(
                 convertJSXIdentifier(name),
@@ -89,7 +89,7 @@ export const jsxSyntax = (): PluginObj => {
           const props = buildProps(path.node);
 
           const noNs = props.properties.every((i) => {
-            return !(t.isObjectProperty(i) && t.isIdentifier(i.key, ns));
+            return !(t.isObjectProperty(i, null) && t.isIdentifier(i.key, ns));
           });
 
           if (noNs) {
@@ -119,7 +119,7 @@ export const jsxSyntax = (): PluginObj => {
       JSXAttribute(path) {
         const { parent } = path;
 
-        if (!t.isJSXOpeningElement(parent) || !t.isJSXIdentifier(parent.name)) {
+        if (!t.isJSXOpeningElement(parent, null) || !t.isJSXIdentifier(parent.name, null)) {
           return;
         }
 
@@ -131,7 +131,7 @@ export const jsxSyntax = (): PluginObj => {
 
         const attr = path.node.name;
 
-        if (t.isJSXIdentifier(attr)) {
+        if (t.isJSXIdentifier(attr, null)) {
           if (htmlDOMAttributes.has(attr.name)) {
             attr.name = htmlDOMAttributes.get(attr.name);
             return;
@@ -159,7 +159,7 @@ export const jsxSyntax = (): PluginObj => {
           }
         }
 
-        const isNamespacedName = t.isJSXNamespacedName(attr);
+        const isNamespacedName = t.isJSXNamespacedName(attr, null);
 
         if (
           tag === 'a' &&

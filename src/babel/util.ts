@@ -6,29 +6,29 @@ const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral =>
 
 export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[] => {
   return t.react.buildChildren(node).map((child) => {
-    return t.isJSXSpreadChild(child) ? child.expression : child;
+    return t.isJSXSpreadChild(child, null) ? child.expression : child;
   });
 };
 
 export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
   const props = node.openingElement.attributes.map((attr) => {
-    if (t.isJSXSpreadAttribute(attr)) {
+    if (t.isJSXSpreadAttribute(attr, null)) {
       return t.spreadElement(attr.argument);
     }
 
-    const name = t.isJSXNamespacedName(attr.name)
+    const name = t.isJSXNamespacedName(attr.name, null)
       ? convertJSXNamespacedName(attr.name)
       : t.isValidIdentifier(attr.name.name, false)
         ? t.identifier(attr.name.name)
         : t.stringLiteral(attr.name.name);
 
-    const value = t.isJSXExpressionContainer(attr.value)
-      ? t.isJSXEmptyExpression(attr.value.expression)
+    const value = t.isJSXExpressionContainer(attr.value, null)
+      ? t.isJSXEmptyExpression(attr.value.expression, null)
         ? t.nullLiteral()
         : attr.value.expression
       : attr.value ?? t.booleanLiteral(true);
 
-    if (t.isStringLiteral(value)) {
+    if (t.isStringLiteral(value, null)) {
       value.value = value.value.replace(/\n\s+/g, ' ');
     }
 
@@ -54,7 +54,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
 export const convertJSXIdentifier = (
   node: t.JSXIdentifier | t.JSXMemberExpression | t.JSXNamespacedName,
 ): t.StringLiteral | t.MemberExpression | t.Identifier => {
-  if (t.isJSXIdentifier(node)) {
+  if (t.isJSXIdentifier(node, null)) {
     if (t.isValidIdentifier(node.name, false)) {
       return t.identifier(node.name);
     }
@@ -62,7 +62,7 @@ export const convertJSXIdentifier = (
     return t.stringLiteral(node.name);
   }
 
-  if (t.isJSXMemberExpression(node)) {
+  if (t.isJSXMemberExpression(node, null)) {
     return t.memberExpression(
       convertJSXIdentifier(node.object),
       convertJSXIdentifier(node.property),
@@ -75,7 +75,7 @@ export const convertJSXIdentifier = (
 export const getTag = (node: t.JSXElement): t.StringLiteral | t.MemberExpression => {
   const tagExpr = convertJSXIdentifier(node.openingElement.name);
 
-  return t.isIdentifier(tagExpr)
+  return t.isIdentifier(tagExpr, null)
     ? t.stringLiteral(tagExpr.name)
     : tagExpr;
 };
