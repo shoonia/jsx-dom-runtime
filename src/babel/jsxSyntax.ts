@@ -21,8 +21,8 @@ import {
 
 const ns = t.identifier('ns');
 
-const addPureAnnotate = (node: t.Node): void => {
-  t.addComment(node, 'leading', '#__PURE__');
+const addPureAnnotate = <T extends t.Node>(node: T): T => {
+  return t.addComment<T>(node, 'leading', '#__PURE__');
 };
 
 const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
@@ -49,19 +49,18 @@ export const jsxSyntax = (): PluginObj => {
       JSXFragment(path) {
         const children = buildChildren(path.node);
 
-        const props = children.length > 0 ? [
-          children.length === 1
-            ? children[0]
-            : t.arrayExpression(children)
-        ] : [];
-
-        const callExp = t.callExpression(
-          addImport('Fragment'),
-          props,
+        path.replaceWith(
+          addPureAnnotate(
+            t.callExpression(
+              addImport('Fragment'),
+              children.length > 0 ? [
+                children.length === 1
+                  ? children[0]
+                  : t.arrayExpression(children)
+              ] : [],
+            ),
+          ),
         );
-
-        addPureAnnotate(callExp);
-        path.replaceWith(callExp);
       },
 
       JSXElement: {
@@ -106,13 +105,14 @@ export const jsxSyntax = (): PluginObj => {
             }
           }
 
-          const callExp = t.callExpression(
-            addImport('jsx'),
-            [getTag(path.node), props],
+          path.replaceWith(
+            addPureAnnotate(
+              t.callExpression(
+                addImport('jsx'),
+                [getTag(path.node), props],
+              ),
+            ),
           );
-
-          addPureAnnotate(callExp);
-          path.replaceWith(callExp);
         },
       },
 
