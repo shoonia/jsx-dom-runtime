@@ -67,11 +67,11 @@ export const jsxTransform = (): PluginObj => {
         enter(path) {
           const { name } = path.node.openingElement;
 
-          if (t.isJSXNamespacedName(name, null)) {
+          if (name.type === 'JSXNamespacedName') {
             return;
           }
 
-          if (t.isJSXMemberExpression(name, null) || isFunctionComponent(name)) {
+          if (name.type === 'JSXMemberExpression' || isFunctionComponent(name)) {
             path.replaceWith(
               t.callExpression(
                 convertJSXIdentifier(name),
@@ -126,7 +126,7 @@ export const jsxTransform = (): PluginObj => {
         }
 
         const attr = path.node.name;
-        const isNamespace = t.isJSXNamespacedName(attr, null);
+        const isNamespace = attr.type === 'JSXNamespacedName';
 
         if (!isNamespace) {
           if (htmlDOMAttributes.has(attr.name)) {
@@ -163,8 +163,8 @@ export const jsxTransform = (): PluginObj => {
             }
 
             if (
-              t.isJSXExpressionContainer(val, null) &&
-              t.isBooleanLiteral(val.expression, null)
+              val.type === 'JSXExpressionContainer' &&
+              val.expression.type === 'BooleanLiteral'
             ) {
               path.node.value = t.stringLiteral(String(val.expression.value));
             }
