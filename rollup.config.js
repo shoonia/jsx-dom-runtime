@@ -1,10 +1,7 @@
-import { createRequire } from 'node:module';
 import fse from 'fs-extra';
 import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
-
-/** @type {import('./package.json')} */
-const pkg = createRequire(import.meta.url)('./package.json');
+import pkg from './package.json' assert { type: 'json' };
 
 await Promise.all([
   fse.emptyDir('./babel-preset'),
