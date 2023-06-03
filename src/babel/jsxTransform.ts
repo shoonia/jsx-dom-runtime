@@ -89,7 +89,8 @@ export const jsxTransform = (): PluginObj => {
           const props = buildProps(path.node);
 
           const noNs = props.properties.every((i) => {
-            return !(t.isObjectProperty(i, null) && t.isIdentifier(i.key, ns));
+            // @ts-expect-error
+            return !t.isIdentifier(i.key, ns);
           });
 
           if (noNs) {
@@ -117,13 +118,8 @@ export const jsxTransform = (): PluginObj => {
       },
 
       JSXAttribute(path) {
-        const { parent } = path;
-
-        if (!t.isJSXOpeningElement(parent, null) || !t.isJSXIdentifier(parent.name, null)) {
-          return;
-        }
-
-        const tag = parent.name.name;
+        // @ts-expect-error
+        const tag = path.parent?.name.name;
 
         if (!(htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag))) {
           return;
