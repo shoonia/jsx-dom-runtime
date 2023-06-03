@@ -21,7 +21,7 @@ import {
 
 const ns = t.identifier('ns');
 
-const addPureAnnotate = <T extends t.Node>(node: T): T => {
+const pureAnnotate = <T extends t.Node>(node: T): T => {
   return t.addComment<T>(node, 'leading', '#__PURE__', false);
 };
 
@@ -50,7 +50,7 @@ export const jsxTransform = (): PluginObj => {
         const children = buildChildren(path.node);
 
         path.replaceWith(
-          addPureAnnotate(
+          pureAnnotate(
             t.callExpression(
               addImport('Fragment'),
               children.length > 0 ? [
@@ -107,7 +107,7 @@ export const jsxTransform = (): PluginObj => {
           }
 
           path.replaceWith(
-            addPureAnnotate(
+            pureAnnotate(
               t.callExpression(
                 addImport('jsx'),
                 [getTag(path.node), props],
@@ -126,8 +126,9 @@ export const jsxTransform = (): PluginObj => {
         }
 
         const attr = path.node.name;
+        const isNamespace = t.isJSXNamespacedName(attr, null);
 
-        if (t.isJSXIdentifier(attr, null)) {
+        if (!isNamespace) {
           if (htmlDOMAttributes.has(attr.name)) {
             attr.name = htmlDOMAttributes.get(attr.name);
             return;
@@ -172,12 +173,10 @@ export const jsxTransform = (): PluginObj => {
           }
         }
 
-        const isNamespacedName = t.isJSXNamespacedName(attr, null);
-
         if (
           tag === 'a' &&
           attr.name === 'xlinkHref' ||
-          isNamespacedName &&
+          isNamespace &&
           attr.name.name === 'href' &&
           attr.namespace.name === 'xlink'
         ) {
@@ -186,7 +185,7 @@ export const jsxTransform = (): PluginObj => {
         }
 
         if (
-          !isNamespacedName &&
+          !isNamespace &&
           svgDOMAttributes.has(attr.name) &&
           svgTags.has(tag)
         ) {
