@@ -19,7 +19,8 @@ import {
   getTag,
 } from './util';
 
-const ns = t.identifier('ns');
+const opts = { name: 'ns' } as const;
+const ns = t.identifier(opts.name);
 
 const pureAnnotate = <T extends t.Node>(node: T): T => {
   return t.addComment<T>(node, 'leading', '#__PURE__', false);
@@ -90,7 +91,7 @@ export const jsxTransform = (): PluginObj => {
 
           const noNs = props.properties.every((i) => {
             // @ts-expect-error
-            return !t.isIdentifier(i.key, ns);
+            return !t.isIdentifier(i.key, opts);
           });
 
           if (noNs) {
