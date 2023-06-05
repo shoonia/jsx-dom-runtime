@@ -22,9 +22,12 @@ import {
 
 const opts = { name: 'ns' } as const;
 
-const pureAnnotate = <T extends t.Node>(node: T): T => {
-  return t.addComment<T>(node, 'leading', '#__PURE__', false);
-};
+const pureAnnotation = (): t.CommentBlock[] => [
+  {
+    type: 'CommentBlock',
+    value: '#__PURE__',
+  },
+];
 
 const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
   const charCode = name.name.charCodeAt(0);
@@ -50,15 +53,12 @@ export const jsxTransform = (): PluginObj => {
       JSXFragment(path) {
         const children = buildChildren(path.node);
 
-        path.replaceWith(
-          pureAnnotate({
-            type: 'CallExpression',
-            callee: addImport('Fragment'),
-            arguments: children.length > 0
-              ? [$children(children)]
-              : [],
-          }),
-        );
+        path.replaceWith({
+          type: 'CallExpression',
+          callee: addImport('Fragment'),
+          arguments: children.length > 0 ? [$children(children)] : [],
+          leadingComments: pureAnnotation(),
+        });
       },
 
       JSXElement: {
@@ -103,13 +103,12 @@ export const jsxTransform = (): PluginObj => {
             }
           }
 
-          path.replaceWith(
-            pureAnnotate({
-              type: 'CallExpression',
-              callee: addImport('jsx'),
-              arguments: [getTag(path.node), props],
-            }),
-          );
+          path.replaceWith({
+            type: 'CallExpression',
+            callee: addImport('jsx'),
+            arguments: [getTag(path.node), props],
+            leadingComments: pureAnnotation(),
+          });
         },
       },
 
