@@ -2,6 +2,7 @@ import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
 import { createImport, type TImportName } from './createImport';
+import { $identifier, $stringLiteral } from './builders';
 import {
   ariaAttributes,
   booleanAttributes,
@@ -20,7 +21,7 @@ import {
 } from './util';
 
 const opts = { name: 'ns' } as const;
-const ns = t.identifier(opts.name);
+const ns = $identifier(opts.name);
 
 const pureAnnotate = <T extends t.Node>(node: T): T => {
   return t.addComment<T>(node, 'leading', '#__PURE__', false);
@@ -144,7 +145,7 @@ export const jsxTransform = (): PluginObj => {
 
           if (booleanAttributes.has(attrName)) {
             attr.name = attrName;
-            path.node.value ??= t.stringLiteral('');
+            path.node.value ??= $stringLiteral('');
             return;
           }
 
@@ -159,7 +160,7 @@ export const jsxTransform = (): PluginObj => {
             attr.name = attrName;
 
             if (val === null) {
-              path.node.value = t.stringLiteral('true');
+              path.node.value = $stringLiteral('true');
               return;
             }
 
@@ -167,7 +168,7 @@ export const jsxTransform = (): PluginObj => {
               val.type === 'JSXExpressionContainer' &&
               val.expression.type === 'BooleanLiteral'
             ) {
-              path.node.value = t.stringLiteral(String(val.expression.value));
+              path.node.value = $stringLiteral(String(val.expression.value));
             }
 
             return;
@@ -181,7 +182,7 @@ export const jsxTransform = (): PluginObj => {
           attr.name.name === 'href' &&
           attr.namespace.name === 'xlink'
         ) {
-          path.node.name = t.jsxIdentifier('href');
+          path.node.name = { type: 'JSXIdentifier', name: 'href' };
           return;
         }
 

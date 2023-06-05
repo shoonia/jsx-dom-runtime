@@ -1,7 +1,9 @@
 import t from '@babel/types';
 
+import { $stringLiteral, $identifier } from './builders';
+
 const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral => {
-  return t.stringLiteral(node.namespace.name + ':' + node.name.name);
+  return $stringLiteral(node.namespace.name + ':' + node.name.name);
 };
 
 export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[] => {
@@ -16,11 +18,11 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
       return t.spreadElement(attr.argument);
     }
 
-    const name = attr.name.type === 'JSXNamespacedName'
+    const key = attr.name.type === 'JSXNamespacedName'
       ? convertJSXNamespacedName(attr.name)
       : t.isValidIdentifier(attr.name.name, false)
-        ? t.identifier(attr.name.name)
-        : t.stringLiteral(attr.name.name);
+        ? $identifier(attr.name.name)
+        : $stringLiteral(attr.name.name);
 
     const value = t.isJSXExpressionContainer(attr.value, null)
       ? attr.value.expression.type === 'JSXEmptyExpression'
@@ -32,7 +34,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
       value.value = value.value.replace(/\n\s+/g, ' ');
     }
 
-    return t.objectProperty(name, value);
+    return t.objectProperty(key, value);
   });
 
   const children = buildChildren(node);
@@ -40,7 +42,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
   if (children.length > 0) {
     props.push(
       t.objectProperty(
-        t.identifier('children'),
+        $identifier('children'),
         children.length === 1
           ? children[0]
           : t.arrayExpression(children),
@@ -48,7 +50,10 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
     );
   }
 
-  return t.objectExpression(props);
+  return {
+    type: 'ObjectExpression',
+    properties: props,
+  };
 };
 
 export const convertJSXIdentifier = (
@@ -56,17 +61,19 @@ export const convertJSXIdentifier = (
 ): t.StringLiteral | t.MemberExpression | t.Identifier => {
   if (node.type === 'JSXIdentifier') {
     if (t.isValidIdentifier(node.name, false)) {
-      return t.identifier(node.name);
+      return $identifier(node.name);
     }
 
-    return t.stringLiteral(node.name);
+    return $stringLiteral(node.name);
   }
 
   if (node.type === 'JSXMemberExpression') {
-    return t.memberExpression(
-      convertJSXIdentifier(node.object),
-      convertJSXIdentifier(node.property),
-    );
+    return {
+      type: 'MemberExpression',
+      object: convertJSXIdentifier(node.object),
+      property: convertJSXIdentifier(node.property),
+      computed: false,
+    };
   }
 
   return convertJSXNamespacedName(node);
@@ -76,6 +83,6 @@ export const getTag = (node: t.JSXElement): t.StringLiteral | t.MemberExpression
   const tagExp = convertJSXIdentifier(node.openingElement.name);
 
   return tagExp.type === 'Identifier'
-    ? t.stringLiteral(tagExp.name)
+    ? $stringLiteral(tagExp.name)
     : tagExp;
 };
