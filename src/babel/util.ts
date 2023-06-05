@@ -1,4 +1,5 @@
 import t from '@babel/types';
+import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { $stringLiteral, $identifier, $objectProperty, $children } from './builders';
 
@@ -23,15 +24,17 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
 
     const key = attr.name.type === 'JSXNamespacedName'
       ? convertJSXNamespacedName(attr.name)
-      : t.isValidIdentifier(attr.name.name, false)
+      : isIdentifierName(attr.name.name)
         ? $identifier(attr.name.name)
         : $stringLiteral(attr.name.name);
 
-    const value = t.isJSXExpressionContainer(attr.value, null)
-      ? attr.value.expression.type === 'JSXEmptyExpression'
-        ? t.nullLiteral()
-        : attr.value.expression
-      : attr.value ?? t.booleanLiteral(true);
+    const value = attr.value === null
+      ? { type: 'BooleanLiteral', value: true } satisfies t.BooleanLiteral
+      : attr.value.type === 'JSXExpressionContainer'
+        ? attr.value.expression.type === 'JSXEmptyExpression'
+          ? { type: 'NullLiteral' } satisfies t.NullLiteral
+          : attr.value.expression
+        : attr.value;
 
     if (value.type === 'StringLiteral') {
       value.value = value.value.replace(/\n\s+/g, ' ');
@@ -61,7 +64,7 @@ export const convertJSXIdentifier = (
   node: t.JSXIdentifier | t.JSXMemberExpression | t.JSXNamespacedName,
 ): t.StringLiteral | t.MemberExpression | t.Identifier => {
   if (node.type === 'JSXIdentifier') {
-    if (t.isValidIdentifier(node.name, false)) {
+    if (isIdentifierName(node.name)) {
       return $identifier(node.name);
     }
 
@@ -74,6 +77,7 @@ export const convertJSXIdentifier = (
       object: convertJSXIdentifier(node.object),
       property: convertJSXIdentifier(node.property),
       computed: false,
+      optional: null,
     };
   }
 

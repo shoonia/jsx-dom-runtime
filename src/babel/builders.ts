@@ -16,6 +16,7 @@ export const $objectProperty = (key: t.Identifier | t.StringLiteral, value: t.Ex
   value,
   computed: false,
   shorthand: false,
+  decorators: null,
 });
 
 export const $children = (elements: t.Expression[]): t.Expression | t.ArrayExpression => {

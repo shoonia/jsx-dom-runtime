@@ -161,7 +161,7 @@ export const jsxTransform = (): PluginObj => {
               val.type === 'JSXExpressionContainer' &&
               val.expression.type === 'BooleanLiteral'
             ) {
-              path.node.value = $stringLiteral(String(val.expression.value));
+              path.node.value = $stringLiteral(val.expression.value ? 'true' : 'false');
             }
 
             return;
