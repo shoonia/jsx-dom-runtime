@@ -2,7 +2,7 @@ import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
 import { createImport, type TImportName } from './createImport';
-import { $identifier, $stringLiteral } from './builders';
+import { $identifier, $objectProperty, $stringLiteral } from './builders';
 import {
   ariaAttributes,
   booleanAttributes,
@@ -74,12 +74,11 @@ export const jsxTransform = (): PluginObj => {
           }
 
           if (name.type === 'JSXMemberExpression' || isFunctionComponent(name)) {
-            path.replaceWith(
-              t.callExpression(
-                convertJSXIdentifier(name),
-                [buildProps(path.node)],
-              ),
-            );
+            path.replaceWith({
+              type: 'CallExpression',
+              callee: convertJSXIdentifier(name),
+              arguments: [buildProps(path.node)],
+            });
           } else if (svgTags.has(name.name)) {
             nsMap.set(path.node, 'svgNS');
           } else if (mathmlTags.has(name.name)) {
@@ -100,7 +99,7 @@ export const jsxTransform = (): PluginObj => {
 
             if (importName) {
               props.properties.push(
-                t.objectProperty(
+                $objectProperty(
                   ns,
                   addImport(importName),
                 ),

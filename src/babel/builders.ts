@@ -9,3 +9,11 @@ export const $identifier = (name: string): t.Identifier => ({
   type: 'Identifier',
   name,
 });
+
+export const $objectProperty = (key: t.Identifier | t.StringLiteral, value: t.Expression): t.ObjectProperty => ({
+  type: 'ObjectProperty',
+  key,
+  value,
+  computed: false,
+  shorthand: false,
+});

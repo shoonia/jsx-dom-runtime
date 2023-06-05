@@ -1,6 +1,6 @@
 import t from '@babel/types';
 
-import { $stringLiteral, $identifier } from './builders';
+import { $stringLiteral, $identifier, $objectProperty } from './builders';
 
 const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral => {
   return $stringLiteral(node.namespace.name + ':' + node.name.name);
@@ -15,7 +15,10 @@ export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[
 export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
   const props = node.openingElement.attributes.map((attr) => {
     if (attr.type === 'JSXSpreadAttribute') {
-      return t.spreadElement(attr.argument);
+      return {
+        type: 'SpreadElement',
+        argument: attr.argument,
+      } satisfies t.SpreadElement;
     }
 
     const key = attr.name.type === 'JSXNamespacedName'
@@ -34,18 +37,21 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
       value.value = value.value.replace(/\n\s+/g, ' ');
     }
 
-    return t.objectProperty(key, value);
+    return $objectProperty(key, value);
   });
 
   const children = buildChildren(node);
 
   if (children.length > 0) {
     props.push(
-      t.objectProperty(
+      $objectProperty(
         $identifier('children'),
         children.length === 1
           ? children[0]
-          : t.arrayExpression(children),
+          : {
+            type: 'ArrayExpression',
+            elements: children,
+          },
       ),
     );
   }
