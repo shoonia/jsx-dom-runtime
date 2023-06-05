@@ -1,6 +1,6 @@
 import t from '@babel/types';
 
-import { $stringLiteral, $identifier, $objectProperty } from './builders';
+import { $stringLiteral, $identifier, $objectProperty, $children } from './builders';
 
 const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral => {
   return $stringLiteral(node.namespace.name + ':' + node.name.name);
@@ -46,12 +46,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
     props.push(
       $objectProperty(
         $identifier('children'),
-        children.length === 1
-          ? children[0]
-          : {
-            type: 'ArrayExpression',
-            elements: children,
-          },
+        $children(children),
       ),
     );
   }

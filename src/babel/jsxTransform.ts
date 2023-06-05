@@ -2,7 +2,7 @@ import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
 import { createImport, type TImportName } from './createImport';
-import { $identifier, $objectProperty, $stringLiteral } from './builders';
+import { $children, $identifier, $objectProperty, $stringLiteral } from './builders';
 import {
   ariaAttributes,
   booleanAttributes,
@@ -21,7 +21,6 @@ import {
 } from './util';
 
 const opts = { name: 'ns' } as const;
-const ns = $identifier(opts.name);
 
 const pureAnnotate = <T extends t.Node>(node: T): T => {
   return t.addComment<T>(node, 'leading', '#__PURE__', false);
@@ -52,16 +51,13 @@ export const jsxTransform = (): PluginObj => {
         const children = buildChildren(path.node);
 
         path.replaceWith(
-          pureAnnotate(
-            t.callExpression(
-              addImport('Fragment'),
-              children.length > 0 ? [
-                children.length === 1
-                  ? children[0]
-                  : t.arrayExpression(children)
-              ] : [],
-            ),
-          ),
+          pureAnnotate({
+            type: 'CallExpression',
+            callee: addImport('Fragment'),
+            arguments: children.length > 0
+              ? [$children(children)]
+              : [],
+          }),
         );
       },
 
@@ -100,7 +96,7 @@ export const jsxTransform = (): PluginObj => {
             if (importName) {
               props.properties.push(
                 $objectProperty(
-                  ns,
+                  $identifier('ns'),
                   addImport(importName),
                 ),
               );
@@ -108,12 +104,11 @@ export const jsxTransform = (): PluginObj => {
           }
 
           path.replaceWith(
-            pureAnnotate(
-              t.callExpression(
-                addImport('jsx'),
-                [getTag(path.node), props],
-              ),
-            ),
+            pureAnnotate({
+              type: 'CallExpression',
+              callee: addImport('jsx'),
+              arguments: [getTag(path.node), props],
+            }),
           );
         },
       },

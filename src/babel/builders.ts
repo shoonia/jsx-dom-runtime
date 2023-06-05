@@ -17,3 +17,12 @@ export const $objectProperty = (key: t.Identifier | t.StringLiteral, value: t.Ex
   computed: false,
   shorthand: false,
 });
+
+export const $children = (elements: t.Expression[]): t.Expression | t.ArrayExpression => {
+  return elements.length === 1
+    ? elements[0]
+    : {
+      type: 'ArrayExpression',
+      elements,
+    };
+};
