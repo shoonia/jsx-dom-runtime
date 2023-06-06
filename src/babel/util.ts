@@ -22,17 +22,11 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
       } satisfies t.SpreadElement;
     }
 
-    const key = attr.name.type === 'JSXNamespacedName'
-      ? convertJSXNamespacedName(attr.name)
-      : isIdentifierName(attr.name.name)
-        ? $identifier(attr.name.name)
-        : $stringLiteral(attr.name.name);
-
-    const value = attr.value === null
-      ? { type: 'BooleanLiteral', value: true } satisfies t.BooleanLiteral
+    const value: t.Expression = attr.value === null
+      ? { type: 'BooleanLiteral', value: true }
       : attr.value.type === 'JSXExpressionContainer'
         ? attr.value.expression.type === 'JSXEmptyExpression'
-          ? { type: 'NullLiteral' } satisfies t.NullLiteral
+          ? { type: 'NullLiteral' }
           : attr.value.expression
         : attr.value;
 
@@ -40,7 +34,14 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
       value.value = value.value.replace(/\n\s+/g, ' ');
     }
 
-    return $objectProperty(key, value);
+    return $objectProperty(
+      attr.name.type === 'JSXNamespacedName'
+        ? convertJSXNamespacedName(attr.name)
+        : isIdentifierName(attr.name.name)
+          ? $identifier(attr.name.name)
+          : $stringLiteral(attr.name.name),
+      value,
+    );
   });
 
   const children = buildChildren(node);
