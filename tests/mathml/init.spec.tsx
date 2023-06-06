@@ -14,7 +14,7 @@ describe('MathML', () => {
       </math>`;
 
     expect(result).toBe(
-      'import{mathmlNS as _mathmlNS}from"jsx-dom-runtime";import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("math",{display:"inline",children:/*#__PURE__*/_jsx("mfrac",{children:[/*#__PURE__*/_jsx("msup",{children:[/*#__PURE__*/_jsx("mi",{children:"\\u03C0",ns:_mathmlNS}),/*#__PURE__*/_jsx("mn",{children:"2",ns:_mathmlNS})],ns:_mathmlNS}),/*#__PURE__*/_jsx("mn",{children:"6",ns:_mathmlNS})],ns:_mathmlNS}),ns:_mathmlNS});'
+      'import{mathmlNS as _mathmlNS,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("math",{display:"inline",children:/*#__PURE__*/_jsx("mfrac",{children:[/*#__PURE__*/_jsx("msup",{children:[/*#__PURE__*/_jsx("mi",{children:"\\u03C0",ns:_mathmlNS}),/*#__PURE__*/_jsx("mn",{children:"2",ns:_mathmlNS})],ns:_mathmlNS}),/*#__PURE__*/_jsx("mn",{children:"6",ns:_mathmlNS})],ns:_mathmlNS}),ns:_mathmlNS});'
     );
   });
 

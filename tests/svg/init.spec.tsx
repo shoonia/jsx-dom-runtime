@@ -35,7 +35,7 @@ describe('<svg/> support', () => {
     </svg>`;
 
     expect(result).toBe(
-      'import{svgNS as _svgNS}from"jsx-dom-runtime";import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("svg",{width:"200",height:"200",children:/*#__PURE__*/_jsx("image",{href:"image.png",height:"200",width:200,ns:_svgNS}),ns:_svgNS});',
+      'import{svgNS as _svgNS,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("svg",{width:"200",height:"200",children:/*#__PURE__*/_jsx("image",{href:"image.png",height:"200",width:200,ns:_svgNS}),ns:_svgNS});',
     );
   });
 });
