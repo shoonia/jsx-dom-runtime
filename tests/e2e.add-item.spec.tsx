@@ -1,11 +1,11 @@
-import { type FC, useRef } from '..';
+import { useRef } from '..';
 import { Driver } from './utils';
 
 describe('e2e test', () => {
   it('should add new items to list by click', () => {
     const driver = new Driver();
 
-    const List: FC = () => {
+    const List: JSX.FC = () => {
       const ref = useRef<HTMLUListElement>();
 
       const add: EventListener = () => {

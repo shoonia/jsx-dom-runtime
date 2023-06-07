@@ -42,9 +42,7 @@ export function jsx<
   props: PropsWithChildren<JSX.IntrinsicElements[K]>,
 ): R
 
-export interface FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> {
-  (props: PropsWithChildren<P>): T | null
-}
+export type FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> = JSX.FC<P, T>
 export { FunctionComponent as FC };
 
 export const properties: Set<string>;
@@ -953,6 +951,10 @@ declare global {
     type Element = HTMLElement | SVGElement | MathMLElement | DocumentFragment
     interface Attributes { }
     interface ElementChildrenAttribute { children: {} }
+
+    interface FC<P = {}, T extends Element = Element> {
+      (props: PropsWithChildren<P>): T | null
+    }
 
     interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
       download?: any;
