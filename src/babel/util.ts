@@ -65,11 +65,7 @@ export const convertJSXIdentifier = (
   node: t.JSXIdentifier | t.JSXMemberExpression | t.JSXNamespacedName,
 ): t.StringLiteral | t.MemberExpression | t.Identifier => {
   if (node.type === 'JSXIdentifier') {
-    if (isIdentifierName(node.name)) {
-      return $identifier(node.name);
-    }
-
-    return $stringLiteral(node.name);
+    return $identifier(node.name);
   }
 
   if (node.type === 'JSXMemberExpression') {
