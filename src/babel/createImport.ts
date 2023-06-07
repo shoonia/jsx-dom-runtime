@@ -29,17 +29,17 @@ export const createImport = (path: NodePath<t.Program>) => {
 
     declaration ??= newImport();
 
-    const local = $identifier('_' + importName);
+    const localName = '_' + importName;
     const specifier: t.ImportSpecifier = {
       type: 'ImportSpecifier',
-      local,
+      local: $identifier(localName),
       imported: $identifier(importName),
       importKind: 'value',
     };
 
-    cache.set(importName, local.name);
+    cache.set(importName, localName);
     declaration.specifiers.push(specifier);
 
-    return local;
+    return $identifier(localName);
   };
 };
