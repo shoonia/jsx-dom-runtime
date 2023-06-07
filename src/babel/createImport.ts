@@ -23,11 +23,11 @@ export const createImport = (path: NodePath<t.Program>) => {
   let declaration: t.ImportDeclaration;
 
   return (importName: TImportName): t.Identifier => {
-    declaration ??= newImport();
-
     if (cache.has(importName)) {
       return $identifier(cache.get(importName));
     }
+
+    declaration ??= newImport();
 
     const local = $identifier('_' + importName);
     const specifier: t.ImportSpecifier = {
@@ -37,8 +37,8 @@ export const createImport = (path: NodePath<t.Program>) => {
       importKind: 'value',
     };
 
-    declaration.specifiers.push(specifier);
     cache.set(importName, local.name);
+    declaration.specifiers.push(specifier);
 
     return local;
   };
