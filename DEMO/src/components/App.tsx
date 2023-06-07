@@ -1,9 +1,9 @@
-import { type FC, useRef } from 'jsx-dom-runtime';
+import { useRef } from 'jsx-dom-runtime';
 
 import * as s from './App.module.css';
 import { ListItem } from './ListItem';
 
-export const App: FC = () => {
+export const App: JSX.FC = () => {
   const inputRef = useRef<HTMLInputElement>();
   const ulRef = useRef<HTMLUListElement>();
 

@@ -1,4 +1,4 @@
-import { type FC, useRef } from 'jsx-dom-runtime';
+import { useRef } from 'jsx-dom-runtime';
 
 import * as s from './ListItem.module.css';
 
@@ -6,7 +6,7 @@ interface Props {
   text: string;
 }
 
-export const ListItem: FC<Props> = ({ text }) => {
+export const ListItem: JSX.FC<Props> = ({ text }) => {
   const ref = useRef<HTMLLIElement>();
 
   const remove: EventListener = () => {
