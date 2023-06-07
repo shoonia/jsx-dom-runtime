@@ -11,7 +11,6 @@ export const createImport = (path: NodePath<t.Program>) => {
       type: 'ImportDeclaration',
       specifiers: [],
       source: $stringLiteral('jsx-dom-runtime'),
-      importKind: 'value',
     };
 
     path.unshiftContainer('body', node);
@@ -34,7 +33,6 @@ export const createImport = (path: NodePath<t.Program>) => {
       type: 'ImportSpecifier',
       local: $identifier(localName),
       imported: $identifier(importName),
-      importKind: 'value',
     };
 
     cache.set(importName, localName);
