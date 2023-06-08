@@ -14,7 +14,7 @@ export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[
 };
 
 export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
-  const props = node.openingElement.attributes.map((attr) => {
+  const properties = node.openingElement.attributes.map((attr) => {
     if (attr.type === 'JSXSpreadAttribute') {
       return {
         type: 'SpreadElement',
@@ -47,7 +47,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
   const children = buildChildren(node);
 
   if (children.length > 0) {
-    props.push(
+    properties.push(
       $objectProperty(
         $identifier('children'),
         $children(children),
@@ -57,7 +57,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
 
   return {
     type: 'ObjectExpression',
-    properties: props,
+    properties,
   };
 };
 
