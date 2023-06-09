@@ -3,7 +3,7 @@ import t from '@babel/types';
 
 import { createImport, type TImportName } from './createImport';
 import { $children, $identifier, $objectProperty, $stringLiteral } from './builders';
-import { buildProps, convertJSXIdentifier, getTag } from './util';
+import { buildProps, convertJSXIdentifier } from './util';
 import {
   ariaAttributes,
   booleanAttributes,
@@ -78,6 +78,7 @@ export const jsxTransform = (): PluginObj => {
         },
 
         exit(path) {
+          const tag = convertJSXIdentifier(path.node.openingElement.name);
           const props = buildProps(path.node);
 
           const noNs = props.properties.every((i) => {
@@ -101,7 +102,10 @@ export const jsxTransform = (): PluginObj => {
           path.replaceWith({
             type: 'CallExpression',
             callee: addImport('jsx'),
-            arguments: [getTag(path.node), props],
+            arguments: [
+              tag.type === 'Identifier' ? $stringLiteral(tag.name) : tag,
+              props,
+            ],
             leadingComments: pureAnnotation(),
           });
         },

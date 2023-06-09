@@ -74,11 +74,3 @@ export const convertJSXIdentifier = (
 
   return convertJSXNamespacedName(node);
 };
-
-export const getTag = (node: t.JSXElement): t.StringLiteral | t.MemberExpression => {
-  const tagExp = convertJSXIdentifier(node.openingElement.name);
-
-  return tagExp.type === 'Identifier'
-    ? $stringLiteral(tagExp.name)
-    : tagExp;
-};
