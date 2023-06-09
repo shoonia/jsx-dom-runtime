@@ -1,5 +1,5 @@
 /// <reference lib="dom" />
-/// <reference lib="es2022" />
+/// <reference lib="es2023" />
 import { Properties, SvgProperties, Property } from 'csstype';
 
 interface RefObject<T> {
