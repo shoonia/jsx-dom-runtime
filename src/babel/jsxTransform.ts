@@ -93,7 +93,7 @@ export const jsxTransform = (): PluginObj => {
           if (noNs) {
             const importName = nsMap.get(path.node) ?? nsMap.get(path.parent);
 
-            if (importName) {
+            if (importName !== undefined) {
               props.properties.push(
                 $objectProperty(
                   $identifier('ns'),

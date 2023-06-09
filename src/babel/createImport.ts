@@ -9,22 +9,20 @@ export const createImport = (path: NodePath<t.Program>) => {
   const cache = new Map<string, string>();
   let specifiers: t.ImportSpecifier[];
 
-  const newImport = (): void => {
-    specifiers = [];
-
-    path.unshiftContainer('body', {
-      type: 'ImportDeclaration',
-      specifiers,
-      source: $stringLiteral('jsx-dom-runtime'),
-    });
-  };
-
   return (importName: TImportName): t.Identifier => {
     if (cache.has(importName)) {
       return $identifier(cache.get(importName));
     }
 
-    specifiers ?? newImport();
+    if (specifiers === undefined) {
+      specifiers = [];
+
+      path.unshiftContainer('body', {
+        type: 'ImportDeclaration',
+        specifiers,
+        source: $stringLiteral('jsx-dom-runtime'),
+      });
+    }
 
     const localName = '_' + importName;
 
