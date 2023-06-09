@@ -7,12 +7,6 @@ const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral =>
   return $stringLiteral(node.namespace.name + ':' + node.name.name);
 };
 
-export const buildChildren = (node: t.JSXElement | t.JSXFragment): t.Expression[] => {
-  return t.react.buildChildren(node).map((child) => {
-    return child.type === 'JSXSpreadChild' ? child.expression : child;
-  });
-};
-
 export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
   const properties = node.openingElement.attributes.map((attr) => {
     if (attr.type === 'JSXSpreadAttribute') {
@@ -44,7 +38,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
     );
   });
 
-  const children = buildChildren(node);
+  const children = t.react.buildChildren(node);
 
   if (children.length > 0) {
     properties.push(

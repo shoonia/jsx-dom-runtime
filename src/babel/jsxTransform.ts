@@ -3,6 +3,7 @@ import t from '@babel/types';
 
 import { createImport, type TImportName } from './createImport';
 import { $children, $identifier, $objectProperty, $stringLiteral } from './builders';
+import { buildProps, convertJSXIdentifier, getTag } from './util';
 import {
   ariaAttributes,
   booleanAttributes,
@@ -13,12 +14,6 @@ import {
   svgDOMAttributes,
   svgTags,
 } from './collections';
-import {
-  buildChildren,
-  buildProps,
-  convertJSXIdentifier,
-  getTag,
-} from './util';
 
 const opts = { name: 'ns' } as const;
 
@@ -51,7 +46,7 @@ export const jsxTransform = (): PluginObj => {
       },
 
       JSXFragment(path) {
-        const children = buildChildren(path.node);
+        const children = t.react.buildChildren(path.node);
 
         path.replaceWith({
           type: 'CallExpression',
@@ -110,6 +105,10 @@ export const jsxTransform = (): PluginObj => {
             leadingComments: pureAnnotation(),
           });
         },
+      },
+
+      JSXSpreadChild(path) {
+        path.replaceWith(path.node.expression);
       },
 
       JSXAttribute(path) {
