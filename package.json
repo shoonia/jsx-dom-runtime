@@ -30,10 +30,10 @@
     "dev": "npm run lint && npm run types && npm run build && npm test && npm run size"
   },
   "dependencies": {
-    "@babel/helper-plugin-utils": "^7.21.5",
-    "@babel/helper-validator-identifier": "^7.19.1",
-    "@babel/plugin-syntax-jsx": "^7.21.4",
-    "@babel/types": "^7.22.4",
+    "@babel/helper-plugin-utils": "^7.22.5",
+    "@babel/helper-validator-identifier": "^7.22.5",
+    "@babel/plugin-syntax-jsx": "^7.22.5",
+    "@babel/types": "^7.22.5",
     "csstype": "^3.1.2",
     "html-tags": "^3.3.1",
     "svg-tags": "^1.0.0"
@@ -42,8 +42,8 @@
     "@babel/core": "^7.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.1",
-    "@babel/preset-typescript": "^7.21.5",
+    "@babel/core": "^7.22.5",
+    "@babel/preset-typescript": "^7.22.5",
     "@evilmartians/lefthook": "^1.4.1",
     "@jest/globals": "^29.5.0",
     "@rollup/plugin-babel": "^6.0.3",
