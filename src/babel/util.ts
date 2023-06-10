@@ -3,7 +3,7 @@ import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { $stringLiteral, $identifier, $objectProperty, $children } from './builders';
 
-const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral => {
+export const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral => {
   return $stringLiteral(node.namespace.name + ':' + node.name.name);
 };
 
@@ -56,21 +56,17 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
 };
 
 export const convertJSXIdentifier = (
-  node: t.JSXIdentifier | t.JSXMemberExpression | t.JSXNamespacedName,
-): t.StringLiteral | t.MemberExpression | t.Identifier => {
+  node: t.JSXIdentifier | t.JSXMemberExpression,
+): t.MemberExpression | t.Identifier => {
   if (node.type === 'JSXIdentifier') {
     return $identifier(node.name);
   }
 
-  if (node.type === 'JSXMemberExpression') {
-    return {
-      type: 'MemberExpression',
-      object: convertJSXIdentifier(node.object),
-      property: convertJSXIdentifier(node.property),
-      computed: false,
-      optional: null,
-    };
-  }
-
-  return convertJSXNamespacedName(node);
+  return {
+    type: 'MemberExpression',
+    object: convertJSXIdentifier(node.object),
+    property: $identifier(node.property.name),
+    computed: false,
+    optional: null,
+  };
 };

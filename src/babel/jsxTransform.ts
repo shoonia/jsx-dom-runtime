@@ -3,7 +3,7 @@ import t from '@babel/types';
 
 import { createImport, type TImportName } from './createImport';
 import { $children, $identifier, $objectProperty, $stringLiteral } from './builders';
-import { buildProps, convertJSXIdentifier } from './util';
+import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './util';
 import {
   ariaAttributes,
   booleanAttributes,
@@ -58,7 +58,7 @@ export const jsxTransform = (): PluginObj => {
 
       JSXElement: {
         enter(path) {
-          const { name } = path.node.openingElement;
+          const name = path.node.openingElement.name;
 
           if (name.type === 'JSXNamespacedName') {
             return;
@@ -78,7 +78,7 @@ export const jsxTransform = (): PluginObj => {
         },
 
         exit(path) {
-          const tag = convertJSXIdentifier(path.node.openingElement.name);
+          const name = path.node.openingElement.name as t.JSXIdentifier | t.JSXNamespacedName;
           const props = buildProps(path.node);
 
           const noNs = props.properties.every((i) => {
@@ -103,7 +103,9 @@ export const jsxTransform = (): PluginObj => {
             type: 'CallExpression',
             callee: addImport('jsx'),
             arguments: [
-              tag.type === 'Identifier' ? $stringLiteral(tag.name) : tag,
+              name.type === 'JSXIdentifier'
+                ? $stringLiteral(name.name)
+                : convertJSXNamespacedName(name),
               props,
             ],
             leadingComments: pureAnnotation(),
