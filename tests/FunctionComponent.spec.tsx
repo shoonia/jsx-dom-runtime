@@ -52,4 +52,16 @@ describe('FunctionComponent', () => {
 
     expect(<Text id="x">text</Text>).toHaveOuterHTML('<p id="x">text</p>');
   });
+
+  it('should support naming starts with `$`', () => {
+    const $: JSX.FC = () => <p>text</p>;
+
+    expect(<$ />).toHaveOuterHTML('<p>text</p>');
+  });
+
+  it('should support naming starts with `_`', () => {
+    const _: JSX.FC = () => <p>text</p>;
+
+    expect(<_ />).toHaveOuterHTML('<p>text</p>');
+  });
 });
