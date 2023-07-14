@@ -42,9 +42,9 @@
     "@babel/core": "^7.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.22.8",
+    "@babel/core": "^7.22.9",
     "@babel/preset-typescript": "^7.22.5",
-    "@evilmartians/lefthook": "^1.4.4",
+    "@evilmartians/lefthook": "^1.4.5",
     "@jest/globals": "^29.5.0",
     "@rollup/plugin-babel": "^6.0.3",
     "@rollup/plugin-node-resolve": "^15.1.0",
