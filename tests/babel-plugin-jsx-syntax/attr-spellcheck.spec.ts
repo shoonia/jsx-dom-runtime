@@ -22,4 +22,14 @@ describe('`spellcheck` attribute', () => {
     const result = await t`<div spellCheck="false" />`;
     expect(result).toBe(_jsx + '_jsx("div",{spellcheck:"false"});');
   });
+
+  it('should correct compiled string "true"', async () => {
+    const result = await t`<div spellCheck="true" />`;
+    expect(result).toBe(_jsx + '_jsx("div",{spellcheck:"true"});');
+  });
+
+  it('should correct compiled string "false"', async () => {
+    const result = await t`<div spellCheck="false" />`;
+    expect(result).toBe(_jsx + '_jsx("div",{spellcheck:"false"});');
+  });
 });
