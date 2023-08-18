@@ -27,3 +27,10 @@ export const $children = (elements: (t.JSXSpreadChild | t.Expression)[]): t.Expr
       elements,
     };
 };
+
+export const $pureAnnotation = (): t.CommentBlock[] => [
+  {
+    type: 'CommentBlock',
+    value: '#__PURE__',
+  },
+];

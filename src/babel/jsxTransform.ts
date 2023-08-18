@@ -2,8 +2,14 @@ import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
 import { type TImportName, ImportSpec } from './createImport';
-import { $children, $identifier, $objectProperty, $stringLiteral } from './builders';
 import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './util';
+import {
+  $children,
+  $identifier,
+  $objectProperty,
+  $stringLiteral,
+  $pureAnnotation,
+} from './builders';
 import {
   ariaAttributes,
   booleanAttributes,
@@ -16,13 +22,6 @@ import {
 } from './collections';
 
 const opts = { name: 'ns' } as const;
-
-const pureAnnotation = (): t.CommentBlock[] => [
-  {
-    type: 'CommentBlock',
-    value: '#__PURE__',
-  },
-];
 
 const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
   const charCode = name.name.charCodeAt(0);
@@ -52,7 +51,7 @@ export const jsxTransform = (): PluginObj => {
           type: 'CallExpression',
           callee: importSpec.add('Fragment'),
           arguments: children.length > 0 ? [$children(children)] : [],
-          leadingComments: pureAnnotation(),
+          leadingComments: $pureAnnotation(),
         });
       },
 
@@ -108,7 +107,7 @@ export const jsxTransform = (): PluginObj => {
                 : convertJSXNamespacedName(name),
               props,
             ],
-            leadingComments: pureAnnotation(),
+            leadingComments: $pureAnnotation(),
           });
         },
       },
