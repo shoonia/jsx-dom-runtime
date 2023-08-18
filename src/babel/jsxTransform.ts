@@ -1,7 +1,7 @@
 import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
-import { createImport, type TImportName } from './createImport';
+import { type TImportName, ImportSpec } from './createImport';
 import { $children, $identifier, $objectProperty, $stringLiteral } from './builders';
 import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './util';
 import {
@@ -35,14 +35,14 @@ const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
 
 export const jsxTransform = (): PluginObj => {
   let nsMap: WeakMap<t.Node, TImportName>;
-  let addImport: ReturnType<typeof createImport>;
+  let importSpec: ImportSpec;
 
   return {
     name: 'jsx-dom-runtime/babel-plugin-transform-jsx',
     visitor: {
       Program(path) {
         nsMap = new WeakMap();
-        addImport = createImport(path);
+        importSpec = new ImportSpec(path);
       },
 
       JSXFragment(path) {
@@ -50,7 +50,7 @@ export const jsxTransform = (): PluginObj => {
 
         path.replaceWith({
           type: 'CallExpression',
-          callee: addImport('Fragment'),
+          callee: importSpec.add('Fragment'),
           arguments: children.length > 0 ? [$children(children)] : [],
           leadingComments: pureAnnotation(),
         });
@@ -93,7 +93,7 @@ export const jsxTransform = (): PluginObj => {
               props.properties.push(
                 $objectProperty(
                   $identifier('ns'),
-                  addImport(importName),
+                  importSpec.add(importName),
                 ),
               );
             }
@@ -101,7 +101,7 @@ export const jsxTransform = (): PluginObj => {
 
           path.replaceWith({
             type: 'CallExpression',
-            callee: addImport('jsx'),
+            callee: importSpec.add('jsx'),
             arguments: [
               name.type === 'JSXIdentifier'
                 ? $stringLiteral(name.name)
