@@ -6,9 +6,9 @@ import { $identifier, $stringLiteral } from './builders';
 export type TImportName = 'jsx' | 'Fragment' | 'svgNS' | 'mathmlNS' | 'xhtmlNS';
 
 export class ImportSpec {
-  readonly #cache: Map<string, string> = new Map();
   readonly #path: NodePath<t.Program>;
-  #specifiers: t.ImportSpecifier[];
+  readonly #cache: Map<string, string> = new Map();
+  readonly #specifiers: t.ImportSpecifier[] = [];
 
   public constructor(path: NodePath<t.Program>) {
     this.#path = path;
@@ -19,9 +19,7 @@ export class ImportSpec {
       return $identifier(this.#cache.get(importName));
     }
 
-    if (this.#specifiers === undefined) {
-      this.#specifiers = [];
-
+    if (this.#specifiers.length === 0) {
       this.#path.unshiftContainer('body', {
         type: 'ImportDeclaration',
         specifiers: this.#specifiers,
