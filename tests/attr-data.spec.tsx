@@ -18,18 +18,21 @@ describe('Data attribute', () => {
 
   it.each([
     [0,               '0'],
-    [0,               '0'],
     [1,               '1'],
     [-1,              '-1'],
     [3.14,            '3.14'],
+    [1e3,             '1000'],
     [NaN,             'NaN'],
     [5n,              '5'],
     [Infinity,        'Infinity'],
     [-Infinity,       '-Infinity'],
     [[],              ''],
+    ['',              ''],
+    ['str',           'str'],
     [[0, 1],          '0,1'],
     [() => {},        '() => {}'],
     [function x() {}, 'function x() {}'],
+    [class X {},      'class X {}'],
     [{},              '[object Object]'],
     [{ x: 10 },       '[object Object]'],
   ])('should stringify attribute', (data, value) => {
