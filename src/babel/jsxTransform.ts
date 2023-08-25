@@ -1,7 +1,7 @@
 import type { PluginObj } from '@babel/core';
 import t from '@babel/types';
 
-import { type TImportName, ImportSpec } from './createImport';
+import { type TImportName, ImportSpec } from './ImportSpec';
 import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './util';
 import {
   $children,
