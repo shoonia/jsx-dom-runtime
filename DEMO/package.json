@@ -15,7 +15,7 @@
   "devDependencies": {
     "@babel/preset-typescript": "^7.22.11",
     "parcel": "^2.9.3",
-    "postcss": "^8.4.28",
+    "postcss": "^8.4.29",
     "postcss-modules": "^4.3.1"
   },
   "browserslist": "> 1%, not dead",
