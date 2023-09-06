@@ -13,7 +13,7 @@
     "jsx-dom-runtime": "^0.57.0"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "^7.22.11",
+    "@babel/preset-typescript": "^7.22.15",
     "parcel": "^2.9.3",
     "postcss": "^8.4.29",
     "postcss-modules": "^4.3.1"
