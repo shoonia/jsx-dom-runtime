@@ -204,6 +204,74 @@ export interface CSSProperties extends Properties<number | string> {
 
 export interface SVGProperties extends SvgProperties<number | string> { }
 
+export type Autocomplete =
+  | 'on'
+  | 'off'
+  | 'shipping'
+  | 'billing'
+  | 'name'
+  | 'honorific-prefix'
+  | 'given-name'
+  | 'additional-name'
+  | 'family-name'
+  | 'honorific-suffix'
+  | 'nickname'
+  | 'username'
+  | 'new-password'
+  | 'current-password'
+  | 'one-time-code'
+  | 'organization-title'
+  | 'organization'
+  | 'street-address'
+  | 'address-line1'
+  | 'address-line2'
+  | 'address-line3'
+  | 'address-level4'
+  | 'address-level3'
+  | 'address-level2'
+  | 'address-level1'
+  | 'country'
+  | 'country-name'
+  | 'postal-code'
+  | 'cc-name'
+  | 'cc-given-name'
+  | 'cc-additional-name'
+  | 'cc-family-name'
+  | 'cc-number'
+  | 'cc-exp'
+  | 'cc-exp-month'
+  | 'cc-exp-year'
+  | 'cc-csc'
+  | 'cc-type'
+  | 'transaction-currency'
+  | 'transaction-amount'
+  | 'language'
+  | 'bday'
+  | 'bday-day'
+  | 'bday-month'
+  | 'bday-year'
+  | 'sex'
+  | 'url'
+  | 'photo'
+  | 'home'
+  | 'work'
+  | 'mobile'
+  | 'fax'
+  | 'pager'
+  | 'tel'
+  | 'tel-country-code'
+  | 'tel-national'
+  | 'tel-area-code'
+  | 'tel-local'
+  | 'tel-local-prefix'
+  | 'tel-local-suffix'
+  | 'tel-extension'
+  | 'email'
+  | 'impp'
+  | 'webauthn'
+  | `section-${string}`
+  | (string & {});
+
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
   'aria-activedescendant'?: string
@@ -1081,7 +1149,7 @@ declare global {
     export interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
       'accept-charset'?: string;
       action?: string;
-      autocomplete?: string;
+      autocomplete?: Autocomplete;
       enctype?: string;
       method?: string;
       name?: string;
@@ -1148,7 +1216,7 @@ declare global {
     interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
       accept?: string
       alt?: string
-      autocomplete?: string;
+      autocomplete?: Autocomplete
       autofocus?: boolean | '';
       capture?: boolean | 'user' | 'environment' | ''
       checked?: boolean | '';
@@ -1339,7 +1407,7 @@ declare global {
     }
 
     interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
-      autocomplete?: string;
+      autocomplete?: Autocomplete;
       autofocus?: boolean | '';
       disabled?: boolean | '';
       form?: string
@@ -1422,7 +1490,7 @@ declare global {
     }
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
-      autocomplete?: string;
+      autocomplete?: Autocomplete;
       autofocus?: boolean | '';
       cols?: number | `${number}`;
       dirName?: string;
