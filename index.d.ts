@@ -821,10 +821,10 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   opacity?: SVGProperties['opacity']
   operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic' | 'erode' | 'dilate'
   order?: number | string
-  orient?: 'auto' | 'auto-start-reverse' | number | string
+  orient?: 'auto' | 'auto-start-reverse' | number | (string & {})
   /** @deprecated */
   orientation?: 'h' | 'v'
-  origin?: 'default' | string
+  origin?: 'default' | (string & {})
   overflow?: SVGProperties['overflow']
   'overline-position'?: number | `${number}`
   'overline-thickness'?: number | `${number}`
@@ -846,19 +846,19 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   primitiveUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   r?: number | string
   radius?: number | string
-  refX?: number | string | 'left' | 'center' | 'right'
-  refY?: number | string | 'top' | 'center' | 'bottom'
+  refX?: 'left' | 'center' | 'right' | number | (string & {})
+  refY?: 'top' | 'center' | 'bottom' | number | (string & {})
   renderingIntent?: number | string
-  repeatCount?: number | `${number}` | 'indefinite'
-  repeatDur?: number | string | 'indefinite'
+  repeatCount?: 'indefinite' | number | `${number}`
+  repeatDur?: 'indefinite' | number | (string & {})
   requiredExtensions?: number | string
   /** @deprecated */
   requiredFeatures?: string
   restart?: 'always' | 'whenNotActive' | 'never'
   result?: string
   rotate?: number | `${number}` | 'auto' | 'auto-reverse'
-  rx?: number | string | 'auto'
-  ry?: number | string | 'auto'
+  rx?: 'auto' | number | (string & {})
+  ry?: 'auto' | number | (string & {})
   scale?: number | `${number}`
   seed?: number | `${number}`
   'shape-rendering'?: SVGProperties['shapeRendering']
@@ -895,7 +895,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   systemLanguage?: string
   tabindex?: number | `${number}`
   tableValues?: number | string
-  target?: string | '_self' | '_parent' | '_top' | '_blank'
+  target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
   targetX?: number | string
   targetY?: number | string
   'text-anchor'?: SVGProperties['textAnchor']
@@ -905,7 +905,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   to?: string
   transform?: string
   'transform-origin'?: string
-  type?: string | 'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY'
+  type?: 'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY' | (string & {})
   /** @deprecated */
   u1?: string
   /** @deprecated */
