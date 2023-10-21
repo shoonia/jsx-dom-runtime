@@ -1,7 +1,9 @@
+/** @type {import('jest').Config} */
 const config = {
+  cache: false,
   rootDir: 'tests',
   transform: {
-    '\\.[jt]sx?$': 'babel-jest',
+    '\\.tsx?$': 'babel-jest',
   },
   setupFilesAfterEnv: [
     '<rootDir>/utils/jest-setup.ts'

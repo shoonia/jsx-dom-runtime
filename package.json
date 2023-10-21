@@ -23,7 +23,7 @@
   "sideEffects": false,
   "scripts": {
     "lint": "eslint 'src/**/*.{js,ts}' 'tests/**/*.{js,ts,tsx}'",
-    "test": "npx jest --clearCache && node --experimental-vm-modules node_modules/.bin/jest --no-cache",
+    "test": "npx jest --clearCache && node --experimental-vm-modules node_modules/.bin/jest",
     "build": "rollup -c",
     "size": "size-limit",
     "types": "tsc --noEmit",
@@ -86,7 +86,7 @@
   "author": {
     "name": "Alexander Zaytsev",
     "email": "zaytsev126@gmail.com",
-    "url": "https://twitter.com/_shoonia"
+    "url": "https://x.com/_shoonia"
   },
   "homepage": "https://github.com/shoonia/jsx-dom-runtime",
   "license": "MIT"
