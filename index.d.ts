@@ -658,6 +658,11 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
    */
   is?: string
   popover?: boolean | 'auto' | 'manual' | ''
+  /**
+   * A space-separated list of the part names of the element. Part names allows CSS to select and style specific elements in a shadow tree via the `::part` pseudo-element.
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/part
+   */
+  part?: string;
 }
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
