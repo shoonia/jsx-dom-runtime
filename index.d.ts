@@ -662,7 +662,12 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
    * A space-separated list of the part names of the element. Part names allows CSS to select and style specific elements in a shadow tree via the `::part` pseudo-element.
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/part
    */
-  part?: string;
+  part?: string
+  /**
+   * Allows you to select and style elements existing in nested shadow trees, by exporting their `part` names.
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/exportparts
+   */
+  exportparts?: string
 }
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
