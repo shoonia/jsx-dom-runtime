@@ -13,6 +13,7 @@ import {
 import {
   ariaAttributes,
   booleanAttributes,
+  attributes,
   DOMEvents,
   htmlTags,
   mathmlTags,
@@ -135,7 +136,7 @@ export const jsxTransform = (): PluginObj => {
 
           const attrName = attr.name.toLowerCase();
 
-          if (DOMEvents.has(attrName)) {
+          if (DOMEvents.has(attrName) || attributes.has(attrName)) {
             attr.name = attrName;
             return;
           }
