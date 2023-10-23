@@ -600,7 +600,11 @@ export interface AriaAttributes {
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   accessKey?: string
   class?: string
-  contentEditable?: boolean | '' | 'true' | 'false' | 'inherit'
+  /**
+   * Making document regions editable
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
+   */
+  contentEditable?: boolean | '' | 'true' | 'false' | 'inherit' | 'plaintext-only'
   contextMenu?: string
   dir?: 'ltr' | 'rtl' | 'auto'
   /**
