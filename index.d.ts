@@ -605,6 +605,10 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
    */
   contentEditable?: boolean | '' | 'true' | 'false' | 'inherit' | 'plaintext-only'
+  /**
+   * This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes
+   * @deprecated
+   */
   contextMenu?: string
   dir?: 'ltr' | 'rtl' | 'auto'
   /**
