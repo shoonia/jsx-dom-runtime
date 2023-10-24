@@ -50,4 +50,11 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("input",{inputmode:"numeric"});App({inputMode:"numeric"});');
   });
+
+  it('should transform structured item* attributes', async () => {
+    const result = await t`
+    <div itemID="a" itemProp="b" itemScope itemRef="c" itemType="d" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("div",{itemid:"a",itemprop:"b",itemscope:"",itemref:"c",itemtype:"d"});');
+  });
 });
