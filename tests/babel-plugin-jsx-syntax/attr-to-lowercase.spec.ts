@@ -27,20 +27,12 @@ describe('CamelCase attributes name to lower case', () => {
     expect(result).toBe(_jsx + '_jsx("input",{enterkeyhint:"go"});App({enterKeyHint:"go"});');
   });
 
-  it('should transform `maxLength` attribute', async () => {
+  it('should transform `maxLength/minLength` attribute', async () => {
     const result = await t`
-    <textarea maxLength="10" />;
-    <App maxLength="10" />;
+    <textarea maxLength="2" minLength="1" />;
+    <App maxLength="2" minLength="1" />;
     `;
-    expect(result).toBe(_jsx + '_jsx("textarea",{maxlength:"10"});App({maxLength:"10"});');
-  });
-
-  it('should transform `minLength` attribute', async () => {
-    const result = await t`
-    <textarea minLength="10" />;
-    <App minLength="10" />;
-    `;
-    expect(result).toBe(_jsx + '_jsx("textarea",{minlength:"10"});App({minLength:"10"});');
+    expect(result).toBe(_jsx + '_jsx("textarea",{maxlength:"2",minlength:"1"});App({maxLength:"2",minLength:"1"});');
   });
 
   it('should transform `inputMode` attribute', async () => {
