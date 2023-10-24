@@ -58,7 +58,6 @@
     "@typescript-eslint/parser": "^6.9.0",
     "babel-jest": "^29.7.0",
     "eslint": "^8.52.0",
-    "fs-extra": "^11.1.1",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "rollup": "^4.1.4",

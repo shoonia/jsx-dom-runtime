@@ -1,14 +1,23 @@
-import fse from 'fs-extra';
+import { existsSync } from 'node:fs';
+import { rm, mkdir, writeFile } from 'node:fs/promises';
 import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import pkg from './package.json' assert { type: 'json' };
 
+const emptyDir = async (path) => {
+  if (existsSync(path)) await rm(path, { recursive: true });
+  await mkdir(path);
+};
+
 await Promise.all([
-  fse.emptyDir('./babel-preset'),
-  fse.emptyDir('./jsx-runtime'),
+  emptyDir('./babel-preset'),
+  emptyDir('./jsx-runtime'),
 ]);
 
-await fse.writeFile('./jsx-runtime/index.d.ts', 'export * from "../index"');
+await writeFile(
+  './jsx-runtime/index.d.ts',
+  'export * from "../index"',
+);
 
 const extensions = ['.js', '.ts'];
 
