@@ -136,7 +136,7 @@ export const jsxTransform = (): PluginObj => {
 
           const attrName = attr.name.toLowerCase();
 
-          if (DOMEvents.has(attrName) || attributes.has(attrName)) {
+          if (DOMEvents.has(attrName)) {
             attr.name = attrName;
             return;
           }
@@ -169,6 +169,11 @@ export const jsxTransform = (): PluginObj => {
               path.node.value = $stringLiteral(val.expression.value ? 'true' : 'false');
             }
 
+            return;
+          }
+
+          if (attributes.has(attrName) && htmlTags.has(tag)) {
+            attr.name = attrName;
             return;
           }
         }

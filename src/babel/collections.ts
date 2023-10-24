@@ -62,7 +62,7 @@ export const DOMEvents = new Set([
 ]);
 
 export const attributes = new Set([
-  'tabindex',
+  'tabindex', 'referrerpolicy',
 ]);
 
 export const booleanAttributes = new Set([
