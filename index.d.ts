@@ -600,7 +600,15 @@ export interface AriaAttributes {
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   accessKey?: string
   class?: string
-  contentEditable?: boolean | '' | 'true' | 'false' | 'inherit'
+  /**
+   * Making document regions editable
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
+   */
+  contentEditable?: boolean | '' | 'true' | 'false' | 'inherit' | 'plaintext-only'
+  /**
+   * This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes
+   * @deprecated
+   */
   contextMenu?: string
   dir?: 'ltr' | 'rtl' | 'auto'
   /**
@@ -618,7 +626,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
    * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<input spellcheck>` is forbidden. The correct usage is `<input spellcheck="true">`
    * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
    */
-  spellcheck?: 'true' | 'false';
+  spellcheck?: 'true' | 'false'
   style?: string | CSSProperties
   tabIndex?: number | `${number}`
   title?: string;
@@ -662,11 +670,21 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
    * A space-separated list of the part names of the element. Part names allows CSS to select and style specific elements in a shadow tree via the `::part` pseudo-element.
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/part
    */
-  part?: string;
+  part?: string
+  /**
+   * Allows you to select and style elements existing in nested shadow trees, by exporting their `part` names.
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/exportparts
+   */
+  exportparts?: string
+  /**
+   * Used to indicate that an element is flagged for tracking by `PerformanceObserver` objects using the "element" type.
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/elementtiming
+   */
+  elementTiming?: string
 }
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
-  ns?: typeof svgNS,
+  ns?: typeof svgNS
   href?: string
   cx?: number | string
   cy?: number | string
