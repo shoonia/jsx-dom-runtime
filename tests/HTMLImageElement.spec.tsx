@@ -60,4 +60,8 @@ describe('HTMLImageElement', () => {
   it('should have `fetchPriority` attribute', () => {
     expect(<img fetchPriority="high" />).toHaveAttribute('fetchpriority', 'high');
   });
+
+  it('should have `elementTiming` attribute', () => {
+    expect(<img elementTiming="test" />).toHaveAttribute('elementtiming', 'test');
+  });
 });
