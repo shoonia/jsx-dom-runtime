@@ -42,4 +42,12 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("textarea",{minlength:"10"});App({minLength:"10"});');
   });
+
+  it('should transform `inputMode` attribute', async () => {
+    const result = await t`
+    <input inputMode="numeric" />;
+    <App inputMode="numeric" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("input",{inputmode:"numeric"});App({inputMode:"numeric"});');
+  });
 });
