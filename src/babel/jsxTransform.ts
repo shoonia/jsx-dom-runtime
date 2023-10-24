@@ -13,6 +13,7 @@ import {
 import {
   ariaAttributes,
   booleanAttributes,
+  attributes,
   DOMEvents,
   htmlTags,
   mathmlTags,
@@ -168,6 +169,11 @@ export const jsxTransform = (): PluginObj => {
               path.node.value = $stringLiteral(val.expression.value ? 'true' : 'false');
             }
 
+            return;
+          }
+
+          if (attributes.has(attrName) && htmlTags.has(tag)) {
+            attr.name = attrName;
             return;
           }
         }
