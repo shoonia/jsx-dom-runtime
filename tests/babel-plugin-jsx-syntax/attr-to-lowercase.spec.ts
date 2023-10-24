@@ -18,4 +18,12 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("a",{referrerpolicy:"origin"});App({referrerPolicy:"origin"});');
   });
+
+  it('should transform `enterKeyHint` attribute', async () => {
+    const result = await t`
+    <input enterKeyHint="go" />;
+    <App enterKeyHint="go" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("input",{enterkeyhint:"go"});App({enterKeyHint:"go"});');
+  });
 });
