@@ -26,4 +26,20 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("input",{enterkeyhint:"go"});App({enterKeyHint:"go"});');
   });
+
+  it('should transform `maxLength` attribute', async () => {
+    const result = await t`
+    <textarea maxLength="10" />;
+    <App maxLength="10" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("textarea",{maxlength:"10"});App({maxLength:"10"});');
+  });
+
+  it('should transform `minLength` attribute', async () => {
+    const result = await t`
+    <textarea minLength="10" />;
+    <App minLength="10" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("textarea",{minlength:"10"});App({minLength:"10"});');
+  });
 });
