@@ -57,4 +57,12 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("div",{itemid:"a",itemprop:"b",itemscope:"",itemref:"c",itemtype:"d"});');
   });
+
+  it('should transform `accessKey` attribute', async () => {
+    const result = await t`
+    <button accessKey="s" />;
+    <App accessKey="s" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("button",{accesskey:"s"});App({accessKey:"s"});');
+  });
 });
