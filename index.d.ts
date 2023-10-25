@@ -1123,7 +1123,10 @@ declare global {
       formEncType?: string
       formMethod?: string
       formNoValidate?: boolean | ''
-      formTarget?: string
+      /**
+       * If the button is a submit button, this attribute is an author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form
+       */
+      formTarget?: '_self' | '_blank' | '_parent' | '_top' | (string & {})
       name?: string;
       type?: 'submit' | 'reset' | 'button';
       value?: number | string;
