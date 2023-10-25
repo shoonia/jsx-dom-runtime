@@ -1242,18 +1242,22 @@ declare global {
     }
 
     interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
-      alt?: string;
-      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-      decoding?: 'async' | 'auto' | 'sync';
-      height?: number | string;
-      loading?: 'eager' | 'lazy';
-      referrerPolicy?: ReferrerPolicy;
-      sizes?: string;
-      src?: string;
-      srcset?: string;
-      useMap?: string;
-      width?: number | string;
-      fetchPriority?: 'high' | 'low' | 'auto';
+      alt?: string
+      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
+      decoding?: 'async' | 'auto' | 'sync'
+      height?: number | string
+      /**
+       * This Boolean attribute indicates that the image is part of a server-side map. If so, the coordinates where the user clicked on the image are sent to the server
+       */
+      ismap?: boolean | ''
+      loading?: 'eager' | 'lazy'
+      referrerPolicy?: ReferrerPolicy
+      sizes?: string
+      src?: string
+      srcset?: string
+      useMap?: string
+      width?: number | string
+      fetchPriority?: 'high' | 'low' | 'auto'
     }
 
     interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
