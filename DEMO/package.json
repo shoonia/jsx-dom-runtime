@@ -6,21 +6,22 @@
   "type": "module",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel src/index.html --no-source-maps --no-cache --open",
-    "build": "rm -rf dist .parcel-cache && parcel build --no-source-maps --no-cache src/index.html"
+    "start": "parcel src/index.html --open",
+    "build": "rm -rf dist .parcel-cache && parcel build src/index.html"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.57.1"
+    "jsx-dom-runtime": "^0.58.0"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.23.2",
-    "parcel": "^2.10.0",
+    "parcel": "^2.10.1",
     "postcss": "^8.4.31",
     "postcss-modules": "^4.3.1"
   },
   "browserslist": "> 1%, not dead",
   "targets": {
     "default": {
+      "sourceMap": false,
       "publicUrl": "/jsx-dom-runtime/"
     }
   },
