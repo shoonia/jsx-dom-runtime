@@ -1387,23 +1387,51 @@ declare global {
     }
 
     interface HTMLLinkElementAttributes extends HTMLAttributes<HTMLLinkElement> {
-      title?: string;
-      as?: string;
-      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-      disabled?: boolean | '';
+      /**
+       * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
+       */
+      blocking?: 'render' | (string & {})
+      title?: string
+      /**
+       * This attribute is required when `rel="preload"` has been set on the `<link>` element, optional when `rel="modulepreload"` has been set, and otherwise should not be used. It specifies the type of content being loaded by the <link>, which is necessary for request matching, application of correct content security policy, and setting of correct Accept request header.
+       */
+      as?:
+      | 'audio'
+      | 'document'
+      | 'embed'
+      | 'fetch'
+      | 'font'
+      | 'image'
+      | 'object'
+      | 'script'
+      | 'style'
+      | 'track'
+      | 'video'
+      | 'video'
+      | (string & {})
+      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
+      disabled?: boolean | ''
       href?: string
-      hreflang?: string;
+      hreflang?: string
+      /**
+       * For `rel="preload"` and `as="image"` only, the `imagesizes` attribute is a sizes attribute that indicates to preload the appropriate resource used by an `img` element with corresponding values for its `srcset` and `sizes` attributes
+       */
+      imagesizes?: string
+      /**
+       * For `rel="preload"` and `as="image"` only, the imagesrcset attribute is a sourceset attribute that indicates to preload the appropriate resource used by an `img` element with corresponding values for its `srcset` and `sizes` attributes
+       */
+      imagesrcset?: string
       integrity?: string
       media?: string;
-      referrerPolicy?: ReferrerPolicy;
-      rel?: string;
+      referrerPolicy?: ReferrerPolicy
+      rel?: string
       /** @deprecated */
-      rev?: string;
-      sizes?: string;
-      type?: string;
+      rev?: string
+      sizes?: string
+      type?: string
       /** @deprecated */
-      charset?: string;
-      fetchPriority?: 'high' | 'low' | 'auto';
+      charset?: string
+      fetchPriority?: 'high' | 'low' | 'auto'
     }
 
     interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
