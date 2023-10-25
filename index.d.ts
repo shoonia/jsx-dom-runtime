@@ -1073,14 +1073,20 @@ declare global {
     }
 
     interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
-      download?: any;
-      href?: string;
-      hreflang?: string;
+      /**
+       * Instructs browsers to download a URL instead of navigating to it, so the user will be prompted to save it as a local file. _Default value: none; Animatable: no_
+       */
+      download?: string
+      href?: string
+      hreflang?: string
       ping?: string
-      rel?: string;
-      target?: '_blank' | '_self' | '_parent' | '_top';
-      type?: string;
-      referrerPolicy?: ReferrerPolicy;
+      rel?: string
+      /**
+       * Where to display the linked URL. _Default value: `_self`; Animatable: yes_
+       */
+      target?: '_blank' | '_self' | '_parent' | '_top' | (string & {})
+      type?: string
+      referrerPolicy?: ReferrerPolicy
       /**
        * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
        * @deprecated
