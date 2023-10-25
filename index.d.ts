@@ -1244,23 +1244,56 @@ declare global {
       allowPaymentRequest?: boolean | ''
       /** @deprecated  */
       allowTransparency?: boolean | ''
+      /**
+       * A Content Security Policy enforced for the embedded resource
+       */
+      csp?: string
       /** @deprecated */
       frameBorder?: number | string
+      /**
+       * The height of the frame in CSS pixels. Default is 150
+       */
       height?: number | string;
       loading?: 'eager' | 'lazy'
       /** @deprecated */
-      marginHeight?: number | `${number}`;
+      marginHeight?: number | `${number}`
       /** @deprecated */
-      marginWidth?: number | `${number}`;
+      marginWidth?: number | `${number}`
       name?: string;
-      referrerPolicy?: ReferrerPolicy;
-      sandbox?: string
-      /** @deprecated */
-      scrolling?: string
+      referrerPolicy?: ReferrerPolicy
+      /**
+       * Controls the restrictions applied to the content embedded in the `<iframe>`. The value of the attribute can either be empty to apply all restrictions, or space-separated tokens
+       */
+      sandbox?:
+      | ''
+      | 'allow-downloads'
+      | 'allow-downloads-without-user-activation'
+      | 'allow-forms'
+      | 'allow-modals'
+      | 'allow-orientation-lock'
+      | 'allow-pointer-lock'
+      | 'allow-popups'
+      | 'allow-popups-to-escape-sandbox'
+      | 'allow-presentation'
+      | 'allow-same-origin'
+      | 'allow-scripts'
+      | 'allow-storage-access-by-user-activation'
+      | 'allow-top-navigation'
+      | 'allow-top-navigation-by-user-activation'
+      | 'allow-top-navigation-to-custom-protocols'
+      | (string & {})
+      /**
+       * Indicates when the browser should provide a scrollbar for the frame
+       * @deprecated
+       */
+      scrolling?: 'auto' | 'yes' | 'no'
       /** @deprecated */
       seamless?: boolean | ''
       src?: string;
       srcdoc?: string;
+      /**
+       * The width of the frame in CSS pixels. Default is 300
+       */
       width?: number | string;
     }
 
