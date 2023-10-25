@@ -1591,10 +1591,17 @@ declare global {
     }
 
     interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
+      /**
+       * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
+       */
+      blocking?: 'render' | (string & {})
       media?: string
       nonce?: string
       scoped?: boolean | ''
-      /** @deprecated */
+      /**
+       * This attribute should not be provided: if it is, the only permitted values are the empty string or a case-insensitive match for `text/css`
+       * @deprecated
+       */
       type?: string
     }
 
