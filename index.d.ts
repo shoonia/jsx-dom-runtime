@@ -1368,15 +1368,69 @@ declare global {
     }
 
     interface HTMLObjectElementAttributes extends HTMLAttributes<HTMLObjectElement> {
-      classID?: string
+      /**
+       * A space-separated list of URIs for archives of resources for the object
+       * @deprecated
+       */
+      archive?: string
+      /**
+       * The width of a border around the control, in pixels
+       * @deprecated
+       */
+      border?: string
+      /**
+       * The URI of the object's implementation. It can be used together with, or in place of, the `data` attribute
+       * @deprecated
+       */
+      classid?: string
+      /**
+       * The base path used to resolve relative URIs specified by `classid`, `data`, or `archive`. If not specified, the default is the base URI of the current document
+       * @deprecated
+       */
+      codebase?: string
+      /**
+       * The content type of the data specified by `classid`
+       * @deprecated
+       */
+      codetype?: string
+      /**
+       * The address of the resource as a valid URL. At least one of `data` and `type` must be defined
+       */
       data?: string
+      /**
+       * The presence of this Boolean attribute makes this element a declaration only. The object must be instantiated by a subsequent `<object>` element. Repeat the `<object>` element completely each time the resource is reused
+       * @deprecated
+       */
+      declare?: boolean
+      /**
+       * The form element, if any, that the object element is associated with (its _form owner_). The value of the attribute must be an ID of a `<form>` element in the same document
+       */
       form?: string
+      /**
+       * The height of the displayed resource, in CSS pixels. — (Absolute values only. NO percentages)
+       */
       height?: number | string
+      /**
+       * The name of valid browsing context (HTML5), or the name of the control (HTML 4)
+       */
       name?: string
+      /**
+       * A message that the browser can show while loading the object's implementation and data
+       * @deprecated
+       */
+      standby?: string
+      /**
+       * The content type of the resource specified by `data`. At least one of `data` and `type` must be defined
+       */
       type?: string
+      /**
+       * A hash-name reference to a `<map>` element; that is a '#' followed by the value of a `name` of a map element
+       */
       useMap?: string;
+      /**
+       * The width of the display resource, in CSS pixels. — (Absolute values only. NO percentages)
+       */
       width?: number | string
-      wmode?: string
     }
 
     interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
