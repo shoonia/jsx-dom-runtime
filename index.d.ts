@@ -270,7 +270,7 @@ export type Autocomplete =
   | 'impp'
   | 'webauthn'
   | `section-${string}`
-  | (string & {});
+  | (string & {})
 
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
@@ -1190,14 +1190,37 @@ declare global {
     }
 
     export interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
-      'accept-charset'?: string;
-      action?: string;
-      autocomplete?: Autocomplete;
-      enctype?: string;
-      method?: string;
-      name?: string;
-      noValidate?: boolean | '';
-      target?: string
+      /**
+       * Comma-separated content types the server accepts
+       * @deprecated
+       */
+      accept?: string
+      'accept-charset'?: string
+      action?: string
+      autocomplete?: Autocomplete
+      enctype?: string
+      /**
+       * The HTTP method to submit the form with. The only allowed methods/values are (case insensitive)
+       */
+      method?: 'post' | 'get' | 'dialog' | (string & {})
+      name?: string
+      /**
+       * Controls the annotations and what kinds of links the form creates. The rel value is a space-separated list of these enumerated values
+       */
+      rel?:
+      | 'external'
+      | 'nofollow'
+      | 'opener'
+      | 'noopener'
+      | 'noreferrer'
+      | 'help'
+      | 'prev'
+      | 'next'
+      | 'search'
+      | 'license'
+      | (string & {})
+      noValidate?: boolean | ''
+      target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
     }
 
     interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
