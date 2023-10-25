@@ -1135,8 +1135,19 @@ declare global {
     }
 
     interface HTMLCanvasElementAttributes extends HTMLAttributes<HTMLCanvasElement> {
-      height?: number | string;
-      width?: number | string;
+      /**
+       * The height of the coordinate space in CSS pixels. Defaults to 150
+       */
+      height?: number | string
+      /**
+       * The width of the coordinate space in CSS pixels. Defaults to 300
+       */
+      width?: number | string
+      /**
+       * Lets the canvas know whether translucency will be a factor. If the canvas knows there's no translucency, painting performance can be optimized. This is only supported by Mozilla-based browsers; use the standardized `canvas.getContext('2d', { alpha: false })` instead
+       * @deprecated
+       */
+      'moz-opaque'?: boolean | ''
     }
 
     interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
