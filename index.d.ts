@@ -1964,6 +1964,7 @@ declare global {
       s: HTMLAttributes<HTMLElement>
       samp: HTMLAttributes<HTMLElement>
       script: HTMLScriptElementAttributes
+      search: HTMLAttributes<HTMLElement>
       section: HTMLAttributes<HTMLElement>
       select: HTMLSelectElementAttributes
       slot: HTMLSlotElementAttributes
