@@ -190,6 +190,15 @@ export const jsxTransform = (): PluginObj => {
         }
 
         if (
+          isNamespace &&
+          attr.name.name === 'lang' &&
+          attr.namespace.name === 'xml'
+        ) {
+          path.node.name = { type: 'JSXIdentifier', name: 'lang' };
+          return;
+        }
+
+        if (
           !isNamespace &&
           svgDOMAttributes.has(attr.name) &&
           svgTags.has(tag)
