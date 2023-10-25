@@ -1682,22 +1682,33 @@ declare global {
     }
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
-      autocomplete?: Autocomplete;
-      autofocus?: boolean | '';
-      cols?: number | `${number}`;
-      dirName?: string;
-      disabled?: boolean | '';
+      autocomplete?: Autocomplete
+      autofocus?: boolean | ''
+      /**
+       * Non-standard. Check cross-browser support before using. A string which indicates whether to activate automatic spelling correction and processing of text substitutions (if any are configured) while the user is editing this `textarea`
+       * @deprecated
+       */
+      autocorrect?: 'on' | 'off'
+      /**
+       * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer. If it is not specified, the default value is 20
+       */
+      cols?: number | `${number}`
+      dirName?: string
+      disabled?: boolean | ''
       form?: string
-      maxLength?: number | `${number}`;
-      minLength?: number | `${number}`;
-      name?: string;
-      placeholder?: string;
-      readOnly?: boolean | '';
-      required?: boolean | '';
-      rows?: number | `${number}`;
-      value?: number | string;
-      wrap?: 'hard' | 'soft' | 'off';
-      onchange?: ChangeEventHandler<HTMLTextAreaElement>;
+      maxLength?: number | `${number}`
+      minLength?: number | `${number}`
+      name?: string
+      placeholder?: string
+      readOnly?: boolean | ''
+      required?: boolean | ''
+      /**
+       * The number of visible text lines for the control. If it is specified, it must be a positive integer. If it is not specified, the default value is 2
+       */
+      rows?: number | `${number}`
+      value?: number | string
+      wrap?: 'hard' | 'soft' | 'off'
+      onchange?: ChangeEventHandler<HTMLTextAreaElement>
     }
 
     interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
