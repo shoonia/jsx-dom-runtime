@@ -8,49 +8,37 @@ beforeEach(() => {
 expect.extend({
   toHaveOuterHTML(node: HTMLElement, html: string) {
     const val = node.outerHTML;
-
-    if (val === html) {
-      return {
-        message: () => `expected "${val}" not to be equal outerHTML "${html}"`,
-        pass: true,
-      };
-    }
+    const pass = val === html;
 
     return {
-      message: () => `expected "${val}" to be equal outerHTML "${html}"`,
-      pass: false,
+      message: () => pass
+        ? `expected "${val}" not to be equal outerHTML "${html}"`
+        : `expected "${val}" to be equal outerHTML "${html}"`,
+      pass,
     };
   },
 
   toHaveInnerHTML(node: HTMLElement, html: string) {
     const val = node.innerHTML;
-
-    if (val === html) {
-      return {
-        message: () => `expected "${val}" not to be equal innerHTML "${html}"`,
-        pass: true,
-      };
-    }
+    const pass = val === html;
 
     return {
-      message: () => `expected "${val}" to be equal innerHTML "${html}"`,
-      pass: false,
+      message: () => pass
+        ? `expected "${val}" not to be equal innerHTML "${html}"`
+        : `expected "${val}" to be equal innerHTML "${html}"`,
+      pass,
     };
   },
 
   toHaveCssText(node: HTMLElement, css: string) {
     const val = node.style.cssText;
-
-    if (val === css) {
-      return {
-        message: () => `expected "${val}" not to be equal style.cssText "${css}"`,
-        pass: true,
-      };
-    }
+    const pass = val === css;
 
     return {
-      message: () => `expected "${val}" to be equal style.cssText "${css}"`,
-      pass: false,
+      message: () => pass
+        ? `expected "${val}" not to be equal style.cssText "${css}"`
+        : `expected "${val}" to be equal style.cssText "${css}"`,
+      pass,
     };
   },
 });
