@@ -183,5 +183,7 @@ export const htmlDOMAttributes = new Map(
     className: 'class',
     httpEquiv: 'http-equiv',
     htmlFor: 'for',
+    // SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
+    xlinkHref: 'href',
   }),
 );

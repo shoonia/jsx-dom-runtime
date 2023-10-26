@@ -179,8 +179,6 @@ export const jsxTransform = (): PluginObj => {
         }
 
         if (
-          tag === 'a' &&
-          attr.name === 'xlinkHref' ||
           isNamespace &&
           attr.name.name === 'href' &&
           attr.namespace.name === 'xlink'
