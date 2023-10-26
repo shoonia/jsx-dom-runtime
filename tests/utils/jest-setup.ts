@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import { diffStringsUnified } from 'jest-diff';
 
 beforeEach(() => {
   document.head.innerHTML = '';
@@ -12,8 +13,8 @@ expect.extend({
 
     return {
       message: () => pass
-        ? `expected "${val}" not to be equal outerHTML "${html}"`
-        : `expected "${val}" to be equal outerHTML "${html}"`,
+        ? 'expected value not to be equal outerHTML'
+        : 'expected value to be equal outerHTML\n\n' + diffStringsUnified(val, html),
       pass,
     };
   },
@@ -24,8 +25,8 @@ expect.extend({
 
     return {
       message: () => pass
-        ? `expected "${val}" not to be equal innerHTML "${html}"`
-        : `expected "${val}" to be equal innerHTML "${html}"`,
+        ? 'expected value not to be equal innerHTML'
+        : 'expected value to be equal innerHTML\n\n' + diffStringsUnified(val, html),
       pass,
     };
   },
@@ -37,7 +38,7 @@ expect.extend({
     return {
       message: () => pass
         ? `expected "${val}" not to be equal style.cssText "${css}"`
-        : `expected "${val}" to be equal style.cssText "${css}"`,
+        : 'expected "${val}" to be equal style.cssText "${css}"\n\n' + diffStringsUnified(val, css),
       pass,
     };
   },
