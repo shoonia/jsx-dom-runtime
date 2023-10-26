@@ -6,6 +6,7 @@ import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './ut
 import {
   $children,
   $identifier,
+  $jsxIdentifier,
   $objectProperty,
   $stringLiteral,
   $pureAnnotation,
@@ -126,74 +127,75 @@ export const jsxTransform = (): PluginObj => {
         }
 
         const attr = path.node.name;
-        const isNamespace = attr.type === 'JSXNamespacedName';
 
-        if (!isNamespace) {
-          if (htmlDOMAttributes.has(attr.name)) {
-            attr.name = htmlDOMAttributes.get(attr.name);
-            return;
-          }
-
-          const attrName = attr.name.toLowerCase();
-
-          if (DOMEvents.has(attrName)) {
-            attr.name = attrName;
-            return;
-          }
-
-          if (booleanAttributes.has(attrName)) {
-            attr.name = attrName;
-            path.node.value ??= $stringLiteral('');
+        if (attr.type === 'JSXNamespacedName') {
+          if (
+            attr.name.name === 'href' &&
+            attr.namespace.name === 'xlink'
+          ) {
+            path.node.name = $jsxIdentifier('href');
             return;
           }
 
           if (
-            ariaAttributes.has(attrName) ||
-            attrName === 'draggable' ||
-            attrName === 'spellcheck' ||
-            attrName.startsWith('data-')
+            attr.name.name === 'lang' &&
+            attr.namespace.name === 'xml'
           ) {
-            const val = path.node.value;
-
-            attr.name = attrName;
-
-            if (val === null) {
-              path.node.value = $stringLiteral('true');
-              return;
-            }
-
-            if (
-              val.type === 'JSXExpressionContainer' &&
-              val.expression.type === 'BooleanLiteral'
-            ) {
-              path.node.value = $stringLiteral(val.expression.value ? 'true' : 'false');
-            }
-
-            return;
+            path.node.name = $jsxIdentifier('lang');
           }
 
-          if (attributes.has(attrName) && htmlTags.has(tag)) {
-            attr.name = attrName;
-            return;
-          }
+          return;
         }
 
-        if (
-          tag === 'a' &&
-          attr.name === 'xlinkHref' ||
-          isNamespace &&
-          attr.name.name === 'href' &&
-          attr.namespace.name === 'xlink'
-        ) {
-          path.node.name = { type: 'JSXIdentifier', name: 'href' };
+        if (htmlDOMAttributes.has(attr.name)) {
+          attr.name = htmlDOMAttributes.get(attr.name);
+          return;
+        }
+
+        const attrName = attr.name.toLowerCase();
+
+        if (DOMEvents.has(attrName)) {
+          attr.name = attrName;
+          return;
+        }
+
+        if (booleanAttributes.has(attrName)) {
+          attr.name = attrName;
+          path.node.value ??= $stringLiteral('');
           return;
         }
 
         if (
-          !isNamespace &&
-          svgDOMAttributes.has(attr.name) &&
-          svgTags.has(tag)
+          ariaAttributes.has(attrName) ||
+          attrName === 'draggable' ||
+          attrName === 'spellcheck' ||
+          attrName.startsWith('data-')
         ) {
+          const val = path.node.value;
+
+          attr.name = attrName;
+
+          if (val === null) {
+            path.node.value = $stringLiteral('true');
+            return;
+          }
+
+          if (
+            val.type === 'JSXExpressionContainer' &&
+            val.expression.type === 'BooleanLiteral'
+          ) {
+            path.node.value = $stringLiteral(val.expression.value ? 'true' : 'false');
+          }
+
+          return;
+        }
+
+        if (attributes.has(attrName) && htmlTags.has(tag)) {
+          attr.name = attrName;
+          return;
+        }
+
+        if (svgDOMAttributes.has(attr.name) && svgTags.has(tag)) {
           attr.name = svgDOMAttributes.get(attr.name);
         }
       },

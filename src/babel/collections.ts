@@ -164,13 +164,15 @@ export const svgDOMAttributes = new Map(
     xHeight: 'x-height',
     xlinkActuate: 'xlink:actuate',
     xlinkArcrole: 'xlink:arcrole',
-    xlinkHref: 'xlink:href',
+    // SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
+    xlinkHref: 'href',
     xlinkRole: 'xlink:role',
     xlinkShow: 'xlink:show',
     xlinkTitle: 'xlink:title',
     xlinkType: 'xlink:type',
     xmlBase: 'xml:base',
-    xmlLang: 'xml:lang',
+    // There is also a `lang` attribute (without namespace)
+    xmlLang: 'lang',
     xmlSpace: 'xml:space',
   }),
 );
@@ -181,5 +183,7 @@ export const htmlDOMAttributes = new Map(
     className: 'class',
     httpEquiv: 'http-equiv',
     htmlFor: 'for',
+    // SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
+    xlinkHref: 'href',
   }),
 );

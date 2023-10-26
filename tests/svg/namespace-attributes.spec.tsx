@@ -1,11 +1,11 @@
 describe('SVG: namespace attributes', () => {
-  it('should render `xml:lang` attribute', () => {
+  it('should render `xml:base` attribute', () => {
     expect(
       <svg viewBox="0 0 200 100">
-        <text xml:lang="en-US">This is some English text</text>
+        <text xml:base="http://hello.world">This is some English text</text>
       </svg>
     ).toHaveOuterHTML(
-      '<svg viewBox="0 0 200 100"><text xml:lang="en-US">This is some English text</text></svg>',
+      '<svg viewBox="0 0 200 100"><text xml:base="http://hello.world">This is some English text</text></svg>',
     );
   });
 
