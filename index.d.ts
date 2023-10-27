@@ -693,7 +693,11 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   fy?: number | string
   fr?: string
   d?: string
-  accentHeight?: number | string
+  /**
+   * The `accent-height` attribute defines the distance from the origin to the top of accent characters, measured by a distance within the font coordinate system
+   * @deprecated
+   */
+  'accent-height'?: number | `${number}`
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
   'alignment-baseline'?: Property.AlignmentBaseline
@@ -703,7 +707,10 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   amplitude?: number | `${number}`
   /** @deprecated */
   'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
-  /** @deprecated */
+  /**
+   * The `ascent` attribute defines the maximum unaccented height of the font within the font coordinate system
+   * @deprecated
+   */
   ascent?: number | `${number}`
   attributeName?: string
   /** @deprecated */
@@ -730,6 +737,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'color-interpolation-filters'?: Property.ColorInterpolation
   /** @deprecated */
   'color-profile'?: Property.Color
+  /** @deprecated */
   'color-rendering'?: Property.ColorRendering
   /** @deprecated */
   contentScriptType?: string
@@ -739,7 +747,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   decelerate?: number | string
   descent?: number | string
   diffuseConstant?: number | `${number}`
-  direction?: 'ltr' | 'rtl'
+  direction?: Property.Direction
   display?: Property.Display
   divisor?: number | string
   'dominant-baseline'?: Property.DominantBaseline
@@ -756,7 +764,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   fill?: Property.Fill
   'fill-opacity'?: Property.FillOpacity
   'fill-rule'?: Property.FillRule
-  filter?: string
+  filter?: Property.Filter
   /** @deprecated */
   filterRes?: number | string
   filterUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
@@ -783,7 +791,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   'glyph-orientation-horizontal'?: string
   /** @deprecated */
-  'glyph-orientation-vertical'?: string
+  'glyph-orientation-vertical'?: Property.GlyphOrientationVertical
   /** @deprecated */
   glyphRef?: string
   gradientTransform?: string
@@ -841,10 +849,10 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   mode?: string
   name?: string
   numOctaves?: number | `${number}`
-  offset?: number | string
+  offset?: Property.Offset
   opacity?: Property.Opacity
   operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic' | 'erode' | 'dilate'
-  order?: number | string
+  order?: Property.Order
   orient?: 'auto' | 'auto-start-reverse' | number | (string & {})
   /** @deprecated */
   orientation?: 'h' | 'v'
@@ -860,7 +868,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   patternContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   patternTransform?: string
   patternUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  'pointer-events'?:  Property.PointerEvents
+  'pointer-events'?: Property.PointerEvents
   points?: string
   pointsAtX?: number | `${number}`
   pointsAtY?: number | `${number}`
@@ -1020,8 +1028,8 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   z?: number | `${number}`
   /** @deprecated */
   zoomAndPan?: 'disable' | 'magnify'
-  height?: number | string
-  width?: number | string
+  height?: Property.Height
+  width?: Property.Width
 }
 
 export interface MathMLAttributes extends AriaAttributes, DOMAttributes<MathMLElement> {
