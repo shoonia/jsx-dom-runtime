@@ -1147,8 +1147,8 @@ declare global {
     }
 
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
-      autofocus?: boolean | '';
-      disabled?: boolean | '';
+      autofocus?: boolean | ''
+      disabled?: boolean | ''
       form?: string
       formAction?: string
       formEncType?: string
@@ -1601,8 +1601,12 @@ declare global {
     }
 
     interface HTMLParamElementAttributes extends HTMLAttributes<HTMLParamElement> {
+      /** @deprecated */
       name?: string
+      /** @deprecated */
       value?: number | string
+      /** @deprecated */
+      valuetype?: 'data' | 'ref' | 'object'
     }
 
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
