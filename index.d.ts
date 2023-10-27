@@ -272,6 +272,8 @@ export type Autocomplete =
   | `section-${string}`
   | (string & {})
 
+export type ControlsList = 'nodownload' | 'nofullscreen' | 'noremoteplayback'
+
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
   'aria-activedescendant'?: string
@@ -620,7 +622,6 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   id?: string
   inert?: boolean | ''
   lang?: string
-  placeholder?: string
   slot?: string
   /**
    * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<input spellcheck>` is forbidden. The correct usage is `<input spellcheck="true">`
@@ -637,13 +638,15 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   about?: string
   datatype?: string
   inlist?: any
-  prefix?: string
   property?: string
   resource?: string
   typeof?: string
   vocab?: string
   autocapitalize?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
-  autoCorrect?: string
+  /**
+   * Non-standard attribute. Safari only. A string which indicates whether to activate automatic correction while the user is editing this field. Permitted values are
+   */
+  autoCorrect?: 'on' | 'off'
   autoSave?: string
   color?: Property.Color
   itemProp?: string
@@ -1342,7 +1345,7 @@ declare global {
       multiple?: boolean | '';
       name?: string;
       pattern?: string;
-      placeholder?: string;
+      placeholder?: string
       readOnly?: boolean | '';
       required?: boolean | '';
       size?: number | `${number}`;
@@ -1407,7 +1410,7 @@ declare global {
       | 'style'
       | 'track'
       | 'video'
-      | 'video'
+      | 'worker'
       | (string & {})
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
       disabled?: boolean | ''
@@ -1444,14 +1447,17 @@ declare global {
     }
 
     interface HTMLMediaAttributes<T> extends HTMLAttributes<T> {
-      autoplay?: boolean | '';
-      controls?: boolean | '';
-      controlsList?: 'nodownload' | 'nofullscreen' | 'noremoteplayback'
+      autoplay?: boolean | ''
+      controls?: boolean | ''
+      /**
+       * Offers a way to control the native controls elements/buttons that are being shown by the user agent in order to be able to remove some features that do not make sense or are not part of the expected user experience or only allowlist a limited amount of features
+       */
+      controlsList?: ControlsList | `${ControlsList} ${ControlsList}` | `${ControlsList} ${ControlsList} ${ControlsList}`
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-      loop?: boolean | '';
+      loop?: boolean | ''
       mediaGroup?: string
-      preload?: 'none' | 'metadata' | 'auto';
-      src?: string;
+      preload?: 'none' | 'metadata' | 'auto'
+      src?: string
     }
 
     interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
@@ -1733,16 +1739,19 @@ declare global {
        */
       bgColor?: Property.Color;
       /**
-       * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
+       * To achieve the same effect, you can specify the character as the first value of the `text-align` property
        * @deprecated
        */
       char?: string;
       /** @deprecated */
       charoff?: string
-      /** @deprecated */
+      /**
+       * Only use this attribute with the `<th>` element to define the row or column for which it is a header
+       * @deprecated
+       */
       scope?: string
       /**
-       * To achieve a similar effect, use the CSS `height` property instead.
+       * To achieve a similar effect, use the CSS `height` property instead
        * @deprecated
        */
       height?: number | string
@@ -1763,7 +1772,10 @@ declare global {
       colSpan?: number | `${number}`
       headers?: string
       rowSpan?: number | `${number}`
-      scope?: string
+      /**
+       * This enumerated attribute defines the cells that the header (defined in the <th>) element relates to
+       */
+      scope?: 'row' | 'col' | 'rowgroup' | 'colgroup'
       /**
        * To achieve the same effect as the `left`, `center`, `right` or `justify` values, apply the CSS `text-align` property to the element, the `char` value, give the `text-align` property the same value you would use for the `char`.
        * @deprecated
@@ -1805,29 +1817,29 @@ declare global {
     }
 
     interface HTMLTrackElementAttributes extends HTMLAttributes<HTMLTrackElement> {
-      default?: boolean | '';
-      kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata';
-      label?: string;
-      src?: string;
-      srclang?: string;
+      default?: boolean | ''
+      kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
+      label?: string
+      src?: string
+      srclang?: string
     }
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
       height?: number | string;
-      playsInline?: boolean | '';
-      poster?: string;
-      width?: number | string;
-      disablePictureInPicture?: boolean | '';
-      disableRemotePlayback?: boolean | '';
-      onenterpictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>;
-      onleavepictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>;
-      onresize?: PictureInPictureEventHandler<HTMLVideoElement>;
+      playsInline?: boolean | ''
+      poster?: string
+      width?: number | string
+      disablePictureInPicture?: boolean | ''
+      disableRemotePlayback?: boolean | ''
+      onenterpictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
+      onleavepictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
+      onresize?: PictureInPictureEventHandler<HTMLVideoElement>
     }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
       allowFullScreen?: boolean
       allowpopups?: boolean
-      autofocus?: boolean | '';
+      autofocus?: boolean | ''
       autosize?: boolean
       blinkfeatures?: string
       disableblinkfeatures?: string
