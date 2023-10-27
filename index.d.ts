@@ -1106,17 +1106,39 @@ declare global {
     interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> { }
 
     interface HTMLAreaElementAttributes extends HTMLAttributes<HTMLAreaElement> {
+      /** @deprecated */
+      accessKey?: string
       alt?: string
       coords?: string
-      download?: any
+      /**
+       * This attribute, if present, indicates that the author intends the hyperlink to be used for downloading a resource. See `<a>` for a full description of the `download` attribute
+       */
+      download?: string
+      /**
+       * The hyperlink target for the area. Its value is a valid URL. This attribute may be omitted; if so, the `<area>` element does not represent a hyperlink
+       */
       href?: string
+      /**
+       * Contains a space-separated list of URLs to which, when the hyperlink is followed, `POST` requests with the body PING will be sent by the browser (in the background). Typically used for tracking
+       */
+      ping?: string
       /** @deprecated */
       hreflang?: string;
       media?: string
+      /**
+       * A string indicating which referrer to use when fetching the resource
+       */
       referrerPolicy?: ReferrerPolicy;
       rel?: string
-      shape?: string
-      target?: string
+      shape?: 'rect' | 'circle' | 'poly' | 'default' | (string & {})
+      /**
+       * A keyword or author-defined name of the browsing context to display the linked resource
+       */
+      target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
+      /** @deprecated */
+      nohref?: string
+      /** @deprecated */
+      tabIndex?: number | `${number}`
     }
 
     interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
