@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2023" />
-import { Properties, SvgProperties, Property } from 'csstype';
+import { Properties, Property } from 'csstype';
 
 interface RefObject<T> {
   readonly current: T
@@ -201,8 +201,6 @@ export interface CSSProperties extends Properties<number | string> {
   cssText?: string | null;
   [key: `--${string}`]: number | string;
 }
-
-export interface SVGProperties extends SvgProperties<number | string> { }
 
 export type Autocomplete =
   | 'on'
@@ -698,7 +696,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   accentHeight?: number | string
   accumulate?: 'none' | 'sum'
   additive?: 'replace' | 'sum'
-  'alignment-baseline'?: SVGProperties['alignmentBaseline']
+  'alignment-baseline'?: Property.AlignmentBaseline
   allowReorder?: 'no' | 'yes'
   /** @deprecated */
   alphabetic?: number | string
@@ -713,7 +711,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   autoReverse?: number | string
   azimuth?: number | `${number}`
   baseFrequency?: number | string
-  'baseline-shift'?: SVGProperties['baselineShift']
+  'baseline-shift'?: Property.BaselineShift
   baseProfile?: number | string
   /** @deprecated */
   bbox?: number | string
@@ -724,27 +722,27 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   'cap-height'?: number | string
   /** @deprecated */
-  clip?: SVGProperties['clip']
-  'clip-path'?: SVGProperties['clipPath']
+  clip?: Property.Clip
+  'clip-path'?: Property.ClipPath
   clipPathUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  'clip-rule'?: SVGProperties['clipRule']
-  'color-interpolation'?: SVGProperties['colorInterpolation']
-  'color-interpolation-filters'?: SVGProperties['colorInterpolation']
+  'clip-rule'?: Property.ClipRule
+  'color-interpolation'?: Property.ColorInterpolation
+  'color-interpolation-filters'?: Property.ColorInterpolation
   /** @deprecated */
-  'color-profile'?: string
-  colorRendering?: number | string
+  'color-profile'?: Property.Color
+  'color-rendering'?: Property.ColorRendering
   /** @deprecated */
   contentScriptType?: string
   /** @deprecated */
   contentStyleType?: string
-  cursor?: SVGProperties['cursor']
+  cursor?: Property.Cursor
   decelerate?: number | string
   descent?: number | string
   diffuseConstant?: number | `${number}`
   direction?: 'ltr' | 'rtl'
-  display?: SVGProperties['display']
+  display?: Property.Display
   divisor?: number | string
-  'dominant-baseline'?: SVGProperties['dominantBaseline']
+  'dominant-baseline'?: Property.DominantBaseline
   dur?: number | string
   dx?: number | string
   dy?: number | string
@@ -755,24 +753,24 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   end?: number | string
   exponent?: number | `${number}`
   externalResourcesRequired?: number | string
-  fill?: SVGProperties['fill']
-  'fill-opacity'?: SVGProperties['fillOpacity']
-  'fill-rule'?: SVGProperties['fillRule']
+  fill?: Property.Fill
+  'fill-opacity'?: Property.FillOpacity
+  'fill-rule'?: Property.FillRule
   filter?: string
   /** @deprecated */
   filterRes?: number | string
   filterUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  'flood-color'?: SVGProperties['floodColor']
-  'flood-opacity'?: SVGProperties['floodOpacity']
+  'flood-color'?: Property.FloodColor
+  'flood-opacity'?: Property.FillOpacity
   focusable?: 'true' | 'false' | 'auto'
   focusHighlight?: 'auto' | 'none'
-  'font-family'?: SVGProperties['fontFamily']
-  'font-size'?: SVGProperties['fontSize']
-  'font-size-adjust'?: SVGProperties['fontSizeAdjust']
-  'font-stretch'?: SVGProperties['fontStretch']
-  'font-style'?: SVGProperties['fontStyle']
-  'font-variant'?: SVGProperties['fontVariant']
-  'font-weight'?: SVGProperties['fontWeight']
+  'font-family'?: Property.FontFamily
+  'font-size'?: Property.FontSize
+  'font-size-adjust'?: Property.FontSizeAdjust
+  'font-stretch'?: Property.FontStretch
+  'font-style'?: Property.FontStyle
+  'font-variant'?: Property.FontVariant
+  'font-weight'?: Property.FontWeight
   /** @deprecated */
   format?: string
   from?: number | string
@@ -800,7 +798,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'horiz-origin-y'?: number | `${number}`
   /** @deprecated */
   ideographic?: number | `${number}`
-  'image-rendering'?: SVGProperties['imageRendering']
+  'image-rendering'?: Property.ImageRendering
   in2?: string
   in?: string
   intercept?: number | `${number}`
@@ -820,18 +818,18 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   keyTimes?: number | string
   lang?: string
   lengthAdjust?: 'spacing' | 'spacingAndGlyphs'
-  'letter-spacing'?: SVGProperties['letterSpacing']
-  'lighting-color'?: SVGProperties['lightingColor']
+  'letter-spacing'?: Property.LetterSpacing
+  'lighting-color'?: Property.LightingColor
   limitingConeAngle?: number | `${number}`
-  marker?: SVGProperties['marker']
-  'marker-start'?: SVGProperties['markerStart']
-  'marker-end'?: SVGProperties['markerEnd']
-  'marker-mid'?: SVGProperties['markerMid']
+  marker?: Property.Marker
+  'marker-start'?: Property.MarkerStart
+  'marker-end'?: Property.MarkerEnd
+  'marker-mid'?: Property.MarkerMid
   markerHeight?: number | string
   markerUnits?: 'userSpaceOnUse' | 'strokeWidth'
   markerWidth?: number | string
   local?: string
-  mask?: SVGProperties['mask']
+  mask?: Property.Mask
   maskContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   maskUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   /** @deprecated */
@@ -844,17 +842,17 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   name?: string
   numOctaves?: number | `${number}`
   offset?: number | string
-  opacity?: SVGProperties['opacity']
+  opacity?: Property.Opacity
   operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic' | 'erode' | 'dilate'
   order?: number | string
   orient?: 'auto' | 'auto-start-reverse' | number | (string & {})
   /** @deprecated */
   orientation?: 'h' | 'v'
   origin?: 'default' | (string & {})
-  overflow?: SVGProperties['overflow']
+  overflow?: Property.Overflow
   'overline-position'?: number | `${number}`
   'overline-thickness'?: number | `${number}`
-  'paint-order'?: SVGProperties['paintOrder']
+  'paint-order'?: Property.PaintOrder
   /** @deprecated */
   'panose-1'?: string
   path?: string
@@ -862,7 +860,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   patternContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
   patternTransform?: string
   patternUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  'pointer-events'?: SVGProperties['pointerEvents']
+  'pointer-events'?:  Property.PointerEvents
   points?: string
   pointsAtX?: number | `${number}`
   pointsAtY?: number | `${number}`
@@ -887,7 +885,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   ry?: 'auto' | number | (string & {})
   scale?: number | `${number}`
   seed?: number | `${number}`
-  'shape-rendering'?: SVGProperties['shapeRendering']
+  'shape-rendering'?: Property.ShapeRendering
   side?: 'left' | 'right'
   /** @deprecated */
   slope?: number | `${number}`
@@ -903,20 +901,20 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   stemv?: number | `${number}`
   stitchTiles?: 'noStitch' | 'stitch'
-  'stop-color'?: SVGProperties['stopColor']
-  'stop-opacity'?: SVGProperties['stopOpacity']
+  'stop-color'?: Property.StopColor
+  'stop-opacity'?: Property.StopOpacity
   'strikethrough-position'?: number | `${number}`
   'strikethrough-thickness'?: number | `${number}`
   /** @deprecated */
   string?: number | string
-  stroke?: SVGProperties['stroke']
-  'stroke-dasharray'?: SVGProperties['strokeDasharray']
-  'stroke-dashoffset'?: SVGProperties['strokeDashoffset']
-  'stroke-linecap'?: SVGProperties['strokeLinecap']
-  'stroke-linejoin'?: SVGProperties['strokeLinejoin']
-  'stroke-miterlimit'?: SVGProperties['strokeMiterlimit']
-  'stroke-opacity'?: SVGProperties['strokeOpacity']
-  'stroke-width'?: SVGProperties['strokeWidth']
+  stroke?: Property.Stroke
+  'stroke-dasharray'?: Property.StrokeDasharray
+  'stroke-dashoffset'?: Property.StrokeDashoffset
+  'stroke-linecap'?: Property.StrokeLinecap
+  'stroke-linejoin'?: Property.StrokeLinejoin
+  'stroke-miterlimit'?: Property.StrokeMiterlimit
+  'stroke-opacity'?: Property.StrokeOpacity
+  'stroke-width'?: Property.StrokeWidth
   surfaceScale?: number | `${number}`
   systemLanguage?: string
   tabindex?: number | `${number}`
@@ -924,13 +922,13 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
   targetX?: number | string
   targetY?: number | string
-  'text-anchor'?: SVGProperties['textAnchor']
-  'text-decoration'?: SVGProperties['textDecoration']
-  'text-rendering'?: SVGProperties['textRendering']
+  'text-anchor'?: Property.TextAnchor
+  'text-decoration'?: Property.TextDecoration
+  'text-rendering'?: Property.TextRendering
   textLength?: number | string
   to?: string
-  transform?: string
-  'transform-origin'?: string
+  transform?: Property.Transform
+  'transform-origin'?: Property.TransformOrigin
   type?: 'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY' | (string & {})
   /** @deprecated */
   u1?: string
@@ -939,7 +937,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   'underline-position'?: number | `${number}`
   'underline-thickness'?: number | `${number}`
   unicode?: string
-  'unicode-bidi'?: SVGProperties['unicodeBidi']
+  'unicode-bidi'?: Property.UnicodeBidi
   /** @deprecated */
   'unicode-range'?: string
   /** @deprecated */
@@ -953,7 +951,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   /** @deprecated */
   'v-mathematical'?: number | `${number}`
   values?: string
-  'vector-effect'?: SVGProperties['vectorEffect']
+  'vector-effect'?: Property.VectorEffect
   /** @deprecated */
   version?: '1.0' | '1.1'
   /** @deprecated */
@@ -965,11 +963,11 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   viewBox?: string
   /** @deprecated */
   viewTarget?: string
-  visibility?: SVGProperties['visibility']
+  visibility?: Property.Visibility
   /** @deprecated */
   widths?: number | `${number}`
-  'word-spacing'?: SVGProperties['wordSpacing']
-  'writing-mode'?: SVGProperties['writingMode']
+  'word-spacing'?: Property.WordSpacing
+  'writing-mode'?: Property.WritingMode
   x1?: number | string
   x2?: number | string
   x?: number | string
