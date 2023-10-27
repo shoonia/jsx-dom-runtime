@@ -1616,17 +1616,24 @@ declare global {
 
     interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
       async?: boolean | ''
+      /**
+       * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
+       */
+      blocking?: 'render' | (string & {})
       /** @deprecated */
       charset?: string;
-      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-      defer?: boolean | '';
+      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
+      defer?: boolean | ''
       integrity?: string
       noModule?: boolean | ''
       nonce?: string
-      referrerPolicy?: ReferrerPolicy;
-      src?: string;
-      type?: string;
-      fetchPriority?: 'high' | 'low' | 'auto';
+      referrerPolicy?: ReferrerPolicy
+      src?: string
+      /**
+       * This attribute indicates the type of script represented
+       */
+      type?: 'importmap' | 'module' | 'speculationrules' | (string & {})
+      fetchPriority?: 'high' | 'low' | 'auto'
     }
 
     interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
