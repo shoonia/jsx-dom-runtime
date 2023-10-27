@@ -1414,7 +1414,7 @@ declare global {
     }
 
     interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
-      value?: number | `${number}`;
+      value?: number | `${number}`
     }
 
     interface HTMLLinkElementAttributes extends HTMLAttributes<HTMLLinkElement> {
@@ -1453,7 +1453,7 @@ declare global {
        */
       imagesrcset?: string
       integrity?: string
-      media?: string;
+      media?: 'all' | 'print' | (string & {})
       referrerPolicy?: ReferrerPolicy
       rel?: string
       /** @deprecated */
