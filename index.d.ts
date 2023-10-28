@@ -2,11 +2,11 @@
 /// <reference lib="es2023" />
 import { Properties, Property } from 'csstype';
 
-interface RefObject<T> {
+export interface RefObject<T> {
   readonly current: T
 }
 
-type RefCallback<T> = (instance: T) => void
+export type RefCallback<T> = (instance: T) => void
 
 type TChild =
   | Node
@@ -24,7 +24,7 @@ type TChild =
   | null
   | undefined
 
-type PropsWithChildren<P> = P & { children?: TChild | TChild[] }
+export type PropsWithChildren<P> = P & { children?: TChild | TChild[] }
 
 export function jsx<
   K extends keyof JSX.IntrinsicElements,
@@ -65,7 +65,7 @@ export function parseFromString(html: string): DocumentFragment
 export function Fragment(children?: TChild | TChild[]): DocumentFragment
 export function Template(props: { children: string }): DocumentFragment
 
-interface CurrentTarget<T> {
+export interface CurrentTarget<T> {
   currentTarget: EventTarget & T
 }
 
@@ -92,7 +92,7 @@ type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
 
-interface DOMAttributes<T> extends JSX.Attributes {
+export interface DOMAttributes<T> extends JSX.Attributes {
   ns?: typeof xhtmlNS | typeof svgNS | typeof mathmlNS;
   ref?: RefCallback<T> | RefObject<T>
   children?: TChild | TChild[]
