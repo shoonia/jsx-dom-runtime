@@ -642,10 +642,10 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   vocab?: string
   autocapitalize?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
   /**
-   * Non-standard attribute. Safari only. A string which indicates whether to activate automatic correction while the user is editing this field. Permitted values are
+   * Non-standard attribute. Safari only. A string which indicates whether to activate automatic correction while the user is editing this field
    */
-  autoCorrect?: 'on' | 'off'
-  autoSave?: string
+  autocorrect?: 'on' | 'off'
+  autosave?: string
   color?: Property.Color
   itemProp?: string
   itemScope?: boolean | ''
@@ -1351,7 +1351,10 @@ declare global {
       accept?: string
       alt?: string
       autocomplete?: Autocomplete
-      autofocus?: boolean | '';
+      autofocus?: boolean | ''
+      /**
+       * The capture attribute is supported on the `file` input type.
+       */
       capture?: boolean | 'user' | 'environment' | ''
       checked?: boolean | '';
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
@@ -1370,13 +1373,13 @@ declare global {
       maxLength?: number | `${number}`;
       min?: number | string
       minLength?: number | `${number}`;
-      multiple?: boolean | '';
+      multiple?: boolean | ''
       name?: string;
       pattern?: string;
       placeholder?: string
-      readOnly?: boolean | '';
-      required?: boolean | '';
-      size?: number | `${number}`;
+      readOnly?: boolean | ''
+      required?: boolean | ''
+      size?: number | `${number}`
       src?: string
       step?: number | `${number}`
       type?:
@@ -1402,7 +1405,7 @@ declare global {
       | 'time'
       | 'url'
       | 'week';
-      value?: number | string;
+      value?: number | string
       width?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
@@ -1688,27 +1691,27 @@ declare global {
        * To achieve a similar effect, use the CSS `background-color` property.
        * @deprecated
        */
-      bgColor?: Property.Color;
+      bgColor?: Property.Color
       /**
        * To achieve a similar effect, use the CSS `border` property.
        * @deprecated
        */
-      border?: string;
+      border?: string
       /**
        * To achieve a similar effect, apply the `border-collapse` CSS property to the `<table>` element, with its value set to collapse, and the `padding` property to the `<td>` elements.
        * @deprecated
        */
-      cellPadding?: number | string;
+      cellPadding?: number | string
       /**
        * To achieve a similar effect, apply the `border-spacing` CSS property to the `<table>` element. `border-spacing` does not have any effect if `border-collapse` is set to `collapse`.
        * @deprecated
        */
-      cellSpacing?: number | string;
+      cellSpacing?: number | string
       /**
        * To achieve a similar effect, use the CSS the `border-style` and `border-width` properties.
        * @deprecated
        */
-      frame?: string;
+      frame?: string
       /**
        * Use the `<caption>` element instead
        * @deprecated
@@ -1718,7 +1721,7 @@ declare global {
        * To achieve a similar effect, use the CSS `width` property instead.
        * @deprecated
        */
-      width?: number | string;
+      width?: number | string
       /**
        * To achieve a similar effect, apply the CSS `border` property to the appropriate `<thead>`, `<tbody>`, `<tfoot>`, `<col>`, or `<colgroup>` elements.
        * @deprecated
@@ -1729,11 +1732,6 @@ declare global {
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
       autocomplete?: Autocomplete
       autofocus?: boolean | ''
-      /**
-       * Non-standard. Check cross-browser support before using. A string which indicates whether to activate automatic spelling correction and processing of text substitutions (if any are configured) while the user is editing this `textarea`
-       * @deprecated
-       */
-      autocorrect?: 'on' | 'off'
       /**
        * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer. If it is not specified, the default value is 20
        */
