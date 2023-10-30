@@ -171,8 +171,7 @@ export const svgDOMAttributes = new Map(
     xlinkTitle: 'xlink:title',
     xlinkType: 'xlink:type',
     xmlBase: 'xml:base',
-    // There is also a `lang` attribute (without namespace)
-    xmlLang: 'lang',
+    xmlLang: 'xml:lang',
     xmlSpace: 'xml:space',
   }),
 );

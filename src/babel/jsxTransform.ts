@@ -134,14 +134,6 @@ export const jsxTransform = (): PluginObj => {
             attr.namespace.name === 'xlink'
           ) {
             path.node.name = $jsxIdentifier('href');
-            return;
-          }
-
-          if (
-            attr.name.name === 'lang' &&
-            attr.namespace.name === 'xml'
-          ) {
-            path.node.name = $jsxIdentifier('lang');
           }
 
           return;
