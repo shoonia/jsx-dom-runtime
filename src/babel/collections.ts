@@ -63,7 +63,7 @@ export const DOMEvents = new Set([
 
 export const attributes = new Set([
   'tabindex', 'inputmode', 'referrerpolicy', 'enterkeyhint', 'maxlength', 'minlength',
-  'itemprop', 'itemscope', 'itemtype', 'itemid', 'itemref', 'accesskey',
+  'itemprop', 'itemscope', 'itemtype', 'itemid', 'itemref', 'accesskey', 'elementtiming',
 ]);
 
 export const booleanAttributes = new Set([

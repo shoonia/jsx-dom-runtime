@@ -57,4 +57,12 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("button",{accesskey:"s"});App({accessKey:"s"});');
   });
+
+  it('should transform `elementTiming` attribute', async () => {
+    const result = await t`
+    <p elementTiming="data" />;
+    <App elementTiming="data" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("p",{elementtiming:"data"});App({elementTiming:"data"});');
+  });
 });
