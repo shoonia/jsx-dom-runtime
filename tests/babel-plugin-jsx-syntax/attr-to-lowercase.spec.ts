@@ -65,4 +65,12 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("p",{elementtiming:"data"});App({elementTiming:"data"});');
   });
+
+  it('should transform `fetchPriority` attribute', async () => {
+    const result = await t`
+    <img fetchPriority="low" />;
+    <App fetchPriority="low" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("img",{fetchpriority:"low"});App({fetchPriority:"low"});');
+  });
 });
