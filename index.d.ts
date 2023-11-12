@@ -1143,7 +1143,7 @@ declare global {
 
     interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
       href?: string
-      target?: string
+      target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
     }
 
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
@@ -1458,7 +1458,33 @@ declare global {
       integrity?: string
       media?: 'all' | 'print' | (string & {})
       referrerPolicy?: ReferrerPolicy
-      rel?: string
+      /**
+       * Defines the relationship between a linked resource and the current document.
+       */
+      rel?:
+      | 'alternate'
+      | 'author'
+      | 'apple-touch-icon' // Non-standard values
+      | 'canonical'
+      | 'dns-prefetch'
+      | 'help'
+      | 'icon'
+      | 'license'
+      | 'manifest'
+      | 'me'
+      | 'modulepreload'
+      | 'next'
+      | 'pingback'
+      | 'preconnect'
+      | 'prefetch'
+      | 'preload'
+      | 'prerender'
+      | 'prev'
+      | 'privacy-policy'
+      | 'search'
+      | 'stylesheet'
+      | 'terms-of-service'
+      | (string & {})
       /** @deprecated */
       rev?: string
       sizes?: string
