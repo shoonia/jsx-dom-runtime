@@ -1143,7 +1143,7 @@ declare global {
 
     interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
       href?: string
-      target?: string
+      target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
     }
 
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
