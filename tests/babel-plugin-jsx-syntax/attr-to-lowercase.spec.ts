@@ -73,4 +73,12 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("img",{fetchpriority:"low"});App({fetchPriority:"low"});');
   });
+
+  it('should transform `dirName` attribute', async () => {
+    const result = await t`
+    <input dirName="rtl" />;
+    <App dirName="rtl" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("input",{dirname:"rtl"});App({dirName:"rtl"});');
+  });
 });
