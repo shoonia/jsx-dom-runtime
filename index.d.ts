@@ -93,7 +93,7 @@ type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
 
 export interface DOMAttributes<T> extends JSX.Attributes {
-  ns?: typeof xhtmlNS | typeof svgNS | typeof mathmlNS;
+  ns?: typeof xhtmlNS | typeof svgNS | typeof mathmlNS
   ref?: RefCallback<T> | RefObject<T>
   children?: TChild | TChild[]
   // Clipboard Events
@@ -198,8 +198,8 @@ export interface DOMAttributes<T> extends JSX.Attributes {
 }
 
 export interface CSSProperties extends Properties<number | string> {
-  cssText?: string | null;
-  [key: `--${string}`]: number | string;
+  cssText?: string | null
+  [key: `--${string}`]: number | string
 }
 
 export type Autocomplete =
@@ -313,7 +313,7 @@ export interface AriaAttributes {
    * Defines a human readable text alternative of aria-colindex.
    * @see aria-rowindextext.
    */
-  'aria-colindextext'?: string;
+  'aria-colindextext'?: string
   /**
    * Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.
    * @see aria-colindex @see aria-rowspan.
@@ -335,7 +335,7 @@ export interface AriaAttributes {
    * Defines a string value that describes or annotates the current element.
    * @see related aria-describedby.
    */
-  'aria-description'?: string;
+  'aria-description'?: string
   /**
    * Identifies the element that provides a detailed, extended description for the object.
    * @see aria-describedby.
@@ -466,7 +466,7 @@ export interface AriaAttributes {
    * Defines a human readable text alternative of aria-rowindex.
    * @see aria-colindextext.
    */
-  'aria-rowindextext'?: string;
+  'aria-rowindextext'?: string
   /**
    * Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.
    * @see aria-rowindex @see aria-colspan.
@@ -615,7 +615,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
    * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<img draggable>` is forbidden. The correct usage is `<img draggable="true">`
    * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
    */
-  draggable?: 'true' | 'false';
+  draggable?: 'true' | 'false'
   hidden?: boolean | 'hidden' | 'until-found' | ''
   id?: string
   inert?: boolean | ''
@@ -628,7 +628,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   spellcheck?: 'true' | 'false'
   style?: string | CSSProperties
   tabIndex?: number | `${number}`
-  title?: string;
+  title?: string
   translate?: 'yes' | 'no'
   // Unknown
   radioGroup?: string // <command>, <menuitem>
@@ -1033,7 +1033,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
 }
 
 export interface MathMLAttributes extends AriaAttributes, DOMAttributes<MathMLElement> {
-  ns?: typeof mathmlNS;
+  ns?: typeof mathmlNS
   xmlns?: typeof mathmlNS
   id?: string
   class?: string
@@ -1123,12 +1123,12 @@ declare global {
        */
       ping?: string
       /** @deprecated */
-      hreflang?: string;
+      hreflang?: string
       media?: string
       /**
        * A string indicating which referrer to use when fetching the resource
        */
-      referrerPolicy?: ReferrerPolicy;
+      referrerPolicy?: ReferrerPolicy
       rel?: string
       shape?: 'rect' | 'circle' | 'poly' | 'default' | (string & {})
       /**
@@ -1158,9 +1158,9 @@ declare global {
        * If the button is a submit button, this attribute is an author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form
        */
       formTarget?: '_self' | '_blank' | '_parent' | '_top' | (string & {})
-      name?: string;
-      type?: 'submit' | 'reset' | 'button';
-      value?: number | string;
+      name?: string
+      type?: 'submit' | 'reset' | 'button'
+      value?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
     }
@@ -1187,24 +1187,24 @@ declare global {
     }
 
     interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
-      value?: number | string;
+      value?: number | string
     }
 
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
-      open?: boolean | '';
-      ontoggle?: TEventHandler<HTMLDetailsElement>;
+      open?: boolean | ''
+      ontoggle?: TEventHandler<HTMLDetailsElement>
     }
 
     interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
-      cite?: string;
-      dateTime?: string;
+      cite?: string
+      dateTime?: string
     }
 
     interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
-      open?: boolean | '';
-      ontoggle?: TEventHandler<HTMLDialogElement>;
-      onclose?: TEventHandler<HTMLDialogElement>;
-      oncancel?: TEventHandler<HTMLDialogElement>;
+      open?: boolean | ''
+      ontoggle?: TEventHandler<HTMLDialogElement>
+      onclose?: TEventHandler<HTMLDialogElement>
+      oncancel?: TEventHandler<HTMLDialogElement>
     }
 
     interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
@@ -1215,9 +1215,9 @@ declare global {
     }
 
     interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
-      disabled?: boolean | '';
+      disabled?: boolean | ''
       form?: string
-      name?: string;
+      name?: string
     }
 
     export interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
@@ -1267,7 +1267,7 @@ declare global {
        * This attribute is considered a legacy attribute and redefined as `allow="fullscreen"`
        * @deprecated
        */
-      allowFullScreen?: boolean | '';
+      allowFullScreen?: boolean | ''
       /**
        * This attribute is considered a legacy attribute and redefined as `allow="payment"`
        * @deprecated
@@ -1284,13 +1284,13 @@ declare global {
       /**
        * The height of the frame in CSS pixels. Default is 150
        */
-      height?: number | string;
+      height?: number | string
       loading?: 'eager' | 'lazy'
       /** @deprecated */
       marginHeight?: number | `${number}`
       /** @deprecated */
       marginWidth?: number | `${number}`
-      name?: string;
+      name?: string
       referrerPolicy?: ReferrerPolicy
       /**
        * Controls the restrictions applied to the content embedded in the `<iframe>`. The value of the attribute can either be empty to apply all restrictions, or space-separated tokens
@@ -1320,12 +1320,12 @@ declare global {
       scrolling?: 'auto' | 'yes' | 'no'
       /** @deprecated */
       seamless?: boolean | ''
-      src?: string;
-      srcdoc?: string;
+      src?: string
+      srcdoc?: string
       /**
        * The width of the frame in CSS pixels. Default is 300
        */
-      width?: number | string;
+      width?: number | string
     }
 
     interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
@@ -1356,7 +1356,7 @@ declare global {
        * The capture attribute is supported on the `file` input type.
        */
       capture?: boolean | 'user' | 'environment' | ''
-      checked?: boolean | '';
+      checked?: boolean | ''
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
       disabled?: boolean | ''
       dirName?: 'rtl' | 'ltr'
@@ -1368,14 +1368,14 @@ declare global {
       formNoValidate?: boolean | ''
       formTarget?: '_self' | '_blank' | '_parent' | '_top' | (string & {})
       height?: number | string
-      list?: string;
+      list?: string
       max?: number | string
       maxLength?: number | `${number}`
       min?: number | string
       minLength?: number | `${number}`
       multiple?: boolean | ''
-      name?: string;
-      pattern?: string;
+      name?: string
+      pattern?: string
       placeholder?: string
       readOnly?: boolean | ''
       required?: boolean | ''
@@ -1404,7 +1404,7 @@ declare global {
       | 'text'
       | 'time'
       | 'url'
-      | 'week';
+      | 'week'
       value?: number | string
       width?: number | string
       popovertarget?: string
@@ -1500,7 +1500,7 @@ declare global {
 
     interface HTMLMenuElementAttributes extends HTMLAttributes<HTMLMenuElement> {
       /** @deprecated */
-      type?: string;
+      type?: string
     }
 
     interface HTMLMediaAttributes<T> extends HTMLAttributes<T> {
@@ -1510,7 +1510,7 @@ declare global {
        * Offers a way to control the native controls elements/buttons that are being shown by the user agent in order to be able to remove some features that do not make sense or are not part of the expected user experience or only allowlist a limited amount of features
        */
       controlsList?: ControlsList | `${ControlsList} ${ControlsList}` | `${ControlsList} ${ControlsList} ${ControlsList}`
-      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
+      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
       loop?: boolean | ''
       mediaGroup?: string
       preload?: 'none' | 'metadata' | 'auto'
@@ -1518,24 +1518,24 @@ declare global {
     }
 
     interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
-      charset?: string;
-      content?: string;
-      'http-equiv'?: string;
-      name?: string;
+      charset?: string
+      content?: string
+      'http-equiv'?: string
+      name?: string
     }
 
     interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
       form?: string
-      high?: number | `${number}`;
-      low?: number | `${number}`;
-      max?: number | string;
-      min?: number | string;
-      optimum?: number | `${number}`;
-      value?: number | string;
+      high?: number | `${number}`
+      low?: number | `${number}`
+      max?: number | string
+      min?: number | string
+      optimum?: number | `${number}`
+      value?: number | string
     }
 
     interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
-      cite?: string;
+      cite?: string
     }
 
     interface HTMLObjectElementAttributes extends HTMLAttributes<HTMLObjectElement> {
@@ -1597,7 +1597,7 @@ declare global {
       /**
        * A hash-name reference to a `<map>` element; that is a '#' followed by the value of a `name` of a map element
        */
-      useMap?: string;
+      useMap?: string
       /**
        * The width of the display resource, in CSS pixels. — (Absolute values only. NO percentages)
        */
@@ -1605,28 +1605,28 @@ declare global {
     }
 
     interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
-      reversed?: boolean | '';
-      start?: number | `${number}`;
-      type?: '1' | 'a' | 'A' | 'i' | 'I';
+      reversed?: boolean | ''
+      start?: number | `${number}`
+      type?: '1' | 'a' | 'A' | 'i' | 'I'
     }
 
     interface HTMLOptGroupElementAttributes extends HTMLAttributes<HTMLOptGroupElement> {
-      disabled?: boolean | '';
-      label?: string;
+      disabled?: boolean | ''
+      label?: string
     }
 
     interface HTMLOptionElementAttributes extends HTMLAttributes<HTMLOptionElement> {
-      disabled?: boolean | '';
-      label?: string;
-      selected?: boolean | '';
-      value?: number | string;
+      disabled?: boolean | ''
+      label?: string
+      selected?: boolean | ''
+      value?: number | string
     }
 
     interface HTMLOutputElementAttributes extends HTMLAttributes<HTMLOutputElement> {
       form?: string
-      for?: string;
-      name?: string;
-      value?: number | string;
+      for?: string
+      name?: string
+      value?: number | string
     }
 
     interface HTMLParamElementAttributes extends HTMLAttributes<HTMLParamElement> {
@@ -1639,8 +1639,8 @@ declare global {
     }
 
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
-      max?: number | `${number}`;
-      value?: number | `${number}`;
+      max?: number | `${number}`
+      value?: number | `${number}`
     }
 
     interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
@@ -1650,7 +1650,7 @@ declare global {
        */
       blocking?: 'render' | (string & {})
       /** @deprecated */
-      charset?: string;
+      charset?: string
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
       defer?: boolean | ''
       integrity?: string
@@ -1666,30 +1666,30 @@ declare global {
     }
 
     interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
-      autocomplete?: Autocomplete;
-      autofocus?: boolean | '';
-      disabled?: boolean | '';
+      autocomplete?: Autocomplete
+      autofocus?: boolean | ''
+      disabled?: boolean | ''
       form?: string
-      multiple?: boolean | '';
-      name?: string;
-      required?: boolean | '';
-      size?: number | `${number}`;
-      value?: number | string;
-      onchange?: ChangeEventHandler<HTMLSelectElement>;
+      multiple?: boolean | ''
+      name?: string
+      required?: boolean | ''
+      size?: number | `${number}`
+      value?: number | string
+      onchange?: ChangeEventHandler<HTMLSelectElement>
     }
 
     interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {
-      name?: string;
+      name?: string
     }
 
     interface HTMLSourceElementAttributes extends HTMLAttributes<HTMLSourceElement> {
-      media?: string;
-      sizes?: string;
-      src?: string;
-      srcset?: string;
-      type?: string;
-      height?: number | string;
-      width?: number | string;
+      media?: string
+      sizes?: string
+      src?: string
+      srcset?: string
+      type?: string
+      height?: number | string
+      width?: number | string
     }
 
     interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
@@ -1795,17 +1795,17 @@ declare global {
        */
       align?: 'left' | 'center' | 'right' | 'justify' | 'char'
       /** @deprecated */
-      axis?: string;
+      axis?: string
       /**
        * To achieve a similar effect, use the CSS `background-color` property
        * @deprecated
        */
-      bgColor?: Property.Color;
+      bgColor?: Property.Color
       /**
        * To achieve the same effect, you can specify the character as the first value of the `text-align` property
        * @deprecated
        */
-      char?: string;
+      char?: string
       /** @deprecated */
       charoff?: string
       /**
@@ -1845,17 +1845,17 @@ declare global {
        */
       align?: 'left' | 'center' | 'right' | 'justify' | 'char'
       /** @deprecated */
-      axis?: string;
+      axis?: string
       /**
        * To achieve a similar effect, use the CSS `background-color` property
        * @deprecated
        */
-      bgColor?: Property.Color;
+      bgColor?: Property.Color
       /**
        * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
        * @deprecated
        */
-      char?: string;
+      char?: string
       /** @deprecated */
       charoff?: string
       /**
@@ -1876,7 +1876,7 @@ declare global {
     }
 
     interface HTMLTimeElementAttributes extends HTMLAttributes<HTMLTimeElement> {
-      dateTime?: string;
+      dateTime?: string
     }
 
     interface HTMLTrackElementAttributes extends HTMLAttributes<HTMLTrackElement> {
@@ -1888,7 +1888,7 @@ declare global {
     }
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
-      height?: number | string;
+      height?: number | string
       playsInline?: boolean | ''
       poster?: string
       width?: number | string
@@ -2005,7 +2005,7 @@ declare global {
       ins: HTMLModElementAttributes
       kbd: HTMLAttributes<HTMLElement>
       /** @deprecated */
-      keygen: HTMLAttributes<HTMLUnknownElement>;
+      keygen: HTMLAttributes<HTMLUnknownElement>
       label: HTMLLabelElementAttributes
       legend: HTMLAttributes<HTMLLegendElement>
       li: HTMLLIElementAttributes
