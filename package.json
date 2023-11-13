@@ -47,7 +47,7 @@
     "@jest/globals": "^29.7.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^15.2.3",
-    "@size-limit/preset-small-lib": "^10.0.3",
+    "@size-limit/preset-small-lib": "^11.0.0",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.4",
     "@types/babel__helper-validator-identifier": "^7.15.2",
