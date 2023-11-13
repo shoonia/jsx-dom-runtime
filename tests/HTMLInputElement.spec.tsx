@@ -111,8 +111,8 @@ describe('HTMLInputElement', () => {
   });
 
   it('should have `dirName` attribute', () => {
-    expect(<input dirName="hello.dir" />).toHaveProperty('dirName', 'hello.dir');
-    expect(<input dirName="hello.dir" />).toHaveAttribute('dirname', 'hello.dir');
+    expect(<input dirName="rtl" />).toHaveProperty('dirName', 'rtl');
+    expect(<input dirName="rtl" />).toHaveAttribute('dirname', 'rtl');
   });
 
   it('should have `placeholder` attribute', () => {

@@ -1357,10 +1357,10 @@ declare global {
        */
       capture?: boolean | 'user' | 'environment' | ''
       checked?: boolean | '';
-      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials';
-      disabled?: boolean | '';
-      dirName?: string;
-      enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send';
+      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
+      disabled?: boolean | ''
+      dirName?: 'rtl' | 'ltr'
+      enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
       form?: string
       formAction?: string
       formEncType?: string
@@ -1370,9 +1370,9 @@ declare global {
       height?: number | string
       list?: string;
       max?: number | string
-      maxLength?: number | `${number}`;
+      maxLength?: number | `${number}`
       min?: number | string
-      minLength?: number | `${number}`;
+      minLength?: number | `${number}`
       multiple?: boolean | ''
       name?: string;
       pattern?: string;
@@ -1762,7 +1762,7 @@ declare global {
        * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer. If it is not specified, the default value is 20
        */
       cols?: number | `${number}`
-      dirName?: string
+      dirName?: 'rtl' | 'ltr'
       disabled?: boolean | ''
       form?: string
       maxLength?: number | `${number}`
