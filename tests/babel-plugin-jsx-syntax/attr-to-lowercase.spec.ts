@@ -81,4 +81,12 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("input",{dirname:"rtl"});App({dirName:"rtl"});');
   });
+
+  it('should transform `formTarget` attribute', async () => {
+    const result = await t`
+    <input formTarget="_salf" />;
+    <App formTarget="_salf" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("input",{formtarget:"_salf"});App({formTarget:"_salf"});');
+  });
 });
