@@ -82,8 +82,8 @@ describe('HTMLTextAreaElement', () => {
   });
 
   it('should have `dirName` attribute', () => {
-    expect(<textarea dirName="hello.dir" />).toHaveProperty('dirName', 'hello.dir');
-    expect(<textarea dirName="hello.dir" />).toHaveAttribute('dirname', 'hello.dir');
+    expect(<textarea dirName="ltr" />).toHaveProperty('dirName', 'ltr');
+    expect(<textarea dirName="ltr" />).toHaveAttribute('dirname', 'ltr');
   });
 
   it('should have `wrap` attribute', () => {
