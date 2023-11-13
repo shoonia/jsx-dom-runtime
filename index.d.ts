@@ -1366,7 +1366,7 @@ declare global {
       formEncType?: string
       formMethod?: string
       formNoValidate?: boolean | ''
-      formTarget?: string
+      formTarget?: '_self' | '_blank' | '_parent' | '_top' | (string & {})
       height?: number | string
       list?: string;
       max?: number | string
