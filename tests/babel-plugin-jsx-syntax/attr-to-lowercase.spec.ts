@@ -89,4 +89,12 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("input",{formtarget:"_salf"});App({formTarget:"_salf"});');
   });
+
+  it('should transform `formMethod` attribute', async () => {
+    const result = await t`
+    <input formMethod="get" />;
+    <App formMethod="get" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("input",{formmethod:"get"});App({formMethod:"get"});');
+  });
 });
