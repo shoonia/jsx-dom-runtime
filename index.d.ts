@@ -1152,7 +1152,10 @@ declare global {
       form?: string
       formAction?: string
       formEncType?: string
-      formMethod?: string
+      /**
+       * A string indicating the HTTP method to use when submitting the form's data; this value overrides any method attribute given on the owning form
+       */
+      formMethod?: 'post' | 'get' | 'dialog' | (string & {})
       formNoValidate?: boolean | ''
       /**
        * If the button is a submit button, this attribute is an author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form
@@ -1364,7 +1367,10 @@ declare global {
       form?: string
       formAction?: string
       formEncType?: string
-      formMethod?: string
+      /**
+       * A string indicating the HTTP method to use when submitting the form's data; this value overrides any method attribute given on the owning form
+       */
+      formMethod?: 'post' | 'get' | 'dialog' | (string & {})
       formNoValidate?: boolean | ''
       formTarget?: '_self' | '_blank' | '_parent' | '_top' | (string & {})
       height?: number | string
