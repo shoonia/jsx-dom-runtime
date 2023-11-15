@@ -161,4 +161,10 @@ describe('HTMLInputElement', () => {
       expect(<input type="radio" checked={false} />).not.toBeChecked();
     });
   });
+
+  describe('submit', () => {
+    it('should have `formMethod` attribute', () => {
+      expect(<input type="submit" formMethod="get" />).toHaveAttribute('formmethod', 'get');
+    });
+  });
 });
