@@ -64,7 +64,7 @@ export const DOMEvents = new Set([
 export const attributes = new Set([
   'tabindex', 'inputmode', 'referrerpolicy', 'enterkeyhint', 'maxlength', 'minlength',
   'itemprop', 'itemscope', 'itemtype', 'itemid', 'itemref', 'accesskey', 'elementtiming',
-  'fetchpriority', 'dirname', 'formtarget', 'formmethod', 'formenctype',
+  'fetchpriority', 'controlslist', 'dirname', 'formtarget', 'formmethod', 'formenctype',
 ]);
 
 export const booleanAttributes = new Set([
