@@ -97,4 +97,12 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("input",{formmethod:"get"});App({formMethod:"get"});');
   });
+
+  it('should transform `formEncType` attribute', async () => {
+    const result = await t`
+    <button formEncType="text/plain" />;
+    <App formEncType="text/plain" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("button",{formenctype:"text/plain"});App({formEncType:"text/plain"});');
+  });
 });

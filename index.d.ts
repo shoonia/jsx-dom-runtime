@@ -1087,13 +1087,25 @@ declare global {
        */
       download?: string
       href?: string
+      /**
+       * Hints at the human language of the linked URL. No built-in functionality. Allowed values are the same as the global `lang` attribute
+       */
       hreflang?: string
+      /**
+       * A space-separated list of URLs. When the link is followed, the browser will send `POST` requests with the body `PING` to the URLs. Typically for tracking
+       */
       ping?: string
+      /**
+       * The relationship of the linked URL as space-separated link types
+       */
       rel?: string
       /**
        * Where to display the linked URL. _Default value: `_self`; Animatable: yes_
        */
       target?: '_blank' | '_self' | '_parent' | '_top' | (string & {})
+      /**
+       * Hints at the linked URL's format with a MIME type. No built-in functionality
+       */
       type?: string
       referrerPolicy?: ReferrerPolicy
       /**
@@ -1151,6 +1163,9 @@ declare global {
       disabled?: boolean | ''
       form?: string
       formAction?: string
+      /**
+       * Form data set encoding type to use for form submission. Attribute is only used for buttons with `type="submit"`
+       */
       formEncType?: string
       /**
        * A string indicating the HTTP method to use when submitting the form's data; this value overrides any method attribute given on the owning form
@@ -1366,6 +1381,9 @@ declare global {
       enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
       form?: string
       formAction?: string
+      /**
+       * Form data set encoding type to use for form submission. Attribute is only used for inputs with `type="submit"` or `type="image"`
+       */
       formEncType?: string
       /**
        * A string indicating the HTTP method to use when submitting the form's data; this value overrides any method attribute given on the owning form
