@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.23.3",
-    "parcel": "^2.10.2",
+    "parcel": "^2.10.3",
     "postcss": "^8.4.31",
     "postcss-modules": "^4.3.1"
   },
