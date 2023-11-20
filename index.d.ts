@@ -1028,8 +1028,8 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   z?: number | `${number}`
   /** @deprecated */
   zoomAndPan?: 'disable' | 'magnify'
-  height?: Property.Height
-  width?: Property.Width
+  height?: number | string
+  width?: number | string
 }
 
 export interface MathMLAttributes extends AriaAttributes, DOMAttributes<MathMLElement> {
