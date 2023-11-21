@@ -1162,6 +1162,9 @@ declare global {
       autofocus?: boolean | ''
       disabled?: boolean | ''
       form?: string
+      /**
+       * The URL that processes the information submitted by the button. Overrides the `action` attribute of the button's form owner. Does nothing if there is no form owner
+       */
       formAction?: string
       /**
        * Form data set encoding type to use for form submission. Attribute is only used for buttons with `type="submit"`
@@ -1380,6 +1383,9 @@ declare global {
       dirName?: 'rtl' | 'ltr'
       enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
       form?: string
+      /**
+       * URL to use for form submission. Attribute is only used for inputs with `type="submit"` or `type="image"`
+       */
       formAction?: string
       /**
        * Form data set encoding type to use for form submission. Attribute is only used for inputs with `type="submit"` or `type="image"`

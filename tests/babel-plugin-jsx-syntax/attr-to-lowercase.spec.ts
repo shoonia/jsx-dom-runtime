@@ -106,6 +106,14 @@ describe('CamelCase attributes name to lower case', () => {
     expect(result).toBe(_jsx + '_jsx("button",{formenctype:"text/plain"});App({formEncType:"text/plain"});');
   });
 
+  it('should transform `formAction` attribute', async () => {
+    const result = await t`
+    <button formAction="/" />;
+    <App formAction="/" />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("button",{formaction:"/"});App({formAction:"/"});');
+  });
+
   it('should transform `controlsList` attribute', async () => {
     const result = await t`
     <video controlsList="nofullscreen" />;

@@ -52,4 +52,8 @@ describe('HTMLButtonElement', () => {
     expect(<button formNoValidate={false} />).toHaveProperty('formNoValidate', false);
     expect(<button formNoValidate={false} />).not.toHaveAttribute('formnovalidate');
   });
+
+  it('should have `formAction` attribute', () => {
+    expect(<button formAction="/" />).toHaveAttribute('formaction', '/');
+  });
 });
