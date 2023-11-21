@@ -166,5 +166,9 @@ describe('HTMLInputElement', () => {
     it('should have `formMethod` attribute', () => {
       expect(<input type="submit" formMethod="get" />).toHaveAttribute('formmethod', 'get');
     });
+
+    it('should have `formAction` attribute', () => {
+      expect(<input type="submit" formAction="/" />).toHaveAttribute('formaction', '/');
+    });
   });
 });
