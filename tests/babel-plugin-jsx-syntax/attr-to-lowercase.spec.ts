@@ -121,4 +121,12 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("video",{controlslist:"nofullscreen"});App({controlsList:"nofullscreen"});');
   });
+
+  it('should transform `dateTime` attribute', async () => {
+    const result = await t`
+    <time dateTime="2018-07-07">July 7</time>;
+    <App dateTime="2018-07-07">July 7</App>
+    `;
+    expect(result).toBe(_jsx + '_jsx("time",{datetime:"2018-07-07",children:"July 7"});App({dateTime:"2018-07-07",children:"July 7"});');
+  });
 });
