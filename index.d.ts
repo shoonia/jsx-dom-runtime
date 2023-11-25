@@ -1906,6 +1906,9 @@ declare global {
     }
 
     interface HTMLTimeElementAttributes extends HTMLAttributes<HTMLTimeElement> {
+      /**
+       * Indicates the time and/or date in the machine-readable format, allowing for better search engine results or custom features such as reminders
+       */
       dateTime?: string
     }
 
