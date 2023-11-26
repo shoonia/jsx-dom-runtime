@@ -6,12 +6,12 @@ describe('HTMLLinkElement', () => {
 
   it('should support `crossOrigin` attribute', () => {
     expect(<link crossOrigin="anonymous" />).toHaveProperty('crossOrigin', 'anonymous');
-    expect(<link crossOrigin="anonymous" />).toHaveAttribute('crossOrigin', 'anonymous');
+    expect(<link crossOrigin="anonymous" />).toHaveAttribute('crossorigin', 'anonymous');
   });
 
   it('should have `crossOrigin` attribute', () => {
     expect(<link crossOrigin />).toHaveProperty('crossOrigin', '');
-    expect(<link crossOrigin />).toHaveAttribute('crossOrigin', '');
+    expect(<link crossOrigin />).toHaveAttribute('crossorigin', '');
   });
 
   it('should support `rel` attribute', () => {
