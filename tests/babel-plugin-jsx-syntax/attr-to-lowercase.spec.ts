@@ -129,4 +129,20 @@ describe('CamelCase attributes name to lower case', () => {
     `;
     expect(result).toBe(_jsx + '_jsx("time",{datetime:"2018-07-07",children:"July 7"});App({dateTime:"2018-07-07",children:"July 7"});');
   });
+
+  it('should transform `colSpan` attribute', async () => {
+    const result = await t`
+    <td colSpan={10} />;
+    <App colSpan={10} />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("td",{colspan:10});App({colSpan:10});');
+  });
+
+  it('should transform `colSpan` attribute', async () => {
+    const result = await t`
+    <td rowSpan={10} />;
+    <App rowSpan={10} />;
+    `;
+    expect(result).toBe(_jsx + '_jsx("td",{rowspan:10});App({rowSpan:10});');
+  });
 });
