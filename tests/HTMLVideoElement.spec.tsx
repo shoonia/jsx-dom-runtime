@@ -98,12 +98,12 @@ describe('HTMLVideoElement', () => {
 
   it('should have `crossOrigin` attribute', () => {
     expect(<video crossOrigin="anonymous" />).toHaveProperty('crossOrigin', 'anonymous');
-    expect(<video crossOrigin="anonymous" />).toHaveAttribute('crossOrigin', 'anonymous');
+    expect(<video crossOrigin="anonymous" />).toHaveAttribute('crossorigin', 'anonymous');
   });
 
   it('should have `crossOrigin` attribute', () => {
     expect(<video crossOrigin />).toHaveProperty('crossOrigin', '');
-    expect(<video crossOrigin />).toHaveAttribute('crossOrigin', '');
+    expect(<video crossOrigin />).toHaveAttribute('crossorigin', '');
   });
 
   it('should add `onresize` handler', () => {

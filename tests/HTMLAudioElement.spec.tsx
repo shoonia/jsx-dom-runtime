@@ -61,12 +61,12 @@ describe('HTMLAudioElement', () => {
 
   it('should have `crossOrigin` attribute', () => {
     expect(<audio crossOrigin="anonymous" />).toHaveProperty('crossOrigin', 'anonymous');
-    expect(<audio crossOrigin="anonymous" />).toHaveAttribute('crossOrigin', 'anonymous');
+    expect(<audio crossOrigin="anonymous" />).toHaveAttribute('crossorigin', 'anonymous');
   });
 
   it('should have `crossOrigin` attribute', () => {
     expect(<audio crossOrigin />).toHaveProperty('crossOrigin', '');
-    expect(<audio crossOrigin />).toHaveAttribute('crossOrigin', '');
+    expect(<audio crossOrigin />).toHaveAttribute('crossorigin', '');
   });
 
   it('should have `disableRemotePlayback` attribute', () => {
