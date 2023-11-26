@@ -69,6 +69,10 @@ describe('HTMLAudioElement', () => {
     expect(<audio crossOrigin />).toHaveAttribute('crossOrigin', '');
   });
 
+  it('should have `disableRemotePlayback` attribute', () => {
+    expect(<audio disableRemotePlayback />).toHaveAttribute('disableremoteplayback', '');
+  });
+
   it('should have `preload` attributes', () => {
     expect(<audio preload="metadata" />).toHaveAttribute('preload', 'metadata');
     expect(<audio preload="auto" />).toHaveProperty('preload', 'auto');
