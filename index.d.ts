@@ -1537,6 +1537,10 @@ declare global {
       autoplay?: boolean | ''
       controls?: boolean | ''
       /**
+       * A Boolean attribute used to disable the capability of remote playback in devices that are attached using wired (HDMI, DVI, etc.) and wireless technologies (Miracast, Chromecast, DLNA, AirPlay, etc.)
+       */
+      disableRemotePlayback?: boolean | ''
+      /**
        * Offers a way to control the native controls elements/buttons that are being shown by the user agent in order to be able to remove some features that do not make sense or are not part of the expected user experience or only allowlist a limited amount of features
        */
       controlsList?: ControlsList | `${ControlsList} ${ControlsList}` | `${ControlsList} ${ControlsList} ${ControlsList}`
@@ -1868,8 +1872,14 @@ declare global {
 
     interface HTMLTableHeaderCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
       abbr?: string
+      /**
+       * A non-negative integer value that indicates for how many columns the cell extends. Its default value is `1`. Values higher than `1000` will be considered as incorrect and will be set to the default value (`1`)
+       */
       colSpan?: number | `${number}`
       headers?: string
+      /**
+       * A non-negative integer value that indicates for how many rows the cell extends. Its default value is `1`; if its value is set to `0`, it extends until the end of the table section (`<thead>`, `<tbody>`, `<tfoot>`, even if implicitly defined), that the cell belongs to. Values higher than `65534` are clipped down to `65534`
+       */
       rowSpan?: number | `${number}`
       /**
        * This enumerated attribute defines the cells that the header (defined in the <th>) element relates to
@@ -1932,7 +1942,6 @@ declare global {
       poster?: string
       width?: number | string
       disablePictureInPicture?: boolean | ''
-      disableRemotePlayback?: boolean | ''
       onenterpictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
       onleavepictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
       onresize?: PictureInPictureEventHandler<HTMLVideoElement>
