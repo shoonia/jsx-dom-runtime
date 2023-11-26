@@ -51,9 +51,9 @@ export const extensions: Map<
   (node: HTMLElement | SVGElement | MathMLElement, value: any, key: string) => void
 >;
 
-export const xhtmlNS = 'http://www.w3.org/1999/xhtml';
-export const svgNS = 'http://www.w3.org/2000/svg';
-export const mathmlNS = 'http://www.w3.org/1998/Math/MathML';
+export const xhtmlNs = 'http://www.w3.org/1999/xhtml';
+export const svgNs = 'http://www.w3.org/2000/svg';
+export const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
 export function useRef<T = any>(current?: T): RefObject<T>
 export function useText<T = string>(initContent?: T): readonly [
@@ -93,7 +93,7 @@ type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
 
 export interface DOMAttributes<T> extends JSX.Attributes {
-  ns?: typeof xhtmlNS | typeof svgNS | typeof mathmlNS
+  ns?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
   ref?: RefCallback<T> | RefObject<T>
   children?: TChild | TChild[]
   // Clipboard Events
@@ -685,7 +685,8 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 }
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
-  ns?: typeof svgNS
+  ns?: typeof svgNs
+  xmlns?: typeof svgNs
   href?: string
   cx?: number | string
   cy?: number | string
@@ -984,6 +985,8 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   xChannelSelector?: 'R' | 'G' | 'B' | 'A'
   yChannelSelector?: 'R' | 'G' | 'B' | 'A'
   /** @deprecated */
+  'xmlns:xlink'?: 'http://www.w3.org/1999/xlink',
+  /** @deprecated */
   'xlink:actuate'?: 'onLoad' | 'onRequest' | 'other' | 'none'
   /** @deprecated */
   'xlink:arcrole'?: string
@@ -1021,7 +1024,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
    * @deprecated
    */
   'xml:space'?: 'default' | 'preserve'
-  xmlns?: string
   y1?: number | string
   y2?: number | string
   y?: number | string
@@ -1033,8 +1035,8 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
 }
 
 export interface MathMLAttributes extends AriaAttributes, DOMAttributes<MathMLElement> {
-  ns?: typeof mathmlNS
-  xmlns?: typeof mathmlNS
+  ns?: typeof mathmlNs
+  xmlns?: typeof mathmlNs
   id?: string
   class?: string
   style?: string | CSSProperties
