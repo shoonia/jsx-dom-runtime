@@ -686,6 +686,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
   ns?: typeof svgNs
+  xmlns?: typeof svgNs
   href?: string
   cx?: number | string
   cy?: number | string
@@ -984,6 +985,8 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   xChannelSelector?: 'R' | 'G' | 'B' | 'A'
   yChannelSelector?: 'R' | 'G' | 'B' | 'A'
   /** @deprecated */
+  'xmlns:xlink'?: 'http://www.w3.org/1999/xlink',
+  /** @deprecated */
   'xlink:actuate'?: 'onLoad' | 'onRequest' | 'other' | 'none'
   /** @deprecated */
   'xlink:arcrole'?: string
@@ -1021,7 +1024,6 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
    * @deprecated
    */
   'xml:space'?: 'default' | 'preserve'
-  xmlns?: string
   y1?: number | string
   y2?: number | string
   y?: number | string
