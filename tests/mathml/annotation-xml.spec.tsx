@@ -9,7 +9,7 @@ describe('MathML: <annotation-xml />', () => {
     const result = await t`<annotation-xml id="id" />`;
 
     expect(result).toBe(
-      'import{mathmlNS as _mathmlNS,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("annotation-xml",{id:"id",ns:_mathmlNS});'
+      'import{mathmlNs as _mathmlNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("annotation-xml",{id:"id",ns:_mathmlNs});'
     );
   });
 });

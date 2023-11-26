@@ -1,7 +1,7 @@
 import { t } from '../utils';
 
 const result = '<text xml:lang="en-US">This is some English text</text>';
-const code = 'import{svgNS as _svgNS,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("text",{"xml:lang":"en-US",children:"This is some English text",ns:_svgNS});';
+const code = 'import{svgNs as _svgNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("text",{"xml:lang":"en-US",children:"This is some English text",ns:_svgNs});';
 
 describe('SVG - `xml:lang` attribute', () => {
   it('should render `xml:lang` attribute', () => {

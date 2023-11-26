@@ -72,9 +72,9 @@ export const jsxTransform = (): PluginObj => {
               arguments: [buildProps(path.node)],
             });
           } else if (svgTags.has(name.name)) {
-            nsMap.set(path.node, 'svgNS');
+            nsMap.set(path.node, 'svgNs');
           } else if (mathmlTags.has(name.name)) {
-            nsMap.set(path.node, 'mathmlNS');
+            nsMap.set(path.node, 'mathmlNs');
           }
         },
 
