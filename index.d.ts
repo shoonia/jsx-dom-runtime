@@ -1719,13 +1719,34 @@ declare global {
     }
 
     interface HTMLSourceElementAttributes extends HTMLAttributes<HTMLSourceElement> {
+      /**
+       * Specifies the media query for the resource's intended media
+       */
       media?: string
+      /**
+       * Specifies a list of source sizes that describe the final rendered width of the image. Allowed if the parent of `<source>` is `<picture>`. Not allowed if the parent is `<audio> `or `<video>`
+       */
       sizes?: string
+      /**
+       * Specifies the URL of the media resource. Required if the parent of `<source>` is `<audio>` or `<video>`. Not allowed if the parent is `<picture>`
+       */
       src?: string
+      /**
+       * Specifies a comma-separated list of one or more image URLs and their descriptors. Required if the parent of `<source>` is `<picture>`. Not allowed if the parent is `<audio>` or `<video>`
+       */
       srcset?: string
+      /**
+       * Specifies the MIME media type of the image or other media type, optionally including a codecs parameter
+       */
       type?: string
-      height?: number | string
-      width?: number | string
+      /**
+       * Specifies the intrinsic height of the image in pixels. Allowed if the parent of `<source>` is a `<picture>`. Not allowed if the parent is `<audio>` or `<video>`. The height value must be an integer without any units
+       */
+      height?: number | `${number}`
+      /**
+       * Specifies the intrinsic width of the image in pixels. Allowed if the parent of `<source>` is a `<picture>`. Not allowed if the parent is `<audio> `or `<video>.` The width value must be an integer without any units
+       */
+      width?: number | `${number}`
     }
 
     interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
