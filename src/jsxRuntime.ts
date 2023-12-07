@@ -7,7 +7,22 @@ const internalKeys = new Set([
   'ref',
 ]);
 
-export const extensions = new Map();
+export const extensions = new Map([
+  ['style', (node, val, key) => {
+    if (typeof val === 'string') {
+      node.style.cssText = val;
+    } else {
+      // reuse `key` variable
+      for (key in val) {
+        if (key.startsWith('--')) {
+          node.style.setProperty(key, val[key]);
+        } else {
+          node.style[key] = val[key];
+        }
+      }
+    }
+  }],
+]);
 
 export const properties = new Set([
   'value',
@@ -27,19 +42,6 @@ export const jsx = (tag, props) => {
 
     if (extensions.has(key)) {
       extensions.get(key)(node, val, key);
-    } else if (key === 'style') {
-      if (typeof val === 'string') {
-        node.style.cssText = val;
-      } else {
-        // reuse `key` variable
-        for (key in val) {
-          if (key.startsWith('--')) {
-            node.style.setProperty(key, val[key]);
-          } else {
-            node.style[key] = val[key];
-          }
-        }
-      }
     } else if (properties.has(key) || key.startsWith('on') && key in node) {
       node[key] = val;
     } else if (val != null && (typeof val !== 'boolean' || key[4] === '-')) {
