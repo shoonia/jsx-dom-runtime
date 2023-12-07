@@ -34,20 +34,18 @@ export const jsx = (tag, props) => {
     : document.createElement(tag);
 
   for (key in props) {
-    if (internalKeys.has(key)) {
-      continue;
-    }
+    if (!internalKeys.has(key)) {
+      val = props[key];
 
-    val = props[key];
-
-    if (extensions.has(key)) {
-      extensions.get(key)(node, val, key);
-    } else if (properties.has(key) || key.startsWith('on') && key in node) {
-      node[key] = val;
-    } else if (val != null && (typeof val !== 'boolean' || key[4] === '-')) {
-      node.setAttribute(key, val);
-    } else if (val) {
-      node.setAttribute(key, '');
+      if (extensions.has(key)) {
+        extensions.get(key)(node, val, key);
+      } else if (properties.has(key) || key.startsWith('on') && key in node) {
+        node[key] = val;
+      } else if (val != null && (typeof val !== 'boolean' || key[4] === '-')) {
+        node.setAttribute(key, val);
+      } else if (val) {
+        node.setAttribute(key, '');
+      }
     }
   }
 
