@@ -82,8 +82,7 @@ export const jsxTransform = (): PluginObj => {
           const name = path.node.openingElement.name as t.JSXIdentifier | t.JSXNamespacedName;
           const props = buildProps(path.node);
 
-          const noNs = props.properties.every((i) => {
-            // @ts-expect-error
+          const noNs = props.properties.every((i: t.ObjectProperty) => {
             return !t.isIdentifier(i.key, opts);
           });
 
