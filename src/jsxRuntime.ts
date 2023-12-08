@@ -7,7 +7,22 @@ const internalKeys = new Set([
   'ref',
 ]);
 
-export const extensions = new Map();
+export const extensions = new Map([
+  ['style', (node, val, key) => {
+    if (typeof val === 'string') {
+      node.setAttribute(key, val);
+    } else {
+      // reuse `key` variable
+      for (key in val) {
+        if (key.startsWith('--')) {
+          node.style.setProperty(key, val[key]);
+        } else {
+          node.style[key] = val[key];
+        }
+      }
+    }
+  }],
+]);
 
 export const properties = new Set([
   'value',
@@ -19,33 +34,18 @@ export const jsx = (tag, props) => {
     : document.createElement(tag);
 
   for (key in props) {
-    if (internalKeys.has(key)) {
-      continue;
-    }
+    if (!internalKeys.has(key)) {
+      val = props[key];
 
-    val = props[key];
-
-    if (extensions.has(key)) {
-      extensions.get(key)(node, val, key);
-    } else if (key === 'style') {
-      if (typeof val === 'string') {
-        node.style.cssText = val;
-      } else {
-        // reuse `key` variable
-        for (key in val) {
-          if (key.startsWith('--')) {
-            node.style.setProperty(key, val[key]);
-          } else {
-            node.style[key] = val[key];
-          }
-        }
+      if (extensions.has(key)) {
+        extensions.get(key)(node, val, key);
+      } else if (properties.has(key) || key.startsWith('on')) {
+        node[key] = val;
+      } else if (val != null && (typeof val !== 'boolean' || key[4] === '-')) {
+        node.setAttribute(key, val);
+      } else if (val) {
+        node.setAttribute(key, '');
       }
-    } else if (properties.has(key) || key.startsWith('on') && key in node) {
-      node[key] = val;
-    } else if (val != null && (typeof val !== 'boolean' || key[4] === '-')) {
-      node.setAttribute(key, val);
-    } else if (val) {
-      node.setAttribute(key, '');
     }
   }
 
@@ -54,12 +54,12 @@ export const jsx = (tag, props) => {
     tag === 'template' ? node.content : node,
   );
 
-  // reuse `val` variable
-  if (val = props.ref) {
-    if (typeof val === 'function') {
-      val(node);
+  // reuse `key` variable
+  if (key = props.ref) {
+    if (typeof key === 'function') {
+      key(node);
     } else {
-      val.current = node;
+      key.current = node;
     }
   }
 

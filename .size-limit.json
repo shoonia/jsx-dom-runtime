@@ -15,12 +15,12 @@
     "name": "appendChildren",
     "path": "jsx-runtime/index.js",
     "import": "{ appendChildren }",
-    "limit": "75 B"
+    "limit": "61 B"
   },
   {
     "name": "core",
     "path": "jsx-runtime/index.js",
     "import": "{ jsx, Fragment }",
-    "limit": "360 B"
+    "limit": "356 B"
   }
 ]
