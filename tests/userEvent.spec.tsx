@@ -75,11 +75,4 @@ describe('User events', () => {
 
     expect(<div onclick={spy} />).toHaveProperty('onclick', spy);
   });
-
-  it('should NOT add unknown event property', () => {
-    const spy = jest.fn();
-
-    // @ts-expect-error
-    expect(<div onunknown={spy} />).not.toHaveProperty('onunknown');
-  });
 });

@@ -39,7 +39,7 @@ export const jsx = (tag, props) => {
 
       if (extensions.has(key)) {
         extensions.get(key)(node, val, key);
-      } else if (properties.has(key) || key.startsWith('on') && key in node) {
+      } else if (properties.has(key) || key.startsWith('on')) {
         node[key] = val;
       } else if (val != null && (typeof val !== 'boolean' || key[4] === '-')) {
         node.setAttribute(key, val);
