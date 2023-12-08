@@ -10,7 +10,7 @@ const internalKeys = new Set([
 export const extensions = new Map([
   ['style', (node, val, key) => {
     if (typeof val === 'string') {
-      node.style.cssText = val;
+      node.setAttribute(key, val);
     } else {
       // reuse `key` variable
       for (key in val) {
