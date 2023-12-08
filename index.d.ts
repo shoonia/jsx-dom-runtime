@@ -81,6 +81,8 @@ type CompositionEventHandler<T = Element> = EventHandler<CompositionEvent, T>
 type DragEventHandler<T = Element> = EventHandler<DragEvent, T>
 type FocusEventHandler<T = Element> = EventHandler<FocusEvent, T>
 type FormEventHandler<T = Element> = EventHandler<FormEvent, T>
+type InputEventHandler<T = Element> = EventHandler<InputEvent, T>
+type SubmitEventHandler<T = Element> = EventHandler<SubmitEvent, T>
 type ChangeEventHandler<T = Element> = EventHandler<ChangeEvent, T>
 type KeyboardEventHandler<T = Element> = EventHandler<KeyboardEvent, T>
 type MouseEventHandler<T = Element> = EventHandler<MouseEvent, T>
@@ -107,13 +109,15 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   // Focus Events
   onfocus?: FocusEventHandler<T>
   onblur?: FocusEventHandler<T>
+  // Input Events
+  onbeforeinput?: InputEventHandler<T>
+  oninput?: InputEventHandler<T>
   // Form Events
   onchange?: FormEventHandler<T>
-  onbeforeinput?: FormEventHandler<T>
-  oninput?: FormEventHandler<T>
   onreset?: FormEventHandler<T>
-  onsubmit?: FormEventHandler<T>
   oninvalid?: FormEventHandler<T>
+  // Submit Event
+  onsubmit?: SubmitEventHandler<T>
   // Image Events
   onload?: TEventHandler<T>
   onerror?: TEventHandler<T> // also a Media Event
