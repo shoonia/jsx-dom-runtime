@@ -21,6 +21,6 @@
     "name": "core",
     "path": "jsx-runtime/index.js",
     "import": "{ jsx, Fragment }",
-    "limit": "365 B"
+    "limit": "362 B"
   }
 ]

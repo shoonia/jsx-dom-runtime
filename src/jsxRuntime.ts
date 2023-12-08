@@ -54,12 +54,12 @@ export const jsx = (tag, props) => {
     tag === 'template' ? node.content : node,
   );
 
-  // reuse `val` variable
-  if (val = props.ref) {
-    if (typeof val === 'function') {
-      val(node);
+  // reuse `key` variable
+  if (key = props.ref) {
+    if (typeof key === 'function') {
+      key(node);
     } else {
-      val.current = node;
+      key.current = node;
     }
   }
 
