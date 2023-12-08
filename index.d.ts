@@ -2032,6 +2032,10 @@ declare global {
       display?: 'block' | 'inline'
     }
 
+    interface MathMLMEncloseElementAttributes extends MathMLAttributes {
+      notation?: string
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2254,6 +2258,11 @@ declare global {
        */
       maction: MathMLMActionElemenAttributes
       math: MathMLMathElementAttributes
+      /**
+       * This feature is non-standard
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/menclose
+       */
+      menclose: MathMLMEncloseElementAttributes
       merror: MathMLAttributes
       mfrac: MathMLAttributes
       mi: MathMLAttributes
