@@ -1997,6 +1997,24 @@ declare global {
 
     type HTMLWebViewElement = HTMLElement
 
+    interface MathMLAnnotationElementAttributes extends MathMLAttributes {
+      encoding?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics#src
+       * @deprecated
+       */
+      src?: string
+    }
+
+    interface MathMLAnnotationXmlElementAttributes extends MathMLAttributes {
+      encoding?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics#src
+       * @deprecated
+       */
+      src?: string
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2211,8 +2229,8 @@ declare global {
       view: SVGAttributes<SVGViewElement>
 
       // MathML
-      annotation: MathMLAttributes
-      'annotation-xml': MathMLAttributes
+      annotation: MathMLAnnotationElementAttributes
+      'annotation-xml': MathMLAnnotationXmlElementAttributes
       math: MathMLAttributes
       merror: MathMLAttributes
       mfrac: MathMLAttributes
