@@ -2042,6 +2042,20 @@ declare global {
       separators?: string
     }
 
+    interface MathMLMFracElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfrac#denomalign
+       * @deprecated
+       */
+      denomalign?: 'center' | 'left' | 'right'
+      linethickness?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfrac#numalign
+       * @deprecated
+       */
+      numalign?: 'center' | 'left' | 'right'
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2275,7 +2289,7 @@ declare global {
        * @deprecated
        */
       mfenced: MathMLMFencedElementAttributes
-      mfrac: MathMLAttributes
+      mfrac: MathMLMFracElementAttributes
       mi: MathMLAttributes
       mmultiscripts: MathMLAttributes
       mn: MathMLAttributes
