@@ -2084,6 +2084,19 @@ declare global {
       | 'stretched'
     }
 
+    interface MathMLMmultiScriptsElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mmultiscripts#subscriptshift
+       * @deprecated
+       */
+      subscriptshift?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mmultiscripts#superscriptshift
+       * @deprecated
+       */
+      superscriptshift?: string
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2319,7 +2332,7 @@ declare global {
       mfenced: MathMLMFencedElementAttributes
       mfrac: MathMLMFracElementAttributes
       mi: MathMLMiElementAttributes
-      mmultiscripts: MathMLAttributes
+      mmultiscripts: MathMLMmultiScriptsElementAttributes
       mn: MathMLAttributes
       mo: MathMLAttributes
       mover: MathMLAttributes
