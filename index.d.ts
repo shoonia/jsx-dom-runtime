@@ -1061,7 +1061,6 @@ export interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
   mathsize?: number | string
   nonce?: string
   scriptlevel?: number | string
-  [key: string]: any // FIXME:
 }
 
 declare global {
