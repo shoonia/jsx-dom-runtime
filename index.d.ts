@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2023" />
-import { HtmlAttributes, Properties, Property } from 'csstype';
+import { Properties, Property } from 'csstype';
 
 export interface RefObject<T> {
   readonly current: T
@@ -1038,35 +1038,30 @@ export interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
   ns?: typeof mathmlNs
   xmlns?: typeof mathmlNs
   dir?: 'ltr' | 'rtl'
-  display?: 'block' | 'inline'
   displaystyle?: 'true' | 'false'
-  /** @deprecated */
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/href
+   * @deprecated This feature is non-standard
+   */
+  href?: string
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathbackground
+   * @deprecated
+   */
   mathbackground?: Property.Color
-  /** @deprecated */
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathcolor
+   * @deprecated
+   */
   mathcolor?: Property.Color
-  /** @deprecated */
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathsize
+   * @deprecated
+   */
   mathsize?: number | string
-  mathvariant?:
-  | 'normal'
-  | 'bold'
-  | 'italic'
-  | 'bold-italic'
-  | 'double-struck'
-  | 'bold-fraktur'
-  | 'script'
-  | 'bold-script'
-  | 'fraktur'
-  | 'sans-serif'
-  | 'bold-sans-serif'
-  | 'sans-serif-italic'
-  | 'sans-serif-bold-italic'
-  | 'monospace'
-  | 'initial'
-  | 'tailed'
-  | 'looped'
-  | 'stretched'
+  nonce?: string
   scriptlevel?: number | string
-  [key: string]: any
+  [key: string]: any // FIXME:
 }
 
 declare global {
