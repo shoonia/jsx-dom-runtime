@@ -72,27 +72,26 @@ export interface CurrentTarget<T> {
 type FormEvent = Event
 type ChangeEvent = Event
 
-type EventHandler<E extends Event, T> = (this: T, event: E & CurrentTarget<T>) => void
+type TEventHandler<E extends Event, T> = (this: T, event: E & CurrentTarget<T>) => void
 
-type TEventHandler<T = Element> = EventHandler<Event, T>
-
-type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent, T>
-type CompositionEventHandler<T = Element> = EventHandler<CompositionEvent, T>
-type DragEventHandler<T = Element> = EventHandler<DragEvent, T>
-type FocusEventHandler<T = Element> = EventHandler<FocusEvent, T>
-type FormEventHandler<T = Element> = EventHandler<FormEvent, T>
-type InputEventHandler<T = Element> = EventHandler<InputEvent, T>
-type SubmitEventHandler<T = Element> = EventHandler<SubmitEvent, T>
-type ChangeEventHandler<T = Element> = EventHandler<ChangeEvent, T>
-type KeyboardEventHandler<T = Element> = EventHandler<KeyboardEvent, T>
-type MouseEventHandler<T = Element> = EventHandler<MouseEvent, T>
-type TouchEventHandler<T = Element> = EventHandler<TouchEvent, T>
-type PointerEventHandler<T = Element> = EventHandler<PointerEvent, T>
-type UIEventHandler<T = Element> = EventHandler<UIEvent, T>
-type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
-type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
-type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
-type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
+export type EventHandler<T = Element> = TEventHandler<Event, T>
+export type ClipboardEventHandler<T = Element> = TEventHandler<ClipboardEvent, T>
+export type CompositionEventHandler<T = Element> = TEventHandler<CompositionEvent, T>
+export type DragEventHandler<T = Element> = TEventHandler<DragEvent, T>
+export type FocusEventHandler<T = Element> = TEventHandler<FocusEvent, T>
+export type FormEventHandler<T = Element> = TEventHandler<FormEvent, T>
+export type InputEventHandler<T = Element> = TEventHandler<InputEvent, T>
+export type SubmitEventHandler<T = Element> = TEventHandler<SubmitEvent, T>
+export type ChangeEventHandler<T = Element> = TEventHandler<ChangeEvent, T>
+export type KeyboardEventHandler<T = Element> = TEventHandler<KeyboardEvent, T>
+export type MouseEventHandler<T = Element> = TEventHandler<MouseEvent, T>
+export type TouchEventHandler<T = Element> = TEventHandler<TouchEvent, T>
+export type PointerEventHandler<T = Element> = TEventHandler<PointerEvent, T>
+export type UIEventHandler<T = Element> = TEventHandler<UIEvent, T>
+export type WheelEventHandler<T = Element> = TEventHandler<WheelEvent, T>
+export type AnimationEventHandler<T = Element> = TEventHandler<AnimationEvent, T>
+export type TransitionEventHandler<T = Element> = TEventHandler<TransitionEvent, T>
+export type PictureInPictureEventHandler<T = Element> = TEventHandler<PictureInPictureEvent, T>
 
 export interface DOMAttributes<T> extends JSX.Attributes {
   ns?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
@@ -119,35 +118,35 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   // Submit Event
   onsubmit?: SubmitEventHandler<T>
   // Image Events
-  onload?: TEventHandler<T>
-  onerror?: TEventHandler<T> // also a Media Event
+  onload?: EventHandler<T>
+  onerror?: EventHandler<T> // also a Media Event
   // Keyboard Events
   onkeydown?: KeyboardEventHandler<T>
   onkeypress?: KeyboardEventHandler<T>
   onkeyup?: KeyboardEventHandler<T>
   // Media Events
-  onabort?: TEventHandler<T>
-  oncanplay?: TEventHandler<T>
-  oncanplaythrough?: TEventHandler<T>
-  ondurationchange?: TEventHandler<T>
-  onemptied?: TEventHandler<T>
-  onencrypted?: TEventHandler<T>
-  onended?: TEventHandler<T>
-  onloadeddata?: TEventHandler<T>
-  onloadedmetadata?: TEventHandler<T>
-  onloadstart?: TEventHandler<T>
-  onpause?: TEventHandler<T>
-  onplay?: TEventHandler<T>
-  onplaying?: TEventHandler<T>
-  onprogress?: TEventHandler<T>
-  onratechange?: TEventHandler<T>
-  onseeked?: TEventHandler<T>
-  onseeking?: TEventHandler<T>
-  onstalled?: TEventHandler<T>
-  onsuspend?: TEventHandler<T>
-  ontimeupdate?: TEventHandler<T>
-  onvolumechange?: TEventHandler<T>
-  onwaiting?: TEventHandler<T>
+  onabort?: EventHandler<T>
+  oncanplay?: EventHandler<T>
+  oncanplaythrough?: EventHandler<T>
+  ondurationchange?: EventHandler<T>
+  onemptied?: EventHandler<T>
+  onencrypted?: EventHandler<T>
+  onended?: EventHandler<T>
+  onloadeddata?: EventHandler<T>
+  onloadedmetadata?: EventHandler<T>
+  onloadstart?: EventHandler<T>
+  onpause?: EventHandler<T>
+  onplay?: EventHandler<T>
+  onplaying?: EventHandler<T>
+  onprogress?: EventHandler<T>
+  onratechange?: EventHandler<T>
+  onseeked?: EventHandler<T>
+  onseeking?: EventHandler<T>
+  onstalled?: EventHandler<T>
+  onsuspend?: EventHandler<T>
+  ontimeupdate?: EventHandler<T>
+  onvolumechange?: EventHandler<T>
+  onwaiting?: EventHandler<T>
   // Mouse Events
   onauxclick?: MouseEventHandler<T>
   onclick?: MouseEventHandler<T>
@@ -169,7 +168,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onmouseover?: MouseEventHandler<T>
   onmouseup?: MouseEventHandler<T>
   // Selection Events
-  onselect?: TEventHandler<T>
+  onselect?: EventHandler<T>
   // Touch Events
   ontouchcancel?: TouchEventHandler<T>
   ontouchend?: TouchEventHandler<T>
@@ -1209,7 +1208,7 @@ declare global {
 
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
       open?: boolean | ''
-      ontoggle?: TEventHandler<HTMLDetailsElement>
+      ontoggle?: EventHandler<HTMLDetailsElement>
     }
 
     interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
@@ -1219,9 +1218,9 @@ declare global {
 
     interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
       open?: boolean | ''
-      ontoggle?: TEventHandler<HTMLDialogElement>
-      onclose?: TEventHandler<HTMLDialogElement>
-      oncancel?: TEventHandler<HTMLDialogElement>
+      ontoggle?: EventHandler<HTMLDialogElement>
+      onclose?: EventHandler<HTMLDialogElement>
+      oncancel?: EventHandler<HTMLDialogElement>
     }
 
     interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
