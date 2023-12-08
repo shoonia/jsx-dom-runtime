@@ -2015,6 +2015,10 @@ declare global {
       src?: string
     }
 
+    interface MathMLMathElementAttributes extends MathMLAttributes {
+      display?: 'block' | 'inline'
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2231,7 +2235,7 @@ declare global {
       // MathML
       annotation: MathMLAnnotationElementAttributes
       'annotation-xml': MathMLAnnotationXmlElementAttributes
-      math: MathMLAttributes
+      math: MathMLMathElementAttributes
       merror: MathMLAttributes
       mfrac: MathMLAttributes
       mi: MathMLAttributes
