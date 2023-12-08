@@ -2015,6 +2015,19 @@ declare global {
       src?: string
     }
 
+    interface MathMLMActionElemenAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/maction#actiontype
+       * @deprecated
+       */
+      actiontype?: 'statusline' | 'toggle'
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/maction#selection
+       * @deprecated
+       */
+      selection?: string
+    }
+
     interface MathMLMathElementAttributes extends MathMLAttributes {
       display?: 'block' | 'inline'
     }
@@ -2235,6 +2248,11 @@ declare global {
       // MathML
       annotation: MathMLAnnotationElementAttributes
       'annotation-xml': MathMLAnnotationXmlElementAttributes
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/maction
+       * @deprecated
+       */
+      maction: MathMLMActionElemenAttributes
       math: MathMLMathElementAttributes
       merror: MathMLAttributes
       mfrac: MathMLAttributes
@@ -2262,8 +2280,6 @@ declare global {
       munder: MathMLAttributes
       munderover: MathMLAttributes
       semantics: MathMLAttributes
-      /** @deprecated */
-      maction: MathMLAttributes
       /** @deprecated */
       mfenced: MathMLAttributes
     }
