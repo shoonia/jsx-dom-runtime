@@ -2055,6 +2055,32 @@ declare global {
       numalign?: 'center' | 'left' | 'right'
     }
 
+    interface MathMLMiElementAttributes extends MathMLAttributes {
+      /**
+       * The only value allowed in the current specification is normal (case insensitive)
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mi#mathvariant
+       */
+      mathvariant?:
+      | 'normal'
+      | 'bold'
+      | 'italic'
+      | 'bold-italic'
+      | 'double-struck'
+      | 'bold-fraktur'
+      | 'script'
+      | 'bold-script'
+      | 'fraktur'
+      | 'sans-serif'
+      | 'bold-sans-serif'
+      | 'sans-serif-italic'
+      | 'sans-serif-bold-italic'
+      | 'monospace'
+      | 'initial'
+      | 'tailed'
+      | 'looped'
+      | 'stretched'
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2289,7 +2315,7 @@ declare global {
        */
       mfenced: MathMLMFencedElementAttributes
       mfrac: MathMLMFracElementAttributes
-      mi: MathMLAttributes
+      mi: MathMLMiElementAttributes
       mmultiscripts: MathMLAttributes
       mn: MathMLAttributes
       mo: MathMLAttributes
