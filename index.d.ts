@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2023" />
-import { Properties, Property } from 'csstype';
+import { HtmlAttributes, Properties, Property } from 'csstype';
 
 export interface RefObject<T> {
   readonly current: T
@@ -1034,13 +1034,9 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   width?: number | string
 }
 
-export interface MathMLAttributes extends AriaAttributes, DOMAttributes<MathMLElement> {
+export interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
   ns?: typeof mathmlNs
   xmlns?: typeof mathmlNs
-  id?: string
-  class?: string
-  style?: string | CSSProperties
-  tabIndex?: number | `${number}`
   dir?: 'ltr' | 'rtl'
   display?: 'block' | 'inline'
   displaystyle?: 'true' | 'false'
