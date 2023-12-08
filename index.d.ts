@@ -69,9 +69,6 @@ export interface CurrentTarget<T> {
   currentTarget: EventTarget & T
 }
 
-type FormEvent = Event
-type ChangeEvent = Event
-
 type TEventHandler<E extends Event, T> = (this: T, event: E & CurrentTarget<T>) => void
 
 export type EventHandler<T = Element> = TEventHandler<Event, T>
@@ -79,10 +76,8 @@ export type ClipboardEventHandler<T = Element> = TEventHandler<ClipboardEvent, T
 export type CompositionEventHandler<T = Element> = TEventHandler<CompositionEvent, T>
 export type DragEventHandler<T = Element> = TEventHandler<DragEvent, T>
 export type FocusEventHandler<T = Element> = TEventHandler<FocusEvent, T>
-export type FormEventHandler<T = Element> = TEventHandler<FormEvent, T>
 export type InputEventHandler<T = Element> = TEventHandler<InputEvent, T>
 export type SubmitEventHandler<T = Element> = TEventHandler<SubmitEvent, T>
-export type ChangeEventHandler<T = Element> = TEventHandler<ChangeEvent, T>
 export type KeyboardEventHandler<T = Element> = TEventHandler<KeyboardEvent, T>
 export type MouseEventHandler<T = Element> = TEventHandler<MouseEvent, T>
 export type TouchEventHandler<T = Element> = TEventHandler<TouchEvent, T>
@@ -112,9 +107,9 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onbeforeinput?: InputEventHandler<T>
   oninput?: InputEventHandler<T>
   // Form Events
-  onchange?: FormEventHandler<T>
-  onreset?: FormEventHandler<T>
-  oninvalid?: FormEventHandler<T>
+  onchange?: EventHandler<T>
+  onreset?: EventHandler<T>
+  oninvalid?: EventHandler<T>
   // Submit Event
   onsubmit?: SubmitEventHandler<T>
   // Image Events
@@ -1434,7 +1429,7 @@ declare global {
       width?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
-      onchange?: ChangeEventHandler<HTMLInputElement>
+      onchange?: EventHandler<HTMLInputElement>
     }
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
@@ -1704,7 +1699,7 @@ declare global {
       required?: boolean | ''
       size?: number | `${number}`
       value?: number | string
-      onchange?: ChangeEventHandler<HTMLSelectElement>
+      onchange?: EventHandler<HTMLSelectElement>
     }
 
     interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {
@@ -1827,7 +1822,7 @@ declare global {
       rows?: number | `${number}`
       value?: number | string
       wrap?: 'hard' | 'soft' | 'off'
-      onchange?: ChangeEventHandler<HTMLTextAreaElement>
+      onchange?: EventHandler<HTMLTextAreaElement>
     }
 
     interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
