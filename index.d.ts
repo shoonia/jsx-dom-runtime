@@ -2036,6 +2036,12 @@ declare global {
       notation?: string
     }
 
+    interface MathMLMFencedElementAttributes extends MathMLAttributes {
+      close?: string
+      open?: string
+      separators?: string
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2264,6 +2270,11 @@ declare global {
        */
       menclose: MathMLMEncloseElementAttributes
       merror: MathMLAttributes
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfenced
+       * @deprecated
+       */
+      mfenced: MathMLMFencedElementAttributes
       mfrac: MathMLAttributes
       mi: MathMLAttributes
       mmultiscripts: MathMLAttributes
@@ -2289,8 +2300,6 @@ declare global {
       munder: MathMLAttributes
       munderover: MathMLAttributes
       semantics: MathMLAttributes
-      /** @deprecated */
-      mfenced: MathMLAttributes
     }
   }
 }
