@@ -12,3 +12,4 @@
 <msub subscriptshift="1%"> base subscript </msub>;
 <msubsup subscriptshift="1%" superscriptshift="1%" />;
 <msup superscriptshift="1%" />;
+<mtable frame="solid" rowlines="solid" align="axis 3" />;

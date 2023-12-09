@@ -2110,11 +2110,11 @@ declare global {
       symmetric?: 'true' | 'false'
     }
 
-    export interface MathMLMOverElementAttributes extends MathMLAttributes {
+    interface MathMLMOverElementAttributes extends MathMLAttributes {
       accent?: 'true' | 'false'
     }
 
-    export interface MathMLMPaddedElementAttributes extends MathMLAttributes {
+    interface MathMLMPaddedElementAttributes extends MathMLAttributes {
       depth?: string
       height?: string
       lspace?: string
@@ -2173,7 +2173,7 @@ declare global {
       scriptsizemultiplier?: string
     }
 
-    export interface MathMLMSubElementAttributes extends MathMLAttributes {
+    interface MathMLMSubElementAttributes extends MathMLAttributes {
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msub#subscriptshift
        * @deprecated
@@ -2200,6 +2200,59 @@ declare global {
        * @deprecated
        */
       superscriptshift?: string
+    }
+
+    interface MathMLMTableElementAttributes extends MathMLAttributes {
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#align
+       */
+      align?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnalign
+       */
+      columnalign?: 'center' | 'left' | 'right'  | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnlines
+       */
+      columnlines?: 'dashed' | 'none' | 'solid'  | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnspacing
+       */
+      columnspacing?: string
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#frame
+       */
+      frame?: 'dashed' | 'none' | 'solid'
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#framespacing
+       */
+      framespacing?: string
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowalign
+       */
+      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top'  | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowlines
+       */
+      rowlines?: 'dashed' | 'none' | 'solid'  | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowspacing
+       */
+      rowspacing?: string
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#width
+       */
+      width?: string
     }
 
     interface IntrinsicElements {
@@ -2453,7 +2506,7 @@ declare global {
       msub: MathMLMSubElementAttributes
       msubsup: MathMLMSubsupElementAttributes
       msup: MathMLMSupElementAttributes
-      mtable: MathMLAttributes
+      mtable: MathMLMTableElementAttributes
       mtd: MathMLAttributes
       mtext: MathMLAttributes
       mtr: MathMLAttributes
