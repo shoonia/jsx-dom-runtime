@@ -8,3 +8,4 @@
 <mover accent="false" />;
 <mpadded depth="1" width="1" />;
 <ms lquote="„" rquote="'">abc</ms>;
+<mstyle background="black" color="white" fontsize="1.1" fontweight="inherit" />;

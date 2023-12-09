@@ -2135,6 +2135,44 @@ declare global {
       rquote?: string
     }
 
+    interface MathMLMStyleElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#background
+       * @deprecated
+       */
+      background?: Property.BackgroundColor
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#color
+       * @deprecated
+       */
+      color?: Property.Color
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#fontsize
+       * @deprecated
+       */
+      fontsize?: Property.FontSize
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#fontstyle
+       * @deprecated
+       */
+      fontstyle?: Property.FontStyle
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#fontweight
+       * @deprecated
+       */
+      fontweight?: Property.FontWeight
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#scriptminsize
+       * @deprecated
+       */
+      scriptminsize?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#scriptsizemultiplier
+       * @deprecated
+       */
+      scriptsizemultiplier?: string
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2382,7 +2420,7 @@ declare global {
       ms: MathMLMSElementAttributes
       mspace: MathMLAttributes
       msqrt: MathMLAttributes
-      mstyle: MathMLAttributes
+      mstyle: MathMLMStyleElementAttributes
       msub: MathMLAttributes
       msubsup: MathMLAttributes
       msup: MathMLAttributes
