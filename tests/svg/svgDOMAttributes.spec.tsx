@@ -19,6 +19,7 @@ describe('svgDOMAttributes', () => {
 
   it('should NOT transform attributes in MathML', () => {
     expect(
+      // @ts-expect-error
       <math strokeWidth="2" strokeLinejoin="round"></math>
     ).toHaveOuterHTML(
       '<math strokeWidth="2" strokeLinejoin="round"></math>'

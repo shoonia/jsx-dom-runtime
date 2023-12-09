@@ -69,28 +69,24 @@ export interface CurrentTarget<T> {
   currentTarget: EventTarget & T
 }
 
-type FormEvent = Event
-type ChangeEvent = Event
-
 type EventHandler<E extends Event, T> = (this: T, event: E & CurrentTarget<T>) => void
 
-type TEventHandler<T = Element> = EventHandler<Event, T>
-
-type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent, T>
-type CompositionEventHandler<T = Element> = EventHandler<CompositionEvent, T>
-type DragEventHandler<T = Element> = EventHandler<DragEvent, T>
-type FocusEventHandler<T = Element> = EventHandler<FocusEvent, T>
-type FormEventHandler<T = Element> = EventHandler<FormEvent, T>
-type ChangeEventHandler<T = Element> = EventHandler<ChangeEvent, T>
-type KeyboardEventHandler<T = Element> = EventHandler<KeyboardEvent, T>
-type MouseEventHandler<T = Element> = EventHandler<MouseEvent, T>
-type TouchEventHandler<T = Element> = EventHandler<TouchEvent, T>
-type PointerEventHandler<T = Element> = EventHandler<PointerEvent, T>
-type UIEventHandler<T = Element> = EventHandler<UIEvent, T>
-type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
-type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
-type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
-type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
+export type GenericEventHandler<T = Element> = EventHandler<Event, T>
+export type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent, T>
+export type CompositionEventHandler<T = Element> = EventHandler<CompositionEvent, T>
+export type DragEventHandler<T = Element> = EventHandler<DragEvent, T>
+export type FocusEventHandler<T = Element> = EventHandler<FocusEvent, T>
+export type InputEventHandler<T = Element> = EventHandler<InputEvent, T>
+export type SubmitEventHandler<T = Element> = EventHandler<SubmitEvent, T>
+export type KeyboardEventHandler<T = Element> = EventHandler<KeyboardEvent, T>
+export type MouseEventHandler<T = Element> = EventHandler<MouseEvent, T>
+export type TouchEventHandler<T = Element> = EventHandler<TouchEvent, T>
+export type PointerEventHandler<T = Element> = EventHandler<PointerEvent, T>
+export type UIEventHandler<T = Element> = EventHandler<UIEvent, T>
+export type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
+export type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
+export type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
+export type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
 
 export interface DOMAttributes<T> extends JSX.Attributes {
   ns?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
@@ -107,43 +103,45 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   // Focus Events
   onfocus?: FocusEventHandler<T>
   onblur?: FocusEventHandler<T>
+  // Input Events
+  onbeforeinput?: InputEventHandler<T>
+  oninput?: InputEventHandler<T>
   // Form Events
-  onchange?: FormEventHandler<T>
-  onbeforeinput?: FormEventHandler<T>
-  oninput?: FormEventHandler<T>
-  onreset?: FormEventHandler<T>
-  onsubmit?: FormEventHandler<T>
-  oninvalid?: FormEventHandler<T>
+  onchange?: GenericEventHandler<T>
+  onreset?: GenericEventHandler<T>
+  oninvalid?: GenericEventHandler<T>
+  // Submit Event
+  onsubmit?: SubmitEventHandler<T>
   // Image Events
-  onload?: TEventHandler<T>
-  onerror?: TEventHandler<T> // also a Media Event
+  onload?: GenericEventHandler<T>
+  onerror?: GenericEventHandler<T> // also a Media Event
   // Keyboard Events
   onkeydown?: KeyboardEventHandler<T>
   onkeypress?: KeyboardEventHandler<T>
   onkeyup?: KeyboardEventHandler<T>
   // Media Events
-  onabort?: TEventHandler<T>
-  oncanplay?: TEventHandler<T>
-  oncanplaythrough?: TEventHandler<T>
-  ondurationchange?: TEventHandler<T>
-  onemptied?: TEventHandler<T>
-  onencrypted?: TEventHandler<T>
-  onended?: TEventHandler<T>
-  onloadeddata?: TEventHandler<T>
-  onloadedmetadata?: TEventHandler<T>
-  onloadstart?: TEventHandler<T>
-  onpause?: TEventHandler<T>
-  onplay?: TEventHandler<T>
-  onplaying?: TEventHandler<T>
-  onprogress?: TEventHandler<T>
-  onratechange?: TEventHandler<T>
-  onseeked?: TEventHandler<T>
-  onseeking?: TEventHandler<T>
-  onstalled?: TEventHandler<T>
-  onsuspend?: TEventHandler<T>
-  ontimeupdate?: TEventHandler<T>
-  onvolumechange?: TEventHandler<T>
-  onwaiting?: TEventHandler<T>
+  onabort?: GenericEventHandler<T>
+  oncanplay?: GenericEventHandler<T>
+  oncanplaythrough?: GenericEventHandler<T>
+  ondurationchange?: GenericEventHandler<T>
+  onemptied?: GenericEventHandler<T>
+  onencrypted?: GenericEventHandler<T>
+  onended?: GenericEventHandler<T>
+  onloadeddata?: GenericEventHandler<T>
+  onloadedmetadata?: GenericEventHandler<T>
+  onloadstart?: GenericEventHandler<T>
+  onpause?: GenericEventHandler<T>
+  onplay?: GenericEventHandler<T>
+  onplaying?: GenericEventHandler<T>
+  onprogress?: GenericEventHandler<T>
+  onratechange?: GenericEventHandler<T>
+  onseeked?: GenericEventHandler<T>
+  onseeking?: GenericEventHandler<T>
+  onstalled?: GenericEventHandler<T>
+  onsuspend?: GenericEventHandler<T>
+  ontimeupdate?: GenericEventHandler<T>
+  onvolumechange?: GenericEventHandler<T>
+  onwaiting?: GenericEventHandler<T>
   // Mouse Events
   onauxclick?: MouseEventHandler<T>
   onclick?: MouseEventHandler<T>
@@ -165,7 +163,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onmouseover?: MouseEventHandler<T>
   onmouseup?: MouseEventHandler<T>
   // Selection Events
-  onselect?: TEventHandler<T>
+  onselect?: GenericEventHandler<T>
   // Touch Events
   ontouchcancel?: TouchEventHandler<T>
   ontouchend?: TouchEventHandler<T>
@@ -1034,43 +1032,33 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
   width?: number | string
 }
 
-export interface MathMLAttributes extends AriaAttributes, DOMAttributes<MathMLElement> {
+export interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
   ns?: typeof mathmlNs
   xmlns?: typeof mathmlNs
-  id?: string
-  class?: string
-  style?: string | CSSProperties
-  tabIndex?: number | `${number}`
   dir?: 'ltr' | 'rtl'
-  display?: 'block' | 'inline'
   displaystyle?: 'true' | 'false'
-  /** @deprecated */
-  mathbackground?: Property.Color
-  /** @deprecated */
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/href
+   * @deprecated This feature is non-standard
+   */
+  href?: string
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathbackground
+   * @deprecated
+   */
+  mathbackground?: Property.BackgroundColor
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathcolor
+   * @deprecated
+   */
   mathcolor?: Property.Color
-  /** @deprecated */
+  /**
+   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathsize
+   * @deprecated
+   */
   mathsize?: number | string
-  mathvariant?:
-  | 'normal'
-  | 'bold'
-  | 'italic'
-  | 'bold-italic'
-  | 'double-struck'
-  | 'bold-fraktur'
-  | 'script'
-  | 'bold-script'
-  | 'fraktur'
-  | 'sans-serif'
-  | 'bold-sans-serif'
-  | 'sans-serif-italic'
-  | 'sans-serif-bold-italic'
-  | 'monospace'
-  | 'initial'
-  | 'tailed'
-  | 'looped'
-  | 'stretched'
+  nonce?: string
   scriptlevel?: number | string
-  [key: string]: any
 }
 
 declare global {
@@ -1215,7 +1203,7 @@ declare global {
 
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
       open?: boolean | ''
-      ontoggle?: TEventHandler<HTMLDetailsElement>
+      ontoggle?: GenericEventHandler<HTMLDetailsElement>
     }
 
     interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
@@ -1225,9 +1213,9 @@ declare global {
 
     interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
       open?: boolean | ''
-      ontoggle?: TEventHandler<HTMLDialogElement>
-      onclose?: TEventHandler<HTMLDialogElement>
-      oncancel?: TEventHandler<HTMLDialogElement>
+      ontoggle?: GenericEventHandler<HTMLDialogElement>
+      onclose?: GenericEventHandler<HTMLDialogElement>
+      oncancel?: GenericEventHandler<HTMLDialogElement>
     }
 
     interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
@@ -1441,7 +1429,7 @@ declare global {
       width?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
-      onchange?: ChangeEventHandler<HTMLInputElement>
+      onchange?: GenericEventHandler<HTMLInputElement>
     }
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
@@ -1711,7 +1699,7 @@ declare global {
       required?: boolean | ''
       size?: number | `${number}`
       value?: number | string
-      onchange?: ChangeEventHandler<HTMLSelectElement>
+      onchange?: GenericEventHandler<HTMLSelectElement>
     }
 
     interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {
@@ -1834,7 +1822,7 @@ declare global {
       rows?: number | `${number}`
       value?: number | string
       wrap?: 'hard' | 'soft' | 'off'
-      onchange?: ChangeEventHandler<HTMLTextAreaElement>
+      onchange?: GenericEventHandler<HTMLTextAreaElement>
     }
 
     interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
@@ -2005,6 +1993,304 @@ declare global {
     }
 
     type HTMLWebViewElement = HTMLElement
+
+    interface MathMLAnnotationElementAttributes extends MathMLAttributes {
+      encoding?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics#src
+       * @deprecated
+       */
+      src?: string
+    }
+
+    interface MathMLAnnotationXmlElementAttributes extends MathMLAttributes {
+      encoding?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics#src
+       * @deprecated
+       */
+      src?: string
+    }
+
+    interface MathMLMActionElemenAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/maction#actiontype
+       * @deprecated
+       */
+      actiontype?: 'statusline' | 'toggle'
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/maction#selection
+       * @deprecated
+       */
+      selection?: string
+    }
+
+    interface MathMLMathElementAttributes extends MathMLAttributes {
+      display?: 'block' | 'inline'
+    }
+
+    interface MathMLMEncloseElementAttributes extends MathMLAttributes {
+      notation?: string
+    }
+
+    interface MathMLMFencedElementAttributes extends MathMLAttributes {
+      close?: string
+      open?: string
+      separators?: string
+    }
+
+    interface MathMLMFracElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfrac#denomalign
+       * @deprecated
+       */
+      denomalign?: 'center' | 'left' | 'right'
+      linethickness?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfrac#numalign
+       * @deprecated
+       */
+      numalign?: 'center' | 'left' | 'right'
+    }
+
+    interface MathMLMiElementAttributes extends MathMLAttributes {
+      /**
+       * The only value allowed in the current specification is normal (case insensitive)
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mi#mathvariant
+       */
+      mathvariant?:
+      | 'normal'
+      | 'bold'
+      | 'italic'
+      | 'bold-italic'
+      | 'double-struck'
+      | 'bold-fraktur'
+      | 'script'
+      | 'bold-script'
+      | 'fraktur'
+      | 'sans-serif'
+      | 'bold-sans-serif'
+      | 'sans-serif-italic'
+      | 'sans-serif-bold-italic'
+      | 'monospace'
+      | 'initial'
+      | 'tailed'
+      | 'looped'
+      | 'stretched'
+    }
+
+    interface MathMLMmultiScriptsElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mmultiscripts#subscriptshift
+       * @deprecated
+       */
+      subscriptshift?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mmultiscripts#superscriptshift
+       * @deprecated
+       */
+      superscriptshift?: string
+    }
+
+    interface MathMLMOElementAttributes extends MathMLAttributes {
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mo#accent
+       */
+      accent?: 'true' | 'false'
+      fence?: 'true' | 'false'
+      largeop?: 'true' | 'false'
+      lspace?: string
+      maxsize?: string
+      minsize?: string
+      movablelimits?: 'true' | 'false'
+      rspace?: string
+      separator?: 'true' | 'false'
+      stretchy?: 'true' | 'false'
+      symmetric?: 'true' | 'false'
+    }
+
+    interface MathMLMOverElementAttributes extends MathMLAttributes {
+      accent?: 'true' | 'false'
+    }
+
+    interface MathMLMPaddedElementAttributes extends MathMLAttributes {
+      depth?: string
+      height?: string
+      lspace?: string
+      voffset?: string
+      width?: string
+    }
+
+    interface MathMLMSElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/ms#browser_compatibility
+       * @deprecated
+       */
+      lquote?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/ms#browser_compatibility
+       * @deprecated
+       */
+      rquote?: string
+    }
+
+    interface MathMLMStyleElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#background
+       * @deprecated
+       */
+      background?: Property.BackgroundColor
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#color
+       * @deprecated
+       */
+      color?: Property.Color
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#fontsize
+       * @deprecated
+       */
+      fontsize?: Property.FontSize
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#fontstyle
+       * @deprecated
+       */
+      fontstyle?: Property.FontStyle
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#fontweight
+       * @deprecated
+       */
+      fontweight?: Property.FontWeight
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#scriptminsize
+       * @deprecated
+       */
+      scriptminsize?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#scriptsizemultiplier
+       * @deprecated
+       */
+      scriptsizemultiplier?: string
+    }
+
+    interface MathMLMSubElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msub#subscriptshift
+       * @deprecated
+       */
+      subscriptshift?: string
+    }
+
+    interface MathMLMSubsupElementAttributes extends MathMLAttributes {
+      /**
+       *  @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msubsup#subscriptshift
+       *  @deprecated
+       */
+      subscriptshift?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msubsup#superscriptshift
+       * @deprecated
+       */
+      superscriptshift?: string
+    }
+
+    interface MathMLMSupElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msup#superscriptshift
+       * @deprecated
+       */
+      superscriptshift?: string
+    }
+
+    interface MathMLMTableElementAttributes extends MathMLAttributes {
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#align
+       */
+      align?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnalign
+       */
+      columnalign?: 'center' | 'left' | 'right' | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnlines
+       */
+      columnlines?: 'dashed' | 'none' | 'solid' | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnspacing
+       */
+      columnspacing?: string
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#frame
+       */
+      frame?: 'dashed' | 'none' | 'solid'
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#framespacing
+       */
+      framespacing?: string
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowalign
+       */
+      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowlines
+       */
+      rowlines?: 'dashed' | 'none' | 'solid' | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowspacing
+       */
+      rowspacing?: string
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#width
+       */
+      width?: string
+    }
+
+    interface MathMLMTdElementAttributes extends MathMLAttributes {
+      columnspan?: number | `${number}`
+      rowspan?: number | `${number}`
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtd#columnalign
+       */
+      columnalign?: 'center' | 'left' | 'right' | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtd#rowalign
+       */
+      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
+    }
+
+    interface MathMLMTrElementAttributes extends MathMLAttributes {
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtr#columnalign
+       */
+      columnalign?: 'center' | 'left' | 'right' | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtr#rowalign
+       */
+      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
+    }
+
+    interface MathMLMUnderElementAttributes extends MathMLAttributes {
+      accentunder?: 'true' | 'false'
+    }
+
+    interface MathMLMUnderoverElementAttributes extends MathMLAttributes {
+      accent?: 'true' | 'false'
+      accentunder?: 'true' | 'false'
+    }
 
     interface IntrinsicElements {
       // HTML
@@ -2220,39 +2506,50 @@ declare global {
       view: SVGAttributes<SVGViewElement>
 
       // MathML
-      annotation: MathMLAttributes
-      'annotation-xml': MathMLAttributes
-      math: MathMLAttributes
+      annotation: MathMLAnnotationElementAttributes
+      'annotation-xml': MathMLAnnotationXmlElementAttributes
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/maction
+       * @deprecated
+       */
+      maction: MathMLMActionElemenAttributes
+      math: MathMLMathElementAttributes
+      /**
+       * This feature is non-standard
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/menclose
+       */
+      menclose: MathMLMEncloseElementAttributes
       merror: MathMLAttributes
-      mfrac: MathMLAttributes
-      mi: MathMLAttributes
-      mmultiscripts: MathMLAttributes
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfenced
+       * @deprecated
+       */
+      mfenced: MathMLMFencedElementAttributes
+      mfrac: MathMLMFracElementAttributes
+      mi: MathMLMiElementAttributes
+      mmultiscripts: MathMLMmultiScriptsElementAttributes
       mn: MathMLAttributes
-      mo: MathMLAttributes
-      mover: MathMLAttributes
-      mpadded: MathMLAttributes
+      mo: MathMLMOElementAttributes
+      mover: MathMLMOverElementAttributes
+      mpadded: MathMLMPaddedElementAttributes
       mphantom: MathMLAttributes
       mprescripts: MathMLAttributes
       mroot: MathMLAttributes
       mrow: MathMLAttributes
-      ms: MathMLAttributes
+      ms: MathMLMSElementAttributes
       mspace: MathMLAttributes
       msqrt: MathMLAttributes
-      mstyle: MathMLAttributes
-      msub: MathMLAttributes
-      msubsup: MathMLAttributes
-      msup: MathMLAttributes
-      mtable: MathMLAttributes
-      mtd: MathMLAttributes
+      mstyle: MathMLMStyleElementAttributes
+      msub: MathMLMSubElementAttributes
+      msubsup: MathMLMSubsupElementAttributes
+      msup: MathMLMSupElementAttributes
+      mtable: MathMLMTableElementAttributes
+      mtd: MathMLMTdElementAttributes
       mtext: MathMLAttributes
-      mtr: MathMLAttributes
-      munder: MathMLAttributes
-      munderover: MathMLAttributes
+      mtr: MathMLMTrElementAttributes
+      munder: MathMLMUnderElementAttributes
+      munderover: MathMLMUnderoverElementAttributes
       semantics: MathMLAttributes
-      /** @deprecated */
-      maction: MathMLAttributes
-      /** @deprecated */
-      mfenced: MathMLAttributes
     }
   }
 }
