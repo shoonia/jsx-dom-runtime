@@ -2283,6 +2283,15 @@ declare global {
       rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
     }
 
+    interface MathMLMUnderElementAttributes extends MathMLAttributes {
+      accentunder?: 'true' | 'false'
+    }
+
+    interface MathMLMUnderoverElementAttributes extends MathMLAttributes {
+      accent?: 'true' | 'false'
+      accentunder?: 'true' | 'false'
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2538,8 +2547,8 @@ declare global {
       mtd: MathMLMTdElementAttributes
       mtext: MathMLAttributes
       mtr: MathMLMTrElementAttributes
-      munder: MathMLAttributes
-      munderover: MathMLAttributes
+      munder: MathMLMUnderElementAttributes
+      munderover: MathMLMUnderoverElementAttributes
       semantics: MathMLAttributes
     }
   }
