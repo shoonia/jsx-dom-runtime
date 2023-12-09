@@ -2092,6 +2092,24 @@ declare global {
       superscriptshift?: string
     }
 
+    interface MathMLMOElementAttributes extends MathMLAttributes {
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mo#accent
+       */
+      accent?: 'true' | 'false'
+      fence?: 'true' | 'false'
+      largeop?: 'true' | 'false'
+      lspace?: string
+      maxsize?: string
+      minsize?: string
+      movablelimits?: 'true' | 'false'
+      rspace?: string
+      separator?: 'true' | 'false'
+      stretchy?: 'true' | 'false'
+      symmetric?: 'true' | 'false'
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2329,7 +2347,7 @@ declare global {
       mi: MathMLMiElementAttributes
       mmultiscripts: MathMLMmultiScriptsElementAttributes
       mn: MathMLAttributes
-      mo: MathMLAttributes
+      mo: MathMLMOElementAttributes
       mover: MathMLAttributes
       mpadded: MathMLAttributes
       mphantom: MathMLAttributes
