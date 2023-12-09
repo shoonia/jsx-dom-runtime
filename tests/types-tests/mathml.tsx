@@ -13,3 +13,4 @@
 <msubsup subscriptshift="1%" superscriptshift="1%" />;
 <msup superscriptshift="1%" />;
 <mtable frame="solid" rowlines="solid" align="axis 3" />;
+<mtd columnspan={1} rowspan="2" />;

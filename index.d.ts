@@ -2255,6 +2255,21 @@ declare global {
       width?: string
     }
 
+    interface MathMLMTdElementAttributes extends MathMLAttributes {
+      columnspan?: number | `${number}`
+      rowspan?: number | `${number}`
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtd#columnalign
+       */
+      columnalign?: 'center' | 'left' | 'right' | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtd#rowalign
+       */
+      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2507,7 +2522,7 @@ declare global {
       msubsup: MathMLMSubsupElementAttributes
       msup: MathMLMSupElementAttributes
       mtable: MathMLMTableElementAttributes
-      mtd: MathMLAttributes
+      mtd: MathMLMTdElementAttributes
       mtext: MathMLAttributes
       mtr: MathMLAttributes
       munder: MathMLAttributes
