@@ -2173,6 +2173,14 @@ declare global {
       scriptsizemultiplier?: string
     }
 
+    export interface MathMLMSubElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msub#subscriptshift
+       * @deprecated
+       */
+      subscriptshift?: string
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2421,7 +2429,7 @@ declare global {
       mspace: MathMLAttributes
       msqrt: MathMLAttributes
       mstyle: MathMLMStyleElementAttributes
-      msub: MathMLAttributes
+      msub: MathMLMSubElementAttributes
       msubsup: MathMLAttributes
       msup: MathMLAttributes
       mtable: MathMLAttributes
