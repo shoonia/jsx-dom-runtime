@@ -2110,6 +2110,10 @@ declare global {
       symmetric?: 'true' | 'false'
     }
 
+    export interface MathMLMOverElementAttributes extends MathMLAttributes {
+      accent?: 'true' | 'false'
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2348,7 +2352,7 @@ declare global {
       mmultiscripts: MathMLMmultiScriptsElementAttributes
       mn: MathMLAttributes
       mo: MathMLMOElementAttributes
-      mover: MathMLAttributes
+      mover: MathMLMOverElementAttributes
       mpadded: MathMLAttributes
       mphantom: MathMLAttributes
       mprescripts: MathMLAttributes
