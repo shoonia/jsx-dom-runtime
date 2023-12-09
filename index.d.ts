@@ -2114,6 +2114,14 @@ declare global {
       accent?: 'true' | 'false'
     }
 
+    export interface MathMLMPaddedElementAttributes extends MathMLAttributes {
+      depth?: string
+      height?: string
+      lspace?: string
+      voffset?: string
+      width?: string
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2353,7 +2361,7 @@ declare global {
       mn: MathMLAttributes
       mo: MathMLMOElementAttributes
       mover: MathMLMOverElementAttributes
-      mpadded: MathMLAttributes
+      mpadded: MathMLMPaddedElementAttributes
       mphantom: MathMLAttributes
       mprescripts: MathMLAttributes
       mroot: MathMLAttributes
