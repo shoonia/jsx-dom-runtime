@@ -9,4 +9,5 @@
 <mpadded depth="1" width="1" />;
 <ms lquote="„" rquote="'">abc</ms>;
 <mstyle background="black" color="white" fontsize="1.1" fontweight="inherit" />;
-<msub subscriptshift="1"> base subscript </msub>;
+<msub subscriptshift="1%"> base subscript </msub>;
+<msubsup subscriptshift="1%" superscriptshift="1%" />;

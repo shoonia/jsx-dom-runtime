@@ -1046,7 +1046,7 @@ export interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
    * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathbackground
    * @deprecated
    */
-  mathbackground?: Property.Color
+  mathbackground?: Property.BackgroundColor
   /**
    * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathcolor
    * @deprecated
@@ -2181,6 +2181,19 @@ declare global {
       subscriptshift?: string
     }
 
+    interface MathMLMSubsupElementAttributes extends MathMLAttributes {
+      /**
+       *  @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msubsup#subscriptshift
+       *  @deprecated
+       */
+      subscriptshift?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msubsup#superscriptshift
+       * @deprecated
+       */
+      superscriptshift?: string
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2430,7 +2443,7 @@ declare global {
       msqrt: MathMLAttributes
       mstyle: MathMLMStyleElementAttributes
       msub: MathMLMSubElementAttributes
-      msubsup: MathMLAttributes
+      msubsup: MathMLMSubsupElementAttributes
       msup: MathMLAttributes
       mtable: MathMLAttributes
       mtd: MathMLAttributes
