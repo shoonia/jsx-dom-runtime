@@ -2122,6 +2122,19 @@ declare global {
       width?: string
     }
 
+    interface MathMLMSElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/ms#browser_compatibility
+       * @deprecated
+       */
+      lquote?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/ms#browser_compatibility
+       * @deprecated
+       */
+      rquote?: string
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2366,7 +2379,7 @@ declare global {
       mprescripts: MathMLAttributes
       mroot: MathMLAttributes
       mrow: MathMLAttributes
-      ms: MathMLAttributes
+      ms: MathMLMSElementAttributes
       mspace: MathMLAttributes
       msqrt: MathMLAttributes
       mstyle: MathMLAttributes

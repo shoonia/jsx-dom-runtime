@@ -7,3 +7,4 @@
 <mo symmetric="true" largeop="false" />;
 <mover accent="false" />;
 <mpadded depth="1" width="1" />;
+<ms lquote="„" rquote="'">abc</ms>;
