@@ -11,3 +11,4 @@
 <mstyle background="black" color="white" fontsize="1.1" fontweight="inherit" />;
 <msub subscriptshift="1%"> base subscript </msub>;
 <msubsup subscriptshift="1%" superscriptshift="1%" />;
+<msup superscriptshift="1%" />;

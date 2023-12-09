@@ -2194,6 +2194,14 @@ declare global {
       superscriptshift?: string
     }
 
+    interface MathMLMSupElementAttributes extends MathMLAttributes {
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msup#superscriptshift
+       * @deprecated
+       */
+      superscriptshift?: string
+    }
+
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
@@ -2444,7 +2452,7 @@ declare global {
       mstyle: MathMLMStyleElementAttributes
       msub: MathMLMSubElementAttributes
       msubsup: MathMLMSubsupElementAttributes
-      msup: MathMLAttributes
+      msup: MathMLMSupElementAttributes
       mtable: MathMLAttributes
       mtd: MathMLAttributes
       mtext: MathMLAttributes
