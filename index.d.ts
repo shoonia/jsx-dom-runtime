@@ -2212,12 +2212,12 @@ declare global {
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnalign
        */
-      columnalign?: 'center' | 'left' | 'right'  | (string & {})
+      columnalign?: 'center' | 'left' | 'right' | (string & {})
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnlines
        */
-      columnlines?: 'dashed' | 'none' | 'solid'  | (string & {})
+      columnlines?: 'dashed' | 'none' | 'solid' | (string & {})
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnspacing
@@ -2237,12 +2237,12 @@ declare global {
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowalign
        */
-      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top'  | (string & {})
+      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowlines
        */
-      rowlines?: 'dashed' | 'none' | 'solid'  | (string & {})
+      rowlines?: 'dashed' | 'none' | 'solid' | (string & {})
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowspacing
@@ -2266,6 +2266,19 @@ declare global {
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtd#rowalign
+       */
+      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
+    }
+
+    interface MathMLMTrElementAttributes extends MathMLAttributes {
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtr#columnalign
+       */
+      columnalign?: 'center' | 'left' | 'right' | (string & {})
+      /**
+       * Non-standard attribute
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtr#rowalign
        */
       rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
     }
@@ -2524,7 +2537,7 @@ declare global {
       mtable: MathMLMTableElementAttributes
       mtd: MathMLMTdElementAttributes
       mtext: MathMLAttributes
-      mtr: MathMLAttributes
+      mtr: MathMLMTrElementAttributes
       munder: MathMLAttributes
       munderover: MathMLAttributes
       semantics: MathMLAttributes
