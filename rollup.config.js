@@ -19,7 +19,7 @@ await writeFile(
   'export * from "../index"',
 );
 
-const extensions = ['.js', '.ts'];
+const extensions = ['.ts'];
 
 const plugins = [
   babel({
