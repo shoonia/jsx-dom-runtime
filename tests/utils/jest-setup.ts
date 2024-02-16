@@ -12,10 +12,10 @@ expect.extend({
     const pass = val === html;
 
     return {
+      pass,
       message: () => pass
         ? 'expected value not to be equal outerHTML'
         : 'expected value to be equal outerHTML\n\n' + diffStringsUnified(val, html),
-      pass,
     };
   },
 
@@ -24,10 +24,10 @@ expect.extend({
     const pass = val === html;
 
     return {
+      pass,
       message: () => pass
         ? 'expected value not to be equal innerHTML'
         : 'expected value to be equal innerHTML\n\n' + diffStringsUnified(val, html),
-      pass,
     };
   },
 
@@ -36,10 +36,10 @@ expect.extend({
     const pass = val === css;
 
     return {
-      message: () => pass
-        ? `expected "${val}" not to be equal style.cssText "${css}"`
-        : 'expected "${val}" to be equal style.cssText "${css}"\n\n' + diffStringsUnified(val, css),
       pass,
+      message: () => pass
+        ? 'expected value not to be equal style.cssText'
+        : 'expected value to be equal style.cssText\n\n' + diffStringsUnified(val, css),
     };
   },
 });
