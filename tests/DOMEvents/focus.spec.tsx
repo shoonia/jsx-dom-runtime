@@ -22,8 +22,8 @@ describe('Focus Events', () => {
 
   it('should add `focusin` handler', () => {
     const spy = jest.fn();
-    const input = <input ref={(i) => {
-      i.addEventListener('focusin', spy);
+    const input = <input ref={(node) => {
+      node.addEventListener('focusin', spy);
     }} />;
 
     fireEvent.focusIn(input);
@@ -33,8 +33,8 @@ describe('Focus Events', () => {
 
   it('should add `focusout` handler', () => {
     const spy = jest.fn();
-    const input = <input ref={(i) => {
-      i.addEventListener('focusout', spy);
+    const input = <input ref={(node) => {
+      node.addEventListener('focusout', spy);
     }} />;
 
     fireEvent.focusOut(input);

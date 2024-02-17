@@ -1,3 +1,5 @@
+import { t } from '../utils';
+
 import { Template } from '../..';
 
 describe('<Template/>', () => {
@@ -33,5 +35,21 @@ describe('<Template/>', () => {
     );
 
     expect(div.firstChild).toBeInstanceOf(HTMLParagraphElement);
+  });
+
+  it('should work with children prop', () => {
+    const div = (
+      <div>
+        <Template children="<span>text</span>" />
+      </div>
+    );
+
+    expect(div).toHaveInnerHTML('<span>text</span>');
+  });
+
+  it('shoul correct tranfrom code', async () => {
+    const result = await t`<Template>{'<p>Hello</p>'}</Template>`;
+
+    expect(result).toBe('Template({children:"<p>Hello</p>"});');
   });
 });

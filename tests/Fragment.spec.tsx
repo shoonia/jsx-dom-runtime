@@ -1,5 +1,9 @@
 import { createRequire } from 'node:module';
 
+import { t } from './utils';
+
+const start = 'import{Fragment as _Fragment,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
+
 describe('Fragment', () => {
   it('should support Fragment', () => {
     expect(
@@ -101,4 +105,30 @@ describe('Fragment', () => {
       </div>
     ).toHaveInnerHTML('<p>a</p><p>b</p>c');
   });
+
+  it('should correct transform code #1', async () => {
+    const result = await t`<></>`;
+
+    expect(result).toBe('import{Fragment as _Fragment}from"jsx-dom-runtime";/*#__PURE__*/_Fragment();');
+  });
+
+  it('should correct transform code #2', async () => {
+    const result = await t`
+      <>
+        <p>1</p>
+      </>`;
+
+    expect(result).toBe(start + '_Fragment(/*#__PURE__*/_jsx("p",{children:"1"}));');
+  });
+
+  it('should correct transform code #3', async () => {
+    const result = await t`
+      <>
+        <p>one</p>
+        <p>two</p>
+      </>`;
+
+    expect(result).toBe(start + '_Fragment([/*#__PURE__*/_jsx("p",{children:"one"}),/*#__PURE__*/_jsx("p",{children:"two"})]);');
+  });
+
 });
