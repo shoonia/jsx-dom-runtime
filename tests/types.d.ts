@@ -4,6 +4,7 @@ declare global {
       toHaveOuterHTML(html: string): R;
       toHaveInnerHTML(html: string): R;
       toHaveCssText(css: string): R;
+      toBeTransform(source: string): Promise<R>;
     }
   }
 

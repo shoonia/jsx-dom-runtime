@@ -1,5 +1,3 @@
-import { t } from '../utils';
-
 import { Template } from '../..';
 
 describe('<Template/>', () => {
@@ -48,8 +46,6 @@ describe('<Template/>', () => {
   });
 
   it('shoul correct tranfrom code', async () => {
-    const result = await t`<Template>{'<p>Hello</p>'}</Template>`;
-
-    expect(result).toBe('Template({children:"<p>Hello</p>"});');
+    await expect('<Template>{"<p>Hello</p>"}</Template>').toBeTransform('Template({children:"<p>Hello</p>"});');
   });
 });

@@ -1,5 +1,3 @@
-import { t } from '../utils';
-
 describe('<svg/> support', () => {
   it('should render SVG', () => {
     document.body.append(
@@ -29,12 +27,11 @@ describe('<svg/> support', () => {
   });
 
   it('should transform SVG', async () => {
-    const result = await t`
+    await expect(`
     <svg width="200" height="200">
       <image href="image.png" height="200" width={200} />
-    </svg>`;
-
-    expect(result).toBe(
+    </svg>`
+    ).toBeTransform(
       'import{svgNs as _svgNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("svg",{width:"200",height:"200",children:/*#__PURE__*/_jsx("image",{href:"image.png",height:"200",width:200,ns:_svgNs}),ns:_svgNs});',
     );
   });

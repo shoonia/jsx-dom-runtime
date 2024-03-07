@@ -1,6 +1,8 @@
 import '@testing-library/jest-dom';
 import { diffStringsUnified } from 'jest-diff';
 
+import { t } from './transform';
+
 beforeEach(() => {
   document.head.innerHTML = '';
   document.body.innerHTML = '';
@@ -42,4 +44,16 @@ expect.extend({
         : 'expected value to be equal style.cssText\n\n' + diffStringsUnified(val, css),
     };
   },
+
+  async toBeTransform(source: string, code: string) {
+    const reslut = await t(source);
+    const pass = code === reslut;
+
+    return {
+      pass,
+      message: () => pass
+        ? 'expected code not to be equal reslut'
+        : 'expected code to be equal reslut\n\n' + diffStringsUnified(code, reslut),
+    };
+  }
 });
