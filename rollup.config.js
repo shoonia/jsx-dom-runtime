@@ -25,6 +25,35 @@ const plugins = [
   babel({
     extensions,
     babelHelpers: 'bundled',
+    plugins: [
+      () => {
+        const equalities = new Set(['==', '===', '!=', '!==', '>', '>=', '<', '<=']);
+        const types = new Set(['StringLiteral', 'NumericLiteral', 'NullLiteral', 'BooleanLiteral']);
+
+        return {
+          name: 'lhs-constants',
+          visitor: {
+            BinaryExpression(path) {
+              const node = path.node;
+
+              if (
+                equalities.has(node.operator) &&
+                types.has(node.right.type)
+              ) {
+                if (node.operator.startsWith('>')) {
+                  node.operator = node.operator.replace('>', '<');
+                }
+                else if (node.operator.startsWith('<')) {
+                  node.operator = node.operator.replace('<', '>');
+                }
+
+                [node.left, node.right] = [node.right, node.left];
+              }
+            }
+          }
+        };
+      }
+    ],
     presets: [
       '@babel/preset-typescript',
     ],
