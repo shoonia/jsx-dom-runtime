@@ -8,12 +8,12 @@ export const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLit
 };
 
 export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
-  const properties = node.openingElement.attributes.map((attr) => {
+  const properties = node.openingElement.attributes.map((attr): t.SpreadElement | t.ObjectProperty => {
     if (attr.type === 'JSXSpreadAttribute') {
       return {
         type: 'SpreadElement',
         argument: attr.argument,
-      } satisfies t.SpreadElement;
+      };
     }
 
     const value: t.Expression = attr.value === null
