@@ -35,15 +35,11 @@ const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
 };
 
 export const jsxTransform = (): PluginObj => {
-  let nsMap: WeakMap<t.Node, TImportName>;
+  let nsMap: WeakMap<NodePath, TImportName>;
   let importSpec: ImportSpec;
 
   const findNs = (path: NodePath): TImportName | undefined => {
-    const parentPath = path.findParent((p) => p.node.type === 'JSXElement');
-
-    if (parentPath !== null) {
-      return nsMap.get(parentPath.node);
-    }
+    return nsMap.get(path) ?? nsMap.get(path.findParent((p) => p.node.type === 'JSXElement'));
   };
 
   return {
@@ -80,9 +76,9 @@ export const jsxTransform = (): PluginObj => {
               arguments: [buildProps(path.node)],
             });
           } else if (svgTags.has(name.name)) {
-            nsMap.set(path.node, 'svgNs');
+            nsMap.set(path, 'svgNs');
           } else if (mathmlTags.has(name.name)) {
-            nsMap.set(path.node, 'mathmlNs');
+            nsMap.set(path, 'mathmlNs');
           }
         },
 
@@ -95,7 +91,7 @@ export const jsxTransform = (): PluginObj => {
           });
 
           if (noNs) {
-            const importName = nsMap.get(path.node) ?? findNs(path);
+            const importName = findNs(path);
 
             if (importName !== undefined) {
               props.properties.push(
