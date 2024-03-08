@@ -1,9 +1,8 @@
 import type { ConfigAPI } from '@babel/core';
-import { declare } from '@babel/helper-plugin-utils';
 
 import { jsxTransform } from './jsxTransform';
 
-const preset = declare((api: ConfigAPI) => {
+const preset = (api: ConfigAPI) => {
   api.assertVersion(7);
 
   return {
@@ -16,6 +15,6 @@ const preset = declare((api: ConfigAPI) => {
       jsxTransform,
     ],
   };
-});
+};
 
 export { preset as default };
