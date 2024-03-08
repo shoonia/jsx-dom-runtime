@@ -1,6 +1,5 @@
 import type { ConfigAPI } from '@babel/core';
 import { declare } from '@babel/helper-plugin-utils';
-import jsxSyntax from '@babel/plugin-syntax-jsx';
 
 import { jsxTransform } from './jsxTransform';
 
@@ -9,7 +8,11 @@ const preset = declare((api: ConfigAPI) => {
 
   return {
     plugins: [
-      jsxSyntax,
+      {
+        manipulateOptions(_, parser) {
+          parser.plugins.push('jsx');
+        },
+      },
       jsxTransform,
     ],
   };

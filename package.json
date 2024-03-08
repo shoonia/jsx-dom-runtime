@@ -31,7 +31,6 @@
   "dependencies": {
     "@babel/helper-plugin-utils": "^7.24.0",
     "@babel/helper-validator-identifier": "^7.22.20",
-    "@babel/plugin-syntax-jsx": "^7.23.3",
     "@babel/types": "^7.24.0",
     "csstype": "^3.1.3"
   },
