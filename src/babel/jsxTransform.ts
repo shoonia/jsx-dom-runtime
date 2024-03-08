@@ -1,4 +1,4 @@
-import type { PluginObj } from '@babel/core';
+import type { PluginObj, NodePath } from '@babel/core';
 import t from '@babel/types';
 
 import { type TImportName, ImportSpec } from './ImportSpec';
@@ -37,6 +37,14 @@ const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
 export const jsxTransform = (): PluginObj => {
   let nsMap: WeakMap<t.Node, TImportName>;
   let importSpec: ImportSpec;
+
+  const findNs = (path: NodePath): TImportName | undefined => {
+    const parentPath = path.findParent((p) => p.node.type === 'JSXElement');
+
+    if (parentPath !== null) {
+      return nsMap.get(parentPath.node);
+    }
+  };
 
   return {
     name: 'jsx-dom-runtime/babel-plugin-transform-jsx',
@@ -87,7 +95,7 @@ export const jsxTransform = (): PluginObj => {
           });
 
           if (noNs) {
-            const importName = nsMap.get(path.node) ?? nsMap.get(path.parent);
+            const importName = nsMap.get(path.node) ?? findNs(path);
 
             if (importName !== undefined) {
               props.properties.push(
