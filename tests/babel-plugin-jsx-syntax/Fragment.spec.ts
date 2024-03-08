@@ -1,80 +1,63 @@
-import { t } from '../utils';
-
-const start = 'import{Fragment as _Fragment}from"jsx-dom-runtime";/*#__PURE__*/';
-
 describe('babel-plugin-jsx-syntax: Frament', () => {
+  const start = 'import{Fragment as _Fragment}from"jsx-dom-runtime";/*#__PURE__*/';
+
   it('should inline FC', async () => {
-    const result = await t('<><App /></>;');
-    expect(result).toBe(start + '_Fragment(App({}));');
+    await expect('<><App /></>;').toBeTransform(start + '_Fragment(App({}));');
   });
 
   it('should inline two FC', async () => {
-    const result = await t('<><App /><App /></>;');
-    expect(result).toBe(start + '_Fragment([App({}),App({})]);');
+    await expect('<><App /><App /></>;').toBeTransform(start + '_Fragment([App({}),App({})]);');
   });
 
   it('should inline with attributes', async () => {
-    const result = await t('<><App key="value" /></>;');
-    expect(result).toBe(start + '_Fragment(App({key:"value"}));');
+    await expect('<><App key="value" /></>;').toBeTransform(start + '_Fragment(App({key:"value"}));');
   });
 
   it('should inline with two attributes', async () => {
-    const result = await t('<><App key="value" name="data" /></>;');
-    expect(result).toBe(start + '_Fragment(App({key:"value",name:"data"}));');
+    await expect('<><App key="value" name="data" /></>;').toBeTransform(start + '_Fragment(App({key:"value",name:"data"}));');
   });
 
   it('should inline with attibute number literal', async () => {
-    const result = await t('<><App index={1} /></>;');
-    expect(result).toBe(start + '_Fragment(App({index:1}));');
+    await expect('<><App index={1} /></>;').toBeTransform(start + '_Fragment(App({index:1}));');
   });
 
   it('should inline with attibute string literal', async () => {
-    const result = await t('<><App index={"1"} /></>;');
-    expect(result).toBe(start + '_Fragment(App({index:"1"}));');
+    await expect('<><App index={"1"} /></>;').toBeTransform(start + '_Fragment(App({index:"1"}));');
   });
 
   it('should inline with attibute boolean (true) literal', async () => {
-    const result = await t('<><App index /></>;');
-    expect(result).toBe(start + '_Fragment(App({index:true}));');
+    await expect('<><App index /></>;').toBeTransform(start + '_Fragment(App({index:true}));');
   });
 
   it('should inline with attibute boolean (false) literal', async () => {
-    const result = await t('<><App index={false} /></>;');
-    expect(result).toBe(start + '_Fragment(App({index:false}));');
+    await expect('<><App index={false} /></>;').toBeTransform(start + '_Fragment(App({index:false}));');
   });
 
   it('should inline with attibute array literal', async () => {
-    const result = await t('<><App list={[]} /></>;');
-    expect(result).toBe(start + '_Fragment(App({list:[]}));');
+    await expect('<><App list={[]} /></>;').toBeTransform(start + '_Fragment(App({list:[]}));');
   });
 
   it('should inline with attibute object literal', async () => {
-    const result = await t('<><App list={{}} /></>;');
-    expect(result).toBe(start + '_Fragment(App({list:{}}));');
+    await expect('<><App list={{}} /></>;').toBeTransform(start + '_Fragment(App({list:{}}));');
   });
 
   it('should inline with attibute regexp literal', async () => {
-    const result = await t('<><App param={/a-z/} /></>;');
-    expect(result).toBe(start + '_Fragment(App({param:/a-z/}));');
+    await expect('<><App param={/a-z/} /></>;').toBeTransform(start + '_Fragment(App({param:/a-z/}));');
   });
 
   it('should inline with attibute null literal', async () => {
-    const result = await t('<><App param={null} /></>;');
-    expect(result).toBe(start + '_Fragment(App({param:null}));');
+    await expect('<><App param={null} /></>;').toBeTransform(start + '_Fragment(App({param:null}));');
   });
 
   it('should inline with attibute undefined literal', async () => {
-    const result = await t('<><App param={undefined} /></>;');
-    expect(result).toBe(start + '_Fragment(App({param:undefined}));');
+    await expect('<><App param={undefined} /></>;').toBeTransform(start + '_Fragment(App({param:undefined}));');
   });
 
   it('should inline with attibute arrow function literal', async () => {
-    const result = await t('<><App cd={() => {}} /></>;');
-    expect(result).toBe(start + '_Fragment(App({cd:()=>{}}));');
+    await expect('<><App cd={() => {}} /></>;').toBeTransform(start + '_Fragment(App({cd:()=>{}}));');
   });
 
   it('should inline with attibute function declaration literal', async () => {
-    const result = await t('<><App cd={function() {}} /></>;');
-    expect(result).toBe(start + '_Fragment(App({cd:function(){}}));');
+    await expect('<><App cd={function() {}} /></>;').toBeTransform(start + '_Fragment(App({cd:function(){}}));');
   });
 });
