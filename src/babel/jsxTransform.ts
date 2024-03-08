@@ -38,10 +38,6 @@ export const jsxTransform = (): PluginObj => {
   let nsMap: WeakMap<NodePath, TImportName>;
   let importSpec: ImportSpec;
 
-  const findNs = (path: NodePath): TImportName | undefined => {
-    return nsMap.get(path) ?? nsMap.get(path.findParent((p) => p.node.type === 'JSXElement'));
-  };
-
   return {
     name: 'jsx-dom-runtime/babel-plugin-transform-jsx',
     visitor: {
@@ -91,7 +87,7 @@ export const jsxTransform = (): PluginObj => {
           });
 
           if (noNs) {
-            const importName = findNs(path);
+            const importName = nsMap.get(path) ?? nsMap.get(path.findParent((p) => p.node.type === 'JSXElement'));
 
             if (importName !== undefined) {
               props.properties.push(
