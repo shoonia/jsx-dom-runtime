@@ -1,23 +1,17 @@
-import { t } from '../utils';
-
 describe('babel-plugin-jsx-syntax: VariableDeclarator', () => {
   it('should work with `let`', async () => {
-    const result = await t('let x = <App />;');
-    expect(result).toBe('let x=App({});');
+    await expect('let x = <App />;').toBeTransform('let x=App({});');
   });
 
   it('should work with `const`', async () => {
-    const result = await t('const x = <App />;');
-    expect(result).toBe('const x=App({});');
+    await expect('const x = <App />;').toBeTransform('const x=App({});');
   });
 
   it('should work with `var`', async () => {
-    const result = await t('var x = <App />;');
-    expect(result).toBe('var x=App({});');
+    await expect('var x = <App />;').toBeTransform('var x=App({});');
   });
 
   it('should work with pair declarators', async () => {
-    const result = await t('let x = <App />, y = <Box />;');
-    expect(result).toBe('let x=App({}),y=Box({});');
+    await expect('let x = <App />, y = <Box />;').toBeTransform('let x=App({}),y=Box({});');
   });
 });

@@ -1,23 +1,17 @@
-import { t } from '../utils';
-
 describe('babel-plugin-jsx-syntax: SequenceExpression', () => {
   it('should work with ,', async () => {
-    const result = await t('(<One />, <Two />);');
-    expect(result).toBe('One({}),Two({});');
+    await expect('(<One />, <Two />);').toBeTransform('One({}),Two({});');
   });
 
   it('should work with , #2', async () => {
-    const result = await t('(1, 2, <App />);');
-    expect(result).toBe('1,2,App({});');
+    await expect('(1, 2, <App />);').toBeTransform('1,2,App({});');
   });
 
   it('should work with , #3', async () => {
-    const result = await t('([],<App />, {});');
-    expect(result).toBe('[],App({}),{};');
+    await expect('([],<App />, {});').toBeTransform('[],App({}),{};');
   });
 
   it('should work inside function', async () => {
-    const result = await t('let x = () => (0, <App />);');
-    expect(result).toBe('let x=()=>(0,App({}));');
+    await expect('let x = () => (0, <App />);').toBeTransform('let x=()=>(0,App({}));');
   });
 });

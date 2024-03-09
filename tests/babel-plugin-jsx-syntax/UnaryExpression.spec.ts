@@ -1,38 +1,33 @@
-import { t } from '../utils';
-
 describe('babel-plugin-jsx-syntax: UnaryExpression', () => {
-  it('should work with void', async () => {
-    const result = await t('void <App />;');
-    expect(result).toBe('void App({});');
+  it('should work with throw', async () => {
+    await expect('void <App />;').toBeTransform('void App({});');
+  });
+
+  it('should work with throw', async () => {
+    await expect('throw <App />;').toBeTransform('throw App({});');
   });
 
   it('should work with delete', async () => {
-    const result = await t('delete <App />;');
-    expect(result).toBe('delete App({});');
+    await expect('delete <App />;').toBeTransform('delete App({});');
   });
 
   it('should work with `typeof`', async () => {
-    const result = await t('typeof <App />;');
-    expect(result).toBe('typeof App({});');
+    await expect('typeof <App />;').toBeTransform('typeof App({});');
   });
 
   it('should work with +', async () => {
-    const result = await t('+ <App />;');
-    expect(result).toBe('+App({});');
+    await expect('+ <App />;').toBeTransform('+App({});');
   });
 
   it('should work with -', async () => {
-    const result = await t('- <App />;');
-    expect(result).toBe('-App({});');
+    await expect('- <App />;').toBeTransform('-App({});');
   });
 
   it('should work with !', async () => {
-    const result = await t('! <App />;');
-    expect(result).toBe('!App({});');
+    await expect('! <App />;').toBeTransform('!App({});');
   });
 
   it('should work with ~', async () => {
-    const result = await t('~ <App />;');
-    expect(result).toBe('~App({});');
+    await expect('~ <App />;').toBeTransform('~App({});');
   });
 });

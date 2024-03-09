@@ -1,5 +1,3 @@
-import { t } from '../utils';
-
 describe('Babel transform `htmlFor` to `for`', () => {
   it('should transform `htmlFor` attribute in <label />', () => {
     // @ts-expect-error
@@ -19,9 +17,7 @@ describe('Babel transform `htmlFor` to `for`', () => {
   });
 
   it('should not transform `htmlFor` attribute in FC', async () => {
-    const result = await t('<MyElem htmlFor="" />');
-
-    expect(result).toBe('MyElem({htmlFor:""});');
+    await expect('<MyElem htmlFor="" />').toBeTransform('MyElem({htmlFor:""});');
   });
 
   it('should not transform `htmlFor` attribute in Web Component', () => {

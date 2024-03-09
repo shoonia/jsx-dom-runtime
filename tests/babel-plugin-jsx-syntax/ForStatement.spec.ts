@@ -1,23 +1,18 @@
-import { t } from '../utils';
-
 describe('babel-plugin-jsx-syntax: ForStatement', () => {
   it('should work with `for` loop, init', async () => {
-    const result = await t('for (<App />; ;) {};');
-    expect(result).toBe('for(App({});;){};');
+    await expect('for (<App />; ;) {};').toBeTransform('for(App({});;){};');
   });
 
   it('should work with `for` loop, test', async () => {
-    const result = await t('for (;<App />;) {};');
-    expect(result).toBe('for(;App({});){};');
+    await expect('for (;<App />;) {};').toBeTransform('for(;App({});){};');
   });
 
   it('should work with `for` loop, update', async () => {
-    const result = await t('for (; ;<App />) {};');
-    expect(result).toBe('for(;;App({})){};');
+    await expect('for (; ;<App />) {};').toBeTransform('for(;;App({})){};');
   });
 
   it('should work with `for` loop, all', async () => {
-    const result = await t('for (<Init />; <Test />; <Update />) {};');
-    expect(result).toBe('for(Init({});Test({});Update({})){};');
+    await expect('for (<Init />; <Test />; <Update />) {};')
+      .toBeTransform('for(Init({});Test({});Update({})){};');
   });
 });

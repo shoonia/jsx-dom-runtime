@@ -1,55 +1,43 @@
-import { t } from '../utils';
-
-const _jsx = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
-
 describe('Babel transform HTML boolean attribute value `true` to empty string `""`', () => {
+  const _jsx = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
+
   it('should transform `readOnly` attribute', async () => {
-    const result = await t`<input readOnly />`;
-    expect(result).toBe(_jsx + '_jsx("input",{readonly:""});');
+    await expect('<input readOnly />').toBeTransform(_jsx + '_jsx("input",{readonly:""});');
   });
 
   it('should transform `crossOrigin` attribute', async () => {
-    const result = await t`<img crossOrigin />`;
-    expect(result).toBe(_jsx + '_jsx("img",{crossorigin:""});');
+    await expect('<img crossOrigin />').toBeTransform(_jsx + '_jsx("img",{crossorigin:""});');
   });
 
   it('should NOT transform `crossOrigin` attribute', async () => {
-    const result = await t`<img crossOrigin="anonymous" />`;
-    expect(result).toBe(_jsx + '_jsx("img",{crossorigin:"anonymous"});');
+    await expect('<img crossOrigin="anonymous" />').toBeTransform(_jsx + '_jsx("img",{crossorigin:"anonymous"});');
   });
 
   it('should transform `contentEditable` attribute', async () => {
-    const result = await t`<img contentEditable />`;
-    expect(result).toBe(_jsx + '_jsx("img",{contenteditable:""});');
+    await expect('<img contentEditable />').toBeTransform(_jsx + '_jsx("img",{contenteditable:""});');
   });
 
   it('should NOT transform `contentEditable` attribute', async () => {
-    const result = await t`<img contentEditable="false" />`;
-    expect(result).toBe(_jsx + '_jsx("img",{contenteditable:"false"});');
+    await expect('<img contentEditable="false" />').toBeTransform(_jsx + '_jsx("img",{contenteditable:"false"});');
   });
 
   it('should transform `capture` attribute', async () => {
-    const result = await t`<input capture />`;
-    expect(result).toBe(_jsx + '_jsx("input",{capture:""});');
+    await expect('<input capture />').toBeTransform(_jsx + '_jsx("input",{capture:""});');
   });
 
   it('should NOT transform `capture` attribute', async () => {
-    const result = await t`<input capture="user" />`;
-    expect(result).toBe(_jsx + '_jsx("input",{capture:"user"});');
+    await expect('<input capture="user" />').toBeTransform(_jsx + '_jsx("input",{capture:"user"});');
   });
 
   it('should transform `popover` attribute', async () => {
-    const result = await t`<div popover />`;
-    expect(result).toBe(_jsx + '_jsx("div",{popover:""});');
+    await expect('<div popover />').toBeTransform(_jsx + '_jsx("div",{popover:""});');
   });
 
   it('should transform `itemScope` attribute', async () => {
-    const result = await t`<div itemScope />`;
-    expect(result).toBe(_jsx + '_jsx("div",{itemscope:""});');
+    await expect('<div itemScope />').toBeTransform(_jsx + '_jsx("div",{itemscope:""});');
   });
 
   it('should transform `open` attribute', async () => {
-    const result = await t`<details open />`;
-    expect(result).toBe(_jsx + '_jsx("details",{open:""});');
+    await expect('<details open />').toBeTransform(_jsx + '_jsx("details",{open:""});');
   });
 });

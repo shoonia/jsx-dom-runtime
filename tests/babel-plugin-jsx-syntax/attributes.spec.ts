@@ -1,28 +1,22 @@
-import { t } from '../utils';
-
 describe('babel-plugin-jsx-syntax: props', () => {
   it('should work with attribute namespace', async () => {
-    const result = await t('<App x:id="hello"/>;');
-    expect(result).toBe('App({"x:id":"hello"});');
+    await expect('<App x:id="hello"/>;').toBeTransform('App({"x:id":"hello"});');
   });
 
   it('should work with dashes attributes', async () => {
-    const result = await t('<App x-id="hello"/>;');
-    expect(result).toBe('App({"x-id":"hello"});');
+    await expect('<App x-id="hello"/>;').toBeTransform('App({"x-id":"hello"});');
   });
 
   it('should work with spread attributes on the end', async () => {
-    const result = await t('<App id="id" {...data} />;');
-    expect(result).toBe('App({id:"id",...data});');
+    await expect('<App id="id" {...data} />;').toBeTransform('App({id:"id",...data});');
   });
 
   it('should work with spread attributes on the start', async () => {
-    const result = await t('<App {...data} id="id" />;');
-    expect(result).toBe('App({...data,id:"id"});');
+    await expect('<App {...data} id="id" />;').toBeTransform('App({...data,id:"id"});');
   });
 
   it('should work with spread between attributes', async () => {
-    const result = await t('<App title="title" {...data} id="id" />;');
-    expect(result).toBe('App({title:"title",...data,id:"id"});');
+    await expect('<App title="title" {...data} id="id" />;')
+      .toBeTransform('App({title:"title",...data,id:"id"});');
   });
 });

@@ -1,18 +1,13 @@
-import { t } from '../utils';
-
 describe('babel-plugin-jsx-syntax: YieldExpression', () => {
   it('should work with yield', async () => {
-    const result = await t('function* x(){ yield <App />; };');
-    expect(result).toBe('function*x(){yield App({})};');
+    await expect('function* x(){ yield <App />; };').toBeTransform('function*x(){yield App({})};');
   });
 
   it('should work with yield #2', async () => {
-    const result = await t('function* x(){ yield yield <App />; };');
-    expect(result).toBe('function*x(){yield yield App({})};');
+    await expect('function* x(){ yield yield <App />; };').toBeTransform('function*x(){yield yield App({})};');
   });
 
   it('should work with `yield*`', async () => {
-    const result = await t('function* x(){ yield* <App />; };');
-    expect(result).toBe('function*x(){yield*App({})};');
+    await expect('function* x(){ yield* <App />; };').toBeTransform('function*x(){yield*App({})};');
   });
 });
