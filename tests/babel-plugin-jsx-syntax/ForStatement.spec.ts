@@ -15,4 +15,8 @@ describe('babel-plugin-jsx-syntax: ForStatement', () => {
     await expect('for (<Init />; <Test />; <Update />) {};')
       .toBeTransform('for(Init({});Test({});Update({})){};');
   });
+
+  it('should work with `for` loop body', async () => {
+    await expect('for (; ;) <App />;').toBeTransform('for(;;)App({});');
+  });
 });
