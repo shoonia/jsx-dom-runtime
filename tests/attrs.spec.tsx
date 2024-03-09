@@ -90,6 +90,11 @@ describe('Props', () => {
     ).toHaveOuterHTML('<img alt=" hello ">');
   });
 
+  it('should keep the spaces', () => {
+    expect(<img alt="   hello   " />).toHaveOuterHTML('<img alt="   hello   ">');
+    expect(<img alt="   hello   " />).toHaveAttribute('alt', '   hello   ');
+  });
+
   it('should add all attributes', () => {
     const props = {
       class: 'box',

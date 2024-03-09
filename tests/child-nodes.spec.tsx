@@ -92,10 +92,7 @@ describe('Child nodes', () => {
   });
 
   it('should add custom Web Component tag', () => {
-    // @ts-expect-error
-    expect(<my-webcomponent></my-webcomponent>).toHaveOuterHTML(
-      '<my-webcomponent></my-webcomponent>',
-    );
+    expect(<web-component />).toHaveOuterHTML('<web-component></web-component>');
   });
 
   it('should work with deep nested child nodes', () => {
