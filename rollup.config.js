@@ -26,26 +26,7 @@ const plugins = [
     extensions,
     babelHelpers: 'bundled',
     plugins: [
-      () => {
-        const equalities = new Set(['==', '===', '!=', '!==']);
-        const types = new Set(['StringLiteral', 'NumericLiteral', 'NullLiteral', 'BooleanLiteral']);
-
-        return {
-          name: 'lhs-constants',
-          visitor: {
-            BinaryExpression(path) {
-              const node = path.node;
-
-              if (
-                equalities.has(node.operator) &&
-                types.has(node.right.type)
-              ) {
-                [node.left, node.right] = [node.right, node.left];
-              }
-            }
-          }
-        };
-      }
+      'babel-plugin-transform-lhs-constants'
     ],
     presets: [
       '@babel/preset-typescript',
