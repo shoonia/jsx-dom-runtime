@@ -124,4 +124,9 @@ describe('Fragment', () => {
       </>`
     ).toBeTransform(start + '_Fragment([/*#__PURE__*/_jsx("p",{children:"one"}),/*#__PURE__*/_jsx("p",{children:"two"})]);');
   });
+
+  it('should transform Fragment in props', async () => {
+    await expect('<App children={<></>} />')
+      .toBeTransform('import{Fragment as _Fragment}from"jsx-dom-runtime";App({children:/*#__PURE__*/_Fragment()});');
+  });
 });
