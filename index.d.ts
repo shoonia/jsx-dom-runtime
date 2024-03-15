@@ -26,7 +26,7 @@ type TChild =
 
 export type PropsWithChildren<P> = P & { children?: TChild | TChild[] }
 
-export function jsx<
+export declare function jsx<
   K extends keyof JSX.IntrinsicElements,
   R = K extends keyof HTMLElementTagNameMap
   ? HTMLElementTagNameMap[K]
@@ -45,25 +45,25 @@ export function jsx<
 export type FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> = JSX.FC<P, T>
 export { FunctionComponent as FC };
 
-export const properties: Set<string>;
-export const extensions: Map<
+export declare const properties: Set<string>;
+export declare const extensions: Map<
   string,
   (node: HTMLElement | SVGElement | MathMLElement, value: any, key: string) => void
 >;
 
-export const xhtmlNs = 'http://www.w3.org/1999/xhtml';
-export const svgNs = 'http://www.w3.org/2000/svg';
-export const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
+export declare const xhtmlNs = 'http://www.w3.org/1999/xhtml';
+export declare const svgNs = 'http://www.w3.org/2000/svg';
+export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
-export function useRef<T = any>(current?: T): RefObject<T>
-export function useText<T = string>(initContent?: T): readonly [
+export declare function useRef<T = any>(current?: T): RefObject<T>
+export declare function useText<T = string>(initContent?: T): readonly [
   Text,
   (content: T) => void
 ]
 
-export function parseFromString(html: string): DocumentFragment
-export function Fragment(children?: TChild | TChild[]): DocumentFragment
-export function Template(props: { children: string }): DocumentFragment
+export declare function parseFromString(html: string): DocumentFragment
+export declare function Fragment(children?: TChild | TChild[]): DocumentFragment
+export declare function Template(props: { children: string }): DocumentFragment
 
 export interface CurrentTarget<T> {
   currentTarget: EventTarget & T
@@ -89,7 +89,7 @@ export type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, 
 export type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
 
 export interface DOMAttributes<T> extends JSX.Attributes {
-  ns?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
+  _?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
   ref?: RefCallback<T> | RefObject<T>
   children?: TChild | TChild[]
   // Clipboard Events
@@ -683,7 +683,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 }
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
-  ns?: typeof svgNs
+  _?: typeof svgNs
   xmlns?: typeof svgNs
   href?: string
   cx?: number | string
@@ -1033,7 +1033,7 @@ export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> 
 }
 
 export interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
-  ns?: typeof mathmlNs
+  _?: typeof mathmlNs
   xmlns?: typeof mathmlNs
   dir?: 'ltr' | 'rtl'
   displaystyle?: 'true' | 'false'

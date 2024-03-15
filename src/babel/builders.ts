@@ -33,7 +33,7 @@ export const $children = (elements: (t.JSXSpreadChild | t.Expression)[]): t.Expr
     };
 };
 
-export const $pureAnnotation = (): t.CommentBlock[] => [
+export const $pureAnnotation = (): [t.CommentBlock] => [
   {
     type: 'CommentBlock',
     value: '#__PURE__',

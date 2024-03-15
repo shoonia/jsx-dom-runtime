@@ -2,7 +2,7 @@
 import { appendChildren } from './appendChildren';
 
 const internalKeys = new Set([
-  'ns',
+  '_',
   'children',
   'ref',
 ]);
@@ -29,8 +29,8 @@ export const properties = new Set([
 ]);
 
 export const jsx = (tag, props) => {
-  let key, val, node = props.ns
-    ? document.createElementNS(props.ns, tag)
+  let key, val, node = props._
+    ? document.createElementNS(props._, tag)
     : document.createElement(tag);
 
   for (key in props) {

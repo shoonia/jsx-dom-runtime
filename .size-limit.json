@@ -3,7 +3,7 @@
     "name": "jsx",
     "path": "jsx-runtime/index.js",
     "import": "{ jsx }",
-    "limit": "332 B"
+    "limit": "330 B"
   },
   {
     "name": "Fragment",
