@@ -3,40 +3,40 @@ import { mathmlNs, svgNs, xhtmlNs } from '..';
 const prop = 'namespaceURI';
 
 describe('ns', () => {
-  it('should build SVG node with manual `ns` attribute', () => {
-    expect(<svg ns={svgNs} />).toHaveOuterHTML('<svg></svg>');
+  it('should build SVG node with manual `_` attribute', () => {
+    expect(<svg _={svgNs} />).toHaveOuterHTML('<svg></svg>');
   });
 
-  it('should build MathML node with manual `ns` attribute', () => {
-    expect(<math ns={mathmlNs} />).toHaveOuterHTML('<math></math>');
+  it('should build MathML node with manual `_` attribute', () => {
+    expect(<math _={mathmlNs} />).toHaveOuterHTML('<math></math>');
   });
 
-  it('should build HTML node with manual `ns` attribute', () => {
-    expect(<div ns={xhtmlNs} />).toHaveOuterHTML('<div></div>');
+  it('should build HTML node with manual `_` attribute', () => {
+    expect(<div _={xhtmlNs} />).toHaveOuterHTML('<div></div>');
   });
 
   it('should have valid `namespaceURI for `title` tag`', () => {
     expect(<title />).toHaveProperty(prop, xhtmlNs);
-    expect(<title ns={xhtmlNs} />).toHaveProperty(prop, xhtmlNs);
-    expect(<title ns={svgNs} />).toHaveProperty(prop, svgNs);
+    expect(<title _={xhtmlNs} />).toHaveProperty(prop, xhtmlNs);
+    expect(<title _={svgNs} />).toHaveProperty(prop, svgNs);
   });
 
   it('should have HTML `namespaceURI` for `style` tag', () => {
     expect(<style />).toHaveProperty(prop, xhtmlNs);
-    expect(<style ns={xhtmlNs} />).toHaveProperty(prop, xhtmlNs);
-    expect(<style ns={svgNs} />).toHaveProperty(prop, svgNs);
+    expect(<style _={xhtmlNs} />).toHaveProperty(prop, xhtmlNs);
+    expect(<style _={svgNs} />).toHaveProperty(prop, svgNs);
   });
 
   it('should have SVG `namespaceURI` for `a` tag', () => {
     expect(<a />).toHaveProperty(prop, xhtmlNs);
-    expect(<a ns={xhtmlNs} />).toHaveProperty(prop, xhtmlNs);
-    expect(<a ns={svgNs} />).toHaveProperty(prop, svgNs);
+    expect(<a _={xhtmlNs} />).toHaveProperty(prop, xhtmlNs);
+    expect(<a _={svgNs} />).toHaveProperty(prop, svgNs);
   });
 
   it('should have SVG `namespaceURI` for `script` tag', () => {
     expect(<script />).toHaveProperty(prop, xhtmlNs);
-    expect(<script ns={xhtmlNs} />).toHaveProperty(prop, xhtmlNs);
-    expect(<script ns={svgNs} />).toHaveProperty(prop, svgNs);
+    expect(<script _={xhtmlNs} />).toHaveProperty(prop, xhtmlNs);
+    expect(<script _={svgNs} />).toHaveProperty(prop, svgNs);
   });
 
   it('it should detect namespace from parent tag for `title` tag', () => {
@@ -74,26 +74,26 @@ describe('ns', () => {
   // spread
 
   it('should add namespace wtih spread operator', () => {
-    const props = { ns: svgNs } as const;
+    const props = { _: svgNs } as const;
 
     expect(<style {...props} />).toHaveProperty(prop, svgNs);
   });
 
   it('should not break code if spread identifier has the same name SVG', () => {
-    const ns = { ns: svgNs } as const;
+    const props = { _: svgNs } as const;
 
-    expect(<style {...ns} />).toHaveProperty(prop, svgNs);
+    expect(<style {...props} />).toHaveProperty(prop, svgNs);
   });
 
   it('should not break code if spread identifier has the same name HTML', () => {
-    const ns = { ns: xhtmlNs } as const;
+    const props = { _: xhtmlNs } as const;
 
-    expect(<style {...ns} />).toHaveProperty(prop, xhtmlNs);
+    expect(<style {...props} />).toHaveProperty(prop, xhtmlNs);
   });
 
-  it('should not break code if spread identifier has name `ns`', () => {
-    const ns = { id: 'param' };
+  it('should not break code if spread identifier has name `_`', () => {
+    const props = { id: 'param' };
 
-    expect(<style {...ns} />).toHaveProperty(prop, xhtmlNs);
+    expect(<style {...props} />).toHaveProperty(prop, xhtmlNs);
   });
 });

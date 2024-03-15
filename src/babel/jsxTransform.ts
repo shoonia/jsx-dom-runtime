@@ -23,7 +23,7 @@ import {
   svgTags,
 } from './collections';
 
-const opts = { name: 'ns' } as const;
+const opts = { name: '_' } as const;
 
 const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
   const charCode = name.name.charCodeAt(0);
@@ -92,7 +92,7 @@ export const jsxTransform = (): PluginObj => {
             if (importName !== undefined) {
               props.properties.push(
                 $objectProperty(
-                  $identifier('ns'),
+                  $identifier('_'),
                   importSpec.add(importName),
                 ),
               );

@@ -32,7 +32,7 @@ describe('<svg/> support', () => {
       <image href="image.png" height="200" width={200} />
     </svg>`
     ).toBeTransform(
-      'import{svgNs as _svgNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("svg",{width:"200",height:"200",children:/*#__PURE__*/_jsx("image",{href:"image.png",height:"200",width:200,ns:_svgNs}),ns:_svgNs});',
+      'import{svgNs as _svgNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("svg",{width:"200",height:"200",children:/*#__PURE__*/_jsx("image",{href:"image.png",height:"200",width:200,_:_svgNs}),_:_svgNs});',
     );
   });
 });
