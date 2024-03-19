@@ -89,7 +89,7 @@ export const DOMEvents = new Set([
   'onpointerenter', 'onpointerleave', 'onpointerover', 'onpointerout',
   'ongotpointercapture', 'onlostpointercapture',
   // UI Events
-  'onscroll',
+  'onscroll', 'onscrollend',
   // Wheel Events
   'onwheel',
   // Animation Events
