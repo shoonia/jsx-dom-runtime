@@ -8,6 +8,4 @@ export const parseFromString = (html: string): DocumentFragment => {
   return template.content;
 };
 
-export const Template = (props): DocumentFragment => {
-  return parseFromString(props.children);
-};
+export const Template = (props) => parseFromString(props.children);
