@@ -1,5 +1,11 @@
 /* eslint-disable no-cond-assign */
-import { appendChildren } from './appendChildren';
+const svgNs = 'http://www.w3.org/2000/svg';
+const xhtmlNs = 'http://www.w3.org/1999/xhtml';
+const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
+
+const properties = new Set([
+  'value',
+]);
 
 const internalKeys = new Set([
   '_',
@@ -7,7 +13,7 @@ const internalKeys = new Set([
   'ref',
 ]);
 
-export const extensions = new Map([
+const extensions = new Map([
   ['style', (node, val, key) => {
     if (typeof val === 'string') {
       node.setAttribute(key, val);
@@ -24,11 +30,23 @@ export const extensions = new Map([
   }],
 ]);
 
-export const properties = new Set([
-  'value',
-]);
+const appendChildren = (children, node) => {
+  if (Array.isArray(children)) {
+    // Just shorter that the .forEach
+    children.some((child) => appendChildren(child, node));
+  } else if (children !== false && children != null) {
+    node.append(children);
+  }
+};
 
-export const jsx = (tag, props) => {
+const Fragment = (children) => {
+  const fragment = new DocumentFragment();
+
+  appendChildren(children, fragment);
+  return fragment;
+};
+
+const jsx = (tag, props) => {
   let key, val, node = props._
     ? document.createElementNS(props._, tag)
     : document.createElement(tag);
@@ -64,4 +82,15 @@ export const jsx = (tag, props) => {
   }
 
   return node;
+};
+
+export {
+  jsx,
+  Fragment,
+  appendChildren,
+  properties,
+  extensions,
+  svgNs,
+  mathmlNs,
+  xhtmlNs
 };
