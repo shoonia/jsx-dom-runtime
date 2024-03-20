@@ -146,16 +146,14 @@ export const jsxTransform: PluginObj = {
 
       if (DOMEvents.has(attrName)) {
         attr.name = attrName;
-        return;
       }
 
-      if (booleanAttributes.has(attrName)) {
+      else if (booleanAttributes.has(attrName)) {
         attr.name = attrName;
         path.node.value ??= $stringLiteral('');
-        return;
       }
 
-      if (
+      else if (
         ariaAttributes.has(attrName) ||
         attrName === 'draggable' ||
         attrName === 'spellcheck' ||
@@ -167,25 +165,21 @@ export const jsxTransform: PluginObj = {
 
         if (val === null) {
           path.node.value = $stringLiteral('true');
-          return;
         }
 
-        if (
+        else if (
           val.type === 'JSXExpressionContainer' &&
           val.expression.type === 'BooleanLiteral'
         ) {
           path.node.value = $stringLiteral(val.expression.value ? 'true' : 'false');
         }
-
-        return;
       }
 
-      if (attributes.has(attrName) && htmlTags.has(tag)) {
+      else if (attributes.has(attrName) && htmlTags.has(tag)) {
         attr.name = attrName;
-        return;
       }
 
-      if (svgDOMAttributes.has(attr.name) && svgTags.has(tag)) {
+      else if (svgDOMAttributes.has(attr.name) && svgTags.has(tag)) {
         attr.name = svgDOMAttributes.get(attr.name);
       }
     },
