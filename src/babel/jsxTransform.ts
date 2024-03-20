@@ -34,162 +34,160 @@ const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
     charCode === 95;
 };
 
-export const jsxTransform = (): PluginObj => {
-  let nsMap: WeakMap<NodePath, TImportName>;
-  let importSpec: ImportSpec;
+let nsMap: WeakMap<NodePath, TImportName>;
+let importSpec: ImportSpec;
 
-  return {
-    name: 'jsx-dom-runtime/babel-plugin-transform-jsx',
-    visitor: {
-      Program(path) {
-        nsMap = new WeakMap();
-        importSpec = new ImportSpec(path);
+export const jsxTransform: PluginObj = {
+  name: 'jsx-dom-runtime/babel-plugin-transform-jsx',
+  visitor: {
+    Program(path) {
+      nsMap = new WeakMap();
+      importSpec = new ImportSpec(path);
+    },
+
+    JSXFragment(path) {
+      const children = t.react.buildChildren(path.node);
+
+      path.replaceWith({
+        type: 'CallExpression',
+        callee: importSpec.add('Fragment'),
+        arguments: children.length > 0 ? [$children(children)] : [],
+        leadingComments: $pureAnnotation(),
+      });
+    },
+
+    JSXElement: {
+      enter(path) {
+        const name = path.node.openingElement.name;
+
+        if (name.type === 'JSXNamespacedName') {
+          return;
+        }
+
+        if (name.type === 'JSXMemberExpression' || isFunctionComponent(name)) {
+          path.replaceWith({
+            type: 'CallExpression',
+            callee: convertJSXIdentifier(name),
+            arguments: [buildProps(path.node)],
+          });
+        } else if (svgTags.has(name.name)) {
+          nsMap.set(path, 'svgNs');
+        } else if (mathmlTags.has(name.name)) {
+          nsMap.set(path, 'mathmlNs');
+        }
       },
 
-      JSXFragment(path) {
-        const children = t.react.buildChildren(path.node);
+      exit(path) {
+        const name = path.node.openingElement.name as t.JSXIdentifier | t.JSXNamespacedName;
+        const props = buildProps(path.node);
+
+        const noNs = props.properties.every((i: t.ObjectProperty) => {
+          return !t.isIdentifier(i.key, opts);
+        });
+
+        if (noNs) {
+          const importName = nsMap.get(path) ?? nsMap.get(path.findParent((p) => p.node.type === 'JSXElement'));
+
+          if (importName !== undefined) {
+            props.properties.push(
+              $objectProperty(
+                $identifier('_'),
+                importSpec.add(importName),
+              ),
+            );
+          }
+        }
 
         path.replaceWith({
           type: 'CallExpression',
-          callee: importSpec.add('Fragment'),
-          arguments: children.length > 0 ? [$children(children)] : [],
+          callee: importSpec.add('jsx'),
+          arguments: [
+            name.type === 'JSXIdentifier'
+              ? $stringLiteral(name.name)
+              : convertJSXNamespacedName(name),
+            props,
+          ],
           leadingComments: $pureAnnotation(),
         });
       },
+    },
 
-      JSXElement: {
-        enter(path) {
-          const name = path.node.openingElement.name;
+    JSXSpreadChild(path) {
+      path.replaceWith(path.node.expression);
+    },
 
-          if (name.type === 'JSXNamespacedName') {
-            return;
-          }
+    JSXAttribute(path) {
+      // @ts-expect-error
+      const tag = path.parent?.name.name;
 
-          if (name.type === 'JSXMemberExpression' || isFunctionComponent(name)) {
-            path.replaceWith({
-              type: 'CallExpression',
-              callee: convertJSXIdentifier(name),
-              arguments: [buildProps(path.node)],
-            });
-          } else if (svgTags.has(name.name)) {
-            nsMap.set(path, 'svgNs');
-          } else if (mathmlTags.has(name.name)) {
-            nsMap.set(path, 'mathmlNs');
-          }
-        },
+      if (!(htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag))) {
+        return;
+      }
 
-        exit(path) {
-          const name = path.node.openingElement.name as t.JSXIdentifier | t.JSXNamespacedName;
-          const props = buildProps(path.node);
+      const attr = path.node.name;
 
-          const noNs = props.properties.every((i: t.ObjectProperty) => {
-            return !t.isIdentifier(i.key, opts);
-          });
-
-          if (noNs) {
-            const importName = nsMap.get(path) ?? nsMap.get(path.findParent((p) => p.node.type === 'JSXElement'));
-
-            if (importName !== undefined) {
-              props.properties.push(
-                $objectProperty(
-                  $identifier('_'),
-                  importSpec.add(importName),
-                ),
-              );
-            }
-          }
-
-          path.replaceWith({
-            type: 'CallExpression',
-            callee: importSpec.add('jsx'),
-            arguments: [
-              name.type === 'JSXIdentifier'
-                ? $stringLiteral(name.name)
-                : convertJSXNamespacedName(name),
-              props,
-            ],
-            leadingComments: $pureAnnotation(),
-          });
-        },
-      },
-
-      JSXSpreadChild(path) {
-        path.replaceWith(path.node.expression);
-      },
-
-      JSXAttribute(path) {
-        // @ts-expect-error
-        const tag = path.parent?.name.name;
-
-        if (!(htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag))) {
-          return;
+      if (attr.type === 'JSXNamespacedName') {
+        if (
+          attr.name.name === 'href' &&
+          attr.namespace.name === 'xlink'
+        ) {
+          path.node.name = $jsxIdentifier('href');
         }
 
-        const attr = path.node.name;
+        return;
+      }
 
-        if (attr.type === 'JSXNamespacedName') {
-          if (
-            attr.name.name === 'href' &&
-            attr.namespace.name === 'xlink'
-          ) {
-            path.node.name = $jsxIdentifier('href');
-          }
+      if (htmlDOMAttributes.has(attr.name)) {
+        attr.name = htmlDOMAttributes.get(attr.name);
+        return;
+      }
 
-          return;
-        }
+      const attrName = attr.name.toLowerCase();
 
-        if (htmlDOMAttributes.has(attr.name)) {
-          attr.name = htmlDOMAttributes.get(attr.name);
-          return;
-        }
+      if (DOMEvents.has(attrName)) {
+        attr.name = attrName;
+        return;
+      }
 
-        const attrName = attr.name.toLowerCase();
+      if (booleanAttributes.has(attrName)) {
+        attr.name = attrName;
+        path.node.value ??= $stringLiteral('');
+        return;
+      }
 
-        if (DOMEvents.has(attrName)) {
-          attr.name = attrName;
-          return;
-        }
+      if (
+        ariaAttributes.has(attrName) ||
+        attrName === 'draggable' ||
+        attrName === 'spellcheck' ||
+        attrName.startsWith('data-')
+      ) {
+        const val = path.node.value;
 
-        if (booleanAttributes.has(attrName)) {
-          attr.name = attrName;
-          path.node.value ??= $stringLiteral('');
+        attr.name = attrName;
+
+        if (val === null) {
+          path.node.value = $stringLiteral('true');
           return;
         }
 
         if (
-          ariaAttributes.has(attrName) ||
-          attrName === 'draggable' ||
-          attrName === 'spellcheck' ||
-          attrName.startsWith('data-')
+          val.type === 'JSXExpressionContainer' &&
+          val.expression.type === 'BooleanLiteral'
         ) {
-          const val = path.node.value;
-
-          attr.name = attrName;
-
-          if (val === null) {
-            path.node.value = $stringLiteral('true');
-            return;
-          }
-
-          if (
-            val.type === 'JSXExpressionContainer' &&
-            val.expression.type === 'BooleanLiteral'
-          ) {
-            path.node.value = $stringLiteral(val.expression.value ? 'true' : 'false');
-          }
-
-          return;
+          path.node.value = $stringLiteral(val.expression.value ? 'true' : 'false');
         }
 
-        if (attributes.has(attrName) && htmlTags.has(tag)) {
-          attr.name = attrName;
-          return;
-        }
+        return;
+      }
 
-        if (svgDOMAttributes.has(attr.name) && svgTags.has(tag)) {
-          attr.name = svgDOMAttributes.get(attr.name);
-        }
-      },
+      if (attributes.has(attrName) && htmlTags.has(tag)) {
+        attr.name = attrName;
+        return;
+      }
+
+      if (svgDOMAttributes.has(attr.name) && svgTags.has(tag)) {
+        attr.name = svgDOMAttributes.get(attr.name);
+      }
     },
-  };
+  },
 };
