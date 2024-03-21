@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2023" />
-import { Properties, Property } from 'csstype';
+import type { Properties, Property } from 'csstype';
 
 export interface RefObject<T> {
   readonly current: T
