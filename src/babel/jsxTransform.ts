@@ -81,9 +81,9 @@ export const jsxTransform: PluginObj = {
         const name = path.node.openingElement.name as t.JSXIdentifier | t.JSXNamespacedName;
         const props = buildProps(path.node);
 
-        const noNs = props.properties.every((i: t.ObjectProperty) => {
-          return !t.isIdentifier(i.key, opts);
-        });
+        const noNs = props.properties.every((i: t.ObjectProperty) =>
+          !t.isIdentifier(i.key, opts),
+        );
 
         if (noNs) {
           const importName = nsMap.get(path) ?? nsMap.get(path.findParent((p) => p.node.type === 'JSXElement'));

@@ -3,9 +3,8 @@ import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { $stringLiteral, $identifier, $objectProperty, $children } from './builders';
 
-export const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral => {
-  return $stringLiteral(node.namespace.name + ':' + node.name.name);
-};
+export const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral =>
+  $stringLiteral(node.namespace.name + ':' + node.name.name);
 
 export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
   const properties = node.openingElement.attributes.map((attr): t.SpreadElement | t.ObjectProperty => {
