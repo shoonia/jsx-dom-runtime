@@ -39,11 +39,9 @@ const appendChildren = (children, node) => {
   }
 };
 
-const Fragment = (children) => {
-  const fragment = new DocumentFragment();
-
-  appendChildren(children, fragment);
-  return fragment;
+const Fragment = (content) => {
+  appendChildren(content, content = new DocumentFragment());
+  return content;
 };
 
 const jsx = (tag, props) => {
