@@ -14,28 +14,28 @@ const internalKeys = new Set([
 ]);
 
 const extensions = new Map([
-  ['style', (node, val, key) => {
-    if (typeof val === 'string') {
-      node.setAttribute(key, val);
+  ['style', (node, value, key) => {
+    if (typeof value === 'string') {
+      node.setAttribute(key, value);
     } else {
       // reuse `key` variable
-      for (key in val) {
+      for (key in value) {
         if (key.startsWith('--')) {
-          node.style.setProperty(key, val[key]);
+          node.style.setProperty(key, value[key]);
         } else {
-          node.style[key] = val[key];
+          node.style[key] = value[key];
         }
       }
     }
   }],
 ]);
 
-const appendChildren = (children, node) => {
-  if (Array.isArray(children)) {
+const appendChildren = (content, node) => {
+  if (Array.isArray(content)) {
     // Just shorter that the .forEach
-    children.some((child) => appendChildren(child, node));
-  } else if (children !== false && children != null) {
-    node.append(children);
+    content.some((i) => appendChildren(i, node));
+  } else if (content !== false && content != null) {
+    node.append(content);
   }
 };
 
@@ -45,21 +45,21 @@ const Fragment = (content) => {
 };
 
 const jsx = (tag, props) => {
-  let key, val, node = props._
+  let key, value, node = props._
     ? document.createElementNS(props._, tag)
     : document.createElement(tag);
 
   for (key in props) {
     if (!internalKeys.has(key)) {
-      val = props[key];
+      value = props[key];
 
       if (extensions.has(key)) {
-        extensions.get(key)(node, val, key);
+        extensions.get(key)(node, value, key);
       } else if (properties.has(key) || key.startsWith('on')) {
-        node[key] = val;
-      } else if (val != null && (typeof val !== 'boolean' || key[4] === '-')) {
-        node.setAttribute(key, val);
-      } else if (val) {
+        node[key] = value;
+      } else if (value != null && (typeof value !== 'boolean' || key[4] === '-')) {
+        node.setAttribute(key, value);
+      } else if (value) {
         node.setAttribute(key, '');
       }
     }
@@ -70,12 +70,12 @@ const jsx = (tag, props) => {
     tag === 'template' ? node.content : node,
   );
 
-  // reuse `key` variable
-  if (key = props.ref) {
-    if (typeof key === 'function') {
-      key(node);
+  // reuse `value` variable
+  if (value = props.ref) {
+    if (typeof value === 'function') {
+      value(node);
     } else {
-      key.current = node;
+      value.current = node;
     }
   }
 
