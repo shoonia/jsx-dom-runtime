@@ -67,10 +67,10 @@ export declare function Fragment(children?: TChild | TChild[]): DocumentFragment
 export declare function Template(props: { children: string }): DocumentFragment
 
 export interface CurrentTarget<T> {
-  currentTarget: EventTarget & T
+  readonly currentTarget: EventTarget & T
 }
 
-type EventHandler<E extends Event, T> = (this: T, event: E & CurrentTarget<T>) => void
+type EventHandler<E, T> = (this: T, event: E & CurrentTarget<T>) => void
 
 export type GenericEventHandler<T = Element> = EventHandler<Event, T>
 export type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent, T>
