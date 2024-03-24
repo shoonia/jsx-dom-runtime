@@ -20,6 +20,7 @@ type TChild =
   | TChild[]
   | string
   | number
+  | bigint
   | false
   | null
   | undefined
