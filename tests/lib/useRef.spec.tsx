@@ -4,7 +4,7 @@ import { useRef } from '../..';
 
 describe('ref', () => {
   it('should run callback ref when it is a function', () => {
-    const spy = jest.fn();
+    const spy: JSX.Ref<HTMLElement> = jest.fn();
 
     const node = <footer ref={spy} />;
 

@@ -90,7 +90,7 @@ export type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPi
 
 export interface DOMAttributes<T> extends JSX.Attributes {
   _?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
-  ref?: RefCallback<T> | RefObject<T>
+  ref?: JSX.Ref<T>
   children?: TChild | TChild[]
   // Clipboard Events
   oncopy?: ClipboardEventHandler<T>
@@ -1064,13 +1064,15 @@ export interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
 
 declare global {
   namespace JSX {
-    type Element = HTMLElement | SVGElement | MathMLElement | DocumentFragment
+    type Element = globalThis.Element | DocumentFragment
     interface Attributes { }
     interface ElementChildrenAttribute { children: {} }
 
     interface FC<P = {}, T extends Element = Element> {
       (props: PropsWithChildren<P>): T | null
     }
+
+    type Ref<T extends globalThis.Element> = RefCallback<T> | RefObject<T>
 
     interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
       /**
