@@ -7,7 +7,7 @@ export type TImportName = 'jsx' | 'Fragment' | 'svgNs' | 'mathmlNs' | 'xhtmlNs';
 
 export class ImportSpec {
   readonly #path: NodePath<t.Program>;
-  readonly #cache: Map<string, string> = new Map();
+  readonly #cache: Map<TImportName, t.Identifier> = new Map();
   readonly #specifiers: t.ImportSpecifier[] = [];
 
   public constructor(path: NodePath<t.Program>) {
@@ -16,7 +16,7 @@ export class ImportSpec {
 
   public add(importName: TImportName): t.Identifier {
     if (this.#cache.has(importName)) {
-      return $identifier(this.#cache.get(importName));
+      return this.#cache.get(importName);
     }
 
     if (this.#specifiers.length === 0) {
@@ -27,15 +27,15 @@ export class ImportSpec {
       });
     }
 
-    const localName = '_' + importName;
+    const local = $identifier('_' + importName);
 
-    this.#cache.set(importName, localName);
+    this.#cache.set(importName, local);
     this.#specifiers.push({
       type: 'ImportSpecifier',
-      local: $identifier(localName),
+      local,
       imported: $identifier(importName),
     });
 
-    return $identifier(localName);
+    return local;
   }
 }
