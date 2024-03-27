@@ -46,14 +46,23 @@ export const jsxTransform: PluginObj = {
     },
 
     JSXFragment(path) {
+      const pType = path.parent.type;
       const children = t.react.buildChildren(path.node);
 
-      path.replaceWith({
-        type: 'CallExpression',
-        callee: importSpec.add('Fragment'),
-        arguments: children.length > 0 ? [$children(children)] : [],
-        leadingComments: $pureAnnotation(),
-      });
+      if (pType === 'JSXElement' || pType === 'JSXFragment') {
+        if (children.length > 0) {
+          path.replaceWith($children(children));
+        } else {
+          path.remove();
+        }
+      } else {
+        path.replaceWith({
+          type: 'CallExpression',
+          callee: importSpec.add('Fragment'),
+          arguments: children.length > 0 ? [$children(children)] : [],
+          leadingComments: $pureAnnotation(),
+        });
+      }
     },
 
     JSXElement: {
