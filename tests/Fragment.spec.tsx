@@ -1,8 +1,8 @@
 import { createRequire } from 'node:module';
 
-const start = 'import{Fragment as _Fragment,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
-
 describe('Fragment', () => {
+  const start = 'import{Fragment as _Fragment,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
+
   it('should support Fragment', () => {
     expect(
       <div>
@@ -125,8 +125,40 @@ describe('Fragment', () => {
     ).toBeTransform(start + '_Fragment([/*#__PURE__*/_jsx("p",{children:"one"}),/*#__PURE__*/_jsx("p",{children:"two"})]);');
   });
 
+  const f = 'import{Fragment as _Fragment}from"jsx-dom-runtime";';
+  const j = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
+
   it('should transform Fragment in props', async () => {
     await expect('<App children={<></>} />')
-      .toBeTransform('import{Fragment as _Fragment}from"jsx-dom-runtime";App({children:/*#__PURE__*/_Fragment()});');
+      .toBeTransform(f + 'App({children:/*#__PURE__*/_Fragment()});');
+  });
+
+  it('should add fragment', async () => {
+    await expect('let f = <></>;').toBeTransform(f + 'let f=/*#__PURE__*/_Fragment();');
+  });
+
+  it('should remove unnecessary fragment', async () => {
+    await expect('<div><></></div>').toBeTransform(j + '_jsx("div",{});');
+  });
+
+  it('should replace fragment with its child node', async () => {
+    await expect(`
+      <div>
+        <>
+          <p>Hello</p>
+        </>
+      </div>
+    `).toBeTransform(j + '_jsx("div",{children:/*#__PURE__*/_jsx("p",{children:"Hello"})});');
+  });
+
+  it('should replace fragment with its children nodes', async () => {
+    await expect(`
+      <div>
+        <>
+          <p>Hello</p>
+          World
+        </>
+      </div>
+    `).toBeTransform(j + '_jsx("div",{children:[/*#__PURE__*/_jsx("p",{children:"Hello"}),"World"]});');
   });
 });
