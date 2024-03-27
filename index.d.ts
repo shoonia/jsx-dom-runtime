@@ -89,7 +89,7 @@ export type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 export type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 export type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
 
-export interface DOMAttributes<T> extends JSX.Attributes {
+export interface DOMAttributes<T extends Element> extends JSX.Attributes {
   _?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
   ref?: JSX.Ref<T>
   children?: TChild | TChild[]
