@@ -46,10 +46,9 @@ export const jsxTransform: PluginObj = {
     },
 
     JSXFragment(path) {
-      const pType = path.parent.type;
       const children = t.react.buildChildren(path.node);
 
-      if (pType === 'JSXElement' || pType === 'JSXFragment') {
+      if (path.parent.type === 'JSXElement') {
         if (children.length > 0) {
           path.replaceWith($children(children));
         } else {
