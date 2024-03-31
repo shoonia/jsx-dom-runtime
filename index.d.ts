@@ -1474,7 +1474,7 @@ declare global {
       /**
        * Offers a way to control the native controls elements/buttons that are being shown by the user agent in order to be able to remove some features that do not make sense or are not part of the expected user experience or only allowlist a limited amount of features
        */
-      controlsList?: ControlsList | `${ControlsList} ${ControlsList}` | `${ControlsList} ${ControlsList} ${ControlsList}`
+      controlsList?: `${OptionalPrefixToken<ControlsList>}${OptionalPrefixToken<ControlsList>}${ControlsList}`
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
       loop?: boolean | ''
       mediaGroup?: string
