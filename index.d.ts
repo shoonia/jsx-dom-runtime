@@ -682,6 +682,11 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/elementtiming
    */
   elementTiming?: string
+  /**
+   * This is an experimental technology
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/virtualkeyboardpolicy
+   */
+  virtualkeyboardpolicy?: 'auto' | 'manual'
 }
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
