@@ -1111,7 +1111,7 @@ declare global {
        */
       formTarget?: '_self' | '_blank' | '_parent' | '_top' | (string & {})
       name?: string
-      type?: 'submit' | 'reset' | 'button'
+      type?: HTMLButtonElement['type']
       value?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
@@ -1283,13 +1283,13 @@ declare global {
     interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
       alt?: string
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
-      decoding?: 'async' | 'auto' | 'sync'
+      decoding?: HTMLImageElement['decoding']
       height?: number | string
       /**
        * This Boolean attribute indicates that the image is part of a server-side map. If so, the coordinates where the user clicked on the image are sent to the server
        */
       ismap?: boolean | ''
-      loading?: 'eager' | 'lazy'
+      loading?: HTMLImageElement['loading']
       referrerPolicy?: ReferrerPolicy
       sizes?: string
       src?: string
@@ -1464,7 +1464,7 @@ declare global {
       type?: string
     }
 
-    interface HTMLMediaAttributes<T> extends HTMLAttributes<T> {
+    interface HTMLMediaAttributes<T extends HTMLMediaElement> extends HTMLAttributes<T> {
       autoplay?: boolean | ''
       controls?: boolean | ''
       /**
@@ -1478,7 +1478,7 @@ declare global {
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
       loop?: boolean | ''
       mediaGroup?: string
-      preload?: 'none' | 'metadata' | 'auto'
+      preload?: HTMLMediaElement['preload']
       src?: string
     }
 
