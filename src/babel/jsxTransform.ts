@@ -12,7 +12,7 @@ import {
   $pureAnnotation,
 } from './builders';
 import {
-  ariaAttributes,
+  enumerated,
   booleanAttributes,
   attributes,
   DOMEvents,
@@ -161,12 +161,7 @@ export const jsxTransform: PluginObj = {
         path.node.value ??= $stringLiteral('');
       }
 
-      else if (
-        ariaAttributes.has(attrName) ||
-        attrName === 'draggable' ||
-        attrName === 'spellcheck' ||
-        attrName.startsWith('data-')
-      ) {
+      else if (enumerated.has(attrName) || attrName.startsWith('data-')) {
         const val = path.node.value;
 
         attr.name = attrName;

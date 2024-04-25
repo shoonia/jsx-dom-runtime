@@ -119,7 +119,8 @@ export const booleanAttributes = new Set([
   'disableremoteplayback', 'popover', 'itemscope', 'declare', 'moz-opaque', 'ismap',
 ]);
 
-export const ariaAttributes = new Set([
+export const enumerated = new Set([
+  // ARIA enumerated attributes
   'aria-atomic', 'aria-braillelabel', 'aria-brailleroledescription', 'aria-busy',
   'aria-controls', 'aria-current', 'aria-describedby', 'aria-description', 'aria-details',
   'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed',
@@ -131,6 +132,8 @@ export const ariaAttributes = new Set([
   'aria-valuemax', 'aria-valuemin', 'aria-valuenow', 'aria-valuetext', 'aria-activedescendant',
   'aria-colcount', 'aria-colindex', 'aria-colindextext', 'aria-colspan', 'aria-posinset',
   'aria-rowcount', 'aria-rowindex', 'aria-rowindextext', 'aria-rowspan', 'aria-setsize',
+  // HTML enumerated attributes
+  'draggable', 'spellcheck',
 ]);
 
 export const svgDOMAttributes = new Map(
