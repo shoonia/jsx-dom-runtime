@@ -6,7 +6,6 @@ import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './ut
 import {
   $children,
   $identifier,
-  $jsxIdentifier,
   $objectProperty,
   $stringLiteral,
   $pureAnnotation,
@@ -139,7 +138,7 @@ export const jsxTransform: PluginObj = {
           attr.name.name === 'href' &&
           attr.namespace.name === 'xlink'
         ) {
-          path.node.name = $jsxIdentifier('href');
+          path.node.name = attr.name;
         }
 
         return;
