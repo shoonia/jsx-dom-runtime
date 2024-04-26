@@ -185,4 +185,132 @@ describe('on:events', () => {
     fireEvent.animationIteration(div);
     expect(spy).toHaveBeenCalledTimes(1);
   });
+
+  it('should fire `click` event', () => {
+    const spy = jest.fn();
+    const div = <div on:click={spy} /> as HTMLDivElement;
+
+    div.click();
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:contextMenu` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:contextMenu={spy} />;
+
+    fireEvent.contextMenu(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:dblClick` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:dblClick={spy} />;
+
+    fireEvent.doubleClick(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:drag` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:drag={spy} />;
+
+    fireEvent.drag(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:dragEnd` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:dragEnd={spy} />;
+
+    fireEvent.dragEnd(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:dragEnter` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:dragEnter={spy} />;
+
+    fireEvent.dragEnter(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:dragLeave` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:dragLeave={spy} />;
+
+    fireEvent.dragLeave(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:dragOver` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:dragOver={spy} />;
+
+    fireEvent.dragOver(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:dragStart` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:dragStart={spy} />;
+
+    fireEvent.dragStart(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:drop` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:drop={spy} />;
+
+    fireEvent.drop(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:mouseEnter` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:mouseEnter={spy} />;
+
+    fireEvent.mouseEnter(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:mouseLeave` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:mouseLeave={spy} />;
+
+    fireEvent.mouseLeave(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:mouseMove` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:mouseMove={spy} />;
+
+    fireEvent.mouseMove(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:mouseOut` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:mouseOut={spy} />;
+
+    fireEvent.mouseOut(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:mouseOver` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:mouseOver={spy} />;
+
+    fireEvent.mouseOver(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:mouseDown` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:mouseDown={spy} />;
+
+    fireEvent.mouseDown(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 });
