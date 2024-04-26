@@ -2,7 +2,7 @@ import type { PluginObj, NodePath } from '@babel/core';
 import t from '@babel/types';
 
 import { type TImportName, ImportSpec } from './ImportSpec';
-import { addEventListener } from './events';
+import { eventListener } from './events';
 import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './util';
 import {
   $children,
@@ -154,7 +154,7 @@ export const jsxTransform: PluginObj = {
           node.value.type === 'JSXExpressionContainer' &&
           node.value.expression.type !== 'JSXEmptyExpression'
         ) {
-          addEventListener(parent, attr.name, node.value.expression);
+          eventListener(parent, attr.name, node.value.expression);
           path.remove();
         }
 

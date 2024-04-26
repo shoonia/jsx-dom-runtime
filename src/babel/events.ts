@@ -4,14 +4,14 @@ import { $identifier, $objectProperty } from './builders';
 
 const cache = new WeakMap<t.JSXOpeningElement, t.ObjectProperty[]>();
 
-const getObjectExpression = (parent: t.JSXOpeningElement): t.ObjectProperty[] => {
-  if (cache.has(parent)) {
-    return cache.get(parent);
+const getObjectExpression = (element: t.JSXOpeningElement): t.ObjectProperty[] => {
+  if (cache.has(element)) {
+    return cache.get(element);
   }
 
   const properties: t.ObjectProperty[] = [];
 
-  parent.attributes.push({
+  element.attributes.push({
     type: 'JSXAttribute',
     name: {
       type: 'JSXIdentifier',
@@ -26,17 +26,17 @@ const getObjectExpression = (parent: t.JSXOpeningElement): t.ObjectProperty[] =>
     },
   });
 
-  cache.set(parent, properties);
+  cache.set(element, properties);
 
   return properties;
 };
 
-export const addEventListener = (
-  parent: t.JSXOpeningElement,
+export const eventListener = (
+  element: t.JSXOpeningElement,
   key: t.JSXIdentifier,
   value: t.Expression,
 ): void => {
-  const properties = getObjectExpression(parent);
+  const properties = getObjectExpression(element);
 
   properties.push(
     $objectProperty(
