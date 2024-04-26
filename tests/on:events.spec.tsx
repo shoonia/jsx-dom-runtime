@@ -51,6 +51,42 @@ describe('on:events', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
+  it('should add `on:focus` handler', () => {
+    const spy = jest.fn();
+    const input = <input on:focus={spy} />;
+
+    fireEvent.focus(input);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:focusin` handler', () => {
+    const spy = jest.fn();
+    const input = <input on:focusin={spy} />;
+
+    fireEvent.focusIn(input);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:focusout` handler', () => {
+    const spy = jest.fn();
+    const input = <input on:focusout={spy} />;
+
+    fireEvent.focusOut(input);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:blur` handler', () => {
+    const spy = jest.fn();
+    const input = <input on:blur={spy} />;
+
+    fireEvent.blur(input);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
   it('should add a few handlers', () => {
     const spyClick = jest.fn();
     const spyChange = jest.fn();

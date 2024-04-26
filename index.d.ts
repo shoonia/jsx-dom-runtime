@@ -104,14 +104,18 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   // Focus Events
   onfocus?: FocusEventHandler<T>
   onblur?: FocusEventHandler<T>
+  'on:focus'?: FocusEventHandler<T>
+  'on:blur'?: FocusEventHandler<T>
+  'on:focusin'?: FocusEventHandler<T>
+  'on:focusout'?: FocusEventHandler<T>
   // Input Events
   onbeforeinput?: InputEventHandler<T>
   oninput?: InputEventHandler<T>
   // Form Events
   onchange?: GenericEventHandler<T>
-  'on:change'?: GenericEventHandler<T>
   onreset?: GenericEventHandler<T>
   oninvalid?: GenericEventHandler<T>
+  'on:change'?: GenericEventHandler<T>
   // Submit Event
   onsubmit?: SubmitEventHandler<T>
   'on:submit'?: SubmitEventHandler<T>
