@@ -109,10 +109,12 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   oninput?: InputEventHandler<T>
   // Form Events
   onchange?: GenericEventHandler<T>
+  'on:change'?: GenericEventHandler<T>
   onreset?: GenericEventHandler<T>
   oninvalid?: GenericEventHandler<T>
   // Submit Event
   onsubmit?: SubmitEventHandler<T>
+  'on:submit'?: SubmitEventHandler<T>
   // Image Events
   onload?: GenericEventHandler<T>
   onerror?: GenericEventHandler<T> // also a Media Event
@@ -146,8 +148,10 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   // Mouse Events
   onauxclick?: MouseEventHandler<T>
   onclick?: MouseEventHandler<T>
+  'on:click'?: MouseEventHandler<T>
   oncontextmenu?: MouseEventHandler<T>
   ondblclick?: MouseEventHandler<T>
+  'on:dblclick'?: MouseEventHandler<T>
   ondrag?: DragEventHandler<T>
   ondragend?: DragEventHandler<T>
   ondragenter?: DragEventHandler<T>
@@ -1371,6 +1375,7 @@ declare global {
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
       onchange?: GenericEventHandler<HTMLInputElement>
+      'on:change'?: GenericEventHandler<HTMLInputElement>
     }
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
@@ -1641,6 +1646,7 @@ declare global {
       size?: number | `${number}`
       value?: number | string
       onchange?: GenericEventHandler<HTMLSelectElement>
+      'on:change'?: GenericEventHandler<HTMLSelectElement>
     }
 
     interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {
@@ -1764,6 +1770,7 @@ declare global {
       value?: number | string
       wrap?: 'hard' | 'soft' | 'off'
       onchange?: GenericEventHandler<HTMLTextAreaElement>
+      'on:change'?: GenericEventHandler<HTMLTextAreaElement>
     }
 
     interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {

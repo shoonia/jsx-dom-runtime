@@ -2,6 +2,7 @@ import type { PluginObj, NodePath } from '@babel/core';
 import t from '@babel/types';
 
 import { type TImportName, ImportSpec } from './ImportSpec';
+import { addEventListener } from './events';
 import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './util';
 import {
   $children,
@@ -124,21 +125,37 @@ export const jsxTransform: PluginObj = {
     },
 
     JSXAttribute(path) {
+      const parent = path.parent;
+
+      if (parent.type !== 'JSXOpeningElement') {
+        return;
+      }
+
       // @ts-expect-error
-      const tag = path.parent?.name.name;
+      const tag = parent?.name.name;
 
       if (!(htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag))) {
         return;
       }
 
-      const attr = path.node.name;
+      const node = path.node;
+      const attr = node.name;
 
       if (attr.type === 'JSXNamespacedName') {
         if (
           attr.name.name === 'href' &&
           attr.namespace.name === 'xlink'
         ) {
-          path.node.name = attr.name;
+          node.name = attr.name;
+        }
+
+        else if (
+          attr.namespace.name === 'on' &&
+          node.value.type === 'JSXExpressionContainer' &&
+          node.value.expression.type !== 'JSXEmptyExpression'
+        ) {
+          addEventListener(parent, attr.name, node.value.expression);
+          path.remove();
         }
 
         return;
@@ -157,23 +174,23 @@ export const jsxTransform: PluginObj = {
 
       else if (booleanAttributes.has(attrName)) {
         attr.name = attrName;
-        path.node.value ??= $stringLiteral('');
+        node.value ??= $stringLiteral('');
       }
 
       else if (enumerated.has(attrName) || attrName.startsWith('data-')) {
-        const val = path.node.value;
+        const val = node.value;
 
         attr.name = attrName;
 
         if (val === null) {
-          path.node.value = $stringLiteral('true');
+          node.value = $stringLiteral('true');
         }
 
         else if (
           val.type === 'JSXExpressionContainer' &&
           val.expression.type === 'BooleanLiteral'
         ) {
-          path.node.value = $stringLiteral(val.expression.value ? 'true' : 'false');
+          node.value = $stringLiteral(val.expression.value ? 'true' : 'false');
         }
       }
 
