@@ -24,7 +24,6 @@ describe('on:events', () => {
     const btn = <button on:click={spy} />;
 
     fireEvent.click(btn);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -33,7 +32,6 @@ describe('on:events', () => {
     const btn = <button on:dblClick={spy} />;
 
     fireEvent.dblClick(btn);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -52,7 +50,6 @@ describe('on:events', () => {
     const form = <form on:submit={spy} />;
 
     fireEvent.submit(form);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -61,7 +58,6 @@ describe('on:events', () => {
     const input = <input on:focus={spy} />;
 
     fireEvent.focus(input);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -70,7 +66,6 @@ describe('on:events', () => {
     const input = <input on:focusIn={spy} />;
 
     fireEvent.focusIn(input);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -79,7 +74,6 @@ describe('on:events', () => {
     const input = <input on:focusOut={spy} />;
 
     fireEvent.focusOut(input);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -88,7 +82,6 @@ describe('on:events', () => {
     const input = <input on:blur={spy} />;
 
     fireEvent.blur(input);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -110,7 +103,6 @@ describe('on:events', () => {
     const textarea = <textarea on:copy={spy} />;
 
     fireEvent.copy(textarea);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -119,7 +111,6 @@ describe('on:events', () => {
     const textarea = <textarea on:cut={spy} />;
 
     fireEvent.cut(textarea);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -128,7 +119,6 @@ describe('on:events', () => {
     const textarea = <textarea on:paste={spy} />;
 
     fireEvent.paste(textarea);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -137,7 +127,38 @@ describe('on:events', () => {
     const input = <input on:input={spy} />;
 
     fireEvent.input(input);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 
+  it('should add `on:transitionStart` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:transitionStart={spy} />;
+
+    fireEvent.transitionStart(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:transitionRun` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:transitionRun={spy} />;
+
+    fireEvent.transitionRun(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:transitionEnd` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:transitionEnd={spy} />;
+
+    fireEvent.transitionEnd(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:transitionCancel` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:transitionCancel={spy} />;
+
+    fireEvent.transitionCancel(div);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });
