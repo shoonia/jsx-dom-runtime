@@ -104,6 +104,9 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   oncompositionend?: CompositionEventHandler<T>
   oncompositionstart?: CompositionEventHandler<T>
   oncompositionupdate?: CompositionEventHandler<T>
+  'on:compositionend'?: CompositionEventHandler<T>
+  'on:compositionstart'?: CompositionEventHandler<T>
+  'on:compositionupdate'?: CompositionEventHandler<T>
   // Focus Events
   onfocus?: FocusEventHandler<T>
   onblur?: FocusEventHandler<T>
@@ -121,16 +124,23 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onreset?: GenericEventHandler<T>
   oninvalid?: GenericEventHandler<T>
   'on:change'?: GenericEventHandler<T>
+  'on:reset'?: GenericEventHandler<T>
+  'on:invalid'?: GenericEventHandler<T>
   // Submit Event
   onsubmit?: SubmitEventHandler<T>
   'on:submit'?: SubmitEventHandler<T>
   // Image Events
   onload?: GenericEventHandler<T>
   onerror?: GenericEventHandler<T> // also a Media Event
+  'on:load'?: GenericEventHandler<T>
+  'on:error'?: GenericEventHandler<T>
   // Keyboard Events
   onkeydown?: KeyboardEventHandler<T>
   onkeypress?: KeyboardEventHandler<T>
   onkeyup?: KeyboardEventHandler<T>
+  'on:keydown'?: KeyboardEventHandler<T>
+  'on:keypress'?: KeyboardEventHandler<T>
+  'on:keyup'?: KeyboardEventHandler<T>
   // Media Events
   onabort?: GenericEventHandler<T>
   oncanplay?: GenericEventHandler<T>
@@ -154,13 +164,33 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   ontimeupdate?: GenericEventHandler<T>
   onvolumechange?: GenericEventHandler<T>
   onwaiting?: GenericEventHandler<T>
+  'on:abort'?: GenericEventHandler<T>
+  'on:canplay'?: GenericEventHandler<T>
+  'on:canplaythrough'?: GenericEventHandler<T>
+  'on:durationchange'?: GenericEventHandler<T>
+  'on:emptied'?: GenericEventHandler<T>
+  'on:encrypted'?: GenericEventHandler<T>
+  'on:ended'?: GenericEventHandler<T>
+  'on:loadeddata'?: GenericEventHandler<T>
+  'on:loadedmetadata'?: GenericEventHandler<T>
+  'on:loadstart'?: GenericEventHandler<T>
+  'on:pause'?: GenericEventHandler<T>
+  'on:play'?: GenericEventHandler<T>
+  'on:playing'?: GenericEventHandler<T>
+  'on:progress'?: GenericEventHandler<T>
+  'on:ratechange'?: GenericEventHandler<T>
+  'on:seeked'?: GenericEventHandler<T>
+  'on:seeking'?: GenericEventHandler<T>
+  'on:stalled'?: GenericEventHandler<T>
+  'on:suspend'?: GenericEventHandler<T>
+  'on:timeupdate'?: GenericEventHandler<T>
+  'on:volumechange'?: GenericEventHandler<T>
+  'on:waiting'?: GenericEventHandler<T>
   // Mouse Events
   onauxclick?: MouseEventHandler<T>
   onclick?: MouseEventHandler<T>
-  'on:click'?: MouseEventHandler<T>
   oncontextmenu?: MouseEventHandler<T>
   ondblclick?: MouseEventHandler<T>
-  'on:dblclick'?: MouseEventHandler<T>
   ondrag?: DragEventHandler<T>
   ondragend?: DragEventHandler<T>
   ondragenter?: DragEventHandler<T>
@@ -176,13 +206,37 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onmouseout?: MouseEventHandler<T>
   onmouseover?: MouseEventHandler<T>
   onmouseup?: MouseEventHandler<T>
+  'on:auxclick'?: MouseEventHandler<T>
+  'on:click'?: MouseEventHandler<T>
+  'on:contextmenu'?: MouseEventHandler<T>
+  'on:dblclick'?: MouseEventHandler<T>
+  'on:drag'?: DragEventHandler<T>
+  'on:dragend'?: DragEventHandler<T>
+  'on:dragenter'?: DragEventHandler<T>
+  'on:dragexit'?: DragEventHandler<T>
+  'on:dragleave'?: DragEventHandler<T>
+  'on:dragover'?: DragEventHandler<T>
+  'on:dragstart'?: DragEventHandler<T>
+  'on:drop'?: DragEventHandler<T>
+  'on:mousedown'?: MouseEventHandler<T>
+  'on:mouseenter'?: MouseEventHandler<T>
+  'on:mouseleave'?: MouseEventHandler<T>
+  'on:mousemove'?: MouseEventHandler<T>
+  'on:mouseout'?: MouseEventHandler<T>
+  'on:mouseover'?: MouseEventHandler<T>
+  'on:mouseup'?: MouseEventHandler<T>
   // Selection Events
   onselect?: GenericEventHandler<T>
+  'on:select'?: GenericEventHandler<T>
   // Touch Events
   ontouchcancel?: TouchEventHandler<T>
   ontouchend?: TouchEventHandler<T>
   ontouchmove?: TouchEventHandler<T>
   ontouchstart?: TouchEventHandler<T>
+  'on:touchcancel'?: TouchEventHandler<T>
+  'on:touchend'?: TouchEventHandler<T>
+  'on:touchmove'?: TouchEventHandler<T>
+  'on:touchstart'?: TouchEventHandler<T>
   // Pointer Events
   onpointerdown?: PointerEventHandler<T>
   onpointermove?: PointerEventHandler<T>
@@ -194,20 +248,40 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onpointerout?: PointerEventHandler<T>
   ongotpointercapture?: PointerEventHandler<T>
   onlostpointercapture?: PointerEventHandler<T>
+  'on:pointerdown'?: PointerEventHandler<T>
+  'on:pointermove'?: PointerEventHandler<T>
+  'on:pointerup'?: PointerEventHandler<T>
+  'on:pointercancel'?: PointerEventHandler<T>
+  'on:pointerenter'?: PointerEventHandler<T>
+  'on:pointerleave'?: PointerEventHandler<T>
+  'on:pointerover'?: PointerEventHandler<T>
+  'on:pointerout'?: PointerEventHandler<T>
+  'on:gotpointercapture'?: PointerEventHandler<T>
+  'on:lostpointercapture'?: PointerEventHandler<T>
   // UI Events
   onscroll?: UIEventHandler<T>
   onscrollend?: UIEventHandler<T>
+  'on:scroll'?: UIEventHandler<T>
+  'on:scrollend'?: UIEventHandler<T>
   // Wheel Events
   onwheel?: WheelEventHandler<T>
+  'on:wheel'?: WheelEventHandler<T>
   // Animation Events
   onanimationstart?: AnimationEventHandler<T>
   onanimationend?: AnimationEventHandler<T>
   onanimationiteration?: AnimationEventHandler<T>
+  'on:animationstart'?: AnimationEventHandler<T>
+  'on:animationend'?: AnimationEventHandler<T>
+  'on:animationiteration'?: AnimationEventHandler<T>
   // Transition Events
   ontransitionstart?: TransitionEventHandler<T>
   ontransitionend?: TransitionEventHandler<T>
   ontransitionrun?: TransitionEventHandler<T>
   ontransitioncancel?: TransitionEventHandler<T>
+  'on:transitionstart'?: TransitionEventHandler<T>
+  'on:transitionend'?: TransitionEventHandler<T>
+  'on:transitionrun'?: TransitionEventHandler<T>
+  'on:transitioncancel'?: TransitionEventHandler<T>
 }
 
 export interface CSSProperties extends Properties<number | string> {
@@ -1170,6 +1244,9 @@ declare global {
       ontoggle?: GenericEventHandler<HTMLDialogElement>
       onclose?: GenericEventHandler<HTMLDialogElement>
       oncancel?: GenericEventHandler<HTMLDialogElement>
+      'on:toggle'?: GenericEventHandler<HTMLDialogElement>
+      'on:close'?: GenericEventHandler<HTMLDialogElement>
+      'on:cancel'?: GenericEventHandler<HTMLDialogElement>
     }
 
     interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
