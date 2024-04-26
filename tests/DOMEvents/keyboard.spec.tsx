@@ -7,7 +7,6 @@ describe('Keyboard Events', () => {
     const input = <input onkeydown={spy} />;
 
     fireEvent.keyDown(input);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -16,7 +15,6 @@ describe('Keyboard Events', () => {
     const input = <input onkeyup={spy} />;
 
     fireEvent.keyUp(input);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -25,7 +23,6 @@ describe('Keyboard Events', () => {
     const input = <input onkeypress={spy} />;
 
     fireEvent.keyPress(input);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });

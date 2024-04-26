@@ -28,6 +28,11 @@ const extensions = new Map([
       }
     }
   }],
+  ['$', (node, value, key) => {
+    for (key in value) {
+      node.addEventListener(key, value[key]);
+    }
+  }],
 ]);
 
 const appendChildren = (content, node) => {

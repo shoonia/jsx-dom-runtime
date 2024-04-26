@@ -7,7 +7,6 @@ describe('Mouse Events', () => {
     const div = <div onclick={spy} />;
 
     fireEvent.click(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -16,7 +15,6 @@ describe('Mouse Events', () => {
     const div = <div onclick={spy} /> as HTMLDivElement;
 
     div.click();
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -25,7 +23,6 @@ describe('Mouse Events', () => {
     const div = <div oncontextmenu={spy} />;
 
     fireEvent.contextMenu(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -34,7 +31,6 @@ describe('Mouse Events', () => {
     const div = <div ondblclick={spy} />;
 
     fireEvent.doubleClick(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -43,7 +39,6 @@ describe('Mouse Events', () => {
     const div = <div ondrag={spy} />;
 
     fireEvent.drag(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -52,7 +47,6 @@ describe('Mouse Events', () => {
     const div = <div ondragend={spy} />;
 
     fireEvent.dragEnd(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -61,7 +55,6 @@ describe('Mouse Events', () => {
     const div = <div ondragenter={spy} />;
 
     fireEvent.dragEnter(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -70,7 +63,6 @@ describe('Mouse Events', () => {
     const div = <div ondragleave={spy} />;
 
     fireEvent.dragLeave(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -79,7 +71,6 @@ describe('Mouse Events', () => {
     const div = <div ondragover={spy} />;
 
     fireEvent.dragOver(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -88,7 +79,6 @@ describe('Mouse Events', () => {
     const div = <div ondragstart={spy} />;
 
     fireEvent.dragStart(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -97,7 +87,6 @@ describe('Mouse Events', () => {
     const div = <div ondrop={spy} />;
 
     fireEvent.drop(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -106,7 +95,6 @@ describe('Mouse Events', () => {
     const div = <div onmouseenter={spy} />;
 
     fireEvent.mouseEnter(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -115,7 +103,6 @@ describe('Mouse Events', () => {
     const div = <div onmouseleave={spy} />;
 
     fireEvent.mouseLeave(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -124,7 +111,6 @@ describe('Mouse Events', () => {
     const div = <div onmousemove={spy} />;
 
     fireEvent.mouseMove(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -133,7 +119,6 @@ describe('Mouse Events', () => {
     const div = <div onmouseout={spy} />;
 
     fireEvent.mouseOut(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -142,7 +127,6 @@ describe('Mouse Events', () => {
     const div = <div onmouseover={spy} />;
 
     fireEvent.mouseOver(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -151,7 +135,6 @@ describe('Mouse Events', () => {
     const div = <div onmousedown={spy} />;
 
     fireEvent.mouseDown(div);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });
