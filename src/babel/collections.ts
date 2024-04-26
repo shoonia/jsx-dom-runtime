@@ -102,6 +102,8 @@ export const DOMEvents = new Set([
   'ontoggle',
   // HTMLDialogElement
   'oncancel', 'onclose',
+  // Fullscreen API
+  'onfullscreenchange', 'onfullscreenerror',
 ]);
 
 export const attributes = new Set([

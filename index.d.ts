@@ -282,6 +282,11 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:transitionEnd'?: TransitionEventHandler<T>
   'on:transitionRun'?: TransitionEventHandler<T>
   'on:transitionCancel'?: TransitionEventHandler<T>
+  // Fullscreen API
+  onfullscreenchange?: GenericEventHandler<T>
+  onfullscreenerror?: GenericEventHandler<T>
+  'on:fullscreenChange'?: GenericEventHandler<T>
+  'on:fullscreenError'?: GenericEventHandler<T>
 }
 
 export interface CSSProperties extends Properties<number | string> {
@@ -1990,6 +1995,9 @@ declare global {
       onenterpictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
       onleavepictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
       onresize?: PictureInPictureEventHandler<HTMLVideoElement>
+      'on:enterPictureInPicture'?: PictureInPictureEventHandler<HTMLVideoElement>
+      'on:leavePictureInPicture'?: PictureInPictureEventHandler<HTMLVideoElement>
+      'on:resize'?: PictureInPictureEventHandler<HTMLVideoElement>
     }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
