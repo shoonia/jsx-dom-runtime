@@ -30,7 +30,7 @@ describe('on:events', () => {
 
   it('should add `on:dblclick` handler', () => {
     const spy = jest.fn();
-    const btn = <button on:dblclick={spy} />;
+    const btn = <button on:dblClick={spy} />;
 
     fireEvent.dblClick(btn);
 
@@ -67,7 +67,7 @@ describe('on:events', () => {
 
   it('should add `on:focusin` handler', () => {
     const spy = jest.fn();
-    const input = <input on:focusin={spy} />;
+    const input = <input on:focusIn={spy} />;
 
     fireEvent.focusIn(input);
 
@@ -76,7 +76,7 @@ describe('on:events', () => {
 
   it('should add `on:focusout` handler', () => {
     const spy = jest.fn();
-    const input = <input on:focusout={spy} />;
+    const input = <input on:focusOut={spy} />;
 
     fireEvent.focusOut(input);
 
