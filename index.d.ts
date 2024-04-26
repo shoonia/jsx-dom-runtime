@@ -97,6 +97,9 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   oncopy?: ClipboardEventHandler<T>
   oncut?: ClipboardEventHandler<T>
   onpaste?: ClipboardEventHandler<T>
+  'on:copy'?: ClipboardEventHandler<T>
+  'on:cut'?: ClipboardEventHandler<T>
+  'on:paste'?: ClipboardEventHandler<T>
   // Composition Events
   oncompositionend?: CompositionEventHandler<T>
   oncompositionstart?: CompositionEventHandler<T>

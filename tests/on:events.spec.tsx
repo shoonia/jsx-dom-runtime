@@ -104,4 +104,31 @@ describe('on:events', () => {
     expect(spyChange).toHaveBeenCalledTimes(1);
     expect(input).toHaveValue('xyz');
   });
+
+  it('should add `on:copy` handler', () => {
+    const spy = jest.fn();
+    const textarea = <textarea on:copy={spy} />;
+
+    fireEvent.copy(textarea);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:cut` handler', () => {
+    const spy = jest.fn();
+    const textarea = <textarea on:cut={spy} />;
+
+    fireEvent.cut(textarea);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:paste` handler', () => {
+    const spy = jest.fn();
+    const textarea = <textarea on:paste={spy} />;
+
+    fireEvent.paste(textarea);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 });
