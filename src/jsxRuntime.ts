@@ -28,7 +28,7 @@ const extensions = new Map([
       }
     }
   }],
-  ['on', (node, value, key) => {
+  ['$', (node, value, key) => {
     for (key in value) {
       node.addEventListener(key, value[key]);
     }

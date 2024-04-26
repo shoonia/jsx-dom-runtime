@@ -15,7 +15,7 @@ const getObjectExpression = (parent: t.JSXOpeningElement): t.ObjectProperty[] =>
     type: 'JSXAttribute',
     name: {
       type: 'JSXIdentifier',
-      name: 'on',
+      name: '$',
     },
     value: {
       type: 'JSXExpressionContainer',

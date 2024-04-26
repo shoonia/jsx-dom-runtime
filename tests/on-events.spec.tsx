@@ -6,12 +6,12 @@ describe('on:events', () => {
 
   it('should transform `on:click` handler', async () => {
     await expect('<button on:click={spy} />')
-      .toBeTransform(i + '_jsx("button",{on:{click:spy}});');
+      .toBeTransform(i + '_jsx("button",{$:{click:spy}});');
   });
 
   it('should add two handlers', async () => {
     await expect('<button on:click={fn1} on:change={fn2} />')
-      .toBeTransform(i + '_jsx("button",{on:{click:fn1,change:fn2}});');
+      .toBeTransform(i + '_jsx("button",{$:{click:fn1,change:fn2}});');
   });
 
   it('should add `on:click` handler', () => {
