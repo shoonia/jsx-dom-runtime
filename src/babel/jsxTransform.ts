@@ -132,7 +132,7 @@ export const jsxTransform: PluginObj = {
       }
 
       // @ts-expect-error
-      const tag = parent?.name.name;
+      const tag = parent.name.name;
 
       if (!(htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag))) {
         return;
