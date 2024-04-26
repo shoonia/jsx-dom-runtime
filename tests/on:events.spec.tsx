@@ -53,6 +53,22 @@ describe('on:events', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
+  it('should add `on:reset` handler', () => {
+    const spy = jest.fn();
+    const form = <form on:reset={spy} />;
+
+    fireEvent.reset(form);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:invalid` handler', () => {
+    const spy = jest.fn();
+    const form = <form on:invalid={spy} />;
+
+    fireEvent.invalid(form);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
   it('should add `on:focus` handler', () => {
     const spy = jest.fn();
     const input = <input on:focus={spy} />;
@@ -335,6 +351,14 @@ describe('on:events', () => {
     const input = <input on:keyPress={spy} />;
 
     fireEvent.keyPress(input);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:scroll` handler', () => {
+    const spy = jest.fn();
+    const main = <main on:scroll={spy} />;
+
+    fireEvent.scroll(main);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });

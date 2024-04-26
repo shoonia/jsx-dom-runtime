@@ -7,7 +7,6 @@ describe('Focus Events', () => {
     const input = <input onfocus={spy} />;
 
     fireEvent.focus(input);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -16,7 +15,6 @@ describe('Focus Events', () => {
     const input = <input onblur={spy} />;
 
     fireEvent.blur(input);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -27,7 +25,6 @@ describe('Focus Events', () => {
     }} />;
 
     fireEvent.focusIn(input);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -38,7 +35,6 @@ describe('Focus Events', () => {
     }} />;
 
     fireEvent.focusOut(input);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });

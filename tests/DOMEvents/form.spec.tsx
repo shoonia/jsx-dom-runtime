@@ -7,7 +7,6 @@ describe('Form Events', () => {
     const form = <form onchange={spy} />;
 
     fireEvent.change(form);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -16,7 +15,6 @@ describe('Form Events', () => {
     const form = <form oninput={spy} />;
 
     fireEvent.input(form);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -25,7 +23,6 @@ describe('Form Events', () => {
     const form = <form onreset={spy} />;
 
     fireEvent.reset(form);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -34,7 +31,6 @@ describe('Form Events', () => {
     const form = <form onsubmit={spy} />;
 
     fireEvent.submit(form);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -43,7 +39,6 @@ describe('Form Events', () => {
     const form = <form oninvalid={spy} />;
 
     fireEvent.invalid(form);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });

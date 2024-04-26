@@ -7,7 +7,6 @@ describe('UI Events', () => {
     const main = <main onscroll={spy} />;
 
     fireEvent.scroll(main);
-
     expect(spy).toHaveBeenCalledTimes(1);
   });
 });
