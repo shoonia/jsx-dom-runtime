@@ -114,6 +114,8 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   // Input Events
   onbeforeinput?: InputEventHandler<T>
   oninput?: InputEventHandler<T>
+  'on:beforeinput'?: InputEventHandler<T>
+  'on:input'?: InputEventHandler<T>
   // Form Events
   onchange?: GenericEventHandler<T>
   onreset?: GenericEventHandler<T>

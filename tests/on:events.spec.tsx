@@ -131,4 +131,13 @@ describe('on:events', () => {
 
     expect(spy).toHaveBeenCalledTimes(1);
   });
+
+  it('should add `on:input` handler', () => {
+    const spy = jest.fn();
+    const input = <input on:input={spy} />;
+
+    fireEvent.input(input);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 });

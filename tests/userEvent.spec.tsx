@@ -57,6 +57,15 @@ describe('User events', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
+  it('should add `oninput` handler', () => {
+    const spy = jest.fn();
+    const input = <input oninput={spy} />;
+
+    fireEvent.input(input);
+
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
   it('should add a few handlers', () => {
     const spyClick = jest.fn();
     const spyChange = jest.fn();
