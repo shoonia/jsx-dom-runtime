@@ -14,6 +14,11 @@ describe('on:events', () => {
       .toBeTransform(i + '_jsx("button",{$:{click:fn1,change:fn2}});');
   });
 
+  it('should transform to lowercase event names', async () => {
+    await expect('<input on:focusIn={fn1} on:focusOut={fn2} />')
+      .toBeTransform(i + '_jsx("input",{$:{focusin:fn1,focusout:fn2}});');
+  });
+
   it('should add `on:click` handler', () => {
     const spy = jest.fn();
     const btn = <button on:click={spy} />;

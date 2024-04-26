@@ -39,6 +39,6 @@ export const addEventListener = (
   const properties = getObjectExpression(parent);
 
   properties.push(
-    $objectProperty($identifier(key.name), value),
+    $objectProperty($identifier(key.name.toLowerCase()), value),
   );
 };
