@@ -313,4 +313,28 @@ describe('on:events', () => {
     fireEvent.mouseDown(div);
     expect(spy).toHaveBeenCalledTimes(1);
   });
+
+  it('should add `on:keyDown` handler', () => {
+    const spy = jest.fn();
+    const input = <input on:keyDown={spy} />;
+
+    fireEvent.keyDown(input);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:keyUp` handler', () => {
+    const spy = jest.fn();
+    const input = <input on:keyUp={spy} />;
+
+    fireEvent.keyUp(input);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:keyPress` handler', () => {
+    const spy = jest.fn();
+    const input = <input on:keyPress={spy} />;
+
+    fireEvent.keyPress(input);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 });
