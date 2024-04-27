@@ -417,4 +417,180 @@ describe('on:events', () => {
     fireEvent.touchMove(div);
     expect(spy).toHaveBeenCalledTimes(1);
   });
+
+  it('should add `on:abort` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:abort={spy} /> as HTMLAudioElement;
+
+    fireEvent.abort(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:canPlay` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:canPlay={spy} /> as HTMLAudioElement;
+
+    fireEvent.canPlay(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:canPlayThrough` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:canPlayThrough={spy} /> as HTMLAudioElement;
+
+    fireEvent.canPlayThrough(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:durationChange` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:durationChange={spy} /> as HTMLAudioElement;
+
+    fireEvent.durationChange(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:emptied` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:emptied={spy} /> as HTMLAudioElement;
+
+    fireEvent.emptied(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:encrypted` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:encrypted={spy} /> as HTMLAudioElement;
+
+    fireEvent.encrypted(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:ended` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:ended={spy} /> as HTMLAudioElement;
+
+    fireEvent.ended(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:loadedData` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:loadedData={spy} /> as HTMLAudioElement;
+
+    fireEvent.loadedData(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:loadedMetadata` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:loadedMetadata={spy} /> as HTMLAudioElement;
+
+    fireEvent.loadedMetadata(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:loadStart` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:loadStart={spy} /> as HTMLAudioElement;
+
+    fireEvent.loadStart(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:pause` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:pause={spy} /> as HTMLAudioElement;
+
+    fireEvent.pause(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:play` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:play={spy} /> as HTMLAudioElement;
+
+    fireEvent.play(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:playing` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:playing={spy} /> as HTMLAudioElement;
+
+    fireEvent.playing(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:progress` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:progress={spy} /> as HTMLAudioElement;
+
+    fireEvent.progress(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:rateChange` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:rateChange={spy} /> as HTMLAudioElement;
+
+    fireEvent.rateChange(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:seeked` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:seeked={spy} /> as HTMLAudioElement;
+
+    fireEvent.seeked(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:seeking` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:seeking={spy} /> as HTMLAudioElement;
+
+    fireEvent.seeking(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:stalled` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:stalled={spy} /> as HTMLAudioElement;
+
+    fireEvent.stalled(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:suspend` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:suspend={spy} /> as HTMLAudioElement;
+
+    fireEvent.suspend(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:timeUpdate` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:timeUpdate={spy} /> as HTMLAudioElement;
+
+    fireEvent.timeUpdate(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:volumeChange` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:volumeChange={spy} /> as HTMLAudioElement;
+
+    fireEvent.volumeChange(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:waiting` handler', () => {
+    const spy = jest.fn();
+    const audio = <audio on:waiting={spy} /> as HTMLAudioElement;
+
+    fireEvent.waiting(audio);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 });
