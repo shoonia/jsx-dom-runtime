@@ -1,6 +1,7 @@
 import type t from '@babel/types';
+import { isIdentifierName } from '@babel/helper-validator-identifier';
 
-import { $identifier, $objectProperty } from './builders';
+import { $identifier, $objectProperty, $stringLiteral } from './builders';
 
 const cache = new WeakMap<t.JSXOpeningElement, t.ObjectProperty[]>();
 
@@ -40,7 +41,9 @@ export const eventListener = (
 
   properties.push(
     $objectProperty(
-      $identifier(key.name.toLowerCase()),
+      isIdentifierName(key.name)
+        ? $identifier(key.name.toLowerCase())
+        : $stringLiteral(key.name),
       value,
     ),
   );
