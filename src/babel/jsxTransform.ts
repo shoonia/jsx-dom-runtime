@@ -143,19 +143,19 @@ export const jsxTransform: PluginObj = {
 
       if (attr.type === 'JSXNamespacedName') {
         if (
-          attr.name.name === 'href' &&
-          attr.namespace.name === 'xlink'
-        ) {
-          node.name = attr.name;
-        }
-
-        else if (
           attr.namespace.name === 'on' &&
           node.value.type === 'JSXExpressionContainer' &&
           node.value.expression.type !== 'JSXEmptyExpression'
         ) {
           eventListener(parent, attr.name, node.value.expression);
           path.remove();
+        }
+
+        else if (
+          attr.name.name === 'href' &&
+          attr.namespace.name === 'xlink'
+        ) {
+          node.name = attr.name;
         }
 
         return;
