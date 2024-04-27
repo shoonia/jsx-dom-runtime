@@ -33,8 +33,21 @@ describe('support custom events', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
+  it('should support CustomEvent in Custom Element', () => {
+    const spy = jest.fn();
+    const web = <web-component on:custom-event={spy}></web-component> as HTMLElement;
+
+    web.dispatchEvent(new CustomEvent('custom-event'));
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
   it('should be transform correct', async () => {
     await expect('<div onclick={fn1} on:click={fn2} on:custom-event={fn3} on:CustomEvent={fn4} />')
       .toBeTransform(i + '_jsx("div",{onclick:fn1,$:{click:fn2,"custom-event":fn3,CustomEvent:fn4}});');
+  });
+
+  it('should be transform correct in Custom Element', async () => {
+    await expect('<web-component on:custom-event={handler}></web-component>')
+      .toBeTransform(i + '_jsx("web-component",{$:{"custom-event":handler}});');
   });
 });

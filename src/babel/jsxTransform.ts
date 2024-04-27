@@ -133,8 +133,9 @@ export const jsxTransform: PluginObj = {
 
       // @ts-expect-error
       const tag = parent.name.name;
+      const isCustomElement = typeof tag === 'string' && tag.includes('-', 1);
 
-      if (!(htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag))) {
+      if (!(isCustomElement || htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag))) {
         return;
       }
 
@@ -151,6 +152,10 @@ export const jsxTransform: PluginObj = {
           path.remove();
         }
 
+        else if (isCustomElement) {
+          return;
+        }
+
         else if (
           attr.name.name === 'href' &&
           attr.namespace.name === 'xlink'
@@ -158,6 +163,10 @@ export const jsxTransform: PluginObj = {
           node.name = attr.name;
         }
 
+        return;
+      }
+
+      if (isCustomElement) {
         return;
       }
 
