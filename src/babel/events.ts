@@ -2,10 +2,11 @@ import type t from '@babel/types';
 import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { $identifier, $objectProperty, $stringLiteral } from './builders';
+import { eventTypes } from './collections';
 
 const cache = new WeakMap<t.JSXOpeningElement, t.ObjectProperty[]>();
 
-const getObjectExpression = (element: t.JSXOpeningElement): t.ObjectProperty[] => {
+const getObjectProperties = (element: t.JSXOpeningElement): t.ObjectProperty[] => {
   if (cache.has(element)) {
     return cache.get(element);
   }
@@ -37,13 +38,16 @@ export const eventListener = (
   key: t.JSXIdentifier,
   value: t.Expression,
 ): void => {
-  const properties = getObjectExpression(element);
+  const properties = getObjectProperties(element);
+  const name = key.name.toLowerCase();
 
   properties.push(
     $objectProperty(
-      isIdentifierName(key.name)
-        ? $identifier(key.name.toLowerCase())
-        : $stringLiteral(key.name),
+      eventTypes.has(name)
+        ? $identifier(name)
+        : isIdentifierName(key.name)
+          ? $identifier(key.name)
+          : $stringLiteral(key.name),
       value,
     ),
   );

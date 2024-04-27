@@ -57,53 +57,60 @@ export const mathmlTags = new Set([
   'mtable', 'mtd', 'mtext', 'mtr', 'munder', 'munderover', 'semantics', 'mfenced',
 ]);
 
-export const DOMEvents = new Set([
-  'oncopy', 'oncut', 'onpaste',
+const events = [
+  'copy', 'cut', 'paste',
   // Composition Events
-  'oncompositionend', 'oncompositionstart', 'oncompositionupdate',
+  'compositionend', 'compositionstart', 'compositionupdate',
   // Focus Events
-  'onfocus', 'onblur',
+  'focus', 'blur',
   // Form Events
-  'onchange', 'onbeforeinput', 'oninput', 'onreset', 'onsubmit', 'oninvalid',
+  'change', 'beforeinput', 'input', 'reset', 'submit', 'invalid',
   // Image Events
-  'onload', 'onerror',
+  'load', 'error',
   // Keyboard Events
-  'onkeydown', 'onkeypress', 'onkeyup',
+  'keydown', 'keypress', 'keyup',
   // Media Events
-  'onabort', 'oncanplay', 'oncanplaythrough', 'ondurationchange',
-  'onemptied', 'onencrypted', 'onended', 'onloadeddata', 'onloadedmetadata',
-  'onloadstart', 'onpause', 'onplay', 'onplaying', 'onprogress',
-  'onratechange', 'onseeked', 'onseeking', 'onstalled', 'onsuspend',
-  'ontimeupdate', 'onvolumechange', 'onwaiting',
+  'abort', 'canplay', 'canplaythrough', 'durationchange',
+  'emptied', 'encrypted', 'ended', 'loadeddata', 'loadedmetadata',
+  'loadstart', 'pause', 'play', 'playing', 'progress',
+  'ratechange', 'seeked', 'seeking', 'stalled', 'suspend',
+  'timeupdate', 'volumechange', 'waiting',
   // MouseEvents
-  'onauxclick', 'onclick', 'oncontextmenu', 'ondblclick', 'ondrag',
-  'ondragend', 'ondragenter', 'ondragexit', 'ondragleave', 'ondragover',
-  'ondragstart', 'ondrop', 'onmousedown', 'onmouseenter', 'onmouseleave',
-  'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup',
+  'auxclick', 'click', 'contextmenu', 'dblclick', 'drag',
+  'dragend', 'dragenter', 'dragexit', 'dragleave', 'dragover',
+  'dragstart', 'drop', 'mousedown', 'mouseenter', 'mouseleave',
+  'mousemove', 'mouseout', 'mouseover', 'mouseup',
   // Selection Events
-  'onselect',
+  'select',
   // Touch Events
-  'ontouchcancel', 'ontouchend', 'ontouchmove', 'ontouchstart',
+  'touchcancel', 'touchend', 'touchmove', 'touchstart',
   // Pointer Events
-  'onpointerdown', 'onpointermove', 'onpointerup', 'onpointercancel',
-  'onpointerenter', 'onpointerleave', 'onpointerover', 'onpointerout',
-  'ongotpointercapture', 'onlostpointercapture',
+  'pointerdown', 'pointermove', 'pointerup', 'pointercancel',
+  'pointerenter', 'pointerleave', 'pointerover', 'pointerout',
+  'gotpointercapture', 'lostpointercapture',
   // UI Events
-  'onscroll', 'onscrollend',
+  'scroll', 'scrollend',
   // Wheel Events
-  'onwheel',
+  'wheel',
   // Animation Events
-  'onanimationstart', 'onanimationend', 'onanimationiteration',
+  'animationstart', 'animationend', 'animationiteration',
   // Transition Events
-  'ontransitionend', 'ontransitionstart', 'ontransitioncancel', 'ontransitionrun',
+  'transitionend', 'transitionstart', 'transitioncancel', 'transitionrun',
   // PictureInPicture Events
-  'onenterpictureinpicture', 'onleavepictureinpicture', 'onresize',
+  'enterpictureinpicture', 'leavepictureinpicture', 'resize',
   // HTMLDetailsElement & HTMLDialogElement
-  'ontoggle',
+  'toggle',
   // HTMLDialogElement
-  'oncancel', 'onclose',
+  'cancel', 'close',
   // Fullscreen API
-  'onfullscreenchange', 'onfullscreenerror',
+  'fullscreenchange', 'fullscreenerror',
+];
+
+export const DOMEvents = new Set(events.map((e) => 'on' + e));
+
+export const eventTypes = new Set([
+  ...events,
+  'focusin', 'focusout'
 ]);
 
 export const attributes = new Set([
