@@ -361,4 +361,60 @@ describe('on:events', () => {
     fireEvent.scroll(main);
     expect(spy).toHaveBeenCalledTimes(1);
   });
+
+  it('should add `on:compositionStart` handler', () => {
+    const spy = jest.fn();
+    const input = <input on:compositionStart={spy} />;
+
+    fireEvent.compositionStart(input);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:compositionEnd` handler', () => {
+    const spy = jest.fn();
+    const input = <input on:compositionEnd={spy} />;
+
+    fireEvent.compositionEnd(input);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:compositionUpdate` handler', () => {
+    const spy = jest.fn();
+    const input = <input on:compositionUpdate={spy} />;
+
+    fireEvent.compositionUpdate(input);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:touchStart` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:touchStart={spy} />;
+
+    fireEvent.touchStart(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:touchEnd` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:touchEnd={spy} />;
+
+    fireEvent.touchEnd(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:touchCancel` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:touchCancel={spy} />;
+
+    fireEvent.touchCancel(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:touchMove` handler', () => {
+    const spy = jest.fn();
+    const div = <div on:touchMove={spy} />;
+
+    fireEvent.touchMove(div);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 });
