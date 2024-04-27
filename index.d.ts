@@ -91,6 +91,7 @@ export type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPi
 
 export interface DOMAttributes<T> extends JSX.Attributes {
   _?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
+  $?: Record<string, GenericEventHandler<T>>
   ref?: JSX.Ref<T>
   children?: TChild | TChild[]
   // Clipboard Events
