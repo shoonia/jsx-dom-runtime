@@ -33,12 +33,12 @@ export const App: JSX.FC = () => {
             ref={inputRef}
             type="text"
             class={s.field}
-            onkeyup={pressEnter}
+            on:keyUp={pressEnter}
             autofocus
             maxLength={255}
             placeholder="typing something"
           />
-          <button type="button" class={s.btn} onclick={addItem}>
+          <button type="button" class={s.btn} on:click={addItem}>
             Add Item
           </button>
         </div>

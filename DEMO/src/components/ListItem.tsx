@@ -19,7 +19,7 @@ export const ListItem: JSX.FC<Props> = ({ text }) => {
       <button
         type="button"
         class={s.btn}
-        onclick={remove}
+        on:click={remove}
         aria-label="remove"
       >
         <svg width="24" height="24" fill="#8e21b1" aria-hidden>
