@@ -133,9 +133,17 @@ export const jsxTransform: PluginObj = {
 
       // @ts-expect-error
       const tag = parent.name.name;
-      const isCustomElement = typeof tag === 'string' && tag.includes('-', 1);
 
-      if (!(isCustomElement || htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag))) {
+      const isHTMLElement = htmlTags.has(tag);
+      const isSVGElement = svgTags.has(tag);
+      const isMathMLElement = mathmlTags.has(tag);
+
+      const isCustomElement = typeof tag === 'string'
+        && tag.includes('-', 1)
+        && !isSVGElement
+        && !isMathMLElement;
+
+      if (!(isHTMLElement || isSVGElement || isCustomElement || isMathMLElement)) {
         return;
       }
 
@@ -203,11 +211,11 @@ export const jsxTransform: PluginObj = {
         }
       }
 
-      else if (attributes.has(attrName) && htmlTags.has(tag)) {
+      else if (isHTMLElement && attributes.has(attrName)) {
         attr.name = attrName;
       }
 
-      else if (svgDOMAttributes.has(attr.name) && svgTags.has(tag)) {
+      else if (isSVGElement && svgDOMAttributes.has(attr.name)) {
         attr.name = svgDOMAttributes.get(attr.name);
       }
     },
