@@ -1590,10 +1590,10 @@ declare global {
       form?: string
       high?: number | `${number}`
       low?: number | `${number}`
-      max?: number | string
-      min?: number | string
+      max?: number | `${number}`
+      min?: number | `${number}`
       optimum?: number | `${number}`
-      value?: number | string
+      value?: number | `${number}`
     }
 
     interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
