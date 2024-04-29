@@ -116,9 +116,9 @@ export const eventTypes = new Set([
 
 export const attributes = new Set([
   'tabindex', 'inputmode', 'referrerpolicy', 'enterkeyhint', 'maxlength', 'minlength',
-  'itemprop', 'itemtype', 'itemid', 'itemref', 'accesskey', 'elementtiming',
+  'itemprop', 'itemtype', 'itemid', 'itemref', 'accesskey', 'elementtiming', 'usemap',
   'fetchpriority', 'controlslist', 'dirname', 'formtarget', 'formmethod', 'formenctype',
-  'formaction', 'datetime', 'colspan', 'rowspan',
+  'formaction', 'datetime', 'colspan', 'rowspan', 'srcset',
 ]);
 
 export const booleanAttributes = new Set([
