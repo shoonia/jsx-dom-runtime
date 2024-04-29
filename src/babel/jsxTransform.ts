@@ -183,11 +183,7 @@ export const jsxTransform: PluginObj = {
 
       const attrName = attr.name.toLowerCase();
 
-      if (DOMEvents.has(attrName)) {
-        attr.name = attrName;
-      }
-
-      else if (booleanAttributes.has(attrName)) {
+      if (booleanAttributes.has(attrName)) {
         attr.name = attrName;
         node.value ??= $stringLiteral('');
       }
@@ -209,7 +205,7 @@ export const jsxTransform: PluginObj = {
         }
       }
 
-      else if (isHTMLElement && attributes.has(attrName)) {
+      else if (isHTMLElement && attributes.has(attrName) || DOMEvents.has(attrName)) {
         attr.name = attrName;
       }
 
