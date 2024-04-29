@@ -1176,8 +1176,8 @@ declare global {
       /** @deprecated */
       tabIndex?: number | `${number}`
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -1187,8 +1187,8 @@ declare global {
       href?: string
       target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -1198,8 +1198,8 @@ declare global {
       /** @deprecated */
       clear?: string
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -1253,8 +1253,8 @@ declare global {
       span?: number | `${number}`
       width?: number | string
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -1290,8 +1290,8 @@ declare global {
       type?: string
       width?: number | string
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -1339,8 +1339,8 @@ declare global {
 
     interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> {
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -1438,8 +1438,8 @@ declare global {
       width?: number | string
       fetchPriority?: 'high' | 'low' | 'auto'
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -1517,8 +1517,8 @@ declare global {
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -1605,8 +1605,8 @@ declare global {
       charset?: string
       fetchPriority?: 'high' | 'low' | 'auto'
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -1645,8 +1645,8 @@ declare global {
       'http-equiv'?: string
       name?: string
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -1765,8 +1765,8 @@ declare global {
       /** @deprecated */
       valuetype?: 'data' | 'ref' | 'object'
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -1845,8 +1845,8 @@ declare global {
        */
       width?: number | `${number}`
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -2060,8 +2060,8 @@ declare global {
       src?: string
       srclang?: string
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
@@ -2083,8 +2083,8 @@ declare global {
 
     interface HTMLWBRElementAttributes extends HTMLMediaAttributes<HTMLElement> {
       /**
-       * A void element. The element whose content model never allows it to have content under any circumstances
-       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+       * The element whose content model never allows it to have content under any circumstances
        * @deprecated
        */
       children?: never
