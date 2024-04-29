@@ -1809,8 +1809,6 @@ declare global {
       required?: boolean | ''
       size?: number | `${number}`
       value?: number | string
-      onchange?: GenericEventHandler<HTMLSelectElement>
-      'on:change'?: GenericEventHandler<HTMLSelectElement>
     }
 
     interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {
@@ -1939,8 +1937,6 @@ declare global {
       rows?: number | `${number}`
       value?: number | string
       wrap?: 'hard' | 'soft' | 'off'
-      onchange?: GenericEventHandler<HTMLTextAreaElement>
-      'on:change'?: GenericEventHandler<HTMLTextAreaElement>
     }
 
     interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {

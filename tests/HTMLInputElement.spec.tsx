@@ -1,3 +1,5 @@
+import { jest } from '@jest/globals';
+
 const off = [false, null, undefined];
 
 describe('HTMLInputElement', () => {
@@ -169,6 +171,12 @@ describe('HTMLInputElement', () => {
 
     it('should have `formAction` attribute', () => {
       expect(<input type="submit" formAction="/" />).toHaveAttribute('formaction', '/');
+    });
+
+    it('should have `onchange` handler', () => {
+      const spy = jest.fn();
+
+      expect(<input onchange={spy} />).toHaveProperty('onchange', spy);
     });
   });
 });
