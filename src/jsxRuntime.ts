@@ -15,12 +15,12 @@ const internalKeys = new Set([
 
 const extensions = new Map([
   ['style', (node, value, key) => {
-    if (typeof value === 'string') {
+    if (typeof value == 'string') {
       node.setAttribute(key, value);
     } else {
       // reuse `key` variable
       for (key in value) {
-        if (key.startsWith('--')) {
+        if (key.startsWith('-')) {
           node.style.setProperty(key, value[key]);
         } else {
           node.style[key] = value[key];
@@ -62,22 +62,24 @@ const jsx = (tag, props) => {
         extensions.get(key)(node, value, key);
       } else if (properties.has(key) || key.startsWith('on')) {
         node[key] = value;
-      } else if (value != null && (typeof value !== 'boolean' || key[4] === '-')) {
-        node.setAttribute(key, value);
-      } else if (value) {
-        node.setAttribute(key, '');
+      } else if (value != null) {
+        if (typeof value != 'boolean' || key.startsWith('-', 4)) {
+          node.setAttribute(key, value);
+        } else if (value) {
+          node.setAttribute(key, '');
+        }
       }
     }
   }
 
   appendChildren(
     props.children,
-    tag === 'template' ? node.content : node,
+    tag == 'template' ? node.content : node,
   );
 
   // reuse `value` variable
   if (value = props.ref) {
-    if (typeof value === 'function') {
+    if (typeof value == 'function') {
       value(node);
     } else {
       value.current = node;
