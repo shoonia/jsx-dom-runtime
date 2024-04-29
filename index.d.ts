@@ -622,6 +622,15 @@ export interface AriaAttributes {
   | 'none presentation'
 }
 
+export interface VoidElement {
+  /**
+   * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
+   * The element whose content model never allows it to have content (i.e., nested elements or text nodes) under any circumstances
+   * @deprecated
+   */
+  children?: never
+}
+
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   accessKey?: string
   class?: string
@@ -1141,7 +1150,7 @@ declare global {
 
     interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> { }
 
-    interface HTMLAreaElementAttributes extends HTMLAttributes<HTMLAreaElement> {
+    interface HTMLAreaElementAttributes extends VoidElement, HTMLAttributes<HTMLAreaElement> {
       /** @deprecated */
       accessKey?: string
       alt?: string
@@ -1175,34 +1184,16 @@ declare global {
       nohref?: string
       /** @deprecated */
       tabIndex?: number | `${number}`
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
-    interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
+    interface HTMLBaseElementAttributes extends VoidElement, HTMLAttributes<HTMLBaseElement> {
       href?: string
       target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
-    interface HTMLBRElementAttributes extends HTMLAttributes<HTMLBRElement> {
+    interface HTMLBRElementAttributes extends VoidElement, HTMLAttributes<HTMLBRElement> {
       /** @deprecated */
       clear?: string
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
@@ -1249,15 +1240,9 @@ declare global {
       'moz-opaque'?: boolean | ''
     }
 
-    interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
+    interface HTMLTableColElementAttributes extends VoidElement, HTMLAttributes<HTMLTableColElement> {
       span?: number | `${number}`
       width?: number | string
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
     interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
@@ -1284,17 +1269,11 @@ declare global {
       'on:cancel'?: GenericEventHandler<HTMLDialogElement>
     }
 
-    interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
+    interface HTMLEmbedElementAttributes extends VoidElement, HTMLAttributes<HTMLEmbedElement> {
       height?: number | string
       src?: string
       type?: string
       width?: number | string
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
     interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
@@ -1337,13 +1316,7 @@ declare global {
       target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
     }
 
-    interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> {
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
+    interface HTMLHRElementAttributes extends VoidElement, HTMLAttributes<HTMLHRElement> {
     }
 
     interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
@@ -1420,7 +1393,7 @@ declare global {
       width?: number | string
     }
 
-    interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
+    interface HTMLImageElementAttributes extends VoidElement, HTMLAttributes<HTMLImageElement> {
       alt?: string
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
       decoding?: HTMLImageElement['decoding']
@@ -1437,15 +1410,9 @@ declare global {
       useMap?: string
       width?: number | string
       fetchPriority?: 'high' | 'low' | 'auto'
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
-    interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
+    interface HTMLInputElementAttributes extends VoidElement, HTMLAttributes<HTMLInputElement> {
       accept?: string
       alt?: string
       autocomplete?: AutoFill
@@ -1516,12 +1483,6 @@ declare global {
       width?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
@@ -1532,7 +1493,7 @@ declare global {
       value?: number | `${number}`
     }
 
-    interface HTMLLinkElementAttributes extends HTMLAttributes<HTMLLinkElement> {
+    interface HTMLLinkElementAttributes extends VoidElement, HTMLAttributes<HTMLLinkElement> {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
@@ -1604,12 +1565,6 @@ declare global {
       /** @deprecated */
       charset?: string
       fetchPriority?: 'high' | 'low' | 'auto'
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
     interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
@@ -1639,17 +1594,11 @@ declare global {
       src?: string
     }
 
-    interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
+    interface HTMLMetaElementAttributes extends VoidElement, HTMLAttributes<HTMLMetaElement> {
       charset?: string
       content?: string
       'http-equiv'?: string
       name?: string
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
     interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
@@ -1757,19 +1706,13 @@ declare global {
       value?: number | string
     }
 
-    interface HTMLParamElementAttributes extends HTMLAttributes<HTMLParamElement> {
+    interface HTMLParamElementAttributes extends VoidElement, HTMLAttributes<HTMLParamElement> {
       /** @deprecated */
       name?: string
       /** @deprecated */
       value?: number | string
       /** @deprecated */
       valuetype?: 'data' | 'ref' | 'object'
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
@@ -1815,7 +1758,7 @@ declare global {
       name?: string
     }
 
-    interface HTMLSourceElementAttributes extends HTMLAttributes<HTMLSourceElement> {
+    interface HTMLSourceElementAttributes extends VoidElement, HTMLAttributes<HTMLSourceElement> {
       /**
        * Specifies the media query for the resource's intended media
        */
@@ -1844,12 +1787,6 @@ declare global {
        * Specifies the intrinsic width of the image in pixels. Allowed if the parent of `<source>` is a `<picture>`. Not allowed if the parent is `<audio> `or `<video>.` The width value must be an integer without any units
        */
       width?: number | `${number}`
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
     interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
@@ -2053,18 +1990,12 @@ declare global {
       dateTime?: string
     }
 
-    interface HTMLTrackElementAttributes extends HTMLAttributes<HTMLTrackElement> {
+    interface HTMLTrackElementAttributes extends VoidElement, HTMLAttributes<HTMLTrackElement> {
       default?: boolean | ''
       kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
       label?: string
       src?: string
       srclang?: string
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
     }
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
@@ -2081,14 +2012,7 @@ declare global {
       'on:resize'?: PictureInPictureEventHandler<HTMLVideoElement>
     }
 
-    interface HTMLWBRElementAttributes extends HTMLMediaAttributes<HTMLElement> {
-      /**
-       * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-       * The element whose content model never allows it to have content under any circumstances
-       * @deprecated
-       */
-      children?: never
-    }
+    interface HTMLWBRElementAttributes extends VoidElement, HTMLMediaAttributes<HTMLElement> { }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
       allowFullScreen?: boolean
