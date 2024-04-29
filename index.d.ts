@@ -1175,11 +1175,34 @@ declare global {
       nohref?: string
       /** @deprecated */
       tabIndex?: number | `${number}`
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
       href?: string
       target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
+    }
+
+    interface HTMLBRElementAttributes extends HTMLAttributes<HTMLBRElement> {
+      /** @deprecated */
+      clear?: string
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
@@ -1229,6 +1252,12 @@ declare global {
     interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
       span?: number | `${number}`
       width?: number | string
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
@@ -1260,6 +1289,12 @@ declare global {
       src?: string
       type?: string
       width?: number | string
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
@@ -1300,6 +1335,15 @@ declare global {
       | (string & {})
       noValidate?: boolean | ''
       target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
+    }
+
+    interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> {
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
@@ -1393,6 +1437,12 @@ declare global {
       useMap?: string
       width?: number | string
       fetchPriority?: 'high' | 'low' | 'auto'
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
@@ -1466,8 +1516,12 @@ declare global {
       width?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
-      onchange?: GenericEventHandler<HTMLInputElement>
-      'on:change'?: GenericEventHandler<HTMLInputElement>
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
@@ -1550,6 +1604,12 @@ declare global {
       /** @deprecated */
       charset?: string
       fetchPriority?: 'high' | 'low' | 'auto'
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
@@ -1584,6 +1644,12 @@ declare global {
       content?: string
       'http-equiv'?: string
       name?: string
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
@@ -1698,6 +1764,12 @@ declare global {
       value?: number | string
       /** @deprecated */
       valuetype?: 'data' | 'ref' | 'object'
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
@@ -1774,6 +1846,12 @@ declare global {
        * Specifies the intrinsic width of the image in pixels. Allowed if the parent of `<source>` is a `<picture>`. Not allowed if the parent is `<audio> `or `<video>.` The width value must be an integer without any units
        */
       width?: number | `${number}`
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
@@ -1985,6 +2063,12 @@ declare global {
       label?: string
       src?: string
       srclang?: string
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
@@ -1999,6 +2083,15 @@ declare global {
       'on:enterPictureInPicture'?: PictureInPictureEventHandler<HTMLVideoElement>
       'on:leavePictureInPicture'?: PictureInPictureEventHandler<HTMLVideoElement>
       'on:resize'?: PictureInPictureEventHandler<HTMLVideoElement>
+    }
+
+    interface HTMLWBRElementAttributes extends HTMLMediaAttributes<HTMLElement> {
+      /**
+       * A void element. The element whose content model never allows it to have content under any circumstances
+       * [HTML syntax](https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#void-element)
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
@@ -2356,7 +2449,7 @@ declare global {
       blink: HTMLAttributes<HTMLUnknownElement>
       blockquote: HTMLQuoteElementAttributes
       body: HTMLAttributes<HTMLBodyElement>
-      br: HTMLAttributes<HTMLBRElement>
+      br: HTMLBRElementAttributes
       button: HTMLButtonElementAttributes
       canvas: HTMLCanvasElementAttributes
       caption: HTMLAttributes<HTMLElement>
@@ -2396,7 +2489,7 @@ declare global {
       head: HTMLAttributes<HTMLHeadElement>
       header: HTMLAttributes<HTMLElement>
       hgroup: HTMLAttributes<HTMLElement>
-      hr: HTMLAttributes<HTMLHRElement>
+      hr: HTMLHRElementAttributes
       html: HTMLHtmlElementAttributes
       i: HTMLAttributes<HTMLElement>
       iframe: HTMLIFrameElementAttributes
@@ -2482,7 +2575,7 @@ declare global {
       ul: HTMLAttributes<HTMLUListElement>
       var: HTMLAttributes<HTMLElement>
       video: HTMLVideoElementAttributes
-      wbr: HTMLAttributes<HTMLElement>
+      wbr: HTMLWBRElementAttributes
       /** @deprecated */
       xmp: HTMLAttributes<HTMLPreElement>
       webview: HTMLWebViewElementAttributes
