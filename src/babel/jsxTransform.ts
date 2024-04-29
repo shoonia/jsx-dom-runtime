@@ -127,21 +127,19 @@ export const jsxTransform: PluginObj = {
     JSXAttribute(path) {
       const parent = path.parent;
 
-      if (parent.type !== 'JSXOpeningElement') {
+      if (
+        parent.type !== 'JSXOpeningElement' ||
+        parent.name.type !== 'JSXIdentifier'
+      ) {
         return;
       }
 
-      // @ts-expect-error
       const tag = parent.name.name;
 
       const isHTMLElement = htmlTags.has(tag);
       const isSVGElement = svgTags.has(tag);
       const isMathMLElement = mathmlTags.has(tag);
-
-      const isCustomElement = typeof tag === 'string'
-        && tag.includes('-', 1)
-        && !isSVGElement
-        && !isMathMLElement;
+      const isCustomElement = !(isSVGElement || isMathMLElement) && tag.includes('-', 1);
 
       if (!(isHTMLElement || isSVGElement || isCustomElement || isMathMLElement)) {
         return;
