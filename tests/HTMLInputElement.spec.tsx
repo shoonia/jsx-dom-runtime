@@ -178,5 +178,9 @@ describe('HTMLInputElement', () => {
 
       expect(<input onchange={spy} />).toHaveProperty('onchange', spy);
     });
+
+    it('should have `capture` attribute', () => {
+      expect(<input type="file" capture />).toHaveAttribute('capture', '');
+    });
   });
 });

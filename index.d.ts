@@ -624,8 +624,8 @@ export interface AriaAttributes {
 
 export interface VoidElement {
   /**
-   * [Void element](https://developer.mozilla.org/en-US/docs/Glossary/Void_element)
-   * The element whose content model never allows it to have content (i.e., nested elements or text nodes) under any circumstances
+   * Void element. The element whose content model never allows it to have content (i.e., nested elements or text nodes) under any circumstances
+   * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
    * @deprecated
    */
   children?: never
@@ -1261,6 +1261,11 @@ declare global {
 
     interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
       open?: boolean | ''
+      /**
+       * Do not add the `tabindex` property to the `<dialog>` element as it is not interactive and does not receive focus. The dialog's contents, including the close button contained in the dialog, can receive focus and be interactive.
+       * @deprecated
+       */
+      tabIndex?: number | `${number}`
       ontoggle?: GenericEventHandler<HTMLDialogElement>
       onclose?: GenericEventHandler<HTMLDialogElement>
       oncancel?: GenericEventHandler<HTMLDialogElement>
