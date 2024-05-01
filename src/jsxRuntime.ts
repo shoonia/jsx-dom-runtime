@@ -52,7 +52,7 @@ const Fragment = (content) => {
 const jsx = (tag, props) => {
   let key, value, node = props._
     ? document.createElementNS(props._, tag)
-    : document.createElement(tag);
+    : document.createElement(tag, props.is ? { is: props.is } : key);
 
   for (key in props) {
     if (!internalKeys.has(key)) {
