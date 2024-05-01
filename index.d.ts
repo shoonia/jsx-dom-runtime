@@ -622,15 +622,6 @@ export interface AriaAttributes {
   | 'none presentation'
 }
 
-export interface VoidElement {
-  /**
-   * Void element. The element whose content model never allows it to have content (i.e., nested elements or text nodes) under any circumstances
-   * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-   * @deprecated
-   */
-  children?: never
-}
-
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
   accessKey?: string
   class?: string
@@ -1150,7 +1141,7 @@ declare global {
 
     interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> { }
 
-    interface HTMLAreaElementAttributes extends VoidElement, HTMLAttributes<HTMLAreaElement> {
+    interface HTMLAreaElementAttributes extends HTMLAttributes<HTMLAreaElement> {
       /** @deprecated */
       accessKey?: string
       alt?: string
@@ -1186,12 +1177,12 @@ declare global {
       tabIndex?: number | `${number}`
     }
 
-    interface HTMLBaseElementAttributes extends VoidElement, HTMLAttributes<HTMLBaseElement> {
+    interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
       href?: string
       target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
     }
 
-    interface HTMLBRElementAttributes extends VoidElement, HTMLAttributes<HTMLBRElement> {
+    interface HTMLBRElementAttributes extends HTMLAttributes<HTMLBRElement> {
       /** @deprecated */
       clear?: string
     }
@@ -1240,7 +1231,7 @@ declare global {
       'moz-opaque'?: boolean | ''
     }
 
-    interface HTMLTableColElementAttributes extends VoidElement, HTMLAttributes<HTMLTableColElement> {
+    interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
       span?: number | `${number}`
       width?: number | string
     }
@@ -1274,7 +1265,7 @@ declare global {
       'on:cancel'?: GenericEventHandler<HTMLDialogElement>
     }
 
-    interface HTMLEmbedElementAttributes extends VoidElement, HTMLAttributes<HTMLEmbedElement> {
+    interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
       height?: number | string
       src?: string
       type?: string
@@ -1321,8 +1312,7 @@ declare global {
       target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
     }
 
-    interface HTMLHRElementAttributes extends VoidElement, HTMLAttributes<HTMLHRElement> {
-    }
+    interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> { }
 
     interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
       manifest?: string
@@ -1398,7 +1388,7 @@ declare global {
       width?: number | string
     }
 
-    interface HTMLImageElementAttributes extends VoidElement, HTMLAttributes<HTMLImageElement> {
+    interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
       alt?: string
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
       decoding?: HTMLImageElement['decoding']
@@ -1417,7 +1407,7 @@ declare global {
       fetchPriority?: 'high' | 'low' | 'auto'
     }
 
-    interface HTMLInputElementAttributes extends VoidElement, HTMLAttributes<HTMLInputElement> {
+    interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
       accept?: string
       alt?: string
       autocomplete?: AutoFill
@@ -1498,7 +1488,7 @@ declare global {
       value?: number | `${number}`
     }
 
-    interface HTMLLinkElementAttributes extends VoidElement, HTMLAttributes<HTMLLinkElement> {
+    interface HTMLLinkElementAttributes extends HTMLAttributes<HTMLLinkElement> {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
@@ -1599,7 +1589,7 @@ declare global {
       src?: string
     }
 
-    interface HTMLMetaElementAttributes extends VoidElement, HTMLAttributes<HTMLMetaElement> {
+    interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
       charset?: string
       content?: string
       'http-equiv'?: string
@@ -1711,7 +1701,7 @@ declare global {
       value?: number | string
     }
 
-    interface HTMLParamElementAttributes extends VoidElement, HTMLAttributes<HTMLParamElement> {
+    interface HTMLParamElementAttributes extends HTMLAttributes<HTMLParamElement> {
       /** @deprecated */
       name?: string
       /** @deprecated */
@@ -1763,7 +1753,7 @@ declare global {
       name?: string
     }
 
-    interface HTMLSourceElementAttributes extends VoidElement, HTMLAttributes<HTMLSourceElement> {
+    interface HTMLSourceElementAttributes extends HTMLAttributes<HTMLSourceElement> {
       /**
        * Specifies the media query for the resource's intended media
        */
@@ -1995,7 +1985,7 @@ declare global {
       dateTime?: string
     }
 
-    interface HTMLTrackElementAttributes extends VoidElement, HTMLAttributes<HTMLTrackElement> {
+    interface HTMLTrackElementAttributes extends HTMLAttributes<HTMLTrackElement> {
       default?: boolean | ''
       kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
       label?: string
@@ -2017,7 +2007,7 @@ declare global {
       'on:resize'?: PictureInPictureEventHandler<HTMLVideoElement>
     }
 
-    interface HTMLWBRElementAttributes extends VoidElement, HTMLMediaAttributes<HTMLElement> { }
+    interface HTMLWBRElementAttributes extends HTMLAttributes<HTMLElement> { }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
       allowFullScreen?: boolean
