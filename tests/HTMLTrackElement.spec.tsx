@@ -1,3 +1,5 @@
+import { jest } from '@jest/globals';
+
 describe('HTMLTrackElement', () => {
   it('should have `label` attribute', () => {
     expect(<track label="here" />).toHaveProperty('label', 'here');
@@ -27,5 +29,10 @@ describe('HTMLTrackElement', () => {
   it('should NOT have `default` attribute', () => {
     expect(<track default={false} />).toHaveProperty('default', false);
     expect(<track default={false} />).not.toHaveAttribute('default');
+  });
+
+  it('should add `oncuechange` handler', () => {
+    const spy = jest.fn();
+    expect(<track oncuechange={spy} />).toHaveProperty('oncuechange', spy);
   });
 });

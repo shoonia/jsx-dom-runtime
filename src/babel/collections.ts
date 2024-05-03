@@ -105,6 +105,8 @@ const events = [
   'cancel', 'close',
   // Fullscreen API
   'fullscreenchange', 'fullscreenerror',
+  // HTMLTrackElement
+  'cuechange',
 ];
 
 export const DOMEvents = new Set(events.map((e) => 'on' + e));

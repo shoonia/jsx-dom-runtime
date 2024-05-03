@@ -2091,6 +2091,8 @@ declare global {
       label?: string
       src?: string
       srclang?: string
+      oncuechange?: GenericEventHandler<HTMLTrackElement>
+      'on:cueChange'?: GenericEventHandler<HTMLTrackElement>
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
