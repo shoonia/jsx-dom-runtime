@@ -79,6 +79,7 @@ export type DragEventHandler<T = Element> = EventHandler<DragEvent, T>
 export type FocusEventHandler<T = Element> = EventHandler<FocusEvent, T>
 export type InputEventHandler<T = Element> = EventHandler<InputEvent, T>
 export type SubmitEventHandler<T = Element> = EventHandler<SubmitEvent, T>
+export type FormDataEventHandler<T = Element> = EventHandler<FormDataEvent, T>
 export type KeyboardEventHandler<T = Element> = EventHandler<KeyboardEvent, T>
 export type MouseEventHandler<T = Element> = EventHandler<MouseEvent, T>
 export type TouchEventHandler<T = Element> = EventHandler<TouchEvent, T>
@@ -1344,6 +1345,8 @@ declare global {
       | (string & {})
       noValidate?: boolean | ''
       target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
+      onformdata?: FormDataEventHandler<HTMLFormElement>
+      'on:formData'?: FormDataEventHandler<HTMLFormElement>
     }
 
     interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> {

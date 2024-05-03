@@ -62,10 +62,14 @@ const events = [
   'copy', 'cut', 'paste',
   // Composition Events
   'compositionend', 'compositionstart', 'compositionupdate',
-  // Focus Events
-  'focus', 'blur',
   // Form Events
-  'change', 'beforeinput', 'input', 'reset', 'submit', 'invalid',
+  'change', 'reset', 'invalid',
+  // FocusEvent
+  'focus', 'blur', 'input', 'beforeinput',
+  // SubmitEvent
+  'submit',
+  // FormDataEvent
+  'formdata',
   // Image Events
   'load', 'error',
   // Keyboard Events
