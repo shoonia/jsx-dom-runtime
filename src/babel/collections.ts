@@ -118,7 +118,7 @@ export const attributes = new Set([
   'tabindex', 'inputmode', 'referrerpolicy', 'enterkeyhint', 'maxlength', 'minlength',
   'itemprop', 'itemtype', 'itemid', 'itemref', 'accesskey', 'elementtiming', 'usemap',
   'fetchpriority', 'controlslist', 'dirname', 'formtarget', 'formmethod', 'formenctype',
-  'formaction', 'datetime', 'colspan', 'rowspan', 'srcset',
+  'formaction', 'datetime', 'colspan', 'rowspan', 'srcset', 'shadowrootmode',
 ]);
 
 export const booleanAttributes = new Set([

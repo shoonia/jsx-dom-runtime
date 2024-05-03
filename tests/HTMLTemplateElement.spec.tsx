@@ -28,4 +28,8 @@ describe('HTMLTemplateElement', () => {
 
     expect(ref.current.content.querySelector('p')).toHaveInnerHTML('text here');
   });
+
+  it('should have `shadowRootMode` attribute', () => {
+    expect(<template shadowRootMode="open" />).toHaveAttribute('shadowrootmode', 'open');
+  });
 });

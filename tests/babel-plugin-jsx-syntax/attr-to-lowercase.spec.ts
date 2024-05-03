@@ -134,4 +134,9 @@ describe('CamelCase attributes name to lower case', () => {
     await expect('<img src="imag-1280.jpg" srcSet="image-300.jpg 300w, image-768.jpg 768w, image-1280.jpg 1280w" sizes="(max-width: 300px) 300px, (max-width: 768px) 768px, 1280px" />')
       .toBeTransform(i + '_jsx("img",{src:"imag-1280.jpg",srcset:"image-300.jpg 300w, image-768.jpg 768w, image-1280.jpg 1280w",sizes:"(max-width: 300px) 300px, (max-width: 768px) 768px, 1280px"});');
   });
+
+  it('should transform `shadowRootMode` attribute', async () => {
+    await expect('<template shadowRootMode="closed" />')
+      .toBeTransform(i + '_jsx("template",{shadowrootmode:"closed"});');
+  });
 });

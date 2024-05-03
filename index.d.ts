@@ -1939,6 +1939,14 @@ declare global {
       rules?: 'none' | 'groups' | 'rows' | 'cols' | 'all'
     }
 
+    interface HTMLTemplateElementAttributes extends HTMLAttributes<HTMLTemplateElement> {
+      /**
+       * Creates a shadow root for the parent element. It is a declarative version of the `Element.attachShadow()` method and accepts the same enumerated values.
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#shadowrootmode
+       */
+      shadowRootMode?: 'open' | 'closed'
+    }
+
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
       autocomplete?: AutoFill
       autofocus?: boolean | ''
@@ -2578,7 +2586,7 @@ declare global {
       summary: HTMLAttributes<HTMLElement>
       sup: HTMLAttributes<HTMLElement>
       table: HTMLTableElementAttributes
-      template: HTMLAttributes<HTMLTemplateElement>
+      template: HTMLTemplateElementAttributes
       tbody: HTMLAttributes<HTMLTableSectionElement>
       td: HTMLTableDataCellElementAttributes
       textarea: HTMLTextAreaElementAttributes
