@@ -1175,16 +1175,34 @@ declare global {
       nohref?: string
       /** @deprecated */
       tabIndex?: number | `${number}`
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
       href?: string
       target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLBRElementAttributes extends HTMLAttributes<HTMLBRElement> {
       /** @deprecated */
       clear?: string
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
@@ -1234,6 +1252,12 @@ declare global {
     interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
       span?: number | `${number}`
       width?: number | string
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
@@ -1270,6 +1294,12 @@ declare global {
       src?: string
       type?: string
       width?: number | string
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
@@ -1312,7 +1342,33 @@ declare global {
       target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
     }
 
-    interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> { }
+    interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> {
+      /**
+       * Sets or retrieves how the object is aligned with adjacent text.
+       * @deprecated
+       */
+      align?: string;
+      /** @deprecated */
+      color?: Property.Color;
+      /**
+       * Sets or retrieves whether the horizontal rule is drawn with 3-D shading.
+       * @deprecated
+       */
+      noShade?: boolean | '';
+      /** @deprecated */
+      size?: string;
+      /**
+       * Sets or retrieves the width of the object.
+       * @deprecated
+       */
+      width?: string;
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
+    }
 
     interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
       manifest?: string
@@ -1405,6 +1461,12 @@ declare global {
       useMap?: string
       width?: number | string
       fetchPriority?: 'high' | 'low' | 'auto'
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
@@ -1478,6 +1540,12 @@ declare global {
       width?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
@@ -1560,6 +1628,12 @@ declare global {
       /** @deprecated */
       charset?: string
       fetchPriority?: 'high' | 'low' | 'auto'
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
@@ -1594,6 +1668,12 @@ declare global {
       content?: string
       'http-equiv'?: string
       name?: string
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
@@ -1708,6 +1788,12 @@ declare global {
       value?: number | string
       /** @deprecated */
       valuetype?: 'data' | 'ref' | 'object'
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
@@ -1782,6 +1868,12 @@ declare global {
        * Specifies the intrinsic width of the image in pixels. Allowed if the parent of `<source>` is a `<picture>`. Not allowed if the parent is `<audio> `or `<video>.` The width value must be an integer without any units
        */
       width?: number | `${number}`
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
@@ -1991,6 +2083,12 @@ declare global {
       label?: string
       src?: string
       srclang?: string
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
     }
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
@@ -2007,7 +2105,14 @@ declare global {
       'on:resize'?: PictureInPictureEventHandler<HTMLVideoElement>
     }
 
-    interface HTMLWBRElementAttributes extends HTMLAttributes<HTMLElement> { }
+    interface HTMLWBRElementAttributes extends HTMLAttributes<HTMLElement> {
+      /**
+       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+       * @deprecated
+       */
+      children?: never
+    }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
       allowFullScreen?: boolean
