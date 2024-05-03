@@ -90,6 +90,7 @@ export type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 export type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 export type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
 export type WebGLContextEventHandler<T = Element> = EventHandler<WebGLContextEvent, T>
+export type ToggleEventHandler<T = Element> = EventHandler<ToggleEvent, T>
 
 export interface DOMAttributes<T> extends JSX.Attributes {
   _?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
@@ -290,6 +291,9 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onfullscreenerror?: GenericEventHandler<T>
   'on:fullscreenChange'?: GenericEventHandler<T>
   'on:fullscreenError'?: GenericEventHandler<T>
+  // ToggleEvent
+  ontoggle?: ToggleEventHandler<T>
+ 'on:toggle'?: ToggleEventHandler<T>
 }
 
 export interface CSSProperties extends Properties<number | string> {
@@ -1271,7 +1275,6 @@ declare global {
 
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
       open?: boolean | ''
-      ontoggle?: GenericEventHandler<HTMLDetailsElement>
     }
 
     interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
@@ -1286,10 +1289,8 @@ declare global {
        * @deprecated
        */
       tabIndex?: number | `${number}`
-      ontoggle?: GenericEventHandler<HTMLDialogElement>
       onclose?: GenericEventHandler<HTMLDialogElement>
       oncancel?: GenericEventHandler<HTMLDialogElement>
-      'on:toggle'?: GenericEventHandler<HTMLDialogElement>
       'on:close'?: GenericEventHandler<HTMLDialogElement>
       'on:cancel'?: GenericEventHandler<HTMLDialogElement>
     }

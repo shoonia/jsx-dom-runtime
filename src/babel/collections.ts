@@ -103,7 +103,7 @@ const events = [
   'transitionend', 'transitionstart', 'transitioncancel', 'transitionrun',
   // PictureInPicture Events
   'enterpictureinpicture', 'leavepictureinpicture', 'resize',
-  // HTMLDetailsElement & HTMLDialogElement
+  // ToggleEvent
   'toggle',
   // HTMLDialogElement
   'cancel', 'close',
