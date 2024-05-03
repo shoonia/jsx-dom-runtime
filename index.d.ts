@@ -72,25 +72,25 @@ export interface CurrentTarget<T> {
 
 type EventHandler<E, T> = (this: T, event: E & CurrentTarget<T>) => void
 
-export type GenericEventHandler<T = Element> = EventHandler<Event, T>
+export type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 export type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent, T>
 export type CompositionEventHandler<T = Element> = EventHandler<CompositionEvent, T>
 export type DragEventHandler<T = Element> = EventHandler<DragEvent, T>
 export type FocusEventHandler<T = Element> = EventHandler<FocusEvent, T>
-export type InputEventHandler<T = Element> = EventHandler<InputEvent, T>
-export type SubmitEventHandler<T = Element> = EventHandler<SubmitEvent, T>
 export type FormDataEventHandler<T = Element> = EventHandler<FormDataEvent, T>
+export type GenericEventHandler<T = Element> = EventHandler<Event, T>
+export type InputEventHandler<T = Element> = EventHandler<InputEvent, T>
 export type KeyboardEventHandler<T = Element> = EventHandler<KeyboardEvent, T>
 export type MouseEventHandler<T = Element> = EventHandler<MouseEvent, T>
-export type TouchEventHandler<T = Element> = EventHandler<TouchEvent, T>
-export type PointerEventHandler<T = Element> = EventHandler<PointerEvent, T>
-export type UIEventHandler<T = Element> = EventHandler<UIEvent, T>
-export type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
-export type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
-export type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 export type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
-export type WebGLContextEventHandler<T = Element> = EventHandler<WebGLContextEvent, T>
+export type PointerEventHandler<T = Element> = EventHandler<PointerEvent, T>
+export type SubmitEventHandler<T = Element> = EventHandler<SubmitEvent, T>
 export type ToggleEventHandler<T = Element> = EventHandler<ToggleEvent, T>
+export type TouchEventHandler<T = Element> = EventHandler<TouchEvent, T>
+export type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
+export type UIEventHandler<T = Element> = EventHandler<UIEvent, T>
+export type WebGLContextEventHandler<T = Element> = EventHandler<WebGLContextEvent, T>
+export type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
 
 export interface DOMAttributes<T> extends JSX.Attributes {
   _?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
