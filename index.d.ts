@@ -81,6 +81,7 @@ export type FormDataEventHandler<T = Element> = EventHandler<FormDataEvent, T>
 export type GenericEventHandler<T = Element> = EventHandler<Event, T>
 export type InputEventHandler<T = Element> = EventHandler<InputEvent, T>
 export type KeyboardEventHandler<T = Element> = EventHandler<KeyboardEvent, T>
+export type MediaEncryptedEventHandler<T = Element> = EventHandler<MediaEncryptedEvent, T>
 export type MouseEventHandler<T = Element> = EventHandler<MouseEvent, T>
 export type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
 export type PointerEventHandler<T = Element> = EventHandler<PointerEvent, T>
@@ -151,7 +152,6 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   oncanplaythrough?: GenericEventHandler<T>
   ondurationchange?: GenericEventHandler<T>
   onemptied?: GenericEventHandler<T>
-  onencrypted?: GenericEventHandler<T>
   onended?: GenericEventHandler<T>
   onloadeddata?: GenericEventHandler<T>
   onloadedmetadata?: GenericEventHandler<T>
@@ -173,7 +173,6 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:canPlayThrough'?: GenericEventHandler<T>
   'on:durationChange'?: GenericEventHandler<T>
   'on:emptied'?: GenericEventHandler<T>
-  'on:encrypted'?: GenericEventHandler<T>
   'on:ended'?: GenericEventHandler<T>
   'on:loadedData'?: GenericEventHandler<T>
   'on:loadedMetadata'?: GenericEventHandler<T>
@@ -293,7 +292,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:fullscreenError'?: GenericEventHandler<T>
   // ToggleEvent
   ontoggle?: ToggleEventHandler<T>
- 'on:toggle'?: ToggleEventHandler<T>
+  'on:toggle'?: ToggleEventHandler<T>
 }
 
 export interface CSSProperties extends Properties<number | string> {
@@ -1669,6 +1668,10 @@ declare global {
       mediaGroup?: string
       preload?: HTMLMediaElement['preload']
       src?: string
+      onencrypted?: MediaEncryptedEventHandler<T>
+      onwaitingforkey?: GenericEventHandler<T>
+      'on:encrypted'?: MediaEncryptedEventHandler<T>
+      'on:waitingForKey'?: GenericEventHandler<T>
     }
 
     interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {

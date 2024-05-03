@@ -1,3 +1,5 @@
+import { jest } from '@jest/globals';
+
 describe('HTMLAudioElement', () => {
   it('should render audio block', () => {
     expect(
@@ -76,5 +78,15 @@ describe('HTMLAudioElement', () => {
   it('should have `preload` attributes', () => {
     expect(<audio preload="metadata" />).toHaveAttribute('preload', 'metadata');
     expect(<audio preload="auto" />).toHaveProperty('preload', 'auto');
+  });
+
+  it('should add `onencrypted` handler', () => {
+    const spy = jest.fn();
+    expect(<audio onencrypted={spy} />).toHaveProperty('onencrypted', spy);
+  });
+
+  it('should add `onwaitingforkey` handler', () => {
+    const spy = jest.fn();
+    expect(<audio onwaitingforkey={spy} />).toHaveProperty('onwaitingforkey', spy);
   });
 });

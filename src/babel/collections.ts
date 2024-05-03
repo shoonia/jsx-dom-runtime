@@ -76,10 +76,12 @@ const events = [
   'keydown', 'keypress', 'keyup',
   // Media Events
   'abort', 'canplay', 'canplaythrough', 'durationchange',
-  'emptied', 'encrypted', 'ended', 'loadeddata', 'loadedmetadata',
+  'emptied', 'ended', 'loadeddata', 'loadedmetadata',
   'loadstart', 'pause', 'play', 'playing', 'progress',
   'ratechange', 'seeked', 'seeking', 'stalled', 'suspend',
-  'timeupdate', 'volumechange', 'waiting',
+  'timeupdate', 'volumechange', 'waiting', 'waitingforkey',
+  // MediaEncryptedEvent
+  'encrypted',
   // MouseEvents
   'auxclick', 'click', 'contextmenu', 'dblclick', 'drag',
   'dragend', 'dragenter', 'dragexit', 'dragleave', 'dragover',
