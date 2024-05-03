@@ -34,7 +34,8 @@ describe('Extend', () => {
   });
 
   it('should set muted value', () => {
-    extensions.set('plugin-5', (node: HTMLAudioElement, value) => {
+    extensions.set('plugin-5', (node, value) => {
+      // @ts-expect-error Test
       node.muted = value;
     });
 

@@ -12,6 +12,7 @@ describe('ARIA attribute', () => {
   });
 
   it('shoud NOT set attribute with null or undefined', () => {
+    // @ts-ignore
     expect(<span aria-disabled={null} />).toHaveOuterHTML('<span></span>');
     expect(<span aria-disabled={undefined} />).toHaveOuterHTML('<span></span>');
   });

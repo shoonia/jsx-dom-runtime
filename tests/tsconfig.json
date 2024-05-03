@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "esModuleInterop": true,
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "jsx-dom-runtime",
+    "strict": true,
+    "lib": [
+      "ES2023",
+      "DOM"
+    ],
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}

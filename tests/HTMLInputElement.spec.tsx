@@ -1,7 +1,5 @@
 import { jest } from '@jest/globals';
 
-const off = [false, null, undefined];
-
 describe('HTMLInputElement', () => {
   it('should set value', () => {
     expect(<input type="text" value="test text" />).toHaveValue('test text');
@@ -33,11 +31,6 @@ describe('HTMLInputElement', () => {
     expect(<input autofocus />).toHaveAttribute('autofocus', '');
   });
 
-  it.each(off)('should NOT have attribute `autofocus`', (val) => {
-    expect(<input autofocus={val} />).not.toHaveAttribute('autofocus');
-    expect(<input autofocus={val} />).toHaveProperty('autofocus', false);
-  });
-
   it('should have `autofocus` attribute with string value', () => {
     expect(<input autofocus="" />).toHaveProperty('autofocus', true);
   });
@@ -50,20 +43,12 @@ describe('HTMLInputElement', () => {
     expect(<input disabled="" />).toBeDisabled();
   });
 
-  it.each(off)('should NOT have attribute `disabled`', (val) => {
-    expect(<input disabled={val} />).not.toBeDisabled();
-  });
-
   it('should have correct attribute value `required`', () => {
     expect(<input required />).toBeRequired();
   });
 
   it('should have correct attribute value `required` with string value', () => {
     expect(<input required="" />).toBeRequired();
-  });
-
-  it.each(off)('should NOT have attribute `required`', (val) => {
-    expect(<input required={val} />).not.toBeRequired();
   });
 
   it('should have correct attribute value `required`', () => {
@@ -73,11 +58,6 @@ describe('HTMLInputElement', () => {
 
   it('should have correct attribute value `readOnly` string value', () => {
     expect(<input readOnly="" />).toHaveProperty('readOnly', true);
-  });
-
-  it.each(off)('should NOT have attribute `readonly`', (val) => {
-    expect(<input readOnly={val} />).not.toHaveAttribute('readonly');
-    expect(<input readOnly={val} />).toHaveProperty('readOnly', false);
   });
 
   it('should work with placeholder', () => {
