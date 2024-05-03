@@ -45,7 +45,7 @@
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@size-limit/preset-small-lib": "^11.1.2",
     "@testing-library/dom": "^10.0.0",
-    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/jest-dom": "^6.4.3",
     "@types/babel__helper-validator-identifier": "^7.15.2",
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^7.8.0",
