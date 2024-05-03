@@ -122,7 +122,7 @@ export const attributes = new Set([
 ]);
 
 export const booleanAttributes = new Set([
-  'async', 'autofocus', 'autoplay', 'controls', 'checked', 'crossorigin',
+  'async', 'autofocus', 'autoplay', 'controls', 'checked', 'crossorigin', 'noshade',
   'capture', 'defer', 'disabled', 'contenteditable', 'formnovalidate', 'readonly',
   'multiple', 'loop', 'required', 'hidden', 'open', 'selected', 'nomodule',
   'novalidate', 'playsinline', 'reversed', 'inert', 'disablepictureinpicture',
