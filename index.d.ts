@@ -1180,7 +1180,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
@@ -1191,7 +1191,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLBRElementAttributes extends HTMLAttributes<HTMLBRElement> {
@@ -1202,7 +1202,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
@@ -1257,7 +1257,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
@@ -1299,7 +1299,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
@@ -1367,7 +1367,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
@@ -1466,7 +1466,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
@@ -1545,7 +1545,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
@@ -1633,7 +1633,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
@@ -1673,7 +1673,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
@@ -1793,7 +1793,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
@@ -1873,7 +1873,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
@@ -2096,7 +2096,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
@@ -2119,7 +2119,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
-      children?: never
+      children?: null
     }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
