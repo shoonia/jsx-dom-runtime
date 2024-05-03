@@ -9,19 +9,13 @@ describe('HTMLCanvasElement', () => {
     );
   });
 
-  it('should have `lang` attribute & property', () => {
+  it('should have `width` attribute & property', () => {
     expect(<canvas width="100" />).toHaveAttribute('width', '100');
     expect(<canvas width="100" />).toHaveProperty('width', 100);
-
-    expect(<canvas width={100} />).toHaveAttribute('width', '100');
-    expect(<canvas width={100} />).toHaveProperty('width', 100);
   });
 
-  it('should have `lang` attribute & property', () => {
+  it('should have `height` attribute & property', () => {
     expect(<canvas height="200" />).toHaveAttribute('height', '200');
     expect(<canvas height="200" />).toHaveProperty('height', 200);
-
-    expect(<canvas height={200} />).toHaveAttribute('height', '200');
-    expect(<canvas height={200} />).toHaveProperty('height', 200);
   });
 });

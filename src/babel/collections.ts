@@ -113,7 +113,10 @@ export const DOMEvents = new Set(events.map((e) => 'on' + e));
 
 export const eventTypes = new Set([
   ...events,
-  'focusin', 'focusout'
+  // FocusEvent
+  'focusin', 'focusout',
+  // WebGLContextEvent
+  'webglcontextlost', 'webglcontextrestored', 'webglcontextcreationerror',
 ]);
 
 export const attributes = new Set([

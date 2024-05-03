@@ -88,6 +88,7 @@ export type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
 export type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 export type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
 export type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
+export type WebGLContextEventHandler<T = Element> = EventHandler<WebGLContextEvent, T>
 
 export interface DOMAttributes<T> extends JSX.Attributes {
   _?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
@@ -1247,6 +1248,9 @@ declare global {
        * @deprecated
        */
       'moz-opaque'?: boolean | ''
+      'on:webGLContextLost'?: WebGLContextEventHandler<HTMLCanvasElement>
+      'on:webGLContextRestored'?: WebGLContextEventHandler<HTMLCanvasElement>
+      'on:webGLContextCreationError'?: WebGLContextEventHandler<HTMLCanvasElement>
     }
 
     interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
