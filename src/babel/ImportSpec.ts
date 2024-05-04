@@ -3,7 +3,7 @@ import type t from '@babel/types';
 
 import { $identifier, $stringLiteral } from './builders';
 
-export type TImportName = 'jsx' | 'Fragment' | 'svgNs' | 'mathmlNs' | 'xhtmlNs';
+export type TImportName = 'jsx' | 'Fragment' | 'svgNs' | 'mathmlNs';
 
 export class ImportSpec {
   readonly #path: NodePath<t.Program>;

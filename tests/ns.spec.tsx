@@ -1,6 +1,7 @@
-import { mathmlNs, svgNs, xhtmlNs } from '..';
+import { mathmlNs, svgNs } from '..';
 
 const prop = 'namespaceURI';
+const xhtmlNs = 'http://www.w3.org/1999/xhtml';
 
 describe('ns', () => {
   it('should build SVG node with manual `_` attribute', () => {

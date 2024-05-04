@@ -1,6 +1,5 @@
 /* eslint-disable no-cond-assign */
 const svgNs = 'http://www.w3.org/2000/svg';
-const xhtmlNs = 'http://www.w3.org/1999/xhtml';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
 const properties = new Set([
@@ -97,5 +96,4 @@ export {
   extensions,
   svgNs,
   mathmlNs,
-  xhtmlNs
 };

@@ -52,7 +52,6 @@ export declare const extensions: Map<
   (node: HTMLElement | SVGElement | MathMLElement, value: any, key: string) => void
 >;
 
-export declare const xhtmlNs = 'http://www.w3.org/1999/xhtml';
 export declare const svgNs = 'http://www.w3.org/2000/svg';
 export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
@@ -94,7 +93,7 @@ export type WebGLContextEventHandler<T = Element> = EventHandler<WebGLContextEve
 export type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
 
 export interface DOMAttributes<T> extends JSX.Attributes {
-  _?: typeof xhtmlNs | typeof svgNs | typeof mathmlNs
+  _?: string
   $?: Record<string, GenericEventHandler<T>>
   ref?: JSX.Ref<T>
   children?: TChild | TChild[]
