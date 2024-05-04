@@ -25,6 +25,8 @@ import {
 
 const opts = { name: '_' } as const;
 
+const jsxNode = new Set<t.Node['type']>(['JSXElement', 'JSXFragment']);
+
 const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
   const charCode = name.name.charCodeAt(0);
 
@@ -48,7 +50,7 @@ export const jsxTransform: PluginObj = {
     JSXFragment(path) {
       const children = t.react.buildChildren(path.node);
 
-      if (path.parent.type === 'JSXElement') {
+      if (jsxNode.has(path.parent.type)) {
         if (children.length > 0) {
           path.replaceWith($children(children));
         } else {
@@ -94,7 +96,7 @@ export const jsxTransform: PluginObj = {
         );
 
         if (noNs) {
-          const importName = nsMap.get(path) ?? nsMap.get(path.findParent((p) => p.node.type === 'JSXElement'));
+          const importName = nsMap.get(path) ?? nsMap.get(path.findParent((p) => jsxNode.has(p.node.type)));
 
           if (importName !== undefined) {
             props.properties.push(
@@ -125,7 +127,15 @@ export const jsxTransform: PluginObj = {
     },
 
     JSXAttribute(path) {
+      const node = path.node;
       const parent = path.parent;
+
+      if (jsxNode.has(node.value?.type)) {
+        node.value = {
+          type: 'JSXExpressionContainer',
+          expression: node.value as t.JSXElement,
+        };
+      }
 
       if (
         parent.type !== 'JSXOpeningElement' ||
@@ -145,7 +155,6 @@ export const jsxTransform: PluginObj = {
         return;
       }
 
-      const node = path.node;
       const attr = node.name;
 
       if (attr.type === 'JSXNamespacedName') {

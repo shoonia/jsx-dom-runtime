@@ -113,4 +113,24 @@ describe('Child nodes', () => {
     expect(<article />).toHaveOuterHTML('<article></article>');
     expect(<article></article>).toHaveOuterHTML('<article></article>');
   });
+
+  it('should work without `JSXExpressionContainer` for JSX.Element', () => {
+    expect(<div children=<p>text</p> />).toHaveOuterHTML('<div><p>text</p></div>');
+  });
+
+  it('should work without `JSXExpressionContainer` for JSXNamespacedName element', () => {
+    // @ts-expect-error
+    expect(<test:qa children=<test:p>text</test:p> />).toHaveOuterHTML('<test:qa><test:p>text</test:p></test:qa>');
+  });
+
+  it('should work without `JSXExpressionContainer` for FunctionComponent', () => {
+    const A: JSX.FC = () => <p>text</p>;
+    const B: JSX.FC = ({ children }) => <div>{children}</div>;
+
+    expect(<B children=<A /> />).toHaveOuterHTML('<div><p>text</p></div>');
+  });
+
+  it('should work without `JSXExpressionContainer` for Fragment element', () => {
+    expect(<div children=<>text</> />).toHaveOuterHTML('<div>text</div>');
+  });
 });
