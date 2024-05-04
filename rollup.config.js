@@ -31,7 +31,7 @@ const plugins = [
     presets: [
       '@babel/preset-typescript',
     ],
-    comments: false,
+    shouldPrintComment: (value) => value === '#__PURE__',
   }),
   nodeResolve({
     extensions,
