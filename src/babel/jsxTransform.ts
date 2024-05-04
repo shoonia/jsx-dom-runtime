@@ -148,10 +148,10 @@ export const jsxTransform: PluginObj = {
 
       const isHTMLElement = htmlTags.has(tag);
       const isSVGElement = svgTags.has(tag);
-      const isMathMLElement = mathmlTags.has(tag);
-      const isCustomElement = !(isSVGElement || isMathMLElement) && tag.includes('-', 1);
+      const isStandardElement = isHTMLElement || isSVGElement || mathmlTags.has(tag);
+      const isCustomElement = !isStandardElement && tag.includes('-', 1);
 
-      if (!(isHTMLElement || isSVGElement || isCustomElement || isMathMLElement)) {
+      if (!(isStandardElement || isCustomElement)) {
         return;
       }
 
