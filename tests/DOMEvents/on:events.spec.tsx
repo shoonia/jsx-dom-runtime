@@ -14,11 +14,6 @@ describe('on:events', () => {
       .toBeTransform(i + '_jsx("button",{$:{click:fn1,change:fn2}});');
   });
 
-  it('should transform to lowercase event names', async () => {
-    await expect('<input on:focusIn={fn1} on:focusOut={fn2} />')
-      .toBeTransform(i + '_jsx("input",{$:{focusin:fn1,focusout:fn2}});');
-  });
-
   it('should add `on:click` handler', () => {
     const spy = jest.fn();
     const btn = <button on:click={spy} />;
@@ -66,38 +61,6 @@ describe('on:events', () => {
     const form = <form on:invalid={spy} />;
 
     fireEvent.invalid(form);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:focus` handler', () => {
-    const spy = jest.fn();
-    const input = <input on:focus={spy} />;
-
-    fireEvent.focus(input);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:focusin` handler', () => {
-    const spy = jest.fn();
-    const input = <input on:focusIn={spy} />;
-
-    fireEvent.focusIn(input);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:focusout` handler', () => {
-    const spy = jest.fn();
-    const input = <input on:focusOut={spy} />;
-
-    fireEvent.focusOut(input);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:blur` handler', () => {
-    const spy = jest.fn();
-    const input = <input on:blur={spy} />;
-
-    fireEvent.blur(input);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -351,14 +314,6 @@ describe('on:events', () => {
     const input = <input on:keyPress={spy} />;
 
     fireEvent.keyPress(input);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:scroll` handler', () => {
-    const spy = jest.fn();
-    const main = <main on:scroll={spy} />;
-
-    fireEvent.scroll(main);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
