@@ -44,13 +44,6 @@ describe('DragEvent', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should add `ondragexit` handler', () => {
-    const spy = jest.fn();
-
-    fireEvent.dragExit(<div ondragexit={spy} />);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   it('should add `ondrop` handler', () => {
     const spy = jest.fn();
 

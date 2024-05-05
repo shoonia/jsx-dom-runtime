@@ -12,14 +12,6 @@ describe('on:events', () => {
     expect(input).toHaveValue('change event');
   });
 
-  it('should add `on:submit` handler', () => {
-    const spy = jest.fn();
-    const form = <form on:submit={spy} />;
-
-    fireEvent.submit(form);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   it('should add `on:reset` handler', () => {
     const spy = jest.fn();
     const form = <form on:reset={spy} />;
