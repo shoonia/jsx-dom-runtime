@@ -18,9 +18,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
     const value: t.Expression = attr.value === null
       ? { type: 'BooleanLiteral', value: true }
       : attr.value.type === 'JSXExpressionContainer'
-        ? attr.value.expression.type === 'JSXEmptyExpression'
-          ? { type: 'NullLiteral' }
-          : attr.value.expression
+        ? attr.value.expression as t.Expression
         : attr.value;
 
     if (value.type === 'StringLiteral') {

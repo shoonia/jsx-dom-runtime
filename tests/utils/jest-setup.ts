@@ -1,8 +1,7 @@
 import '@testing-library/jest-dom';
 import { diffStringsUnified } from 'jest-diff';
-import { transformAsync } from '@babel/core';
 
-import preset from '../../babel-preset/index.cjs';
+import { t } from './t';
 
 beforeEach(() => {
   document.head.innerHTML = '';
@@ -47,21 +46,15 @@ expect.extend({
   },
 
   async toBeTransform(source: string, code: string) {
-    const reslut = await transformAsync(source, {
-      presets: [preset],
-      ast: false,
-      minified: true,
-      babelrc: false,
-      sourceMaps: false,
-    });
+    const result = await t(source);
 
-    const pass = code === reslut?.code;
+    const pass = code === result;
 
     return {
       pass,
       message: () => pass
         ? 'expected code not to be equal reslut'
-        : 'expected code to be equal reslut\n\n' + diffStringsUnified(code, reslut?.code ?? ''),
+        : 'expected code to be equal reslut\n\n' + diffStringsUnified(code, result),
     };
   }
 });

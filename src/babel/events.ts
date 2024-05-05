@@ -36,7 +36,7 @@ const getObjectProperties = (element: t.JSXOpeningElement): t.ObjectProperty[] =
 export const eventListener = (
   element: t.JSXOpeningElement,
   key: t.JSXIdentifier,
-  value: t.Expression,
+  value: t.JSXExpressionContainer,
 ): void => {
   const properties = getObjectProperties(element);
   const name = key.name.toLowerCase();
@@ -48,7 +48,7 @@ export const eventListener = (
         : isIdentifierName(key.name)
           ? $identifier(key.name)
           : $stringLiteral(key.name),
-      value,
+      value.expression as t.Expression,
     ),
   );
 };

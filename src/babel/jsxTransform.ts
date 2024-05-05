@@ -160,10 +160,9 @@ export const jsxTransform: PluginObj = {
       if (attr.type === 'JSXNamespacedName') {
         if (
           attr.namespace.name === 'on' &&
-          node.value.type === 'JSXExpressionContainer' &&
-          node.value.expression.type !== 'JSXEmptyExpression'
+          node.value.type === 'JSXExpressionContainer'
         ) {
-          eventListener(parent, attr.name, node.value.expression);
+          eventListener(parent, attr.name, node.value);
           path.remove();
         }
 
