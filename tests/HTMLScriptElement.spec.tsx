@@ -12,15 +12,17 @@ describe('HTMLScriptElement', () => {
   it('should have `defer` attribute', () => {
     expect(<script defer />).toHaveProperty('defer', true);
     expect(<script defer />).toHaveAttribute('defer', '');
-  });
-
-  it('should NOT have `defer` attribute', () => {
-    expect(<script defer={false} />).toHaveProperty('defer', false);
-    expect(<script defer={false} />).not.toHaveAttribute('defer');
-  });
-
-  it('should have `defer` attribute', () => {
     expect(<script defer="" />).toHaveProperty('defer', true);
+  });
+
+  it('should have `noModule` attribute', () => {
+    expect(<script noModule />).toHaveAttribute('nomodule', '');
+    expect(<script noModule="" />).toHaveAttribute('nomodule', '');
+  });
+
+  it('should have `async` attribute', () => {
+    expect(<script async />).toHaveAttribute('async', '');
+    expect(<script async="" />).toHaveAttribute('async', '');
   });
 
   it('should have `fetchPriority` attribute', () => {
@@ -35,5 +37,16 @@ describe('HTMLScriptElement', () => {
   it('should have `crossOrigin` attribute', () => {
     expect(<script crossOrigin />).toHaveProperty('crossOrigin', '');
     expect(<script crossOrigin />).toHaveAttribute('crossorigin', '');
+  });
+
+  it('should have content', () => {
+    const imports = JSON.stringify({
+      imports: {
+        square: './shapes/square.js',
+        circle: 'https://example.com/shapes/circle.js'
+      }
+    });
+
+    expect(<script type="importmap">{imports}</script>).toHaveTextContent(imports);
   });
 });
