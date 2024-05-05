@@ -97,7 +97,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   $?: Record<string, GenericEventHandler<T>>
   ref?: JSX.Ref<T>
   children?: TChild | TChild[]
-  // Clipboard Events
+  // ClipboardEvent
   oncopy?: ClipboardEventHandler<T>
   oncut?: ClipboardEventHandler<T>
   onpaste?: ClipboardEventHandler<T>

@@ -58,7 +58,7 @@ export const mathmlTags = new Set([
 ]);
 
 const events = [
-  // Clipboard Events
+  // ClipboardEvent
   'copy', 'cut', 'paste',
   // Composition Events
   'compositionend', 'compositionstart', 'compositionupdate',
