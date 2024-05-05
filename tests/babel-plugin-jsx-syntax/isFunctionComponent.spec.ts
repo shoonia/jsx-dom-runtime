@@ -1,10 +1,12 @@
 const list = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ_$'.split('');
 
-describe('babel-plugin-jsx-syntax: isFunctionComponent', () => {
+expect(list).toHaveLength(28);
+
+describe('babel: isFunctionComponent', () => {
   it('should work with componet as a FC', async () => {
     expect.hasAssertions();
 
-    const tests = list.map(async (i) =>
+    const tests = list.map((i) =>
       expect(`<${i} test />`).toBeTransform(`${i}({test:true});`)
     );
 
