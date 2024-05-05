@@ -1,5 +1,7 @@
-import { fireEvent } from '@testing-library/dom';
+import { createEvent, fireEvent } from '@testing-library/dom';
 import { jest } from '@jest/globals';
+
+const auxClick = (node: Node) => fireEvent(node, createEvent('auxclick', node));
 
 describe('MouseEvent', () => {
   const i = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
@@ -85,6 +87,13 @@ describe('MouseEvent', () => {
     const spy = jest.fn();
 
     fireEvent.mouseDown(<div onmousedown={spy} />);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:auxclick` handler', () => {
+    const spy = jest.fn();
+
+    auxClick(<div on:auxclick={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 

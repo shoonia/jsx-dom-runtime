@@ -263,12 +263,12 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:pointerOut'?: PointerEventHandler<T>
   'on:gotPointerCapture'?: PointerEventHandler<T>
   'on:lostPointerCapture'?: PointerEventHandler<T>
-  // UI Events
+  // UIEvent
   onscroll?: UIEventHandler<T>
   onscrollend?: UIEventHandler<T>
   'on:scroll'?: UIEventHandler<T>
   'on:scrollEnd'?: UIEventHandler<T>
-  // Wheel Events
+  // WheelEvent
   onwheel?: WheelEventHandler<T>
   'on:wheel'?: WheelEventHandler<T>
   // Animation Events

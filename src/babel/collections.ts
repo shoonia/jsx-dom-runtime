@@ -99,7 +99,7 @@ const events = [
   'gotpointercapture', 'lostpointercapture',
   // UI Events
   'scroll', 'scrollend',
-  // Wheel Events
+  // WheelEvent
   'wheel',
   // Animation Events
   'animationstart', 'animationend', 'animationiteration',
