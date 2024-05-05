@@ -264,7 +264,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onscroll?: UIEventHandler<T>
   onscrollend?: UIEventHandler<T>
   'on:scroll'?: UIEventHandler<T>
-  'on:scrollend'?: UIEventHandler<T>
+  'on:scrollEnd'?: UIEventHandler<T>
   // Wheel Events
   onwheel?: WheelEventHandler<T>
   'on:wheel'?: WheelEventHandler<T>
@@ -1320,7 +1320,7 @@ declare global {
       accept?: string
       'accept-charset'?: string
       action?: string
-      autocomplete?: AutoFill
+      autocomplete?: AutoFillBase
       enctype?: string
       /**
        * The HTTP method to submit the form with. The only allowed methods/values are (case insensitive)
