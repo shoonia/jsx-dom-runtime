@@ -83,10 +83,12 @@ const events = [
   // MediaEncryptedEvent
   'encrypted',
   // MouseEvents
-  'auxclick', 'click', 'contextmenu', 'dblclick', 'drag',
-  'dragend', 'dragenter', 'dragexit', 'dragleave', 'dragover',
-  'dragstart', 'drop', 'mousedown', 'mouseenter', 'mouseleave',
+  'auxclick', 'click', 'contextmenu', 'dblclick',
+  'mousedown', 'mouseenter', 'mouseleave',
   'mousemove', 'mouseout', 'mouseover', 'mouseup',
+  // DragEvent
+  'drag', 'dragend', 'dragenter', 'dragleave', 'dragover',
+  'dragstart', 'drop', 'dragexit',
   // Selection Events
   'select',
   // Touch Events

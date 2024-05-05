@@ -188,19 +188,11 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:timeUpdate'?: GenericEventHandler<T>
   'on:volumeChange'?: GenericEventHandler<T>
   'on:waiting'?: GenericEventHandler<T>
-  // Mouse Events
+  // MouseEvent
   onauxclick?: MouseEventHandler<T>
   onclick?: MouseEventHandler<T>
   oncontextmenu?: MouseEventHandler<T>
   ondblclick?: MouseEventHandler<T>
-  ondrag?: DragEventHandler<T>
-  ondragend?: DragEventHandler<T>
-  ondragenter?: DragEventHandler<T>
-  ondragexit?: DragEventHandler<T>
-  ondragleave?: DragEventHandler<T>
-  ondragover?: DragEventHandler<T>
-  ondragstart?: DragEventHandler<T>
-  ondrop?: DragEventHandler<T>
   onmousedown?: MouseEventHandler<T>
   onmouseenter?: MouseEventHandler<T>
   onmouseleave?: MouseEventHandler<T>
@@ -212,14 +204,6 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:click'?: MouseEventHandler<T>
   'on:contextMenu'?: MouseEventHandler<T>
   'on:dblClick'?: MouseEventHandler<T>
-  'on:drag'?: DragEventHandler<T>
-  'on:dragEnd'?: DragEventHandler<T>
-  'on:dragEnter'?: DragEventHandler<T>
-  'on:dragExit'?: DragEventHandler<T>
-  'on:dragLeave'?: DragEventHandler<T>
-  'on:dragOver'?: DragEventHandler<T>
-  'on:dragStart'?: DragEventHandler<T>
-  'on:drop'?: DragEventHandler<T>
   'on:mouseDown'?: MouseEventHandler<T>
   'on:mouseEnter'?: MouseEventHandler<T>
   'on:mouseLeave'?: MouseEventHandler<T>
@@ -227,6 +211,25 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:mouseOut'?: MouseEventHandler<T>
   'on:mouseOver'?: MouseEventHandler<T>
   'on:mouseUp'?: MouseEventHandler<T>
+  // DragEvent
+  ondrag?: DragEventHandler<T>
+  ondragend?: DragEventHandler<T>
+  ondragenter?: DragEventHandler<T>
+  /** @deprecated */
+  ondragexit?: DragEventHandler<T>
+  ondragleave?: DragEventHandler<T>
+  ondragover?: DragEventHandler<T>
+  ondragstart?: DragEventHandler<T>
+  ondrop?: DragEventHandler<T>
+  'on:drag'?: DragEventHandler<T>
+  'on:dragEnd'?: DragEventHandler<T>
+  'on:dragEnter'?: DragEventHandler<T>
+  /** @deprecated */
+  'on:dragExit'?: DragEventHandler<T>
+  'on:dragLeave'?: DragEventHandler<T>
+  'on:dragOver'?: DragEventHandler<T>
+  'on:dragStart'?: DragEventHandler<T>
+  'on:drop'?: DragEventHandler<T>
   // Selection Events
   onselect?: GenericEventHandler<T>
   'on:select'?: GenericEventHandler<T>
