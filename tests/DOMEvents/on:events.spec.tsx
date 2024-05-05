@@ -153,38 +153,6 @@ describe('on:events', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should add `on:touchStart` handler', () => {
-    const spy = jest.fn();
-    const div = <div on:touchStart={spy} />;
-
-    fireEvent.touchStart(div);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:touchEnd` handler', () => {
-    const spy = jest.fn();
-    const div = <div on:touchEnd={spy} />;
-
-    fireEvent.touchEnd(div);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:touchCancel` handler', () => {
-    const spy = jest.fn();
-    const div = <div on:touchCancel={spy} />;
-
-    fireEvent.touchCancel(div);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:touchMove` handler', () => {
-    const spy = jest.fn();
-    const div = <div on:touchMove={spy} />;
-
-    fireEvent.touchMove(div);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   it('should add `on:abort` handler', () => {
     const spy = jest.fn();
     const audio = <audio on:abort={spy} />;

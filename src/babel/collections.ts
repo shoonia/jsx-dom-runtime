@@ -72,7 +72,7 @@ const events = [
   'formdata',
   // Image Events
   'load', 'error',
-  // Keyboard Events
+  // KeyboardEvent
   'keydown', 'keypress', 'keyup',
   // Media Events
   'abort', 'canplay', 'canplaythrough', 'durationchange',
@@ -91,7 +91,7 @@ const events = [
   'dragstart', 'drop', 'dragexit',
   // Selection Events
   'select',
-  // Touch Events
+  // TouchEvent
   'touchcancel', 'touchend', 'touchmove', 'touchstart',
   // Pointer Events
   'pointerdown', 'pointermove', 'pointerup', 'pointercancel',

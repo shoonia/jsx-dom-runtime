@@ -138,7 +138,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onerror?: GenericEventHandler<T> // also a Media Event
   'on:load'?: GenericEventHandler<T>
   'on:error'?: GenericEventHandler<T>
-  // Keyboard Events
+  // KeyboardEvent
   onkeydown?: KeyboardEventHandler<T>
   onkeypress?: KeyboardEventHandler<T>
   onkeyup?: KeyboardEventHandler<T>
@@ -233,7 +233,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   // Selection Events
   onselect?: GenericEventHandler<T>
   'on:select'?: GenericEventHandler<T>
-  // Touch Events
+  // TouchEvent
   ontouchcancel?: TouchEventHandler<T>
   ontouchend?: TouchEventHandler<T>
   ontouchmove?: TouchEventHandler<T>
