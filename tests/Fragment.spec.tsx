@@ -15,12 +15,11 @@ describe('Fragment', () => {
   });
 
   it('should support Fragment as a component value', () => {
-    const MyComponent = () => (
+    const MyComponent: JSX.FC = () =>
       <>
         <p>3</p>
         <p>4</p>
-      </>
-    );
+      </>;
 
     expect(
       <div>

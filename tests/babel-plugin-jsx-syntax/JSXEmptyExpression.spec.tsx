@@ -1,4 +1,4 @@
-import { t } from '../utils/t';
+import { t } from '../utils';
 
 describe('babel: JSXEmptyExpression', () => {
   const i = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
