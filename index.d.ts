@@ -69,7 +69,7 @@ export interface CurrentTarget<T> {
   readonly currentTarget: EventTarget & T
 }
 
-interface EventObject<Ev, T> {
+export interface EventObject<Ev, T> {
   handleEvent(event: Ev & CurrentTarget<T>): void
 }
 
