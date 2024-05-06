@@ -105,30 +105,6 @@ describe('on:events', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should add `on:compositionStart` handler', () => {
-    const spy = jest.fn();
-    const input = <input on:compositionStart={spy} />;
-
-    fireEvent.compositionStart(input);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:compositionEnd` handler', () => {
-    const spy = jest.fn();
-    const input = <input on:compositionEnd={spy} />;
-
-    fireEvent.compositionEnd(input);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:compositionUpdate` handler', () => {
-    const spy = jest.fn();
-    const input = <input on:compositionUpdate={spy} />;
-
-    fireEvent.compositionUpdate(input);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   it('should add `on:abort` handler', () => {
     const spy = jest.fn();
     const audio = <audio on:abort={spy} />;

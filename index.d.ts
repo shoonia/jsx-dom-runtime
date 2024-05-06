@@ -109,14 +109,14 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:copy'?: JSX.ClipboardEventListener<T>
   'on:cut'?: JSX.ClipboardEventListener<T>
   'on:paste'?: JSX.ClipboardEventListener<T>
-  // Composition Events
+  // CompositionEvent
   oncompositionend?: CompositionEventHandler<T>
   oncompositionstart?: CompositionEventHandler<T>
   oncompositionupdate?: CompositionEventHandler<T>
   'on:compositionEnd'?: JSX.CompositionEventListener<T>
   'on:compositionStart'?: JSX.CompositionEventListener<T>
   'on:compositionUpdate'?: JSX.CompositionEventListener<T>
-  // Focus Events
+  // FocusEvent
   onfocus?: FocusEventHandler<T>
   onblur?: FocusEventHandler<T>
   'on:focus'?: JSX.FocusEventListener<T>
