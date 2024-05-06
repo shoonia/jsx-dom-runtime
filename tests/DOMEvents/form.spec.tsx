@@ -10,14 +10,6 @@ describe('Form Events', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should add `oninput` handler', () => {
-    const spy = jest.fn();
-    const form = <form oninput={spy} />;
-
-    fireEvent.input(form);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   it('should add `onreset` handler', () => {
     const spy = jest.fn();
     const form = <form onreset={spy} />;

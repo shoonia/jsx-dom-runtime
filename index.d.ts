@@ -123,7 +123,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:blur'?: JSX.FocusEventListener<T>
   'on:focusIn'?: JSX.FocusEventListener<T>
   'on:focusOut'?: JSX.FocusEventListener<T>
-  // Input Events
+  // InputEvent
   onbeforeinput?: InputEventHandler<T>
   oninput?: InputEventHandler<T>
   'on:beforeInput'?: JSX.InputEventListener<T>

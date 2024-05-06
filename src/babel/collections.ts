@@ -65,7 +65,9 @@ const events = [
   // Form Events
   'change', 'reset', 'invalid',
   // FocusEvent
-  'focus', 'blur', 'input', 'beforeinput',
+  'focus', 'blur',
+  // InputEvent
+  'beforeinput', 'input',
   // SubmitEvent
   'submit',
   // FormDataEvent
