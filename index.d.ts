@@ -135,7 +135,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:change'?: JSX.EventListener<T>
   'on:reset'?: JSX.EventListener<T>
   'on:invalid'?: JSX.EventListener<T>
-  // Submit Event
+  // SubmitEvent
   onsubmit?: SubmitEventHandler<T>
   'on:submit'?: JSX.SubmitEventListener<T>
   // Image Events
@@ -150,7 +150,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:keyDown'?: JSX.KeyboardEventListener<T>
   'on:keyPress'?: JSX.KeyboardEventListener<T>
   'on:keyUp'?: JSX.KeyboardEventListener<T>
-  // Media Events
+  // [Media] Event
   onabort?: GenericEventHandler<T>
   oncanplay?: GenericEventHandler<T>
   oncanplaythrough?: GenericEventHandler<T>
@@ -285,7 +285,6 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:animationEnd'?: JSX.AnimationEventListener<T>
   'on:animationIteration'?: JSX.AnimationEventListener<T>
   'on:animationCancel'?: JSX.AnimationEventListener<T>
-
   // TransitionEvent
   ontransitionstart?: TransitionEventHandler<T>
   ontransitionend?: TransitionEventHandler<T>

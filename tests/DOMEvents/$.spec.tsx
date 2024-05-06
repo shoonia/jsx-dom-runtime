@@ -1,9 +1,23 @@
 import { jest } from '@jest/globals';
+import { fireEvent } from '@testing-library/dom';
 
 import { jsx } from '../..';
 
 describe('$', () => {
-  it('should add event listener', () => {
+  it('should add a few handlers', () => {
+    const spyClick = jest.fn();
+    const spyChange = jest.fn();
+    const input = <input on:click={spyClick} on:change={spyChange} />;
+
+    fireEvent.click(input);
+    fireEvent.change(input, { target: { value: 'xyz' } });
+
+    expect(spyClick).toHaveBeenCalledTimes(1);
+    expect(spyChange).toHaveBeenCalledTimes(1);
+    expect(input).toHaveValue('xyz');
+  });
+
+  it('should add event listener in $ props', () => {
     const click = jest.fn();
     const myEvent = jest.fn();
 
@@ -16,7 +30,7 @@ describe('$', () => {
     expect(myEvent).toHaveBeenCalledTimes(1);
   });
 
-  it('should add event listener #2', () => {
+  it('should add event listener in $ props', () => {
     const click = jest.fn();
     const myEvent = jest.fn();
 

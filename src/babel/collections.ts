@@ -76,7 +76,7 @@ const events = [
   'load', 'error',
   // KeyboardEvent
   'keydown', 'keypress', 'keyup',
-  // Media Events
+  // [Media] Event
   'abort', 'canplay', 'canplaythrough', 'durationchange',
   'emptied', 'ended', 'loadeddata', 'loadedmetadata',
   'loadstart', 'pause', 'play', 'playing', 'progress',
@@ -99,7 +99,7 @@ const events = [
   'pointerdown', 'pointermove', 'pointerup', 'pointercancel',
   'pointerenter', 'pointerleave', 'pointerover', 'pointerout',
   'gotpointercapture', 'lostpointercapture',
-  // UI Events
+  // UIEvent
   'scroll', 'scrollend',
   // WheelEvent
   'wheel',
