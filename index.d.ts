@@ -247,7 +247,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:touchEnd'?: JSX.TouchEventListener<T>
   'on:touchMove'?: JSX.TouchEventListener<T>
   'on:touchStart'?: JSX.TouchEventListener<T>
-  // Pointer Events
+  // PointerEvent
   onpointerdown?: PointerEventHandler<T>
   onpointermove?: PointerEventHandler<T>
   onpointerup?: PointerEventHandler<T>

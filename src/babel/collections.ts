@@ -95,7 +95,7 @@ const events = [
   'select',
   // TouchEvent
   'touchcancel', 'touchend', 'touchmove', 'touchstart',
-  // Pointer Events
+  // PointerEvent
   'pointerdown', 'pointermove', 'pointerup', 'pointercancel',
   'pointerenter', 'pointerleave', 'pointerover', 'pointerout',
   'gotpointercapture', 'lostpointercapture',
