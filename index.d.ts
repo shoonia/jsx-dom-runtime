@@ -283,7 +283,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:animationStart'?: JSX.AnimationEventListener<T>
   'on:animationEnd'?: JSX.AnimationEventListener<T>
   'on:animationIteration'?: JSX.AnimationEventListener<T>
-  // Transition Events
+  // TransitionEvent
   ontransitionstart?: TransitionEventHandler<T>
   ontransitionend?: TransitionEventHandler<T>
   ontransitionrun?: TransitionEventHandler<T>

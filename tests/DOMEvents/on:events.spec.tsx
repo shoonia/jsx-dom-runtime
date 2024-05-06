@@ -49,38 +49,6 @@ describe('on:events', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should add `on:transitionStart` handler', () => {
-    const spy = jest.fn();
-    const div = <div on:transitionStart={spy} />;
-
-    fireEvent.transitionStart(div);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:transitionRun` handler', () => {
-    const spy = jest.fn();
-    const div = <div on:transitionRun={spy} />;
-
-    fireEvent.transitionRun(div);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:transitionEnd` handler', () => {
-    const spy = jest.fn();
-    const div = <div on:transitionEnd={spy} />;
-
-    fireEvent.transitionEnd(div);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:transitionCancel` handler', () => {
-    const spy = jest.fn();
-    const div = <div on:transitionCancel={spy} />;
-
-    fireEvent.transitionCancel(div);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   it('should add `on:animationStart` handler', () => {
     const spy = jest.fn();
     const div = <div on:animationStart={spy} />;

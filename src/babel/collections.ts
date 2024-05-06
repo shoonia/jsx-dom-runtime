@@ -103,7 +103,7 @@ const events = [
   'wheel',
   // Animation Events
   'animationstart', 'animationend', 'animationiteration',
-  // Transition Events
+  // TransitionEvent
   'transitionend', 'transitionstart', 'transitioncancel', 'transitionrun',
   // PictureInPicture Events
   'enterpictureinpicture', 'leavepictureinpicture', 'resize',
