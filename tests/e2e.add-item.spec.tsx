@@ -8,7 +8,7 @@ describe('e2e test', () => {
     const List: JSX.FC = () => {
       const ref = useRef<HTMLUListElement>();
 
-      const add: EventListener = () => {
+      const add: JSX.EventListener = () => {
         ref.current.append(
           <li data-testid="item">
             New Item
@@ -18,8 +18,8 @@ describe('e2e test', () => {
 
       return (
         <>
-          <button type="button" onclick={add} data-testid="button">
-          add
+          <button type="button" on:click={add} data-testid="button">
+            add
           </button>
           <ul ref={ref}></ul>
         </>

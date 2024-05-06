@@ -69,12 +69,12 @@ export interface CurrentTarget<T> {
   readonly currentTarget: EventTarget & T
 }
 
-export interface EventObject<Ev, T> {
+export interface EventHandlerObject<Ev = Event, T = Element> {
   handleEvent(event: Ev & CurrentTarget<T>): void
 }
 
 type EventHandler<Ev, T> = (this: T, event: Ev & CurrentTarget<T>) => void
-type EventHandlerOrObject<Ev, T> = EventHandler<Ev, T> | EventObject<Ev, T>
+type EvHandler<Ev, T> = EventHandler<Ev, T> | EventHandlerObject<Ev, T>
 
 export type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 export type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent, T>
@@ -1119,26 +1119,26 @@ declare global {
 
     type Ref<T> = RefCallback<T> | RefObject<T>
 
-    type AnimationEventListener<T = globalThis.Element> = EventHandlerOrObject<AnimationEvent, T>
-    type ClipboardEventListener<T = globalThis.Element> = EventHandlerOrObject<ClipboardEvent, T>
-    type CompositionEventListener<T = globalThis.Element> = EventHandlerOrObject<CompositionEvent, T>
-    type DragEventListener<T = globalThis.Element> = EventHandlerOrObject<DragEvent, T>
-    type EventListener<T = globalThis.Element> = EventHandlerOrObject<Event, T>
-    type FocusEventListener<T = globalThis.Element> = EventHandlerOrObject<FocusEvent, T>
-    type FormDataEventListener<T = globalThis.Element> = EventHandlerOrObject<FormDataEvent, T>
-    type InputEventListener<T = globalThis.Element> = EventHandlerOrObject<InputEvent, T>
-    type KeyboardEventListener<T = globalThis.Element> = EventHandlerOrObject<KeyboardEvent, T>
-    type MediaEncryptedEventListener<T = globalThis.Element> = EventHandlerOrObject<MediaEncryptedEvent, T>
-    type MouseEventListener<T = globalThis.Element> = EventHandlerOrObject<MouseEvent, T>
-    type PictureInPictureEventListener<T = globalThis.Element> = EventHandlerOrObject<PictureInPictureEvent, T>
-    type PointerEventListener<T = globalThis.Element> = EventHandlerOrObject<PointerEvent, T>
-    type SubmitEventListener<T = globalThis.Element> = EventHandlerOrObject<SubmitEvent, T>
-    type ToggleEventListener<T = globalThis.Element> = EventHandlerOrObject<ToggleEvent, T>
-    type TouchEventListener<T = globalThis.Element> = EventHandlerOrObject<TouchEvent, T>
-    type TransitionEventListener<T = globalThis.Element> = EventHandlerOrObject<TransitionEvent, T>
-    type UIEventListener<T = globalThis.Element> = EventHandlerOrObject<UIEvent, T>
-    type WebGLContextEventListener<T = globalThis.Element> = EventHandlerOrObject<WebGLContextEvent, T>
-    type WheelEventListener<T = globalThis.Element> = EventHandlerOrObject<WheelEvent, T>
+    type AnimationEventListener<T = globalThis.Element> = EvHandler<AnimationEvent, T>
+    type ClipboardEventListener<T = globalThis.Element> = EvHandler<ClipboardEvent, T>
+    type CompositionEventListener<T = globalThis.Element> = EvHandler<CompositionEvent, T>
+    type DragEventListener<T = globalThis.Element> = EvHandler<DragEvent, T>
+    type EventListener<T = globalThis.Element> = EvHandler<Event, T>
+    type FocusEventListener<T = globalThis.Element> = EvHandler<FocusEvent, T>
+    type FormDataEventListener<T = globalThis.Element> = EvHandler<FormDataEvent, T>
+    type InputEventListener<T = globalThis.Element> = EvHandler<InputEvent, T>
+    type KeyboardEventListener<T = globalThis.Element> = EvHandler<KeyboardEvent, T>
+    type MediaEncryptedEventListener<T = globalThis.Element> = EvHandler<MediaEncryptedEvent, T>
+    type MouseEventListener<T = globalThis.Element> = EvHandler<MouseEvent, T>
+    type PictureInPictureEventListener<T = globalThis.Element> = EvHandler<PictureInPictureEvent, T>
+    type PointerEventListener<T = globalThis.Element> = EvHandler<PointerEvent, T>
+    type SubmitEventListener<T = globalThis.Element> = EvHandler<SubmitEvent, T>
+    type ToggleEventListener<T = globalThis.Element> = EvHandler<ToggleEvent, T>
+    type TouchEventListener<T = globalThis.Element> = EvHandler<TouchEvent, T>
+    type TransitionEventListener<T = globalThis.Element> = EvHandler<TransitionEvent, T>
+    type UIEventListener<T = globalThis.Element> = EvHandler<UIEvent, T>
+    type WebGLContextEventListener<T = globalThis.Element> = EvHandler<WebGLContextEvent, T>
+    type WheelEventListener<T = globalThis.Element> = EvHandler<WheelEvent, T>
 
     interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
       /**
