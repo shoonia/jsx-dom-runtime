@@ -104,209 +104,209 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   children?: TChild | TChild[]
   // ClipboardEvent
   oncopy?: ClipboardEventHandler<T>
-  oncut?: ClipboardEventHandler<T>
-  onpaste?: ClipboardEventHandler<T>
   'on:copy'?: JSX.ClipboardEventListener<T>
+  oncut?: ClipboardEventHandler<T>
   'on:cut'?: JSX.ClipboardEventListener<T>
+  onpaste?: ClipboardEventHandler<T>
   'on:paste'?: JSX.ClipboardEventListener<T>
   // CompositionEvent
   oncompositionend?: CompositionEventHandler<T>
-  oncompositionstart?: CompositionEventHandler<T>
-  oncompositionupdate?: CompositionEventHandler<T>
   'on:compositionEnd'?: JSX.CompositionEventListener<T>
+  oncompositionstart?: CompositionEventHandler<T>
   'on:compositionStart'?: JSX.CompositionEventListener<T>
+  oncompositionupdate?: CompositionEventHandler<T>
   'on:compositionUpdate'?: JSX.CompositionEventListener<T>
   // FocusEvent
   onfocus?: FocusEventHandler<T>
-  onblur?: FocusEventHandler<T>
   'on:focus'?: JSX.FocusEventListener<T>
+  onblur?: FocusEventHandler<T>
   'on:blur'?: JSX.FocusEventListener<T>
   'on:focusIn'?: JSX.FocusEventListener<T>
   'on:focusOut'?: JSX.FocusEventListener<T>
   // InputEvent
   onbeforeinput?: InputEventHandler<T>
-  oninput?: InputEventHandler<T>
   'on:beforeInput'?: JSX.InputEventListener<T>
+  oninput?: InputEventHandler<T>
   'on:input'?: JSX.InputEventListener<T>
   // [Form] Event
   onchange?: GenericEventHandler<T>
-  onreset?: GenericEventHandler<T>
-  oninvalid?: GenericEventHandler<T>
   'on:change'?: JSX.EventListener<T>
+  onreset?: GenericEventHandler<T>
   'on:reset'?: JSX.EventListener<T>
+  oninvalid?: GenericEventHandler<T>
   'on:invalid'?: JSX.EventListener<T>
   // Event
   onload?: GenericEventHandler<T>
-  onerror?: GenericEventHandler<T>
-  onselect?: GenericEventHandler<T>
   'on:load'?: JSX.EventListener<T>
+  onerror?: GenericEventHandler<T>
   'on:error'?: JSX.EventListener<T>
+  onselect?: GenericEventHandler<T>
   'on:select'?: JSX.EventListener<T>
   // SubmitEvent
   onsubmit?: SubmitEventHandler<T>
   'on:submit'?: JSX.SubmitEventListener<T>
   // KeyboardEvent
   onkeydown?: KeyboardEventHandler<T>
+  'on:keyDown'?: JSX.KeyboardEventListener<T>
   /**
    * This feature is no longer recommended.
    * Since event has been deprecated, you should use `onbeforeinput` or `onkeydown` instead
    * @deprecated
    */
   onkeypress?: KeyboardEventHandler<T>
+  /**
+  * This feature is no longer recommended.
+  * Since event has been deprecated, you should use `on:beforeInput` or `on:keyDown` instead
+  * @deprecated
+  */
+ 'on:keyPress'?: JSX.KeyboardEventListener<T>
   onkeyup?: KeyboardEventHandler<T>
-  'on:keyDown'?: JSX.KeyboardEventListener<T>
-   /**
-   * This feature is no longer recommended.
-   * Since event has been deprecated, you should use `on:beforeInput` or `on:keyDown` instead
-   * @deprecated
-   */
-  'on:keyPress'?: JSX.KeyboardEventListener<T>
   'on:keyUp'?: JSX.KeyboardEventListener<T>
   // [Media] Event
   onabort?: GenericEventHandler<T>
-  oncanplay?: GenericEventHandler<T>
-  oncanplaythrough?: GenericEventHandler<T>
-  ondurationchange?: GenericEventHandler<T>
-  onemptied?: GenericEventHandler<T>
-  onended?: GenericEventHandler<T>
-  onloadeddata?: GenericEventHandler<T>
-  onloadedmetadata?: GenericEventHandler<T>
-  onloadstart?: GenericEventHandler<T>
-  onpause?: GenericEventHandler<T>
-  onplay?: GenericEventHandler<T>
-  onplaying?: GenericEventHandler<T>
-  onprogress?: GenericEventHandler<T>
-  onratechange?: GenericEventHandler<T>
-  onseeked?: GenericEventHandler<T>
-  onseeking?: GenericEventHandler<T>
-  onstalled?: GenericEventHandler<T>
-  onsuspend?: GenericEventHandler<T>
-  ontimeupdate?: GenericEventHandler<T>
-  onvolumechange?: GenericEventHandler<T>
-  onwaiting?: GenericEventHandler<T>
   'on:abort'?: JSX.EventListener<T>
+  oncanplay?: GenericEventHandler<T>
   'on:canPlay'?: JSX.EventListener<T>
+  oncanplaythrough?: GenericEventHandler<T>
   'on:canPlayThrough'?: JSX.EventListener<T>
+  ondurationchange?: GenericEventHandler<T>
   'on:durationChange'?: JSX.EventListener<T>
+  onemptied?: GenericEventHandler<T>
   'on:emptied'?: JSX.EventListener<T>
+  onended?: GenericEventHandler<T>
   'on:ended'?: JSX.EventListener<T>
+  onloadeddata?: GenericEventHandler<T>
   'on:loadedData'?: JSX.EventListener<T>
+  onloadedmetadata?: GenericEventHandler<T>
   'on:loadedMetadata'?: JSX.EventListener<T>
+  onloadstart?: GenericEventHandler<T>
   'on:loadStart'?: JSX.EventListener<T>
+  onpause?: GenericEventHandler<T>
   'on:pause'?: JSX.EventListener<T>
+  onplay?: GenericEventHandler<T>
   'on:play'?: JSX.EventListener<T>
+  onplaying?: GenericEventHandler<T>
   'on:playing'?: JSX.EventListener<T>
+  onprogress?: GenericEventHandler<T>
   'on:progress'?: JSX.EventListener<T>
+  onratechange?: GenericEventHandler<T>
   'on:rateChange'?: JSX.EventListener<T>
+  onseeked?: GenericEventHandler<T>
   'on:seeked'?: JSX.EventListener<T>
+  onseeking?: GenericEventHandler<T>
   'on:seeking'?: JSX.EventListener<T>
+  onstalled?: GenericEventHandler<T>
   'on:stalled'?: JSX.EventListener<T>
+  onsuspend?: GenericEventHandler<T>
   'on:suspend'?: JSX.EventListener<T>
+  ontimeupdate?: GenericEventHandler<T>
   'on:timeUpdate'?: JSX.EventListener<T>
+  onvolumechange?: GenericEventHandler<T>
   'on:volumeChange'?: JSX.EventListener<T>
+  onwaiting?: GenericEventHandler<T>
   'on:waiting'?: JSX.EventListener<T>
   // MouseEvent
   onauxclick?: MouseEventHandler<T>
-  onclick?: MouseEventHandler<T>
-  oncontextmenu?: MouseEventHandler<T>
-  ondblclick?: MouseEventHandler<T>
-  onmousedown?: MouseEventHandler<T>
-  onmouseenter?: MouseEventHandler<T>
-  onmouseleave?: MouseEventHandler<T>
-  onmousemove?: MouseEventHandler<T>
-  onmouseout?: MouseEventHandler<T>
-  onmouseover?: MouseEventHandler<T>
-  onmouseup?: MouseEventHandler<T>
   'on:auxclick'?: MouseEventHandler<T>
+  onclick?: MouseEventHandler<T>
   'on:click'?: JSX.MouseEventListener<T>
+  oncontextmenu?: MouseEventHandler<T>
   'on:contextMenu'?: JSX.MouseEventListener<T>
+  ondblclick?: MouseEventHandler<T>
   'on:dblClick'?: JSX.MouseEventListener<T>
+  onmousedown?: MouseEventHandler<T>
   'on:mouseDown'?: JSX.MouseEventListener<T>
+  onmouseenter?: MouseEventHandler<T>
   'on:mouseEnter'?: JSX.MouseEventListener<T>
+  onmouseleave?: MouseEventHandler<T>
   'on:mouseLeave'?: JSX.MouseEventListener<T>
+  onmousemove?: MouseEventHandler<T>
   'on:mouseMove'?: JSX.MouseEventListener<T>
+  onmouseout?: MouseEventHandler<T>
   'on:mouseOut'?: JSX.MouseEventListener<T>
+  onmouseover?: MouseEventHandler<T>
   'on:mouseOver'?: JSX.MouseEventListener<T>
+  onmouseup?: MouseEventHandler<T>
   'on:mouseUp'?: JSX.MouseEventListener<T>
   // DragEvent
   ondrag?: DragEventHandler<T>
-  ondragend?: DragEventHandler<T>
-  ondragenter?: DragEventHandler<T>
-  /** @deprecated */
-  ondragexit?: DragEventHandler<T>
-  ondragleave?: DragEventHandler<T>
-  ondragover?: DragEventHandler<T>
-  ondragstart?: DragEventHandler<T>
-  ondrop?: DragEventHandler<T>
   'on:drag'?: JSX.DragEventListener<T>
+  ondragend?: DragEventHandler<T>
   'on:dragEnd'?: JSX.DragEventListener<T>
+  ondragenter?: DragEventHandler<T>
   'on:dragEnter'?: JSX.DragEventListener<T>
   /** @deprecated */
+  ondragexit?: DragEventHandler<T>
+  /** @deprecated */
   'on:dragExit'?: JSX.DragEventListener<T>
+  ondragleave?: DragEventHandler<T>
   'on:dragLeave'?: JSX.DragEventListener<T>
+  ondragover?: DragEventHandler<T>
   'on:dragOver'?: JSX.DragEventListener<T>
+  ondragstart?: DragEventHandler<T>
   'on:dragStart'?: JSX.DragEventListener<T>
+  ondrop?: DragEventHandler<T>
   'on:drop'?: JSX.DragEventListener<T>
   // TouchEvent
   ontouchcancel?: TouchEventHandler<T>
-  ontouchend?: TouchEventHandler<T>
-  ontouchmove?: TouchEventHandler<T>
-  ontouchstart?: TouchEventHandler<T>
   'on:touchCancel'?: JSX.TouchEventListener<T>
+  ontouchend?: TouchEventHandler<T>
   'on:touchEnd'?: JSX.TouchEventListener<T>
+  ontouchmove?: TouchEventHandler<T>
   'on:touchMove'?: JSX.TouchEventListener<T>
+  ontouchstart?: TouchEventHandler<T>
   'on:touchStart'?: JSX.TouchEventListener<T>
   // PointerEvent
   onpointerdown?: PointerEventHandler<T>
-  onpointermove?: PointerEventHandler<T>
-  onpointerup?: PointerEventHandler<T>
-  onpointercancel?: PointerEventHandler<T>
-  onpointerenter?: PointerEventHandler<T>
-  onpointerleave?: PointerEventHandler<T>
-  onpointerover?: PointerEventHandler<T>
-  onpointerout?: PointerEventHandler<T>
-  ongotpointercapture?: PointerEventHandler<T>
-  onlostpointercapture?: PointerEventHandler<T>
   'on:pointerDown'?: JSX.PointerEventListener<T>
+  onpointermove?: PointerEventHandler<T>
   'on:pointerMove'?: JSX.PointerEventListener<T>
+  onpointerup?: PointerEventHandler<T>
   'on:pointerUp'?: JSX.PointerEventListener<T>
+  onpointercancel?: PointerEventHandler<T>
   'on:pointerCancel'?: JSX.PointerEventListener<T>
+  onpointerenter?: PointerEventHandler<T>
   'on:pointerEnter'?: JSX.PointerEventListener<T>
+  onpointerleave?: PointerEventHandler<T>
   'on:pointerLeave'?: JSX.PointerEventListener<T>
+  onpointerover?: PointerEventHandler<T>
   'on:pointerOver'?: JSX.PointerEventListener<T>
+  onpointerout?: PointerEventHandler<T>
   'on:pointerOut'?: JSX.PointerEventListener<T>
+  ongotpointercapture?: PointerEventHandler<T>
   'on:gotPointerCapture'?: JSX.PointerEventListener<T>
+  onlostpointercapture?: PointerEventHandler<T>
   'on:lostPointerCapture'?: JSX.PointerEventListener<T>
   // UIEvent
   onscroll?: UIEventHandler<T>
-  onscrollend?: UIEventHandler<T>
   'on:scroll'?: JSX.UIEventListener<T>
+  onscrollend?: UIEventHandler<T>
   'on:scrollEnd'?: JSX.UIEventListener<T>
   // WheelEvent
   onwheel?: WheelEventHandler<T>
   'on:wheel'?: JSX.WheelEventListener<T>
   // AnimationEvent
   onanimationstart?: AnimationEventHandler<T>
-  onanimationend?: AnimationEventHandler<T>
-  onanimationiteration?: AnimationEventHandler<T>
-  onanimationcancel?: AnimationEventHandler<T>
   'on:animationStart'?: JSX.AnimationEventListener<T>
+  onanimationend?: AnimationEventHandler<T>
   'on:animationEnd'?: JSX.AnimationEventListener<T>
+  onanimationiteration?: AnimationEventHandler<T>
   'on:animationIteration'?: JSX.AnimationEventListener<T>
+  onanimationcancel?: AnimationEventHandler<T>
   'on:animationCancel'?: JSX.AnimationEventListener<T>
   // TransitionEvent
   ontransitionstart?: TransitionEventHandler<T>
-  ontransitionend?: TransitionEventHandler<T>
-  ontransitionrun?: TransitionEventHandler<T>
-  ontransitioncancel?: TransitionEventHandler<T>
   'on:transitionStart'?: JSX.TransitionEventListener<T>
+  ontransitionend?: TransitionEventHandler<T>
   'on:transitionEnd'?: JSX.TransitionEventListener<T>
+  ontransitionrun?: TransitionEventHandler<T>
   'on:transitionRun'?: JSX.TransitionEventListener<T>
+  ontransitioncancel?: TransitionEventHandler<T>
   'on:transitionCancel'?: JSX.TransitionEventListener<T>
   // Fullscreen API
   onfullscreenchange?: GenericEventHandler<T>
-  onfullscreenerror?: GenericEventHandler<T>
   'on:fullscreenChange'?: JSX.EventListener<T>
+  onfullscreenerror?: GenericEventHandler<T>
   'on:fullscreenError'?: JSX.EventListener<T>
   // ToggleEvent
   ontoggle?: ToggleEventHandler<T>
@@ -1328,8 +1328,8 @@ declare global {
        */
       tabIndex?: number | `${number}`
       onclose?: GenericEventHandler<HTMLDialogElement>
-      oncancel?: GenericEventHandler<HTMLDialogElement>
       'on:close'?: EventListener<HTMLDialogElement>
+      oncancel?: GenericEventHandler<HTMLDialogElement>
       'on:cancel'?: EventListener<HTMLDialogElement>
     }
 
@@ -1708,8 +1708,8 @@ declare global {
       preload?: HTMLMediaElement['preload']
       src?: string
       onencrypted?: MediaEncryptedEventHandler<T>
-      onwaitingforkey?: GenericEventHandler<T>
       'on:encrypted'?: MediaEncryptedEventListener<T>
+      onwaitingforkey?: GenericEventHandler<T>
       'on:waitingForKey'?: EventListener<T>
     }
 
@@ -2158,10 +2158,10 @@ declare global {
       width?: number | string
       disablePictureInPicture?: boolean | ''
       onenterpictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
-      onleavepictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
-      onresize?: PictureInPictureEventHandler<HTMLVideoElement>
       'on:enterPictureInPicture'?: PictureInPictureEventListener<HTMLVideoElement>
+      onleavepictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
       'on:leavePictureInPicture'?: PictureInPictureEventListener<HTMLVideoElement>
+      onresize?: PictureInPictureEventHandler<HTMLVideoElement>
       'on:resize'?: PictureInPictureEventListener<HTMLVideoElement>
     }
 
