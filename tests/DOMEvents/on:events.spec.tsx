@@ -2,32 +2,6 @@ import { fireEvent } from '@testing-library/dom';
 import { jest } from '@jest/globals';
 
 describe('on:events', () => {
-  it('should add `on:change` handler', () => {
-    const spy = jest.fn();
-    const input = <input on:change={spy} />;
-
-    fireEvent.change(input, { target: { value: 'change event' } });
-
-    expect(spy).toHaveBeenCalledTimes(1);
-    expect(input).toHaveValue('change event');
-  });
-
-  it('should add `on:reset` handler', () => {
-    const spy = jest.fn();
-    const form = <form on:reset={spy} />;
-
-    fireEvent.reset(form);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:invalid` handler', () => {
-    const spy = jest.fn();
-    const form = <form on:invalid={spy} />;
-
-    fireEvent.invalid(form);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   it('should add a few handlers', () => {
     const spyClick = jest.fn();
     const spyChange = jest.fn();

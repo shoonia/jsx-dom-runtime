@@ -62,7 +62,7 @@ const events = [
   'copy', 'cut', 'paste',
   // CompositionEvent
   'compositionend', 'compositionstart', 'compositionupdate',
-  // Form Events
+  // [Form] Event
   'change', 'reset', 'invalid',
   // FocusEvent
   'focus', 'blur',
