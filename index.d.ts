@@ -135,19 +135,31 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:change'?: JSX.EventListener<T>
   'on:reset'?: JSX.EventListener<T>
   'on:invalid'?: JSX.EventListener<T>
+  // Event
+  onload?: GenericEventHandler<T>
+  onerror?: GenericEventHandler<T>
+  onselect?: GenericEventHandler<T>
+  'on:load'?: JSX.EventListener<T>
+  'on:error'?: JSX.EventListener<T>
+  'on:select'?: JSX.EventListener<T>
   // SubmitEvent
   onsubmit?: SubmitEventHandler<T>
   'on:submit'?: JSX.SubmitEventListener<T>
-  // Image Events
-  onload?: GenericEventHandler<T>
-  onerror?: GenericEventHandler<T> // also a Media Event
-  'on:load'?: JSX.EventListener<T>
-  'on:error'?: JSX.EventListener<T>
   // KeyboardEvent
   onkeydown?: KeyboardEventHandler<T>
+  /**
+   * This feature is no longer recommended.
+   * Since event has been deprecated, you should use `onbeforeinput` or `onkeydown` instead
+   * @deprecated
+   */
   onkeypress?: KeyboardEventHandler<T>
   onkeyup?: KeyboardEventHandler<T>
   'on:keyDown'?: JSX.KeyboardEventListener<T>
+   /**
+   * This feature is no longer recommended.
+   * Since event has been deprecated, you should use `on:beforeInput` or `on:keyDown` instead
+   * @deprecated
+   */
   'on:keyPress'?: JSX.KeyboardEventListener<T>
   'on:keyUp'?: JSX.KeyboardEventListener<T>
   // [Media] Event
@@ -235,9 +247,6 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   'on:dragOver'?: JSX.DragEventListener<T>
   'on:dragStart'?: JSX.DragEventListener<T>
   'on:drop'?: JSX.DragEventListener<T>
-  // Selection Events
-  onselect?: GenericEventHandler<T>
-  'on:select'?: JSX.EventListener<T>
   // TouchEvent
   ontouchcancel?: TouchEventHandler<T>
   ontouchend?: TouchEventHandler<T>

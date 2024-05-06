@@ -64,6 +64,8 @@ const events = [
   'compositionend', 'compositionstart', 'compositionupdate',
   // [Form] Event
   'change', 'reset', 'invalid',
+  // Event
+  'load', 'error', 'select',
   // FocusEvent
   'focus', 'blur',
   // InputEvent
@@ -72,8 +74,6 @@ const events = [
   'submit',
   // FormDataEvent
   'formdata',
-  // Image Events
-  'load', 'error',
   // KeyboardEvent
   'keydown', 'keypress', 'keyup',
   // [Media] Event
@@ -91,8 +91,6 @@ const events = [
   // DragEvent
   'drag', 'dragend', 'dragenter', 'dragleave', 'dragover',
   'dragstart', 'drop', 'dragexit',
-  // Selection Events
-  'select',
   // TouchEvent
   'touchcancel', 'touchend', 'touchmove', 'touchstart',
   // PointerEvent
