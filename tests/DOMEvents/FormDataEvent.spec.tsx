@@ -10,10 +10,17 @@ describe('FormDataEvent', () => {
     await expect('<form on:formData={fn} />').toBeTransform(i + '_jsx("form",{$:{formdata:fn}});');
   });
 
-  it('should add `formdata` handler', () => {
+  it('should add `formdata` function handler', () => {
     const spy = jest.fn();
 
     formData(<form on:formData={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `formdata` object handler', () => {
+    const handleEvent = jest.fn();
+
+    formData(<form on:formData={{ handleEvent }} />);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 });

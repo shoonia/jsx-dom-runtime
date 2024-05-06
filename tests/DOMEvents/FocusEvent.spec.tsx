@@ -22,14 +22,14 @@ describe('FocusEvent', () => {
   });
 
   it('should add `onfocus` handler', () => {
-    const spy = jest.fn();
+    const spy: JSX.FocusEventListener<HTMLInputElement> = jest.fn();
 
     fireEvent.focus(<input onfocus={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `onblur` handler', () => {
-    const spy = jest.fn();
+    const spy: JSX.FocusEventListener<HTMLInputElement> = jest.fn();
 
     fireEvent.blur(<input onblur={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
@@ -56,30 +56,60 @@ describe('FocusEvent', () => {
   });
 
   it('should add `on:focus` handler', () => {
-    const spy = jest.fn();
+    const spy: JSX.FocusEventListener<HTMLInputElement> = jest.fn();
 
     fireEvent.focus(<input on:focus={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:focusIn` handler', () => {
-    const spy = jest.fn();
+    const spy: JSX.FocusEventListener<HTMLInputElement> = jest.fn();
 
     fireEvent.focusIn(<input on:focusIn={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:focusOut` handler', () => {
-    const spy = jest.fn();
+    const spy: JSX.FocusEventListener<HTMLInputElement> = jest.fn();
 
     fireEvent.focusOut(<input on:focusOut={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:blur` handler', () => {
-    const spy = jest.fn();
+    const spy: JSX.FocusEventListener<HTMLInputElement> = jest.fn();
 
     fireEvent.blur(<input on:blur={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('FocusEvent Object Listener', () => {
+  it('should add `on:focus` object lisnener', () => {
+    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = jest.fn();
+
+    fireEvent.focus(<input on:focus={{ handleEvent }} />);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:focusIn` object lisnener', () => {
+    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = jest.fn();
+
+    fireEvent.focusIn(<input on:focusIn={{ handleEvent }} />);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:focusOut` object lisnener', () => {
+    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = jest.fn();
+
+    fireEvent.focusOut(<input on:focusOut={{ handleEvent }} />);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:blur` object lisnener', () => {
+    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = jest.fn();
+
+    fireEvent.blur(<input on:blur={{ handleEvent }} />);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 });

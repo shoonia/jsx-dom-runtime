@@ -69,7 +69,12 @@ export interface CurrentTarget<T> {
   readonly currentTarget: EventTarget & T
 }
 
-type EventHandler<E, T> = (this: T, event: E & CurrentTarget<T>) => void
+interface EventObject<Ev, T> {
+  handleEvent(event: Ev & CurrentTarget<T>): void
+}
+
+type EventHandler<Ev, T> = (this: T, event: Ev & CurrentTarget<T>) => void
+type EventHandlerOrObject<Ev, T> = EventHandler<Ev, T> | EventObject<Ev, T>
 
 export type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
 export type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent, T>
@@ -101,50 +106,50 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   oncopy?: ClipboardEventHandler<T>
   oncut?: ClipboardEventHandler<T>
   onpaste?: ClipboardEventHandler<T>
-  'on:copy'?: ClipboardEventHandler<T>
-  'on:cut'?: ClipboardEventHandler<T>
-  'on:paste'?: ClipboardEventHandler<T>
+  'on:copy'?: JSX.ClipboardEventListener<T>
+  'on:cut'?: JSX.ClipboardEventListener<T>
+  'on:paste'?: JSX.ClipboardEventListener<T>
   // Composition Events
   oncompositionend?: CompositionEventHandler<T>
   oncompositionstart?: CompositionEventHandler<T>
   oncompositionupdate?: CompositionEventHandler<T>
-  'on:compositionEnd'?: CompositionEventHandler<T>
-  'on:compositionStart'?: CompositionEventHandler<T>
-  'on:compositionUpdate'?: CompositionEventHandler<T>
+  'on:compositionEnd'?: JSX.CompositionEventListener<T>
+  'on:compositionStart'?: JSX.CompositionEventListener<T>
+  'on:compositionUpdate'?: JSX.CompositionEventListener<T>
   // Focus Events
   onfocus?: FocusEventHandler<T>
   onblur?: FocusEventHandler<T>
-  'on:focus'?: FocusEventHandler<T>
-  'on:blur'?: FocusEventHandler<T>
-  'on:focusIn'?: FocusEventHandler<T>
-  'on:focusOut'?: FocusEventHandler<T>
+  'on:focus'?: JSX.FocusEventListener<T>
+  'on:blur'?: JSX.FocusEventListener<T>
+  'on:focusIn'?: JSX.FocusEventListener<T>
+  'on:focusOut'?: JSX.FocusEventListener<T>
   // Input Events
   onbeforeinput?: InputEventHandler<T>
   oninput?: InputEventHandler<T>
-  'on:beforeInput'?: InputEventHandler<T>
-  'on:input'?: InputEventHandler<T>
+  'on:beforeInput'?: JSX.InputEventListener<T>
+  'on:input'?: JSX.InputEventListener<T>
   // Form Events
   onchange?: GenericEventHandler<T>
   onreset?: GenericEventHandler<T>
   oninvalid?: GenericEventHandler<T>
-  'on:change'?: GenericEventHandler<T>
-  'on:reset'?: GenericEventHandler<T>
-  'on:invalid'?: GenericEventHandler<T>
+  'on:change'?: JSX.EventListener<T>
+  'on:reset'?: JSX.EventListener<T>
+  'on:invalid'?: JSX.EventListener<T>
   // Submit Event
   onsubmit?: SubmitEventHandler<T>
-  'on:submit'?: SubmitEventHandler<T>
+  'on:submit'?: JSX.SubmitEventListener<T>
   // Image Events
   onload?: GenericEventHandler<T>
   onerror?: GenericEventHandler<T> // also a Media Event
-  'on:load'?: GenericEventHandler<T>
-  'on:error'?: GenericEventHandler<T>
+  'on:load'?: JSX.EventListener<T>
+  'on:error'?: JSX.EventListener<T>
   // KeyboardEvent
   onkeydown?: KeyboardEventHandler<T>
   onkeypress?: KeyboardEventHandler<T>
   onkeyup?: KeyboardEventHandler<T>
-  'on:keyDown'?: KeyboardEventHandler<T>
-  'on:keyPress'?: KeyboardEventHandler<T>
-  'on:keyUp'?: KeyboardEventHandler<T>
+  'on:keyDown'?: JSX.KeyboardEventListener<T>
+  'on:keyPress'?: JSX.KeyboardEventListener<T>
+  'on:keyUp'?: JSX.KeyboardEventListener<T>
   // Media Events
   onabort?: GenericEventHandler<T>
   oncanplay?: GenericEventHandler<T>
@@ -167,27 +172,27 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   ontimeupdate?: GenericEventHandler<T>
   onvolumechange?: GenericEventHandler<T>
   onwaiting?: GenericEventHandler<T>
-  'on:abort'?: GenericEventHandler<T>
-  'on:canPlay'?: GenericEventHandler<T>
-  'on:canPlayThrough'?: GenericEventHandler<T>
-  'on:durationChange'?: GenericEventHandler<T>
-  'on:emptied'?: GenericEventHandler<T>
-  'on:ended'?: GenericEventHandler<T>
-  'on:loadedData'?: GenericEventHandler<T>
-  'on:loadedMetadata'?: GenericEventHandler<T>
-  'on:loadStart'?: GenericEventHandler<T>
-  'on:pause'?: GenericEventHandler<T>
-  'on:play'?: GenericEventHandler<T>
-  'on:playing'?: GenericEventHandler<T>
-  'on:progress'?: GenericEventHandler<T>
-  'on:rateChange'?: GenericEventHandler<T>
-  'on:seeked'?: GenericEventHandler<T>
-  'on:seeking'?: GenericEventHandler<T>
-  'on:stalled'?: GenericEventHandler<T>
-  'on:suspend'?: GenericEventHandler<T>
-  'on:timeUpdate'?: GenericEventHandler<T>
-  'on:volumeChange'?: GenericEventHandler<T>
-  'on:waiting'?: GenericEventHandler<T>
+  'on:abort'?: JSX.EventListener<T>
+  'on:canPlay'?: JSX.EventListener<T>
+  'on:canPlayThrough'?: JSX.EventListener<T>
+  'on:durationChange'?: JSX.EventListener<T>
+  'on:emptied'?: JSX.EventListener<T>
+  'on:ended'?: JSX.EventListener<T>
+  'on:loadedData'?: JSX.EventListener<T>
+  'on:loadedMetadata'?: JSX.EventListener<T>
+  'on:loadStart'?: JSX.EventListener<T>
+  'on:pause'?: JSX.EventListener<T>
+  'on:play'?: JSX.EventListener<T>
+  'on:playing'?: JSX.EventListener<T>
+  'on:progress'?: JSX.EventListener<T>
+  'on:rateChange'?: JSX.EventListener<T>
+  'on:seeked'?: JSX.EventListener<T>
+  'on:seeking'?: JSX.EventListener<T>
+  'on:stalled'?: JSX.EventListener<T>
+  'on:suspend'?: JSX.EventListener<T>
+  'on:timeUpdate'?: JSX.EventListener<T>
+  'on:volumeChange'?: JSX.EventListener<T>
+  'on:waiting'?: JSX.EventListener<T>
   // MouseEvent
   onauxclick?: MouseEventHandler<T>
   onclick?: MouseEventHandler<T>
@@ -201,16 +206,16 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onmouseover?: MouseEventHandler<T>
   onmouseup?: MouseEventHandler<T>
   'on:auxclick'?: MouseEventHandler<T>
-  'on:click'?: MouseEventHandler<T>
-  'on:contextMenu'?: MouseEventHandler<T>
-  'on:dblClick'?: MouseEventHandler<T>
-  'on:mouseDown'?: MouseEventHandler<T>
-  'on:mouseEnter'?: MouseEventHandler<T>
-  'on:mouseLeave'?: MouseEventHandler<T>
-  'on:mouseMove'?: MouseEventHandler<T>
-  'on:mouseOut'?: MouseEventHandler<T>
-  'on:mouseOver'?: MouseEventHandler<T>
-  'on:mouseUp'?: MouseEventHandler<T>
+  'on:click'?: JSX.MouseEventListener<T>
+  'on:contextMenu'?: JSX.MouseEventListener<T>
+  'on:dblClick'?: JSX.MouseEventListener<T>
+  'on:mouseDown'?: JSX.MouseEventListener<T>
+  'on:mouseEnter'?: JSX.MouseEventListener<T>
+  'on:mouseLeave'?: JSX.MouseEventListener<T>
+  'on:mouseMove'?: JSX.MouseEventListener<T>
+  'on:mouseOut'?: JSX.MouseEventListener<T>
+  'on:mouseOver'?: JSX.MouseEventListener<T>
+  'on:mouseUp'?: JSX.MouseEventListener<T>
   // DragEvent
   ondrag?: DragEventHandler<T>
   ondragend?: DragEventHandler<T>
@@ -221,27 +226,27 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   ondragover?: DragEventHandler<T>
   ondragstart?: DragEventHandler<T>
   ondrop?: DragEventHandler<T>
-  'on:drag'?: DragEventHandler<T>
-  'on:dragEnd'?: DragEventHandler<T>
-  'on:dragEnter'?: DragEventHandler<T>
+  'on:drag'?: JSX.DragEventListener<T>
+  'on:dragEnd'?: JSX.DragEventListener<T>
+  'on:dragEnter'?: JSX.DragEventListener<T>
   /** @deprecated */
-  'on:dragExit'?: DragEventHandler<T>
-  'on:dragLeave'?: DragEventHandler<T>
-  'on:dragOver'?: DragEventHandler<T>
-  'on:dragStart'?: DragEventHandler<T>
-  'on:drop'?: DragEventHandler<T>
+  'on:dragExit'?: JSX.DragEventListener<T>
+  'on:dragLeave'?: JSX.DragEventListener<T>
+  'on:dragOver'?: JSX.DragEventListener<T>
+  'on:dragStart'?: JSX.DragEventListener<T>
+  'on:drop'?: JSX.DragEventListener<T>
   // Selection Events
   onselect?: GenericEventHandler<T>
-  'on:select'?: GenericEventHandler<T>
+  'on:select'?: JSX.EventListener<T>
   // TouchEvent
   ontouchcancel?: TouchEventHandler<T>
   ontouchend?: TouchEventHandler<T>
   ontouchmove?: TouchEventHandler<T>
   ontouchstart?: TouchEventHandler<T>
-  'on:touchCancel'?: TouchEventHandler<T>
-  'on:touchEnd'?: TouchEventHandler<T>
-  'on:touchMove'?: TouchEventHandler<T>
-  'on:touchStart'?: TouchEventHandler<T>
+  'on:touchCancel'?: JSX.TouchEventListener<T>
+  'on:touchEnd'?: JSX.TouchEventListener<T>
+  'on:touchMove'?: JSX.TouchEventListener<T>
+  'on:touchStart'?: JSX.TouchEventListener<T>
   // Pointer Events
   onpointerdown?: PointerEventHandler<T>
   onpointermove?: PointerEventHandler<T>
@@ -253,48 +258,48 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onpointerout?: PointerEventHandler<T>
   ongotpointercapture?: PointerEventHandler<T>
   onlostpointercapture?: PointerEventHandler<T>
-  'on:pointerDown'?: PointerEventHandler<T>
-  'on:pointerMove'?: PointerEventHandler<T>
-  'on:pointerUp'?: PointerEventHandler<T>
-  'on:pointerCancel'?: PointerEventHandler<T>
-  'on:pointerEnter'?: PointerEventHandler<T>
-  'on:pointerLeave'?: PointerEventHandler<T>
-  'on:pointerOver'?: PointerEventHandler<T>
-  'on:pointerOut'?: PointerEventHandler<T>
-  'on:gotPointerCapture'?: PointerEventHandler<T>
-  'on:lostPointerCapture'?: PointerEventHandler<T>
+  'on:pointerDown'?: JSX.PointerEventListener<T>
+  'on:pointerMove'?: JSX.PointerEventListener<T>
+  'on:pointerUp'?: JSX.PointerEventListener<T>
+  'on:pointerCancel'?: JSX.PointerEventListener<T>
+  'on:pointerEnter'?: JSX.PointerEventListener<T>
+  'on:pointerLeave'?: JSX.PointerEventListener<T>
+  'on:pointerOver'?: JSX.PointerEventListener<T>
+  'on:pointerOut'?: JSX.PointerEventListener<T>
+  'on:gotPointerCapture'?: JSX.PointerEventListener<T>
+  'on:lostPointerCapture'?: JSX.PointerEventListener<T>
   // UIEvent
   onscroll?: UIEventHandler<T>
   onscrollend?: UIEventHandler<T>
-  'on:scroll'?: UIEventHandler<T>
-  'on:scrollEnd'?: UIEventHandler<T>
+  'on:scroll'?: JSX.UIEventListener<T>
+  'on:scrollEnd'?: JSX.UIEventListener<T>
   // WheelEvent
   onwheel?: WheelEventHandler<T>
-  'on:wheel'?: WheelEventHandler<T>
+  'on:wheel'?: JSX.WheelEventListener<T>
   // Animation Events
   onanimationstart?: AnimationEventHandler<T>
   onanimationend?: AnimationEventHandler<T>
   onanimationiteration?: AnimationEventHandler<T>
-  'on:animationStart'?: AnimationEventHandler<T>
-  'on:animationEnd'?: AnimationEventHandler<T>
-  'on:animationIteration'?: AnimationEventHandler<T>
+  'on:animationStart'?: JSX.AnimationEventListener<T>
+  'on:animationEnd'?: JSX.AnimationEventListener<T>
+  'on:animationIteration'?: JSX.AnimationEventListener<T>
   // Transition Events
   ontransitionstart?: TransitionEventHandler<T>
   ontransitionend?: TransitionEventHandler<T>
   ontransitionrun?: TransitionEventHandler<T>
   ontransitioncancel?: TransitionEventHandler<T>
-  'on:transitionStart'?: TransitionEventHandler<T>
-  'on:transitionEnd'?: TransitionEventHandler<T>
-  'on:transitionRun'?: TransitionEventHandler<T>
-  'on:transitionCancel'?: TransitionEventHandler<T>
+  'on:transitionStart'?: JSX.TransitionEventListener<T>
+  'on:transitionEnd'?: JSX.TransitionEventListener<T>
+  'on:transitionRun'?: JSX.TransitionEventListener<T>
+  'on:transitionCancel'?: JSX.TransitionEventListener<T>
   // Fullscreen API
   onfullscreenchange?: GenericEventHandler<T>
   onfullscreenerror?: GenericEventHandler<T>
-  'on:fullscreenChange'?: GenericEventHandler<T>
-  'on:fullscreenError'?: GenericEventHandler<T>
+  'on:fullscreenChange'?: JSX.EventListener<T>
+  'on:fullscreenError'?: JSX.EventListener<T>
   // ToggleEvent
   ontoggle?: ToggleEventHandler<T>
-  'on:toggle'?: ToggleEventHandler<T>
+  'on:toggle'?: JSX.ToggleEventListener<T>
 }
 
 export interface CSSProperties extends Properties<number | string> {
@@ -1112,6 +1117,27 @@ declare global {
 
     type Ref<T> = RefCallback<T> | RefObject<T>
 
+    type AnimationEventListener<T = globalThis.Element> = EventHandlerOrObject<AnimationEvent, T>
+    type ClipboardEventListener<T = globalThis.Element> = EventHandlerOrObject<ClipboardEvent, T>
+    type CompositionEventListener<T = globalThis.Element> = EventHandlerOrObject<CompositionEvent, T>
+    type DragEventListener<T = globalThis.Element> = EventHandlerOrObject<DragEvent, T>
+    type EventListener<T = globalThis.Element> = EventHandlerOrObject<Event, T>
+    type FocusEventListener<T = globalThis.Element> = EventHandlerOrObject<FocusEvent, T>
+    type FormDataEventListener<T = globalThis.Element> = EventHandlerOrObject<FormDataEvent, T>
+    type InputEventListener<T = globalThis.Element> = EventHandlerOrObject<InputEvent, T>
+    type KeyboardEventListener<T = globalThis.Element> = EventHandlerOrObject<KeyboardEvent, T>
+    type MediaEncryptedEventListener<T = globalThis.Element> = EventHandlerOrObject<MediaEncryptedEvent, T>
+    type MouseEventListener<T = globalThis.Element> = EventHandlerOrObject<MouseEvent, T>
+    type PictureInPictureEventListener<T = globalThis.Element> = EventHandlerOrObject<PictureInPictureEvent, T>
+    type PointerEventListener<T = globalThis.Element> = EventHandlerOrObject<PointerEvent, T>
+    type SubmitEventListener<T = globalThis.Element> = EventHandlerOrObject<SubmitEvent, T>
+    type ToggleEventListener<T = globalThis.Element> = EventHandlerOrObject<ToggleEvent, T>
+    type TouchEventListener<T = globalThis.Element> = EventHandlerOrObject<TouchEvent, T>
+    type TransitionEventListener<T = globalThis.Element> = EventHandlerOrObject<TransitionEvent, T>
+    type UIEventListener<T = globalThis.Element> = EventHandlerOrObject<UIEvent, T>
+    type WebGLContextEventListener<T = globalThis.Element> = EventHandlerOrObject<WebGLContextEvent, T>
+    type WheelEventListener<T = globalThis.Element> = EventHandlerOrObject<WheelEvent, T>
+
     interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
       /**
        * Instructs browsers to download a URL instead of navigating to it, so the user will be prompted to save it as a local file. _Default value: none; Animatable: no_
@@ -1254,9 +1280,9 @@ declare global {
        * @deprecated
        */
       'moz-opaque'?: boolean | ''
-      'on:webGLContextLost'?: WebGLContextEventHandler<HTMLCanvasElement>
-      'on:webGLContextRestored'?: WebGLContextEventHandler<HTMLCanvasElement>
-      'on:webGLContextCreationError'?: WebGLContextEventHandler<HTMLCanvasElement>
+      'on:webGLContextLost'?: WebGLContextEventListener<HTMLCanvasElement>
+      'on:webGLContextRestored'?: WebGLContextEventListener<HTMLCanvasElement>
+      'on:webGLContextCreationError'?: WebGLContextEventListener<HTMLCanvasElement>
     }
 
     interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
@@ -1292,8 +1318,8 @@ declare global {
       tabIndex?: number | `${number}`
       onclose?: GenericEventHandler<HTMLDialogElement>
       oncancel?: GenericEventHandler<HTMLDialogElement>
-      'on:close'?: GenericEventHandler<HTMLDialogElement>
-      'on:cancel'?: GenericEventHandler<HTMLDialogElement>
+      'on:close'?: EventListener<HTMLDialogElement>
+      'on:cancel'?: EventListener<HTMLDialogElement>
     }
 
     interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
@@ -1348,7 +1374,7 @@ declare global {
       noValidate?: boolean | ''
       target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
       onformdata?: FormDataEventHandler<HTMLFormElement>
-      'on:formData'?: FormDataEventHandler<HTMLFormElement>
+      'on:formData'?: FormDataEventListener<HTMLFormElement>
     }
 
     interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> {
@@ -1672,8 +1698,8 @@ declare global {
       src?: string
       onencrypted?: MediaEncryptedEventHandler<T>
       onwaitingforkey?: GenericEventHandler<T>
-      'on:encrypted'?: MediaEncryptedEventHandler<T>
-      'on:waitingForKey'?: GenericEventHandler<T>
+      'on:encrypted'?: MediaEncryptedEventListener<T>
+      'on:waitingForKey'?: EventListener<T>
     }
 
     interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
@@ -2105,7 +2131,7 @@ declare global {
       src?: string
       srclang?: string
       oncuechange?: GenericEventHandler<HTMLTrackElement>
-      'on:cueChange'?: GenericEventHandler<HTMLTrackElement>
+      'on:cueChange'?: EventListener<HTMLTrackElement>
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
@@ -2123,9 +2149,9 @@ declare global {
       onenterpictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
       onleavepictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
       onresize?: PictureInPictureEventHandler<HTMLVideoElement>
-      'on:enterPictureInPicture'?: PictureInPictureEventHandler<HTMLVideoElement>
-      'on:leavePictureInPicture'?: PictureInPictureEventHandler<HTMLVideoElement>
-      'on:resize'?: PictureInPictureEventHandler<HTMLVideoElement>
+      'on:enterPictureInPicture'?: PictureInPictureEventListener<HTMLVideoElement>
+      'on:leavePictureInPicture'?: PictureInPictureEventListener<HTMLVideoElement>
+      'on:resize'?: PictureInPictureEventListener<HTMLVideoElement>
     }
 
     interface HTMLWBRElementAttributes extends HTMLAttributes<HTMLElement> {

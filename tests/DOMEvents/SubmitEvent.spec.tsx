@@ -3,27 +3,34 @@ import { fireEvent } from '@testing-library/dom';
 
 describe('SubmitEvent', () => {
   it('should add `onsubmit` handler', () => {
-    const spy = jest.fn();
+    const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = jest.fn();
 
-    fireEvent.submit(<form onsubmit={spy} />);
-    expect(spy).toHaveBeenCalledTimes(1);
+    fireEvent.submit(<form onsubmit={handleEvent} />);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:submit` handler', () => {
-    const spy = jest.fn();
+    const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = jest.fn();
 
-    fireEvent.submit(<form on:submit={spy} />);
-    expect(spy).toHaveBeenCalledTimes(1);
+    fireEvent.submit(<form on:submit={handleEvent} />);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should fire `submit` event', () => {
-    const spy = jest.fn();
+    const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = jest.fn();
 
     <form
       ref={(form) => form.submit()}
-      on:submit={spy}
+      on:submit={handleEvent}
     />;
 
-    expect(spy).toHaveBeenCalledTimes(1);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:submit` object listener', () => {
+    const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = jest.fn();
+
+    fireEvent.submit(<form on:submit={{ handleEvent }} />);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 });
