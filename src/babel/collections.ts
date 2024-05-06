@@ -101,8 +101,8 @@ const events = [
   'scroll', 'scrollend',
   // WheelEvent
   'wheel',
-  // Animation Events
-  'animationstart', 'animationend', 'animationiteration',
+  // AnimationEvent
+  'animationstart', 'animationend', 'animationiteration', 'animationcancel',
   // TransitionEvent
   'transitionend', 'transitionstart', 'transitioncancel', 'transitionrun',
   // PictureInPicture Events

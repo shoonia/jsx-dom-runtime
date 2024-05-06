@@ -276,13 +276,16 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   // WheelEvent
   onwheel?: WheelEventHandler<T>
   'on:wheel'?: JSX.WheelEventListener<T>
-  // Animation Events
+  // AnimationEvent
   onanimationstart?: AnimationEventHandler<T>
   onanimationend?: AnimationEventHandler<T>
   onanimationiteration?: AnimationEventHandler<T>
+  onanimationcancel?: AnimationEventHandler<T>
   'on:animationStart'?: JSX.AnimationEventListener<T>
   'on:animationEnd'?: JSX.AnimationEventListener<T>
   'on:animationIteration'?: JSX.AnimationEventListener<T>
+  'on:animationCancel'?: JSX.AnimationEventListener<T>
+
   // TransitionEvent
   ontransitionstart?: TransitionEventHandler<T>
   ontransitionend?: TransitionEventHandler<T>

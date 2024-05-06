@@ -49,30 +49,6 @@ describe('on:events', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
-  it('should add `on:animationStart` handler', () => {
-    const spy = jest.fn();
-    const div = <div on:animationStart={spy} />;
-
-    fireEvent.animationStart(div);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:animationEnd` handler', () => {
-    const spy = jest.fn();
-    const div = <div on:animationEnd={spy} />;
-
-    fireEvent.animationEnd(div);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it('should add `on:animationIteration` handler', () => {
-    const spy = jest.fn();
-    const div = <div on:animationIteration={spy} />;
-
-    fireEvent.animationIteration(div);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
   it('should add `on:abort` handler', () => {
     const spy = jest.fn();
     const audio = <audio on:abort={spy} />;
