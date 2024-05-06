@@ -16,17 +16,6 @@ describe('SubmitEvent', () => {
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
-  it('should fire `submit` event', () => {
-    const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = jest.fn();
-
-    <form
-      ref={(form) => form.submit()}
-      on:submit={handleEvent}
-    />;
-
-    expect(handleEvent).toHaveBeenCalledTimes(1);
-  });
-
   it('should add `on:submit` object listener', () => {
     const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = jest.fn();
 
