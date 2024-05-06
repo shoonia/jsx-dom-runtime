@@ -99,7 +99,7 @@ export type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
 
 export interface DOMAttributes<T> extends JSX.Attributes {
   _?: string
-  $?: Record<string, GenericEventHandler<T>>
+  $?: Record<string, JSX.EventListener<T>>
   ref?: JSX.Ref<T>
   children?: TChild | TChild[]
   // ClipboardEvent
