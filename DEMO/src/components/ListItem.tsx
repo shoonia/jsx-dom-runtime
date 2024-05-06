@@ -9,7 +9,7 @@ interface Props {
 export const ListItem: JSX.FC<Props> = ({ text }) => {
   const ref = useRef<HTMLLIElement>();
 
-  const remove: EventListener = () => {
+  const remove: JSX.EventListener = () => {
     ref.current.remove();
   };
 

@@ -19,7 +19,7 @@ export const App: JSX.FC = () => {
     }
   };
 
-  const pressEnter = (event: KeyboardEvent) => {
+  const pressEnter: JSX.KeyboardEventListener = (event) => {
     if (event.key === 'Enter') {
       addItem();
     }
