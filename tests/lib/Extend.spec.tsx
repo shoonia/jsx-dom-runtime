@@ -6,7 +6,7 @@ describe('Extend', () => {
   });
 
   it('should add plugin', () => {
-    extensions.set('plugin-1', (node) => {
+    extensions.set('plugin-1', (node: Element) => {
       node.setAttribute('class', 'plugin_1');
     });
 
@@ -15,10 +15,10 @@ describe('Extend', () => {
 
   it('should add two plugins', () => {
     extensions
-      .set('plugin-2', (node) => {
+      .set('plugin-2', (node: Element) => {
         node.classList.add('a');
       })
-      .set('plugin-3', (node) => {
+      .set('plugin-3', (node: Element) => {
         node.classList.add('b');
       });
 
@@ -26,7 +26,7 @@ describe('Extend', () => {
   });
 
   it('should work with passed value', () => {
-    extensions.set('plugin-4', (node, value) => {
+    extensions.set('plugin-4', (node: Element, value: string) => {
       node.textContent = value;
     });
 
@@ -34,7 +34,7 @@ describe('Extend', () => {
   });
 
   it('should set muted value', () => {
-    extensions.set('plugin-5', (node, value) => {
+    extensions.set('plugin-5', (node: Element, value: boolean) => {
       // @ts-expect-error Test
       node.muted = value;
     });
