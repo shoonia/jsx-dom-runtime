@@ -43,13 +43,13 @@ export declare function jsx<
   props: PropsWithChildren<JSX.IntrinsicElements[K]>,
 ): R
 
-export type FunctionComponent<P = {}, T extends JSX.Element = JSX.Element> = JSX.FC<P, T>
+export type FunctionComponent<P = {}> = JSX.FC<P>
 export { FunctionComponent as FC };
 
 export declare const properties: Set<string>;
 export declare const extensions: Map<
   string,
-  (node: HTMLElement | SVGElement | MathMLElement, value: any, key: string) => void
+  (node: Element, value: any, key: string) => void
 >;
 
 export declare const svgNs = 'http://www.w3.org/2000/svg';
@@ -159,7 +159,7 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   * Since event has been deprecated, you should use `on:beforeInput` or `on:keyDown` instead
   * @deprecated
   */
- 'on:keyPress'?: JSX.KeyboardEventListener<T>
+  'on:keyPress'?: JSX.KeyboardEventListener<T>
   onkeyup?: KeyboardEventHandler<T>
   'on:keyUp'?: JSX.KeyboardEventListener<T>
   // [Media] Event
@@ -1122,10 +1122,7 @@ declare global {
     interface Attributes { }
     interface ElementChildrenAttribute { children: {} }
 
-    interface FC<P = {}, T extends Element = Element> {
-      (props: PropsWithChildren<P>): T | null
-    }
-
+    type FC<P = {}> = (props: PropsWithChildren<P>) => Element | null
     type Ref<T> = RefCallback<T> | RefObject<T>
 
     type AnimationEventListener<T = globalThis.Element> = EvHandler<AnimationEvent, T>
