@@ -311,6 +311,9 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   // ToggleEvent
   ontoggle?: ToggleEventHandler<T>
   'on:toggle'?: JSX.ToggleEventListener<T>
+  // ContentVisibilityAutoStateChangeEvent
+  oncontentvisibilityautostatechange?: GenericEventHandler<T>
+  'on:contentVisibilityAutoStateChange'?: JSX.EventListener<T>
 }
 
 export interface CSSProperties extends Properties<number | string> {

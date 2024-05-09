@@ -115,6 +115,8 @@ const events = [
   'fullscreenchange', 'fullscreenerror',
   // HTMLTrackElement
   'cuechange',
+  // ContentVisibilityAutoStateChangeEvent
+  'contentvisibilityautostatechange',
 ];
 
 export const DOMEvents = new Set(events.map((e) => 'on' + e));
