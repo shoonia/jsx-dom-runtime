@@ -10,6 +10,7 @@
     "jsx": "react-jsx",
     "jsxImportSource": "jsx-dom-runtime",
     "strict": true,
+    "noImplicitAny": true,
     "lib": [
       "ES2023",
       "DOM"

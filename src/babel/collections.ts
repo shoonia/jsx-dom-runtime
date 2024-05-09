@@ -108,13 +108,15 @@ const events = [
   // PictureInPicture Events
   'enterpictureinpicture', 'leavepictureinpicture', 'resize',
   // ToggleEvent
-  'toggle',
+  'beforetoggle', 'toggle',
   // HTMLDialogElement
   'cancel', 'close',
   // Fullscreen API
   'fullscreenchange', 'fullscreenerror',
   // HTMLTrackElement
   'cuechange',
+  // ContentVisibilityAutoStateChangeEvent
+  'contentvisibilityautostatechange',
 ];
 
 export const DOMEvents = new Set(events.map((e) => 'on' + e));
