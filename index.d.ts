@@ -1362,7 +1362,7 @@ declare global {
       accept?: string
       'accept-charset'?: string
       action?: string
-      autocomplete?: AutoFillBase
+      autocomplete?: boolean | AutoFillBase
       enctype?: string
       /**
        * The HTTP method to submit the form with. The only allowed methods/values are (case insensitive)
@@ -1520,7 +1520,7 @@ declare global {
     interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
       accept?: string
       alt?: string
-      autocomplete?: AutoFill
+      autocomplete?: boolean | AutoFill
       autofocus?: boolean | ''
       /**
        * The capture attribute is supported on the `file` input type.
@@ -1876,7 +1876,7 @@ declare global {
     }
 
     interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
-      autocomplete?: AutoFill
+      autocomplete?: boolean | AutoFill
       autofocus?: boolean | ''
       disabled?: boolean | ''
       form?: string
@@ -2000,7 +2000,7 @@ declare global {
     }
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
-      autocomplete?: AutoFill
+      autocomplete?: boolean | AutoFill
       autofocus?: boolean | ''
       /**
        * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer. If it is not specified, the default value is 20

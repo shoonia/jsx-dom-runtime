@@ -44,4 +44,12 @@ describe('Babel transform HTML boolean attribute value `true` to empty string `"
   it('should transform `noShade` attribute', async () => {
     await expect('<hr noShade />').toBeTransform(i + '_jsx("hr",{noshade:""});');
   });
+
+  it('should transform `autocomplete` attribute', async () => {
+    await expect('<input autocomplete />').toBeTransform(i + '_jsx("input",{autocomplete:""});');
+  });
+
+  it('should NOT transform `autocomplete` attribute', async () => {
+    await expect('<input autocomplete={flag} />').toBeTransform(i + '_jsx("input",{autocomplete:flag});');
+  });
 });
