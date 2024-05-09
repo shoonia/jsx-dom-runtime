@@ -108,7 +108,7 @@ const events = [
   // PictureInPicture Events
   'enterpictureinpicture', 'leavepictureinpicture', 'resize',
   // ToggleEvent
-  'toggle',
+  'beforetoggle', 'toggle',
   // HTMLDialogElement
   'cancel', 'close',
   // Fullscreen API

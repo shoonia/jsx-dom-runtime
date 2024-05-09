@@ -10,7 +10,7 @@ export type NotImplementedYetInTS = ContentVisibilityAutoStateChangeEvent;
 describe('ContentVisibilityAutoStateChangeEvent', () => {
   const i = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
 
-  it('should transform FormDataEvent events', async () => {
+  it('should transform events name', async () => {
     await expect('<div on:contentVisibilityAutoStateChange={fn} />')
       .toBeTransform(i + '_jsx("div",{$:{contentvisibilityautostatechange:fn}});');
   });

@@ -309,6 +309,8 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   onfullscreenerror?: GenericEventHandler<T>
   'on:fullscreenError'?: JSX.EventListener<T>
   // ToggleEvent
+  onbeforetoggle?: ToggleEventHandler<T>
+  'on:beforeToggle'?: JSX.ToggleEventListener<T>
   ontoggle?: ToggleEventHandler<T>
   'on:toggle'?: JSX.ToggleEventListener<T>
   // ContentVisibilityAutoStateChangeEvent
