@@ -34,19 +34,16 @@ const extensions = new Map([
   }],
 ]);
 
-const appendChildren = (content, node) => {
-  if (Array.isArray(content)) {
+const appendChildren = (content, node) =>
+  Array.isArray(content)
     // Just shorter that the .forEach
-    content.some((i) => appendChildren(i, node));
-  } else if (content !== false && content != null) {
-    node.append(content);
-  }
-};
+    ? content.some((i) => appendChildren(i, node))
+    : content !== false && content != null && node.append(content);
 
-const Fragment = (content) => {
-  appendChildren(content, content = new DocumentFragment());
-  return content;
-};
+const Fragment = (content) => (
+  appendChildren(content, content = new DocumentFragment()),
+  content
+);
 
 const jsx = (tag, props) => {
   let key, value, node = props._
