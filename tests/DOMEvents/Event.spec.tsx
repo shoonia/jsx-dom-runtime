@@ -1,5 +1,10 @@
 import { jest } from '@jest/globals';
-import { fireEvent } from '@testing-library/dom';
+import { createEvent, fireEvent } from '@testing-library/dom';
+
+const i = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
+
+const fullscreenChange = (node: Node) => fireEvent(node, createEvent('fullscreenchange', node));
+const fullscreenError = (node: Node) => fireEvent(node, createEvent('fullscreenerror', node));
 
 describe('Event: select', () => {
   it('should add `onselect` handler', () => {
@@ -66,6 +71,48 @@ describe('Event: error', () => {
     const handleEvent: JSX.EventListener<HTMLImageElement> = jest.fn();
 
     fireEvent.error(<img on:error={{ handleEvent }} />);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('Event: fullscreenchange', () => {
+  it('should transform events name', async () => {
+    await expect('<div on:fullscreenChange={fn} />')
+      .toBeTransform(i + '_jsx("div",{$:{fullscreenchange:fn}});');
+  });
+
+  it('should add `on:fullscreenChange` function listener', () => {
+    const spy: JSX.EventListener<HTMLDivElement> = jest.fn();
+
+    fullscreenChange(<div on:fullscreenChange={spy} />);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:fullscreenChange` object listener', () => {
+    const handleEvent: JSX.EventListener<HTMLDivElement> = jest.fn();
+
+    fullscreenChange(<div on:fullscreenChange={{ handleEvent }} />);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('Event: fullscreenerror', () => {
+  it('should transform events name', async () => {
+    await expect('<div on:fullscreenError={fn} />')
+      .toBeTransform(i + '_jsx("div",{$:{fullscreenerror:fn}});');
+  });
+
+  it('should add `on:fullscreenError` function listener', () => {
+    const spy: JSX.EventListener<HTMLDivElement> = jest.fn();
+
+    fullscreenError(<div on:fullscreenError={spy} />);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:fullscreenError` object listener', () => {
+    const handleEvent: JSX.EventListener<HTMLDivElement> = jest.fn();
+
+    fullscreenError(<div on:fullscreenError={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 });
