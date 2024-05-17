@@ -28,7 +28,7 @@ type TChild =
 export type PropsWithChildren<P> = P & { children?: TChild | TChild[] }
 
 export declare function jsx<
-  K extends keyof JSX.IntrinsicElements,
+  K extends keyof JSX.IntrinsicElements | (string & {}),
   R = K extends keyof HTMLElementTagNameMap
   ? HTMLElementTagNameMap[K]
   : K extends keyof HTMLElementDeprecatedTagNameMap
@@ -40,7 +40,9 @@ export declare function jsx<
   : Element
 >(
   tag: K,
-  props: PropsWithChildren<JSX.IntrinsicElements[K]>,
+  props: K extends keyof JSX.IntrinsicElements
+    ? JSX.IntrinsicElements[K]
+    : HTMLAttributes<R>,
 ): R
 
 export type FunctionComponent<P = {}> = JSX.FC<P>
