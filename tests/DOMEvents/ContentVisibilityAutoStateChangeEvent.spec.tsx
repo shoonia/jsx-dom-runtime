@@ -4,7 +4,7 @@ import { fireEvent, createEvent } from '@testing-library/dom';
 const contentVisibilityAutoStateChange = (node: Node) =>
   fireEvent(node, createEvent('contentvisibilityautostatechange', node));
 
-// @ts-expect-error https://developer.mozilla.org/en-US/docs/Web/API/ContentVisibilityAutoStateChangeEvent
+// @ts-ignore https://developer.mozilla.org/en-US/docs/Web/API/ContentVisibilityAutoStateChangeEvent
 export type NotImplementedYetInTS = ContentVisibilityAutoStateChangeEvent;
 
 describe('ContentVisibilityAutoStateChangeEvent', () => {
