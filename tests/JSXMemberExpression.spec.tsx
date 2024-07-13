@@ -1,6 +1,6 @@
 describe('JSXMemberExpression', () => {
   it('should work with JSXMemberExpression', () => {
-    const Member: Record<string, JSX.FC<any>> = {
+    const Member: Record<string, JSX.FC<{ title: string }>> = {
       One({ title }) {
         return <p>{title}</p>;
       },
@@ -16,7 +16,7 @@ describe('JSXMemberExpression', () => {
   });
 
   it('should work with lower case JSXMemberExpression', () => {
-    const member: Record<string, JSX.FC<any>> = {
+    const member: Record<string, JSX.FC<{ text: string }>> = {
       el: ({ text }) => <p>{text}</p>,
     };
 

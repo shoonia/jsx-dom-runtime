@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-namespace */
 import { properties } from '../../jsx-runtime';
 
 declare global {

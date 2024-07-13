@@ -11,7 +11,7 @@ declare global {
   namespace JSX {
     interface IntrinsicElements {
       'web-component': {
-        [key: string]: any
+        [key: string]: unknown
       }
     }
   }

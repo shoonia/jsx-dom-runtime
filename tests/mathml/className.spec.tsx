@@ -17,7 +17,7 @@ describe('MathMLElement: className / class', () => {
 
   it('should update a `className` to `class`', () => {
     expect(
-      // @ts-ignore
+      // @ts-expect-error
       <math display="block" className="a"><mfenced className="b">
         <mrow>
           <mi> a </mi>

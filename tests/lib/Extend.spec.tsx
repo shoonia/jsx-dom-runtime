@@ -35,7 +35,7 @@ describe('Extend', () => {
 
   it('should set muted value', () => {
     extensions.set('plugin-5', (node: Element, value: boolean) => {
-      // @ts-expect-error Test
+      // @ts-expect-error
       node.muted = value;
     });
 

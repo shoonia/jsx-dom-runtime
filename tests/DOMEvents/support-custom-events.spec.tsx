@@ -26,7 +26,7 @@ describe('support custom events', () => {
 
   it('Event names are case-sensitive #2', () => {
     const spy = jest.fn();
-    // @ts-expect-error Test
+    // @ts-expect-error
     const div = <div on:MyEvent={spy} /> as HTMLElement;
 
     div.dispatchEvent(new CustomEvent('MyEvent'));
