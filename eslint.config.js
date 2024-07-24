@@ -10,6 +10,7 @@ export default ts.config(
   },
   js.configs.recommended,
   ...ts.configs.recommended,
+  ...ts.configs.stylistic,
   {
     rules: {
       '@typescript-eslint/no-unused-vars': 'error',

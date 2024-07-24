@@ -19,7 +19,7 @@ export const math2 = jsx('math', { xmlns: 'some' });
 
 // Custom Elements
 
-export const elem = jsx('my-elem', { class: 'hello', onclick() {} });
+export const elem = jsx('my-elem', { class: 'hello', onclick() {/**/} });
 
 // XML
 

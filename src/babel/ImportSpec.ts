@@ -7,7 +7,7 @@ export type TImportName = 'jsx' | 'Fragment' | 'svgNs' | 'mathmlNs';
 
 export class ImportSpec {
   readonly #path: NodePath<t.Program>;
-  readonly #cache: Map<TImportName, t.Identifier> = new Map();
+  readonly #cache = new Map<TImportName, t.Identifier>();
   readonly #specifiers: t.ImportSpecifier[] = [];
 
   public constructor(path: NodePath<t.Program>) {
