@@ -2,13 +2,15 @@ import js from '@eslint/js';
 import ts from 'typescript-eslint';
 
 export default ts.config(
+  {
+    ignores: [
+      'babel-preset/',
+      'jsx-runtime/',
+    ],
+  },
   js.configs.recommended,
   ...ts.configs.recommended,
   {
-    ignores: [
-      'babel-preset/**',
-      'jsx-runtime/**',
-    ],
     rules: {
       '@typescript-eslint/no-unused-vars': 'error',
       '@typescript-eslint/no-redeclare': 'error',
@@ -22,33 +24,33 @@ export default ts.config(
       'no-multiple-empty-lines': [
         'error',
         {
-          'max': 1,
-          'maxBOF': 0,
-          'maxEOF': 0,
+          max: 1,
+          maxBOF: 0,
+          maxEOF: 0,
         },
       ],
       'linebreak-style': 'off',
-      'indent': [
+      indent: [
         'error',
         2,
         {
-          'SwitchCase': 1,
+          SwitchCase: 1,
         },
       ],
-      'quotes': [
+      quotes: [
         'error',
         'single',
       ],
-      'semi': [
+      semi: [
         'error',
         'always',
       ],
       'space-before-function-paren': [
         'error',
         {
-          'anonymous': 'always',
-          'named': 'never',
-          'asyncArrow': 'always',
+          anonymous: 'always',
+          named: 'never',
+          asyncArrow: 'always',
         },
       ],
     },
