@@ -57,7 +57,7 @@
     "rollup": "^4.19.0",
     "size-limit": "^11.1.4",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^7.17.0"
+    "typescript-eslint": "^8.0.0"
   },
   "files": [
     "babel-preset",
