@@ -40,8 +40,8 @@
     "@babel/core": "^7.25.2",
     "@babel/preset-typescript": "^7.24.7",
     "@babel/types": "^7.25.2",
-    "@eslint/js": "^9.8.0",
-    "@evilmartians/lefthook": "^1.7.11",
+    "@eslint/js": "^9.9.0",
+    "@evilmartians/lefthook": "^1.7.12",
     "@jest/globals": "^29.7.0",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^15.2.3",
@@ -57,7 +57,7 @@
     "rollup": "^4.20.0",
     "size-limit": "^11.1.4",
     "typescript": "^5.5.4",
-    "typescript-eslint": "^8.0.1"
+    "typescript-eslint": "^8.1.0"
   },
   "files": [
     "babel-preset",
