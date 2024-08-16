@@ -553,6 +553,8 @@ export interface AriaAttributes {
   /**
    * All the WAI-ARIA 1.2 role attribute values
    * @see https://www.w3.org/TR/wai-aria-1.2/#role_definitions
+   * All the Digital Publishing WAI-ARIA 1.0 role attribute values
+   * @see https://www.w3.org/TR/dpub-aria-1.0/#role_definitions
    */
   role?:
   | 'alert'
@@ -650,6 +652,46 @@ export interface AriaAttributes {
   | 'widget'
   | 'window'
   | 'none presentation'
+  // the Digital Publishing WAI-ARIA
+  | 'doc-abstract'
+  | 'doc-acknowledgments'
+  | 'doc-afterword'
+  | 'doc-appendix'
+  | 'doc-backlink'
+  | 'doc-biblioentry'
+  | 'doc-bibliography'
+  | 'doc-biblioref'
+  | 'doc-chapter'
+  | 'doc-colophon'
+  | 'doc-conclusion'
+  | 'doc-cover'
+  | 'doc-credit'
+  | 'doc-credits'
+  | 'doc-dedication'
+  | 'doc-endnote'
+  | 'doc-endnotes'
+  | 'doc-epigraph'
+  | 'doc-epilogue'
+  | 'doc-errata'
+  | 'doc-example'
+  | 'doc-footnote'
+  | 'doc-foreword'
+  | 'doc-glossary'
+  | 'doc-glossref'
+  | 'doc-index'
+  | 'doc-introduction'
+  | 'doc-noteref'
+  | 'doc-notice'
+  | 'doc-pagebreak'
+  | 'doc-pagelist'
+  | 'doc-part'
+  | 'doc-preface'
+  | 'doc-prologue'
+  | 'doc-pullquote'
+  | 'doc-qna'
+  | 'doc-subtitle'
+  | 'doc-tip'
+  | 'doc-toc'
 }
 
 export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {

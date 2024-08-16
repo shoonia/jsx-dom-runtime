@@ -17,6 +17,7 @@ export default ts.config(
       '@typescript-eslint/no-redeclare': 'error',
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
+      '@typescript-eslint/no-empty-object-type': 'off',
       'no-unused-vars': 'off',
       'no-undef': 'off',
       'no-redeclare': 'off',
