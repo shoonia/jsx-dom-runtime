@@ -1,4 +1,4 @@
-import { useText } from '../..';
+import { useText } from 'jsx-dom-runtime';
 
 describe('useText', () => {
   it('should add text', () => {

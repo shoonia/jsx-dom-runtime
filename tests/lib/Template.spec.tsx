@@ -1,4 +1,4 @@
-import { Template } from '../..';
+import { Template } from 'jsx-dom-runtime';
 
 describe('<Template/>', () => {
   it('should have SVG content', () => {

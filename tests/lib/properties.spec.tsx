@@ -1,6 +1,6 @@
-/* eslint-disable @typescript-eslint/no-namespace */
-import { properties } from '../../jsx-runtime';
+import { properties } from 'jsx-dom-runtime';
 
+/* eslint-disable @typescript-eslint/no-namespace */
 declare global {
   namespace JSX {
     // it should add types for all JSX elements
