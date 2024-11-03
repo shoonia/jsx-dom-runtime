@@ -1,6 +1,6 @@
 import { jest } from '@jest/globals';
 
-import { useRef } from '../..';
+import { useRef } from 'jsx-dom-runtime';
 
 describe('ref', () => {
   it('should run callback ref when it is a function', () => {

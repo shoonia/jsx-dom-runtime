@@ -1,5 +1,6 @@
 import { transformAsync } from '@babel/core';
 
+// @ts-ignore
 import preset from '../../babel-preset/index.cjs';
 
 export const t = async (source: string | TemplateStringsArray) => {

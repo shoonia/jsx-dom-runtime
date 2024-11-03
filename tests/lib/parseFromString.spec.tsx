@@ -1,4 +1,4 @@
-import { parseFromString } from '../..';
+import { parseFromString } from 'jsx-dom-runtime';
 
 describe('parseFromString', () => {
   it('should have append a div', () => {

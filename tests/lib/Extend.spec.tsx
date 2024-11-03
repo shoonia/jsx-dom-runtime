@@ -1,4 +1,4 @@
-import { extensions } from '../../jsx-runtime';
+import { extensions } from 'jsx-dom-runtime';
 
 describe('Extend', () => {
   afterEach(() => {
