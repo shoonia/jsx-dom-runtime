@@ -15,6 +15,11 @@
       "ES2023",
       "DOM"
     ],
+    "paths": {
+      "jsx-dom-runtime": ["."],
+      "jsx-dom-runtime/jsx-runtime": ["."],
+      "jsx-dom-runtime/plugins/*": ["./plugins/*"],
+    }
   },
   "include": [
     "./tests/**/*.ts",

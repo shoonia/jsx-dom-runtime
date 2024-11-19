@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2023" />
-import type { Properties, Property } from 'csstype';
+import type { Property } from 'csstype';
 
 export interface RefObject<T> {
   readonly current: T
@@ -318,11 +318,6 @@ export interface DOMAttributes<T> extends JSX.Attributes {
   // ContentVisibilityAutoStateChangeEvent
   oncontentvisibilityautostatechange?: GenericEventHandler<T>
   'on:contentVisibilityAutoStateChange'?: JSX.EventListener<T>
-}
-
-export interface CSSProperties extends Properties<number | string> {
-  cssText?: string | null
-  [key: `--${string}`]: number | string
 }
 
 export type ControlsList = 'nodownload' | 'nofullscreen' | 'noremoteplayback'
@@ -723,7 +718,7 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
    * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
    */
   spellcheck?: 'true' | 'false'
-  style?: string | CSSProperties
+  style?: string
   tabIndex?: number | `${number}`
   title?: string
   translate?: 'yes' | 'no'

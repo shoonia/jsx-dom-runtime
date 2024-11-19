@@ -4,5 +4,8 @@ jsx-runtime/
 dist/
 __test/
 
+plugins/
+!src/plugins/
+
 .DS_Store
 *.tgz

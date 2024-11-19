@@ -13,20 +13,6 @@ const internalKeys = new Set([
 ]);
 
 const extensions = new Map([
-  ['style', (node, value, key) => {
-    if (typeof value == 'string') {
-      node.setAttribute(key, value);
-    } else {
-      // reuse `key` variable
-      for (key in value) {
-        if (key.startsWith('-')) {
-          node.style.setProperty(key, value[key]);
-        } else {
-          node.style[key] = value[key];
-        }
-      }
-    }
-  }],
   ['$', (node, value, key) => {
     for (key in value) {
       node.addEventListener(key, value[key]);

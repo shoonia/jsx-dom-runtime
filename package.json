@@ -17,6 +17,7 @@
       "import": "./jsx-runtime/index.js",
       "require": "./jsx-runtime/index.cjs"
     },
+    "./plugins/*": "./plugins/*",
     "./babel-preset": "./babel-preset/index.cjs",
     "./package.json": "./package.json"
   },
@@ -63,6 +64,7 @@
   "files": [
     "babel-preset",
     "jsx-runtime",
+    "plugins",
     "index.d.ts"
   ],
   "keywords": [
