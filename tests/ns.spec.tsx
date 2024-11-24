@@ -1,4 +1,4 @@
-import { mathmlNs, svgNs } from '..';
+import { mathmlNs, svgNs } from 'jsx-dom-runtime';
 
 const prop = 'namespaceURI';
 const xhtmlNs = 'http://www.w3.org/1999/xhtml';

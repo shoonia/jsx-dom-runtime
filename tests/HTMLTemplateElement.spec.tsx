@@ -1,4 +1,4 @@
-import { useRef } from '..';
+import { useRef } from 'jsx-dom-runtime';
 
 describe('HTMLTemplateElement', () => {
   it('should append child node', () => {
