@@ -1,6 +1,6 @@
 import { extensions } from 'jsx-dom-runtime';
 
-describe('Extend', () => {
+describe('extensions', () => {
   afterEach(() => {
     extensions.clear();
   });

@@ -1,23 +1,9 @@
-import { existsSync } from 'node:fs';
-import { rm, mkdir, writeFile } from 'node:fs/promises';
+import { writeFile } from 'node:fs/promises';
 import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
+
 import pkg from './package.json' with { type: 'json' };
-
-const emptyDir = async (path) => {
-  if (existsSync(path)) await rm(path, { recursive: true });
-  await mkdir(path);
-};
-
-await Promise.all([
-  emptyDir('./babel-preset'),
-  emptyDir('./jsx-runtime'),
-]);
-
-await writeFile(
-  './jsx-runtime/index.d.ts',
-  'export * from "../index"',
-);
+import { emptyDir, buildPlugins } from './rollup.build.js';
 
 const extensions = ['.ts'];
 
@@ -38,7 +24,22 @@ const plugins = [
   }),
 ];
 
+await Promise.all([
+  emptyDir('./babel-preset'),
+  emptyDir('./jsx-runtime'),
+  emptyDir('./plugins'),
+]);
+
+const [list] = await Promise.all([
+  buildPlugins(plugins),
+  writeFile(
+    './jsx-runtime/index.d.ts',
+    'export * from "../index"',
+  ),
+]);
+
 export default [
+  ...list,
   {
     input: 'src/babel/index.ts',
     output: [
@@ -58,11 +59,11 @@ export default [
         file: pkg.module,
         format: 'es',
       },
-      {
-        file: pkg.main,
-        format: 'cjs',
-        esModule: false,
-      },
+      // {
+      //   file: pkg.main,
+      //   format: 'cjs',
+      //   esModule: false,
+      // },
     ],
     plugins,
   },
