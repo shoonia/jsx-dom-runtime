@@ -1,4 +1,4 @@
-import { useRef } from '..';
+import { useRef } from 'jsx-dom-runtime';
 import { Driver } from './utils';
 
 describe('e2e test', () => {

@@ -1,7 +1,7 @@
 import { jest } from '@jest/globals';
 import { fireEvent } from '@testing-library/dom';
 
-import { jsx } from '../..';
+import { jsx } from 'jsx-dom-runtime';
 
 describe('$', () => {
   it('should add a few handlers', () => {

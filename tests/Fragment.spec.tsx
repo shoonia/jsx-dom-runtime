@@ -1,5 +1,3 @@
-import { createRequire } from 'node:module';
-
 describe('Fragment', () => {
   const start = 'import{Fragment as _Fragment,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
 
@@ -91,8 +89,8 @@ describe('Fragment', () => {
     ).toHaveInnerHTML('<p>1</p><p>2</p><p>3</p><p>4</p><p>5</p>');
   });
 
-  it('should work with function Fragment', () => {
-    const { Fragment } = createRequire(import.meta.url)('../jsx-runtime/index.cjs');
+  it('should work with function Fragment', async () => {
+    const { Fragment } = await import('jsx-dom-runtime');
 
     expect(
       <div>
