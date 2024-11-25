@@ -3,7 +3,7 @@ describe('Props', () => {
     expect(<img src="/test" alt="test" />).toHaveOuterHTML('<img src="/test" alt="test">');
   });
 
-  it('should have the role attribute', () => {
+  it('should have the `role` attribute', () => {
     expect(<div role="contentinfo" />).toHaveOuterHTML('<div role="contentinfo"></div>');
   });
 
@@ -17,41 +17,43 @@ describe('Props', () => {
     expect(<time dateTime="2021-03-16" />).toHaveProperty('dateTime', '2021-03-16');
   });
 
-  it('should have title', () => {
+  it('should have `title` attribute', () => {
     expect(<abbr title="test text" />).toHaveOuterHTML('<abbr title="test text"></abbr>');
     expect(<abbr title="test text" />).toHaveProperty('title', 'test text');
   });
 
-  it('should have attribute accesskey', () => {
+  it('should have `accessKey` attribute', () => {
     expect(<p accessKey="s" />).toHaveOuterHTML('<p accesskey="s"></p>');
-  });
-
-  it('should have property accessKey', () => {
     expect(<p accessKey="s" />).toHaveProperty('accessKey', 's');
   });
 
-  it('should have id', () => {
+  it('should have `id` attribute', () => {
     expect(<blockquote id="some-id" />).toHaveAttribute('id', 'some-id');
     expect(<blockquote id="some-id" />).toHaveProperty('id', 'some-id');
   });
 
-  it('should have attribute translate', () => {
+  it('should have `translate` attribute', () => {
     expect(<u translate="no" />).toHaveAttribute('translate', 'no');
   });
 
-  it('should have dir attribute', () => {
+  it('should have `dir` attribute', () => {
     expect(<s dir="ltr" />).toHaveAttribute('dir', 'ltr');
     expect(<s dir="ltr" />).toHaveProperty('dir', 'ltr');
   });
 
-  it('should have lang attribute', () => {
+  it('should have `lang` attribute', () => {
     expect(<span lang="ua" />).toHaveAttribute('lang', 'ua');
     expect(<span lang="ua" />).toHaveProperty('lang', 'ua');
   });
 
-  it('should add contentEditable attribute', () => {
+  it('should add `contentEditable` attribute', () => {
     expect(<p contentEditable="true" />).toHaveAttribute('contenteditable', 'true');
     expect(<p contentEditable="false" />).toHaveAttribute('contenteditable', 'false');
+  });
+
+  it('should add `writingsuggestions` attribute', () => {
+    expect(<input writingsuggestions="true" />).toHaveAttribute('writingsuggestions', 'true');
+    expect(<input writingsuggestions="false" />).toHaveAttribute('writingsuggestions', 'false');
   });
 
   it('should add `spellcheck` attribute', () => {

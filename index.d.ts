@@ -784,6 +784,11 @@ export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
    * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/virtualkeyboardpolicy
    */
   virtualkeyboardpolicy?: 'auto' | 'manual'
+  /**
+   * In browsers that support them, writing suggestions are enabled by default. To disable them, set the writingsuggestions attribute's value to `false`. Setting the attribute's value to `true`, or omitting the value, enables writing suggestions
+   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/writingsuggestions
+   */
+  writingsuggestions?: boolean | '' | 'true' | 'false'
 }
 
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
