@@ -52,4 +52,16 @@ describe('Babel transform HTML boolean attribute value `true` to empty string `"
   it('should NOT transform `autocomplete` attribute', async () => {
     await expect('<input autocomplete={flag} />').toBeTransform(i + '_jsx("input",{autocomplete:flag});');
   });
+
+  it('should transform `shadowrootclonable` attribute', async () => {
+    await expect('<template shadowRootClonable />').toBeTransform(i + '_jsx("template",{shadowrootclonable:""});');
+  });
+
+  it('should transform `shadowRootDelegatesFocus` attribute', async () => {
+    await expect('<template shadowRootDelegatesFocus />').toBeTransform(i + '_jsx("template",{shadowrootdelegatesfocus:""});');
+  });
+
+  it('should transform `shadowRootSerializable` attribute', async () => {
+    await expect('<template shadowRootSerializable />').toBeTransform(i + '_jsx("template",{shadowrootserializable:""});');
+  });
 });

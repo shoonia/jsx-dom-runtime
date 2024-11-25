@@ -2040,6 +2040,21 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#shadowrootmode
        */
       shadowRootMode?: 'open' | 'closed'
+      /**
+       * Sets the value of the `clonable` property of a `ShadowRoot` created using this element to `true`. If set, a clone of the shadow host (the parent element of this `<template>`) created with `Node.cloneNode()` or `Document.importNode()` will include a shadow root in the copy
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#shadowrootclonable
+       */
+      shadowRootClonable?: boolean | ''
+      /**
+       * Sets the value of the `delegatesFocus` property of a `ShadowRoot` created using this element to `true`. If this is set and a non-focusable element in the shadow tree is selected, then focus is delegated to the first focusable element in the tree. The value defaults to `false`
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#shadowrootclonable
+       */
+      shadowRootDelegatesFocus?: boolean | ''
+      /**
+       * Sets the value of the `serializable` property of a `ShadowRoot` created using this element to true. If set, the shadow root may be serialized by calling the `Element.getHTML()` or `ShadowRoot.getHTML()` methods with the `options.serializableShadowRoots` parameter set `true`. The value defaults to `false`
+       * @see https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootSerializable
+        */
+      shadowRootSerializable?: boolean | '';
     }
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {

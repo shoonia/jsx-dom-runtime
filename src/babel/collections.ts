@@ -142,6 +142,7 @@ export const booleanAttributes = new Set([
   'multiple', 'loop', 'required', 'hidden', 'open', 'selected', 'nomodule', 'noshade',
   'novalidate', 'playsinline', 'reversed', 'inert', 'disablepictureinpicture',
   'disableremoteplayback', 'popover', 'itemscope', 'declare', 'moz-opaque', 'ismap',
+  'shadowrootclonable', 'shadowrootdelegatesfocus', 'shadowrootserializable',
 ]);
 
 export const enumerated = new Set([

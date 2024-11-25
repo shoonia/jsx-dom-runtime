@@ -32,4 +32,16 @@ describe('HTMLTemplateElement', () => {
   it('should have `shadowRootMode` attribute', () => {
     expect(<template shadowRootMode="open" />).toHaveAttribute('shadowrootmode', 'open');
   });
+
+  it('should have `shadowrootclonable` attribute', () => {
+    expect(<template shadowRootClonable />).toHaveAttribute('shadowrootclonable', '');
+  });
+
+  it('should have `shadowrootdelegatesfocus` attribute', () => {
+    expect(<template shadowRootDelegatesFocus />).toHaveAttribute('shadowrootdelegatesfocus', '');
+  });
+
+  it('should have `shadowRootSerializable` attribute', () => {
+    expect(<template shadowRootSerializable />).toHaveAttribute('shadowrootserializable', '');
+  });
 });
