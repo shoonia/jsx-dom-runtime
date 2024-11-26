@@ -142,6 +142,7 @@ export const booleanAttributes = new Set([
   'multiple', 'loop', 'required', 'hidden', 'open', 'selected', 'nomodule', 'noshade',
   'novalidate', 'playsinline', 'reversed', 'inert', 'disablepictureinpicture',
   'disableremoteplayback', 'popover', 'itemscope', 'declare', 'moz-opaque', 'ismap',
+  'shadowrootclonable', 'shadowrootdelegatesfocus', 'shadowrootserializable',
 ]);
 
 export const enumerated = new Set([
@@ -158,7 +159,7 @@ export const enumerated = new Set([
   'aria-colcount', 'aria-colindex', 'aria-colindextext', 'aria-colspan', 'aria-posinset',
   'aria-rowcount', 'aria-rowindex', 'aria-rowindextext', 'aria-rowspan', 'aria-setsize',
   // HTML enumerated attributes
-  'draggable', 'spellcheck',
+  'draggable', 'spellcheck', 'writingsuggestions',
 ]);
 
 export const svgDOMAttributes = new Map(

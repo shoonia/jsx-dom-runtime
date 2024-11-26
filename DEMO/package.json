@@ -10,11 +10,11 @@
     "build": "rm -rf dist .parcel-cache && parcel build src/index.html"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.70.3"
+    "jsx-dom-runtime": "^0.71.0"
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.26.0",
-    "parcel": "^2.13.0",
+    "parcel": "^2.13.2",
     "postcss": "^8.4.49",
     "postcss-modules": "^6.0.1"
   },
