@@ -1,8 +1,10 @@
 node_modules/
 babel-preset/
-jsx-runtime/
 dist/
 __test/
+
+jsx-runtime/
+!src/jsx-runtime/
 
 plugins/
 !src/plugins/

@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs';
-import { rm, mkdir, readdir, cp } from 'node:fs/promises';
+import { rm, mkdir, readdir, copyFile } from 'node:fs/promises';
 
 export const emptyDir = async (path) => {
   if (existsSync(path)) await rm(path, { recursive: true });
@@ -7,27 +7,32 @@ export const emptyDir = async (path) => {
 };
 
 export const buildPlugins = async (plugins) => {
-  const [files] = await Promise.all([
-    readdir('./src/plugins'),
-    cp('./src/plugins', './plugins', { recursive: true }),
-  ]);
+  const files = await readdir('./src/plugins');
 
-  return files.map((i) => {
-    return {
-      input: `./plugins/${i}/index.ts`,
-      output: [
-        {
-          file: `./plugins/${i}/index.js`,
-          format: 'es',
-        },
-        // {
-        //   file: `./plugins/${i}/index.cjs`,
-        //   format: 'cjs',
-        //   esModule: false,
-        // },
-      ],
-      external: ['jsx-dom-runtime'],
-      plugins,
-    };
-  });
+  return Promise.all(
+    files.map(async (i) => {
+      await mkdir(`./plugins/${i}`);
+      await copyFile(
+        `./src/plugins/${i}/index.d.ts`,
+        `./plugins/${i}/index.d.ts`,
+      );
+
+      return {
+        input: `./src/plugins/${i}/index.ts`,
+        output: [
+          {
+            file: `./plugins/${i}/index.js`,
+            format: 'es',
+          },
+          {
+            file: `./plugins/${i}/index.cjs`,
+            format: 'cjs',
+            esModule: false,
+          },
+        ],
+        external: ['../../jsx-runtime'],
+        plugins,
+      };
+    }),
+  );
 };

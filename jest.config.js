@@ -8,9 +8,6 @@ const config = {
   setupFilesAfterEnv: [
     '<rootDir>/tests/utils/jest-setup.ts'
   ],
-  moduleNameMapper: {
-    'jsx-dom-runtime/$1': '<rootDir>/$1',
-  },
   modulePathIgnorePatterns: [
     '<rootDir>/src/',
   ],

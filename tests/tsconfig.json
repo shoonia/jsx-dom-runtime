@@ -17,8 +17,7 @@
     ],
     "paths": {
       "jsx-dom-runtime": ["../jsx-runtime"],
-      "jsx-dom-runtime/jsx-runtime": ["../jsx-runtime"],
-      "jsx-dom-runtime/plugins/*": ["../plugins/*"],
+      "jsx-dom-runtime/*": ["../*"],
     }
   },
   "include": [

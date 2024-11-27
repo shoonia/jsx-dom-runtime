@@ -1,6 +1,5 @@
-import { properties } from 'jsx-dom-runtime';
+import { properties } from '../../jsx-runtime';
 
 export const initHtml = () => /*#__PURE__*/ properties
   .add('innerHTML')
-  .add('innerText')
   .add('textContent');

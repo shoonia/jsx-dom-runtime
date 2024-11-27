@@ -13,11 +13,6 @@ describe('properties', () => {
     expect(<p innerHTML="<p>html</p>" />).toHaveInnerHTML('<p>html</p>');
   });
 
-  it('should add support of `innerText` property', () => {
-    expect(<span innerText="text" />).not.toHaveAttribute('innertext');
-    expect(<span innerText="text" />).toHaveInnerHTML('text');
-  });
-
   it('should transform', async () => {
     await expect('<div textContent="context" />').toBeTransform(
       'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("div",{textContent:"context"});'
