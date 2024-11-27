@@ -2,13 +2,13 @@ import { initHtml } from 'jsx-dom-runtime/plugins/html';
 
 initHtml();
 
-describe('properties', () => {
-  it('should add support of `textContent` property', () => {
+describe('plugins/html', () => {
+  it('should add support `textContent` property', () => {
     expect(<div textContent="context" />).not.toHaveAttribute('textcontent');
     expect(<div textContent="context" />).toHaveInnerHTML('context');
   });
 
-  it('should add support of `innerHTML` property', () => {
+  it('should add support `innerHTML` property', () => {
     expect(<p innerHTML="<p>html</p>" />).not.toHaveAttribute('innerhtml');
     expect(<p innerHTML="<p>html</p>" />).toHaveInnerHTML('<p>html</p>');
   });
