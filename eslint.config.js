@@ -4,9 +4,9 @@ import ts from 'typescript-eslint';
 export default ts.config(
   {
     ignores: [
-      './babel-preset/',
-      './jsx-runtime/',
-      './plugins/'
+      'babel-preset/',
+      'jsx-runtime/',
+      'plugins/'
     ],
   },
   js.configs.recommended,
