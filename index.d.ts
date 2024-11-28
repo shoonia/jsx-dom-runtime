@@ -99,7 +99,7 @@ export type UIEventHandler<T = Element> = EventHandler<UIEvent, T>
 export type WebGLContextEventHandler<T = Element> = EventHandler<WebGLContextEvent, T>
 export type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
 
-export interface DOMAttributes<T> extends JSX.Attributes {
+export interface HTMLAttributes<T> extends AriaAttributes, JSX.Attributes {
   _?: string
   $?: Record<string, JSX.EventListener<T>>
   ref?: JSX.Ref<T>
@@ -694,103 +694,6 @@ export interface AriaAttributes {
   | 'doc-toc'
 }
 
-export interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
-  accessKey?: string
-  class?: string
-  /**
-   * Making document regions editable
-   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
-   */
-  contentEditable?: boolean | '' | 'true' | 'false' | 'plaintext-only'
-  /**
-   * This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes
-   * @deprecated
-   */
-  contextMenu?: string
-  dir?: 'ltr' | 'rtl' | 'auto'
-  /**
-   * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<img draggable>` is forbidden. The correct usage is `<img draggable="true">`
-   * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
-   */
-  draggable?: 'true' | 'false'
-  hidden?: boolean | 'hidden' | 'until-found' | ''
-  id?: string
-  inert?: boolean | ''
-  lang?: string
-  slot?: string
-  /**
-   * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<input spellcheck>` is forbidden. The correct usage is `<input spellcheck="true">`
-   * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
-   */
-  spellcheck?: 'true' | 'false'
-  style?: string | CSSProperties
-  tabIndex?: number | `${number}`
-  title?: string
-  translate?: 'yes' | 'no'
-  // Unknown
-  radioGroup?: string // <command>, <menuitem>
-  // RDFa Attributes
-  about?: string
-  datatype?: string
-  inlist?: any
-  property?: string
-  resource?: string
-  typeof?: string
-  vocab?: string
-  autocapitalize?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
-  /**
-   * Non-standard attribute. Safari only. A string which indicates whether to activate automatic correction while the user is editing this field
-   */
-  autocorrect?: 'on' | 'off'
-  autosave?: string
-  color?: Property.Color
-  itemProp?: string
-  itemScope?: boolean | ''
-  itemType?: string
-  itemID?: string
-  itemRef?: string
-  results?: number | `${number}`
-  security?: string
-  unselectable?: 'on' | 'off'
-  // Living Standard
-  /**
-   * Hints at the type of data that might be entered by the user while editing the element or its contents
-   * @see https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute
-   */
-  inputMode?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'
-  /**
-   * Specify that a standard HTML element should behave like a defined custom built-in element
-   * @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is
-   */
-  is?: string
-  popover?: boolean | 'auto' | 'manual' | ''
-  /**
-   * A space-separated list of the part names of the element. Part names allows CSS to select and style specific elements in a shadow tree via the `::part` pseudo-element.
-   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/part
-   */
-  part?: string
-  /**
-   * Allows you to select and style elements existing in nested shadow trees, by exporting their `part` names.
-   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/exportparts
-   */
-  exportparts?: string
-  /**
-   * Used to indicate that an element is flagged for tracking by `PerformanceObserver` objects using the "element" type.
-   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/elementtiming
-   */
-  elementTiming?: string
-  /**
-   * This is an experimental technology
-   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/virtualkeyboardpolicy
-   */
-  virtualkeyboardpolicy?: 'auto' | 'manual'
-  /**
-   * In browsers that support them, writing suggestions are enabled by default. To disable them, set the writingsuggestions attribute's value to `false`. Setting the attribute's value to `true`, or omitting the value, enables writing suggestions
-   * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/writingsuggestions
-   */
-  writingsuggestions?: boolean | '' | 'true' | 'false'
-}
-
 export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
   _?: typeof svgNs
   xmlns?: typeof svgNs
@@ -1173,7 +1076,6 @@ export interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
 declare global {
   namespace JSX {
     type Element = globalThis.Element | DocumentFragment
-    interface Attributes { }
     interface ElementChildrenAttribute { children: {} }
 
     type FC<P = {}> = (props: PropsWithChildren<P>) => Element | null
@@ -1199,6 +1101,103 @@ declare global {
     type UIEventListener<T = globalThis.Element> = EvHandler<UIEvent, T>
     type WebGLContextEventListener<T = globalThis.Element> = EvHandler<WebGLContextEvent, T>
     type WheelEventListener<T = globalThis.Element> = EvHandler<WheelEvent, T>
+
+    interface Attributes {
+      accessKey?: string
+      class?: string
+      /**
+       * Making document regions editable
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
+       */
+      contentEditable?: boolean | '' | 'true' | 'false' | 'plaintext-only'
+      /**
+       * This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes
+       * @deprecated
+       */
+      contextMenu?: string
+      dir?: 'ltr' | 'rtl' | 'auto'
+      /**
+       * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<img draggable>` is forbidden. The correct usage is `<img draggable="true">`
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
+       */
+      draggable?: 'true' | 'false'
+      hidden?: boolean | 'hidden' | 'until-found' | ''
+      id?: string
+      inert?: boolean | ''
+      lang?: string
+      slot?: string
+      /**
+       * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<input spellcheck>` is forbidden. The correct usage is `<input spellcheck="true">`
+       * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
+       */
+      spellcheck?: 'true' | 'false'
+      style?: string | CSSProperties
+      tabIndex?: number | `${number}`
+      title?: string
+      translate?: 'yes' | 'no'
+      // Unknown
+      radioGroup?: string // <command>, <menuitem>
+      // RDFa Attributes
+      about?: string
+      datatype?: string
+      inlist?: any
+      property?: string
+      resource?: string
+      typeof?: string
+      vocab?: string
+      autocapitalize?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
+      /**
+       * Non-standard attribute. Safari only. A string which indicates whether to activate automatic correction while the user is editing this field
+       */
+      autocorrect?: 'on' | 'off'
+      autosave?: string
+      color?: Property.Color
+      itemProp?: string
+      itemScope?: boolean | ''
+      itemType?: string
+      itemID?: string
+      itemRef?: string
+      results?: number | `${number}`
+      security?: string
+      unselectable?: 'on' | 'off'
+      // Living Standard
+      /**
+       * Hints at the type of data that might be entered by the user while editing the element or its contents
+       * @see https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute
+       */
+      inputMode?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'
+      /**
+       * Specify that a standard HTML element should behave like a defined custom built-in element
+       * @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is
+       */
+      is?: string
+      popover?: boolean | 'auto' | 'manual' | ''
+      /**
+       * A space-separated list of the part names of the element. Part names allows CSS to select and style specific elements in a shadow tree via the `::part` pseudo-element.
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/part
+       */
+      part?: string
+      /**
+       * Allows you to select and style elements existing in nested shadow trees, by exporting their `part` names.
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/exportparts
+       */
+      exportparts?: string
+      /**
+       * Used to indicate that an element is flagged for tracking by `PerformanceObserver` objects using the "element" type.
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/elementtiming
+       */
+      elementTiming?: string
+      /**
+       * This is an experimental technology
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/virtualkeyboardpolicy
+       */
+      virtualkeyboardpolicy?: 'auto' | 'manual'
+      /**
+       * In browsers that support them, writing suggestions are enabled by default. To disable them, set the writingsuggestions attribute's value to `false`. Setting the attribute's value to `true`, or omitting the value, enables writing suggestions
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/writingsuggestions
+       */
+      writingsuggestions?: boolean | '' | 'true' | 'false'
+    }
 
     interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
       /**
