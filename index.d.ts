@@ -42,7 +42,7 @@ export declare function jsx<
   tag: K,
   props: K extends keyof JSX.IntrinsicElements
     ? JSX.IntrinsicElements[K]
-    : HTMLAttributes<R>,
+    : JSX.HTMLAttributes<R>,
 ): R
 
 export type FunctionComponent<P = {}> = JSX.FC<P>
@@ -98,227 +98,6 @@ export type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, 
 export type UIEventHandler<T = Element> = EventHandler<UIEvent, T>
 export type WebGLContextEventHandler<T = Element> = EventHandler<WebGLContextEvent, T>
 export type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
-
-export interface HTMLAttributes<T> extends AriaAttributes, JSX.Attributes {
-  _?: string
-  $?: Record<string, JSX.EventListener<T>>
-  ref?: JSX.Ref<T>
-  children?: TChild | TChild[]
-  // ClipboardEvent
-  oncopy?: ClipboardEventHandler<T>
-  'on:copy'?: JSX.ClipboardEventListener<T>
-  oncut?: ClipboardEventHandler<T>
-  'on:cut'?: JSX.ClipboardEventListener<T>
-  onpaste?: ClipboardEventHandler<T>
-  'on:paste'?: JSX.ClipboardEventListener<T>
-  // CompositionEvent
-  oncompositionend?: CompositionEventHandler<T>
-  'on:compositionEnd'?: JSX.CompositionEventListener<T>
-  oncompositionstart?: CompositionEventHandler<T>
-  'on:compositionStart'?: JSX.CompositionEventListener<T>
-  oncompositionupdate?: CompositionEventHandler<T>
-  'on:compositionUpdate'?: JSX.CompositionEventListener<T>
-  // FocusEvent
-  onfocus?: FocusEventHandler<T>
-  'on:focus'?: JSX.FocusEventListener<T>
-  onblur?: FocusEventHandler<T>
-  'on:blur'?: JSX.FocusEventListener<T>
-  'on:focusIn'?: JSX.FocusEventListener<T>
-  'on:focusOut'?: JSX.FocusEventListener<T>
-  // InputEvent
-  onbeforeinput?: InputEventHandler<T>
-  'on:beforeInput'?: JSX.InputEventListener<T>
-  oninput?: InputEventHandler<T>
-  'on:input'?: JSX.InputEventListener<T>
-  // [Form] Event
-  onchange?: GenericEventHandler<T>
-  'on:change'?: JSX.EventListener<T>
-  onreset?: GenericEventHandler<T>
-  'on:reset'?: JSX.EventListener<T>
-  oninvalid?: GenericEventHandler<T>
-  'on:invalid'?: JSX.EventListener<T>
-  // Event
-  onload?: GenericEventHandler<T>
-  'on:load'?: JSX.EventListener<T>
-  onerror?: GenericEventHandler<T>
-  'on:error'?: JSX.EventListener<T>
-  onselect?: GenericEventHandler<T>
-  'on:select'?: JSX.EventListener<T>
-  // SubmitEvent
-  onsubmit?: SubmitEventHandler<T>
-  'on:submit'?: JSX.SubmitEventListener<T>
-  // KeyboardEvent
-  onkeydown?: KeyboardEventHandler<T>
-  'on:keyDown'?: JSX.KeyboardEventListener<T>
-  /**
-   * This feature is no longer recommended.
-   * Since event has been deprecated, you should use `onbeforeinput` or `onkeydown` instead
-   * @deprecated
-   */
-  onkeypress?: KeyboardEventHandler<T>
-  /**
-  * This feature is no longer recommended.
-  * Since event has been deprecated, you should use `on:beforeInput` or `on:keyDown` instead
-  * @deprecated
-  */
-  'on:keyPress'?: JSX.KeyboardEventListener<T>
-  onkeyup?: KeyboardEventHandler<T>
-  'on:keyUp'?: JSX.KeyboardEventListener<T>
-  // [Media] Event
-  onabort?: GenericEventHandler<T>
-  'on:abort'?: JSX.EventListener<T>
-  oncanplay?: GenericEventHandler<T>
-  'on:canPlay'?: JSX.EventListener<T>
-  oncanplaythrough?: GenericEventHandler<T>
-  'on:canPlayThrough'?: JSX.EventListener<T>
-  ondurationchange?: GenericEventHandler<T>
-  'on:durationChange'?: JSX.EventListener<T>
-  onemptied?: GenericEventHandler<T>
-  'on:emptied'?: JSX.EventListener<T>
-  onended?: GenericEventHandler<T>
-  'on:ended'?: JSX.EventListener<T>
-  onloadeddata?: GenericEventHandler<T>
-  'on:loadedData'?: JSX.EventListener<T>
-  onloadedmetadata?: GenericEventHandler<T>
-  'on:loadedMetadata'?: JSX.EventListener<T>
-  onloadstart?: GenericEventHandler<T>
-  'on:loadStart'?: JSX.EventListener<T>
-  onpause?: GenericEventHandler<T>
-  'on:pause'?: JSX.EventListener<T>
-  onplay?: GenericEventHandler<T>
-  'on:play'?: JSX.EventListener<T>
-  onplaying?: GenericEventHandler<T>
-  'on:playing'?: JSX.EventListener<T>
-  onprogress?: GenericEventHandler<T>
-  'on:progress'?: JSX.EventListener<T>
-  onratechange?: GenericEventHandler<T>
-  'on:rateChange'?: JSX.EventListener<T>
-  onseeked?: GenericEventHandler<T>
-  'on:seeked'?: JSX.EventListener<T>
-  onseeking?: GenericEventHandler<T>
-  'on:seeking'?: JSX.EventListener<T>
-  onstalled?: GenericEventHandler<T>
-  'on:stalled'?: JSX.EventListener<T>
-  onsuspend?: GenericEventHandler<T>
-  'on:suspend'?: JSX.EventListener<T>
-  ontimeupdate?: GenericEventHandler<T>
-  'on:timeUpdate'?: JSX.EventListener<T>
-  onvolumechange?: GenericEventHandler<T>
-  'on:volumeChange'?: JSX.EventListener<T>
-  onwaiting?: GenericEventHandler<T>
-  'on:waiting'?: JSX.EventListener<T>
-  // MouseEvent
-  onauxclick?: MouseEventHandler<T>
-  'on:auxclick'?: MouseEventHandler<T>
-  onclick?: MouseEventHandler<T>
-  'on:click'?: JSX.MouseEventListener<T>
-  oncontextmenu?: MouseEventHandler<T>
-  'on:contextMenu'?: JSX.MouseEventListener<T>
-  ondblclick?: MouseEventHandler<T>
-  'on:dblClick'?: JSX.MouseEventListener<T>
-  onmousedown?: MouseEventHandler<T>
-  'on:mouseDown'?: JSX.MouseEventListener<T>
-  onmouseenter?: MouseEventHandler<T>
-  'on:mouseEnter'?: JSX.MouseEventListener<T>
-  onmouseleave?: MouseEventHandler<T>
-  'on:mouseLeave'?: JSX.MouseEventListener<T>
-  onmousemove?: MouseEventHandler<T>
-  'on:mouseMove'?: JSX.MouseEventListener<T>
-  onmouseout?: MouseEventHandler<T>
-  'on:mouseOut'?: JSX.MouseEventListener<T>
-  onmouseover?: MouseEventHandler<T>
-  'on:mouseOver'?: JSX.MouseEventListener<T>
-  onmouseup?: MouseEventHandler<T>
-  'on:mouseUp'?: JSX.MouseEventListener<T>
-  // DragEvent
-  ondrag?: DragEventHandler<T>
-  'on:drag'?: JSX.DragEventListener<T>
-  ondragend?: DragEventHandler<T>
-  'on:dragEnd'?: JSX.DragEventListener<T>
-  ondragenter?: DragEventHandler<T>
-  'on:dragEnter'?: JSX.DragEventListener<T>
-  /** @deprecated */
-  ondragexit?: DragEventHandler<T>
-  /** @deprecated */
-  'on:dragExit'?: JSX.DragEventListener<T>
-  ondragleave?: DragEventHandler<T>
-  'on:dragLeave'?: JSX.DragEventListener<T>
-  ondragover?: DragEventHandler<T>
-  'on:dragOver'?: JSX.DragEventListener<T>
-  ondragstart?: DragEventHandler<T>
-  'on:dragStart'?: JSX.DragEventListener<T>
-  ondrop?: DragEventHandler<T>
-  'on:drop'?: JSX.DragEventListener<T>
-  // TouchEvent
-  ontouchcancel?: TouchEventHandler<T>
-  'on:touchCancel'?: JSX.TouchEventListener<T>
-  ontouchend?: TouchEventHandler<T>
-  'on:touchEnd'?: JSX.TouchEventListener<T>
-  ontouchmove?: TouchEventHandler<T>
-  'on:touchMove'?: JSX.TouchEventListener<T>
-  ontouchstart?: TouchEventHandler<T>
-  'on:touchStart'?: JSX.TouchEventListener<T>
-  // PointerEvent
-  onpointerdown?: PointerEventHandler<T>
-  'on:pointerDown'?: JSX.PointerEventListener<T>
-  onpointermove?: PointerEventHandler<T>
-  'on:pointerMove'?: JSX.PointerEventListener<T>
-  onpointerup?: PointerEventHandler<T>
-  'on:pointerUp'?: JSX.PointerEventListener<T>
-  onpointercancel?: PointerEventHandler<T>
-  'on:pointerCancel'?: JSX.PointerEventListener<T>
-  onpointerenter?: PointerEventHandler<T>
-  'on:pointerEnter'?: JSX.PointerEventListener<T>
-  onpointerleave?: PointerEventHandler<T>
-  'on:pointerLeave'?: JSX.PointerEventListener<T>
-  onpointerover?: PointerEventHandler<T>
-  'on:pointerOver'?: JSX.PointerEventListener<T>
-  onpointerout?: PointerEventHandler<T>
-  'on:pointerOut'?: JSX.PointerEventListener<T>
-  ongotpointercapture?: PointerEventHandler<T>
-  'on:gotPointerCapture'?: JSX.PointerEventListener<T>
-  onlostpointercapture?: PointerEventHandler<T>
-  'on:lostPointerCapture'?: JSX.PointerEventListener<T>
-  // UIEvent
-  onscroll?: UIEventHandler<T>
-  'on:scroll'?: JSX.UIEventListener<T>
-  onscrollend?: UIEventHandler<T>
-  'on:scrollEnd'?: JSX.UIEventListener<T>
-  // WheelEvent
-  onwheel?: WheelEventHandler<T>
-  'on:wheel'?: JSX.WheelEventListener<T>
-  // AnimationEvent
-  onanimationstart?: AnimationEventHandler<T>
-  'on:animationStart'?: JSX.AnimationEventListener<T>
-  onanimationend?: AnimationEventHandler<T>
-  'on:animationEnd'?: JSX.AnimationEventListener<T>
-  onanimationiteration?: AnimationEventHandler<T>
-  'on:animationIteration'?: JSX.AnimationEventListener<T>
-  onanimationcancel?: AnimationEventHandler<T>
-  'on:animationCancel'?: JSX.AnimationEventListener<T>
-  // TransitionEvent
-  ontransitionstart?: TransitionEventHandler<T>
-  'on:transitionStart'?: JSX.TransitionEventListener<T>
-  ontransitionend?: TransitionEventHandler<T>
-  'on:transitionEnd'?: JSX.TransitionEventListener<T>
-  ontransitionrun?: TransitionEventHandler<T>
-  'on:transitionRun'?: JSX.TransitionEventListener<T>
-  ontransitioncancel?: TransitionEventHandler<T>
-  'on:transitionCancel'?: JSX.TransitionEventListener<T>
-  // Fullscreen API
-  onfullscreenchange?: GenericEventHandler<T>
-  'on:fullscreenChange'?: JSX.EventListener<T>
-  onfullscreenerror?: GenericEventHandler<T>
-  'on:fullscreenError'?: JSX.EventListener<T>
-  // ToggleEvent
-  onbeforetoggle?: ToggleEventHandler<T>
-  'on:beforeToggle'?: JSX.ToggleEventListener<T>
-  ontoggle?: ToggleEventHandler<T>
-  'on:toggle'?: JSX.ToggleEventListener<T>
-  // ContentVisibilityAutoStateChangeEvent
-  oncontentvisibilityautostatechange?: GenericEventHandler<T>
-  'on:contentVisibilityAutoStateChange'?: JSX.EventListener<T>
-}
 
 export interface CSSProperties extends Properties<number | string> {
   cssText?: string | null
@@ -694,385 +473,6 @@ export interface AriaAttributes {
   | 'doc-toc'
 }
 
-export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
-  _?: typeof svgNs
-  xmlns?: typeof svgNs
-  href?: string
-  cx?: number | string
-  cy?: number | string
-  fx?: number | string
-  fy?: number | string
-  fr?: string
-  d?: string
-  /**
-   * The `accent-height` attribute defines the distance from the origin to the top of accent characters, measured by a distance within the font coordinate system
-   * @deprecated
-   */
-  'accent-height'?: number | `${number}`
-  accumulate?: 'none' | 'sum'
-  additive?: 'replace' | 'sum'
-  'alignment-baseline'?: Property.AlignmentBaseline
-  allowReorder?: 'no' | 'yes'
-  /** @deprecated */
-  alphabetic?: number | string
-  amplitude?: number | `${number}`
-  /** @deprecated */
-  'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
-  /**
-   * The `ascent` attribute defines the maximum unaccented height of the font within the font coordinate system
-   * @deprecated
-   */
-  ascent?: number | `${number}`
-  attributeName?: string
-  /** @deprecated */
-  attributeType?: 'CSS' | 'XML' | 'auto'
-  autoReverse?: number | string
-  azimuth?: number | `${number}`
-  baseFrequency?: number | string
-  'baseline-shift'?: Property.BaselineShift
-  baseProfile?: number | string
-  /** @deprecated */
-  bbox?: number | string
-  begin?: number | string
-  bias?: number | `${number}`
-  by?: number | string
-  calcMode?: 'discrete' | 'linear' | 'paced' | 'spline'
-  /** @deprecated */
-  'cap-height'?: number | string
-  /** @deprecated */
-  clip?: Property.Clip
-  'clip-path'?: Property.ClipPath
-  clipPathUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  'clip-rule'?: Property.ClipRule
-  'color-interpolation'?: Property.ColorInterpolation
-  'color-interpolation-filters'?: Property.ColorInterpolation
-  /** @deprecated */
-  'color-profile'?: Property.Color
-  /** @deprecated */
-  'color-rendering'?: Property.ColorRendering
-  /** @deprecated */
-  contentScriptType?: string
-  /** @deprecated */
-  contentStyleType?: string
-  cursor?: Property.Cursor
-  decelerate?: number | string
-  descent?: number | string
-  diffuseConstant?: number | `${number}`
-  direction?: Property.Direction
-  display?: Property.Display
-  divisor?: number | string
-  'dominant-baseline'?: Property.DominantBaseline
-  dur?: number | string
-  dx?: number | string
-  dy?: number | string
-  edgeMode?: 'duplicate' | 'wrap' | 'none'
-  elevation?: number | `${number}`
-  /** @deprecated */
-  'enable-background'?: number | string
-  end?: number | string
-  exponent?: number | `${number}`
-  externalResourcesRequired?: number | string
-  fill?: Property.Fill
-  'fill-opacity'?: Property.FillOpacity
-  'fill-rule'?: Property.FillRule
-  filter?: Property.Filter
-  /** @deprecated */
-  filterRes?: number | string
-  filterUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  'flood-color'?: Property.FloodColor
-  'flood-opacity'?: Property.FillOpacity
-  focusable?: 'true' | 'false' | 'auto'
-  focusHighlight?: 'auto' | 'none'
-  'font-family'?: Property.FontFamily
-  'font-size'?: Property.FontSize
-  'font-size-adjust'?: Property.FontSizeAdjust
-  'font-stretch'?: Property.FontStretch
-  'font-style'?: Property.FontStyle
-  'font-variant'?: Property.FontVariant
-  'font-weight'?: Property.FontWeight
-  /** @deprecated */
-  format?: string
-  from?: number | string
-  /** @deprecated */
-  g1?: number | string
-  /** @deprecated */
-  g2?: number | string
-  /** @deprecated */
-  'glyph-name'?: string
-  /** @deprecated */
-  'glyph-orientation-horizontal'?: string
-  /** @deprecated */
-  'glyph-orientation-vertical'?: Property.GlyphOrientationVertical
-  /** @deprecated */
-  glyphRef?: string
-  gradientTransform?: string
-  gradientUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  /** @deprecated */
-  hanging?: number | `${number}`
-  /** @deprecated */
-  'horiz-adv-x'?: number | `${number}`
-  /** @deprecated */
-  'horiz-origin-x'?: number | `${number}`
-  /** @deprecated */
-  'horiz-origin-y'?: number | `${number}`
-  /** @deprecated */
-  ideographic?: number | `${number}`
-  'image-rendering'?: Property.ImageRendering
-  in2?: string
-  in?: string
-  intercept?: number | `${number}`
-  k1?: number | `${number}`
-  k2?: number | `${number}`
-  k3?: number | `${number}`
-  k4?: number | `${number}`
-  /** @deprecated */
-  k?: number | `${number}`
-  kernelMatrix?: number | string
-  /** @deprecated */
-  kernelUnitLength?: number | string
-  /** @deprecated */
-  kerning?: number | string
-  keyPoints?: number | string
-  keySplines?: number | string
-  keyTimes?: number | string
-  lang?: string
-  lengthAdjust?: 'spacing' | 'spacingAndGlyphs'
-  'letter-spacing'?: Property.LetterSpacing
-  'lighting-color'?: Property.LightingColor
-  limitingConeAngle?: number | `${number}`
-  marker?: Property.Marker
-  'marker-start'?: Property.MarkerStart
-  'marker-end'?: Property.MarkerEnd
-  'marker-mid'?: Property.MarkerMid
-  markerHeight?: number | string
-  markerUnits?: 'userSpaceOnUse' | 'strokeWidth'
-  markerWidth?: number | string
-  local?: string
-  mask?: Property.Mask
-  maskContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  maskUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  /** @deprecated */
-  mathematical?: number | `${number}`
-  max?: string
-  min?: string
-  media?: string
-  method?: 'align' | 'stretch'
-  mode?: string
-  name?: string
-  numOctaves?: number | `${number}`
-  offset?: Property.Offset
-  opacity?: Property.Opacity
-  operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic' | 'erode' | 'dilate'
-  order?: Property.Order
-  orient?: 'auto' | 'auto-start-reverse' | number | (string & {})
-  /** @deprecated */
-  orientation?: 'h' | 'v'
-  origin?: 'default' | (string & {})
-  overflow?: Property.Overflow
-  'overline-position'?: number | `${number}`
-  'overline-thickness'?: number | `${number}`
-  'paint-order'?: Property.PaintOrder
-  /** @deprecated */
-  'panose-1'?: string
-  path?: string
-  pathLength?: number | `${number}`
-  patternContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  patternTransform?: string
-  patternUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  'pointer-events'?: Property.PointerEvents
-  points?: string
-  pointsAtX?: number | `${number}`
-  pointsAtY?: number | `${number}`
-  pointsAtZ?: number | `${number}`
-  preserveAlpha?: 'true' | 'false'
-  preserveAspectRatio?: string
-  primitiveUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-  r?: number | string
-  radius?: number | string
-  refX?: 'left' | 'center' | 'right' | number | (string & {})
-  refY?: 'top' | 'center' | 'bottom' | number | (string & {})
-  renderingIntent?: number | string
-  repeatCount?: 'indefinite' | number | `${number}`
-  repeatDur?: 'indefinite' | number | (string & {})
-  requiredExtensions?: number | string
-  /** @deprecated */
-  requiredFeatures?: string
-  restart?: 'always' | 'whenNotActive' | 'never'
-  result?: string
-  rotate?: number | `${number}` | 'auto' | 'auto-reverse'
-  rx?: 'auto' | number | (string & {})
-  ry?: 'auto' | number | (string & {})
-  scale?: number | `${number}`
-  seed?: number | `${number}`
-  'shape-rendering'?: Property.ShapeRendering
-  side?: 'left' | 'right'
-  /** @deprecated */
-  slope?: number | `${number}`
-  spacing?: 'auto' | 'exact'
-  specularConstant?: number | `${number}`
-  specularExponent?: number | `${number}`
-  speed?: number | string
-  spreadMethod?: 'pad' | 'reflect' | 'repeat'
-  startOffset?: number | string
-  stdDeviation?: number | string
-  /** @deprecated */
-  stemh?: number | `${number}`
-  /** @deprecated */
-  stemv?: number | `${number}`
-  stitchTiles?: 'noStitch' | 'stitch'
-  'stop-color'?: Property.StopColor
-  'stop-opacity'?: Property.StopOpacity
-  'strikethrough-position'?: number | `${number}`
-  'strikethrough-thickness'?: number | `${number}`
-  /** @deprecated */
-  string?: number | string
-  stroke?: Property.Stroke
-  'stroke-dasharray'?: Property.StrokeDasharray
-  'stroke-dashoffset'?: Property.StrokeDashoffset
-  'stroke-linecap'?: Property.StrokeLinecap
-  'stroke-linejoin'?: Property.StrokeLinejoin
-  'stroke-miterlimit'?: Property.StrokeMiterlimit
-  'stroke-opacity'?: Property.StrokeOpacity
-  'stroke-width'?: Property.StrokeWidth
-  surfaceScale?: number | `${number}`
-  systemLanguage?: string
-  tabindex?: number | `${number}`
-  tableValues?: number | string
-  target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
-  targetX?: number | string
-  targetY?: number | string
-  'text-anchor'?: Property.TextAnchor
-  'text-decoration'?: Property.TextDecoration
-  'text-rendering'?: Property.TextRendering
-  textLength?: number | string
-  to?: string
-  transform?: Property.Transform
-  'transform-origin'?: Property.TransformOrigin
-  type?: 'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY' | (string & {})
-  /** @deprecated */
-  u1?: string
-  /** @deprecated */
-  u2?: string
-  'underline-position'?: number | `${number}`
-  'underline-thickness'?: number | `${number}`
-  unicode?: string
-  'unicode-bidi'?: Property.UnicodeBidi
-  /** @deprecated */
-  'unicode-range'?: string
-  /** @deprecated */
-  'units-per-em'?: number | `${number}`
-  /** @deprecated */
-  'v-alphabetic'?: number | `${number}`
-  /** @deprecated */
-  'v-hanging'?: number | `${number}`
-  /** @deprecated */
-  'v-ideographic'?: number | `${number}`
-  /** @deprecated */
-  'v-mathematical'?: number | `${number}`
-  values?: string
-  'vector-effect'?: Property.VectorEffect
-  /** @deprecated */
-  version?: '1.0' | '1.1'
-  /** @deprecated */
-  'vert-adv-y'?: number | `${number}`
-  /** @deprecated */
-  'vert-origin-x'?: number | `${number}`
-  /** @deprecated */
-  'vert-origin-y'?: number | `${number}`
-  viewBox?: string
-  /** @deprecated */
-  viewTarget?: string
-  visibility?: Property.Visibility
-  /** @deprecated */
-  widths?: number | `${number}`
-  'word-spacing'?: Property.WordSpacing
-  'writing-mode'?: Property.WritingMode
-  x1?: number | string
-  x2?: number | string
-  x?: number | string
-  /** @deprecated */
-  'x-height'?: number | `${number}`
-  xChannelSelector?: 'R' | 'G' | 'B' | 'A'
-  yChannelSelector?: 'R' | 'G' | 'B' | 'A'
-  /** @deprecated */
-  'xmlns:xlink'?: 'http://www.w3.org/1999/xlink',
-  /** @deprecated */
-  'xlink:actuate'?: 'onLoad' | 'onRequest' | 'other' | 'none'
-  /** @deprecated */
-  'xlink:arcrole'?: string
-  /**
-   * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
-   * @deprecated
-   */
-  'xlink:href'?: string
-  /** @deprecated */
-  'xlink:show'?: 'new' | 'replace' | 'embed' | 'other' | 'none'
-  /**
-   * New content should use a `<title>` child element rather than a `xlink:title` attribute
-   * @deprecated
-   */
-  'xlink:title'?: string
-  /** @deprecated */
-  'xlink:type'?: 'simple' | 'extended' | 'locator' | 'arc' | 'resource' | 'title' | 'none'
-  /** @deprecated */
-  'xlink:role'?: string
-  /** @deprecated */
-  'xlink:label'?: string
-  /** @deprecated */
-  'xlink:from'?: string
-  /** @deprecated */
-  'xlink:to'?: string
-  /** @deprecated */
-  'xml:base'?: string
-  /**
-   * There is also a `lang` attribute (without namespace)
-   * @deprecated
-   */
-  'xml:lang'?: string
-  /**
-   * Instead of using the `xml:space` attribute, use the `white-space` CSS property
-   * @deprecated
-   */
-  'xml:space'?: 'default' | 'preserve'
-  y1?: number | string
-  y2?: number | string
-  y?: number | string
-  z?: number | `${number}`
-  /** @deprecated */
-  zoomAndPan?: 'disable' | 'magnify'
-  height?: number | string
-  width?: number | string
-}
-
-export interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
-  _?: typeof mathmlNs
-  xmlns?: typeof mathmlNs
-  dir?: 'ltr' | 'rtl'
-  displaystyle?: 'true' | 'false'
-  /**
-   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/href
-   * @deprecated This feature is non-standard
-   */
-  href?: string
-  /**
-   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathbackground
-   * @deprecated
-   */
-  mathbackground?: Property.BackgroundColor
-  /**
-   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathcolor
-   * @deprecated
-   */
-  mathcolor?: Property.Color
-  /**
-   * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathsize
-   * @deprecated
-   */
-  mathsize?: number | string
-  nonce?: string
-  scriptlevel?: number | string
-}
-
 declare global {
   namespace JSX {
     type Element = globalThis.Element | DocumentFragment
@@ -1197,6 +597,606 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/writingsuggestions
        */
       writingsuggestions?: boolean | '' | 'true' | 'false'
+    }
+
+    export interface HTMLAttributes<T> extends AriaAttributes, Attributes {
+      _?: string
+      $?: Record<string, EventListener<T>>
+      ref?: Ref<T>
+      children?: TChild | TChild[]
+      // ClipboardEvent
+      oncopy?: ClipboardEventHandler<T>
+      'on:copy'?: ClipboardEventListener<T>
+      oncut?: ClipboardEventHandler<T>
+      'on:cut'?: ClipboardEventListener<T>
+      onpaste?: ClipboardEventHandler<T>
+      'on:paste'?: ClipboardEventListener<T>
+      // CompositionEvent
+      oncompositionend?: CompositionEventHandler<T>
+      'on:compositionEnd'?: CompositionEventListener<T>
+      oncompositionstart?: CompositionEventHandler<T>
+      'on:compositionStart'?: CompositionEventListener<T>
+      oncompositionupdate?: CompositionEventHandler<T>
+      'on:compositionUpdate'?: CompositionEventListener<T>
+      // FocusEvent
+      onfocus?: FocusEventHandler<T>
+      'on:focus'?: FocusEventListener<T>
+      onblur?: FocusEventHandler<T>
+      'on:blur'?: FocusEventListener<T>
+      'on:focusIn'?: FocusEventListener<T>
+      'on:focusOut'?: FocusEventListener<T>
+      // InputEvent
+      onbeforeinput?: InputEventHandler<T>
+      'on:beforeInput'?: InputEventListener<T>
+      oninput?: InputEventHandler<T>
+      'on:input'?: InputEventListener<T>
+      // [Form] Event
+      onchange?: GenericEventHandler<T>
+      'on:change'?: EventListener<T>
+      onreset?: GenericEventHandler<T>
+      'on:reset'?: EventListener<T>
+      oninvalid?: GenericEventHandler<T>
+      'on:invalid'?: EventListener<T>
+      // Event
+      onload?: GenericEventHandler<T>
+      'on:load'?: EventListener<T>
+      onerror?: GenericEventHandler<T>
+      'on:error'?: EventListener<T>
+      onselect?: GenericEventHandler<T>
+      'on:select'?: EventListener<T>
+      // SubmitEvent
+      onsubmit?: SubmitEventHandler<T>
+      'on:submit'?: SubmitEventListener<T>
+      // KeyboardEvent
+      onkeydown?: KeyboardEventHandler<T>
+      'on:keyDown'?: KeyboardEventListener<T>
+      /**
+       * This feature is no longer recommended.
+       * Since event has been deprecated, you should use `onbeforeinput` or `onkeydown` instead
+       * @deprecated
+       */
+      onkeypress?: KeyboardEventHandler<T>
+      /**
+      * This feature is no longer recommended.
+      * Since event has been deprecated, you should use `on:beforeInput` or `on:keyDown` instead
+      * @deprecated
+      */
+      'on:keyPress'?: KeyboardEventListener<T>
+      onkeyup?: KeyboardEventHandler<T>
+      'on:keyUp'?: KeyboardEventListener<T>
+      // [Media] Event
+      onabort?: GenericEventHandler<T>
+      'on:abort'?: EventListener<T>
+      oncanplay?: GenericEventHandler<T>
+      'on:canPlay'?: EventListener<T>
+      oncanplaythrough?: GenericEventHandler<T>
+      'on:canPlayThrough'?: EventListener<T>
+      ondurationchange?: GenericEventHandler<T>
+      'on:durationChange'?: EventListener<T>
+      onemptied?: GenericEventHandler<T>
+      'on:emptied'?: EventListener<T>
+      onended?: GenericEventHandler<T>
+      'on:ended'?: EventListener<T>
+      onloadeddata?: GenericEventHandler<T>
+      'on:loadedData'?: EventListener<T>
+      onloadedmetadata?: GenericEventHandler<T>
+      'on:loadedMetadata'?: EventListener<T>
+      onloadstart?: GenericEventHandler<T>
+      'on:loadStart'?: EventListener<T>
+      onpause?: GenericEventHandler<T>
+      'on:pause'?: EventListener<T>
+      onplay?: GenericEventHandler<T>
+      'on:play'?: EventListener<T>
+      onplaying?: GenericEventHandler<T>
+      'on:playing'?: EventListener<T>
+      onprogress?: GenericEventHandler<T>
+      'on:progress'?: EventListener<T>
+      onratechange?: GenericEventHandler<T>
+      'on:rateChange'?: EventListener<T>
+      onseeked?: GenericEventHandler<T>
+      'on:seeked'?: EventListener<T>
+      onseeking?: GenericEventHandler<T>
+      'on:seeking'?: EventListener<T>
+      onstalled?: GenericEventHandler<T>
+      'on:stalled'?: EventListener<T>
+      onsuspend?: GenericEventHandler<T>
+      'on:suspend'?: EventListener<T>
+      ontimeupdate?: GenericEventHandler<T>
+      'on:timeUpdate'?: EventListener<T>
+      onvolumechange?: GenericEventHandler<T>
+      'on:volumeChange'?: EventListener<T>
+      onwaiting?: GenericEventHandler<T>
+      'on:waiting'?: EventListener<T>
+      // MouseEvent
+      onauxclick?: MouseEventHandler<T>
+      'on:auxclick'?: MouseEventHandler<T>
+      onclick?: MouseEventHandler<T>
+      'on:click'?: MouseEventListener<T>
+      oncontextmenu?: MouseEventHandler<T>
+      'on:contextMenu'?: MouseEventListener<T>
+      ondblclick?: MouseEventHandler<T>
+      'on:dblClick'?: MouseEventListener<T>
+      onmousedown?: MouseEventHandler<T>
+      'on:mouseDown'?: MouseEventListener<T>
+      onmouseenter?: MouseEventHandler<T>
+      'on:mouseEnter'?: MouseEventListener<T>
+      onmouseleave?: MouseEventHandler<T>
+      'on:mouseLeave'?: MouseEventListener<T>
+      onmousemove?: MouseEventHandler<T>
+      'on:mouseMove'?: MouseEventListener<T>
+      onmouseout?: MouseEventHandler<T>
+      'on:mouseOut'?: MouseEventListener<T>
+      onmouseover?: MouseEventHandler<T>
+      'on:mouseOver'?: MouseEventListener<T>
+      onmouseup?: MouseEventHandler<T>
+      'on:mouseUp'?: MouseEventListener<T>
+      // DragEvent
+      ondrag?: DragEventHandler<T>
+      'on:drag'?: DragEventListener<T>
+      ondragend?: DragEventHandler<T>
+      'on:dragEnd'?: DragEventListener<T>
+      ondragenter?: DragEventHandler<T>
+      'on:dragEnter'?: DragEventListener<T>
+      /** @deprecated */
+      ondragexit?: DragEventHandler<T>
+      /** @deprecated */
+      'on:dragExit'?: DragEventListener<T>
+      ondragleave?: DragEventHandler<T>
+      'on:dragLeave'?: DragEventListener<T>
+      ondragover?: DragEventHandler<T>
+      'on:dragOver'?: DragEventListener<T>
+      ondragstart?: DragEventHandler<T>
+      'on:dragStart'?: DragEventListener<T>
+      ondrop?: DragEventHandler<T>
+      'on:drop'?: DragEventListener<T>
+      // TouchEvent
+      ontouchcancel?: TouchEventHandler<T>
+      'on:touchCancel'?: TouchEventListener<T>
+      ontouchend?: TouchEventHandler<T>
+      'on:touchEnd'?: TouchEventListener<T>
+      ontouchmove?: TouchEventHandler<T>
+      'on:touchMove'?: TouchEventListener<T>
+      ontouchstart?: TouchEventHandler<T>
+      'on:touchStart'?: TouchEventListener<T>
+      // PointerEvent
+      onpointerdown?: PointerEventHandler<T>
+      'on:pointerDown'?: PointerEventListener<T>
+      onpointermove?: PointerEventHandler<T>
+      'on:pointerMove'?: PointerEventListener<T>
+      onpointerup?: PointerEventHandler<T>
+      'on:pointerUp'?: PointerEventListener<T>
+      onpointercancel?: PointerEventHandler<T>
+      'on:pointerCancel'?: PointerEventListener<T>
+      onpointerenter?: PointerEventHandler<T>
+      'on:pointerEnter'?: PointerEventListener<T>
+      onpointerleave?: PointerEventHandler<T>
+      'on:pointerLeave'?: PointerEventListener<T>
+      onpointerover?: PointerEventHandler<T>
+      'on:pointerOver'?: PointerEventListener<T>
+      onpointerout?: PointerEventHandler<T>
+      'on:pointerOut'?: PointerEventListener<T>
+      ongotpointercapture?: PointerEventHandler<T>
+      'on:gotPointerCapture'?: PointerEventListener<T>
+      onlostpointercapture?: PointerEventHandler<T>
+      'on:lostPointerCapture'?: PointerEventListener<T>
+      // UIEvent
+      onscroll?: UIEventHandler<T>
+      'on:scroll'?: UIEventListener<T>
+      onscrollend?: UIEventHandler<T>
+      'on:scrollEnd'?: UIEventListener<T>
+      // WheelEvent
+      onwheel?: WheelEventHandler<T>
+      'on:wheel'?: WheelEventListener<T>
+      // AnimationEvent
+      onanimationstart?: AnimationEventHandler<T>
+      'on:animationStart'?: AnimationEventListener<T>
+      onanimationend?: AnimationEventHandler<T>
+      'on:animationEnd'?: AnimationEventListener<T>
+      onanimationiteration?: AnimationEventHandler<T>
+      'on:animationIteration'?: AnimationEventListener<T>
+      onanimationcancel?: AnimationEventHandler<T>
+      'on:animationCancel'?: AnimationEventListener<T>
+      // TransitionEvent
+      ontransitionstart?: TransitionEventHandler<T>
+      'on:transitionStart'?: TransitionEventListener<T>
+      ontransitionend?: TransitionEventHandler<T>
+      'on:transitionEnd'?: TransitionEventListener<T>
+      ontransitionrun?: TransitionEventHandler<T>
+      'on:transitionRun'?: TransitionEventListener<T>
+      ontransitioncancel?: TransitionEventHandler<T>
+      'on:transitionCancel'?: TransitionEventListener<T>
+      // Fullscreen API
+      onfullscreenchange?: GenericEventHandler<T>
+      'on:fullscreenChange'?: EventListener<T>
+      onfullscreenerror?: GenericEventHandler<T>
+      'on:fullscreenError'?: EventListener<T>
+      // ToggleEvent
+      onbeforetoggle?: ToggleEventHandler<T>
+      'on:beforeToggle'?: ToggleEventListener<T>
+      ontoggle?: ToggleEventHandler<T>
+      'on:toggle'?: ToggleEventListener<T>
+      // ContentVisibilityAutoStateChangeEvent
+      oncontentvisibilityautostatechange?: GenericEventHandler<T>
+      'on:contentVisibilityAutoStateChange'?: EventListener<T>
+    }
+
+    export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
+      _?: typeof svgNs
+      xmlns?: typeof svgNs
+      href?: string
+      cx?: number | string
+      cy?: number | string
+      fx?: number | string
+      fy?: number | string
+      fr?: string
+      d?: string
+      /**
+       * The `accent-height` attribute defines the distance from the origin to the top of accent characters, measured by a distance within the font coordinate system
+       * @deprecated
+       */
+      'accent-height'?: number | `${number}`
+      accumulate?: 'none' | 'sum'
+      additive?: 'replace' | 'sum'
+      'alignment-baseline'?: Property.AlignmentBaseline
+      allowReorder?: 'no' | 'yes'
+      /** @deprecated */
+      alphabetic?: number | string
+      amplitude?: number | `${number}`
+      /** @deprecated */
+      'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
+      /**
+       * The `ascent` attribute defines the maximum unaccented height of the font within the font coordinate system
+       * @deprecated
+       */
+      ascent?: number | `${number}`
+      attributeName?: string
+      /** @deprecated */
+      attributeType?: 'CSS' | 'XML' | 'auto'
+      autoReverse?: number | string
+      azimuth?: number | `${number}`
+      baseFrequency?: number | string
+      'baseline-shift'?: Property.BaselineShift
+      baseProfile?: number | string
+      /** @deprecated */
+      bbox?: number | string
+      begin?: number | string
+      bias?: number | `${number}`
+      by?: number | string
+      calcMode?: 'discrete' | 'linear' | 'paced' | 'spline'
+      /** @deprecated */
+      'cap-height'?: number | string
+      /** @deprecated */
+      clip?: Property.Clip
+      'clip-path'?: Property.ClipPath
+      clipPathUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+      'clip-rule'?: Property.ClipRule
+      'color-interpolation'?: Property.ColorInterpolation
+      'color-interpolation-filters'?: Property.ColorInterpolation
+      /** @deprecated */
+      'color-profile'?: Property.Color
+      /** @deprecated */
+      'color-rendering'?: Property.ColorRendering
+      /** @deprecated */
+      contentScriptType?: string
+      /** @deprecated */
+      contentStyleType?: string
+      cursor?: Property.Cursor
+      decelerate?: number | string
+      descent?: number | string
+      diffuseConstant?: number | `${number}`
+      direction?: Property.Direction
+      display?: Property.Display
+      divisor?: number | string
+      'dominant-baseline'?: Property.DominantBaseline
+      dur?: number | string
+      dx?: number | string
+      dy?: number | string
+      edgeMode?: 'duplicate' | 'wrap' | 'none'
+      elevation?: number | `${number}`
+      /** @deprecated */
+      'enable-background'?: number | string
+      end?: number | string
+      exponent?: number | `${number}`
+      externalResourcesRequired?: number | string
+      fill?: Property.Fill
+      'fill-opacity'?: Property.FillOpacity
+      'fill-rule'?: Property.FillRule
+      filter?: Property.Filter
+      /** @deprecated */
+      filterRes?: number | string
+      filterUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+      'flood-color'?: Property.FloodColor
+      'flood-opacity'?: Property.FillOpacity
+      focusable?: 'true' | 'false' | 'auto'
+      focusHighlight?: 'auto' | 'none'
+      'font-family'?: Property.FontFamily
+      'font-size'?: Property.FontSize
+      'font-size-adjust'?: Property.FontSizeAdjust
+      'font-stretch'?: Property.FontStretch
+      'font-style'?: Property.FontStyle
+      'font-variant'?: Property.FontVariant
+      'font-weight'?: Property.FontWeight
+      /** @deprecated */
+      format?: string
+      from?: number | string
+      /** @deprecated */
+      g1?: number | string
+      /** @deprecated */
+      g2?: number | string
+      /** @deprecated */
+      'glyph-name'?: string
+      /** @deprecated */
+      'glyph-orientation-horizontal'?: string
+      /** @deprecated */
+      'glyph-orientation-vertical'?: Property.GlyphOrientationVertical
+      /** @deprecated */
+      glyphRef?: string
+      gradientTransform?: string
+      gradientUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+      /** @deprecated */
+      hanging?: number | `${number}`
+      /** @deprecated */
+      'horiz-adv-x'?: number | `${number}`
+      /** @deprecated */
+      'horiz-origin-x'?: number | `${number}`
+      /** @deprecated */
+      'horiz-origin-y'?: number | `${number}`
+      /** @deprecated */
+      ideographic?: number | `${number}`
+      'image-rendering'?: Property.ImageRendering
+      in2?: string
+      in?: string
+      intercept?: number | `${number}`
+      k1?: number | `${number}`
+      k2?: number | `${number}`
+      k3?: number | `${number}`
+      k4?: number | `${number}`
+      /** @deprecated */
+      k?: number | `${number}`
+      kernelMatrix?: number | string
+      /** @deprecated */
+      kernelUnitLength?: number | string
+      /** @deprecated */
+      kerning?: number | string
+      keyPoints?: number | string
+      keySplines?: number | string
+      keyTimes?: number | string
+      lang?: string
+      lengthAdjust?: 'spacing' | 'spacingAndGlyphs'
+      'letter-spacing'?: Property.LetterSpacing
+      'lighting-color'?: Property.LightingColor
+      limitingConeAngle?: number | `${number}`
+      marker?: Property.Marker
+      'marker-start'?: Property.MarkerStart
+      'marker-end'?: Property.MarkerEnd
+      'marker-mid'?: Property.MarkerMid
+      markerHeight?: number | string
+      markerUnits?: 'userSpaceOnUse' | 'strokeWidth'
+      markerWidth?: number | string
+      local?: string
+      mask?: Property.Mask
+      maskContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+      maskUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+      /** @deprecated */
+      mathematical?: number | `${number}`
+      max?: string
+      min?: string
+      media?: string
+      method?: 'align' | 'stretch'
+      mode?: string
+      name?: string
+      numOctaves?: number | `${number}`
+      offset?: Property.Offset
+      opacity?: Property.Opacity
+      operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic' | 'erode' | 'dilate'
+      order?: Property.Order
+      orient?: 'auto' | 'auto-start-reverse' | number | (string & {})
+      /** @deprecated */
+      orientation?: 'h' | 'v'
+      origin?: 'default' | (string & {})
+      overflow?: Property.Overflow
+      'overline-position'?: number | `${number}`
+      'overline-thickness'?: number | `${number}`
+      'paint-order'?: Property.PaintOrder
+      /** @deprecated */
+      'panose-1'?: string
+      path?: string
+      pathLength?: number | `${number}`
+      patternContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+      patternTransform?: string
+      patternUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+      'pointer-events'?: Property.PointerEvents
+      points?: string
+      pointsAtX?: number | `${number}`
+      pointsAtY?: number | `${number}`
+      pointsAtZ?: number | `${number}`
+      preserveAlpha?: 'true' | 'false'
+      preserveAspectRatio?: string
+      primitiveUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+      r?: number | string
+      radius?: number | string
+      refX?: 'left' | 'center' | 'right' | number | (string & {})
+      refY?: 'top' | 'center' | 'bottom' | number | (string & {})
+      renderingIntent?: number | string
+      repeatCount?: 'indefinite' | number | `${number}`
+      repeatDur?: 'indefinite' | number | (string & {})
+      requiredExtensions?: number | string
+      /** @deprecated */
+      requiredFeatures?: string
+      restart?: 'always' | 'whenNotActive' | 'never'
+      result?: string
+      rotate?: number | `${number}` | 'auto' | 'auto-reverse'
+      rx?: 'auto' | number | (string & {})
+      ry?: 'auto' | number | (string & {})
+      scale?: number | `${number}`
+      seed?: number | `${number}`
+      'shape-rendering'?: Property.ShapeRendering
+      side?: 'left' | 'right'
+      /** @deprecated */
+      slope?: number | `${number}`
+      spacing?: 'auto' | 'exact'
+      specularConstant?: number | `${number}`
+      specularExponent?: number | `${number}`
+      speed?: number | string
+      spreadMethod?: 'pad' | 'reflect' | 'repeat'
+      startOffset?: number | string
+      stdDeviation?: number | string
+      /** @deprecated */
+      stemh?: number | `${number}`
+      /** @deprecated */
+      stemv?: number | `${number}`
+      stitchTiles?: 'noStitch' | 'stitch'
+      'stop-color'?: Property.StopColor
+      'stop-opacity'?: Property.StopOpacity
+      'strikethrough-position'?: number | `${number}`
+      'strikethrough-thickness'?: number | `${number}`
+      /** @deprecated */
+      string?: number | string
+      stroke?: Property.Stroke
+      'stroke-dasharray'?: Property.StrokeDasharray
+      'stroke-dashoffset'?: Property.StrokeDashoffset
+      'stroke-linecap'?: Property.StrokeLinecap
+      'stroke-linejoin'?: Property.StrokeLinejoin
+      'stroke-miterlimit'?: Property.StrokeMiterlimit
+      'stroke-opacity'?: Property.StrokeOpacity
+      'stroke-width'?: Property.StrokeWidth
+      surfaceScale?: number | `${number}`
+      systemLanguage?: string
+      tabindex?: number | `${number}`
+      tableValues?: number | string
+      target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
+      targetX?: number | string
+      targetY?: number | string
+      'text-anchor'?: Property.TextAnchor
+      'text-decoration'?: Property.TextDecoration
+      'text-rendering'?: Property.TextRendering
+      textLength?: number | string
+      to?: string
+      transform?: Property.Transform
+      'transform-origin'?: Property.TransformOrigin
+      type?: 'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY' | (string & {})
+      /** @deprecated */
+      u1?: string
+      /** @deprecated */
+      u2?: string
+      'underline-position'?: number | `${number}`
+      'underline-thickness'?: number | `${number}`
+      unicode?: string
+      'unicode-bidi'?: Property.UnicodeBidi
+      /** @deprecated */
+      'unicode-range'?: string
+      /** @deprecated */
+      'units-per-em'?: number | `${number}`
+      /** @deprecated */
+      'v-alphabetic'?: number | `${number}`
+      /** @deprecated */
+      'v-hanging'?: number | `${number}`
+      /** @deprecated */
+      'v-ideographic'?: number | `${number}`
+      /** @deprecated */
+      'v-mathematical'?: number | `${number}`
+      values?: string
+      'vector-effect'?: Property.VectorEffect
+      /** @deprecated */
+      version?: '1.0' | '1.1'
+      /** @deprecated */
+      'vert-adv-y'?: number | `${number}`
+      /** @deprecated */
+      'vert-origin-x'?: number | `${number}`
+      /** @deprecated */
+      'vert-origin-y'?: number | `${number}`
+      viewBox?: string
+      /** @deprecated */
+      viewTarget?: string
+      visibility?: Property.Visibility
+      /** @deprecated */
+      widths?: number | `${number}`
+      'word-spacing'?: Property.WordSpacing
+      'writing-mode'?: Property.WritingMode
+      x1?: number | string
+      x2?: number | string
+      x?: number | string
+      /** @deprecated */
+      'x-height'?: number | `${number}`
+      xChannelSelector?: 'R' | 'G' | 'B' | 'A'
+      yChannelSelector?: 'R' | 'G' | 'B' | 'A'
+      /** @deprecated */
+      'xmlns:xlink'?: 'http://www.w3.org/1999/xlink',
+      /** @deprecated */
+      'xlink:actuate'?: 'onLoad' | 'onRequest' | 'other' | 'none'
+      /** @deprecated */
+      'xlink:arcrole'?: string
+      /**
+       * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
+       * @deprecated
+       */
+      'xlink:href'?: string
+      /** @deprecated */
+      'xlink:show'?: 'new' | 'replace' | 'embed' | 'other' | 'none'
+      /**
+       * New content should use a `<title>` child element rather than a `xlink:title` attribute
+       * @deprecated
+       */
+      'xlink:title'?: string
+      /** @deprecated */
+      'xlink:type'?: 'simple' | 'extended' | 'locator' | 'arc' | 'resource' | 'title' | 'none'
+      /** @deprecated */
+      'xlink:role'?: string
+      /** @deprecated */
+      'xlink:label'?: string
+      /** @deprecated */
+      'xlink:from'?: string
+      /** @deprecated */
+      'xlink:to'?: string
+      /** @deprecated */
+      'xml:base'?: string
+      /**
+       * There is also a `lang` attribute (without namespace)
+       * @deprecated
+       */
+      'xml:lang'?: string
+      /**
+       * Instead of using the `xml:space` attribute, use the `white-space` CSS property
+       * @deprecated
+       */
+      'xml:space'?: 'default' | 'preserve'
+      y1?: number | string
+      y2?: number | string
+      y?: number | string
+      z?: number | `${number}`
+      /** @deprecated */
+      zoomAndPan?: 'disable' | 'magnify'
+      height?: number | string
+      width?: number | string
+    }
+
+    export interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
+      _?: typeof mathmlNs
+      xmlns?: typeof mathmlNs
+      dir?: 'ltr' | 'rtl'
+      displaystyle?: 'true' | 'false'
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/href
+       * @deprecated This feature is non-standard
+       */
+      href?: string
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathbackground
+       * @deprecated
+       */
+      mathbackground?: Property.BackgroundColor
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathcolor
+       * @deprecated
+       */
+      mathcolor?: Property.Color
+      /**
+       * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathsize
+       * @deprecated
+       */
+      mathsize?: number | string
+      nonce?: string
+      scriptlevel?: number | string
     }
 
     interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
