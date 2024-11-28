@@ -1,11 +1,12 @@
 import { extensions } from '../../jsx-runtime';
 
-export const initataset = () => /*#__PURE__*/
+export const initDataset = () => /*#__PURE__*/
   extensions.set('dataset', (
-    node: HTMLElement | SVGAElement,
-    value: Record<string, string | null | undefined>
+    node: HTMLElement | SVGAElement | MathMLElement,
+    value: DOMStringMap,
+    key: string,
   ) => {
-    for (const key in value) {
+    for (key in value) {
       if (value[key] != null) {
         node.dataset[key] = value[key];
       }
