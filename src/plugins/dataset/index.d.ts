@@ -2,7 +2,7 @@ export declare function initDataset(): void
 
 declare global {
   namespace JSX {
-    interface Attributes {
+    interface OverrideAttributes {
       dataset?: DOMStringMap
     }
   }

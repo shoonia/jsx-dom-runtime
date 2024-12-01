@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2023" />
-import type { Properties, Property } from 'csstype';
+import type { Property } from 'csstype';
 
 export interface RefObject<T> {
   readonly current: T
@@ -98,11 +98,6 @@ export type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, 
 export type UIEventHandler<T = Element> = EventHandler<UIEvent, T>
 export type WebGLContextEventHandler<T = Element> = EventHandler<WebGLContextEvent, T>
 export type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
-
-export interface CSSProperties extends Properties<number | string> {
-  cssText?: string | null
-  [key: `--${string}`]: number | string
-}
 
 export type ControlsList = 'nodownload' | 'nofullscreen' | 'noremoteplayback'
 
@@ -531,7 +526,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
        */
       spellcheck?: 'true' | 'false'
-      style?: string | CSSProperties
+      style?: string | {}
       tabIndex?: number | `${number}`
       title?: string
       translate?: 'yes' | 'no'
@@ -599,7 +594,9 @@ declare global {
       writingsuggestions?: boolean | '' | 'true' | 'false'
     }
 
-    export interface HTMLAttributes<T> extends AriaAttributes, Attributes {
+    export interface OverrideAttributes extends AriaAttributes, Attributes { }
+
+    export interface HTMLAttributes<T> extends OverrideAttributes {
       _?: string
       $?: Record<string, EventListener<T>>
       ref?: Ref<T>

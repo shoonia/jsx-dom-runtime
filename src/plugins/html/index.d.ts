@@ -2,7 +2,7 @@ export declare function initHtml(): void
 
 declare global {
   namespace JSX {
-    interface Attributes {
+    interface OverrideAttributes {
       innerHTML?: string
       textContent?: string
     }
