@@ -1,4 +1,4 @@
-import { properties } from '../../jsx-runtime';
+import { properties } from 'jsx-dom-runtime';
 
 export const initHtml = () => /*#__PURE__*/
   properties

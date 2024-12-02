@@ -30,7 +30,7 @@ export const buildPlugins = async (plugins) => {
             esModule: false,
           },
         ],
-        external: ['../../jsx-runtime'],
+        external: ['jsx-dom-runtime'],
         plugins,
       };
     }),
