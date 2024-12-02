@@ -11,6 +11,7 @@ beforeEach(() => {
 });
 
 jest.unstable_mockModule('jsx-dom-runtime', () => jsxRuntime);
+jest.unstable_mockModule('jsx-dom-runtime/jsx-runtime', () => jsxRuntime);
 
 expect.extend({
   toHaveOuterHTML(node: HTMLElement, html: string) {

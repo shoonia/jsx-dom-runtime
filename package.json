@@ -27,7 +27,7 @@
     "test": "node --experimental-vm-modules node_modules/.bin/jest",
     "build": "NODE_NO_WARNINGS=1 rollup -c",
     "size": "size-limit",
-    "types": "tsc --project tests/tsconfig.json"
+    "types": "tsc --project ./tests/tsconfig.json"
   },
   "dependencies": {
     "csstype": "^3.1.3"
