@@ -1,12 +1,17 @@
 import '@testing-library/jest-dom';
 import { diffStringsUnified } from 'jest-diff';
+import { jest } from '@jest/globals';
 
 import { t } from './t';
+import * as jsxRuntime from '../../jsx-runtime';
 
 beforeEach(() => {
   document.head.innerHTML = '';
   document.body.innerHTML = '';
 });
+
+jest.unstable_mockModule('jsx-dom-runtime', () => jsxRuntime);
+jest.unstable_mockModule('jsx-dom-runtime/jsx-runtime', () => jsxRuntime);
 
 expect.extend({
   toHaveOuterHTML(node: HTMLElement, html: string) {

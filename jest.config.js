@@ -1,12 +1,15 @@
 /** @type {import('jest').Config} */
 const config = {
   cache: false,
-  rootDir: 'tests',
+  rootDir: '.',
   transform: {
     '\\.tsx?$': 'babel-jest',
   },
   setupFilesAfterEnv: [
-    '<rootDir>/utils/jest-setup.ts'
+    '<rootDir>/tests/utils/jest-setup.ts'
+  ],
+  modulePathIgnorePatterns: [
+    '<rootDir>/src/',
   ],
   testEnvironment: 'jest-environment-jsdom',
   extensionsToTreatAsEsm: ['.tsx', '.ts'],

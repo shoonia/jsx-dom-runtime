@@ -1,4 +1,4 @@
-import { jsx } from '../jsxRuntime';
+import { jsx } from '../jsx-runtime';
 
 export const parseFromString = (html: string) =>
   /*#__PURE__*/ jsx('template', {

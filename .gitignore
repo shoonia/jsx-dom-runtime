@@ -1,8 +1,14 @@
 node_modules/
 babel-preset/
-jsx-runtime/
 dist/
 __test/
+
+jsx-runtime/
+!src/jsx-runtime/
+
+plugins/
+!src/plugins/
+!tests/plugins/
 
 .DS_Store
 *.tgz

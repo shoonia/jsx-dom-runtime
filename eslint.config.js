@@ -6,6 +6,7 @@ export default ts.config(
     ignores: [
       'babel-preset/',
       'jsx-runtime/',
+      'plugins/'
     ],
   },
   js.configs.recommended,

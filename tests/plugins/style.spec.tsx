@@ -1,4 +1,8 @@
-describe('Style attribute', () => {
+import { initStyle } from 'jsx-dom-runtime/plugins/style';
+
+initStyle();
+
+describe('plugins/style', () => {
   it('should add style as a string', () => {
     expect(<div style="color: red; padding: 10px;" />).toHaveCssText(
       'color: red; padding: 10px;',
