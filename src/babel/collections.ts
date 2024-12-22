@@ -1,3 +1,5 @@
+import type { Node } from '@babel/types';
+
 export const svgTags = new Set([
   /* 'a', */ 'altGlyph', 'altGlyphDef', 'altGlyphItem', 'animate', 'animateColor',
   'animateMotion', 'animateTransform',
@@ -260,3 +262,12 @@ export const htmlDOMAttributes = new Map(
     xlinkHref: 'href',
   }),
 );
+
+export const jsxNode = new Set<Node['type']>(['JSXElement', 'JSXFragment']);
+
+// [A-Z], [$] or [_]
+export const charCode = new Set([36, 95]);
+
+for (let i = 65; i <= 90; i++) {
+  charCode.add(i);
+}

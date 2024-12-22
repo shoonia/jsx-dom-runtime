@@ -21,20 +21,14 @@ import {
   htmlDOMAttributes,
   svgDOMAttributes,
   svgTags,
+  charCode,
+  jsxNode,
 } from './collections';
 
 const opts = { name: '_' } as const;
 
-const jsxNode = new Set<t.Node['type']>(['JSXElement', 'JSXFragment']);
-
-const isFunctionComponent = (name: t.JSXIdentifier): boolean => {
-  const charCode = name.name.charCodeAt(0);
-
-  // [A-Z], [$] or [_]
-  return (charCode >= 65 && charCode <= 90) ||
-    charCode === 36 ||
-    charCode === 95;
-};
+const isFunctionComponent = (name: t.JSXIdentifier): boolean =>
+  charCode.has(name.name.charCodeAt(0));
 
 let nsMap: WeakMap<NodePath, TImportName>;
 let importSpec: ImportSpec;
