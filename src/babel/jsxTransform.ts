@@ -121,24 +121,25 @@ export const jsxTransform: PluginObj = {
     },
 
     JSXAttribute(path) {
-      const node = path.node;
-      const parent = path.parent;
+      const attribute = path.node;
+      const openingElement = path.parent;
+      const attrValue = attribute.value;
 
-      if (jsxNode.has(node.value?.type)) {
-        node.value = {
+      if (jsxNode.has(attrValue?.type)) {
+        attribute.value = {
           type: 'JSXExpressionContainer',
-          expression: node.value as t.JSXElement,
+          expression: attrValue as t.JSXElement,
         };
       }
 
       if (
-        parent.type !== 'JSXOpeningElement' ||
-        parent.name.type !== 'JSXIdentifier'
+        openingElement.type !== 'JSXOpeningElement' ||
+        openingElement.name.type !== 'JSXIdentifier'
       ) {
         return;
       }
 
-      const tag = parent.name.name;
+      const tag = openingElement.name.name;
 
       const isHTMLElement = htmlTags.has(tag);
       const isSVGElement = svgTags.has(tag);
@@ -149,14 +150,14 @@ export const jsxTransform: PluginObj = {
         return;
       }
 
-      const attr = node.name;
+      const attrName = attribute.name;
 
-      if (attr.type === 'JSXNamespacedName') {
+      if (attrName.type === 'JSXNamespacedName') {
         if (
-          attr.namespace.name === 'on' &&
-          node.value.type === 'JSXExpressionContainer'
+          attrName.namespace.name === 'on' &&
+          attrValue.type === 'JSXExpressionContainer'
         ) {
-          eventListener(parent, attr.name, node.value);
+          eventListener(openingElement, attrName.name, attrValue);
           path.remove();
         }
 
@@ -165,10 +166,10 @@ export const jsxTransform: PluginObj = {
         }
 
         else if (
-          attr.name.name === 'href' &&
-          attr.namespace.name === 'xlink'
+          attrName.name.name === 'href' &&
+          attrName.namespace.name === 'xlink'
         ) {
-          node.name = attr.name;
+          attribute.name = attrName.name;
         }
 
         return;
@@ -178,41 +179,39 @@ export const jsxTransform: PluginObj = {
         return;
       }
 
-      if (htmlDOMAttributes.has(attr.name)) {
-        attr.name = htmlDOMAttributes.get(attr.name);
+      if (htmlDOMAttributes.has(attrName.name)) {
+        attrName.name = htmlDOMAttributes.get(attrName.name);
         return;
       }
 
-      const attrName = attr.name.toLowerCase();
+      const aName = attrName.name.toLowerCase();
 
-      if (booleanAttributes.has(attrName)) {
-        attr.name = attrName;
-        node.value ??= $stringLiteral('');
+      if (booleanAttributes.has(aName)) {
+        attrName.name = aName;
+        attribute.value ??= $stringLiteral('');
       }
 
-      else if (enumerated.has(attrName) || attrName.startsWith('data-')) {
-        const val = node.value;
+      else if (enumerated.has(aName) || aName.startsWith('data-')) {
+        attrName.name = aName;
 
-        attr.name = attrName;
-
-        if (val === null) {
-          node.value = $stringLiteral('true');
+        if (attrValue === null) {
+          attribute.value = $stringLiteral('true');
         }
 
         else if (
-          val.type === 'JSXExpressionContainer' &&
-          val.expression.type === 'BooleanLiteral'
+          attrValue.type === 'JSXExpressionContainer' &&
+          attrValue.expression.type === 'BooleanLiteral'
         ) {
-          node.value = $stringLiteral(val.expression.value ? 'true' : 'false');
+          attribute.value = $stringLiteral(attrValue.expression.value ? 'true' : 'false');
         }
       }
 
-      else if (isHTMLElement && attributes.has(attrName) || DOMEvents.has(attrName)) {
-        attr.name = attrName;
+      else if (isHTMLElement && attributes.has(aName) || DOMEvents.has(aName)) {
+        attrName.name = aName;
       }
 
-      else if (isSVGElement && svgDOMAttributes.has(attr.name)) {
-        attr.name = svgDOMAttributes.get(attr.name);
+      else if (isSVGElement && svgDOMAttributes.has(attrName.name)) {
+        attrName.name = svgDOMAttributes.get(attrName.name);
       }
     },
   },
