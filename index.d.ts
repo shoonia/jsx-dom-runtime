@@ -479,7 +479,7 @@ declare global {
     interface ElementChildrenAttribute { children: {} }
 
     type FC<P = {}> = (props: PropsWithChildren<P>) => Element | null
-    type Ref<T> = RefCallback<T> | RefObject<T>
+    type Ref<T = unknown> = RefCallback<T> | RefObject<T>
 
     type AnimationEventListener<T = globalThis.Element> = EvHandler<AnimationEvent, T>
     type ClipboardEventListener<T = globalThis.Element> = EvHandler<ClipboardEvent, T>
