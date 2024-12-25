@@ -9,21 +9,14 @@ export interface RefObject<T> {
 export type RefCallback<T> = (instance: T) => void
 
 type TChild =
-  | Node
-  | Element
-  | HTMLElement
-  | SVGElement
-  | DocumentFragment
-  | Text
-  | Comment
-  | MathMLElement
-  | TChild[]
   | string
   | number
   | bigint
   | false
   | null
   | undefined
+  | Node
+  | TChild[]
 
 export type PropsWithChildren<P> = P & { children?: TChild | TChild[] }
 
@@ -560,7 +553,6 @@ declare global {
       results?: number | `${number}`
       security?: string
       unselectable?: 'on' | 'off'
-      // Living Standard
       /**
        * Hints at the type of data that might be entered by the user while editing the element or its contents
        * @see https://html.spec.whatwg.org/multipage/interaction.html#input-modalities:-the-inputmode-attribute
