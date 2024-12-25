@@ -1214,7 +1214,26 @@ declare global {
       /**
        * The relationship of the linked URL as space-separated link types
        */
-      rel?: string
+      rel?:
+      | 'alternate'
+      | 'author'
+      | 'bookmark'
+      | 'external'
+      | 'help'
+      | 'license'
+      | 'next'
+      | 'nofollow'
+      | 'noopener'
+      | 'noreferrer'
+      | 'noreferrer noopener'
+      | 'noopener noreferrer'
+      | 'prev'
+      | 'privacy-policy'
+      | 'search'
+      | 'tag'
+      | 'terms-of-service'
+      | 'me'
+      | AnyString
       /**
        * Where to display the linked URL. _Default value: `_self`; Animatable: yes_
        */
@@ -1257,7 +1276,25 @@ declare global {
        * A string indicating which referrer to use when fetching the resource
        */
       referrerPolicy?: ReferrerPolicy
-      rel?: string
+      rel?:
+      | 'alternate'
+      | 'author'
+      | 'bookmark'
+      | 'external'
+      | 'help'
+      | 'license'
+      | 'next'
+      | 'nofollow'
+      | 'noopener'
+      | 'noreferrer'
+      | 'noreferrer noopener'
+      | 'noopener noreferrer'
+      | 'prev'
+      | 'privacy-policy'
+      | 'search'
+      | 'tag'
+      | 'terms-of-service'
+      | AnyString
       shape?: 'rect' | 'circle' | 'poly' | 'default' | AnyString
       /**
        * A keyword or author-defined name of the browsing context to display the linked resource
@@ -1694,15 +1731,20 @@ declare global {
       | 'alternate'
       | 'author'
       | 'apple-touch-icon' // Non-standard values
+      | 'apple-touch-startup-image' // Non-standard values
       | 'canonical'
       | 'dns-prefetch'
+      | 'expect'
       | 'help'
       | 'icon'
+      | 'shortcut'
+      | 'shortcut icon'
       | 'license'
       | 'manifest'
       | 'me'
       | 'modulepreload'
       | 'next'
+      | 'opener'
       | 'pingback'
       | 'preconnect'
       | 'prefetch'
