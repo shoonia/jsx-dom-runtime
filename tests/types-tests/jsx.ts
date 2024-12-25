@@ -1,4 +1,4 @@
-import { jsx } from '../..';
+import { jsx } from 'jsx-dom-runtime';
 
 // HTML
 

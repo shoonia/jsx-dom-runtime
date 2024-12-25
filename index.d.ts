@@ -2,6 +2,10 @@
 /// <reference lib="es2023" />
 import type { Properties, Property } from 'csstype';
 
+type AnyString = string & {}
+type Booleanish = boolean | 'true' | 'false'
+type Numeric = number | `${number}`
+
 export interface RefObject<T> {
   readonly current: T
 }
@@ -21,7 +25,7 @@ type TChild =
 export type PropsWithChildren<P> = P & { children?: TChild | TChild[] }
 
 export declare function jsx<
-  K extends keyof JSX.IntrinsicElements | (string & {}),
+  K extends keyof JSX.IntrinsicElements | AnyString,
   R = K extends keyof HTMLElementTagNameMap
   ? HTMLElementTagNameMap[K]
   : K extends keyof HTMLElementDeprecatedTagNameMap
@@ -103,7 +107,7 @@ export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
   'aria-activedescendant'?: string
   /** Indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the aria-relevant attribute. */
-  'aria-atomic'?: boolean | 'true' | 'false'
+  'aria-atomic'?: Booleanish
   /**
    * Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be
    * presented if they are made.
@@ -120,22 +124,22 @@ export interface AriaAttributes {
    */
   'aria-brailleroledescription'?: string
   /** Indicates an element is being modified and that assistive technologies MAY want to wait until the modifications are complete before exposing them to the user. */
-  'aria-busy'?: boolean | 'true' | 'false'
+  'aria-busy'?: Booleanish
   /**
    * Indicates the current "checked" state of checkboxes, radio buttons, and other widgets.
    * @see aria-pressed @see aria-selected.
    */
-  'aria-checked'?: boolean | 'true' | 'false' | 'mixed'
+  'aria-checked'?: Booleanish | 'mixed'
   /**
    * Defines the total number of columns in a table, grid, or treegrid.
    * @see aria-colindex.
    */
-  'aria-colcount'?: number | `${number}`
+  'aria-colcount'?: Numeric
   /**
    * Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid.
    * @see aria-colcount @see aria-colspan.
    */
-  'aria-colindex'?: number | `${number}`
+  'aria-colindex'?: Numeric
   /**
    * Defines a human readable text alternative of aria-colindex.
    * @see aria-rowindextext.
@@ -145,14 +149,14 @@ export interface AriaAttributes {
    * Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.
    * @see aria-colindex @see aria-rowspan.
    */
-  'aria-colspan'?: number | `${number}`
+  'aria-colspan'?: Numeric
   /**
    * Identifies the element (or elements) whose contents or presence are controlled by the current element.
    * @see aria-owns.
    */
   'aria-controls'?: string
   /** Indicates the element that represents the current item within a container or set of related elements. */
-  'aria-current'?: boolean | 'true' | 'false' | 'page' | 'step' | 'location' | 'date' | 'time'
+  'aria-current'?: Booleanish | 'page' | 'step' | 'location' | 'date' | 'time'
   /**
    * Identifies the element (or elements) that describes the object.
    * @see aria-labelledby
@@ -172,7 +176,7 @@ export interface AriaAttributes {
    * Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable.
    * @see aria-hidden @see aria-readonly.
    */
-  'aria-disabled'?: boolean | 'true' | 'false'
+  'aria-disabled'?: Booleanish
   /**
    * Indicates what functions can be performed when a dragged object is released on the drop target.
    * @deprecated in ARIA 1.1
@@ -184,7 +188,7 @@ export interface AriaAttributes {
    */
   'aria-errormessage'?: string
   /** Indicates whether the element, or another grouping element it controls, is currently expanded or collapsed. */
-  'aria-expanded'?: boolean | 'true' | 'false'
+  'aria-expanded'?: Booleanish
   /**
    * Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion,
    * allows assistive technology to override the general default of reading in document source order.
@@ -194,20 +198,20 @@ export interface AriaAttributes {
    * Indicates an element's "grabbed" state in a drag-and-drop operation.
    * @deprecated in ARIA 1.1
    */
-  'aria-grabbed'?: boolean | 'true' | 'false'
+  'aria-grabbed'?: Booleanish
 
   /** Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by an element. */
-  'aria-haspopup'?: boolean | 'true' | 'false' | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
+  'aria-haspopup'?: Booleanish | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
   /**
    * Indicates whether the element is exposed to an accessibility API.
    * @see aria-disabled.
    */
-  'aria-hidden'?: boolean | 'true' | 'false'
+  'aria-hidden'?: Booleanish
   /**
    * Indicates the entered value does not conform to the format expected by the application.
    * @see aria-errormessage.
    */
-  'aria-invalid'?: boolean | 'true' | 'false' | 'grammar' | 'spelling'
+  'aria-invalid'?: Booleanish | 'grammar' | 'spelling'
   /** Indicates keyboard shortcuts that an author has implemented to activate or give focus to an element. */
   'aria-keyshortcuts'?: string
   /**
@@ -221,15 +225,15 @@ export interface AriaAttributes {
    */
   'aria-labelledby'?: string
   /** Defines the hierarchical level of an element within a structure. */
-  'aria-level'?: number | `${number}`
+  'aria-level'?: Numeric
   /** Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region. */
   'aria-live'?: 'off' | 'assertive' | 'polite'
   /** Indicates whether an element is modal when displayed. */
-  'aria-modal'?: boolean | 'true' | 'false'
+  'aria-modal'?: Booleanish
   /** Indicates whether a text box accepts multiple lines of input or only a single line. */
-  'aria-multiline'?: boolean | 'true' | 'false'
+  'aria-multiline'?: Booleanish
   /** Indicates that the user may select more than one item from the current selectable descendants. */
-  'aria-multiselectable'?: boolean | 'true' | 'false'
+  'aria-multiselectable'?: Booleanish
   /** Indicates whether the element's orientation is horizontal, vertical, or unknown/ambiguous. */
   'aria-orientation'?: 'horizontal' | 'vertical'
   /**
@@ -247,17 +251,17 @@ export interface AriaAttributes {
    * Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
    * @see aria-setsize.
    */
-  'aria-posinset'?: number | `${number}`
+  'aria-posinset'?: Numeric
   /**
    * Indicates the current "pressed" state of toggle buttons.
    * @see aria-checked @see aria-selected.
    */
-  'aria-pressed'?: boolean | 'true' | 'false' | 'mixed'
+  'aria-pressed'?: Booleanish | 'mixed'
   /**
    * Indicates that the element is not editable, but is otherwise operable.
    * @see aria-disabled.
    */
-  'aria-readonly'?: boolean | 'true' | 'false'
+  'aria-readonly'?: Booleanish
 
   /**
    * Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified.
@@ -276,19 +280,19 @@ export interface AriaAttributes {
   | 'text removals'
 
   /** Indicates that user input is required on the element before a form may be submitted. */
-  'aria-required'?: boolean | 'true' | 'false'
+  'aria-required'?: Booleanish
   /** Defines a human-readable, author-localized description for the role of an element. */
   'aria-roledescription'?: string
   /**
    * Defines the total number of rows in a table, grid, or treegrid.
    * @see aria-rowindex.
    */
-  'aria-rowcount'?: number | `${number}`
+  'aria-rowcount'?: Numeric
   /**
    * Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid.
    * @see aria-rowcount @see aria-rowspan.
    */
-  'aria-rowindex'?: number | `${number}`
+  'aria-rowindex'?: Numeric
   /**
    * Defines a human readable text alternative of aria-rowindex.
    * @see aria-colindextext.
@@ -298,28 +302,28 @@ export interface AriaAttributes {
    * Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.
    * @see aria-rowindex @see aria-colspan.
    */
-  'aria-rowspan'?: number | `${number}`
+  'aria-rowspan'?: Numeric
   /**
    * Indicates the current "selected" state of various widgets.
    * @see aria-checked @see aria-pressed.
    */
-  'aria-selected'?: boolean | 'true' | 'false'
+  'aria-selected'?: Booleanish
   /**
    * Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
    * @see aria-posinset.
    */
-  'aria-setsize'?: number | `${number}`
+  'aria-setsize'?: Numeric
   /** Indicates if items in a table or grid are sorted in ascending or descending order. */
   'aria-sort'?: 'none' | 'ascending' | 'descending' | 'other'
   /** Defines the maximum allowed value for a range widget. */
-  'aria-valuemax'?: number | `${number}`
+  'aria-valuemax'?: Numeric
   /** Defines the minimum allowed value for a range widget. */
-  'aria-valuemin'?: number | `${number}`
+  'aria-valuemin'?: Numeric
   /**
    * Defines the current value for a range widget.
    * @see aria-valuetext.
    */
-  'aria-valuenow'?: number | `${number}`
+  'aria-valuenow'?: Numeric
   /** Defines the human readable text alternative of aria-valuenow for a range widget. */
   'aria-valuetext'?: string
   /**
@@ -502,7 +506,7 @@ declare global {
        * Making document regions editable
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
        */
-      contentEditable?: boolean | '' | 'true' | 'false' | 'plaintext-only'
+      contentEditable?: '' | 'plaintext-only' | Booleanish
       /**
        * This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes
        * @deprecated
@@ -525,7 +529,7 @@ declare global {
        */
       spellcheck?: 'true' | 'false'
       style?: string | CSSProperties
-      tabIndex?: number | `${number}`
+      tabIndex?: Numeric
       title?: string
       translate?: 'yes' | 'no'
       // Unknown
@@ -550,7 +554,7 @@ declare global {
       itemType?: string
       itemID?: string
       itemRef?: string
-      results?: number | `${number}`
+      results?: Numeric
       security?: string
       unselectable?: 'on' | 'off'
       /**
@@ -588,7 +592,7 @@ declare global {
        * In browsers that support them, writing suggestions are enabled by default. To disable them, set the writingsuggestions attribute's value to `false`. Setting the attribute's value to `true`, or omitting the value, enables writing suggestions
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/writingsuggestions
        */
-      writingsuggestions?: boolean | '' | 'true' | 'false'
+      writingsuggestions?: Booleanish | ''
     }
 
     export interface HTMLAttributes<T> extends AriaAttributes, Attributes {
@@ -826,33 +830,33 @@ declare global {
        * The `accent-height` attribute defines the distance from the origin to the top of accent characters, measured by a distance within the font coordinate system
        * @deprecated
        */
-      'accent-height'?: number | `${number}`
+      'accent-height'?: Numeric
       accumulate?: 'none' | 'sum'
       additive?: 'replace' | 'sum'
       'alignment-baseline'?: Property.AlignmentBaseline
       allowReorder?: 'no' | 'yes'
       /** @deprecated */
       alphabetic?: number | string
-      amplitude?: number | `${number}`
+      amplitude?: Numeric
       /** @deprecated */
       'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
       /**
        * The `ascent` attribute defines the maximum unaccented height of the font within the font coordinate system
        * @deprecated
        */
-      ascent?: number | `${number}`
+      ascent?: Numeric
       attributeName?: string
       /** @deprecated */
       attributeType?: 'CSS' | 'XML' | 'auto'
       autoReverse?: number | string
-      azimuth?: number | `${number}`
+      azimuth?: Numeric
       baseFrequency?: number | string
       'baseline-shift'?: Property.BaselineShift
       baseProfile?: number | string
       /** @deprecated */
       bbox?: number | string
       begin?: number | string
-      bias?: number | `${number}`
+      bias?: Numeric
       by?: number | string
       calcMode?: 'discrete' | 'linear' | 'paced' | 'spline'
       /** @deprecated */
@@ -875,7 +879,7 @@ declare global {
       cursor?: Property.Cursor
       decelerate?: number | string
       descent?: number | string
-      diffuseConstant?: number | `${number}`
+      diffuseConstant?: Numeric
       direction?: Property.Direction
       display?: Property.Display
       divisor?: number | string
@@ -884,11 +888,11 @@ declare global {
       dx?: number | string
       dy?: number | string
       edgeMode?: 'duplicate' | 'wrap' | 'none'
-      elevation?: number | `${number}`
+      elevation?: Numeric
       /** @deprecated */
       'enable-background'?: number | string
       end?: number | string
-      exponent?: number | `${number}`
+      exponent?: Numeric
       externalResourcesRequired?: number | string
       fill?: Property.Fill
       'fill-opacity'?: Property.FillOpacity
@@ -926,25 +930,25 @@ declare global {
       gradientTransform?: string
       gradientUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
       /** @deprecated */
-      hanging?: number | `${number}`
+      hanging?: Numeric
       /** @deprecated */
-      'horiz-adv-x'?: number | `${number}`
+      'horiz-adv-x'?: Numeric
       /** @deprecated */
-      'horiz-origin-x'?: number | `${number}`
+      'horiz-origin-x'?: Numeric
       /** @deprecated */
-      'horiz-origin-y'?: number | `${number}`
+      'horiz-origin-y'?: Numeric
       /** @deprecated */
-      ideographic?: number | `${number}`
+      ideographic?: Numeric
       'image-rendering'?: Property.ImageRendering
       in2?: string
       in?: string
-      intercept?: number | `${number}`
-      k1?: number | `${number}`
-      k2?: number | `${number}`
-      k3?: number | `${number}`
-      k4?: number | `${number}`
+      intercept?: Numeric
+      k1?: Numeric
+      k2?: Numeric
+      k3?: Numeric
+      k4?: Numeric
       /** @deprecated */
-      k?: number | `${number}`
+      k?: Numeric
       kernelMatrix?: number | string
       /** @deprecated */
       kernelUnitLength?: number | string
@@ -957,7 +961,7 @@ declare global {
       lengthAdjust?: 'spacing' | 'spacingAndGlyphs'
       'letter-spacing'?: Property.LetterSpacing
       'lighting-color'?: Property.LightingColor
-      limitingConeAngle?: number | `${number}`
+      limitingConeAngle?: Numeric
       marker?: Property.Marker
       'marker-start'?: Property.MarkerStart
       'marker-end'?: Property.MarkerEnd
@@ -970,78 +974,78 @@ declare global {
       maskContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
       maskUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
       /** @deprecated */
-      mathematical?: number | `${number}`
+      mathematical?: Numeric
       max?: string
       min?: string
       media?: string
       method?: 'align' | 'stretch'
       mode?: string
       name?: string
-      numOctaves?: number | `${number}`
+      numOctaves?: Numeric
       offset?: Property.Offset
       opacity?: Property.Opacity
       operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic' | 'erode' | 'dilate'
       order?: Property.Order
-      orient?: 'auto' | 'auto-start-reverse' | number | (string & {})
+      orient?: 'auto' | 'auto-start-reverse' | number | AnyString
       /** @deprecated */
       orientation?: 'h' | 'v'
-      origin?: 'default' | (string & {})
+      origin?: 'default' | AnyString
       overflow?: Property.Overflow
-      'overline-position'?: number | `${number}`
-      'overline-thickness'?: number | `${number}`
+      'overline-position'?: Numeric
+      'overline-thickness'?: Numeric
       'paint-order'?: Property.PaintOrder
       /** @deprecated */
       'panose-1'?: string
       path?: string
-      pathLength?: number | `${number}`
+      pathLength?: Numeric
       patternContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
       patternTransform?: string
       patternUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
       'pointer-events'?: Property.PointerEvents
       points?: string
-      pointsAtX?: number | `${number}`
-      pointsAtY?: number | `${number}`
-      pointsAtZ?: number | `${number}`
+      pointsAtX?: Numeric
+      pointsAtY?: Numeric
+      pointsAtZ?: Numeric
       preserveAlpha?: 'true' | 'false'
       preserveAspectRatio?: string
       primitiveUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
       r?: number | string
       radius?: number | string
-      refX?: 'left' | 'center' | 'right' | number | (string & {})
-      refY?: 'top' | 'center' | 'bottom' | number | (string & {})
+      refX?: 'left' | 'center' | 'right' | number | AnyString
+      refY?: 'top' | 'center' | 'bottom' | number | AnyString
       renderingIntent?: number | string
-      repeatCount?: 'indefinite' | number | `${number}`
-      repeatDur?: 'indefinite' | number | (string & {})
+      repeatCount?: 'indefinite' | Numeric
+      repeatDur?: 'indefinite' | number | AnyString
       requiredExtensions?: number | string
       /** @deprecated */
       requiredFeatures?: string
       restart?: 'always' | 'whenNotActive' | 'never'
       result?: string
-      rotate?: number | `${number}` | 'auto' | 'auto-reverse'
-      rx?: 'auto' | number | (string & {})
-      ry?: 'auto' | number | (string & {})
-      scale?: number | `${number}`
-      seed?: number | `${number}`
+      rotate?: Numeric | 'auto' | 'auto-reverse'
+      rx?: 'auto' | number | AnyString
+      ry?: 'auto' | number | AnyString
+      scale?: Numeric
+      seed?: Numeric
       'shape-rendering'?: Property.ShapeRendering
       side?: 'left' | 'right'
       /** @deprecated */
-      slope?: number | `${number}`
+      slope?: Numeric
       spacing?: 'auto' | 'exact'
-      specularConstant?: number | `${number}`
-      specularExponent?: number | `${number}`
+      specularConstant?: Numeric
+      specularExponent?: Numeric
       speed?: number | string
       spreadMethod?: 'pad' | 'reflect' | 'repeat'
       startOffset?: number | string
       stdDeviation?: number | string
       /** @deprecated */
-      stemh?: number | `${number}`
+      stemh?: Numeric
       /** @deprecated */
-      stemv?: number | `${number}`
+      stemv?: Numeric
       stitchTiles?: 'noStitch' | 'stitch'
       'stop-color'?: Property.StopColor
       'stop-opacity'?: Property.StopOpacity
-      'strikethrough-position'?: number | `${number}`
-      'strikethrough-thickness'?: number | `${number}`
+      'strikethrough-position'?: Numeric
+      'strikethrough-thickness'?: Numeric
       /** @deprecated */
       string?: number | string
       stroke?: Property.Stroke
@@ -1052,11 +1056,11 @@ declare global {
       'stroke-miterlimit'?: Property.StrokeMiterlimit
       'stroke-opacity'?: Property.StrokeOpacity
       'stroke-width'?: Property.StrokeWidth
-      surfaceScale?: number | `${number}`
+      surfaceScale?: Numeric
       systemLanguage?: string
-      tabindex?: number | `${number}`
+      tabindex?: Numeric
       tableValues?: number | string
-      target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
+      target?: '_self' | '_parent' | '_top' | '_blank' | AnyString
       targetX?: number | string
       targetY?: number | string
       'text-anchor'?: Property.TextAnchor
@@ -1066,50 +1070,50 @@ declare global {
       to?: string
       transform?: Property.Transform
       'transform-origin'?: Property.TransformOrigin
-      type?: 'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY' | (string & {})
+      type?: 'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY' | AnyString
       /** @deprecated */
       u1?: string
       /** @deprecated */
       u2?: string
-      'underline-position'?: number | `${number}`
-      'underline-thickness'?: number | `${number}`
+      'underline-position'?: Numeric
+      'underline-thickness'?: Numeric
       unicode?: string
       'unicode-bidi'?: Property.UnicodeBidi
       /** @deprecated */
       'unicode-range'?: string
       /** @deprecated */
-      'units-per-em'?: number | `${number}`
+      'units-per-em'?: Numeric
       /** @deprecated */
-      'v-alphabetic'?: number | `${number}`
+      'v-alphabetic'?: Numeric
       /** @deprecated */
-      'v-hanging'?: number | `${number}`
+      'v-hanging'?: Numeric
       /** @deprecated */
-      'v-ideographic'?: number | `${number}`
+      'v-ideographic'?: Numeric
       /** @deprecated */
-      'v-mathematical'?: number | `${number}`
+      'v-mathematical'?: Numeric
       values?: string
       'vector-effect'?: Property.VectorEffect
       /** @deprecated */
       version?: '1.0' | '1.1'
       /** @deprecated */
-      'vert-adv-y'?: number | `${number}`
+      'vert-adv-y'?: Numeric
       /** @deprecated */
-      'vert-origin-x'?: number | `${number}`
+      'vert-origin-x'?: Numeric
       /** @deprecated */
-      'vert-origin-y'?: number | `${number}`
+      'vert-origin-y'?: Numeric
       viewBox?: string
       /** @deprecated */
       viewTarget?: string
       visibility?: Property.Visibility
       /** @deprecated */
-      widths?: number | `${number}`
+      widths?: Numeric
       'word-spacing'?: Property.WordSpacing
       'writing-mode'?: Property.WritingMode
       x1?: number | string
       x2?: number | string
       x?: number | string
       /** @deprecated */
-      'x-height'?: number | `${number}`
+      'x-height'?: Numeric
       xChannelSelector?: 'R' | 'G' | 'B' | 'A'
       yChannelSelector?: 'R' | 'G' | 'B' | 'A'
       /** @deprecated */
@@ -1155,7 +1159,7 @@ declare global {
       y1?: number | string
       y2?: number | string
       y?: number | string
-      z?: number | `${number}`
+      z?: Numeric
       /** @deprecated */
       zoomAndPan?: 'disable' | 'magnify'
       height?: number | string
@@ -1212,7 +1216,7 @@ declare global {
       /**
        * Where to display the linked URL. _Default value: `_self`; Animatable: yes_
        */
-      target?: '_blank' | '_self' | '_parent' | '_top' | (string & {})
+      target?: '_blank' | '_self' | '_parent' | '_top' | AnyString
       /**
        * Hints at the linked URL's format with a MIME type. No built-in functionality
        */
@@ -1252,15 +1256,15 @@ declare global {
        */
       referrerPolicy?: ReferrerPolicy
       rel?: string
-      shape?: 'rect' | 'circle' | 'poly' | 'default' | (string & {})
+      shape?: 'rect' | 'circle' | 'poly' | 'default' | AnyString
       /**
        * A keyword or author-defined name of the browsing context to display the linked resource
        */
-      target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
+      target?: '_self' | '_parent' | '_top' | '_blank' | AnyString
       /** @deprecated */
       nohref?: string
       /** @deprecated */
-      tabIndex?: number | `${number}`
+      tabIndex?: Numeric
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
@@ -1271,7 +1275,7 @@ declare global {
 
     interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
       href?: string
-      target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
+      target?: '_self' | '_parent' | '_top' | '_blank' | AnyString
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
@@ -1306,12 +1310,12 @@ declare global {
       /**
        * A string indicating the HTTP method to use when submitting the form's data; this value overrides any method attribute given on the owning form
        */
-      formMethod?: 'post' | 'get' | 'dialog' | (string & {})
+      formMethod?: 'post' | 'get' | 'dialog' | AnyString
       formNoValidate?: boolean | ''
       /**
        * If the button is a submit button, this attribute is an author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form
        */
-      formTarget?: '_self' | '_blank' | '_parent' | '_top' | (string & {})
+      formTarget?: '_self' | '_blank' | '_parent' | '_top' | AnyString
       name?: string
       type?: HTMLButtonElement['type']
       value?: number | string
@@ -1339,7 +1343,7 @@ declare global {
     }
 
     interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
-      span?: number | `${number}`
+      span?: Numeric
       width?: number | string
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
@@ -1368,7 +1372,7 @@ declare global {
        * Do not add the `tabindex` property to the `<dialog>` element as it is not interactive and does not receive focus. The dialog's contents, including the close button contained in the dialog, can receive focus and be interactive.
        * @deprecated
        */
-      tabIndex?: number | `${number}`
+      tabIndex?: Numeric
       onclose?: GenericEventHandler<HTMLDialogElement>
       'on:close'?: EventListener<HTMLDialogElement>
       oncancel?: GenericEventHandler<HTMLDialogElement>
@@ -1407,7 +1411,7 @@ declare global {
       /**
        * The HTTP method to submit the form with. The only allowed methods/values are (case insensitive)
        */
-      method?: 'post' | 'get' | 'dialog' | (string & {})
+      method?: 'post' | 'get' | 'dialog' | AnyString
       name?: string
       /**
        * Controls the annotations and what kinds of links the form creates. The rel value is a space-separated list of these enumerated values
@@ -1423,9 +1427,9 @@ declare global {
       | 'next'
       | 'search'
       | 'license'
-      | (string & {})
+      | AnyString
       noValidate?: boolean | ''
-      target?: '_self' | '_parent' | '_top' | '_blank' | (string & {})
+      target?: '_self' | '_parent' | '_top' | '_blank' | AnyString
       onformdata?: FormDataEventHandler<HTMLFormElement>
       'on:formData'?: FormDataEventListener<HTMLFormElement>
     }
@@ -1491,9 +1495,9 @@ declare global {
       height?: number | string
       loading?: 'eager' | 'lazy'
       /** @deprecated */
-      marginHeight?: number | `${number}`
+      marginHeight?: Numeric
       /** @deprecated */
-      marginWidth?: number | `${number}`
+      marginWidth?: Numeric
       name?: string
       referrerPolicy?: ReferrerPolicy
       /**
@@ -1516,7 +1520,7 @@ declare global {
       | 'allow-top-navigation'
       | 'allow-top-navigation-by-user-activation'
       | 'allow-top-navigation-to-custom-protocols'
-      | (string & {})
+      | AnyString
       /**
        * Indicates when the browser should provide a scrollbar for the frame
        * @deprecated
@@ -1583,24 +1587,24 @@ declare global {
       /**
        * A string indicating the HTTP method to use when submitting the form's data; this value overrides any method attribute given on the owning form
        */
-      formMethod?: 'post' | 'get' | 'dialog' | (string & {})
+      formMethod?: 'post' | 'get' | 'dialog' | AnyString
       formNoValidate?: boolean | ''
-      formTarget?: '_self' | '_blank' | '_parent' | '_top' | (string & {})
+      formTarget?: '_self' | '_blank' | '_parent' | '_top' | AnyString
       height?: number | string
       list?: string
       max?: number | string
-      maxLength?: number | `${number}`
+      maxLength?: Numeric
       min?: number | string
-      minLength?: number | `${number}`
+      minLength?: Numeric
       multiple?: boolean | ''
       name?: string
       pattern?: string
       placeholder?: string
       readOnly?: boolean | ''
       required?: boolean | ''
-      size?: number | `${number}`
+      size?: Numeric
       src?: string
-      step?: number | `${number}`
+      step?: Numeric
       type?:
       | 'button'
       | 'checkbox'
@@ -1641,14 +1645,14 @@ declare global {
     }
 
     interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
-      value?: number | `${number}`
+      value?: Numeric
     }
 
     interface HTMLLinkElementAttributes extends HTMLAttributes<HTMLLinkElement> {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
-      blocking?: 'render' | (string & {})
+      blocking?: 'render' | AnyString
       /**
        * This attribute is required when `rel="preload"` has been set on the `<link>` element, optional when `rel="modulepreload"` has been set, and otherwise should not be used. It specifies the type of content being loaded by the <link>, which is necessary for request matching, application of correct content security policy, and setting of correct Accept request header.
        */
@@ -1665,7 +1669,7 @@ declare global {
       | 'track'
       | 'video'
       | 'worker'
-      | (string & {})
+      | AnyString
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
       disabled?: boolean | ''
       href?: string
@@ -1679,7 +1683,7 @@ declare global {
        */
       imagesrcset?: string
       integrity?: string
-      media?: 'all' | 'print' | (string & {})
+      media?: 'all' | 'print' | AnyString
       referrerPolicy?: ReferrerPolicy
       /**
        * Defines the relationship between a linked resource and the current document.
@@ -1707,7 +1711,7 @@ declare global {
       | 'search'
       | 'stylesheet'
       | 'terms-of-service'
-      | (string & {})
+      | AnyString
       /** @deprecated */
       rev?: string
       sizes?: string
@@ -1769,12 +1773,12 @@ declare global {
 
     interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
       form?: string
-      high?: number | `${number}`
-      low?: number | `${number}`
-      max?: number | `${number}`
-      min?: number | `${number}`
-      optimum?: number | `${number}`
-      value?: number | `${number}`
+      high?: Numeric
+      low?: Numeric
+      max?: Numeric
+      min?: Numeric
+      optimum?: Numeric
+      value?: Numeric
     }
 
     interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
@@ -1849,7 +1853,7 @@ declare global {
 
     interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
       reversed?: boolean | ''
-      start?: number | `${number}`
+      start?: Numeric
       type?: '1' | 'a' | 'A' | 'i' | 'I'
     }
 
@@ -1888,8 +1892,8 @@ declare global {
     }
 
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
-      max?: number | `${number}`
-      value?: number | `${number}`
+      max?: Numeric
+      value?: Numeric
     }
 
     interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
@@ -1897,7 +1901,7 @@ declare global {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
-      blocking?: 'render' | (string & {})
+      blocking?: 'render' | AnyString
       /** @deprecated */
       charset?: string
       crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
@@ -1910,7 +1914,7 @@ declare global {
       /**
        * This attribute indicates the type of script represented
        */
-      type?: 'importmap' | 'module' | 'speculationrules' | (string & {})
+      type?: 'importmap' | 'module' | 'speculationrules' | AnyString
       fetchPriority?: 'high' | 'low' | 'auto'
     }
 
@@ -1922,7 +1926,7 @@ declare global {
       multiple?: boolean | ''
       name?: string
       required?: boolean | ''
-      size?: number | `${number}`
+      size?: Numeric
       value?: number | string
     }
 
@@ -1954,11 +1958,11 @@ declare global {
       /**
        * Specifies the intrinsic height of the image in pixels. Allowed if the parent of `<source>` is a `<picture>`. Not allowed if the parent is `<audio>` or `<video>`. The height value must be an integer without any units
        */
-      height?: number | `${number}`
+      height?: Numeric
       /**
        * Specifies the intrinsic width of the image in pixels. Allowed if the parent of `<source>` is a `<picture>`. Not allowed if the parent is `<audio> `or `<video>.` The width value must be an integer without any units
        */
-      width?: number | `${number}`
+      width?: Numeric
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
@@ -1971,7 +1975,7 @@ declare global {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
-      blocking?: 'render' | (string & {})
+      blocking?: 'render' | AnyString
       media?: string
       nonce?: string
       scoped?: boolean | ''
@@ -2059,12 +2063,12 @@ declare global {
       /**
        * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer. If it is not specified, the default value is 20
        */
-      cols?: number | `${number}`
+      cols?: Numeric
       dirName?: 'rtl' | 'ltr'
       disabled?: boolean | ''
       form?: string
-      maxLength?: number | `${number}`
-      minLength?: number | `${number}`
+      maxLength?: Numeric
+      minLength?: Numeric
       name?: string
       placeholder?: string
       readOnly?: boolean | ''
@@ -2072,7 +2076,7 @@ declare global {
       /**
        * The number of visible text lines for the control. If it is specified, it must be a positive integer. If it is not specified, the default value is 2
        */
-      rows?: number | `${number}`
+      rows?: Numeric
       value?: number | string
       wrap?: 'hard' | 'soft' | 'off'
     }
@@ -2081,12 +2085,12 @@ declare global {
       /**
        * A non-negative integer value that indicates for how many columns the cell extends. Its default value is `1`. Values higher than `1000` will be considered as incorrect and will be set to the default value (`1`)
        */
-      colSpan?: number | `${number}`
+      colSpan?: Numeric
       headers?: string
       /**
        * A non-negative integer value that indicates for how many rows the cell extends. Its default value is `1`; if its value is set to `0`, it extends until the end of the table section (`<thead>`, `<tbody>`, `<tfoot>`, even if implicitly defined), that the cell belongs to. Values higher than `65534` are clipped down to `65534`
        */
-      rowSpan?: number | `${number}`
+      rowSpan?: Numeric
       /**
        * Do not use this attribute as it is obsolete in the latest standard. Alternatively, you can put the abbreviated description inside the cell and place the long content in the title attribute.
        * @deprecated
@@ -2138,12 +2142,12 @@ declare global {
       /**
        * A non-negative integer value that indicates for how many columns the cell extends. Its default value is `1`. Values higher than `1000` will be considered as incorrect and will be set to the default value (`1`)
        */
-      colSpan?: number | `${number}`
+      colSpan?: Numeric
       headers?: string
       /**
        * A non-negative integer value that indicates for how many rows the cell extends. Its default value is `1`; if its value is set to `0`, it extends until the end of the table section (`<thead>`, `<tbody>`, `<tfoot>`, even if implicitly defined), that the cell belongs to. Values higher than `65534` are clipped down to `65534`
        */
-      rowSpan?: number | `${number}`
+      rowSpan?: Numeric
       /**
        * This enumerated attribute defines the cells that the header (defined in the <th>) element relates to
        */
@@ -2479,17 +2483,17 @@ declare global {
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#align
        */
-      align?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
+      align?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnalign
        */
-      columnalign?: 'center' | 'left' | 'right' | (string & {})
+      columnalign?: 'center' | 'left' | 'right' | AnyString
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnlines
        */
-      columnlines?: 'dashed' | 'none' | 'solid' | (string & {})
+      columnlines?: 'dashed' | 'none' | 'solid' | AnyString
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnspacing
@@ -2509,12 +2513,12 @@ declare global {
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowalign
        */
-      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
+      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowlines
        */
-      rowlines?: 'dashed' | 'none' | 'solid' | (string & {})
+      rowlines?: 'dashed' | 'none' | 'solid' | AnyString
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowspacing
@@ -2528,18 +2532,18 @@ declare global {
     }
 
     interface MathMLMTdElementAttributes extends MathMLAttributes {
-      columnspan?: number | `${number}`
-      rowspan?: number | `${number}`
+      columnspan?: Numeric
+      rowspan?: Numeric
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtd#columnalign
        */
-      columnalign?: 'center' | 'left' | 'right' | (string & {})
+      columnalign?: 'center' | 'left' | 'right' | AnyString
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtd#rowalign
        */
-      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
+      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString
     }
 
     interface MathMLMTrElementAttributes extends MathMLAttributes {
@@ -2547,12 +2551,12 @@ declare global {
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtr#columnalign
        */
-      columnalign?: 'center' | 'left' | 'right' | (string & {})
+      columnalign?: 'center' | 'left' | 'right' | AnyString
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtr#rowalign
        */
-      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | (string & {})
+      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString
     }
 
     interface MathMLMUnderElementAttributes extends MathMLAttributes {
