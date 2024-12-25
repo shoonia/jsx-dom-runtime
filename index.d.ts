@@ -1805,7 +1805,13 @@ declare global {
     interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
       charset?: string
       content?: string
-      'http-equiv'?: string
+      'http-equiv'?:
+      | 'content-security-policy'
+      | 'content-type'
+      | 'default-style'
+      | 'x-ua-compatible'
+      | 'refresh'
+      | AnyString
       name?: string
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)

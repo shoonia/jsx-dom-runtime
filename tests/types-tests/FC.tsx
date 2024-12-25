@@ -1,4 +1,4 @@
-import type { FC, FunctionComponent } from '../..';
+import type { FC, FunctionComponent } from 'jsx-dom-runtime';
 
 export const App: JSX.FC = () => <p />;
 export const App2: FC = () => <p />;
