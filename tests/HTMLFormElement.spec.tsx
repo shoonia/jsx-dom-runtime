@@ -61,4 +61,9 @@ describe('HTMLFormElement', () => {
     expect(<form name="form" />).toHaveProperty('name', 'form');
     expect(<form name="form" />).toHaveAttribute('name', 'form');
   });
+
+  it('should have `target` attribute', () => {
+    expect(<form target="_blank" />).toHaveProperty('target', '_blank');
+    expect(<form target="_self" />).toHaveAttribute('target', '_self');
+  });
 });

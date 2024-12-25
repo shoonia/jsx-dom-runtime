@@ -102,6 +102,8 @@ export interface CSSProperties extends Properties<number | string> {
 }
 
 export type ControlsList = 'nodownload' | 'nofullscreen' | 'noremoteplayback'
+export type Target = '_self' | '_parent' | '_top' | '_blank' | '_unfencedTop' | AnyString
+export type CrossOrigin = boolean | '' | 'anonymous' | 'use-credentials'
 
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
@@ -1060,7 +1062,7 @@ declare global {
       systemLanguage?: string
       tabindex?: Numeric
       tableValues?: number | string
-      target?: '_self' | '_parent' | '_top' | '_blank' | AnyString
+      target?: Target
       targetX?: number | string
       targetY?: number | string
       'text-anchor'?: Property.TextAnchor
@@ -1216,7 +1218,7 @@ declare global {
       /**
        * Where to display the linked URL. _Default value: `_self`; Animatable: yes_
        */
-      target?: '_blank' | '_self' | '_parent' | '_top' | AnyString
+      target?: Target
       /**
        * Hints at the linked URL's format with a MIME type. No built-in functionality
        */
@@ -1260,7 +1262,7 @@ declare global {
       /**
        * A keyword or author-defined name of the browsing context to display the linked resource
        */
-      target?: '_self' | '_parent' | '_top' | '_blank' | AnyString
+      target?: Target
       /** @deprecated */
       nohref?: string
       /** @deprecated */
@@ -1275,7 +1277,7 @@ declare global {
 
     interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
       href?: string
-      target?: '_self' | '_parent' | '_top' | '_blank' | AnyString
+      target?: Target
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
@@ -1315,7 +1317,7 @@ declare global {
       /**
        * If the button is a submit button, this attribute is an author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form
        */
-      formTarget?: '_self' | '_blank' | '_parent' | '_top' | AnyString
+      formTarget?: Target
       name?: string
       type?: HTMLButtonElement['type']
       value?: number | string
@@ -1429,7 +1431,7 @@ declare global {
       | 'license'
       | AnyString
       noValidate?: boolean | ''
-      target?: '_self' | '_parent' | '_top' | '_blank' | AnyString
+      target?: Target
       onformdata?: FormDataEventHandler<HTMLFormElement>
       'on:formData'?: FormDataEventListener<HTMLFormElement>
     }
@@ -1538,7 +1540,7 @@ declare global {
 
     interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
       alt?: string
-      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
+      crossOrigin?: CrossOrigin
       decoding?: HTMLImageElement['decoding']
       height?: number | string
       /**
@@ -1571,7 +1573,7 @@ declare global {
        */
       capture?: boolean | 'user' | 'environment' | ''
       checked?: boolean | ''
-      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
+      crossOrigin?: CrossOrigin
       disabled?: boolean | ''
       dirName?: 'rtl' | 'ltr'
       enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
@@ -1589,7 +1591,7 @@ declare global {
        */
       formMethod?: 'post' | 'get' | 'dialog' | AnyString
       formNoValidate?: boolean | ''
-      formTarget?: '_self' | '_blank' | '_parent' | '_top' | AnyString
+      formTarget?: Target
       height?: number | string
       list?: string
       max?: number | string
@@ -1670,7 +1672,7 @@ declare global {
       | 'video'
       | 'worker'
       | AnyString
-      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
+      crossOrigin?: CrossOrigin
       disabled?: boolean | ''
       href?: string
       hreflang?: string
@@ -1747,7 +1749,7 @@ declare global {
        * Offers a way to control the native controls elements/buttons that are being shown by the user agent in order to be able to remove some features that do not make sense or are not part of the expected user experience or only allowlist a limited amount of features
        */
       controlsList?: `${OptionalPrefixToken<ControlsList>}${OptionalPrefixToken<ControlsList>}${ControlsList}`
-      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
+      crossOrigin?: CrossOrigin
       loop?: boolean | ''
       mediaGroup?: string
       preload?: HTMLMediaElement['preload']
@@ -1904,7 +1906,7 @@ declare global {
       blocking?: 'render' | AnyString
       /** @deprecated */
       charset?: string
-      crossOrigin?: boolean | '' | 'anonymous' | 'use-credentials'
+      crossOrigin?: CrossOrigin
       defer?: boolean | ''
       integrity?: string
       noModule?: boolean | ''
