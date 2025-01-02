@@ -40,7 +40,7 @@ describe('ns', () => {
     expect(<script _={svgNs} />).toHaveProperty(prop, svgNs);
   });
 
-  it('it should detect namespace from parent tag for `title` tag', () => {
+  it('should detect namespace from parent tag for `title` tag', () => {
     const div = <div><title /></div>;
     const svg = <svg><title /></svg>;
 
@@ -48,7 +48,7 @@ describe('ns', () => {
     expect(svg.firstChild).toHaveProperty(prop, svgNs);
   });
 
-  it('it should detect namespace from parent tag for `style` tag', () => {
+  it('should detect namespace from parent tag for `style` tag', () => {
     const div = <div><style /></div>;
     const svg = <svg><style /></svg>;
 
@@ -56,7 +56,7 @@ describe('ns', () => {
     expect(svg.firstChild).toHaveProperty(prop, svgNs);
   });
 
-  it('it should detect namespace from parent tag for `a` tag', () => {
+  it('should detect namespace from parent tag for `a` tag', () => {
     const div = <div><a /></div>;
     const svg = <svg><a /></svg>;
 
@@ -64,9 +64,17 @@ describe('ns', () => {
     expect(svg.firstChild).toHaveProperty(prop, svgNs);
   });
 
-  it('it should detect namespace from parent tag for `script` tag', () => {
+  it('should detect namespace from parent tag for `script` tag', () => {
     const div = <div><script /></div>;
     const svg = <svg><script /></svg>;
+
+    expect(div.firstChild).toHaveProperty(prop, xhtmlNs);
+    expect(svg.firstChild).toHaveProperty(prop, svgNs);
+  });
+
+  it('should get parent namespace from scope', () => {
+    const div = <div>{globalThis && <a />}</div>;
+    const svg = <svg>{globalThis && <a />}</svg>;
 
     expect(div.firstChild).toHaveProperty(prop, xhtmlNs);
     expect(svg.firstChild).toHaveProperty(prop, svgNs);
