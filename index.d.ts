@@ -6,23 +6,29 @@ type AnyString = string & {}
 type Booleanish = boolean | 'true' | 'false'
 type Numeric = number | `${number}`
 
-export interface RefObject<T> {
-  readonly current: T
-}
+type JSXNode =
+  | Element
+  | DocumentFragment
+  | Text
+  | Comment
 
-export type RefCallback<T> = (instance: T) => void
-
-type TChild =
+type Child =
   | string
   | number
   | bigint
   | false
   | null
   | undefined
-  | Node
-  | TChild[]
+  | JSXNode
+  | Child[]
 
-export type PropsWithChildren<P> = P & { children?: TChild | TChild[] }
+export interface RefObject<T> {
+  readonly current: T
+}
+
+export type RefCallback<T> = (instance: T) => void
+
+export type PropsWithChildren<P> = P & { children?: Child | Child[] }
 
 export declare function jsx<
   K extends keyof JSX.IntrinsicElements | AnyString,
@@ -61,7 +67,7 @@ export declare function useText<T = string>(initContent?: T): readonly [
 ]
 
 export declare function parseFromString(html: string): DocumentFragment
-export declare function Fragment(children?: TChild | TChild[]): DocumentFragment
+export declare function Fragment(children?: Child | Child[]): DocumentFragment
 export declare function Template(props: { children: string }): DocumentFragment
 
 export interface CurrentTarget<T> {
@@ -474,10 +480,10 @@ export interface AriaAttributes {
 
 declare global {
   namespace JSX {
-    type Element = globalThis.Element | DocumentFragment
+    type Element = JSXNode
     interface ElementChildrenAttribute { children: {} }
 
-    type FC<P = {}> = (props: PropsWithChildren<P>) => Element | null
+    type FC<P = {}> = (props: PropsWithChildren<P>) => JSXNode | null
     type Ref<T = unknown> = RefCallback<T> | RefObject<T>
 
     type AnimationEventListener<T = globalThis.Element> = EvHandler<AnimationEvent, T>
@@ -601,7 +607,7 @@ declare global {
       _?: string
       $?: Record<string, EventListener<T>>
       ref?: Ref<T>
-      children?: TChild | TChild[]
+      children?: Child | Child[]
       // ClipboardEvent
       oncopy?: ClipboardEventHandler<T>
       'on:copy'?: ClipboardEventListener<T>
