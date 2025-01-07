@@ -64,4 +64,8 @@ describe('Babel transform HTML boolean attribute value `true` to empty string `"
   it('should transform `shadowRootSerializable` attribute', async () => {
     await expect('<template shadowRootSerializable />').toBeTransform(i + '_jsx("template",{shadowrootserializable:""});');
   });
+
+  it('should transform `attributionsrc` attribute', async () => {
+    await expect('<script attributionsrc src="x.js" />').toBeTransform(i + '_jsx("script",{attributionsrc:"",src:"x.js"});');
+  });
 });

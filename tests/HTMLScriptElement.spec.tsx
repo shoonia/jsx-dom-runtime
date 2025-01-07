@@ -49,4 +49,9 @@ describe('HTMLScriptElement', () => {
 
     expect(<script type="importmap">{imports}</script>).toHaveTextContent(imports);
   });
+
+  it('should have `attributionsrc` attribute', () => {
+    expect(<script attributionsrc />).toHaveAttribute('attributionsrc', '');
+    expect(<script attributionsrc="/path" />).toHaveAttribute('attributionsrc', '/path');
+  });
 });
