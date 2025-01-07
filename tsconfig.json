@@ -12,7 +12,7 @@
     "jsxImportSource": "jsx-dom-runtime",
     "skipLibCheck": true,
     "lib": [
-      "ES2023",
+      "ES2024",
       "DOM"
     ],
   },
