@@ -1958,7 +1958,7 @@ declare global {
        * Specifies that you want the browser to send an `Attribution-Reporting-Eligible` header along with the script resource request
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attributionsrc
        */
-      attributionsrc?: boolean | AnyString
+      attributionsrc?: boolean | string
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
