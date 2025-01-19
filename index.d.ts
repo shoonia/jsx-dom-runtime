@@ -901,7 +901,8 @@ declare global {
       'enable-background'?: number | string
       end?: number | string
       exponent?: Numeric
-      externalResourcesRequired?: number | string
+      /** @deprecated */
+      externalResourcesRequired?: 'true' | 'false'
       fill?: Property.Fill
       'fill-opacity'?: Property.FillOpacity
       'fill-rule'?: Property.FillRule
@@ -947,7 +948,7 @@ declare global {
       'horiz-origin-y'?: Numeric
       /** @deprecated */
       ideographic?: Numeric
-      'image-rendering'?: Property.ImageRendering
+      'image-rendering'?: 'auto' | 'optimizeQuality' | 'optimizeSpeed' | 'inherit'
       in2?: string
       in?: string
       intercept?: Numeric
@@ -1060,7 +1061,7 @@ declare global {
       'stroke-dasharray'?: Property.StrokeDasharray
       'stroke-dashoffset'?: Property.StrokeDashoffset
       'stroke-linecap'?: Property.StrokeLinecap
-      'stroke-linejoin'?: Property.StrokeLinejoin
+      'stroke-linejoin'?: 'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round' | 'inherit'
       'stroke-miterlimit'?: Property.StrokeMiterlimit
       'stroke-opacity'?: Property.StrokeOpacity
       'stroke-width'?: Property.StrokeWidth
