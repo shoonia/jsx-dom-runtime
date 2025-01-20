@@ -6,7 +6,7 @@ type AnyString = string & {}
 type Booleanish = boolean | 'true' | 'false'
 type Numeric = number | `${number}`
 
-type JSXNode =
+type JSXElement =
   | Element
   | DocumentFragment
   | Text
@@ -19,7 +19,7 @@ type Child =
   | false
   | null
   | undefined
-  | JSXNode
+  | JSXElement
   | Child[]
 
 export interface RefObject<T> {
@@ -480,10 +480,10 @@ export interface AriaAttributes {
 
 declare global {
   namespace JSX {
-    type Element = JSXNode
+    type Element = JSXElement
     interface ElementChildrenAttribute { children: {} }
 
-    type FC<P = {}> = (props: PropsWithChildren<P>) => JSXNode | null
+    type FC<P = {}> = (props: PropsWithChildren<P>) => JSXElement | null
     type Ref<T = unknown> = RefCallback<T> | RefObject<T>
 
     type AnimationEventListener<T = globalThis.Element> = EvHandler<AnimationEvent, T>
@@ -606,7 +606,7 @@ declare global {
     export interface HTMLAttributes<T> extends AriaAttributes, Attributes {
       _?: string
       $?: Record<string, EventListener<T>>
-      ref?: Ref<T>
+      ref?: Ref<T> | false | null | undefined | (Ref<T> | false | null | undefined)[]
       children?: Child | Child[]
       // ClipboardEvent
       oncopy?: ClipboardEventHandler<T>

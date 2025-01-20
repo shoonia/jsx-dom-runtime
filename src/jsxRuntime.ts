@@ -1,4 +1,4 @@
-/* eslint-disable no-cond-assign, prefer-const */
+/* eslint-disable prefer-const */
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
@@ -35,10 +35,20 @@ const extensions = new Map([
 ]);
 
 const appendChildren = (content, node) =>
-  Array.isArray(content)
-    // Just shorter that the .forEach
-    ? content.some((i) => appendChildren(i, node))
-    : content !== false && content != null && node.append(content);
+  content !== false && content != null && (
+    Array.isArray(content)
+      ? content.forEach((i) => appendChildren(i, node))
+      : node.append(content)
+  );
+
+const setRef = (content, node) =>
+  content && (
+    Array.isArray(content)
+      ? content.forEach((i) => setRef(i, node))
+      : typeof content == 'function'
+        ? content(node)
+        : content.current = node
+  );
 
 const Fragment = (content) => (
   appendChildren(content, content = new DocumentFragment()),
@@ -73,14 +83,7 @@ const jsx = (tag, props) => {
     tag == 'template' ? node.content : node,
   );
 
-  // reuse `value` variable
-  if (value = props.ref) {
-    if (typeof value == 'function') {
-      value(node);
-    } else {
-      value.current = node;
-    }
-  }
+  setRef(props.ref, node);
 
   return node;
 };

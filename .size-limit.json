@@ -3,24 +3,24 @@
     "name": "jsx",
     "path": "jsx-runtime/index.js",
     "import": "{ jsx }",
-    "limit": "346 B"
+    "limit": "355 B"
   },
   {
     "name": "Fragment",
     "path": "jsx-runtime/index.js",
     "import": "{ Fragment }",
-    "limit": "81 B"
+    "limit": "88 B"
   },
   {
     "name": "appendChildren",
     "path": "jsx-runtime/index.js",
     "import": "{ appendChildren }",
-    "limit": "56 B"
+    "limit": "66 B"
   },
   {
     "name": "core",
     "path": "jsx-runtime/index.js",
     "import": "{ jsx, Fragment }",
-    "limit": "365 B"
+    "limit": "377 B"
   }
 ]
