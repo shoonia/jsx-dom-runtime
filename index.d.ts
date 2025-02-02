@@ -603,7 +603,7 @@ declare global {
       writingsuggestions?: Booleanish | ''
     }
 
-    export interface HTMLAttributes<T> extends AriaAttributes, Attributes {
+    interface HTMLAttributes<T> extends AriaAttributes, Attributes {
       _?: string
       $?: Record<string, EventListener<T>>
       ref?: Ref<T> | false | null | undefined | (Ref<T> | false | null | undefined)[]
@@ -824,7 +824,7 @@ declare global {
       'on:contentVisibilityAutoStateChange'?: EventListener<T>
     }
 
-    export interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
+    interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
       _?: typeof svgNs
       xmlns?: typeof svgNs
       href?: string
@@ -1175,7 +1175,7 @@ declare global {
       width?: number | string
     }
 
-    export interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
+    interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
       _?: typeof mathmlNs
       xmlns?: typeof mathmlNs
       dir?: 'ltr' | 'rtl'
@@ -1444,7 +1444,7 @@ declare global {
       name?: string
     }
 
-    export interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
+    interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
       /**
        * Comma-separated content types the server accepts
        * @deprecated
