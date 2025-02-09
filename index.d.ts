@@ -6,7 +6,7 @@ type AnyString = string & {}
 type Booleanish = boolean | 'true' | 'false'
 type Numeric = number | `${number}`
 
-type JSXElement =
+type JsxElement =
   | Element
   | DocumentFragment
   | Text
@@ -19,8 +19,13 @@ type Child =
   | false
   | null
   | undefined
-  | JSXElement
+  | JsxElement
   | Child[]
+
+export interface JsxAttr {
+  readonly $: Set<Attr>
+  value(value: string): void
+}
 
 export interface RefObject<T> {
   readonly current: T
@@ -60,6 +65,7 @@ export declare const extensions: Map<
 export declare const svgNs = 'http://www.w3.org/2000/svg';
 export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
+export declare function useAttr(value: string): JsxAttr
 export declare function useRef<T = any>(current?: T): RefObject<T>
 export declare function useText<T = string>(initContent?: T): readonly [
   Text,
@@ -480,10 +486,10 @@ export interface AriaAttributes {
 
 declare global {
   namespace JSX {
-    type Element = JSXElement
+    type Element = JsxElement
     interface ElementChildrenAttribute { children: {} }
 
-    type FC<P = {}> = (props: PropsWithChildren<P>) => JSXElement | null
+    type FC<P = {}> = (props: PropsWithChildren<P>) => JsxElement | null
     type Ref<T = unknown> = RefCallback<T> | RefObject<T>
 
     type AnimationEventListener<T = globalThis.Element> = EvHandler<AnimationEvent, T>
@@ -508,8 +514,8 @@ declare global {
     type WheelEventListener<T = globalThis.Element> = EvHandler<WheelEvent, T>
 
     interface Attributes {
-      accessKey?: string
-      class?: string
+      accessKey?: string | JsxAttr
+      class?: string | JsxAttr
       /**
        * Making document regions editable
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable
@@ -527,7 +533,7 @@ declare global {
        */
       draggable?: 'true' | 'false'
       hidden?: boolean | 'hidden' | 'until-found' | ''
-      id?: string
+      id?: string | JsxAttr
       inert?: boolean | ''
       lang?: string
       slot?: string
@@ -1051,7 +1057,7 @@ declare global {
       /** @deprecated */
       stemv?: Numeric
       stitchTiles?: 'noStitch' | 'stitch'
-      'stop-color'?: Property.StopColor
+      'stop-color'?: Property.StopColor | JsxAttr
       'stop-opacity'?: Property.StopOpacity
       'strikethrough-position'?: Numeric
       'strikethrough-thickness'?: Numeric
