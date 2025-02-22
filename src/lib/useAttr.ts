@@ -9,7 +9,7 @@ class JsxAttr extends _JsxAttr {
     this.v = value;
   }
 
-  _(node, attr) {
+  _(node: Element, attr) {
     node.setAttributeNode(attr = document.createAttribute(attr));
     attr.value = this.v;
     this.$.add(attr);

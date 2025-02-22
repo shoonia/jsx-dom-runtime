@@ -119,163 +119,163 @@ export type CrossOrigin = boolean | '' | 'anonymous' | 'use-credentials'
 
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
-  'aria-activedescendant'?: string
+  'aria-activedescendant'?: string | JsxAttr
   /** Indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the aria-relevant attribute. */
-  'aria-atomic'?: Booleanish
+  'aria-atomic'?: Booleanish | JsxAttr
   /**
    * Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be
    * presented if they are made.
    */
-  'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both'
+  'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both' | JsxAttr
   /**
    * Defines a string value that labels the current element, which is intended to be converted into Braille.
    * @see aria-label.
    */
-  'aria-braillelabel'?: string
+  'aria-braillelabel'?: string | JsxAttr
   /**
    * Defines a human-readable, author-localized abbreviated description for the role of an element, which is intended to be converted into Braille.
    * @see aria-roledescription.
    */
-  'aria-brailleroledescription'?: string
+  'aria-brailleroledescription'?: string | JsxAttr
   /** Indicates an element is being modified and that assistive technologies MAY want to wait until the modifications are complete before exposing them to the user. */
-  'aria-busy'?: Booleanish
+  'aria-busy'?: Booleanish | JsxAttr
   /**
    * Indicates the current "checked" state of checkboxes, radio buttons, and other widgets.
    * @see aria-pressed @see aria-selected.
    */
-  'aria-checked'?: Booleanish | 'mixed'
+  'aria-checked'?: Booleanish | 'mixed' | JsxAttr
   /**
    * Defines the total number of columns in a table, grid, or treegrid.
    * @see aria-colindex.
    */
-  'aria-colcount'?: Numeric
+  'aria-colcount'?: Numeric | JsxAttr
   /**
    * Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid.
    * @see aria-colcount @see aria-colspan.
    */
-  'aria-colindex'?: Numeric
+  'aria-colindex'?: Numeric | JsxAttr
   /**
    * Defines a human readable text alternative of aria-colindex.
    * @see aria-rowindextext.
    */
-  'aria-colindextext'?: string
+  'aria-colindextext'?: string | JsxAttr
   /**
    * Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.
    * @see aria-colindex @see aria-rowspan.
    */
-  'aria-colspan'?: Numeric
+  'aria-colspan'?: Numeric | JsxAttr
   /**
    * Identifies the element (or elements) whose contents or presence are controlled by the current element.
    * @see aria-owns.
    */
-  'aria-controls'?: string
+  'aria-controls'?: string | JsxAttr
   /** Indicates the element that represents the current item within a container or set of related elements. */
-  'aria-current'?: Booleanish | 'page' | 'step' | 'location' | 'date' | 'time'
+  'aria-current'?: Booleanish | 'page' | 'step' | 'location' | 'date' | 'time' | JsxAttr
   /**
    * Identifies the element (or elements) that describes the object.
    * @see aria-labelledby
    */
-  'aria-describedby'?: string
+  'aria-describedby'?: string | JsxAttr
   /**
    * Defines a string value that describes or annotates the current element.
    * @see related aria-describedby.
    */
-  'aria-description'?: string
+  'aria-description'?: string | JsxAttr
   /**
    * Identifies the element that provides a detailed, extended description for the object.
    * @see aria-describedby.
    */
-  'aria-details'?: string
+  'aria-details'?: string | JsxAttr
   /**
    * Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable.
    * @see aria-hidden @see aria-readonly.
    */
-  'aria-disabled'?: Booleanish
+  'aria-disabled'?: Booleanish | JsxAttr
   /**
    * Indicates what functions can be performed when a dragged object is released on the drop target.
    * @deprecated in ARIA 1.1
    */
-  'aria-dropeffect'?: 'none' | 'copy' | 'execute' | 'link' | 'move' | 'popup'
+  'aria-dropeffect'?: 'none' | 'copy' | 'execute' | 'link' | 'move' | 'popup' | JsxAttr
   /**
    * Identifies the element that provides an error message for the object.
    * @see aria-invalid @see aria-describedby.
    */
-  'aria-errormessage'?: string
+  'aria-errormessage'?: string | JsxAttr
   /** Indicates whether the element, or another grouping element it controls, is currently expanded or collapsed. */
-  'aria-expanded'?: Booleanish
+  'aria-expanded'?: Booleanish | JsxAttr
   /**
    * Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion,
    * allows assistive technology to override the general default of reading in document source order.
    */
-  'aria-flowto'?: string
+  'aria-flowto'?: string | JsxAttr
   /**
    * Indicates an element's "grabbed" state in a drag-and-drop operation.
    * @deprecated in ARIA 1.1
    */
-  'aria-grabbed'?: Booleanish
+  'aria-grabbed'?: Booleanish | JsxAttr
 
   /** Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by an element. */
-  'aria-haspopup'?: Booleanish | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
+  'aria-haspopup'?: Booleanish | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog' | JsxAttr
   /**
    * Indicates whether the element is exposed to an accessibility API.
    * @see aria-disabled.
    */
-  'aria-hidden'?: Booleanish
+  'aria-hidden'?: Booleanish | JsxAttr
   /**
    * Indicates the entered value does not conform to the format expected by the application.
    * @see aria-errormessage.
    */
-  'aria-invalid'?: Booleanish | 'grammar' | 'spelling'
+  'aria-invalid'?: Booleanish | 'grammar' | 'spelling' | JsxAttr
   /** Indicates keyboard shortcuts that an author has implemented to activate or give focus to an element. */
-  'aria-keyshortcuts'?: string
+  'aria-keyshortcuts'?: string | JsxAttr
   /**
    * Defines a string value that labels the current element.
    * @see aria-labelledby.
    */
-  'aria-label'?: string
+  'aria-label'?: string | JsxAttr
   /**
    * Identifies the element (or elements) that labels the current element.
    * @see aria-describedby.
    */
-  'aria-labelledby'?: string
+  'aria-labelledby'?: string | JsxAttr
   /** Defines the hierarchical level of an element within a structure. */
-  'aria-level'?: Numeric
+  'aria-level'?: Numeric | JsxAttr
   /** Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region. */
-  'aria-live'?: 'off' | 'assertive' | 'polite'
+  'aria-live'?: 'off' | 'assertive' | 'polite' | JsxAttr
   /** Indicates whether an element is modal when displayed. */
-  'aria-modal'?: Booleanish
+  'aria-modal'?: Booleanish | JsxAttr
   /** Indicates whether a text box accepts multiple lines of input or only a single line. */
-  'aria-multiline'?: Booleanish
+  'aria-multiline'?: Booleanish | JsxAttr
   /** Indicates that the user may select more than one item from the current selectable descendants. */
-  'aria-multiselectable'?: Booleanish
+  'aria-multiselectable'?: Booleanish | JsxAttr
   /** Indicates whether the element's orientation is horizontal, vertical, or unknown/ambiguous. */
-  'aria-orientation'?: 'horizontal' | 'vertical'
+  'aria-orientation'?: 'horizontal' | 'vertical' | JsxAttr
   /**
    * Identifies an element (or elements) in order to define a visual, functional, or contextual parent/child relationship
    * between DOM elements where the DOM hierarchy cannot be used to represent the relationship.
    * @see aria-controls.
    */
-  'aria-owns'?: string
+  'aria-owns'?: string | JsxAttr
   /**
    * Defines a short hint (a word or short phrase) intended to aid the user with data entry when the control has no value.
    * A hint could be a sample value or a brief description of the expected format.
    */
-  'aria-placeholder'?: string
+  'aria-placeholder'?: string | JsxAttr
   /**
    * Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
    * @see aria-setsize.
    */
-  'aria-posinset'?: Numeric
+  'aria-posinset'?: Numeric | JsxAttr
   /**
    * Indicates the current "pressed" state of toggle buttons.
    * @see aria-checked @see aria-selected.
    */
-  'aria-pressed'?: Booleanish | 'mixed'
+  'aria-pressed'?: Booleanish | 'mixed' | JsxAttr
   /**
    * Indicates that the element is not editable, but is otherwise operable.
    * @see aria-disabled.
    */
-  'aria-readonly'?: Booleanish
+  'aria-readonly'?: Booleanish | JsxAttr
 
   /**
    * Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified.
@@ -292,54 +292,55 @@ export interface AriaAttributes {
   | 'text'
   | 'text additions'
   | 'text removals'
+  | JsxAttr
 
   /** Indicates that user input is required on the element before a form may be submitted. */
-  'aria-required'?: Booleanish
+  'aria-required'?: Booleanish | JsxAttr
   /** Defines a human-readable, author-localized description for the role of an element. */
-  'aria-roledescription'?: string
+  'aria-roledescription'?: string | JsxAttr
   /**
    * Defines the total number of rows in a table, grid, or treegrid.
    * @see aria-rowindex.
    */
-  'aria-rowcount'?: Numeric
+  'aria-rowcount'?: Numeric | JsxAttr
   /**
    * Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid.
    * @see aria-rowcount @see aria-rowspan.
    */
-  'aria-rowindex'?: Numeric
+  'aria-rowindex'?: Numeric | JsxAttr
   /**
    * Defines a human readable text alternative of aria-rowindex.
    * @see aria-colindextext.
    */
-  'aria-rowindextext'?: string
+  'aria-rowindextext'?: string | JsxAttr
   /**
    * Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.
    * @see aria-rowindex @see aria-colspan.
    */
-  'aria-rowspan'?: Numeric
+  'aria-rowspan'?: Numeric | JsxAttr
   /**
    * Indicates the current "selected" state of various widgets.
    * @see aria-checked @see aria-pressed.
    */
-  'aria-selected'?: Booleanish
+  'aria-selected'?: Booleanish | JsxAttr
   /**
    * Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
    * @see aria-posinset.
    */
-  'aria-setsize'?: Numeric
+  'aria-setsize'?: Numeric | JsxAttr
   /** Indicates if items in a table or grid are sorted in ascending or descending order. */
-  'aria-sort'?: 'none' | 'ascending' | 'descending' | 'other'
+  'aria-sort'?: 'none' | 'ascending' | 'descending' | 'other' | JsxAttr
   /** Defines the maximum allowed value for a range widget. */
-  'aria-valuemax'?: Numeric
+  'aria-valuemax'?: Numeric | JsxAttr
   /** Defines the minimum allowed value for a range widget. */
-  'aria-valuemin'?: Numeric
+  'aria-valuemin'?: Numeric | JsxAttr
   /**
    * Defines the current value for a range widget.
    * @see aria-valuetext.
    */
-  'aria-valuenow'?: Numeric
+  'aria-valuenow'?: Numeric | JsxAttr
   /** Defines the human readable text alternative of aria-valuenow for a range widget. */
-  'aria-valuetext'?: string
+  'aria-valuetext'?: string | JsxAttr
   /**
    * All the WAI-ARIA 1.2 role attribute values
    * @see https://www.w3.org/TR/wai-aria-1.2/#role_definitions
@@ -482,6 +483,7 @@ export interface AriaAttributes {
   | 'doc-subtitle'
   | 'doc-tip'
   | 'doc-toc'
+  | JsxAttr
 }
 
 declare global {
@@ -525,27 +527,27 @@ declare global {
        * This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes
        * @deprecated
        */
-      contextMenu?: string
-      dir?: 'ltr' | 'rtl' | 'auto'
+      contextMenu?: string | JsxAttr
+      dir?: 'ltr' | 'rtl' | 'auto' | JsxAttr
       /**
        * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<img draggable>` is forbidden. The correct usage is `<img draggable="true">`
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
        */
-      draggable?: 'true' | 'false'
+      draggable?: 'true' | 'false' | JsxAttr
       hidden?: boolean | 'hidden' | 'until-found' | ''
       id?: string | JsxAttr
       inert?: boolean | ''
-      lang?: string
+      lang?: string | JsxAttr
       slot?: string
       /**
        * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<input spellcheck>` is forbidden. The correct usage is `<input spellcheck="true">`
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
        */
-      spellcheck?: 'true' | 'false'
+      spellcheck?: 'true' | 'false' | JsxAttr
       style?: string | CSSProperties
       tabIndex?: Numeric
-      title?: string
-      translate?: 'yes' | 'no'
+      title?: string | JsxAttr
+      translate?: 'yes' | 'no' | JsxAttr
       // Unknown
       radioGroup?: string // <command>, <menuitem>
       // RDFa Attributes

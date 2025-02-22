@@ -20,7 +20,7 @@ describe('useAttr', () => {
 
   it('should create a few attributes', () => {
     const data = useAttr('foo');
-    const div = <div data-one={data} data-two={data}  /> as HTMLDivElement;
+    const div = <div data-one={data} data-two={data} /> as HTMLDivElement;
 
     expect(div).toHaveOuterHTML('<div data-one="foo" data-two="foo"></div>');
     data.value('bar');
