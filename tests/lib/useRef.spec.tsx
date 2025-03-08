@@ -2,7 +2,7 @@ import { jest } from '@jest/globals';
 
 import { useRef } from 'jsx-dom-runtime';
 
-describe('ref', () => {
+describe('useRef', () => {
   it('should run callback ref when it is a function', () => {
     const spy: JSX.Ref<HTMLElement> = jest.fn();
 

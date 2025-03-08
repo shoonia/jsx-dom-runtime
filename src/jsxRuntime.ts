@@ -2,6 +2,8 @@
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
+class _JsxAttr {}
+
 const properties = new Set([
   'value',
 ]);
@@ -66,6 +68,9 @@ const jsx = (tag, props) => {
 
       if (extensions.has(key)) {
         extensions.get(key)(node, value, key);
+      } else if (value instanceof _JsxAttr) {
+        // @ts-expect-error
+        value._(node, key);
       } else if (properties.has(key) || key.startsWith('on')) {
         node[key] = value;
       } else if (value != null) {
@@ -96,4 +101,5 @@ export {
   extensions,
   svgNs,
   mathmlNs,
+  _JsxAttr,
 };
