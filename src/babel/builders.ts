@@ -19,13 +19,13 @@ export const $objectProperty = (key: t.Identifier | t.StringLiteral, value: t.Ex
   decorators: null,
 });
 
-export const $children = (elements: (t.JSXSpreadChild | t.Expression)[]): t.Expression =>
+export const $children = (elements: (t.JSXSpreadChild | t.Expression)[]) =>
   elements.length === 1
-    ? elements[0] as any
+    ? elements[0] as t.Expression
     : {
       type: 'ArrayExpression',
       elements,
-    };
+    } as t.Expression;
 
 export const $pureAnnotation = (): [t.CommentBlock] => [
   {
