@@ -129,6 +129,8 @@ export const eventTypes = new Set([
   'focusin', 'focusout',
   // WebGLContextEvent
   'webglcontextlost', 'webglcontextrestored', 'webglcontextcreationerror',
+  // CommandEvent
+  'command',
 ]);
 
 export const attributes = new Set([

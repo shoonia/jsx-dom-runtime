@@ -70,6 +70,14 @@ export declare function parseFromString(html: string): DocumentFragment
 export declare function Fragment(children?: Child | Child[]): DocumentFragment
 export declare function Template(props: { children: string }): DocumentFragment
 
+/** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent) */
+interface CommandEvent extends Event {
+	/** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent/source) */
+	readonly source: Element | null;
+	/** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent/command) */
+	readonly command: string;
+}
+
 export interface CurrentTarget<T> {
   readonly currentTarget: EventTarget & T
 }
@@ -506,6 +514,7 @@ declare global {
     type UIEventListener<T = globalThis.Element> = EvHandler<UIEvent, T>
     type WebGLContextEventListener<T = globalThis.Element> = EvHandler<WebGLContextEvent, T>
     type WheelEventListener<T = globalThis.Element> = EvHandler<WheelEvent, T>
+    type CommandEventListener<T = globalThis.Element> = EvHandler<CommandEvent, T>
 
     interface Attributes {
       accessKey?: string
@@ -822,6 +831,8 @@ declare global {
       // ContentVisibilityAutoStateChangeEvent
       oncontentvisibilityautostatechange?: GenericEventHandler<T>
       'on:contentVisibilityAutoStateChange'?: EventListener<T>
+      // CommandEvent
+      'on:command'?: CommandEventListener<T>
     }
 
     interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
@@ -1367,6 +1378,21 @@ declare global {
       value?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
+      /**
+       * Specifies the action to be performed on an element being controlled by a control `<button>`, specified via the `commandfor` attribute.
+       */
+      command?:
+      | 'show-modal'
+      | 'close'
+      | 'request-close'
+      | 'show-popover'
+      | 'hide-popover'
+      | 'toggle-popover'
+      | `--${string}`
+      /**
+       * Turns a <button> element into a command button, controlling the given interactive element; takes the ID of the element to control as its value. This is a more general version of `popovertarget`.
+       */
+      commandfor?: string
     }
 
     interface HTMLCanvasElementAttributes extends HTMLAttributes<HTMLCanvasElement> {
