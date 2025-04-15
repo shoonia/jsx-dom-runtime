@@ -12,7 +12,7 @@ type JSXElement =
   | Text
   | Comment
 
-type Child =
+type JSXChild =
   | string
   | number
   | bigint
@@ -20,7 +20,7 @@ type Child =
   | null
   | undefined
   | JSXElement
-  | Child[]
+  | JSXChild[]
 
 export interface RefObject<T> {
   readonly current: T
@@ -28,7 +28,7 @@ export interface RefObject<T> {
 
 export type RefCallback<T> = (instance: T) => void
 
-export type PropsWithChildren<P> = P & { children?: Child | Child[] }
+export type PropsWithChildren<P> = P & { children?: JSXChild | JSXChild[] }
 
 export declare function jsx<
   K extends keyof JSX.IntrinsicElements | AnyString,
@@ -67,7 +67,7 @@ export declare function useText<T = string>(initContent?: T): readonly [
 ]
 
 export declare function parseFromString(html: string): DocumentFragment
-export declare function Fragment(children?: Child | Child[]): DocumentFragment
+export declare function Fragment(children?: JSXChild | JSXChild[]): DocumentFragment
 export declare function Template(props: { children: string }): DocumentFragment
 
 /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent) */
@@ -616,7 +616,7 @@ declare global {
       _?: string
       $?: Record<string, EventListener<T>>
       ref?: Ref<T> | false | null | undefined | (Ref<T> | false | null | undefined)[]
-      children?: Child | Child[]
+      children?: JSXChild | JSXChild[]
       // ClipboardEvent
       oncopy?: ClipboardEventHandler<T>
       'on:copy'?: ClipboardEventListener<T>
