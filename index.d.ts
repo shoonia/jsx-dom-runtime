@@ -78,37 +78,37 @@ interface CommandEvent extends Event {
   readonly command: CommandEventType;
 }
 
-export interface CurrentTarget<T> {
+interface CurrentTarget<T> {
   readonly currentTarget: EventTarget & T
 }
 
-export interface EventHandlerObject<Ev = Event, T = Element> {
-  handleEvent(event: Ev & CurrentTarget<T>): void
+export interface EventHandlerObject<E = Event, T = Element> {
+  handleEvent(event: E & CurrentTarget<T>): void
 }
 
-type EventHandler<Ev, T> = (this: T, event: Ev & CurrentTarget<T>) => void
-type EvHandler<Ev, T> = EventHandler<Ev, T> | EventHandlerObject<Ev, T>
+type EventHandlerFunction<E, T> = (this: T, event: E & CurrentTarget<T>) => void
+type EventHandler<E, T> = EventHandlerFunction<E, T> | EventHandlerObject<E, T>
 
-export type AnimationEventHandler<T = Element> = EventHandler<AnimationEvent, T>
-export type ClipboardEventHandler<T = Element> = EventHandler<ClipboardEvent, T>
-export type CompositionEventHandler<T = Element> = EventHandler<CompositionEvent, T>
-export type DragEventHandler<T = Element> = EventHandler<DragEvent, T>
-export type FocusEventHandler<T = Element> = EventHandler<FocusEvent, T>
-export type FormDataEventHandler<T = Element> = EventHandler<FormDataEvent, T>
-export type GenericEventHandler<T = Element> = EventHandler<Event, T>
-export type InputEventHandler<T = Element> = EventHandler<InputEvent, T>
-export type KeyboardEventHandler<T = Element> = EventHandler<KeyboardEvent, T>
-export type MediaEncryptedEventHandler<T = Element> = EventHandler<MediaEncryptedEvent, T>
-export type MouseEventHandler<T = Element> = EventHandler<MouseEvent, T>
-export type PictureInPictureEventHandler<T = Element> = EventHandler<PictureInPictureEvent, T>
-export type PointerEventHandler<T = Element> = EventHandler<PointerEvent, T>
-export type SubmitEventHandler<T = Element> = EventHandler<SubmitEvent, T>
-export type ToggleEventHandler<T = Element> = EventHandler<ToggleEvent, T>
-export type TouchEventHandler<T = Element> = EventHandler<TouchEvent, T>
-export type TransitionEventHandler<T = Element> = EventHandler<TransitionEvent, T>
-export type UIEventHandler<T = Element> = EventHandler<UIEvent, T>
-export type WebGLContextEventHandler<T = Element> = EventHandler<WebGLContextEvent, T>
-export type WheelEventHandler<T = Element> = EventHandler<WheelEvent, T>
+export type AnimationEventHandler<T = Element> = EventHandlerFunction<AnimationEvent, T>
+export type ClipboardEventHandler<T = Element> = EventHandlerFunction<ClipboardEvent, T>
+export type CompositionEventHandler<T = Element> = EventHandlerFunction<CompositionEvent, T>
+export type DragEventHandler<T = Element> = EventHandlerFunction<DragEvent, T>
+export type FocusEventHandler<T = Element> = EventHandlerFunction<FocusEvent, T>
+export type FormDataEventHandler<T = Element> = EventHandlerFunction<FormDataEvent, T>
+export type GenericEventHandler<T = Element> = EventHandlerFunction<Event, T>
+export type InputEventHandler<T = Element> = EventHandlerFunction<InputEvent, T>
+export type KeyboardEventHandler<T = Element> = EventHandlerFunction<KeyboardEvent, T>
+export type MediaEncryptedEventHandler<T = Element> = EventHandlerFunction<MediaEncryptedEvent, T>
+export type MouseEventHandler<T = Element> = EventHandlerFunction<MouseEvent, T>
+export type PictureInPictureEventHandler<T = Element> = EventHandlerFunction<PictureInPictureEvent, T>
+export type PointerEventHandler<T = Element> = EventHandlerFunction<PointerEvent, T>
+export type SubmitEventHandler<T = Element> = EventHandlerFunction<SubmitEvent, T>
+export type ToggleEventHandler<T = Element> = EventHandlerFunction<ToggleEvent, T>
+export type TouchEventHandler<T = Element> = EventHandlerFunction<TouchEvent, T>
+export type TransitionEventHandler<T = Element> = EventHandlerFunction<TransitionEvent, T>
+export type UIEventHandler<T = Element> = EventHandlerFunction<UIEvent, T>
+export type WebGLContextEventHandler<T = Element> = EventHandlerFunction<WebGLContextEvent, T>
+export type WheelEventHandler<T = Element> = EventHandlerFunction<WheelEvent, T>
 
 export interface CSSProperties extends Properties<number | string> {
   cssText?: string | null
@@ -502,27 +502,27 @@ declare global {
     type FC<P = {}> = (props: PropsWithChildren<P>) => JSXElement | null
     type Ref<T = unknown> = RefCallback<T> | RefObject<T>
 
-    type AnimationEventListener<T = globalThis.Element> = EvHandler<AnimationEvent, T>
-    type ClipboardEventListener<T = globalThis.Element> = EvHandler<ClipboardEvent, T>
-    type CompositionEventListener<T = globalThis.Element> = EvHandler<CompositionEvent, T>
-    type DragEventListener<T = globalThis.Element> = EvHandler<DragEvent, T>
-    type EventListener<T = globalThis.Element> = EvHandler<Event, T>
-    type FocusEventListener<T = globalThis.Element> = EvHandler<FocusEvent, T>
-    type FormDataEventListener<T = globalThis.Element> = EvHandler<FormDataEvent, T>
-    type InputEventListener<T = globalThis.Element> = EvHandler<InputEvent, T>
-    type KeyboardEventListener<T = globalThis.Element> = EvHandler<KeyboardEvent, T>
-    type MediaEncryptedEventListener<T = globalThis.Element> = EvHandler<MediaEncryptedEvent, T>
-    type MouseEventListener<T = globalThis.Element> = EvHandler<MouseEvent, T>
-    type PictureInPictureEventListener<T = globalThis.Element> = EvHandler<PictureInPictureEvent, T>
-    type PointerEventListener<T = globalThis.Element> = EvHandler<PointerEvent, T>
-    type SubmitEventListener<T = globalThis.Element> = EvHandler<SubmitEvent, T>
-    type ToggleEventListener<T = globalThis.Element> = EvHandler<ToggleEvent, T>
-    type TouchEventListener<T = globalThis.Element> = EvHandler<TouchEvent, T>
-    type TransitionEventListener<T = globalThis.Element> = EvHandler<TransitionEvent, T>
-    type UIEventListener<T = globalThis.Element> = EvHandler<UIEvent, T>
-    type WebGLContextEventListener<T = globalThis.Element> = EvHandler<WebGLContextEvent, T>
-    type WheelEventListener<T = globalThis.Element> = EvHandler<WheelEvent, T>
-    type CommandEventListener<T = globalThis.Element> = EvHandler<CommandEvent, T>
+    type AnimationEventListener<T = globalThis.Element> = EventHandler<AnimationEvent, T>
+    type ClipboardEventListener<T = globalThis.Element> = EventHandler<ClipboardEvent, T>
+    type CompositionEventListener<T = globalThis.Element> = EventHandler<CompositionEvent, T>
+    type DragEventListener<T = globalThis.Element> = EventHandler<DragEvent, T>
+    type EventListener<T = globalThis.Element> = EventHandler<Event, T>
+    type FocusEventListener<T = globalThis.Element> = EventHandler<FocusEvent, T>
+    type FormDataEventListener<T = globalThis.Element> = EventHandler<FormDataEvent, T>
+    type InputEventListener<T = globalThis.Element> = EventHandler<InputEvent, T>
+    type KeyboardEventListener<T = globalThis.Element> = EventHandler<KeyboardEvent, T>
+    type MediaEncryptedEventListener<T = globalThis.Element> = EventHandler<MediaEncryptedEvent, T>
+    type MouseEventListener<T = globalThis.Element> = EventHandler<MouseEvent, T>
+    type PictureInPictureEventListener<T = globalThis.Element> = EventHandler<PictureInPictureEvent, T>
+    type PointerEventListener<T = globalThis.Element> = EventHandler<PointerEvent, T>
+    type SubmitEventListener<T = globalThis.Element> = EventHandler<SubmitEvent, T>
+    type ToggleEventListener<T = globalThis.Element> = EventHandler<ToggleEvent, T>
+    type TouchEventListener<T = globalThis.Element> = EventHandler<TouchEvent, T>
+    type TransitionEventListener<T = globalThis.Element> = EventHandler<TransitionEvent, T>
+    type UIEventListener<T = globalThis.Element> = EventHandler<UIEvent, T>
+    type WebGLContextEventListener<T = globalThis.Element> = EventHandler<WebGLContextEvent, T>
+    type WheelEventListener<T = globalThis.Element> = EventHandler<WheelEvent, T>
+    type CommandEventListener<T = globalThis.Element> = EventHandler<CommandEvent, T>
 
     interface Attributes {
       accessKey?: string
