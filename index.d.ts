@@ -72,10 +72,10 @@ export declare function Template(props: { children: string }): DocumentFragment
 
 /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent) */
 interface CommandEvent extends Event {
-	/** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent/source) */
-	readonly source: Element | null;
-	/** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent/command) */
-	readonly command: string;
+  /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent/source) */
+  readonly source: Element | null;
+  /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent/command) */
+  readonly command: CommandEventType;
 }
 
 export interface CurrentTarget<T> {
@@ -118,6 +118,14 @@ export interface CSSProperties extends Properties<number | string> {
 export type ControlsList = 'nodownload' | 'nofullscreen' | 'noremoteplayback'
 export type Target = '_self' | '_parent' | '_top' | '_blank' | '_unfencedTop' | AnyString
 export type CrossOrigin = boolean | '' | 'anonymous' | 'use-credentials'
+export type CommandEventType =
+  | 'show-modal'
+  | 'close'
+  | 'request-close'
+  | 'show-popover'
+  | 'hide-popover'
+  | 'toggle-popover'
+  | `--${string}`
 
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
@@ -1381,14 +1389,7 @@ declare global {
       /**
        * Specifies the action to be performed on an element being controlled by a control `<button>`, specified via the `commandfor` attribute.
        */
-      command?:
-      | 'show-modal'
-      | 'close'
-      | 'request-close'
-      | 'show-popover'
-      | 'hide-popover'
-      | 'toggle-popover'
-      | `--${string}`
+      command?: CommandEventType
       /**
        * Turns a <button> element into a command button, controlling the given interactive element; takes the ID of the element to control as its value. This is a more general version of `popovertarget`.
        */
