@@ -11,6 +11,7 @@
     "jsxImportSource": "jsx-dom-runtime",
     "strict": true,
     "noImplicitAny": true,
+    "skipLibCheck": true,
     "lib": [
       "ES2024",
       "DOM"
