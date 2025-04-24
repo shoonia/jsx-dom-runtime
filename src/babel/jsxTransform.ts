@@ -153,22 +153,22 @@ export const jsxTransform: PluginObj = {
       const attrName = attribute.name;
 
       if (attrName.type === 'JSXNamespacedName') {
-        if (
-          attrName.namespace.name === 'on' &&
-          attrValue.type === 'JSXExpressionContainer'
-        ) {
+        const directive = attrName.namespace.name;
+
+        if (directive === 'on' && attrValue.type === 'JSXExpressionContainer') {
           eventListener(openingElement, attrName.name, attrValue);
           path.remove();
+        }
+
+        else if (directive === 'attr') {
+          attribute.name = attrName.name;
         }
 
         else if (isCustomElement) {
           return;
         }
 
-        else if (
-          attrName.name.name === 'href' &&
-          attrName.namespace.name === 'xlink'
-        ) {
+        else if (directive === 'xlink' && attrName.name.name === 'href') {
           attribute.name = attrName.name;
         }
 
