@@ -1,5 +1,6 @@
 import type { PluginObj, NodePath } from '@babel/core';
 import t from '@babel/types';
+import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { type TImportName, ImportSpec } from './ImportSpec';
 import { eventListener } from './events';
@@ -10,6 +11,7 @@ import {
   $objectProperty,
   $stringLiteral,
   $pureAnnotation,
+  $jsxIdentifier,
 } from './builders';
 import {
   enumerated,
@@ -179,7 +181,7 @@ export const jsxTransform: PluginObj = {
         else if (directive === 'attr') {
           const e = $identifier('e');
 
-          attribute.name = { type: 'JSXIdentifier', name: 'ref' };
+          attribute.name = $jsxIdentifier('ref');
           attribute.value = {
             type: 'JSXExpressionContainer',
             expression: {
@@ -199,6 +201,37 @@ export const jsxTransform: PluginObj = {
                     ? attrValue.expression as t.Expression
                     : attrValue
                 ],
+              },
+              async: false,
+              expression: false,
+            },
+          };
+        }
+
+        else if (directive === 'prop') {
+          const e = $identifier('e');
+          const isIdent = isIdentifierName(attrName.name.name);
+
+          attribute.name = $jsxIdentifier('ref');
+          attribute.value = {
+            type: 'JSXExpressionContainer',
+            expression: {
+              type: 'ArrowFunctionExpression',
+              params: [e],
+              body: {
+                type: 'AssignmentExpression',
+                operator: '=',
+                left: {
+                  type: 'MemberExpression',
+                  object: e,
+                  property: isIdent
+                    ? $identifier(attrName.name.name)
+                    : $stringLiteral(attrName.name.name),
+                  computed: !isIdent,
+                },
+                right: attrValue.type === 'JSXExpressionContainer'
+                  ? attrValue.expression as t.Expression
+                  : attrValue,
               },
               async: false,
               expression: false,

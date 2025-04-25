@@ -622,6 +622,7 @@ declare global {
 
     interface HTMLAttributes<T> extends AriaAttributes, Attributes {
       [key: `attr:${string}`]: string | number | bigint | null | undefined
+      [key: `prop:${string}`]: any
       _?: string
       $?: Record<string, EventListener<T>>
       ref?: Ref<T> | false | null | undefined | (Ref<T> | false | null | undefined)[]

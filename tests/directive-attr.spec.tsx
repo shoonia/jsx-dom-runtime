@@ -1,6 +1,6 @@
 import { jsxImport } from './utils';
 
-describe('attr:* directive', () => {
+describe('directive attr:*', () => {
   it('should transform `attr:*` directive with value', async () => {
     await expect('<div attr:foo="bar" />').toBeTransform(
       jsxImport`_jsx("div",{ref:e=>e.setAttribute("foo","bar")});`
