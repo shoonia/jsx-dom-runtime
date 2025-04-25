@@ -1,5 +1,7 @@
 import { jest } from '@jest/globals';
 
+import { jsxImport } from './utils';
+
 describe('ref', () => {
   it('should work with function ref', () => {
     const ref = jest.fn();
@@ -69,5 +71,28 @@ describe('ref', () => {
     <div ref={[null, undefined, false]} />;
 
     expect(true).toBeTruthy();
+  });
+
+  it('should support multiple refs attributes', () => {
+    const ref1 = jest.fn();
+    const ref2 = jest.fn();
+    const ref3 = jest.fn();
+    const ref4 = {} as JSX.Ref<HTMLDivElement>;
+    const ref5 = {} as JSX.Ref<HTMLDivElement>;
+
+    // @ts-expect-error
+    const div = <div ref={ref1} ref={[ref2]} ref={[ref3, ref4]} ref={ref5} />;
+
+    expect(ref1).toHaveBeenCalledTimes(1);
+    expect(ref2).toHaveBeenCalledTimes(1);
+    expect(ref3).toHaveBeenCalledTimes(1);
+    expect(ref4).toStrictEqual({ current: div });
+    expect(ref5).toStrictEqual({ current: div });
+  });
+
+  it('should join all refs in one property', async () => {
+    expect('<div ref={ref1} ref={[ref2]} ref={[ref3, ref4]} ref={ref5} />').toBeTransform(
+      jsxImport`_jsx("div",{ref:[ref1,[ref2],[ref3,ref4],ref5]});`
+    );
   });
 });

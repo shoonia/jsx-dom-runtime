@@ -30,6 +30,9 @@ const opts = { name: '_' } as const;
 const isFunctionComponent = (name: t.JSXIdentifier): boolean =>
   charCode.has(name.name.charCodeAt(0));
 
+const isRefProperty = (i: t.ObjectMethod | t.ObjectProperty | t.SpreadElement): i is t.ObjectProperty =>
+  i.type === 'ObjectProperty' && i.key.type === 'Identifier' && i.key.name === 'ref';
+
 let nsMap: WeakMap<NodePath, TImportName>;
 let importSpec: ImportSpec;
 
@@ -84,6 +87,19 @@ export const jsxTransform: PluginObj = {
       exit(path) {
         const name = path.node.openingElement.name as t.JSXIdentifier | t.JSXNamespacedName;
         const props = buildProps(path.node);
+        const refs = props.properties.filter(isRefProperty);
+
+        if (refs.length > 1) {
+          props.properties = props.properties.filter((i) => !isRefProperty(i));
+          props.properties.push(
+            $objectProperty(
+              $identifier('ref'),
+              {
+                type: 'ArrayExpression',
+                elements: refs.map((i) => i.value as t.Expression),
+              }),
+          );
+        }
 
         const noNs = props.properties.every((i: t.ObjectProperty) =>
           !t.isIdentifier(i.key, opts),
@@ -161,7 +177,33 @@ export const jsxTransform: PluginObj = {
         }
 
         else if (directive === 'attr') {
-          attribute.name = attrName.name;
+          const e = $identifier('e');
+
+          attribute.name = { type: 'JSXIdentifier', name: 'ref' };
+          attribute.value = {
+            type: 'JSXExpressionContainer',
+            expression: {
+              type: 'ArrowFunctionExpression',
+              params: [e],
+              body: {
+                type: 'CallExpression',
+                callee: {
+                  type: 'MemberExpression',
+                  object: e,
+                  property: $identifier('setAttribute'),
+                  computed: false,
+                },
+                arguments: [
+                  $stringLiteral(attrName.name.name),
+                  attrValue.type === 'JSXExpressionContainer'
+                    ? attrValue.expression as t.Expression
+                    : attrValue
+                ],
+              },
+              async: false,
+              expression: false,
+            },
+          };
         }
 
         else if (isCustomElement) {
