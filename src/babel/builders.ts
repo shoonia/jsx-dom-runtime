@@ -12,7 +12,12 @@ export const $identifier = (name: string): t.Identifier => ({
 
 export const $jsxIdentifier = (name: string): t.JSXIdentifier => ({
   type: 'JSXIdentifier',
-  name
+  name,
+});
+
+export const $jsxExpressionContainer = (expression: t.Expression | t.JSXEmptyExpression): t.JSXExpressionContainer => ({
+  type: 'JSXExpressionContainer',
+  expression,
 });
 
 export const $objectProperty = (key: t.Identifier | t.StringLiteral, value: t.Expression): t.ObjectProperty => ({

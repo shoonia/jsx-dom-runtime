@@ -12,6 +12,7 @@ import {
   $stringLiteral,
   $pureAnnotation,
   $jsxIdentifier,
+  $jsxExpressionContainer,
 } from './builders';
 import {
   enumerated,
@@ -144,10 +145,7 @@ export const jsxTransform: PluginObj = {
       const attrValue = attribute.value;
 
       if (jsxNode.has(attrValue?.type)) {
-        attribute.value = {
-          type: 'JSXExpressionContainer',
-          expression: attrValue as t.JSXElement,
-        };
+        attribute.value = $jsxExpressionContainer(attrValue as t.JSXElement);
       }
 
       if (
@@ -182,30 +180,27 @@ export const jsxTransform: PluginObj = {
           const e = $identifier('e');
 
           attribute.name = $jsxIdentifier('ref');
-          attribute.value = {
-            type: 'JSXExpressionContainer',
-            expression: {
-              type: 'ArrowFunctionExpression',
-              params: [e],
-              body: {
-                type: 'CallExpression',
-                callee: {
-                  type: 'MemberExpression',
-                  object: e,
-                  property: $identifier('setAttribute'),
-                  computed: false,
-                },
-                arguments: [
-                  $stringLiteral(attrName.name.name),
-                  attrValue.type === 'JSXExpressionContainer'
-                    ? attrValue.expression as t.Expression
-                    : attrValue
-                ],
+          attribute.value = $jsxExpressionContainer({
+            type: 'ArrowFunctionExpression',
+            params: [e],
+            body: {
+              type: 'CallExpression',
+              callee: {
+                type: 'MemberExpression',
+                object: e,
+                property: $identifier('setAttribute'),
+                computed: false,
               },
-              async: false,
-              expression: false,
+              arguments: [
+                $stringLiteral(attrName.name.name),
+                attrValue.type === 'JSXExpressionContainer'
+                  ? attrValue.expression as t.Expression
+                  : attrValue
+              ],
             },
-          };
+            async: false,
+            expression: false,
+          });
         }
 
         else if (directive === 'prop') {
@@ -213,30 +208,27 @@ export const jsxTransform: PluginObj = {
           const isIdent = isIdentifierName(attrName.name.name);
 
           attribute.name = $jsxIdentifier('ref');
-          attribute.value = {
-            type: 'JSXExpressionContainer',
-            expression: {
-              type: 'ArrowFunctionExpression',
-              params: [e],
-              body: {
-                type: 'AssignmentExpression',
-                operator: '=',
-                left: {
-                  type: 'MemberExpression',
-                  object: e,
-                  property: isIdent
-                    ? $identifier(attrName.name.name)
-                    : $stringLiteral(attrName.name.name),
-                  computed: !isIdent,
-                },
-                right: attrValue.type === 'JSXExpressionContainer'
-                  ? attrValue.expression as t.Expression
-                  : attrValue,
+          attribute.value = $jsxExpressionContainer({
+            type: 'ArrowFunctionExpression',
+            params: [e],
+            body: {
+              type: 'AssignmentExpression',
+              operator: '=',
+              left: {
+                type: 'MemberExpression',
+                object: e,
+                property: isIdent
+                  ? $identifier(attrName.name.name)
+                  : $stringLiteral(attrName.name.name),
+                computed: !isIdent,
               },
-              async: false,
-              expression: false,
+              right: attrValue.type === 'JSXExpressionContainer'
+                ? attrValue.expression as t.Expression
+                : attrValue,
             },
-          };
+            async: false,
+            expression: false,
+          });
         }
 
         else if (isCustomElement) {
