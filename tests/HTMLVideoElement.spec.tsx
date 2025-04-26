@@ -110,4 +110,14 @@ describe('HTMLVideoElement', () => {
     const spy = jest.fn();
     expect(<video onresize={spy} />).toHaveProperty('onresize', spy);
   });
+
+  it('should add support of `volume` property', () => {
+    expect(<video prop:volume={0.9} />).not.toHaveAttribute('volume');
+    expect(<video prop:volume={0.9} />).toHaveProperty('volume', 0.9);
+  });
+
+  it('should add support of `muted` property', () => {
+    expect(<video prop:muted />).not.toHaveAttribute('muted');
+    expect(<video prop:muted />).toHaveProperty('muted', true);
+  });
 });
