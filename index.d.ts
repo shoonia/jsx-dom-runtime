@@ -1836,6 +1836,8 @@ declare global {
       'on:encrypted'?: MediaEncryptedEventListener<T>
       onwaitingforkey?: GenericEventHandler<T>
       'on:waitingForKey'?: EventListener<T>
+      /** Causes the media to play with the sound turned off by default. */
+      'prop:muted'?: boolean
     }
 
     interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
