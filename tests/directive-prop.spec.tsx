@@ -19,6 +19,12 @@ describe('directive prop:*', () => {
     );
   });
 
+  it('should transform empty value to `true`', async () => {
+    await expect('<div prop:_someData />').toBeTransform(
+      jsxImport`_jsx("div",{ref:e=>e._someData=true});`
+    );
+  });
+
   it('should render using `prop:*` directive to set properties', () => {
     const div = <div prop:foo="bar" />;
 

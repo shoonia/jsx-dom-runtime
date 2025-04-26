@@ -19,6 +19,12 @@ describe('directive attr:*', () => {
     );
   });
 
+  it('should transform empty value to `true`', async () => {
+    await expect('<div attr:foo />').toBeTransform(
+      jsxImport`_jsx("div",{ref:e=>e.setAttribute("foo",true)});`
+    );
+  });
+
   it('should render using `attr:*` directive to set attributes', () => {
     const div = <div attr:foo="bar" />;
 

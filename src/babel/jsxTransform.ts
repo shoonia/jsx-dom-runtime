@@ -4,7 +4,7 @@ import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { type TImportName, ImportSpec } from './ImportSpec';
 import { eventListener } from './events';
-import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './util';
+import { buildProps, convertJSXAttrValue, convertJSXIdentifier, convertJSXNamespacedName } from './util';
 import {
   $children,
   $identifier,
@@ -193,9 +193,7 @@ export const jsxTransform: PluginObj = {
               },
               arguments: [
                 $stringLiteral(attrName.name.name),
-                attrValue.type === 'JSXExpressionContainer'
-                  ? attrValue.expression as t.Expression
-                  : attrValue
+                convertJSXAttrValue(attrValue)
               ],
             },
             async: false,
@@ -222,9 +220,7 @@ export const jsxTransform: PluginObj = {
                   : $stringLiteral(attrName.name.name),
                 computed: !isIdent,
               },
-              right: attrValue.type === 'JSXExpressionContainer'
-                ? attrValue.expression as t.Expression
-                : attrValue,
+              right: convertJSXAttrValue(attrValue)
             },
             async: false,
             expression: false,
