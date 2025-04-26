@@ -622,6 +622,7 @@ declare global {
 
     interface HTMLAttributes<T> extends AriaAttributes, Attributes {
       [key: `attr:${string}`]: string | number | bigint | null | undefined
+      [key: `prop:${string}`]: any
       _?: string
       $?: Record<string, EventListener<T>>
       ref?: Ref<T> | false | null | undefined | (Ref<T> | false | null | undefined)[]
@@ -1835,6 +1836,13 @@ declare global {
       'on:encrypted'?: MediaEncryptedEventListener<T>
       onwaitingforkey?: GenericEventHandler<T>
       'on:waitingForKey'?: EventListener<T>
+      /** Causes the media to play with the sound turned off by default. */
+      'prop:muted'?: boolean
+      /**
+       * Sets the volume at which the media will be played.
+       * A double values must fall between 0 and 1, where 0 is effectively muted and 1 is the loudest possible value
+       */
+      'prop:volume'?: number
     }
 
     interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {

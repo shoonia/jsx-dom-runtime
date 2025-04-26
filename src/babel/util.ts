@@ -6,6 +6,13 @@ import { $stringLiteral, $identifier, $objectProperty, $children } from './build
 export const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral =>
   $stringLiteral(node.namespace.name + ':' + node.name.name);
 
+export const convertJSXAttrValue = (value: t.JSXAttribute['value']): t.Expression =>
+  value == null
+    ? { type: 'BooleanLiteral', value: true }
+    : value.type === 'JSXExpressionContainer'
+      ? value.expression as t.Expression
+      : value;
+
 export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
   const properties = node.openingElement.attributes.map((attr): t.SpreadElement | t.ObjectProperty => {
     if (attr.type === 'JSXSpreadAttribute') {
@@ -15,11 +22,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
       };
     }
 
-    const value: t.Expression = attr.value === null
-      ? { type: 'BooleanLiteral', value: true }
-      : attr.value.type === 'JSXExpressionContainer'
-        ? attr.value.expression as t.Expression
-        : attr.value;
+    const value = convertJSXAttrValue(attr.value);
 
     if (value.type === 'StringLiteral') {
       value.value = value.value.replace(/\n\s+/g, ' ');

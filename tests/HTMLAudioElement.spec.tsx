@@ -89,4 +89,14 @@ describe('HTMLAudioElement', () => {
     const spy = jest.fn();
     expect(<audio onwaitingforkey={spy} />).toHaveProperty('onwaitingforkey', spy);
   });
+
+  it('should add support of `volume` property', () => {
+    expect(<audio prop:volume={0.9} />).not.toHaveAttribute('volume');
+    expect(<audio prop:volume={0.9} />).toHaveProperty('volume', 0.9);
+  });
+
+  it('should add support of `muted` property', () => {
+    expect(<audio prop:muted />).not.toHaveAttribute('muted');
+    expect(<audio prop:muted />).toHaveProperty('muted', true);
+  });
 });
