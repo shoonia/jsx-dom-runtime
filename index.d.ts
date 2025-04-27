@@ -621,12 +621,16 @@ declare global {
     }
 
     interface HTMLAttributes<T> extends AriaAttributes, Attributes {
-      [key: `attr:${string}`]: string | number | bigint | null | undefined
-      [key: `prop:${string}`]: any
       _?: string
       $?: Record<string, EventListener<T>>
       ref?: Ref<T> | false | null | undefined | (Ref<T> | false | null | undefined)[]
       children?: JSXChild | JSXChild[]
+      // Prop
+      'prop:innerHTML'?: string
+      'prop:textContent'?: string
+      [key: `prop:${string}`]: any
+      // Attr
+      [key: `attr:${string}`]: string | number | bigint | null | undefined
       // ClipboardEvent
       oncopy?: ClipboardEventHandler<T>
       'on:copy'?: ClipboardEventListener<T>
@@ -1388,6 +1392,8 @@ declare global {
       value?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
+      /** Sets the popover element to control via a button */
+      'prop:popoverTargetElement'?: globalThis.Element
       /**
        * Specifies the action to be performed on an element being controlled by a control `<button>`, specified via the `commandfor` attribute.
        */
@@ -1713,6 +1719,26 @@ declare global {
        * @deprecated
        */
       children?: null
+      /**
+       * A string that represents the default value as originally specified in the HTML that created this object.
+       */
+      'prop:defaultValue'?: string
+      /**
+       * A `Date` that represents the value of the element, interpreted as a date, or null if conversion is not possible.
+       */
+      'prop:valueAsDate'?: Date
+      /**
+       * A number that represents the value of the element, interpreted as one of the following, in order: A time value, a number, or `NaN` if conversion is impossible.
+       */
+      'prop:valueAsNumber'?: number
+      /**
+       * Sets the popover element to control via an `<input>` element of `type="button"`
+       */
+      'prop:popoverTargetElement'?: globalThis.Element
+      /**
+       * The `indeterminate` property of the `HTMLInputElement` interface returns a boolean value that indicates whether the checkbox is in the _indeterminate_ state. For example, a "select all/deselect all" checkbox may be in the indeterminate state when some but not all of its sub-controls are checked. The `indeterminate` state can only be set via JavaScript and is only relevant to `checkbox` controls.
+       */
+      'prop:indeterminate'?: boolean
     }
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
