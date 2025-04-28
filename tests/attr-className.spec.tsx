@@ -6,6 +6,11 @@ describe('className / class', () => {
     expect(<aside className="one" />).toHaveOuterHTML('<aside class="one"></aside>');
   });
 
+  it('should have a class property', () => {
+    expect(<aside prop:className="one" />).toHaveClass('one');
+    expect(<aside prop:className="one" />).toHaveOuterHTML('<aside class="one"></aside>');
+  });
+
   it('should have class attributes', () => {
     expect(<i class="a b c" />).toHaveClass('a b c');
   });

@@ -1514,6 +1514,7 @@ declare global {
        */
       accept?: string
       'accept-charset'?: string
+      'prop:acceptCharset'?: string
       action?: string
       autocomplete?: boolean | AutoFillBase
       enctype?: string

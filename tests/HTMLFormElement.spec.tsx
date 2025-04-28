@@ -34,8 +34,13 @@ describe('HTMLFormElement', () => {
   });
 
   it('should have `accept-charset` attribute', () => {
-    expect(<form accept-charset="utf-8" />).toHaveProperty('acceptCharset', 'utf-8');
-    expect(<form accept-charset="utf-8" />).toHaveAttribute('accept-charset', 'utf-8');
+    expect(<form accept-charset="ASCII" />).toHaveProperty('acceptCharset', 'ASCII');
+    expect(<form accept-charset="ASCII" />).toHaveAttribute('accept-charset', 'ASCII');
+  });
+
+  it('should have `acceptCharset` property', () => {
+    expect(<form prop:acceptCharset="ASCII" />).toHaveProperty('acceptCharset', 'ASCII');
+    expect(<form prop:acceptCharset="ASCII" />).toHaveAttribute('accept-charset', 'ASCII');
   });
 
   it('should have `noValidate` attribute', () => {
