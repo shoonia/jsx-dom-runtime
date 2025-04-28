@@ -620,233 +620,261 @@ declare global {
       writingsuggestions?: Booleanish | ''
     }
 
-    interface HTMLAttributes<T> extends AriaAttributes, Attributes {
-      _?: string
-      $?: Record<string, EventListener<T>>
-      ref?: Ref<T> | false | null | undefined | (Ref<T> | false | null | undefined)[]
-      children?: JSXChild | JSXChild[]
-      // Prop
+    interface JSXDirectives {
+      // Attributes
+      [key: `attr:${string}`]: string | number | bigint | null | undefined
+
+      // Properties
+      'prop:id'?: string
+      'prop:className'?: string
       'prop:innerHTML'?: string
       'prop:textContent'?: string
       [key: `prop:${string}`]: any
-      // Attr
-      [key: `attr:${string}`]: string | number | bigint | null | undefined
+
+      // Event Listeners
       // ClipboardEvent
-      oncopy?: ClipboardEventHandler<T>
       'on:copy'?: ClipboardEventListener<T>
-      oncut?: ClipboardEventHandler<T>
       'on:cut'?: ClipboardEventListener<T>
-      onpaste?: ClipboardEventHandler<T>
       'on:paste'?: ClipboardEventListener<T>
       // CompositionEvent
-      oncompositionend?: CompositionEventHandler<T>
       'on:compositionEnd'?: CompositionEventListener<T>
-      oncompositionstart?: CompositionEventHandler<T>
       'on:compositionStart'?: CompositionEventListener<T>
-      oncompositionupdate?: CompositionEventHandler<T>
       'on:compositionUpdate'?: CompositionEventListener<T>
       // FocusEvent
-      onfocus?: FocusEventHandler<T>
       'on:focus'?: FocusEventListener<T>
-      onblur?: FocusEventHandler<T>
       'on:blur'?: FocusEventListener<T>
       'on:focusIn'?: FocusEventListener<T>
       'on:focusOut'?: FocusEventListener<T>
       // InputEvent
-      onbeforeinput?: InputEventHandler<T>
       'on:beforeInput'?: InputEventListener<T>
-      oninput?: InputEventHandler<T>
       'on:input'?: InputEventListener<T>
       // [Form] Event
-      onchange?: GenericEventHandler<T>
       'on:change'?: EventListener<T>
-      onreset?: GenericEventHandler<T>
       'on:reset'?: EventListener<T>
-      oninvalid?: GenericEventHandler<T>
       'on:invalid'?: EventListener<T>
       // Event
-      onload?: GenericEventHandler<T>
       'on:load'?: EventListener<T>
-      onerror?: GenericEventHandler<T>
       'on:error'?: EventListener<T>
-      onselect?: GenericEventHandler<T>
       'on:select'?: EventListener<T>
       // SubmitEvent
-      onsubmit?: SubmitEventHandler<T>
       'on:submit'?: SubmitEventListener<T>
       // KeyboardEvent
-      onkeydown?: KeyboardEventHandler<T>
       'on:keyDown'?: KeyboardEventListener<T>
-      /**
-       * This feature is no longer recommended.
-       * Since event has been deprecated, you should use `onbeforeinput` or `onkeydown` instead
-       * @deprecated
-       */
-      onkeypress?: KeyboardEventHandler<T>
       /**
       * This feature is no longer recommended.
       * Since event has been deprecated, you should use `on:beforeInput` or `on:keyDown` instead
       * @deprecated
       */
       'on:keyPress'?: KeyboardEventListener<T>
-      onkeyup?: KeyboardEventHandler<T>
       'on:keyUp'?: KeyboardEventListener<T>
       // [Media] Event
-      onabort?: GenericEventHandler<T>
       'on:abort'?: EventListener<T>
-      oncanplay?: GenericEventHandler<T>
       'on:canPlay'?: EventListener<T>
-      oncanplaythrough?: GenericEventHandler<T>
       'on:canPlayThrough'?: EventListener<T>
-      ondurationchange?: GenericEventHandler<T>
       'on:durationChange'?: EventListener<T>
-      onemptied?: GenericEventHandler<T>
       'on:emptied'?: EventListener<T>
-      onended?: GenericEventHandler<T>
       'on:ended'?: EventListener<T>
-      onloadeddata?: GenericEventHandler<T>
       'on:loadedData'?: EventListener<T>
-      onloadedmetadata?: GenericEventHandler<T>
       'on:loadedMetadata'?: EventListener<T>
-      onloadstart?: GenericEventHandler<T>
       'on:loadStart'?: EventListener<T>
-      onpause?: GenericEventHandler<T>
       'on:pause'?: EventListener<T>
-      onplay?: GenericEventHandler<T>
       'on:play'?: EventListener<T>
-      onplaying?: GenericEventHandler<T>
       'on:playing'?: EventListener<T>
-      onprogress?: GenericEventHandler<T>
       'on:progress'?: EventListener<T>
-      onratechange?: GenericEventHandler<T>
       'on:rateChange'?: EventListener<T>
-      onseeked?: GenericEventHandler<T>
       'on:seeked'?: EventListener<T>
-      onseeking?: GenericEventHandler<T>
       'on:seeking'?: EventListener<T>
-      onstalled?: GenericEventHandler<T>
       'on:stalled'?: EventListener<T>
-      onsuspend?: GenericEventHandler<T>
       'on:suspend'?: EventListener<T>
-      ontimeupdate?: GenericEventHandler<T>
       'on:timeUpdate'?: EventListener<T>
-      onvolumechange?: GenericEventHandler<T>
       'on:volumeChange'?: EventListener<T>
-      onwaiting?: GenericEventHandler<T>
       'on:waiting'?: EventListener<T>
       // MouseEvent
-      onauxclick?: MouseEventHandler<T>
-      'on:auxclick'?: MouseEventHandler<T>
-      onclick?: MouseEventHandler<T>
+      'on:auxclick'?: MouseEventListener<T>
       'on:click'?: MouseEventListener<T>
-      oncontextmenu?: MouseEventHandler<T>
       'on:contextMenu'?: MouseEventListener<T>
-      ondblclick?: MouseEventHandler<T>
       'on:dblClick'?: MouseEventListener<T>
-      onmousedown?: MouseEventHandler<T>
       'on:mouseDown'?: MouseEventListener<T>
-      onmouseenter?: MouseEventHandler<T>
       'on:mouseEnter'?: MouseEventListener<T>
-      onmouseleave?: MouseEventHandler<T>
       'on:mouseLeave'?: MouseEventListener<T>
-      onmousemove?: MouseEventHandler<T>
       'on:mouseMove'?: MouseEventListener<T>
-      onmouseout?: MouseEventHandler<T>
       'on:mouseOut'?: MouseEventListener<T>
-      onmouseover?: MouseEventHandler<T>
       'on:mouseOver'?: MouseEventListener<T>
-      onmouseup?: MouseEventHandler<T>
       'on:mouseUp'?: MouseEventListener<T>
       // DragEvent
-      ondrag?: DragEventHandler<T>
       'on:drag'?: DragEventListener<T>
-      ondragend?: DragEventHandler<T>
       'on:dragEnd'?: DragEventListener<T>
-      ondragenter?: DragEventHandler<T>
       'on:dragEnter'?: DragEventListener<T>
       /** @deprecated */
-      ondragexit?: DragEventHandler<T>
-      /** @deprecated */
       'on:dragExit'?: DragEventListener<T>
-      ondragleave?: DragEventHandler<T>
       'on:dragLeave'?: DragEventListener<T>
-      ondragover?: DragEventHandler<T>
       'on:dragOver'?: DragEventListener<T>
-      ondragstart?: DragEventHandler<T>
       'on:dragStart'?: DragEventListener<T>
-      ondrop?: DragEventHandler<T>
       'on:drop'?: DragEventListener<T>
       // TouchEvent
-      ontouchcancel?: TouchEventHandler<T>
       'on:touchCancel'?: TouchEventListener<T>
-      ontouchend?: TouchEventHandler<T>
       'on:touchEnd'?: TouchEventListener<T>
-      ontouchmove?: TouchEventHandler<T>
       'on:touchMove'?: TouchEventListener<T>
-      ontouchstart?: TouchEventHandler<T>
       'on:touchStart'?: TouchEventListener<T>
       // PointerEvent
-      onpointerdown?: PointerEventHandler<T>
       'on:pointerDown'?: PointerEventListener<T>
-      onpointermove?: PointerEventHandler<T>
       'on:pointerMove'?: PointerEventListener<T>
-      onpointerup?: PointerEventHandler<T>
       'on:pointerUp'?: PointerEventListener<T>
-      onpointercancel?: PointerEventHandler<T>
       'on:pointerCancel'?: PointerEventListener<T>
-      onpointerenter?: PointerEventHandler<T>
       'on:pointerEnter'?: PointerEventListener<T>
-      onpointerleave?: PointerEventHandler<T>
       'on:pointerLeave'?: PointerEventListener<T>
-      onpointerover?: PointerEventHandler<T>
       'on:pointerOver'?: PointerEventListener<T>
-      onpointerout?: PointerEventHandler<T>
       'on:pointerOut'?: PointerEventListener<T>
-      ongotpointercapture?: PointerEventHandler<T>
       'on:gotPointerCapture'?: PointerEventListener<T>
-      onlostpointercapture?: PointerEventHandler<T>
       'on:lostPointerCapture'?: PointerEventListener<T>
       // UIEvent
-      onscroll?: UIEventHandler<T>
       'on:scroll'?: UIEventListener<T>
-      onscrollend?: UIEventHandler<T>
       'on:scrollEnd'?: UIEventListener<T>
       // WheelEvent
-      onwheel?: WheelEventHandler<T>
       'on:wheel'?: WheelEventListener<T>
       // AnimationEvent
-      onanimationstart?: AnimationEventHandler<T>
       'on:animationStart'?: AnimationEventListener<T>
-      onanimationend?: AnimationEventHandler<T>
       'on:animationEnd'?: AnimationEventListener<T>
-      onanimationiteration?: AnimationEventHandler<T>
       'on:animationIteration'?: AnimationEventListener<T>
-      onanimationcancel?: AnimationEventHandler<T>
       'on:animationCancel'?: AnimationEventListener<T>
       // TransitionEvent
-      ontransitionstart?: TransitionEventHandler<T>
       'on:transitionStart'?: TransitionEventListener<T>
-      ontransitionend?: TransitionEventHandler<T>
       'on:transitionEnd'?: TransitionEventListener<T>
-      ontransitionrun?: TransitionEventHandler<T>
       'on:transitionRun'?: TransitionEventListener<T>
-      ontransitioncancel?: TransitionEventHandler<T>
       'on:transitionCancel'?: TransitionEventListener<T>
       // Fullscreen API
-      onfullscreenchange?: GenericEventHandler<T>
       'on:fullscreenChange'?: EventListener<T>
-      onfullscreenerror?: GenericEventHandler<T>
       'on:fullscreenError'?: EventListener<T>
       // ToggleEvent
-      onbeforetoggle?: ToggleEventHandler<T>
       'on:beforeToggle'?: ToggleEventListener<T>
-      ontoggle?: ToggleEventHandler<T>
       'on:toggle'?: ToggleEventListener<T>
       // ContentVisibilityAutoStateChangeEvent
-      oncontentvisibilityautostatechange?: GenericEventHandler<T>
       'on:contentVisibilityAutoStateChange'?: EventListener<T>
       // CommandEvent
       'on:command'?: CommandEventListener<T>
+    }
+
+    interface HTMLAttributes<T> extends AriaAttributes, Attributes, JSXDirectives {
+      _?: string
+      $?: Record<string, EventListener<T>>
+      ref?: Ref<T> | false | null | undefined | (Ref<T> | false | null | undefined)[]
+      children?: JSXChild | JSXChild[]
+      // ClipboardEvent
+      oncopy?: ClipboardEventHandler<T>
+      oncut?: ClipboardEventHandler<T>
+      onpaste?: ClipboardEventHandler<T>
+      // CompositionEvent
+      oncompositionend?: CompositionEventHandler<T>
+      oncompositionstart?: CompositionEventHandler<T>
+      oncompositionupdate?: CompositionEventHandler<T>
+      // FocusEvent
+      onfocus?: FocusEventHandler<T>
+      onblur?: FocusEventHandler<T>
+      // InputEvent
+      onbeforeinput?: InputEventHandler<T>
+      oninput?: InputEventHandler<T>
+      // [Form] Event
+      onchange?: GenericEventHandler<T>
+      onreset?: GenericEventHandler<T>
+      oninvalid?: GenericEventHandler<T>
+      // Event
+      onload?: GenericEventHandler<T>
+      onerror?: GenericEventHandler<T>
+      onselect?: GenericEventHandler<T>
+      // SubmitEvent
+      onsubmit?: SubmitEventHandler<T>
+      // KeyboardEvent
+      onkeydown?: KeyboardEventHandler<T>
+      /**
+       * This feature is no longer recommended.
+       * Since event has been deprecated, you should use `on:beforeInput` or `on:keyDown` instead
+       * @deprecated
+       */
+      onkeypress?: KeyboardEventHandler<T>
+      onkeyup?: KeyboardEventHandler<T>
+      // [Media] Event
+      onabort?: GenericEventHandler<T>
+      oncanplay?: GenericEventHandler<T>
+      oncanplaythrough?: GenericEventHandler<T>
+      ondurationchange?: GenericEventHandler<T>
+      onemptied?: GenericEventHandler<T>
+      onended?: GenericEventHandler<T>
+      onloadeddata?: GenericEventHandler<T>
+      onloadedmetadata?: GenericEventHandler<T>
+      onloadstart?: GenericEventHandler<T>
+      onpause?: GenericEventHandler<T>
+      onplay?: GenericEventHandler<T>
+      onplaying?: GenericEventHandler<T>
+      onprogress?: GenericEventHandler<T>
+      onratechange?: GenericEventHandler<T>
+      onseeked?: GenericEventHandler<T>
+      onseeking?: GenericEventHandler<T>
+      onstalled?: GenericEventHandler<T>
+      onsuspend?: GenericEventHandler<T>
+      ontimeupdate?: GenericEventHandler<T>
+      onvolumechange?: GenericEventHandler<T>
+      onwaiting?: GenericEventHandler<T>
+      // MouseEvent
+      onauxclick?: MouseEventHandler<T>
+      onclick?: MouseEventHandler<T>
+      oncontextmenu?: MouseEventHandler<T>
+      ondblclick?: MouseEventHandler<T>
+      onmousedown?: MouseEventHandler<T>
+      onmouseenter?: MouseEventHandler<T>
+      onmouseleave?: MouseEventHandler<T>
+      onmousemove?: MouseEventHandler<T>
+      onmouseout?: MouseEventHandler<T>
+      onmouseover?: MouseEventHandler<T>
+      onmouseup?: MouseEventHandler<T>
+      // DragEvent
+      ondrag?: DragEventHandler<T>
+      ondragend?: DragEventHandler<T>
+      ondragenter?: DragEventHandler<T>
+      /** @deprecated */
+      ondragexit?: DragEventHandler<T>
+      ondragleave?: DragEventHandler<T>
+      ondragover?: DragEventHandler<T>
+      ondragstart?: DragEventHandler<T>
+      ondrop?: DragEventHandler<T>
+      // TouchEvent
+      ontouchcancel?: TouchEventHandler<T>
+      ontouchend?: TouchEventHandler<T>
+      ontouchmove?: TouchEventHandler<T>
+      ontouchstart?: TouchEventHandler<T>
+      // PointerEvent
+      onpointerdown?: PointerEventHandler<T>
+      onpointermove?: PointerEventHandler<T>
+      onpointerup?: PointerEventHandler<T>
+      onpointercancel?: PointerEventHandler<T>
+      onpointerenter?: PointerEventHandler<T>
+      onpointerleave?: PointerEventHandler<T>
+      onpointerover?: PointerEventHandler<T>
+      onpointerout?: PointerEventHandler<T>
+      ongotpointercapture?: PointerEventHandler<T>
+      onlostpointercapture?: PointerEventHandler<T>
+      // UIEvent
+      onscroll?: UIEventHandler<T>
+      onscrollend?: UIEventHandler<T>
+      // WheelEvent
+      onwheel?: WheelEventHandler<T>
+      // AnimationEvent
+      onanimationstart?: AnimationEventHandler<T>
+      onanimationend?: AnimationEventHandler<T>
+      onanimationiteration?: AnimationEventHandler<T>
+      onanimationcancel?: AnimationEventHandler<T>
+      // TransitionEvent
+      ontransitionstart?: TransitionEventHandler<T>
+      ontransitionend?: TransitionEventHandler<T>
+      ontransitionrun?: TransitionEventHandler<T>
+      ontransitioncancel?: TransitionEventHandler<T>
+      // Fullscreen API
+      onfullscreenchange?: GenericEventHandler<T>
+      onfullscreenerror?: GenericEventHandler<T>
+      // ToggleEvent
+      onbeforetoggle?: ToggleEventHandler<T>
+      ontoggle?: ToggleEventHandler<T>
+      // ContentVisibilityAutoStateChangeEvent
+      oncontentvisibilityautostatechange?: GenericEventHandler<T>
     }
 
     interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
@@ -1743,6 +1771,7 @@ declare global {
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
       for?: string
+      'prop:htmlFor'?: string
     }
 
     interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
