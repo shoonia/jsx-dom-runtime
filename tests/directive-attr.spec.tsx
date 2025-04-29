@@ -9,13 +9,13 @@ describe('directive attr:*', () => {
 
   it('should support a few `attr:*` directive to set attributes', async () => {
     await expect('<div attr:foo-foo={1} attr:bar-bar="2" />').toBeTransform(
-      jsxImport`_jsx("div",{ref:[e=>e.setAttribute("foo-foo",1),e=>e.setAttribute("bar-bar","2")]});`
+      jsxImport`_jsx("div",{ref:e=>{e.setAttribute("foo-foo",1);e.setAttribute("bar-bar","2")}});`
     );
   });
 
   it('should join `ref` with `attr:*` directive expressions', async () => {
     await expect('<div ref={(e) => console.log(e)} attr:foo-foo={1} attr:bar-bar="2" />').toBeTransform(
-      jsxImport`_jsx("div",{ref:[e=>console.log(e),e=>e.setAttribute("foo-foo",1),e=>e.setAttribute("bar-bar","2")]});`
+      jsxImport`_jsx("div",{ref:[e=>console.log(e),e=>{e.setAttribute("foo-foo",1);e.setAttribute("bar-bar","2")}]});`
     );
   });
 

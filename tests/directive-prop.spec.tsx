@@ -9,13 +9,13 @@ describe('directive prop:*', () => {
 
   it('should support a few `prop:*` directive to set properties', async () => {
     await expect('<div prop:foo-foo={1} prop:bar-bar="2" />').toBeTransform(
-      jsxImport`_jsx("div",{ref:[e=>e["foo-foo"]=1,e=>e["bar-bar"]="2"]});`
+      jsxImport`_jsx("div",{ref:e=>{e["foo-foo"]=1;e["bar-bar"]="2"}});`
     );
   });
 
   it('should join `ref` with `prop:*` directive expressions', async () => {
     await expect('<div ref={(e) => console.log(e)} prop:foo-foo={1} prop:bar="2" />').toBeTransform(
-      jsxImport`_jsx("div",{ref:[e=>console.log(e),e=>e["foo-foo"]=1,e=>e.bar="2"]});`
+      jsxImport`_jsx("div",{ref:[e=>console.log(e),e=>{e["foo-foo"]=1;e.bar="2"}]});`
     );
   });
 

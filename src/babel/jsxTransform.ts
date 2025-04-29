@@ -4,6 +4,7 @@ import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { type TImportName, ImportSpec } from './ImportSpec';
 import { eventListener } from './events';
+import { createDirective } from './directives';
 import { buildProps, convertJSXAttrValue, convertJSXIdentifier, convertJSXNamespacedName } from './util';
 import {
   $children,
@@ -11,7 +12,6 @@ import {
   $objectProperty,
   $stringLiteral,
   $pureAnnotation,
-  $jsxIdentifier,
   $jsxExpressionContainer,
 } from './builders';
 import {
@@ -177,17 +177,14 @@ export const jsxTransform: PluginObj = {
         }
 
         else if (directive === 'attr') {
-          const e = $identifier('e');
-
-          attribute.name = $jsxIdentifier('ref');
-          attribute.value = $jsxExpressionContainer({
-            type: 'ArrowFunctionExpression',
-            params: [e],
-            body: {
+          createDirective(
+            openingElement.attributes.indexOf(attribute),
+            openingElement,
+            {
               type: 'CallExpression',
               callee: {
                 type: 'MemberExpression',
-                object: e,
+                object: $identifier('e'),
                 property: $identifier('setAttribute'),
                 computed: false,
               },
@@ -196,25 +193,22 @@ export const jsxTransform: PluginObj = {
                 convertJSXAttrValue(attrValue)
               ],
             },
-            async: false,
-            expression: false,
-          });
+          );
+          path.remove();
         }
 
         else if (directive === 'prop') {
-          const e = $identifier('e');
           const isIdent = isIdentifierName(attrName.name.name);
 
-          attribute.name = $jsxIdentifier('ref');
-          attribute.value = $jsxExpressionContainer({
-            type: 'ArrowFunctionExpression',
-            params: [e],
-            body: {
+          createDirective(
+            openingElement.attributes.indexOf(attribute),
+            openingElement,
+            {
               type: 'AssignmentExpression',
               operator: '=',
               left: {
                 type: 'MemberExpression',
-                object: e,
+                object: $identifier('e'),
                 property: isIdent
                   ? $identifier(attrName.name.name)
                   : $stringLiteral(attrName.name.name),
@@ -222,9 +216,8 @@ export const jsxTransform: PluginObj = {
               },
               right: convertJSXAttrValue(attrValue)
             },
-            async: false,
-            expression: false,
-          });
+          );
+          path.remove();
         }
 
         else if (isCustomElement) {

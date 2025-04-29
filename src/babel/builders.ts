@@ -43,3 +43,8 @@ export const $pureAnnotation = (): [t.CommentBlock] => [
     value: '#__PURE__',
   },
 ];
+
+export const $expressionStatement = (expression: t.Expression): t.ExpressionStatement => ({
+  type: 'ExpressionStatement',
+  expression,
+});
