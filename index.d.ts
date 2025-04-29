@@ -1749,6 +1749,10 @@ declare global {
        */
       children?: null
       /**
+       * This property reflects the `<input>` element's `checked` attribute. The boolean `checked` attribute is valid for the `radio` (`<input type="radio">`) and `checkbox` (`<input type="checkbox">`) input types.
+       */
+      'prop:defaultChecked'?: boolean
+      /**
        * A string that represents the default value as originally specified in the HTML that created this object.
        */
       'prop:defaultValue'?: string

@@ -116,6 +116,11 @@ describe('HTMLInputElement', () => {
     expect(<input formNoValidate={false} />).not.toHaveAttribute('formnovalidate');
   });
 
+  it('should have `defaultValue` property', () => {
+    expect(<input prop:defaultValue='hello' />).toHaveProperty('defaultValue', 'hello');
+    expect(<input prop:defaultValue='hello' />).toHaveValue('hello');
+  });
+
   describe('checkbox', () => {
     it('should have `checked` attribute', () => {
       expect(<input type="checkbox" checked />).toBeChecked();
@@ -127,6 +132,14 @@ describe('HTMLInputElement', () => {
 
     it('should NOT have `checked` attribute', () => {
       expect(<input type="checkbox" checked={false} />).not.toBeChecked();
+    });
+
+    it('should have `indeterminate` property', () => {
+      expect(<input type="checkbox" prop:indeterminate />).toHaveProperty('indeterminate', true);
+    });
+
+    it('should have `defaultChecked` property', () => {
+      expect(<input type="checkbox" prop:defaultChecked />).toBeChecked();
     });
   });
 
@@ -161,6 +174,20 @@ describe('HTMLInputElement', () => {
 
     it('should have `capture` attribute', () => {
       expect(<input type="file" capture />).toHaveAttribute('capture', '');
+    });
+  });
+
+  describe('date', () => {
+    it('should have `valueAsDate` property', () => {
+      const date = '2025-10-30';
+      expect(<input type="date" prop:valueAsDate={new Date(date)} />).toHaveValue(date);
+    });
+  });
+
+  describe('number', () => {
+    it('should have `valueAsNumber` property', () => {
+      expect(<input type="number" prop:valueAsNumber={100} />).toHaveProperty('valueAsNumber', 100);
+      expect(<input type="number" prop:valueAsNumber={100} />).toHaveValue(100);
     });
   });
 });
