@@ -1767,7 +1767,8 @@ declare global {
       /**
        * Sets the popover element to control via an `<input>` element of `type="button"`
        */
-      'prop:popoverTargetElement'?: globalThis.Element
+      'prop:popoverTargetElement'?: globalThis.Element | null
+      'prop:popoverTargetAction'?: string
       /**
        * The `indeterminate` property of the `HTMLInputElement` interface returns a boolean value that indicates whether the checkbox is in the _indeterminate_ state. For example, a "select all/deselect all" checkbox may be in the indeterminate state when some but not all of its sub-controls are checked. The `indeterminate` state can only be set via JavaScript and is only relevant to `checkbox` controls.
        */
