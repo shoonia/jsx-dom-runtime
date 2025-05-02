@@ -6,12 +6,19 @@ import { $stringLiteral, $identifier, $objectProperty, $children } from './build
 export const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral =>
   $stringLiteral(node.namespace.name + ':' + node.name.name);
 
-export const convertJSXAttrValue = (value: t.JSXAttribute['value']): t.Expression =>
-  value == null
+export const convertJSXAttrValue = (value: t.JSXAttribute['value']): t.Expression => {
+  const expression: t.Expression = value == null
     ? { type: 'BooleanLiteral', value: true }
     : value.type === 'JSXExpressionContainer'
       ? value.expression as t.Expression
       : value;
+
+  if (expression.type === 'StringLiteral') {
+    expression.value = expression.value.replace(/\n\s+/g, ' ');
+  }
+
+  return expression;
+};
 
 export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
   const properties = node.openingElement.attributes.map((attr): t.SpreadElement | t.ObjectProperty => {
@@ -22,19 +29,13 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
       };
     }
 
-    const value = convertJSXAttrValue(attr.value);
-
-    if (value.type === 'StringLiteral') {
-      value.value = value.value.replace(/\n\s+/g, ' ');
-    }
-
     return $objectProperty(
       attr.name.type === 'JSXNamespacedName'
         ? convertJSXNamespacedName(attr.name)
         : isIdentifierName(attr.name.name)
           ? $identifier(attr.name.name)
           : $stringLiteral(attr.name.name),
-      value,
+      convertJSXAttrValue(attr.value),
     );
   });
 

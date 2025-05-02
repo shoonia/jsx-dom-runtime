@@ -21,4 +21,28 @@ describe('directives', () => {
     expect(p).not.toHaveProperty('test');
     expect(p).not.toHaveAttribute('_data');
   });
+
+  it('should replace new line `\n` symbol to space', () => {
+    // Attr:
+    expect(
+      <img
+        attr:alt="
+          hello
+        "
+      />
+    ).toHaveOuterHTML('<img alt=" hello ">');
+    // Prop:
+    expect(
+      <img
+        prop:alt="
+          hello
+        "
+      />
+    ).toHaveOuterHTML('<img alt=" hello ">');
+  });
+
+  it('should keep the spaces', () => {
+    expect(<img attr:alt="   hello   " />).toHaveOuterHTML('<img alt="   hello   ">');
+    expect(<img prop:alt="   hello   " />).toHaveOuterHTML('<img alt="   hello   ">');
+  });
 });
