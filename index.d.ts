@@ -109,6 +109,7 @@ export type TransitionEventHandler<T = Element> = EventHandlerFunction<Transitio
 export type UIEventHandler<T = Element> = EventHandlerFunction<UIEvent, T>
 export type WebGLContextEventHandler<T = Element> = EventHandlerFunction<WebGLContextEvent, T>
 export type WheelEventHandler<T = Element> = EventHandlerFunction<WheelEvent, T>
+export type ContentVisibilityAutoStateChangeEventHandler<T = Element> = EventHandlerFunction<ContentVisibilityAutoStateChangeEvent, T>
 
 export interface CSSProperties extends Properties<number | string> {
   cssText?: string | null
@@ -523,6 +524,7 @@ declare global {
     type WebGLContextEventListener<T = globalThis.Element> = EventHandler<WebGLContextEvent, T>
     type WheelEventListener<T = globalThis.Element> = EventHandler<WheelEvent, T>
     type CommandEventListener<T = globalThis.Element> = EventHandler<CommandEvent, T>
+    type ContentVisibilityAutoStateChangeEventListener<T = globalThis.Element> = EventHandler<ContentVisibilityAutoStateChangeEvent, T>
 
     interface Attributes {
       accessKey?: string
@@ -749,7 +751,7 @@ declare global {
       'on:beforeToggle'?: ToggleEventListener<T>
       'on:toggle'?: ToggleEventListener<T>
       // ContentVisibilityAutoStateChangeEvent
-      'on:contentVisibilityAutoStateChange'?: EventListener<T>
+      'on:contentVisibilityAutoStateChange'?: ContentVisibilityAutoStateChangeEventListener<T>
       // CommandEvent
       'on:command'?: CommandEventListener<T>
     }
@@ -874,7 +876,7 @@ declare global {
       onbeforetoggle?: ToggleEventHandler<T>
       ontoggle?: ToggleEventHandler<T>
       // ContentVisibilityAutoStateChangeEvent
-      oncontentvisibilityautostatechange?: GenericEventHandler<T>
+      oncontentvisibilityautostatechange?: ContentVisibilityAutoStateChangeEventHandler<T>
     }
 
     interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
