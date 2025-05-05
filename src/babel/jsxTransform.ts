@@ -26,6 +26,7 @@ import {
   svgTags,
   charCode,
   jsxNode,
+  elementProperties,
 } from './collections';
 
 const opts = { name: '_' } as const;
@@ -224,6 +225,21 @@ export const jsxTransform: PluginObj = {
         return;
       }
 
+      if (elementProperties.has(tag) && elementProperties.get(tag).has(attrName.name)) {
+        createDirective(openingElement, {
+          type: 'AssignmentExpression',
+          operator: '=',
+          left: {
+            type: 'MemberExpression',
+            object: $identifier('e'),
+            property: $identifier(attrName.name),
+            computed: false,
+          },
+          right: convertJSXAttrValue(attrValue)
+        });
+        path.remove();
+      }
+
       if (htmlDOMAttributes.has(attrName.name)) {
         attrName.name = htmlDOMAttributes.get(attrName.name);
         return;
@@ -251,7 +267,22 @@ export const jsxTransform: PluginObj = {
         }
       }
 
-      else if (isHTMLElement && attributes.has(aName) || DOMEvents.has(aName)) {
+      else if (DOMEvents.has(aName)) {
+        createDirective(openingElement, {
+          type: 'AssignmentExpression',
+          operator: '=',
+          left: {
+            type: 'MemberExpression',
+            object: $identifier('e'),
+            property: $identifier(aName),
+            computed: false,
+          },
+          right: convertJSXAttrValue(attrValue)
+        });
+        path.remove();
+      }
+
+      else if (isHTMLElement && attributes.has(aName)) {
         attrName.name = aName;
       }
 

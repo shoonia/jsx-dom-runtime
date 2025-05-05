@@ -112,11 +112,21 @@ describe('HTMLVideoElement', () => {
   });
 
   it('should add support of `volume` property', () => {
+    expect(<video volume={0.9} />).not.toHaveAttribute('volume');
+    expect(<video volume={0.9} />).toHaveProperty('volume', 0.9);
+  });
+
+  it('should add support of `muted` property', () => {
+    expect(<video muted />).not.toHaveAttribute('muted');
+    expect(<video muted />).toHaveProperty('muted', true);
+  });
+
+  it('should add support of `volume` directive', () => {
     expect(<video prop:volume={0.9} />).not.toHaveAttribute('volume');
     expect(<video prop:volume={0.9} />).toHaveProperty('volume', 0.9);
   });
 
-  it('should add support of `muted` property', () => {
+  it('should add support of `muted` directive', () => {
     expect(<video prop:muted />).not.toHaveAttribute('muted');
     expect(<video prop:muted />).toHaveProperty('muted', true);
   });

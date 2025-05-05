@@ -274,3 +274,21 @@ export const charCode = new Set([36, 95]);
 for (let i = 65; i <= 90; i++) {
   charCode.add(i);
 }
+
+export const elementProperties = new Map<string, Set<string>>(
+  Object.entries({
+    audio: new Set(['volume', 'muted']),
+    video: new Set(['volume', 'muted']),
+    input: new Set([
+      'value',
+      'valueAsNumber',
+      'valueAsDate',
+      'defaultChecked',
+      'defaultValue',
+      'indeterminate',
+      'files',
+    ]),
+    output: new Set(['value']),
+    textarea: new Set(['value']),
+  })
+);

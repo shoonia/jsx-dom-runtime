@@ -1,8 +1,8 @@
 import { jest } from '@jest/globals';
 
-describe('support custom events', () => {
-  const i = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
+import { jsxImport } from '../utils';
 
+describe('support custom events', () => {
   it('shuld add CustomEvent listener', () => {
     const spy = jest.fn();
     const div = <div on:custom-event={spy} /> as HTMLElement;
@@ -42,12 +42,14 @@ describe('support custom events', () => {
   });
 
   it('should be transform correct', async () => {
-    await expect('<div onclick={fn1} on:click={fn2} on:custom-event={fn3} on:CustomEvent={fn4} />')
-      .toBeTransform(i + '_jsx("div",{onclick:fn1,$:{click:fn2,"custom-event":fn3,CustomEvent:fn4}});');
+    await expect('<div onclick={fn1} on:click={fn2} on:custom-event={fn3} on:CustomEvent={fn4} />').toBeTransform(
+      jsxImport`_jsx("div",{ref:e=>e.onclick=fn1,$:{click:fn2,"custom-event":fn3,CustomEvent:fn4}});`
+    );
   });
 
   it('should be transform correct in Custom Element', async () => {
-    await expect('<web-component on:custom-event={handler}></web-component>')
-      .toBeTransform(i + '_jsx("web-component",{$:{"custom-event":handler}});');
+    await expect('<web-component on:custom-event={handler}></web-component>').toBeTransform(
+      jsxImport`_jsx("web-component",{$:{"custom-event":handler}});`
+    );
   });
 });

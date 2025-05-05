@@ -17,6 +17,17 @@ describe('$', () => {
     expect(input).toHaveValue('xyz');
   });
 
+  it('should add event listener with prop:* directive', () => {
+    const click: JSX.EventListener = jest.fn();
+
+    <div
+      prop:onclick={click}
+      ref={(div) => div.click()}
+    />;
+
+    expect(click).toHaveBeenCalledTimes(1);
+  });
+
   it('should add event listener in $ props #1', () => {
     const click: JSX.EventListener = jest.fn();
     const myEvent: JSX.EventListener = jest.fn();
