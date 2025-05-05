@@ -279,7 +279,14 @@ export const elementProperties = new Map<string, Set<string>>(
   Object.entries({
     audio: new Set(['volume', 'muted']),
     video: new Set(['volume', 'muted']),
-    input: new Set(['value']),
+    input: new Set([
+      'value',
+      'valueAsNumber',
+      'valueAsDate',
+      'defaultChecked',
+      'defaultValue',
+      'indeterminate',
+    ]),
     output: new Set(['value']),
     textarea: new Set(['value']),
   })

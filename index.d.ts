@@ -1751,29 +1751,31 @@ declare global {
        */
       children?: null
       /**
-       * This property reflects the `<input>` element's `checked` attribute. The boolean `checked` attribute is valid for the `radio` (`<input type="radio">`) and `checkbox` (`<input type="checkbox">`) input types.
+       * The `indeterminate` property of the `HTMLInputElement` interface returns a boolean value that indicates whether the checkbox is in the _indeterminate_ state. For example, a "select all/deselect all" checkbox may be in the indeterminate state when some but not all of its sub-controls are checked. The `indeterminate` state can only be set via JavaScript and is only relevant to `checkbox` controls.
        */
-      'prop:defaultChecked'?: boolean
-      /**
-       * A string that represents the default value as originally specified in the HTML that created this object.
-       */
-      'prop:defaultValue'?: string
-      /**
-       * A `Date` that represents the value of the element, interpreted as a date, or null if conversion is not possible.
-       */
-      'prop:valueAsDate'?: Date
+      indeterminate?: boolean
       /**
        * A number that represents the value of the element, interpreted as one of the following, in order: A time value, a number, or `NaN` if conversion is impossible.
        */
-      'prop:valueAsNumber'?: number
+      valueAsNumber?: number
       /**
-       * Sets the popover element to control via an `<input>` element of `type="button"`
+       * A `Date` that represents the value of the element, interpreted as a date, or null if conversion is not possible.
        */
+      valueAsDate?: Date
+      /**
+       * This property reflects the `<input>` element's `checked` attribute. The boolean `checked` attribute is valid for the `radio` (`<input type="radio">`) and `checkbox` (`<input type="checkbox">`) input types.
+       */
+      defaultChecked?: boolean
+      /**
+       * A string that represents the default value as originally specified in the HTML that created this object.
+      */
+      defaultValue?: string
+      'prop:defaultChecked'?: boolean
+      'prop:defaultValue'?: string
+      'prop:valueAsDate'?: Date
+      'prop:valueAsNumber'?: number
       'prop:popoverTargetElement'?: globalThis.Element | null
       'prop:popoverTargetAction'?: string
-      /**
-       * The `indeterminate` property of the `HTMLInputElement` interface returns a boolean value that indicates whether the checkbox is in the _indeterminate_ state. For example, a "select all/deselect all" checkbox may be in the indeterminate state when some but not all of its sub-controls are checked. The `indeterminate` state can only be set via JavaScript and is only relevant to `checkbox` controls.
-       */
       'prop:indeterminate'?: boolean
     }
 
