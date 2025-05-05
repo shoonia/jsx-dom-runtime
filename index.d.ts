@@ -1770,6 +1770,11 @@ declare global {
        * A string that represents the default value as originally specified in the HTML that created this object.
       */
       defaultValue?: string
+      /**
+       * Allows you to access the FileList selected with the `<input type="file">` element.
+       */
+      files?: FileList | null
+      'prop:files'?: FileList | null
       'prop:defaultChecked'?: boolean
       'prop:defaultValue'?: string
       'prop:valueAsDate'?: Date

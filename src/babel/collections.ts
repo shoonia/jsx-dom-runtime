@@ -286,6 +286,7 @@ export const elementProperties = new Map<string, Set<string>>(
       'defaultChecked',
       'defaultValue',
       'indeterminate',
+      'files',
     ]),
     output: new Set(['value']),
     textarea: new Set(['value']),

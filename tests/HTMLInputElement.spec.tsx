@@ -1,4 +1,5 @@
 import { jest } from '@jest/globals';
+import { jsx } from 'jsx-dom-runtime';
 
 describe('HTMLInputElement', () => {
   it('should set value', () => {
@@ -205,6 +206,21 @@ describe('HTMLInputElement', () => {
     it('should have `valueAsNumber` directive', () => {
       expect(<input type="number" prop:valueAsNumber={100} />).toHaveProperty('valueAsNumber', 100);
       expect(<input type="number" prop:valueAsNumber={100} />).toHaveValue(100);
+    });
+  });
+
+  describe('file', () => {
+    const files = jsx('input', { type: 'file' }).files;
+    expect(files).toBeInstanceOf(FileList);
+
+    it('should have `files` property', () => {
+      expect(<input type="file" files={files} />).toHaveProperty('files', files);
+      expect(<input type="file" files={files} />).not.toHaveAttribute('files');
+    });
+
+    it('should have `files` directive', () => {
+      expect(<input type="file" prop:files={files} />).toHaveProperty('files', files);
+      expect(<input type="file" prop:files={files} />).not.toHaveAttribute('files');
     });
   });
 });
