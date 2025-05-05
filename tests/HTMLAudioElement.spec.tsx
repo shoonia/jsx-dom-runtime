@@ -91,11 +91,21 @@ describe('HTMLAudioElement', () => {
   });
 
   it('should add support of `volume` property', () => {
+    expect(<audio volume={0.9} />).not.toHaveAttribute('volume');
+    expect(<audio volume={0.9} />).toHaveProperty('volume', 0.9);
+  });
+
+  it('should add support of `muted` property', () => {
+    expect(<audio muted />).not.toHaveAttribute('muted');
+    expect(<audio muted />).toHaveProperty('muted', true);
+  });
+
+  it('should add support of `volume` directive', () => {
     expect(<audio prop:volume={0.9} />).not.toHaveAttribute('volume');
     expect(<audio prop:volume={0.9} />).toHaveProperty('volume', 0.9);
   });
 
-  it('should add support of `muted` property', () => {
+  it('should add support of `muted` directive', () => {
     expect(<audio prop:muted />).not.toHaveAttribute('muted');
     expect(<audio prop:muted />).toHaveProperty('muted', true);
   });

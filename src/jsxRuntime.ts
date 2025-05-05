@@ -2,10 +2,6 @@
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
-const properties = new Set([
-  'value',
-]);
-
 const internalKeys = new Set([
   '_',
   'children',
@@ -66,8 +62,6 @@ const jsx = (tag, props) => {
 
       if (extensions.has(key)) {
         extensions.get(key)(node, value, key);
-      } else if (properties.has(key) || key.startsWith('on')) {
-        node[key] = value;
       } else if (value != null) {
         if (typeof value != 'boolean' || key.startsWith('-', 4)) {
           node.setAttribute(key, value);
@@ -92,7 +86,6 @@ export {
   jsx,
   Fragment,
   appendChildren,
-  properties,
   extensions,
   svgNs,
   mathmlNs,
