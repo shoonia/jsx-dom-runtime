@@ -4,7 +4,7 @@ import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { type TImportName, ImportSpec } from './ImportSpec';
 import { eventListener } from './events';
-import { createDirective } from './directives';
+import { createDirective, isRef } from './directives';
 import { buildProps, convertJSXAttrValue, convertJSXIdentifier, convertJSXNamespacedName } from './util';
 import {
   $children,
@@ -32,9 +32,6 @@ const opts = { name: '_' } as const;
 
 const isFunctionComponent = (name: t.JSXIdentifier): boolean =>
   charCode.has(name.name.charCodeAt(0));
-
-const isRefProperty = (i: t.ObjectMethod | t.ObjectProperty | t.SpreadElement): i is t.ObjectProperty =>
-  i.type === 'ObjectProperty' && i.key.type === 'Identifier' && i.key.name === 'ref';
 
 let nsMap: WeakMap<NodePath, TImportName>;
 let importSpec: ImportSpec;
@@ -90,18 +87,18 @@ export const jsxTransform: PluginObj = {
       exit(path) {
         const name = path.node.openingElement.name as t.JSXIdentifier | t.JSXNamespacedName;
         const props = buildProps(path.node);
-        const refs = props.properties.filter(isRefProperty);
+        const refs = props.properties.filter(isRef);
 
         if (refs.length > 1) {
-          props.properties = props.properties.filter((i) => !isRefProperty(i));
-          props.properties.push(
-            $objectProperty(
-              $identifier('ref'),
-              {
-                type: 'ArrayExpression',
-                elements: refs.map((i) => i.value as t.Expression),
-              }),
-          );
+          const ref = refs[0];
+
+          ref.value = {
+            type: 'ArrayExpression',
+            elements: refs.map((i) => i.value),
+          };
+
+          props.properties = props.properties.filter((i) => !isRef(i));
+          props.properties.push(ref);
         }
 
         const noNs = props.properties.every((i: t.ObjectProperty) =>
@@ -177,46 +174,38 @@ export const jsxTransform: PluginObj = {
         }
 
         else if (directive === 'attr') {
-          createDirective(
-            openingElement.attributes.indexOf(attribute),
-            openingElement,
-            {
-              type: 'CallExpression',
-              callee: {
-                type: 'MemberExpression',
-                object: $identifier('e'),
-                property: $identifier('setAttribute'),
-                computed: false,
-              },
-              arguments: [
-                $stringLiteral(attrName.name.name),
-                convertJSXAttrValue(attrValue)
-              ],
+          createDirective(openingElement, {
+            type: 'CallExpression',
+            callee: {
+              type: 'MemberExpression',
+              object: $identifier('e'),
+              property: $identifier('setAttribute'),
+              computed: false,
             },
-          );
+            arguments: [
+              $stringLiteral(attrName.name.name),
+              convertJSXAttrValue(attrValue)
+            ],
+          });
           path.remove();
         }
 
         else if (directive === 'prop') {
           const isIdent = isIdentifierName(attrName.name.name);
 
-          createDirective(
-            openingElement.attributes.indexOf(attribute),
-            openingElement,
-            {
-              type: 'AssignmentExpression',
-              operator: '=',
-              left: {
-                type: 'MemberExpression',
-                object: $identifier('e'),
-                property: isIdent
-                  ? $identifier(attrName.name.name)
-                  : $stringLiteral(attrName.name.name),
-                computed: !isIdent,
-              },
-              right: convertJSXAttrValue(attrValue)
+          createDirective(openingElement, {
+            type: 'AssignmentExpression',
+            operator: '=',
+            left: {
+              type: 'MemberExpression',
+              object: $identifier('e'),
+              property: isIdent
+                ? $identifier(attrName.name.name)
+                : $stringLiteral(attrName.name.name),
+              computed: !isIdent,
             },
-          );
+            right: convertJSXAttrValue(attrValue)
+          });
           path.remove();
         }
 

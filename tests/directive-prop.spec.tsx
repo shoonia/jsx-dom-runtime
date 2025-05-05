@@ -15,7 +15,7 @@ describe('directive prop:*', () => {
 
   it('should join `ref` with `prop:*` directive expressions', async () => {
     await expect('<div ref={(e) => console.log(e)} prop:foo-foo={1} prop:bar="2" />').toBeTransform(
-      jsxImport`_jsx("div",{ref:[e=>console.log(e),e=>{e["foo-foo"]=1;e.bar="2"}]});`
+      jsxImport`_jsx("div",{ref:[e=>{e["foo-foo"]=1;e.bar="2"},e=>console.log(e)]});`
     );
   });
 

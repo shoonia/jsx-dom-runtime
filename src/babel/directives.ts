@@ -1,9 +1,17 @@
 import type t from '@babel/types';
 import { $expressionStatement, $identifier, $jsxExpressionContainer, $jsxIdentifier } from './builders';
 
+interface RefProp extends t.ObjectProperty {
+  key: t.Identifier & { name: 'ref' }
+  value: t.Expression
+}
+
 const cache = new WeakMap<t.JSXOpeningElement, t.ArrowFunctionExpression>();
 
-const getRefFunction = (index: number, element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
+export const isRef = (i: t.ObjectMethod | t.ObjectProperty | t.SpreadElement): i is RefProp =>
+  i.type === 'ObjectProperty' && i.key.type === 'Identifier' && i.key.name === 'ref';
+
+const getRefFunction = (element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
   if (cache.has(element)) {
     return cache.get(element);
   }
@@ -22,19 +30,14 @@ const getRefFunction = (index: number, element: t.JSXOpeningElement): t.ArrowFun
     value: $jsxExpressionContainer(arrowFunction),
   };
 
-  if (index > -1) {
-    element.attributes.splice(index, 0, refAttr);
-  } else {
-    element.attributes.push(refAttr);
-  }
-
+  element.attributes.unshift(refAttr);
   cache.set(element, arrowFunction);
 
   return arrowFunction;
 };
 
-export const createDirective = (index: number, element: t.JSXOpeningElement, expression: t.Expression) => {
-  const arrowFunction = getRefFunction(index, element);
+export const createDirective = (element: t.JSXOpeningElement, expression: t.Expression) => {
+  const arrowFunction = getRefFunction(element);
   const bodyType = arrowFunction.body.type;
 
   if (bodyType === 'NullLiteral') {
