@@ -112,22 +112,37 @@ describe('HTMLVideoElement', () => {
   });
 
   it('should add support of `volume` property', () => {
-    expect(<video volume={0.9} />).not.toHaveAttribute('volume');
     expect(<video volume={0.9} />).toHaveProperty('volume', 0.9);
+    expect(<video volume={0.9} />).not.toHaveAttribute('volume');
+    expect(<video prop:volume={0.9} />).toHaveProperty('volume', 0.9);
+    expect(<video prop:volume={0.9} />).not.toHaveAttribute('volume');
   });
 
   it('should add support of `muted` property', () => {
-    expect(<video muted />).not.toHaveAttribute('muted');
     expect(<video muted />).toHaveProperty('muted', true);
-  });
-
-  it('should add support of `volume` directive', () => {
-    expect(<video prop:volume={0.9} />).not.toHaveAttribute('volume');
-    expect(<video prop:volume={0.9} />).toHaveProperty('volume', 0.9);
-  });
-
-  it('should add support of `muted` directive', () => {
-    expect(<video prop:muted />).not.toHaveAttribute('muted');
+    expect(<video muted />).not.toHaveAttribute('muted');
     expect(<video prop:muted />).toHaveProperty('muted', true);
+    expect(<video prop:muted />).not.toHaveAttribute('muted');
+  });
+
+  it('should add support of `defaultMuted` property', () => {
+    expect(<video defaultMuted />).toHaveProperty('defaultMuted', true);
+    expect(<video defaultMuted />).not.toHaveAttribute('defaultmuted');
+    expect(<video prop:defaultMuted />).toHaveProperty('defaultMuted', true);
+    expect(<video prop:defaultMuted />).not.toHaveAttribute('defaultmuted');
+  });
+
+  it('should add support of `currentTime` property', () => {
+    expect(<video currentTime={10} />).toHaveProperty('currentTime', 10);
+    expect(<video currentTime={10} />).not.toHaveAttribute('currenttime');
+    expect(<video prop:currentTime={10} />).toHaveProperty('currentTime', 10);
+    expect(<video prop:currentTime={10} />).not.toHaveAttribute('currenttime');
+  });
+
+  it('should add support of `defaultPlaybackRate` property', () => {
+    expect(<video defaultPlaybackRate={10} />).toHaveProperty('defaultPlaybackRate', 10);
+    expect(<video defaultPlaybackRate={10} />).not.toHaveAttribute('defaultplaybackrate');
+    expect(<video prop:defaultPlaybackRate={10} />).toHaveProperty('defaultPlaybackRate', 10);
+    expect(<video prop:defaultPlaybackRate={10} />).not.toHaveAttribute('defaultplaybackrate');
   });
 });

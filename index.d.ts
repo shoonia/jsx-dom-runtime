@@ -630,6 +630,7 @@ declare global {
       'prop:id'?: string
       'prop:className'?: string
       'prop:innerHTML'?: string
+      'prop:innerText'?: string
       'prop:textContent'?: string
       [key: `prop:${string}`]: any
 
@@ -1907,6 +1908,11 @@ declare global {
       mediaGroup?: string
       preload?: HTMLMediaElement['preload']
       src?: string
+      onencrypted?: MediaEncryptedEventHandler<T>
+      'on:encrypted'?: MediaEncryptedEventListener<T>
+      onwaitingforkey?: GenericEventHandler<T>
+      'on:waitingForKey'?: EventListener<T>
+
       /** Causes the media to play with the sound turned off by default. */
       muted?: boolean
       /**
@@ -1914,12 +1920,21 @@ declare global {
        * A double values must fall between 0 and 1, where 0 is effectively muted and 1 is the loudest possible value
        */
       volume?: number
-      onencrypted?: MediaEncryptedEventHandler<T>
-      'on:encrypted'?: MediaEncryptedEventListener<T>
-      onwaitingforkey?: GenericEventHandler<T>
-      'on:waitingForKey'?: EventListener<T>
+      /**
+       * Gets or sets the current playback position, in seconds.
+       */
+      currentTime?: number
+      defaultMuted?: boolean
+      /**
+       * Gets or sets the default playback rate when the user is not using fast forward or reverse for a video or audio resource.
+       */
+      defaultPlaybackRate?: number
+
       'prop:muted'?: boolean
       'prop:volume'?: number
+      'prop:currentTime'?: number
+      'prop:defaultMuted'?: boolean
+      'prop:defaultPlaybackRate'?: number
     }
 
     interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
@@ -2229,7 +2244,7 @@ declare global {
        * Sets the value of the `serializable` property of a `ShadowRoot` created using this element to true. If set, the shadow root may be serialized by calling the `Element.getHTML()` or `ShadowRoot.getHTML()` methods with the `options.serializableShadowRoots` parameter set `true`. The value defaults to `false`
        * @see https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootSerializable
         */
-      shadowRootSerializable?: boolean | '';
+      shadowRootSerializable?: boolean | ''
     }
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {

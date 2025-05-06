@@ -275,10 +275,18 @@ for (let i = 65; i <= 90; i++) {
   charCode.add(i);
 }
 
+const media = new Set([
+  'volume',
+  'muted',
+  'currentTime',
+  'defaultMuted',
+  'defaultPlaybackRate',
+]);
+
 export const elementProperties = new Map<string, Set<string>>(
   Object.entries({
-    audio: new Set(['volume', 'muted']),
-    video: new Set(['volume', 'muted']),
+    audio: media,
+    video: media,
     input: new Set([
       'value',
       'valueAsNumber',

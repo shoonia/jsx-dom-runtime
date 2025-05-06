@@ -91,22 +91,37 @@ describe('HTMLAudioElement', () => {
   });
 
   it('should add support of `volume` property', () => {
-    expect(<audio volume={0.9} />).not.toHaveAttribute('volume');
     expect(<audio volume={0.9} />).toHaveProperty('volume', 0.9);
+    expect(<audio volume={0.9} />).not.toHaveAttribute('volume');
+    expect(<audio prop:volume={0.9} />).toHaveProperty('volume', 0.9);
+    expect(<audio prop:volume={0.9} />).not.toHaveAttribute('volume');
   });
 
   it('should add support of `muted` property', () => {
-    expect(<audio muted />).not.toHaveAttribute('muted');
     expect(<audio muted />).toHaveProperty('muted', true);
-  });
-
-  it('should add support of `volume` directive', () => {
-    expect(<audio prop:volume={0.9} />).not.toHaveAttribute('volume');
-    expect(<audio prop:volume={0.9} />).toHaveProperty('volume', 0.9);
-  });
-
-  it('should add support of `muted` directive', () => {
-    expect(<audio prop:muted />).not.toHaveAttribute('muted');
+    expect(<audio muted />).not.toHaveAttribute('muted');
     expect(<audio prop:muted />).toHaveProperty('muted', true);
+    expect(<audio prop:muted />).not.toHaveAttribute('muted');
+  });
+
+  it('should add support of `defaultMuted` property', () => {
+    expect(<audio defaultMuted />).toHaveProperty('defaultMuted', true);
+    expect(<audio defaultMuted />).not.toHaveAttribute('defaultmuted');
+    expect(<audio prop:defaultMuted />).toHaveProperty('defaultMuted', true);
+    expect(<audio prop:defaultMuted />).not.toHaveAttribute('defaultmuted');
+  });
+
+  it('should add support of `currentTime` property', () => {
+    expect(<audio currentTime={10} />).toHaveProperty('currentTime', 10);
+    expect(<audio currentTime={10} />).not.toHaveAttribute('currenttime');
+    expect(<audio prop:currentTime={10} />).toHaveProperty('currentTime', 10);
+    expect(<audio prop:currentTime={10} />).not.toHaveAttribute('currenttime');
+  });
+
+  it('should add support of `defaultPlaybackRate` property', () => {
+    expect(<audio defaultPlaybackRate={10} />).toHaveProperty('defaultPlaybackRate', 10);
+    expect(<audio defaultPlaybackRate={10} />).not.toHaveAttribute('defaultplaybackrate');
+    expect(<audio prop:defaultPlaybackRate={10} />).toHaveProperty('defaultPlaybackRate', 10);
+    expect(<audio prop:defaultPlaybackRate={10} />).not.toHaveAttribute('defaultplaybackrate');
   });
 });
