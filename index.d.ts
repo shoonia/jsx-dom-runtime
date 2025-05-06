@@ -1774,6 +1774,11 @@ declare global {
        * Allows you to access the FileList selected with the `<input type="file">` element.
        */
       files?: FileList | null
+      /**
+       * Provides special properties and methods for manipulating the options, layout, and presentation of elements.
+       */
+      selectionDirection?: HTMLInputElement['selectionDirection']
+      'prop:selectionDirection'?: HTMLInputElement['selectionDirection']
       'prop:files'?: FileList | null
       'prop:defaultChecked'?: boolean
       'prop:defaultValue'?: string
@@ -2249,6 +2254,11 @@ declare global {
       rows?: Numeric
       value?: number | string
       wrap?: 'hard' | 'soft' | 'off'
+      /**
+       * Provides special properties and methods for manipulating the layout and presentation of elements.
+       */
+      selectionDirection?: HTMLTextAreaElement['selectionDirection']
+      'prop:selectionDirection'?: HTMLTextAreaElement['selectionDirection']
     }
 
     interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {

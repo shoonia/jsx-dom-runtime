@@ -118,13 +118,18 @@ describe('HTMLInputElement', () => {
   });
 
   it('should have `defaultValue` property', () => {
-    expect(<input defaultValue='hello' />).toHaveProperty('defaultValue', 'hello');
-    expect(<input defaultValue='hello' />).toHaveValue('hello');
+    expect(<input defaultValue="hello" />).toHaveProperty('defaultValue', 'hello');
+    expect(<input defaultValue="hello" />).toHaveValue('hello');
   });
 
   it('should have `defaultValue` directive', () => {
-    expect(<input prop:defaultValue='hello' />).toHaveProperty('defaultValue', 'hello');
-    expect(<input prop:defaultValue='hello' />).toHaveValue('hello');
+    expect(<input prop:defaultValue="hello" />).toHaveProperty('defaultValue', 'hello');
+    expect(<input prop:defaultValue="hello" />).toHaveValue('hello');
+  });
+
+  it('should have `selectionDirection` property', () => {
+    expect(<input selectionDirection="backward" />).toHaveProperty('selectionDirection', 'backward');
+    expect(<input prop:selectionDirection="forward" />).toHaveProperty('selectionDirection', 'forward');
   });
 
   describe('checkbox', () => {

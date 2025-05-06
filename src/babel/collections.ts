@@ -287,8 +287,12 @@ export const elementProperties = new Map<string, Set<string>>(
       'defaultValue',
       'indeterminate',
       'files',
+      'selectionDirection',
     ]),
     output: new Set(['value']),
-    textarea: new Set(['value']),
+    textarea: new Set([
+      'value',
+      'selectionDirection',
+    ]),
   })
 );

@@ -96,6 +96,11 @@ describe('HTMLTextAreaElement', () => {
     expect(<textarea autocomplete="on" />).toHaveAttribute('autocomplete', 'on');
   });
 
+  it('should have `selectionDirection` property', () => {
+    expect(<textarea selectionDirection="backward" />).toHaveProperty('selectionDirection', 'backward');
+    expect(<textarea prop:selectionDirection="forward" />).toHaveProperty('selectionDirection', 'forward');
+  });
+
   it('should have `onchange` handler', () => {
     const spy = jest.fn();
 
