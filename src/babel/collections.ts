@@ -67,7 +67,7 @@ const events = [
   // [Form] Event
   'change', 'reset', 'invalid',
   // Event
-  'load', 'error', 'select',
+  'load', 'error', 'select', 'selectionchange',
   // FocusEvent
   'focus', 'blur',
   // InputEvent
@@ -292,6 +292,7 @@ export const elementProperties = new Map<string, Set<string>>(
     output: new Set(['value']),
     textarea: new Set([
       'value',
+      'defaultValue',
       'selectionDirection',
     ]),
   })

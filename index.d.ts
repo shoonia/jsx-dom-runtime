@@ -2254,11 +2254,21 @@ declare global {
       rows?: Numeric
       value?: number | string
       wrap?: 'hard' | 'soft' | 'off'
+
+      onselectionchange?: GenericEventHandler<HTMLTextAreaElement>
+      'on:selectionChange'?: EventListener<HTMLTextAreaElement>
+
       /**
        * Provides special properties and methods for manipulating the layout and presentation of elements.
-       */
+      */
       selectionDirection?: HTMLTextAreaElement['selectionDirection']
+      /**
+       * Sets or retrieves the initial contents of the object.
+       */
+      defaultValue?: string
+
       'prop:selectionDirection'?: HTMLTextAreaElement['selectionDirection']
+      'prop:defaultValue'?: string
     }
 
     interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {

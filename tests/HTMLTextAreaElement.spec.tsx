@@ -101,6 +101,13 @@ describe('HTMLTextAreaElement', () => {
     expect(<textarea prop:selectionDirection="forward" />).toHaveProperty('selectionDirection', 'forward');
   });
 
+  it('should have `defaultValue` property', () => {
+    expect(<textarea defaultValue="hello" />).toHaveProperty('defaultValue', 'hello');
+    expect(<textarea defaultValue="hello" />).toHaveValue('hello');
+    expect(<textarea prop:defaultValue="hello" />).toHaveProperty('defaultValue', 'hello');
+    expect(<textarea prop:defaultValue="hello" />).toHaveValue('hello');
+  });
+
   it('should have `onchange` handler', () => {
     const spy = jest.fn();
 
