@@ -137,7 +137,7 @@ export const attributes = new Set([
   'tabindex', 'inputmode', 'referrerpolicy', 'enterkeyhint', 'maxlength', 'minlength',
   'itemprop', 'itemtype', 'itemid', 'itemref', 'accesskey', 'elementtiming', 'usemap',
   'fetchpriority', 'controlslist', 'dirname', 'formtarget', 'formmethod', 'formenctype',
-  'formaction', 'datetime', 'colspan', 'rowspan', 'srcset', 'shadowrootmode',
+  'formaction', 'datetime', 'colspan', 'rowspan', 'srcset', 'shadowrootmode', 'closedby',
 ]);
 
 export const booleanAttributes = new Set([
@@ -307,6 +307,7 @@ export const elementProperties = new Map<string, Set<string>>(
       'defaultValue',
       'selectionDirection',
     ]),
-    button: new Set(['popoverTargetElement'])
+    button: new Set(['popoverTargetElement']),
+    dialog: new Set(['returnValue']),
   })
 );

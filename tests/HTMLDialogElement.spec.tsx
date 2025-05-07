@@ -29,4 +29,20 @@ describe('HTMLDialogElement', () => {
     const spy = jest.fn();
     expect(<dialog onclose={spy} />).toHaveProperty('onclose', spy);
   });
+
+  it('should have `closedBy` attribute', () => {
+    expect(<dialog closedBy="closerequest" />).toHaveAttribute('closedby', 'closerequest');
+  });
+
+  it('should have `closedBy` property', () => {
+    expect(<dialog prop:closedBy="closerequest" />).toHaveProperty('closedBy', 'closerequest');
+    expect(<dialog prop:closedBy="closerequest" />).not.toHaveAttribute('closedby');
+  });
+
+  it('should have `returnValue` property', () => {
+    expect(<dialog returnValue="hello" />).toHaveProperty('returnValue', 'hello');
+    expect(<dialog returnValue="hello" />).not.toHaveAttribute('returnvalue');
+    expect(<dialog prop:returnValue="hello" />).toHaveProperty('returnValue', 'hello');
+    expect(<dialog prop:returnValue="hello" />).not.toHaveAttribute('returnvalue');
+  });
 });

@@ -1491,10 +1491,23 @@ declare global {
        * @deprecated
        */
       tabIndex?: Numeric
+      /**
+       * Specifies the types of user actions that can be used to close the `<dialog>` element
+       */
+      closedBy?: 'any' | 'closerequest' | 'none'
+
       onclose?: GenericEventHandler<HTMLDialogElement>
       'on:close'?: EventListener<HTMLDialogElement>
       oncancel?: GenericEventHandler<HTMLDialogElement>
       'on:cancel'?: EventListener<HTMLDialogElement>
+      /**
+       * A string that sets or returns the return value for the dialog.
+       */
+      returnValue?: string
+
+      'prop:open'?: boolean
+      'prop:closedBy'?: 'any' | 'closerequest' | 'none'
+      'prop:returnValue'?: string
     }
 
     interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
