@@ -140,9 +140,31 @@ describe('HTMLVideoElement', () => {
   });
 
   it('should add support of `defaultPlaybackRate` property', () => {
-    expect(<video defaultPlaybackRate={10} />).toHaveProperty('defaultPlaybackRate', 10);
-    expect(<video defaultPlaybackRate={10} />).not.toHaveAttribute('defaultplaybackrate');
-    expect(<video prop:defaultPlaybackRate={10} />).toHaveProperty('defaultPlaybackRate', 10);
-    expect(<video prop:defaultPlaybackRate={10} />).not.toHaveAttribute('defaultplaybackrate');
+    expect(<video defaultPlaybackRate={1.0} />).toHaveProperty('defaultPlaybackRate', 1.0);
+    expect(<video defaultPlaybackRate={1.0} />).not.toHaveAttribute('defaultplaybackrate');
+    expect(<video prop:defaultPlaybackRate={1.0} />).toHaveProperty('defaultPlaybackRate', 1.0);
+    expect(<video prop:defaultPlaybackRate={1.0} />).not.toHaveAttribute('defaultplaybackrate');
+  });
+
+  it('should add support of `playbackRate` property', () => {
+    expect(<video playbackRate={1.0} />).toHaveProperty('playbackRate', 1.0);
+    expect(<video playbackRate={1.0} />).not.toHaveAttribute('playbackrate');
+    expect(<video prop:playbackRate={1.0} />).toHaveProperty('playbackRate', 1.0);
+    expect(<video prop:playbackRate={1.0} />).not.toHaveAttribute('playbackrate');
+  });
+
+  it('should add support of `srcObject` property', () => {
+    const blob = new Blob([]);
+    expect(<video srcObject={blob} />).toHaveProperty('srcObject', blob);
+    expect(<video srcObject={blob} />).not.toHaveAttribute('srcobject');
+    expect(<video prop:srcObject={blob} />).toHaveProperty('srcObject', blob);
+    expect(<video prop:srcObject={blob} />).not.toHaveAttribute('srcobject');
+  });
+
+  it('should add support of `preservesPitch` property', () => {
+    expect(<video preservesPitch={false} />).toHaveProperty('preservesPitch', false);
+    expect(<video preservesPitch={false} />).not.toHaveAttribute('preservespitch');
+    expect(<video prop:preservesPitch={false} />).toHaveProperty('preservesPitch', false);
+    expect(<video prop:preservesPitch={false} />).not.toHaveAttribute('preservespitch');
   });
 });

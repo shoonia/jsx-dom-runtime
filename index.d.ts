@@ -116,7 +116,12 @@ export interface CSSProperties extends Properties<number | string> {
   [key: `--${string}`]: number | string
 }
 
-export type ControlsList = 'nodownload' | 'nofullscreen' | 'noremoteplayback'
+export type ControlsList =
+  | 'nodownload'
+  | 'nofullscreen'
+  | 'noremoteplayback'
+  | 'noplaybackrate'
+  | AnyString
 export type Target = '_self' | '_parent' | '_top' | '_blank' | '_unfencedTop' | AnyString
 export type CrossOrigin = boolean | '' | 'anonymous' | 'use-credentials'
 export type CommandEventType =
@@ -1424,7 +1429,8 @@ declare global {
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
       /** Sets the popover element to control via a button */
-      'prop:popoverTargetElement'?: globalThis.Element
+      popoverTargetElement?: globalThis.Element | null
+      'prop:popoverTargetElement'?: globalThis.Element | null
       /**
        * Specifies the action to be performed on an element being controlled by a control `<button>`, specified via the `commandfor` attribute.
        */
@@ -1779,6 +1785,11 @@ declare global {
        * Provides special properties and methods for manipulating the options, layout, and presentation of elements.
        */
       selectionDirection?: HTMLInputElement['selectionDirection']
+      /**
+       * Sets the popover element to control via an `<input>` element of `type="button"`.
+       */
+      popoverTargetElement?: globalThis.Element | null
+
       'prop:selectionDirection'?: HTMLInputElement['selectionDirection']
       'prop:files'?: FileList | null
       'prop:defaultChecked'?: boolean
@@ -1902,7 +1913,7 @@ declare global {
       /**
        * Offers a way to control the native controls elements/buttons that are being shown by the user agent in order to be able to remove some features that do not make sense or are not part of the expected user experience or only allowlist a limited amount of features
        */
-      controlsList?: `${OptionalPrefixToken<ControlsList>}${OptionalPrefixToken<ControlsList>}${ControlsList}`
+      controlsList?: ControlsList
       crossOrigin?: CrossOrigin
       loop?: boolean | ''
       mediaGroup?: string
@@ -1913,8 +1924,14 @@ declare global {
       onwaitingforkey?: GenericEventHandler<T>
       'on:waitingForKey'?: EventListener<T>
 
+      /**
+       * Sets the object which serves as the source of the media associated with the `HTMLMediaElement`.
+       * The object can be a `MediaStream`, a `MediaSource`, a `Blob`, or a `File` (which inherits from `Blob`).
+       */
+      srcObject?: MediaProvider | null
       /** Causes the media to play with the sound turned off by default. */
       muted?: boolean
+      defaultMuted?: boolean
       /**
        * Sets the volume at which the media will be played.
        * A double values must fall between 0 and 1, where 0 is effectively muted and 1 is the loudest possible value
@@ -1924,17 +1941,27 @@ declare global {
        * Gets or sets the current playback position, in seconds.
        */
       currentTime?: number
-      defaultMuted?: boolean
+      /**
+       * Sets the rate at which the media is being played back. This is used to implement user controls for fast forward, slow motion, and so forth. The normal playback rate is multiplied by this value to obtain the current rate, so a value of 1.0 indicates normal speed.
+       */
+      playbackRate?: number
       /**
        * Gets or sets the default playback rate when the user is not using fast forward or reverse for a video or audio resource.
        */
       defaultPlaybackRate?: number
+      /**
+       * Determines whether or not the browser should adjust the pitch of the audio to compensate for changes to the playback rate made by setting `HTMLMediaElement.playbackRate`.
+       */
+      preservesPitch?: boolean
 
+      'prop:srcObject'?: MediaProvider | null
       'prop:muted'?: boolean
+      'prop:defaultMuted'?: boolean
       'prop:volume'?: number
       'prop:currentTime'?: number
-      'prop:defaultMuted'?: boolean
+      'prop:playbackRate'?: number
       'prop:defaultPlaybackRate'?: number
+      'prop:preservesPitch'?: boolean
     }
 
     interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {

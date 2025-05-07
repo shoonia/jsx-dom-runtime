@@ -278,6 +278,9 @@ for (let i = 65; i <= 90; i++) {
 const media = new Set([
   'volume',
   'muted',
+  'srcObject',
+  'preservesPitch',
+  'playbackRate',
   'currentTime',
   'defaultMuted',
   'defaultPlaybackRate',
@@ -296,6 +299,7 @@ export const elementProperties = new Map<string, Set<string>>(
       'indeterminate',
       'files',
       'selectionDirection',
+      'popoverTargetElement',
     ]),
     output: new Set(['value']),
     textarea: new Set([
@@ -303,5 +307,6 @@ export const elementProperties = new Map<string, Set<string>>(
       'defaultValue',
       'selectionDirection',
     ]),
+    button: new Set(['popoverTargetElement'])
   })
 );

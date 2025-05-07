@@ -119,9 +119,31 @@ describe('HTMLAudioElement', () => {
   });
 
   it('should add support of `defaultPlaybackRate` property', () => {
-    expect(<audio defaultPlaybackRate={10} />).toHaveProperty('defaultPlaybackRate', 10);
-    expect(<audio defaultPlaybackRate={10} />).not.toHaveAttribute('defaultplaybackrate');
-    expect(<audio prop:defaultPlaybackRate={10} />).toHaveProperty('defaultPlaybackRate', 10);
-    expect(<audio prop:defaultPlaybackRate={10} />).not.toHaveAttribute('defaultplaybackrate');
+    expect(<audio defaultPlaybackRate={1.0} />).toHaveProperty('defaultPlaybackRate', 1.0);
+    expect(<audio defaultPlaybackRate={1.0} />).not.toHaveAttribute('defaultplaybackrate');
+    expect(<audio prop:defaultPlaybackRate={1.0} />).toHaveProperty('defaultPlaybackRate', 1.0);
+    expect(<audio prop:defaultPlaybackRate={1.0} />).not.toHaveAttribute('defaultplaybackrate');
+  });
+
+  it('should add support of `playbackRate` property', () => {
+    expect(<audio playbackRate={1.0} />).toHaveProperty('playbackRate', 1.0);
+    expect(<audio playbackRate={1.0} />).not.toHaveAttribute('playbackrate');
+    expect(<audio prop:playbackRate={1.0} />).toHaveProperty('playbackRate', 1.0);
+    expect(<audio prop:playbackRate={1.0} />).not.toHaveAttribute('playbackrate');
+  });
+
+  it('should add support of `srcObject` property', () => {
+    const blob = new Blob([]);
+    expect(<audio srcObject={blob} />).toHaveProperty('srcObject', blob);
+    expect(<audio srcObject={blob} />).not.toHaveAttribute('srcobject');
+    expect(<audio prop:srcObject={blob} />).toHaveProperty('srcObject', blob);
+    expect(<audio prop:srcObject={blob} />).not.toHaveAttribute('srcobject');
+  });
+
+  it('should add support of `preservesPitch` property', () => {
+    expect(<audio preservesPitch={false} />).toHaveProperty('preservesPitch', false);
+    expect(<audio preservesPitch={false} />).not.toHaveAttribute('preservespitch');
+    expect(<audio prop:preservesPitch={false} />).toHaveProperty('preservesPitch', false);
+    expect(<audio prop:preservesPitch={false} />).not.toHaveAttribute('preservespitch');
   });
 });
