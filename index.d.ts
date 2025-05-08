@@ -1797,13 +1797,13 @@ declare global {
       /**
        * Provides special properties and methods for manipulating the options, layout, and presentation of elements.
        */
-      selectionDirection?: HTMLInputElement['selectionDirection']
+      selectionDirection?: 'forward' | 'backward' | 'none'
       /**
        * Sets the popover element to control via an `<input>` element of `type="button"`.
        */
       popoverTargetElement?: globalThis.Element | null
 
-      'prop:selectionDirection'?: HTMLInputElement['selectionDirection']
+      'prop:selectionDirection'?: 'forward' | 'backward' | 'none'
       'prop:files'?: FileList | null
       'prop:defaultChecked'?: boolean
       'prop:defaultValue'?: string
@@ -1816,6 +1816,7 @@ declare global {
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
       for?: string
+
       'prop:htmlFor'?: string
     }
 
@@ -1930,7 +1931,7 @@ declare global {
       crossOrigin?: CrossOrigin
       loop?: boolean | ''
       mediaGroup?: string
-      preload?: HTMLMediaElement['preload']
+      preload?: '' | 'metadata' | 'none' | 'auto'
       src?: string
       onencrypted?: MediaEncryptedEventHandler<T>
       'on:encrypted'?: MediaEncryptedEventListener<T>
@@ -2158,6 +2159,16 @@ declare global {
       required?: boolean | ''
       size?: Numeric
       value?: number | string
+
+      'prop:autocomplete'?: AutoFill
+      'prop:disabled'?: boolean
+      'prop:length'?: number
+      'prop:multiple'?: boolean
+      'prop:name'?: string
+      'prop:required'?: boolean
+      'prop:selectedIndex'?: number
+      'prop:size'?: number
+      'prop:value'?: string
     }
 
     interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {

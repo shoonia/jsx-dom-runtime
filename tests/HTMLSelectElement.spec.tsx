@@ -96,4 +96,21 @@ describe('HTMLSelectElement', () => {
 
     expect(<select onchange={spy} />).toHaveProperty('onchange', spy);
   });
+
+  it('should have `selectedIndex` property', () => {
+    expect(
+      <select prop:selectedIndex={2}>
+        <option value="1">First</option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+      </select>
+    ).toHaveProperty('selectedIndex', 2);
+    expect(
+      <select prop:selectedIndex={2}>
+        <option value="1">First</option>
+        <option value="2">Second</option>
+        <option value="3">Third</option>
+      </select>
+    ).not.toHaveAttribute('selectedindex');
+  });
 });
