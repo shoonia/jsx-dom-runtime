@@ -77,8 +77,8 @@ describe('HTMLTextAreaElement', () => {
     expect(<textarea>content text</textarea>).toHaveInnerHTML('content text');
   });
 
-  it('should have `value` attribute', () => {
-    expect(<textarea value="hello" />).toHaveValue('hello');
+  it('should have `value` property', () => {
+    expect(<textarea prop:value="hello" />).toHaveValue('hello');
   });
 
   it('should have `dirName` attribute', () => {
@@ -97,13 +97,10 @@ describe('HTMLTextAreaElement', () => {
   });
 
   it('should have `selectionDirection` property', () => {
-    expect(<textarea selectionDirection="backward" />).toHaveProperty('selectionDirection', 'backward');
     expect(<textarea prop:selectionDirection="forward" />).toHaveProperty('selectionDirection', 'forward');
   });
 
   it('should have `defaultValue` property', () => {
-    expect(<textarea defaultValue="hello" />).toHaveProperty('defaultValue', 'hello');
-    expect(<textarea defaultValue="hello" />).toHaveValue('hello');
     expect(<textarea prop:defaultValue="hello" />).toHaveProperty('defaultValue', 'hello');
     expect(<textarea prop:defaultValue="hello" />).toHaveValue('hello');
   });

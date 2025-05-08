@@ -13,6 +13,6 @@ describe('HTMLOutputElement', () => {
   });
 
   it('should have `value` property', () => {
-    expect(<output value="11" />).toHaveValue('11');
+    expect(<output prop:value="11" />).toHaveValue('11');
   });
 });

@@ -40,8 +40,6 @@ describe('HTMLDialogElement', () => {
   });
 
   it('should have `returnValue` property', () => {
-    expect(<dialog returnValue="hello" />).toHaveProperty('returnValue', 'hello');
-    expect(<dialog returnValue="hello" />).not.toHaveAttribute('returnvalue');
     expect(<dialog prop:returnValue="hello" />).toHaveProperty('returnValue', 'hello');
     expect(<dialog prop:returnValue="hello" />).not.toHaveAttribute('returnvalue');
   });

@@ -124,6 +124,7 @@ export type ControlsList =
   | AnyString
 export type Target = '_self' | '_parent' | '_top' | '_blank' | '_unfencedTop' | AnyString
 export type CrossOrigin = boolean | '' | 'anonymous' | 'use-credentials'
+export type FetchPriority = 'high' | 'low' | 'auto'
 export type CommandEventType =
   | 'show-modal'
   | 'close'
@@ -1316,6 +1317,31 @@ declare global {
        * @deprecated
        */
       'xlink:href'?: string
+
+      'prop:charset'?: string
+      'prop:coords'?: string
+      'prop:download'?: string
+      'prop:hreflang'?: string
+      'prop:name'?: string
+      'prop:ping'?: string
+      'prop:referrerPolicy'?: ReferrerPolicy
+      'prop:rel'?: HTMLAnchorElementAttributes['rel']
+      'prop:relList'?: string
+      'prop:rev'?: string
+      'prop:shape'?: string
+      'prop:target'?: Target
+      'prop:text'?: string
+      'prop:type'?: string
+      'prop:hash'?: string
+      'prop:host'?: string
+      'prop:hostname'?: string
+      'prop:href'?: string
+      'prop:password'?: string
+      'prop:pathname'?: string
+      'prop:port'?: string
+      'prop:protocol'?: string
+      'prop:search'?: string
+      'prop:username'?: string
     }
 
     interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> { }
@@ -1424,13 +1450,10 @@ declare global {
        */
       formTarget?: Target
       name?: string
-      type?: HTMLButtonElement['type']
+      type?: 'submit' | 'reset' | 'button'
       value?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
-      /** Sets the popover element to control via a button */
-      popoverTargetElement?: globalThis.Element | null
-      'prop:popoverTargetElement'?: globalThis.Element | null
       /**
        * Specifies the action to be performed on an element being controlled by a control `<button>`, specified via the `commandfor` attribute.
        */
@@ -1439,6 +1462,20 @@ declare global {
        * Turns a <button> element into a command button, controlling the given interactive element; takes the ID of the element to control as its value. This is a more general version of `popovertarget`.
        */
       commandfor?: string
+
+      'prop:command'?: CommandEventType
+      'prop:commandForElement'?: globalThis.Element | null
+      'prop:disabled'?: boolean
+      'prop:formAction'?: string
+      'prop:formEnctype'?: string
+      'prop:formMethod'?: 'post' | 'get' | 'dialog' | AnyString
+      'prop:formNoValidate'?: boolean
+      'prop:formTarget'?: Target
+      'prop:name'?: string
+      'prop:type'?: 'submit' | 'reset' | 'button'
+      'prop:value'?: string
+      'prop:popoverTargetAction'?: 'hide' | 'show' | 'toggle'
+      'prop:popoverTargetElement'?: globalThis.Element | null
     }
 
     interface HTMLCanvasElementAttributes extends HTMLAttributes<HTMLCanvasElement> {
@@ -1458,6 +1495,9 @@ declare global {
       'on:webGLContextLost'?: WebGLContextEventListener<HTMLCanvasElement>
       'on:webGLContextRestored'?: WebGLContextEventListener<HTMLCanvasElement>
       'on:webGLContextCreationError'?: WebGLContextEventListener<HTMLCanvasElement>
+
+      'prop:height'?: number
+      'prop:width'?: number
     }
 
     interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
@@ -1500,10 +1540,6 @@ declare global {
       'on:close'?: EventListener<HTMLDialogElement>
       oncancel?: GenericEventHandler<HTMLDialogElement>
       'on:cancel'?: EventListener<HTMLDialogElement>
-      /**
-       * A string that sets or returns the return value for the dialog.
-       */
-      returnValue?: string
 
       'prop:open'?: boolean
       'prop:closedBy'?: 'any' | 'closerequest' | 'none'
@@ -1536,7 +1572,6 @@ declare global {
        */
       accept?: string
       'accept-charset'?: string
-      'prop:acceptCharset'?: string
       action?: string
       autocomplete?: boolean | AutoFillBase
       enctype?: string
@@ -1564,6 +1599,18 @@ declare global {
       target?: Target
       onformdata?: FormDataEventHandler<HTMLFormElement>
       'on:formData'?: FormDataEventListener<HTMLFormElement>
+
+      'prop:acceptCharset'?: string
+      'prop:action'?: string
+      'prop:autocomplete'?: AutoFillBase
+      'prop:encoding'?: string
+      'prop:enctype'?: string
+      'prop:method'?: 'post' | 'get' | 'dialog' | AnyString
+      'prop:name'?: string
+      'prop:noValidate'?: boolean
+      'prop:rel'?: HTMLFormElementAttributes['rel']
+      'prop:relList'?: string
+      'prop:target'?: Target
     }
 
     interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> {
@@ -1571,27 +1618,33 @@ declare global {
        * Sets or retrieves how the object is aligned with adjacent text.
        * @deprecated
        */
-      align?: string;
+      align?: string
       /** @deprecated */
-      color?: Property.Color;
+      color?: Property.Color
       /**
        * Sets or retrieves whether the horizontal rule is drawn with 3-D shading.
        * @deprecated
        */
-      noShade?: boolean | '';
+      noShade?: boolean | ''
       /** @deprecated */
-      size?: string;
+      size?: string
       /**
        * Sets or retrieves the width of the object.
        * @deprecated
        */
-      width?: string;
+      width?: string
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
       children?: null
+
+      'prop:align'?: string
+      'prop:color'?: Property.Color
+      'prop:noShade'?: boolean
+      'prop:size'?: string
+      'prop:width'?: string
     }
 
     interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
@@ -1666,31 +1719,69 @@ declare global {
        * The width of the frame in CSS pixels. Default is 300
        */
       width?: number | string
+
+      'prop:align'?: string
+      'prop:allow'?: string
+      'prop:allowFullscreen'?: boolean
+      'prop:frameBorder'?: string
+      'prop:height'?: string
+      'prop:loading'?: 'eager' | 'lazy'
+      'prop:longDesc'?: string
+      'prop:marginHeight'?: string
+      'prop:marginWidth'?: string
+      'prop:name'?: string
+      'prop:referrerPolicy'?: ReferrerPolicy
+      'prop:sandbox'?: HTMLIFrameElementAttributes['sandbox']
+      'prop:scrolling'?: 'auto' | 'yes' | 'no'
+      'prop:src'?: string
+      'prop:srcdoc'?: string
+      'prop:width'?: string
     }
 
     interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
       alt?: string
       crossOrigin?: CrossOrigin
-      decoding?: HTMLImageElement['decoding']
+      decoding?: 'async' | 'sync' | 'auto'
       height?: number | string
       /**
        * This Boolean attribute indicates that the image is part of a server-side map. If so, the coordinates where the user clicked on the image are sent to the server
        */
       ismap?: boolean | ''
-      loading?: HTMLImageElement['loading']
+      loading?: 'eager' | 'lazy'
       referrerPolicy?: ReferrerPolicy
       sizes?: string
       src?: string
       srcset?: string
       useMap?: string
       width?: number | string
-      fetchPriority?: 'high' | 'low' | 'auto'
+      fetchPriority?: FetchPriority
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
        */
       children?: null
+
+      'prop:align'?: string
+      'prop:alt'?: string
+      'prop:border'?: string
+      'prop:crossOrigin'?: string | null
+      'prop:decoding'?: 'async' | 'sync' | 'auto'
+      'prop:fetchPriority'?: FetchPriority
+      'prop:height'?: number
+      'prop:hspace'?: number
+      'prop:isMap'?: boolean
+      'prop:loading'?: 'eager' | 'lazy'
+      'prop:longDesc'?: string
+      'prop:lowsrc'?: string
+      'prop:name'?: string
+      'prop:referrerPolicy'?: ReferrerPolicy
+      'prop:sizes'?: string
+      'prop:src'?: string
+      'prop:srcset'?: string
+      'prop:useMap'?: string
+      'prop:vspace'?: number
+      'prop:width'?: number
     }
 
     interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
@@ -1770,38 +1861,6 @@ declare global {
        * @deprecated
        */
       children?: null
-      /**
-       * The `indeterminate` property of the `HTMLInputElement` interface returns a boolean value that indicates whether the checkbox is in the _indeterminate_ state. For example, a "select all/deselect all" checkbox may be in the indeterminate state when some but not all of its sub-controls are checked. The `indeterminate` state can only be set via JavaScript and is only relevant to `checkbox` controls.
-       */
-      indeterminate?: boolean
-      /**
-       * A number that represents the value of the element, interpreted as one of the following, in order: A time value, a number, or `NaN` if conversion is impossible.
-       */
-      valueAsNumber?: number
-      /**
-       * A `Date` that represents the value of the element, interpreted as a date, or null if conversion is not possible.
-       */
-      valueAsDate?: Date
-      /**
-       * This property reflects the `<input>` element's `checked` attribute. The boolean `checked` attribute is valid for the `radio` (`<input type="radio">`) and `checkbox` (`<input type="checkbox">`) input types.
-       */
-      defaultChecked?: boolean
-      /**
-       * A string that represents the default value as originally specified in the HTML that created this object.
-      */
-      defaultValue?: string
-      /**
-       * Allows you to access the FileList selected with the `<input type="file">` element.
-       */
-      files?: FileList | null
-      /**
-       * Provides special properties and methods for manipulating the options, layout, and presentation of elements.
-       */
-      selectionDirection?: 'forward' | 'backward' | 'none'
-      /**
-       * Sets the popover element to control via an `<input>` element of `type="button"`.
-       */
-      popoverTargetElement?: globalThis.Element | null
 
       'prop:selectionDirection'?: 'forward' | 'backward' | 'none'
       'prop:files'?: FileList | null
@@ -1899,7 +1958,7 @@ declare global {
       type?: string
       /** @deprecated */
       charset?: string
-      fetchPriority?: 'high' | 'low' | 'auto'
+      fetchPriority?: FetchPriority
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
@@ -1931,51 +1990,28 @@ declare global {
       crossOrigin?: CrossOrigin
       loop?: boolean | ''
       mediaGroup?: string
-      preload?: '' | 'metadata' | 'none' | 'auto'
+      preload?: 'none' | 'metadata' | 'auto' | '';
       src?: string
       onencrypted?: MediaEncryptedEventHandler<T>
       'on:encrypted'?: MediaEncryptedEventListener<T>
       onwaitingforkey?: GenericEventHandler<T>
       'on:waitingForKey'?: EventListener<T>
 
-      /**
-       * Sets the object which serves as the source of the media associated with the `HTMLMediaElement`.
-       * The object can be a `MediaStream`, a `MediaSource`, a `Blob`, or a `File` (which inherits from `Blob`).
-       */
-      srcObject?: MediaProvider | null
-      /** Causes the media to play with the sound turned off by default. */
-      muted?: boolean
-      defaultMuted?: boolean
-      /**
-       * Sets the volume at which the media will be played.
-       * A double values must fall between 0 and 1, where 0 is effectively muted and 1 is the loudest possible value
-       */
-      volume?: number
-      /**
-       * Gets or sets the current playback position, in seconds.
-       */
-      currentTime?: number
-      /**
-       * Sets the rate at which the media is being played back. This is used to implement user controls for fast forward, slow motion, and so forth. The normal playback rate is multiplied by this value to obtain the current rate, so a value of 1.0 indicates normal speed.
-       */
-      playbackRate?: number
-      /**
-       * Gets or sets the default playback rate when the user is not using fast forward or reverse for a video or audio resource.
-       */
-      defaultPlaybackRate?: number
-      /**
-       * Determines whether or not the browser should adjust the pitch of the audio to compensate for changes to the playback rate made by setting `HTMLMediaElement.playbackRate`.
-       */
-      preservesPitch?: boolean
-
-      'prop:srcObject'?: MediaProvider | null
-      'prop:muted'?: boolean
-      'prop:defaultMuted'?: boolean
-      'prop:volume'?: number
+      'prop:autoplay'?: boolean
+      'prop:controls'?: boolean
+      'prop:crossOrigin'?: CrossOrigin | null
       'prop:currentTime'?: number
-      'prop:playbackRate'?: number
+      'prop:defaultMuted'?: boolean
       'prop:defaultPlaybackRate'?: number
+      'prop:disableRemotePlayback'?: boolean
+      'prop:loop'?: boolean
+      'prop:muted'?: boolean
+      'prop:playbackRate'?: number
+      'prop:preload'?: 'none' | 'metadata' | 'auto' | ''
       'prop:preservesPitch'?: boolean
+      'prop:src'?: string
+      'prop:srcObject'?: MediaProvider | null
+      'prop:volume'?: number
     }
 
     interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
@@ -2146,7 +2182,7 @@ declare global {
        * This attribute indicates the type of script represented
        */
       type?: 'importmap' | 'module' | 'speculationrules' | AnyString
-      fetchPriority?: 'high' | 'low' | 'auto'
+      fetchPriority?: FetchPriority
     }
 
     interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
@@ -2173,6 +2209,7 @@ declare global {
 
     interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {
       name?: string
+      'prop:name'?: string
     }
 
     interface HTMLSourceElementAttributes extends HTMLAttributes<HTMLSourceElement> {
@@ -2210,6 +2247,14 @@ declare global {
        * @deprecated
        */
       children?: null
+
+      'prop:height'?: number
+      'prop:media'?: string
+      'prop:sizes'?: string
+      'prop:src'?: string
+      'prop:srcset'?: string
+      'prop:type'?: string
+      'prop:width'?: number
     }
 
     interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
@@ -2225,6 +2270,11 @@ declare global {
        * @deprecated
        */
       type?: string
+
+      'prop:blocking'?: 'render' | AnyString
+      'prop:disabled'?: boolean
+      'prop:media'?: string
+      'prop:type'?: string
     }
 
     interface HTMLTableElementAttributes extends HTMLAttributes<HTMLTableElement> {
@@ -2296,6 +2346,11 @@ declare global {
        * @see https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootSerializable
         */
       shadowRootSerializable?: boolean | ''
+
+      'prop:shadowRootClonable'?: boolean
+      'prop:shadowRootDelegatesFocus'?: boolean
+      'prop:shadowRootMode'?: 'open' | 'closed'
+      'prop:shadowRootSerializable'?: boolean
     }
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
@@ -2324,17 +2379,23 @@ declare global {
       onselectionchange?: GenericEventHandler<HTMLTextAreaElement>
       'on:selectionChange'?: EventListener<HTMLTextAreaElement>
 
-      /**
-       * Provides special properties and methods for manipulating the layout and presentation of elements.
-      */
-      selectionDirection?: HTMLTextAreaElement['selectionDirection']
-      /**
-       * Sets or retrieves the initial contents of the object.
-       */
-      defaultValue?: string
-
-      'prop:selectionDirection'?: HTMLTextAreaElement['selectionDirection']
+      'prop:autocomplete'?: AutoFill
+      'prop:cols'?: number
       'prop:defaultValue'?: string
+      'prop:dirName'?: 'rtl' | 'ltr'
+      'prop:disabled'?: boolean
+      'prop:maxLength'?: number
+      'prop:minLength'?: number
+      'prop:name'?: string
+      'prop:placeholder'?: string
+      'prop:readOnly'?: boolean
+      'prop:required'?: boolean
+      'prop:rows'?: number
+      'prop:selectionDirection'?: 'forward' | 'backward' | 'none'
+      'prop:selectionEnd'?: number
+      'prop:selectionStart'?: number
+      'prop:value'?: string
+      'prop:wrap'?: 'hard' | 'soft' | 'off'
     }
 
     interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
@@ -2449,6 +2510,7 @@ declare global {
        * Indicates the time and/or date in the machine-readable format, allowing for better search engine results or custom features such as reminders
        */
       dateTime?: string
+      'prop:dateTime'?: string
     }
 
     interface HTMLTrackElementAttributes extends HTMLAttributes<HTMLTrackElement> {
@@ -2465,6 +2527,12 @@ declare global {
        * @deprecated
        */
       children?: null
+
+      'prop:default'?: boolean
+      'prop:kind'?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
+      'prop:label'?: string
+      'prop:src'?: string
+      'prop:srclang'?: string
     }
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
@@ -2479,6 +2547,12 @@ declare global {
       'on:leavePictureInPicture'?: PictureInPictureEventListener<HTMLVideoElement>
       onresize?: PictureInPictureEventHandler<HTMLVideoElement>
       'on:resize'?: PictureInPictureEventListener<HTMLVideoElement>
+
+      'prop:disablePictureInPicture'?: boolean
+      'prop:height'?: number
+      'prop:playsInline'?: boolean
+      'prop:poster'?: string
+      'prop:width'?: number
     }
 
     interface HTMLWBRElementAttributes extends HTMLAttributes<HTMLElement> {
@@ -2522,6 +2596,18 @@ declare global {
       trueSpeed?: boolean | ''
       vspace?: number | string
       width?: number | string
+
+      'prop:behavior'?: 'scroll' | 'slide' | 'alternate'
+      'prop:bgColor'?: Property.Color
+      'prop:direction'?: 'left' | 'right' | 'up' | 'down'
+      'prop:height'?: string
+      'prop:hspace'?: number
+      'prop:loop'?: number
+      'prop:scrollAmount'?: number
+      'prop:scrollDelay'?: number
+      'prop:trueSpeed'?: boolean
+      'prop:vspace'?: number
+      'prop:width'?: string
     }
 
     type HTMLWebViewElement = HTMLElement

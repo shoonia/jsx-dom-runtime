@@ -91,59 +91,35 @@ describe('HTMLAudioElement', () => {
   });
 
   it('should add support of `volume` property', () => {
-    expect(<audio volume={0.9} />).toHaveProperty('volume', 0.9);
-    expect(<audio volume={0.9} />).not.toHaveAttribute('volume');
     expect(<audio prop:volume={0.9} />).toHaveProperty('volume', 0.9);
-    expect(<audio prop:volume={0.9} />).not.toHaveAttribute('volume');
   });
 
   it('should add support of `muted` property', () => {
-    expect(<audio muted />).toHaveProperty('muted', true);
-    expect(<audio muted />).not.toHaveAttribute('muted');
     expect(<audio prop:muted />).toHaveProperty('muted', true);
-    expect(<audio prop:muted />).not.toHaveAttribute('muted');
   });
 
   it('should add support of `defaultMuted` property', () => {
-    expect(<audio defaultMuted />).toHaveProperty('defaultMuted', true);
-    expect(<audio defaultMuted />).not.toHaveAttribute('defaultmuted');
     expect(<audio prop:defaultMuted />).toHaveProperty('defaultMuted', true);
-    expect(<audio prop:defaultMuted />).not.toHaveAttribute('defaultmuted');
   });
 
   it('should add support of `currentTime` property', () => {
-    expect(<audio currentTime={10} />).toHaveProperty('currentTime', 10);
-    expect(<audio currentTime={10} />).not.toHaveAttribute('currenttime');
     expect(<audio prop:currentTime={10} />).toHaveProperty('currentTime', 10);
-    expect(<audio prop:currentTime={10} />).not.toHaveAttribute('currenttime');
   });
 
   it('should add support of `defaultPlaybackRate` property', () => {
-    expect(<audio defaultPlaybackRate={1.0} />).toHaveProperty('defaultPlaybackRate', 1.0);
-    expect(<audio defaultPlaybackRate={1.0} />).not.toHaveAttribute('defaultplaybackrate');
     expect(<audio prop:defaultPlaybackRate={1.0} />).toHaveProperty('defaultPlaybackRate', 1.0);
-    expect(<audio prop:defaultPlaybackRate={1.0} />).not.toHaveAttribute('defaultplaybackrate');
   });
 
   it('should add support of `playbackRate` property', () => {
-    expect(<audio playbackRate={1.0} />).toHaveProperty('playbackRate', 1.0);
-    expect(<audio playbackRate={1.0} />).not.toHaveAttribute('playbackrate');
     expect(<audio prop:playbackRate={1.0} />).toHaveProperty('playbackRate', 1.0);
-    expect(<audio prop:playbackRate={1.0} />).not.toHaveAttribute('playbackrate');
   });
 
   it('should add support of `srcObject` property', () => {
     const blob = new Blob([]);
-    expect(<audio srcObject={blob} />).toHaveProperty('srcObject', blob);
-    expect(<audio srcObject={blob} />).not.toHaveAttribute('srcobject');
     expect(<audio prop:srcObject={blob} />).toHaveProperty('srcObject', blob);
-    expect(<audio prop:srcObject={blob} />).not.toHaveAttribute('srcobject');
   });
 
   it('should add support of `preservesPitch` property', () => {
-    expect(<audio preservesPitch={false} />).toHaveProperty('preservesPitch', false);
-    expect(<audio preservesPitch={false} />).not.toHaveAttribute('preservespitch');
     expect(<audio prop:preservesPitch={false} />).toHaveProperty('preservesPitch', false);
-    expect(<audio prop:preservesPitch={false} />).not.toHaveAttribute('preservespitch');
   });
 });

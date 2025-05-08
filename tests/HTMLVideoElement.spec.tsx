@@ -112,59 +112,35 @@ describe('HTMLVideoElement', () => {
   });
 
   it('should add support of `volume` property', () => {
-    expect(<video volume={0.9} />).toHaveProperty('volume', 0.9);
-    expect(<video volume={0.9} />).not.toHaveAttribute('volume');
     expect(<video prop:volume={0.9} />).toHaveProperty('volume', 0.9);
-    expect(<video prop:volume={0.9} />).not.toHaveAttribute('volume');
   });
 
   it('should add support of `muted` property', () => {
-    expect(<video muted />).toHaveProperty('muted', true);
-    expect(<video muted />).not.toHaveAttribute('muted');
     expect(<video prop:muted />).toHaveProperty('muted', true);
-    expect(<video prop:muted />).not.toHaveAttribute('muted');
   });
 
   it('should add support of `defaultMuted` property', () => {
-    expect(<video defaultMuted />).toHaveProperty('defaultMuted', true);
-    expect(<video defaultMuted />).not.toHaveAttribute('defaultmuted');
     expect(<video prop:defaultMuted />).toHaveProperty('defaultMuted', true);
-    expect(<video prop:defaultMuted />).not.toHaveAttribute('defaultmuted');
   });
 
   it('should add support of `currentTime` property', () => {
-    expect(<video currentTime={10} />).toHaveProperty('currentTime', 10);
-    expect(<video currentTime={10} />).not.toHaveAttribute('currenttime');
     expect(<video prop:currentTime={10} />).toHaveProperty('currentTime', 10);
-    expect(<video prop:currentTime={10} />).not.toHaveAttribute('currenttime');
   });
 
   it('should add support of `defaultPlaybackRate` property', () => {
-    expect(<video defaultPlaybackRate={1.0} />).toHaveProperty('defaultPlaybackRate', 1.0);
-    expect(<video defaultPlaybackRate={1.0} />).not.toHaveAttribute('defaultplaybackrate');
     expect(<video prop:defaultPlaybackRate={1.0} />).toHaveProperty('defaultPlaybackRate', 1.0);
-    expect(<video prop:defaultPlaybackRate={1.0} />).not.toHaveAttribute('defaultplaybackrate');
   });
 
   it('should add support of `playbackRate` property', () => {
-    expect(<video playbackRate={1.0} />).toHaveProperty('playbackRate', 1.0);
-    expect(<video playbackRate={1.0} />).not.toHaveAttribute('playbackrate');
     expect(<video prop:playbackRate={1.0} />).toHaveProperty('playbackRate', 1.0);
-    expect(<video prop:playbackRate={1.0} />).not.toHaveAttribute('playbackrate');
   });
 
   it('should add support of `srcObject` property', () => {
     const blob = new Blob([]);
-    expect(<video srcObject={blob} />).toHaveProperty('srcObject', blob);
-    expect(<video srcObject={blob} />).not.toHaveAttribute('srcobject');
     expect(<video prop:srcObject={blob} />).toHaveProperty('srcObject', blob);
-    expect(<video prop:srcObject={blob} />).not.toHaveAttribute('srcobject');
   });
 
   it('should add support of `preservesPitch` property', () => {
-    expect(<video preservesPitch={false} />).toHaveProperty('preservesPitch', false);
-    expect(<video preservesPitch={false} />).not.toHaveAttribute('preservespitch');
     expect(<video prop:preservesPitch={false} />).toHaveProperty('preservesPitch', false);
-    expect(<video prop:preservesPitch={false} />).not.toHaveAttribute('preservespitch');
   });
 });

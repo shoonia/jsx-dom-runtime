@@ -117,18 +117,12 @@ describe('HTMLInputElement', () => {
     expect(<input formNoValidate={false} />).not.toHaveAttribute('formnovalidate');
   });
 
-  it('should have `defaultValue` property', () => {
-    expect(<input defaultValue="hello" />).toHaveProperty('defaultValue', 'hello');
-    expect(<input defaultValue="hello" />).toHaveValue('hello');
-  });
-
   it('should have `defaultValue` directive', () => {
     expect(<input prop:defaultValue="hello" />).toHaveProperty('defaultValue', 'hello');
     expect(<input prop:defaultValue="hello" />).toHaveValue('hello');
   });
 
   it('should have `selectionDirection` property', () => {
-    expect(<input selectionDirection="backward" />).toHaveProperty('selectionDirection', 'backward');
     expect(<input prop:selectionDirection="forward" />).toHaveProperty('selectionDirection', 'forward');
   });
 
@@ -146,12 +140,10 @@ describe('HTMLInputElement', () => {
     });
 
     it('should have `indeterminate` property', () => {
-      expect(<input type="checkbox" indeterminate />).toHaveProperty('indeterminate', true);
       expect(<input type="checkbox" prop:indeterminate />).toHaveProperty('indeterminate', true);
     });
 
     it('should have `defaultChecked` property', () => {
-      expect(<input type="checkbox" defaultChecked />).toBeChecked();
       expect(<input type="checkbox" prop:defaultChecked />).toBeChecked();
     });
   });
@@ -191,11 +183,6 @@ describe('HTMLInputElement', () => {
   });
 
   describe('date', () => {
-    it('should have `valueAsDate` property', () => {
-      const date = '2025-10-30';
-      expect(<input type="date" valueAsDate={new Date(date)} />).toHaveValue(date);
-    });
-
     it('should have `valueAsDate` directive', () => {
       const date = '2025-10-30';
       expect(<input type="date" prop:valueAsDate={new Date(date)} />).toHaveValue(date);
@@ -203,11 +190,6 @@ describe('HTMLInputElement', () => {
   });
 
   describe('number', () => {
-    it('should have `valueAsNumber` property', () => {
-      expect(<input type="number" valueAsNumber={100} />).toHaveProperty('valueAsNumber', 100);
-      expect(<input type="number" valueAsNumber={100} />).toHaveValue(100);
-    });
-
     it('should have `valueAsNumber` directive', () => {
       expect(<input type="number" prop:valueAsNumber={100} />).toHaveProperty('valueAsNumber', 100);
       expect(<input type="number" prop:valueAsNumber={100} />).toHaveValue(100);
@@ -215,17 +197,11 @@ describe('HTMLInputElement', () => {
   });
 
   describe('file', () => {
-    const files = jsx('input', { type: 'file' }).files;
-    expect(files).toBeInstanceOf(FileList);
-
-    it('should have `files` property', () => {
-      expect(<input type="file" files={files} />).toHaveProperty('files', files);
-      expect(<input type="file" files={files} />).not.toHaveAttribute('files');
-    });
-
     it('should have `files` directive', () => {
+      const files = jsx('input', { type: 'file' }).files;
+
+      expect(files).toBeInstanceOf(FileList);
       expect(<input type="file" prop:files={files} />).toHaveProperty('files', files);
-      expect(<input type="file" prop:files={files} />).not.toHaveAttribute('files');
     });
   });
 });

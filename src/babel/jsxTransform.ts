@@ -26,7 +26,6 @@ import {
   svgTags,
   charCode,
   jsxNode,
-  elementProperties,
 } from './collections';
 
 const opts = { name: '_' } as const;
@@ -223,21 +222,6 @@ export const jsxTransform: PluginObj = {
 
       if (isCustomElement) {
         return;
-      }
-
-      if (elementProperties.has(tag) && elementProperties.get(tag).has(attrName.name)) {
-        createDirective(openingElement, {
-          type: 'AssignmentExpression',
-          operator: '=',
-          left: {
-            type: 'MemberExpression',
-            object: $identifier('e'),
-            property: $identifier(attrName.name),
-            computed: false,
-          },
-          right: convertJSXAttrValue(attrValue)
-        });
-        path.remove();
       }
 
       if (htmlDOMAttributes.has(attrName.name)) {
