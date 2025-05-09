@@ -120,6 +120,7 @@ describe('HTMLAudioElement', () => {
   });
 
   it('should add support of `preservesPitch` property', () => {
+    expect(<audio prop:preservesPitch={true} />).toHaveProperty('preservesPitch', true);
     expect(<audio prop:preservesPitch={false} />).toHaveProperty('preservesPitch', false);
   });
 });

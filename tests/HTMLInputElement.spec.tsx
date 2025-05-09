@@ -171,6 +171,10 @@ describe('HTMLInputElement', () => {
       expect(<input type="submit" formAction="/" />).toHaveAttribute('formaction', '/');
     });
 
+    it('should have `formEnctype` attribute', () => {
+      expect(<input type="submit" formEnctype="multipart/form-data" />).toHaveAttribute('formenctype', 'multipart/form-data');
+    });
+
     it('should have `onchange` handler', () => {
       const spy = jest.fn();
 

@@ -36,4 +36,53 @@ describe('HTMLAnchorElement', () => {
     expect(<a hreflang="en" />).toHaveProperty('hreflang', 'en');
     expect(<a hreflang="en" />).toHaveAttribute('hreflang', 'en');
   });
+
+  it('should update `hostname` using `prop:hostname`', () => {
+    const anchor = <a href="http://example.com" prop:hostname="site.com" />;
+
+    expect(anchor).toHaveProperty('hostname', 'site.com');
+    expect(anchor).toHaveProperty('href', 'http://site.com/');
+  });
+
+  it('should update `pathname` in `href` attribute using `prop:pathname`', () => {
+    const anchor = <a href="http://example.com/old-path" prop:pathname="/new-path" />;
+
+    expect(anchor).toHaveProperty('pathname', '/new-path');
+    expect(anchor).toHaveProperty('href', 'http://example.com/new-path');
+  });
+
+  it('should update `protocol` in `href` attribute using `prop:protocol`', () => {
+    const anchor = <a href="http://example.com" prop:protocol="https:" />;
+
+    expect(anchor).toHaveProperty('protocol', 'https:');
+    expect(anchor).toHaveProperty('href', 'https://example.com/');
+  });
+
+  it('should update `hash` in `href` attribute using `prop:hash`', () => {
+    const anchor = <a href="http://example.com" prop:hash="#section" />;
+
+    expect(anchor).toHaveProperty('hash', '#section');
+    expect(anchor).toHaveProperty('href', 'http://example.com/#section');
+  });
+
+  it('should update `search` in `href` attribute using `prop:search`', () => {
+    const anchor = <a href="http://example.com" prop:search="?query=test" />;
+
+    expect(anchor).toHaveProperty('search', '?query=test');
+    expect(anchor).toHaveProperty('href', 'http://example.com/?query=test');
+  });
+
+  it('should update `port` in `href` attribute using `prop:port`', () => {
+    const anchor = <a href="http://example.com" prop:port="8080" />;
+
+    expect(anchor).toHaveProperty('port', '8080');
+    expect(anchor).toHaveProperty('href', 'http://example.com:8080/');
+  });
+
+  it('should update `host` in `href` attribute using `prop:host`', () => {
+    const anchor = <a href="http://example.com" prop:host="site.com:3000" />;
+
+    expect(anchor).toHaveProperty('host', 'site.com:3000');
+    expect(anchor).toHaveProperty('href', 'http://site.com:3000/');
+  });
 });
