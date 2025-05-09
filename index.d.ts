@@ -133,6 +133,13 @@ export type CommandEventType =
   | 'hide-popover'
   | 'toggle-popover'
   | `--${string}`
+export type FormEnctype =
+  | 'application/x-www-form-urlencoded'
+  | 'multipart/form-data'
+  | 'text/plain'
+  | AnyString
+export type FormMethod = 'post' | 'get' | 'dialog' | AnyString
+export type DirName = 'rtl' | 'ltr'
 
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
@@ -545,12 +552,13 @@ declare global {
        * @deprecated
        */
       contextMenu?: string
-      dir?: 'ltr' | 'rtl' | 'auto'
+      dir?: DirName | 'auto'
       /**
        * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<img draggable>` is forbidden. The correct usage is `<img draggable="true">`
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
        */
       draggable?: 'true' | 'false'
+      enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
       hidden?: boolean | 'hidden' | 'until-found' | ''
       id?: string
       inert?: boolean | ''
@@ -600,7 +608,7 @@ declare global {
        * @see https://html.spec.whatwg.org/multipage/custom-elements.html#attr-is
        */
       is?: string
-      popover?: boolean | 'auto' | 'manual' | ''
+      popover?: boolean | 'auto' | 'manual' | 'hint' | ''
       /**
        * A space-separated list of the part names of the element. Part names allows CSS to select and style specific elements in a shadow tree via the `::part` pseudo-element.
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/part
@@ -633,11 +641,37 @@ declare global {
       [key: `attr:${string}`]: string | number | bigint | null | undefined
 
       // Properties
-      'prop:id'?: string
+      'prop:nodeValue'?: string | null
+      'prop:classList'?: string
       'prop:className'?: string
+      'prop:id'?: string
       'prop:innerHTML'?: string
+      'prop:outerHTML'?: string
+      'prop:part'?: string
+      'prop:scrollLeft'?: number
+      'prop:scrollTop'?: number
+      'prop:slot'?: string
+      'prop:accessKey'?: string
+      'prop:autocapitalize'?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
+      'prop:autocorrect'?: 'on' | 'off'
+      'prop:autofocus'?: boolean
+      'prop:contentEditable'?: 'true' | 'false' | 'plaintext-only'
+      'prop:dir'?: DirName | 'auto' | ''
+      'prop:draggable'?: 'true' | 'false'
+      'prop:enterKeyHint'?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
+      'prop:hidden'?: boolean
+      'prop:inert'?: boolean
       'prop:innerText'?: string
-      'prop:textContent'?: string
+      'prop:inputMode'?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'
+      'prop:lang'?: string
+      'prop:outerText'?: string
+      'prop:popover'?: 'auto' | 'manual' | 'hint' | null
+      'prop:spellcheck'?: 'true' | 'false'
+      'prop:tabIndex'?: number
+      'prop:title'?: string
+      'prop:translate'?: 'yes' | 'no'
+      'prop:virtualKeyboardPolicy'?: 'auto' | 'manual'
+      'prop:writingSuggestions'?: 'true' | 'false'
       [key: `prop:${string}`]: any
 
       // Event Listeners
@@ -1240,7 +1274,7 @@ declare global {
     interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
       _?: typeof mathmlNs
       xmlns?: typeof mathmlNs
-      dir?: 'ltr' | 'rtl'
+      dir?: DirName
       displaystyle?: 'true' | 'false'
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/href
@@ -1439,11 +1473,11 @@ declare global {
       /**
        * Form data set encoding type to use for form submission. Attribute is only used for buttons with `type="submit"`
        */
-      formEncType?: string
+      formEnctype?: FormEnctype
       /**
        * A string indicating the HTTP method to use when submitting the form's data; this value overrides any method attribute given on the owning form
        */
-      formMethod?: 'post' | 'get' | 'dialog' | AnyString
+      formMethod?: FormMethod
       formNoValidate?: boolean | ''
       /**
        * If the button is a submit button, this attribute is an author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form
@@ -1467,8 +1501,8 @@ declare global {
       'prop:commandForElement'?: globalThis.Element | null
       'prop:disabled'?: boolean
       'prop:formAction'?: string
-      'prop:formEnctype'?: string
-      'prop:formMethod'?: 'post' | 'get' | 'dialog' | AnyString
+      'prop:formEnctype'?: FormEnctype
+      'prop:formMethod'?: FormMethod
       'prop:formNoValidate'?: boolean
       'prop:formTarget'?: Target
       'prop:name'?: string
@@ -1571,14 +1605,14 @@ declare global {
        * @deprecated
        */
       accept?: string
-      'accept-charset'?: string
+      'accept-charset'?: 'UTF-8' | 'ISO-8859-1' | 'US-ASCII' | AnyString
       action?: string
       autocomplete?: boolean | AutoFillBase
-      enctype?: string
+      enctype?: FormEnctype
       /**
        * The HTTP method to submit the form with. The only allowed methods/values are (case insensitive)
        */
-      method?: 'post' | 'get' | 'dialog' | AnyString
+      method?: FormMethod
       name?: string
       /**
        * Controls the annotations and what kinds of links the form creates. The rel value is a space-separated list of these enumerated values
@@ -1600,12 +1634,12 @@ declare global {
       onformdata?: FormDataEventHandler<HTMLFormElement>
       'on:formData'?: FormDataEventListener<HTMLFormElement>
 
-      'prop:acceptCharset'?: string
+      'prop:acceptCharset'?: 'UTF-8' | 'ISO-8859-1' | 'US-ASCII' | AnyString
       'prop:action'?: string
       'prop:autocomplete'?: AutoFillBase
-      'prop:encoding'?: string
-      'prop:enctype'?: string
-      'prop:method'?: 'post' | 'get' | 'dialog' | AnyString
+      'prop:encoding'?: FormEnctype
+      'prop:enctype'?: FormEnctype
+      'prop:method'?: FormMethod
       'prop:name'?: string
       'prop:noValidate'?: boolean
       'prop:rel'?: HTMLFormElementAttributes['rel']
@@ -1796,8 +1830,7 @@ declare global {
       checked?: boolean | ''
       crossOrigin?: CrossOrigin
       disabled?: boolean | ''
-      dirName?: 'rtl' | 'ltr'
-      enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
+      dirName?: DirName
       form?: string
       /**
        * URL to use for form submission. Attribute is only used for inputs with `type="submit"` or `type="image"`
@@ -1806,11 +1839,11 @@ declare global {
       /**
        * Form data set encoding type to use for form submission. Attribute is only used for inputs with `type="submit"` or `type="image"`
        */
-      formEncType?: string
+      formEnctype?: FormEnctype
       /**
        * A string indicating the HTTP method to use when submitting the form's data; this value overrides any method attribute given on the owning form
        */
-      formMethod?: 'post' | 'get' | 'dialog' | AnyString
+      formMethod?: FormMethod
       formNoValidate?: boolean | ''
       formTarget?: Target
       height?: number | string
@@ -1862,15 +1895,47 @@ declare global {
        */
       children?: null
 
-      'prop:selectionDirection'?: 'forward' | 'backward' | 'none'
-      'prop:files'?: FileList | null
+      'prop:accept'?: string
+      'prop:align'?: string
+      'prop:alt'?: string
+      'prop:autocomplete'?: AutoFill
+      'prop:capture'?: string
+      'prop:checked'?: boolean
       'prop:defaultChecked'?: boolean
       'prop:defaultValue'?: string
-      'prop:valueAsDate'?: Date
-      'prop:valueAsNumber'?: number
-      'prop:popoverTargetElement'?: globalThis.Element | null
-      'prop:popoverTargetAction'?: string
+      'prop:dirName'?: DirName
+      'prop:disabled'?: boolean
+      'prop:files'?: FileList | null
+      'prop:formAction'?: string
+      'prop:formEnctype'?: FormEnctype
+      'prop:formMethod'?: FormMethod
+      'prop:formNoValidate'?: boolean
+      'prop:formTarget'?: Target
+      'prop:height'?: number
       'prop:indeterminate'?: boolean
+      'prop:max'?: string
+      'prop:maxLength'?: number
+      'prop:min'?: string
+      'prop:minLength'?: number
+      'prop:multiple'?: boolean
+      'prop:name'?: string
+      'prop:pattern'?: string
+      'prop:placeholder'?: string
+      'prop:readOnly'?: boolean
+      'prop:required'?: boolean
+      'prop:selectionDirection'?: 'forward' | 'backward' | 'none' | null
+      'prop:selectionEnd'?: number | null
+      'prop:selectionStart'?: number | null
+      'prop:size'?: number
+      'prop:src'?: string
+      'prop:step'?: string
+      'prop:type'?: HTMLInputElementAttributes['type']
+      'prop:useMap'?: string
+      'prop:value'?: string
+      'prop:valueAsDate'?: Date | null
+      'prop:valueAsNumber'?: number
+      'prop:webkitdirectory'?: boolean
+      'prop:width'?: number
     }
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
@@ -1965,15 +2030,37 @@ declare global {
        * @deprecated
        */
       children?: null
+
+      'prop:as'?: HTMLLinkElementAttributes['as']
+      'prop:blocking'?: 'render' | AnyString
+      'prop:charset'?: string
+      'prop:crossOrigin'?: CrossOrigin | null
+      'prop:disabled'?: boolean
+      'prop:fetchPriority'?: FetchPriority
+      'prop:href'?: string
+      'prop:hreflang'?: string
+      'prop:imageSizes'?: string
+      'prop:imageSrcset'?: string
+      'prop:integrity'?: string
+      'prop:media'?: string
+      'prop:referrerPolicy'?: string
+      'prop:rel'?: HTMLLinkElementAttributes['rel']
+      'prop:relList'?: string
+      'prop:rev'?: string
+      'prop:sizes'?: string
+      'prop:target'?: string
+      'prop:type'?: string
     }
 
     interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
       name?: string
+
+      'prop:name'?: string
     }
 
     interface HTMLMenuElementAttributes extends HTMLAttributes<HTMLMenuElement> {
       /** @deprecated */
-      type?: string
+      'prop:compact'?: boolean
     }
 
     interface HTMLMediaAttributes<T extends HTMLMediaElement> extends HTMLAttributes<T> {
@@ -2031,6 +2118,12 @@ declare global {
        * @deprecated
        */
       children?: null
+
+      'prop:content'?: string
+      'prop:httpEquiv'?: HTMLMetaElementAttributes['http-equiv']
+      'prop:media'?: string
+      'prop:name'?: string
+      'prop:scheme'?: string
     }
 
     interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
@@ -2041,10 +2134,19 @@ declare global {
       min?: Numeric
       optimum?: Numeric
       value?: Numeric
+
+      'prop:high'?: number
+      'prop:low'?: number
+      'prop:max'?: number
+      'prop:min'?: number
+      'prop:optimum'?: number
+      'prop:value'?: number
     }
 
     interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
       cite?: string
+
+      'prop:cite'?: string
     }
 
     interface HTMLObjectElementAttributes extends HTMLAttributes<HTMLObjectElement> {
@@ -2117,11 +2219,19 @@ declare global {
       reversed?: boolean | ''
       start?: Numeric
       type?: '1' | 'a' | 'A' | 'i' | 'I'
+
+      'prop:compact'?: boolean
+      'prop:reversed'?: boolean
+      'prop:start'?: number
+      'prop:type'?: '1' | 'a' | 'A' | 'i' | 'I'
     }
 
     interface HTMLOptGroupElementAttributes extends HTMLAttributes<HTMLOptGroupElement> {
       disabled?: boolean | ''
       label?: string
+
+      'prop:disabled'?: boolean
+      'prop:label'?: string
     }
 
     interface HTMLOptionElementAttributes extends HTMLAttributes<HTMLOptionElement> {
@@ -2129,6 +2239,13 @@ declare global {
       label?: string
       selected?: boolean | ''
       value?: number | string
+
+      'prop:defaultSelected'?: boolean
+      'prop:disabled'?: boolean
+      'prop:label'?: string
+      'prop:selected'?: boolean
+      'prop:text'?: string
+      'prop:value'?: string
     }
 
     interface HTMLOutputElementAttributes extends HTMLAttributes<HTMLOutputElement> {
@@ -2136,6 +2253,11 @@ declare global {
       for?: string
       name?: string
       value?: number | string
+
+      'prop:defaultValue'?: string
+      'prop:htmlFor'?: string
+      'prop:name'?: string
+      'prop:value'?: string
     }
 
     interface HTMLParamElementAttributes extends HTMLAttributes<HTMLParamElement> {
@@ -2156,6 +2278,9 @@ declare global {
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
       max?: Numeric
       value?: Numeric
+
+      'prop:max'?: number
+      'prop:value'?: number
     }
 
     interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
@@ -2360,7 +2485,7 @@ declare global {
        * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer. If it is not specified, the default value is 20
        */
       cols?: Numeric
-      dirName?: 'rtl' | 'ltr'
+      dirName?: DirName
       disabled?: boolean | ''
       form?: string
       maxLength?: Numeric
@@ -2382,7 +2507,7 @@ declare global {
       'prop:autocomplete'?: AutoFill
       'prop:cols'?: number
       'prop:defaultValue'?: string
-      'prop:dirName'?: 'rtl' | 'ltr'
+      'prop:dirName'?: DirName
       'prop:disabled'?: boolean
       'prop:maxLength'?: number
       'prop:minLength'?: number
