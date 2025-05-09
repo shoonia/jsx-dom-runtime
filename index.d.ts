@@ -636,7 +636,7 @@ declare global {
       writingsuggestions?: Booleanish | ''
     }
 
-    interface JSXDirectives {
+    interface JSXDirectives<T> {
       // Attributes
       [key: `attr:${string}`]: string | number | bigint | null | undefined
 
@@ -797,7 +797,7 @@ declare global {
       'on:command'?: CommandEventListener<T>
     }
 
-    interface HTMLAttributes<T> extends AriaAttributes, Attributes, JSXDirectives {
+    interface HTMLAttributes<T> extends AriaAttributes, Attributes, JSXDirectives<T> {
       _?: string
       $?: Record<string, EventListener<T>>
       ref?: Ref<T> | false | null | undefined | (Ref<T> | false | null | undefined)[]
