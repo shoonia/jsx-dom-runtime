@@ -56,4 +56,8 @@ describe('HTMLButtonElement', () => {
   it('should have `formAction` attribute', () => {
     expect(<button formAction="/" />).toHaveAttribute('formaction', '/');
   });
+
+  it('should have `formEnctype` attribute', () => {
+    expect(<button formEnctype="text/plain" />).toHaveAttribute('formenctype', 'text/plain');
+  });
 });
