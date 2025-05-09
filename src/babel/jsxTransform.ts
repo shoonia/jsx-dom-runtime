@@ -136,6 +136,21 @@ export const jsxTransform: PluginObj = {
       path.replaceWith(path.node.expression);
     },
 
+    JSXSpreadAttribute(path) {
+      const parent = path.parent;
+
+      if (
+        parent.type === 'JSXOpeningElement' &&
+        parent.name.type === 'JSXIdentifier' &&
+        !isFunctionComponent(parent.name)
+      ) {
+        throw path.buildCodeFrameError(
+          '\n\nSyntaxError: HTML, SVG, and MathML elements must not have spread attributes.\n',
+          SyntaxError
+        );
+      }
+    },
+
     JSXAttribute(path) {
       const attribute = path.node;
       const openingElement = path.parent;

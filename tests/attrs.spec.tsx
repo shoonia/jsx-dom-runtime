@@ -96,20 +96,4 @@ describe('Props', () => {
     expect(<img alt="   hello   " />).toHaveOuterHTML('<img alt="   hello   ">');
     expect(<img alt="   hello   " />).toHaveAttribute('alt', '   hello   ');
   });
-
-  it('should add all attributes', () => {
-    const props = {
-      class: 'box',
-    };
-
-    expect(<p id="one" {...props} />).toHaveOuterHTML('<p id="one" class="box"></p>');
-  });
-
-  it('should add children nodes with spread', () => {
-    const props = {
-      children: <q />,
-    };
-
-    expect(<p {...props} />).toHaveOuterHTML('<p><q></q></p>');
-  });
 });
