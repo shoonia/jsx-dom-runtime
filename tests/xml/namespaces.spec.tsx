@@ -1,5 +1,5 @@
 // @ts-nocheck
-const i = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
+import { jsxImport } from '../utils';
 
 describe('XML Namespaces', () => {
   it('should NOT break build process, and build correct string', () => {
@@ -18,12 +18,12 @@ describe('XML Namespaces', () => {
     <namespaced:tag namespaced:attribute="value">
       content
     </namespaced:tag>`
-    )
-      .toBeTransform(i +'_jsx("namespaced:tag",{"namespaced:attribute":"value",children:"content"});');
+    ).toBeTransform(jsxImport`_jsx("namespaced:tag",{"namespaced:attribute":"value"},"content");`);
   });
 
   it('should transform empty attributes to `true`', async () => {
-    await expect('<my:element isReady is-ready is:ready />')
-      .toBeTransform(i + '_jsx("my:element",{isReady:true,"is-ready":true,"is:ready":true});');
+    await expect('<my:element isReady is-ready is:ready />').toBeTransform(
+      jsxImport`_jsx("my:element",{isReady:true,"is-ready":true,"is:ready":true});`
+    );
   });
 });

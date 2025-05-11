@@ -2,12 +2,6 @@
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
-const internalKeys = new Set([
-  '_',
-  'children',
-  'ref',
-]);
-
 const extensions = new Map([
   ['style', (node, value, key) => {
     if (typeof value == 'string') {
@@ -51,13 +45,13 @@ const Fragment = (content) => (
   content
 );
 
-const jsx = (tag, props) => {
+const jsx = (tag, props, children) => {
   let key, value, node = props._
     ? document.createElementNS(props._, tag)
     : document.createElement(tag, props.is ? { is: props.is } : key);
 
   for (key in props) {
-    if (!internalKeys.has(key)) {
+    if (key != '_' && key != 'ref') {
       value = props[key];
 
       if (extensions.has(key)) {
@@ -73,7 +67,7 @@ const jsx = (tag, props) => {
   }
 
   appendChildren(
-    props.children,
+    children,
     tag == 'template' ? node.content : node,
   );
 

@@ -1,3 +1,5 @@
+import { jsxImport } from './utils';
+
 describe('Fragment', () => {
   const start = 'import{Fragment as _Fragment,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
 
@@ -110,7 +112,7 @@ describe('Fragment', () => {
       <>
         <p>1</p>
       </>`
-    ).toBeTransform(start + '_Fragment(/*#__PURE__*/_jsx("p",{children:"1"}));');
+    ).toBeTransform(start + '_Fragment(/*#__PURE__*/_jsx("p",{},"1"));');
   });
 
   it('should correct transform code #3', async () => {
@@ -119,11 +121,10 @@ describe('Fragment', () => {
         <p>one</p>
         <p>two</p>
       </>`
-    ).toBeTransform(start + '_Fragment([/*#__PURE__*/_jsx("p",{children:"one"}),/*#__PURE__*/_jsx("p",{children:"two"})]);');
+    ).toBeTransform(start + '_Fragment([/*#__PURE__*/_jsx("p",{},"one"),/*#__PURE__*/_jsx("p",{},"two")]);');
   });
 
   const f = 'import{Fragment as _Fragment}from"jsx-dom-runtime";';
-  const j = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
 
   it('should transform Fragment in props', async () => {
     await expect('<App children={<></>} />')
@@ -135,7 +136,7 @@ describe('Fragment', () => {
   });
 
   it('should remove unnecessary fragment', async () => {
-    await expect('<div><></></div>').toBeTransform(j + '_jsx("div",{});');
+    await expect('<div><></></div>').toBeTransform(jsxImport`_jsx("div",{});`);
   });
 
   it('should replace fragment with its child node', async () => {
@@ -145,7 +146,7 @@ describe('Fragment', () => {
           <p>Hello</p>
         </>
       </div>
-    `).toBeTransform(j + '_jsx("div",{children:/*#__PURE__*/_jsx("p",{children:"Hello"})});');
+    `).toBeTransform(jsxImport`_jsx("div",{},/*#__PURE__*/_jsx("p",{},"Hello"));`);
   });
 
   it('should replace fragment with its children nodes', async () => {
@@ -156,6 +157,6 @@ describe('Fragment', () => {
           World
         </>
       </div>
-    `).toBeTransform(j + '_jsx("div",{children:[/*#__PURE__*/_jsx("p",{children:"Hello"}),"World"]});');
+    `).toBeTransform(jsxImport`_jsx("div",{},[/*#__PURE__*/_jsx("p",{},"Hello"),"World"]);`);
   });
 });

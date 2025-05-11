@@ -1,7 +1,7 @@
 describe('babel-plugin-jsx-syntax: JSXExpressionContainer', () => {
   it('should work in JSX attribute value', async () => {
     await expect('<div children={<Box/>} />;')
-      .toBeTransform('import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("div",{children:Box({})});');
+      .toBeTransform('import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("div",{},Box({}));');
   });
 
   it('should work in JSX attribute value #2', async () => {

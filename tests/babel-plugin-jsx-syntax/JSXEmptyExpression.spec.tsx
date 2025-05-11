@@ -1,15 +1,14 @@
-import { t } from '../utils';
+import { jsxImport, t } from '../utils';
 
 describe('babel: JSXEmptyExpression', () => {
-  const i = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
-
   it('should be ignored #1', async () => {
-    await expect('<div>{}</div>').toBeTransform(i + '_jsx("div",{});');
+    await expect('<div>{}</div>').toBeTransform(jsxImport`_jsx("div",{});`);
   });
 
   it('should be ignored #2', async () => {
-    await expect('<div>Hello{}, World!</div>')
-      .toBeTransform(i + '_jsx("div",{children:["Hello",", World!"]});');
+    await expect('<div>Hello{}, World!</div>').toBeTransform(
+      jsxImport`_jsx("div",{},["Hello",", World!"]);`
+    );
   });
 
   it('should be syntax error #1', async () => {

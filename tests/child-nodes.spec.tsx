@@ -133,4 +133,20 @@ describe('Child nodes', () => {
   it('should work without `JSXExpressionContainer` for Fragment element', () => {
     expect(<div children=<>text</> />).toHaveOuterHTML('<div>text</div>');
   });
+
+  it('should work with children prop in open tag', () => {
+    expect(<div children="text"></div>).toHaveOuterHTML('<div>text</div>');
+  });
+
+  it('should take a last children prop', () => {
+    // @ts-expect-error
+    expect(<div children="1" children="2" />).toHaveOuterHTML('<div>2</div>');
+  });
+
+  it('should take a content children prop', () => {
+    // @ts-expect-error
+    expect(<div children="1">2</div>).toHaveOuterHTML('<div>2</div>');
+    // @ts-expect-error
+    expect(<div children="1" children="2">3</div>).toHaveOuterHTML('<div>3</div>');
+  });
 });

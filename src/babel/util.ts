@@ -1,7 +1,7 @@
 import t from '@babel/types';
 import { isIdentifierName } from '@babel/helper-validator-identifier';
 
-import { $stringLiteral, $identifier, $objectProperty, $children } from './builders';
+import { $stringLiteral, $identifier, $objectProperty } from './builders';
 
 export const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral =>
   $stringLiteral(node.namespace.name + ':' + node.name.name);
@@ -20,8 +20,9 @@ export const convertJSXAttrValue = (value: t.JSXAttribute['value']): t.Expressio
   return expression;
 };
 
-export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
-  const properties = node.openingElement.attributes.map((attr): t.SpreadElement | t.ObjectProperty => {
+export const buildProps = (node: t.JSXElement): t.ObjectExpression => ({
+  type: 'ObjectExpression',
+  properties: node.openingElement.attributes.map((attr): t.SpreadElement | t.ObjectProperty => {
     if (attr.type === 'JSXSpreadAttribute') {
       return {
         type: 'SpreadElement',
@@ -37,24 +38,8 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => {
           : $stringLiteral(attr.name.name),
       convertJSXAttrValue(attr.value),
     );
-  });
-
-  const children = t.react.buildChildren(node);
-
-  if (children.length > 0) {
-    properties.push(
-      $objectProperty(
-        $identifier('children'),
-        $children(children),
-      ),
-    );
-  }
-
-  return {
-    type: 'ObjectExpression',
-    properties,
-  };
-};
+  }),
+});
 
 export const convertJSXIdentifier = (
   node: t.JSXIdentifier | t.JSXMemberExpression,

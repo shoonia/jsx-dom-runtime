@@ -33,6 +33,9 @@ const opts = { name: '_' } as const;
 const isFunctionComponent = (name: t.JSXIdentifier): boolean =>
   charCode.has(name.name.charCodeAt(0));
 
+const isChildren = (node: t.Node): node is t.ObjectProperty =>
+  node.type === 'ObjectProperty' && node.key.type === 'Identifier' && node.key.name === 'children';
+
 let nsMap: WeakMap<NodePath, TImportName>;
 let importSpec: ImportSpec;
 
@@ -72,10 +75,22 @@ export const jsxTransform: PluginObj = {
         }
 
         if (name.type === 'JSXMemberExpression' || isFunctionComponent(name)) {
+          const props = buildProps(path.node);
+          const children = t.react.buildChildren(path.node);
+
+          if (children.length > 0) {
+            props.properties.push(
+              $objectProperty(
+                $identifier('children'),
+                $children(children),
+              ),
+            );
+          }
+
           path.replaceWith({
             type: 'CallExpression',
             callee: convertJSXIdentifier(name),
-            arguments: [buildProps(path.node)],
+            arguments: [props],
           });
         } else if (svgTags.has(name.name)) {
           nsMap.set(path, 'svgNs');
@@ -88,6 +103,29 @@ export const jsxTransform: PluginObj = {
         const name = path.node.openingElement.name as t.JSXIdentifier | t.JSXNamespacedName;
         const props = buildProps(path.node);
         const refs = props.properties.filter(isRef);
+
+        const childrenContent = t.react.buildChildren(path.node);
+        const childrenProps = props.properties.findLast(isChildren);
+        const children = childrenContent.length > 0
+          ? childrenContent
+          : childrenProps != null
+            ? [childrenProps.value as t.Expression]
+            : [];
+
+        const args: t.Expression[] = [
+          name.type === 'JSXIdentifier'
+            ? $stringLiteral(name.name)
+            : convertJSXNamespacedName(name),
+          props,
+        ];
+
+        if (childrenProps != null) {
+          props.properties = props.properties.filter((i) => !isChildren(i));
+        }
+
+        if (children.length > 0) {
+          args.push($children(children));
+        }
 
         if (refs.length > 1) {
           const ref = refs[0];
@@ -121,12 +159,7 @@ export const jsxTransform: PluginObj = {
         path.replaceWith({
           type: 'CallExpression',
           callee: importSpec.add('jsx'),
-          arguments: [
-            name.type === 'JSXIdentifier'
-              ? $stringLiteral(name.name)
-              : convertJSXNamespacedName(name),
-            props,
-          ],
+          arguments: args,
           leadingComments: $pureAnnotation(),
         });
       },

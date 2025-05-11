@@ -11,7 +11,7 @@ describe('MathML', () => {
       </mfrac>
     </math>`
     ).toBeTransform(
-      'import{mathmlNs as _mathmlNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("math",{display:"inline",children:/*#__PURE__*/_jsx("mfrac",{children:[/*#__PURE__*/_jsx("msup",{children:[/*#__PURE__*/_jsx("mi",{children:"\\u03C0",_:_mathmlNs}),/*#__PURE__*/_jsx("mn",{children:"2",_:_mathmlNs})],_:_mathmlNs}),/*#__PURE__*/_jsx("mn",{children:"6",_:_mathmlNs})],_:_mathmlNs}),_:_mathmlNs});'
+      'import{mathmlNs as _mathmlNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("math",{display:"inline",_:_mathmlNs},/*#__PURE__*/_jsx("mfrac",{_:_mathmlNs},[/*#__PURE__*/_jsx("msup",{_:_mathmlNs},[/*#__PURE__*/_jsx("mi",{_:_mathmlNs},"\\u03C0"),/*#__PURE__*/_jsx("mn",{_:_mathmlNs},"2")]),/*#__PURE__*/_jsx("mn",{_:_mathmlNs},"6")]));'
     );
   });
 
