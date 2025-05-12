@@ -24,9 +24,22 @@ describe('HTMLDetailsElement', () => {
     expect(<details open="" />).toHaveProperty('open', true);
   });
 
+  it('should have `open` property', () => {
+    expect(<details prop:open />).toHaveProperty('open', true);
+  });
+
+  it('should have `name` attribute', () => {
+    expect(<details name="details-name" />).toHaveAttribute('name', 'details-name');
+  });
+
+  it('should update `name` property', () => {
+    expect(<details prop:name="custom-name" />).toHaveProperty('name', 'custom-name');
+  });
+
   it('should add `ontoggle` handler', () => {
     const spy = jest.fn();
 
     expect(<details ontoggle={spy} />).toHaveProperty('ontoggle', spy);
   });
+
 });

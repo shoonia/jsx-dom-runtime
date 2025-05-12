@@ -1547,15 +1547,24 @@ declare global {
 
     interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
       value?: number | string
+
+      'prop:value'?: string
     }
 
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
+      name?: string
       open?: boolean | ''
+
+      'prop:name'?: string
+      'prop:open'?: boolean
     }
 
     interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
       cite?: string
       dateTime?: string
+
+      'prop:cite'?: string
+      'prop:dateTime'?: string
     }
 
     interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
