@@ -24,3 +24,14 @@ export const elem = jsx('my-elem', { class: 'hello', onclick() {/**/} });
 // XML
 
 export const xml = jsx('my:xml', { class: 'hello' });
+
+// children
+
+export const children0 = jsx('div', {});
+export const children1 = jsx('div', {}, 'hello');
+export const children2 = jsx('div', {}, 1);
+export const children3 = jsx('div', {}, [1, 2]);
+export const children4 = jsx('div', {}, jsx('p', {}));
+export const children5 = jsx('div', {}, null);
+export const children6 = jsx('div', {}, undefined);
+export const children7 = jsx('div', {}, false);

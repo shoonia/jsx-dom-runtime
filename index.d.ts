@@ -46,6 +46,7 @@ export declare function jsx<
   props: K extends keyof JSX.IntrinsicElements
     ? JSX.IntrinsicElements[K]
     : JSX.HTMLAttributes<R>,
+  children?: JSXChild | JSXChild[]
 ): R
 
 export type FunctionComponent<P = {}> = JSX.FC<P>
