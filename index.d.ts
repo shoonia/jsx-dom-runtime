@@ -506,6 +506,71 @@ export interface AriaAttributes {
   | 'doc-subtitle'
   | 'doc-tip'
   | 'doc-toc'
+
+  'prop:ariaActivedescendant'?: string
+  'prop:ariaAtomic'?: Booleanish
+  'prop:ariaAutocomplete'?: 'none' | 'inline' | 'list' | 'both'
+  'prop:ariaBraillelabel'?: string
+  'prop:ariaBrailleroledescription'?: string
+  'prop:ariaBusy'?: Booleanish
+  'prop:ariaChecked'?: Booleanish | 'mixed'
+  'prop:ariaColcount'?: Numeric
+  'prop:ariaColindex'?: Numeric
+  'prop:ariaColindextext'?: string
+  'prop:ariaColspan'?: Numeric
+  'prop:ariaControls'?: string
+  'prop:ariaCurrent'?: Booleanish | 'page' | 'step' | 'location' | 'date' | 'time'
+  'prop:ariaDescribedby'?: string
+  'prop:ariaDescription'?: string
+  'prop:ariaDetails'?: string
+  'prop:ariaDisabled'?: Booleanish
+  'prop:ariaDropeffect'?: 'none' | 'copy' | 'execute' | 'link' | 'move' | 'popup'
+  'prop:ariaErrormessage'?: string
+  'prop:ariaExpanded'?: Booleanish
+  'prop:ariaFlowto'?: string
+  'prop:ariaGrabbed'?: Booleanish
+  'prop:ariaHaspopup'?: Booleanish | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
+  'prop:ariaHidden'?: Booleanish
+  'prop:ariaInvalid'?: Booleanish | 'grammar' | 'spelling'
+  'prop:ariaKeyshortcuts'?: string
+  'prop:ariaLabel'?: string
+  'prop:ariaLabelledby'?: string
+  'prop:ariaLevel'?: Numeric
+  'prop:ariaLive'?: 'off' | 'assertive' | 'polite'
+  'prop:ariaModal'?: Booleanish
+  'prop:ariaMultiline'?: Booleanish
+  'prop:ariaMultiselectable'?: Booleanish
+  'prop:ariaOrientation'?: 'horizontal' | 'vertical'
+  'prop:ariaOwns'?: string
+  'prop:ariaPlaceholder'?: string
+  'prop:ariaPosinset'?: Numeric
+  'prop:ariaPressed'?: Booleanish | 'mixed'
+  'prop:ariaReadonly'?: Booleanish
+  'prop:ariaRelevant'?:
+    | 'additions'
+    | 'additions removals'
+    | 'additions text'
+    | 'all'
+    | 'removals'
+    | 'removals additions'
+    | 'removals text'
+    | 'text'
+    | 'text additions'
+    | 'text removals'
+  'prop:ariaRequired'?: Booleanish
+  'prop:ariaRoledescription'?: string
+  'prop:ariaRowcount'?: Numeric
+  'prop:ariaRowindex'?: Numeric
+  'prop:ariaRowindextext'?: string
+  'prop:ariaRowspan'?: Numeric
+  'prop:ariaSelected'?: Booleanish
+  'prop:ariaSetsize'?: Numeric
+  'prop:ariaSort'?: 'none' | 'ascending' | 'descending' | 'other'
+  'prop:ariaValuemax'?: Numeric
+  'prop:ariaValuemin'?: Numeric
+  'prop:ariaValuenow'?: Numeric
+  'prop:ariaValuetext'?: string
+  'prop:role'?: AriaAttributes['role']
 }
 
 declare global {
