@@ -23,7 +23,9 @@ export const svgTags = new Set([
   /* 'script', */ 'set', 'stop', /* 'style', */ 'svg', 'switch', 'symbol',
   'text', 'textPath', /* 'title', */ 'tref', 'tspan',
   'use',
-  'view', 'vkern'
+  'view', 'vkern',
+  // non-standard
+  'discard', 'mesh', 'meshgradient', 'meshpatch', 'meshrow', 'solidcolor',
 ]);
 
 export const htmlTags = new Set([
