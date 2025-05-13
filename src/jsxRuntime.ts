@@ -45,7 +45,7 @@ const Fragment = (content) => (
   content
 );
 
-const jsx = (tag, props, children) => {
+const jsx = (tag, props, children?: any) => {
   let key, value, node = props._
     ? document.createElementNS(props._, tag)
     : document.createElement(tag, props.is ? { is: props.is } : key);
