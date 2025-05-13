@@ -547,16 +547,16 @@ export interface AriaAttributes {
   'prop:ariaPressed'?: Booleanish | 'mixed'
   'prop:ariaReadonly'?: Booleanish
   'prop:ariaRelevant'?:
-    | 'additions'
-    | 'additions removals'
-    | 'additions text'
-    | 'all'
-    | 'removals'
-    | 'removals additions'
-    | 'removals text'
-    | 'text'
-    | 'text additions'
-    | 'text removals'
+  | 'additions'
+  | 'additions removals'
+  | 'additions text'
+  | 'all'
+  | 'removals'
+  | 'removals additions'
+  | 'removals text'
+  | 'text'
+  | 'text additions'
+  | 'text removals'
   'prop:ariaRequired'?: Booleanish
   'prop:ariaRoledescription'?: string
   'prop:ariaRowcount'?: Numeric
@@ -1514,6 +1514,9 @@ declare global {
        * @deprecated
        */
       children?: null
+
+      'prop:href'?: string
+      'prop:target'?: Target
     }
 
     interface HTMLBRElementAttributes extends HTMLAttributes<HTMLBRElement> {
@@ -1523,8 +1526,10 @@ declare global {
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
        * @deprecated
-       */
+      */
       children?: null
+
+      'prop:clear'?: string
     }
 
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
@@ -1608,6 +1613,13 @@ declare global {
        * @deprecated
        */
       children?: null
+
+      'prop:align'?: string
+      'prop:ch'?: string
+      'prop:chOff'?: string
+      'prop:span'?: number
+      'prop:vAlign'?: string
+      'prop:width'?: string
     }
 
     interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
@@ -1665,12 +1677,22 @@ declare global {
        * @deprecated
        */
       children?: null
+
+      'prop:align'?: string
+      'prop:height'?: string
+      'prop:name'?: string
+      'prop:src'?: string
+      'prop:type'?: string
+      'prop:width'?: string
     }
 
     interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
       disabled?: boolean | ''
       form?: string
       name?: string
+
+      'prop:name'?: string
+      'prop:disabled'?: boolean
     }
 
     interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
@@ -2020,6 +2042,9 @@ declare global {
 
     interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
       value?: Numeric
+
+      'prop:type'?: string
+      'prop:value'?: number
     }
 
     interface HTMLLinkElementAttributes extends HTMLAttributes<HTMLLinkElement> {
@@ -2287,6 +2312,23 @@ declare global {
        * The width of the display resource, in CSS pixels. — (Absolute values only. NO percentages)
        */
       width?: number | string
+
+      'prop:align'?: string
+      'prop:archive'?: string
+      'prop:border'?: string
+      'prop:code'?: string
+      'prop:codeBase'?: string
+      'prop:codeType'?: string
+      'prop:data'?: string
+      'prop:declare'?: boolean
+      'prop:height'?: string
+      'prop:hspace'?: number
+      'prop:name'?: string
+      'prop:standby'?: string
+      'prop:type'?: string
+      'prop:useMap'?: string
+      'prop:vspace'?: number
+      'prop:width'?: string
     }
 
     interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
@@ -2347,6 +2389,11 @@ declare global {
        * @deprecated
        */
       children?: null
+
+      'prop:name'?: string
+      'prop:type'?: string
+      'prop:value'?: string
+      'prop:valueType'?: 'data' | 'ref' | 'object'
     }
 
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
@@ -2382,6 +2429,21 @@ declare global {
        */
       type?: 'importmap' | 'module' | 'speculationrules' | AnyString
       fetchPriority?: FetchPriority
+
+      'prop:async'?: boolean
+      'prop:blocking'?: 'render' | AnyString
+      'prop:charset'?: string
+      'prop:crossOrigin'?: CrossOrigin | null
+      'prop:defer'?: boolean
+      'prop:event'?: string
+      'prop:fetchPriority'?: 'high' | 'low' | 'auto'
+      'prop:htmlFor'?: string
+      'prop:integrity'?: string
+      'prop:noModule'?: boolean
+      'prop:referrerPolicy'?: ReferrerPolicy
+      'prop:src'?: string
+      'prop:text'?: string
+      'prop:type'?: 'importmap' | 'module' | 'speculationrules' | AnyString
     }
 
     interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
@@ -2481,7 +2543,7 @@ declare global {
        * To achieve a similar effect, use the CSS properties `margin-left` and `margin-right` to `auto` or `margin` to `0 auto`.
        * @deprecated
        */
-      align?: 'left' | 'center' | 'right'
+      align?: 'left' | 'center' | 'right' | AnyString
       /**
        * To achieve a similar effect, use the CSS `background-color` property.
        * @deprecated
@@ -2522,6 +2584,19 @@ declare global {
        * @deprecated
        */
       rules?: 'none' | 'groups' | 'rows' | 'cols' | 'all'
+
+      'prop:align'?: 'left' | 'center' | 'right' | AnyString
+      'prop:bgColor'?: string
+      'prop:border'?: string
+      'prop:caption'?: HTMLTableCaptionElement | null
+      'prop:cellPadding'?: string
+      'prop:cellSpacing'?: string
+      'prop:frame'?: string
+      'prop:rules'?: 'none' | 'groups' | 'rows' | 'cols' | 'all'
+      'prop:summary'?: string
+      'prop:tFoot'?: HTMLTableSectionElement | null
+      'prop:tHead'?: HTMLTableSectionElement | null
+      'prop:width'?: string
     }
 
     interface HTMLTemplateElementAttributes extends HTMLAttributes<HTMLTemplateElement> {
@@ -2651,6 +2726,21 @@ declare global {
        * @deprecated
        */
       valign?: 'top' | 'middle' | 'bottom' | 'baseline'
+
+      'prop:abbr'?: string
+      'prop:align'?: 'left' | 'center' | 'right' | 'justify' | 'char'
+      'prop:axis'?: string
+      'prop:bgColor'?: Property.Color
+      'prop:ch'?: string
+      'prop:chOff'?: string
+      'prop:colSpan'?: number
+      'prop:headers'?: string
+      'prop:height'?: string
+      'prop:noWrap'?: boolean
+      'prop:rowSpan'?: number
+      'prop:scope'?: string
+      'prop:vAlign'?: 'top' | 'middle' | 'bottom' | 'baseline'
+      'prop:width'?: string
     }
 
     interface HTMLTableHeaderCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
@@ -2702,6 +2792,21 @@ declare global {
        * @deprecated
        */
       valign?: 'top' | 'middle' | 'bottom' | 'baseline'
+
+      'prop:abbr'?: string
+      'prop:align'?: 'left' | 'center' | 'right' | 'justify' | 'char'
+      'prop:axis'?: string
+      'prop:bgColor'?: Property.Color
+      'prop:ch'?: string
+      'prop:chOff'?: string
+      'prop:colSpan'?: number
+      'prop:headers'?: string
+      'prop:height'?: string
+      'prop:noWrap'?: boolean
+      'prop:rowSpan'?: number
+      'prop:scope'?: 'row' | 'col' | 'rowgroup' | 'colgroup'
+      'prop:vAlign'?: 'top' | 'middle' | 'bottom' | 'baseline'
+      'prop:width'?: string
     }
 
     interface HTMLTimeElementAttributes extends HTMLAttributes<HTMLTimeElement> {
