@@ -57,6 +57,8 @@ export const mathmlTags = new Set([
   'mmultiscripts', 'mn', 'mo', 'mover', 'mpadded', 'mphantom', 'mprescripts',
   'mroot', 'mrow', 'ms', 'mspace', 'msqrt', 'mstyle', 'msub', 'msubsup', 'msup',
   'mtable', 'mtd', 'mtext', 'mtr', 'munder', 'munderover', 'semantics', 'mfenced',
+  // non-standard
+  'menclose', 'mlabeledtr', 'maligngroup', 'malignmark',
 ]);
 
 const events = [
