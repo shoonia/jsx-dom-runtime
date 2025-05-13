@@ -39,7 +39,7 @@ export const htmlTags = new Set([
   'i', 'iframe', 'img', 'input', 'ins',
   'kbd',
   'label', 'legend', 'li', 'link',
-  'main', 'map', 'mark', 'math', 'menu', 'menuitem', 'meta', 'meter',
+  'main', 'map', 'mark', 'menu', 'menuitem', 'meta', 'meter',
   'nav', 'noscript',
   'object', 'ol', 'optgroup', 'option', 'output',
   'p', 'param', 'picture', 'pre', 'progress',
@@ -52,6 +52,11 @@ export const htmlTags = new Set([
   'u', 'ul',
   'var', 'video',
   'wbr',
+  // non-standard
+  'fencedframe', 'selectedcontent',
+  // deprecated
+  'acronym', 'applet', 'basefont', 'bgsound', 'big', 'blink', 'center', 'noframes',
+  'tt', 'strike', 'xmp', 'isindex', 'keygen',
 ]);
 
 export const mathmlTags = new Set([
