@@ -1,6 +1,6 @@
 # jsx-dom-runtime
 
-A tiny in 500 bytes library to [JSX](https://facebook.github.io/jsx/) syntax templates for [DOM](https://dom.spec.whatwg.org/). Support [HTML](https://html.spec.whatwg.org/multipage/), [SVG](https://www.w3.org/TR/SVG/) and [MathML](https://www.w3.org/TR/MathML3/) tags.
+A tiny 500-byte library for [JSX](https://facebook.github.io/jsx/) syntax templates targeting the [DOM](https://dom.spec.whatwg.org/). Supports [HTML](https://html.spec.whatwg.org/multipage/), [SVG](https://www.w3.org/TR/SVG/), and [MathML](https://www.w3.org/TR/MathML3/) tags.
 
 [![npm version](https://badgen.net/npm/v/jsx-dom-runtime)](https://www.npmjs.com/package/jsx-dom-runtime)
 [![Stand with Ukraine](https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/badges/StandWithUkraine.svg)](https://stand-with-ukraine.pp.ua/)
