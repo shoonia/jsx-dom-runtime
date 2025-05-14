@@ -26,4 +26,10 @@ describe('ns-transform', () => {
     await expect('const a = link && <a href={link}>Welcome</a>;')
       .toBeTransform('import{jsx as _jsx}from"jsx-dom-runtime";const a=link&&/*#__PURE__*/_jsx("a",{href:link},"Welcome");');
   });
+
+  it('should add namespace to any tags inside SVG parent element', async () => {
+    await expect('<svg><unknown some="tag" /><div>hello</div></svg>').toBeTransform(
+      start + '_jsx("svg",{_:_svgNs},[/*#__PURE__*/_jsx("unknown",{some:"tag",_:_svgNs}),/*#__PURE__*/_jsx("div",{_:_svgNs},"hello")]);',
+    );
+  });
 });
