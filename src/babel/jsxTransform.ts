@@ -219,9 +219,7 @@ export const jsxTransform: PluginObj = {
         if (directive === 'on' && attrValue.type === 'JSXExpressionContainer') {
           eventListener(openingElement, attrName.name, attrValue);
           path.remove();
-        }
-
-        else if (directive === 'attr') {
+        } else if (directive === 'attr') {
           createDirective(openingElement, {
             type: 'CallExpression',
             callee: {
@@ -236,9 +234,7 @@ export const jsxTransform: PluginObj = {
             ],
           });
           path.remove();
-        }
-
-        else if (directive === 'prop') {
+        } else if (directive === 'prop') {
           const isIdent = isIdentifierName(attrName.name.name);
 
           createDirective(openingElement, {
@@ -255,13 +251,9 @@ export const jsxTransform: PluginObj = {
             right: convertJSXAttrValue(attrValue)
           });
           path.remove();
-        }
-
-        else if (isCustomElement) {
+        } else if (isCustomElement) {
           return;
-        }
-
-        else if (directive === 'xlink' && attrName.name.name === 'href') {
+        } else if (directive === 'xlink' && attrName.name.name === 'href') {
           attribute.name = attrName.name;
         }
 
@@ -282,24 +274,18 @@ export const jsxTransform: PluginObj = {
       if (booleanAttributes.has(aName)) {
         attrName.name = aName;
         attribute.value ??= $stringLiteral('');
-      }
-
-      else if (enumerated.has(aName) || aName.startsWith('data-')) {
+      } else if (enumerated.has(aName) || aName.startsWith('data-')) {
         attrName.name = aName;
 
         if (attrValue === null) {
           attribute.value = $stringLiteral('true');
-        }
-
-        else if (
+        } else if (
           attrValue.type === 'JSXExpressionContainer' &&
           attrValue.expression.type === 'BooleanLiteral'
         ) {
           attribute.value = $stringLiteral(attrValue.expression.value ? 'true' : 'false');
         }
-      }
-
-      else if (DOMEvents.has(aName)) {
+      } else if (DOMEvents.has(aName)) {
         createDirective(openingElement, {
           type: 'AssignmentExpression',
           operator: '=',
@@ -312,13 +298,9 @@ export const jsxTransform: PluginObj = {
           right: convertJSXAttrValue(attrValue)
         });
         path.remove();
-      }
-
-      else if (isHTMLElement && attributes.has(aName)) {
+      } else if (isHTMLElement && attributes.has(aName)) {
         attrName.name = aName;
-      }
-
-      else if (isSVGElement && svgDOMAttributes.has(attrName.name)) {
+      } else if (isSVGElement && svgDOMAttributes.has(attrName.name)) {
         attrName.name = svgDOMAttributes.get(attrName.name);
       }
     },

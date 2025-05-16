@@ -42,8 +42,7 @@ export const createDirective = (element: t.JSXOpeningElement, expression: t.Expr
 
   if (bodyType === 'NullLiteral') {
     arrowFunction.body = expression;
-  }
-  else if (bodyType === 'AssignmentExpression' || bodyType === 'CallExpression') {
+  } else if (bodyType === 'AssignmentExpression' || bodyType === 'CallExpression') {
     arrowFunction.body = {
       type: 'BlockStatement',
       body: [
@@ -52,8 +51,7 @@ export const createDirective = (element: t.JSXOpeningElement, expression: t.Expr
       ],
       directives: [],
     };
-  }
-  else if (bodyType === 'BlockStatement') {
+  } else if (bodyType === 'BlockStatement') {
     arrowFunction.body.body.push($expressionStatement(expression));
   }
 };
