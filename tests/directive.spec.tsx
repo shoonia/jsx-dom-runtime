@@ -13,6 +13,12 @@ describe('directives', () => {
     );
   });
 
+  it('should correctly transfomr event handlers with `prop:* & attr:*` directives', async () => {
+    expect('<input type="text" attr:hello="world" prop:foo={foo} prop:bar={bar} oninvalid={fn3} onblur={fn4} />').toBeTransform(
+      jsxImport`_jsx("input",{ref:e=>{e.setAttribute("hello","world");e.foo=foo;e.bar=bar;e.oninvalid=fn3;e.onblur=fn4},type:"text"});`
+    );
+  });
+
   it('should render correct all directives', () => {
     const p = <p attr:test="qa" prop:_data={100} />;
 

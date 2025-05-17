@@ -49,4 +49,16 @@ describe('directive prop:*', () => {
     expect(div).toHaveProperty('foo-foo', value);
     expect(div).not.toHaveAttribute('foo-foo');
   });
+
+  it('should transform event handlers to properties', async () => {
+    expect('<div onclick={fn} />').toBeTransform(
+      jsxImport`_jsx("div",{ref:e=>e.onclick=fn});`
+    );
+  });
+
+  it('should transform a few event handlers to properties', async () => {
+    expect('<input type="text" onclick={fn1} onchange={fn2} oninvalid={fn3} onblur={fn4} />').toBeTransform(
+      jsxImport`_jsx("input",{ref:e=>{e.onclick=fn1;e.onchange=fn2;e.oninvalid=fn3;e.onblur=fn4},type:"text"});`
+    );
+  });
 });
