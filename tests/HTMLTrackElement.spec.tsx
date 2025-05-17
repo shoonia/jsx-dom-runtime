@@ -36,3 +36,21 @@ describe('HTMLTrackElement', () => {
     expect(<track oncuechange={spy} />).toHaveProperty('oncuechange', spy);
   });
 });
+
+describe('HTMLTrackElement prop:* support', () => {
+  it('should support prop:default', () => {
+    expect(<track prop:default />).toHaveProperty('default', true);
+  });
+  it('should support prop:kind', () => {
+    expect(<track prop:kind="subtitles" />).toHaveProperty('kind', 'subtitles');
+  });
+  it('should support prop:label', () => {
+    expect(<track prop:label="English" />).toHaveProperty('label', 'English');
+  });
+  it('should support prop:src', () => {
+    expect(<track prop:src="/subs.vtt" />).toHaveProperty('src', 'http://localhost/subs.vtt');
+  });
+  it('should support prop:srclang', () => {
+    expect(<track prop:srclang="en" />).toHaveProperty('srclang', 'en');
+  });
+});
