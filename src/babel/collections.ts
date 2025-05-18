@@ -128,6 +128,8 @@ const events = [
   'cuechange',
   // ContentVisibilityAutoStateChangeEvent
   'contentvisibilityautostatechange',
+  // CommandEvent
+  'command',
 ];
 
 export const DOMEvents = new Set(events.map((e) => 'on' + e));
@@ -138,8 +140,6 @@ export const eventTypes = new Set([
   'focusin', 'focusout',
   // WebGLContextEvent
   'webglcontextlost', 'webglcontextrestored', 'webglcontextcreationerror',
-  // CommandEvent
-  'command',
 ]);
 
 export const attributes = new Set([

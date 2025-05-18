@@ -17,4 +17,10 @@ describe('CommandEvent', () => {
     command(<div on:command={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
+
+  it('should add `oncommand` function listener', () => {
+    const spy: JSX.CommandEventListener<HTMLDivElement> = jest.fn();
+
+    expect(<div oncommand={spy} />).toHaveProperty('oncommand', spy);
+  });
 });

@@ -110,6 +110,7 @@ export type UIEventHandler<T = Element> = EventHandlerFunction<UIEvent, T>
 export type WebGLContextEventHandler<T = Element> = EventHandlerFunction<WebGLContextEvent, T>
 export type WheelEventHandler<T = Element> = EventHandlerFunction<WheelEvent, T>
 export type ContentVisibilityAutoStateChangeEventHandler<T = Element> = EventHandlerFunction<ContentVisibilityAutoStateChangeEvent, T>
+export type CommandEventHandler<T = Element> = EventHandlerFunction<CommandEvent, T>
 
 export interface CSSProperties extends Properties<number | string> {
   cssText?: string | null
@@ -1072,6 +1073,9 @@ declare global {
       // ContentVisibilityAutoStateChangeEvent
       /** @deprecated use `on:contentVisibilityAutoStateChange` instead */
       oncontentvisibilityautostatechange?: ContentVisibilityAutoStateChangeEventHandler<T>
+      // CommandEvent
+      /** @deprecated use `on:command` instead */
+      oncommand?: CommandEventHandler<T>
     }
 
     interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
