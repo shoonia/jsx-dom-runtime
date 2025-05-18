@@ -868,30 +868,49 @@ declare global {
       ref?: Ref<T> | false | null | undefined | (Ref<T> | false | null | undefined)[]
       children?: JSXChild | JSXChild[]
       // ClipboardEvent
+      /** @deprecated use `on:copy` instead */
       oncopy?: ClipboardEventHandler<T>
+      /** @deprecated use `on:cut` instead */
       oncut?: ClipboardEventHandler<T>
+      /** @deprecated use `on:paste` instead */
       onpaste?: ClipboardEventHandler<T>
       // CompositionEvent
+      /** @deprecated use `on:compositionEnd` instead */
       oncompositionend?: CompositionEventHandler<T>
+      /** @deprecated use `on:compositionStart` instead */
       oncompositionstart?: CompositionEventHandler<T>
+      /** @deprecated use `on:compositionUpdate` instead */
       oncompositionupdate?: CompositionEventHandler<T>
       // FocusEvent
+      /** @deprecated use `on:focus` instead */
       onfocus?: FocusEventHandler<T>
+      /** @deprecated use `on:blur` instead */
       onblur?: FocusEventHandler<T>
       // InputEvent
+      /** @deprecated use `on:beforeInput` instead */
       onbeforeinput?: InputEventHandler<T>
+      /** @deprecated use `on:input` instead */
       oninput?: InputEventHandler<T>
       // [Form] Event
+      /** @deprecated use `on:change` instead */
       onchange?: GenericEventHandler<T>
+      /** @deprecated use `on:reset` instead */
       onreset?: GenericEventHandler<T>
+      /** @deprecated use `on:invalid` instead */
       oninvalid?: GenericEventHandler<T>
       // Event
+      /** @deprecated use `on:load` instead */
       onload?: GenericEventHandler<T>
+      /** @deprecated use `on:error` instead */
       onerror?: GenericEventHandler<T>
+      /** @deprecated use `on:select` instead */
       onselect?: GenericEventHandler<T>
+
       // SubmitEvent
+      /** @deprecated use `on:submit` instead */
       onsubmit?: SubmitEventHandler<T>
       // KeyboardEvent
+      /** @deprecated use `on:keyDown` instead */
       onkeydown?: KeyboardEventHandler<T>
       /**
        * This feature is no longer recommended.
@@ -899,89 +918,159 @@ declare global {
        * @deprecated
        */
       onkeypress?: KeyboardEventHandler<T>
+      /** @deprecated use `on:keyUp` instead */
       onkeyup?: KeyboardEventHandler<T>
       // [Media] Event
+      /** @deprecated use `on:abort` instead */
       onabort?: GenericEventHandler<T>
+      /** @deprecated use `on:canPlay` instead */
       oncanplay?: GenericEventHandler<T>
+      /** @deprecated use `on:canPlayThrough` instead */
       oncanplaythrough?: GenericEventHandler<T>
+      /** @deprecated use `on:durationChange` instead */
       ondurationchange?: GenericEventHandler<T>
+      /** @deprecated use `on:emptied` instead */
       onemptied?: GenericEventHandler<T>
+      /** @deprecated use `on:ended` instead */
       onended?: GenericEventHandler<T>
+      /** @deprecated use `on:loadedData` instead */
       onloadeddata?: GenericEventHandler<T>
+      /** @deprecated use `on:loadedMetadata` instead */
       onloadedmetadata?: GenericEventHandler<T>
+      /** @deprecated use `on:loadStart` instead */
       onloadstart?: GenericEventHandler<T>
+      /** @deprecated use `on:pause` instead */
       onpause?: GenericEventHandler<T>
+      /** @deprecated use `on:play` instead */
       onplay?: GenericEventHandler<T>
+      /** @deprecated use `on:playing` instead */
       onplaying?: GenericEventHandler<T>
+      /** @deprecated use `on:progress` instead */
       onprogress?: GenericEventHandler<T>
+      /** @deprecated use `on:rateChange` instead */
       onratechange?: GenericEventHandler<T>
+      /** @deprecated use `on:seeked` instead */
       onseeked?: GenericEventHandler<T>
+      /** @deprecated use `on:seeking` instead */
       onseeking?: GenericEventHandler<T>
+      /** @deprecated use `on:stalled` instead */
       onstalled?: GenericEventHandler<T>
+      /** @deprecated use `on:suspend` instead */
       onsuspend?: GenericEventHandler<T>
+      /** @deprecated use `on:timeUpdate` instead */
       ontimeupdate?: GenericEventHandler<T>
+      /** @deprecated use `on:volumeChange` instead */
       onvolumechange?: GenericEventHandler<T>
+      /** @deprecated use `on:waiting` instead */
       onwaiting?: GenericEventHandler<T>
       // MouseEvent
+      /** @deprecated use `on:auxclick` instead */
       onauxclick?: MouseEventHandler<T>
+      /** @deprecated use `on:click` instead */
       onclick?: MouseEventHandler<T>
+      /** @deprecated use `on:contextMenu` instead */
       oncontextmenu?: MouseEventHandler<T>
+      /** @deprecated use `on:dblClick` instead */
       ondblclick?: MouseEventHandler<T>
+      /** @deprecated use `on:mouseDown` instead */
       onmousedown?: MouseEventHandler<T>
+      /** @deprecated use `on:mouseEnter` instead */
       onmouseenter?: MouseEventHandler<T>
+      /** @deprecated use `on:mouseLeave` instead */
       onmouseleave?: MouseEventHandler<T>
+      /** @deprecated use `on:mouseMove` instead */
       onmousemove?: MouseEventHandler<T>
+      /** @deprecated use `on:mouseOut` instead */
       onmouseout?: MouseEventHandler<T>
+      /** @deprecated use `on:mouseOver` instead */
       onmouseover?: MouseEventHandler<T>
+      /** @deprecated use `on:mouseUp` instead */
       onmouseup?: MouseEventHandler<T>
       // DragEvent
+      /** @deprecated use `on:drag` instead */
       ondrag?: DragEventHandler<T>
+      /** @deprecated use `on:dragEnd` instead */
       ondragend?: DragEventHandler<T>
+      /** @deprecated use `on:dragEnter` instead */
       ondragenter?: DragEventHandler<T>
-      /** @deprecated */
+      /** @deprecated use `on:dragExit` instead */
       ondragexit?: DragEventHandler<T>
+      /** @deprecated use `on:dragLeave` instead */
       ondragleave?: DragEventHandler<T>
+      /** @deprecated use `on:dragOver` instead */
       ondragover?: DragEventHandler<T>
+      /** @deprecated use `on:dragStart` instead */
       ondragstart?: DragEventHandler<T>
+      /** @deprecated use `on:drop` instead */
       ondrop?: DragEventHandler<T>
       // TouchEvent
+      /** @deprecated use `on:touchCancel` instead */
       ontouchcancel?: TouchEventHandler<T>
+      /** @deprecated use `on:touchEnd` instead */
       ontouchend?: TouchEventHandler<T>
+      /** @deprecated use `on:touchMove` instead */
       ontouchmove?: TouchEventHandler<T>
+      /** @deprecated use `on:touchStart` instead */
       ontouchstart?: TouchEventHandler<T>
       // PointerEvent
+      /** @deprecated use `on:pointerDown` instead */
       onpointerdown?: PointerEventHandler<T>
+      /** @deprecated use `on:pointerMove` instead */
       onpointermove?: PointerEventHandler<T>
+      /** @deprecated use `on:pointerUp` instead */
       onpointerup?: PointerEventHandler<T>
+      /** @deprecated use `on:pointerCancel` instead */
       onpointercancel?: PointerEventHandler<T>
+      /** @deprecated use `on:pointerEnter` instead */
       onpointerenter?: PointerEventHandler<T>
+      /** @deprecated use `on:pointerLeave` instead */
       onpointerleave?: PointerEventHandler<T>
+      /** @deprecated use `on:pointerOver` instead */
       onpointerover?: PointerEventHandler<T>
+      /** @deprecated use `on:pointerOut` instead */
       onpointerout?: PointerEventHandler<T>
+      /** @deprecated use `on:gotPointerCapture` instead */
       ongotpointercapture?: PointerEventHandler<T>
+      /** @deprecated use `on:lostPointerCapture` instead */
       onlostpointercapture?: PointerEventHandler<T>
       // UIEvent
+      /** @deprecated use `on:scroll` instead */
       onscroll?: UIEventHandler<T>
+      /** @deprecated use `on:scrollEnd` instead */
       onscrollend?: UIEventHandler<T>
       // WheelEvent
+      /** @deprecated use `on:wheel` instead */
       onwheel?: WheelEventHandler<T>
       // AnimationEvent
+      /** @deprecated use `on:animationStart` instead */
       onanimationstart?: AnimationEventHandler<T>
+      /** @deprecated use `on:animationEnd` instead */
       onanimationend?: AnimationEventHandler<T>
+      /** @deprecated use `on:animationIteration` instead */
       onanimationiteration?: AnimationEventHandler<T>
+      /** @deprecated use `on:animationCancel` instead */
       onanimationcancel?: AnimationEventHandler<T>
       // TransitionEvent
+      /** @deprecated use `on:transitionStart` instead */
       ontransitionstart?: TransitionEventHandler<T>
+      /** @deprecated use `on:transitionEnd` instead */
       ontransitionend?: TransitionEventHandler<T>
+      /** @deprecated use `on:transitionRun` instead */
       ontransitionrun?: TransitionEventHandler<T>
+      /** @deprecated use `on:transitionCancel` instead */
       ontransitioncancel?: TransitionEventHandler<T>
       // Fullscreen API
+      /** @deprecated use `on:fullscreenChange` instead */
       onfullscreenchange?: GenericEventHandler<T>
+      /** @deprecated use `on:fullscreenError` instead */
       onfullscreenerror?: GenericEventHandler<T>
       // ToggleEvent
+      /** @deprecated use `on:beforeToggle` instead */
       onbeforetoggle?: ToggleEventHandler<T>
+      /** @deprecated use `on:toggle` instead */
       ontoggle?: ToggleEventHandler<T>
       // ContentVisibilityAutoStateChangeEvent
+      /** @deprecated use `on:contentVisibilityAutoStateChange` instead */
       oncontentvisibilityautostatechange?: ContentVisibilityAutoStateChangeEventHandler<T>
     }
 
@@ -1655,10 +1744,12 @@ declare global {
        * Specifies the types of user actions that can be used to close the `<dialog>` element
        */
       closedBy?: 'any' | 'closerequest' | 'none'
-
+      /** @deprecated use `on:close` instead */
       onclose?: GenericEventHandler<HTMLDialogElement>
-      'on:close'?: EventListener<HTMLDialogElement>
+      /** @deprecated use `on:cancel` instead */
       oncancel?: GenericEventHandler<HTMLDialogElement>
+
+      'on:close'?: EventListener<HTMLDialogElement>
       'on:cancel'?: EventListener<HTMLDialogElement>
 
       'prop:open'?: boolean
@@ -1727,7 +1818,9 @@ declare global {
       | AnyString
       noValidate?: boolean | ''
       target?: Target
+      /** @deprecated  use `on:formData` instead */
       onformdata?: FormDataEventHandler<HTMLFormElement>
+
       'on:formData'?: FormDataEventListener<HTMLFormElement>
 
       'prop:acceptCharset'?: 'UTF-8' | 'ISO-8859-1' | 'US-ASCII' | AnyString
@@ -1796,7 +1889,7 @@ declare global {
        * @deprecated
        */
       allowPaymentRequest?: boolean | ''
-      /** @deprecated  */
+      /** @deprecated */
       allowTransparency?: boolean | ''
       /**
        * A Content Security Policy enforced for the embedded resource
@@ -2178,9 +2271,12 @@ declare global {
       mediaGroup?: string
       preload?: 'none' | 'metadata' | 'auto' | '';
       src?: string
+      /** @deprecated use `on:encrypted` instead */
       onencrypted?: MediaEncryptedEventHandler<T>
-      'on:encrypted'?: MediaEncryptedEventListener<T>
+      /** @deprecated use `on:waitingForKey` instead */
       onwaitingforkey?: GenericEventHandler<T>
+
+      'on:encrypted'?: MediaEncryptedEventListener<T>
       'on:waitingForKey'?: EventListener<T>
 
       'prop:autoplay'?: boolean
@@ -2650,7 +2746,9 @@ declare global {
       value?: number | string
       wrap?: 'hard' | 'soft' | 'off'
 
+      /** @deprecated use `on:selectionChange` instead */
       onselectionchange?: GenericEventHandler<HTMLTextAreaElement>
+
       'on:selectionChange'?: EventListener<HTMLTextAreaElement>
 
       'prop:autocomplete'?: AutoFill
@@ -2823,7 +2921,9 @@ declare global {
       label?: string
       src?: string
       srclang?: string
+      /** @deprecated use `on:cueChange` instead */
       oncuechange?: GenericEventHandler<HTMLTrackElement>
+
       'on:cueChange'?: EventListener<HTMLTrackElement>
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
@@ -2845,11 +2945,15 @@ declare global {
       poster?: string
       width?: number | string
       disablePictureInPicture?: boolean | ''
+      /** @deprecated use `on:enterPictureInPicture` instead */
       onenterpictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
-      'on:enterPictureInPicture'?: PictureInPictureEventListener<HTMLVideoElement>
+      /** @deprecated use `on:leavePictureInPicture` instead */
       onleavepictureinpicture?: PictureInPictureEventHandler<HTMLVideoElement>
-      'on:leavePictureInPicture'?: PictureInPictureEventListener<HTMLVideoElement>
+      /** @deprecated use `on:resize` instead */
       onresize?: PictureInPictureEventHandler<HTMLVideoElement>
+
+      'on:enterPictureInPicture'?: PictureInPictureEventListener<HTMLVideoElement>
+      'on:leavePictureInPicture'?: PictureInPictureEventListener<HTMLVideoElement>
       'on:resize'?: PictureInPictureEventListener<HTMLVideoElement>
 
       'prop:disablePictureInPicture'?: boolean
