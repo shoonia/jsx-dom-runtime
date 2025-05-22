@@ -18,6 +18,7 @@
       "require": "./jsx-runtime/index.cjs"
     },
     "./babel-preset": "./babel-preset/index.cjs",
+    "./eslint": "./eslint/index.cjs",
     "./package.json": "./package.json"
   },
   "sideEffects": false,
@@ -34,7 +35,8 @@
   "peerDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/helper-validator-identifier": "^7.0.0",
-    "@babel/types": "^7.0.0"
+    "@babel/types": "^7.0.0",
+    "eslint": "^9.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.27.1",

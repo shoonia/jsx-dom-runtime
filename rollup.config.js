@@ -20,6 +20,7 @@ await writeFile(
 );
 
 const extensions = ['.ts'];
+const external = Object.keys(pkg.peerDependencies);
 
 const plugins = [
   babel({
@@ -48,7 +49,19 @@ export default [
         format: 'cjs',
       },
     ],
-    external: Object.keys(pkg.peerDependencies),
+    external,
+    plugins,
+  },
+  {
+    input: 'src/eslint/index.ts',
+    output: [
+      {
+        file: pkg.exports['./eslint'],
+        exports: 'default',
+        format: 'cjs',
+      },
+    ],
+    external,
     plugins,
   },
   {
