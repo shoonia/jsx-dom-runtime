@@ -5,6 +5,7 @@ export default ts.config(
   {
     ignores: [
       'babel-preset/',
+      'eslint-plugin/',
       'jsx-runtime/',
     ],
   },

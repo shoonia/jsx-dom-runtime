@@ -1,5 +1,6 @@
 node_modules/
 babel-preset/
+eslint-plugin/
 jsx-runtime/
 dist/
 __test/

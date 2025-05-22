@@ -15,7 +15,7 @@ export const rule: Rule.RuleModule = {
       noSpread: 'SyntaxError: Using the spread operator inside HTML, SVG, or MathML elements is not allowed and will cause your app to crash at runtime.'
     }
   },
-  create: (context) => {
+  create(context) {
     return {
       JSXOpeningElement(node: TSESTree.JSXOpeningElement) {
         if (node.name.type !== 'JSXIdentifier') {

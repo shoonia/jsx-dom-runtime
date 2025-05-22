@@ -12,6 +12,7 @@ const emptyDir = async (path) => {
 await Promise.all([
   emptyDir('./babel-preset'),
   emptyDir('./jsx-runtime'),
+  emptyDir('./eslint-plugin'),
 ]);
 
 await writeFile(
@@ -56,7 +57,7 @@ export default [
     input: 'src/eslint/index.ts',
     output: [
       {
-        file: pkg.exports['./eslint'],
+        file: pkg.exports['./eslint-plugin'],
         exports: 'default',
         format: 'cjs',
       },

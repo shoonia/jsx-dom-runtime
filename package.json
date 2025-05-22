@@ -18,7 +18,7 @@
       "require": "./jsx-runtime/index.cjs"
     },
     "./babel-preset": "./babel-preset/index.cjs",
-    "./eslint": "./eslint/index.cjs",
+    "./eslint-plugin": "./eslint-plugin/index.cjs",
     "./package.json": "./package.json"
   },
   "sideEffects": false,
@@ -64,6 +64,7 @@
   },
   "files": [
     "babel-preset",
+    "eslint-plugin",
     "jsx-runtime",
     "index.d.ts"
   ],
