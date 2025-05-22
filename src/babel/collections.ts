@@ -279,7 +279,4 @@ export const jsxNode = new Set<Node['type']>(['JSXElement', 'JSXFragment']);
 
 // [A-Z], [$] or [_]
 export const charCode = new Set([36, 95]);
-
-for (let i = 65; i <= 90; i++) {
-  charCode.add(i);
-}
+for (let i = 65; i <= 90; i++) charCode.add(i);
