@@ -1,3 +1,4 @@
+/* eslint-disable jsx-dom-runtime/no-classname-attribute-in-dom-element */
 describe('MathMLElement: className / class', () => {
   it('should have a `class` attribute', () => {
     expect(

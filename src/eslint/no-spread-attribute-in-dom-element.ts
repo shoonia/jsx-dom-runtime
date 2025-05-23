@@ -1,7 +1,7 @@
 import type { Rule } from 'eslint';
 import type { TSESTree } from '@typescript-eslint/utils';
 
-import { htmlTags, svgTags, mathmlTags } from '../tags';
+import { isJSXIdentifier, isStandardElement } from './utils.js';
 
 export const rule: Rule.RuleModule = {
   meta: {
@@ -19,13 +19,11 @@ export const rule: Rule.RuleModule = {
   create(context) {
     return {
       JSXOpeningElement(node: TSESTree.JSXOpeningElement) {
-        if (node.name.type !== 'JSXIdentifier') {
+        if (!isJSXIdentifier(node.name)) {
           return;
         }
-
         const tag = node.name.name;
-
-        if (htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag)) {
+        if (isStandardElement(tag)) {
           for (const attr of node.attributes) {
             if (attr.type === 'JSXSpreadAttribute') {
               context.report({
