@@ -17,9 +17,9 @@ jobs:
         cache: npm
 
     - run: npm ci
-    - run: npm run lint
     - run: npm run types
     - run: npm run build
+    - run: npm run lint
     - run: npm test
 
     - uses: andresz1/size-limit-action@v1
