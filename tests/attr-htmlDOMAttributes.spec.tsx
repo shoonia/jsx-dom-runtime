@@ -1,3 +1,4 @@
+/* eslint-disable jsx-dom-runtime/prefer-attributes-over-properties */
 describe('htmlDOMAttributes', () => {
   it('should transform `httpEquiv` propertis', () => {
     // @ts-expect-error

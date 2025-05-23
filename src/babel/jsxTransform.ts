@@ -24,7 +24,7 @@ import {
   charCode,
   jsxNode,
 } from './collections';
-import { htmlTags, mathmlTags, svgTags } from '../tags';
+import { htmlTags, mathmlTags, svgTags } from '../collections';
 
 const opts = { name: '_' } as const;
 
