@@ -1,7 +1,7 @@
 import type { Rule } from 'eslint';
 import type { TSESTree } from '@typescript-eslint/utils';
 
-import { isJSXIdentifier, isJSXOpeningElement, isStandardElement } from './utils.js';
+import { isStandardNode } from './utils.js';
 
 export const rule: Rule.RuleModule = {
   meta: {
@@ -19,15 +19,7 @@ export const rule: Rule.RuleModule = {
   create(context) {
     return {
       JSXSpreadAttribute(node: TSESTree.JSXSpreadAttribute) {
-        const parent = node.parent;
-
-        if (!isJSXOpeningElement(parent) || !isJSXIdentifier(parent.name)) {
-          return;
-        }
-
-        const tag = parent.name.name;
-
-        if (isStandardElement(tag)) {
+        if (isStandardNode(node.parent)) {
           context.report({
             node: node as any,
             messageId: 'noSpread',
