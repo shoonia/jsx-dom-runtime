@@ -1,9 +1,18 @@
-import type { Rule } from 'eslint';
+import type { Linter } from 'eslint';
 
 import { rule as noSpread } from './no-spread-attribute-in-dom-element';
 
-const rules: Record<string, Rule.RuleModule> = {
-  'jsx-dom-runtime/no-spread-attribute-in-dom-element': noSpread,
+const config: Linter.Config = {
+  plugins: {
+    'jsx-dom-runtime': {
+      rules: {
+        'no-spread-attribute-in-dom-element': noSpread,
+      },
+    }
+  },
+  rules: {
+    'jsx-dom-runtime/no-spread-attribute-in-dom-element': 'error',
+  },
 };
 
-export { rules as default };
+export { config as default };

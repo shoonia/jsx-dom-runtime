@@ -1,18 +1,19 @@
-import { htmlTags, svgTags, mathmlTags } from '../tags';
 import type { Rule } from 'eslint';
 import type { TSESTree } from '@typescript-eslint/utils';
+
+import { htmlTags, svgTags, mathmlTags } from '../tags';
 
 export const rule: Rule.RuleModule = {
   meta: {
     type: 'problem',
     docs: {
-      description: 'Disallow use of spread operator inside HTML, SVG, or MathML tags',
+      description: 'Disallow JSX spread attributes in HTML, SVG, or MathML tags.',
       category: 'SyntaxError',
       recommended: false,
     },
     schema: [],
     messages: {
-      noSpread: 'SyntaxError: Using the spread operator inside HTML, SVG, or MathML elements is not allowed and will cause your app to crash at runtime.'
+      noSpread: 'SyntaxError: JSX spread attributes in HTML, SVG, or MathML elements are not allowed and will cause your app to crash at runtime.'
     }
   },
   create(context) {
