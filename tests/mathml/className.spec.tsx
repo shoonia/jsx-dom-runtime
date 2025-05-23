@@ -1,3 +1,4 @@
+/* eslint-disable jsx-dom-runtime/prefer-attributes-over-properties */
 describe('MathMLElement: className / class', () => {
   it('should have a `class` attribute', () => {
     expect(

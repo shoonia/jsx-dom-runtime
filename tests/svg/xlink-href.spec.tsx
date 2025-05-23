@@ -1,3 +1,4 @@
+/* eslint-disable jsx-dom-runtime/prefer-attributes-over-properties */
 describe('SVG - `xlink:href` to `href`', () => {
   it('should replace `xlink:href` to `href`', () => {
     expect(

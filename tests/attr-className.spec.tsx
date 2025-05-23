@@ -1,3 +1,4 @@
+/* eslint-disable jsx-dom-runtime/prefer-attributes-over-properties */
 describe('className / class', () => {
   it('should have a class attribute', () => {
     // @ts-expect-error

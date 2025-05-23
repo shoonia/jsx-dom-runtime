@@ -1,16 +1,19 @@
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
+import jsxDomRuntime from './eslint-plugin/index.cjs';
 
 export default ts.config(
   {
     ignores: [
       'babel-preset/',
+      'eslint-plugin/',
       'jsx-runtime/',
     ],
   },
   js.configs.recommended,
   ...ts.configs.recommended,
   ...ts.configs.stylistic,
+  jsxDomRuntime,
   {
     rules: {
       '@typescript-eslint/no-unused-vars': 'error',

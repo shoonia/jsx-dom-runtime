@@ -1,3 +1,4 @@
+/* eslint-disable jsx-dom-runtime/prefer-attributes-over-properties */
 describe('Babel transform `htmlFor` to `for`', () => {
   it('should transform `htmlFor` attribute in <label />', () => {
     // @ts-expect-error
