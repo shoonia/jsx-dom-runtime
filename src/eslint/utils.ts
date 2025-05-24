@@ -29,7 +29,7 @@ export const isStandardNode = (node: TSESTree.Node): node is TSESTree.JSXOpening
   isJSXIdentifier(node.name) &&
   isStandardElement(node.name.name);
 
-export const isVoidElement = (node: TSESTree.JSXOpeningElement): node is TSESTree.JSXOpeningElement =>
+export const isVoidElement = (node: TSESTree.JSXOpeningElement): boolean =>
   isJSXIdentifier(node.name) &&
   voidElements.has(node.name.name);
 
