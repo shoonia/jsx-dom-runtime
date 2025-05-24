@@ -1,3 +1,4 @@
+/* eslint-disable jsx-dom-runtime/on-children-in-void-element */
 // A void element is an element whose content model never allows it to have contents under any circumstances.
 
 // HTML
