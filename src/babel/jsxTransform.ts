@@ -19,12 +19,11 @@ import {
   booleanAttributes,
   attributes,
   DOMEvents,
-  htmlDOMAttributes,
   svgDOMAttributes,
   charCode,
   jsxNode,
 } from './collections';
-import { htmlTags, mathmlTags, svgTags } from '../collections';
+import { htmlTags, mathmlTags, svgTags, htmlDOMAttributes } from '../collections';
 
 const opts = { name: '_' } as const;
 

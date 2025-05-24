@@ -196,17 +196,6 @@ export const svgDOMAttributes = new Map(
   }),
 );
 
-export const htmlDOMAttributes = new Map(
-  Object.entries({
-    acceptCharset: 'accept-charset',
-    className: 'class',
-    httpEquiv: 'http-equiv',
-    htmlFor: 'for',
-    // SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
-    xlinkHref: 'href',
-  }),
-);
-
 export const jsxNode = new Set<Node['type']>(['JSXElement', 'JSXFragment']);
 
 // [A-Z], [$] or [_]
