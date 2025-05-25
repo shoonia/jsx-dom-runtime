@@ -1,15 +1,13 @@
-import type { Rule } from 'eslint';
-import type { TSESTree } from '@typescript-eslint/utils';
+import type { TSESLint } from '@typescript-eslint/utils';
 
 import { isStandardNode } from './utils.js';
 
-export const rule: Rule.RuleModule = {
+export const rule: TSESLint.RuleModule<string, []> = {
+  defaultOptions: [],
   meta: {
     type: 'problem',
     docs: {
       description: 'Disallow JSX spread attributes in HTML, SVG, or MathML tags.',
-      category: 'SyntaxError',
-      recommended: false,
     },
     schema: [],
     messages: {
@@ -18,10 +16,10 @@ export const rule: Rule.RuleModule = {
   },
   create(context) {
     return {
-      JSXSpreadAttribute(node: TSESTree.JSXSpreadAttribute) {
+      JSXSpreadAttribute(node) {
         if (isStandardNode(node.parent)) {
           context.report({
-            node: node as any,
+            node,
             messageId: 'noSpread',
           });
         }

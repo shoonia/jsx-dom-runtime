@@ -1,15 +1,13 @@
-import type { Rule } from 'eslint';
-import type { TSESTree } from '@typescript-eslint/utils';
+import type { TSESLint } from '@typescript-eslint/utils';
 
 import { hasJSXChildren, isVoidElement } from './utils';
 
-export const rule: Rule.RuleModule = {
+export const rule: TSESLint.RuleModule<string, []> = {
+  defaultOptions: [],
   meta: {
     type: 'problem',
     docs: {
       description: 'A void element is an element in HTML that cannot have any child nodes (i.e., nested elements or text nodes). Void elements only have a start tag; end tags must not be specified for void elements.',
-      category: 'SyntaxError',
-      recommended: true,
       url: 'https://developer.mozilla.org/en-US/docs/Glossary/Void_element',
     },
     fixable: 'code',
@@ -21,16 +19,16 @@ export const rule: Rule.RuleModule = {
   },
   create(context) {
     return {
-      JSXElement(node: TSESTree.JSXElement) {
+      JSXElement(node) {
         if (isVoidElement(node.openingElement)) {
           if (hasJSXChildren(node)) {
             context.report({
-              node: node.openingElement.name as any,
+              node: node.openingElement.name,
               messageId: 'noChildren',
             });
           } else if (node.closingElement) {
             context.report({
-              node: node.closingElement.name as any,
+              node: node.closingElement.name,
               messageId: 'mustSelfClose',
               fix: fixer => {
                 const end = node.openingElement.range[1] - 1;
@@ -44,13 +42,13 @@ export const rule: Rule.RuleModule = {
           }
         }
       },
-      JSXAttribute(node: TSESTree.JSXAttribute) {
+      JSXAttribute(node) {
         if (
           node.name.name === 'children' &&
           isVoidElement(node.parent)
         ) {
           context.report({
-            node: node.name as any,
+            node: node.name,
             messageId: 'noChildren',
           });
         }

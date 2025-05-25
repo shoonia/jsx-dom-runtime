@@ -1,16 +1,14 @@
-import type { Rule } from 'eslint';
-import type { TSESTree } from '@typescript-eslint/utils';
+import type { TSESLint } from '@typescript-eslint/utils';
 
 import { isStandardNode } from './utils';
 import { htmlDOMAttributes } from '../collections';
 
-export const rule: Rule.RuleModule = {
+export const rule: TSESLint.RuleModule<string, []> = {
+  defaultOptions: [],
   meta: {
     type: 'suggestion',
     docs: {
       description: 'Prefer HTML, SVG, or MathML attributes over DOM property names in JSX. This rule auto-fixes common DOM property names (like className, htmlFor) to their standard attribute equivalents (class, for, etc.) for better compatibility and output. If you want to use the property instead of the attribute, use the syntax prop:className, prop:htmlFor, etc.',
-      category: 'Best Practices',
-      recommended: true,
     },
     fixable: 'code',
     schema: [],
@@ -20,12 +18,12 @@ export const rule: Rule.RuleModule = {
   },
   create(context) {
     return {
-      JSXAttribute(node: TSESTree.JSXAttribute) {
+      JSXAttribute(node) {
         const name = htmlDOMAttributes.get(node.name.name as any);
 
         if (name && isStandardNode(node.parent)) {
           context.report({
-            node: node.name as any,
+            node: node.name,
             messageId: 'preferAttribute',
             fix: fixer => fixer.replaceText(node.name, name),
           });
