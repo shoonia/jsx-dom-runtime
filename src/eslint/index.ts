@@ -1,9 +1,11 @@
+import type { TSESLint } from '@typescript-eslint/utils';
+
 import { rule as noSpread } from './no-spread-attribute-in-dom-element';
 import { rule as onChildrenInVoidElement } from './on-children-in-void-element';
 import { rule as preferAttribute } from './prefer-attributes-over-properties';
 import { rule as jsxImport } from './jsx-import';
 
-const config = {
+const config: TSESLint.FlatConfig.Config = {
   plugins: {
     'jsx-dom-runtime': {
       rules: {
@@ -12,7 +14,7 @@ const config = {
         'prefer-attributes-over-properties': preferAttribute,
         'jsx-import': jsxImport,
       },
-    }
+    },
   },
   rules: {
     'jsx-dom-runtime/no-spread-attribute-in-dom-element': 'error',
