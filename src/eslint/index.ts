@@ -22,6 +22,13 @@ const config: TSESLint.FlatConfig.Config = {
     'jsx-dom-runtime/prefer-attributes-over-properties': 'error',
     'jsx-dom-runtime/jsx-import': 'warn',
   },
+  languageOptions: {
+    parserOptions: {
+      ecmaFeatures: {
+        jsx: true,
+      },
+    },
+  },
 };
 
 export { config as default };
