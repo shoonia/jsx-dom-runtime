@@ -1,23 +1,8 @@
 import type { TSESTree } from '@typescript-eslint/utils';
 
-import { htmlTags, svgTags, mathmlTags } from '../collections';
+import { htmlTags, svgTags, mathmlTags, voidHTMLTags } from '../collections';
 
-const voidElements = new Set([
-  'area',
-  'base',
-  'br',
-  'col',
-  'embed',
-  'hr',
-  'img',
-  'input',
-  'link',
-  'meta',
-  'param',
-  'source',
-  'track',
-  'wbr',
-]);
+const voidElements = new Set(voidHTMLTags);
 
 export const isStandardElement = (tag: string) => htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag);
 
