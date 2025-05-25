@@ -12,7 +12,7 @@ export const rule: TSESLint.RuleModule<string, []> = {
     schema: [],
     messages: {
       noSpread: 'SyntaxError: JSX spread attributes in HTML, SVG, or MathML elements are not allowed and will cause your app to crash at runtime.'
-    }
+    },
   },
   create(context) {
     return {
