@@ -1,3 +1,4 @@
+/* eslint-disable jsx-dom-runtime/no-spread-children */
 describe('Child nodes', () => {
   it('should have a text', () => {
     expect(<span>hello</span>).toHaveOuterHTML('<span>hello</span>');

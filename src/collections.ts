@@ -27,9 +27,8 @@ export const svgTags = new Set([
 ]);
 
 export const voidHTMLTags = [
-  'area', 'base', 'br', 'col', 'embed',
-  'hr', 'img', 'input', 'link', 'meta',
-  'param', 'source', 'track', 'wbr',
+  'area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input',
+  'link', 'meta', 'param', 'source', 'track', 'wbr',
 ];
 
 const allHTMLTags = [

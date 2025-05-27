@@ -5,6 +5,7 @@ import { rule as onChildrenInVoidElement } from './on-children-in-void-element';
 import { rule as preferAttribute } from './prefer-attributes-over-properties';
 import { rule as jsxImport } from './jsx-import';
 import { rule as noLegacyEventHandler } from './no-legacy-event-handler';
+import { rule as noSpreadChildren } from './no-spread-children';
 
 const config: TSESLint.FlatConfig.Config = {
   plugins: {
@@ -12,6 +13,7 @@ const config: TSESLint.FlatConfig.Config = {
       rules: {
         'no-spread-attribute-in-dom-element': noSpread,
         'on-children-in-void-element': onChildrenInVoidElement,
+        'no-spread-children': noSpreadChildren,
         'no-legacy-event-handler': noLegacyEventHandler,
         'prefer-attributes-over-properties': preferAttribute,
         'jsx-import': jsxImport,
@@ -21,6 +23,7 @@ const config: TSESLint.FlatConfig.Config = {
   rules: {
     'jsx-dom-runtime/no-spread-attribute-in-dom-element': 'error',
     'jsx-dom-runtime/on-children-in-void-element': 'error',
+    'jsx-dom-runtime/no-spread-children': 'error',
     'jsx-dom-runtime/no-legacy-event-handler': 'warn',
     'jsx-dom-runtime/prefer-attributes-over-properties': 'error',
     'jsx-dom-runtime/jsx-import': 'warn',
