@@ -12,7 +12,7 @@ const selfClose = (code: string, output: string): RuleTester.InvalidTestCase => 
   errors: [{ messageId: 'mustSelfClose' }],
 });
 
-createRuleTester('on-children-in-void-element', {
+createRuleTester('no-children-in-void-element', {
   valid: [
     '<area />;',
     '<base />;',
@@ -78,7 +78,7 @@ createRuleTester('on-children-in-void-element', {
   ],
 });
 
-createRuleTester('on-children-in-void-element', {
+createRuleTester('no-children-in-void-element', {
   valid: [],
   invalid: [
     selfClose('<area></area>;', '<area />;'),
