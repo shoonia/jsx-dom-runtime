@@ -184,7 +184,7 @@ describe('prop:* aria properties', () => {
   });
 
   it('should set prop:ariaHidden correctly', () => {
-    expect(<div prop:ariaHidden={true} />).toHaveProperty('ariaHidden', true);
+    expect(<div prop:ariaHidden={true} />).toHaveProperty('ariaHidden', 'true');
   });
 
   it('should set prop:ariaChecked correctly', () => {
@@ -192,7 +192,7 @@ describe('prop:* aria properties', () => {
   });
 
   it('should set prop:ariaExpanded correctly', () => {
-    expect(<div prop:ariaExpanded={false} />).toHaveProperty('ariaExpanded', false);
+    expect(<div prop:ariaExpanded={false} />).toHaveProperty('ariaExpanded', 'false');
   });
 
   it('should set prop:ariaDescribedby correctly', () => {
@@ -224,7 +224,7 @@ describe('prop:* aria properties', () => {
   });
 
   it('should set prop:ariaBusy correctly', () => {
-    expect(<div prop:ariaBusy={true} />).toHaveProperty('ariaBusy', true);
+    expect(<div prop:ariaBusy={true} />).toHaveProperty('ariaBusy', 'true');
   });
 
   it('should set prop:ariaChecked correctly', () => {
@@ -268,7 +268,7 @@ describe('prop:* aria properties', () => {
   });
 
   it('should set prop:ariaDisabled correctly', () => {
-    expect(<div prop:ariaDisabled={true} />).toHaveProperty('ariaDisabled', true);
+    expect(<div prop:ariaDisabled={true} />).toHaveProperty('ariaDisabled', 'true');
   });
 
   it('should set prop:ariaDropeffect correctly', () => {
@@ -280,7 +280,7 @@ describe('prop:* aria properties', () => {
   });
 
   it('should set prop:ariaExpanded correctly', () => {
-    expect(<div prop:ariaExpanded={false} />).toHaveProperty('ariaExpanded', false);
+    expect(<div prop:ariaExpanded={false} />).toHaveProperty('ariaExpanded', 'false');
   });
 
   it('should set prop:ariaFlowto correctly', () => {
@@ -296,7 +296,7 @@ describe('prop:* aria properties', () => {
   });
 
   it('should set prop:ariaHidden correctly', () => {
-    expect(<div prop:ariaHidden={true} />).toHaveProperty('ariaHidden', true);
+    expect(<div prop:ariaHidden={true} />).toHaveProperty('ariaHidden', 'true');
   });
 
   it('should set prop:ariaInvalid correctly', () => {
@@ -316,7 +316,7 @@ describe('prop:* aria properties', () => {
   });
 
   it('should set prop:ariaLevel correctly', () => {
-    expect(<div prop:ariaLevel={3} />).toHaveProperty('ariaLevel', 3);
+    expect(<div prop:ariaLevel={3} />).toHaveProperty('ariaLevel', '3');
   });
 
   it('should set prop:ariaLive correctly', () => {
@@ -324,7 +324,7 @@ describe('prop:* aria properties', () => {
   });
 
   it('should set prop:ariaModal correctly', () => {
-    expect(<div prop:ariaModal={true} />).toHaveProperty('ariaModal', true);
+    expect(<div prop:ariaModal={true} />).toHaveProperty('ariaModal', 'true');
   });
 
   it('should set prop:ariaMultiline correctly', () => {
