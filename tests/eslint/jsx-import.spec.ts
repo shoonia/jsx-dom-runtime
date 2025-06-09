@@ -30,5 +30,9 @@ createRuleTester('jsx-import', {
       'import { jsx } from "jsx-dom-runtime/jsx-runtime";',
       'import { jsx } from "jsx-dom-runtime";',
     ),
+    error(
+      'import type { InputEventHandler } from "jsx-dom-runtime/jsx-runtime";',
+      'import type { InputEventHandler } from "jsx-dom-runtime";',
+    )
   ],
 });

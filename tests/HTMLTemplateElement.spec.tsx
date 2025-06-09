@@ -44,4 +44,20 @@ describe('HTMLTemplateElement', () => {
   it('should have `shadowRootSerializable` attribute', () => {
     expect(<template shadowRootSerializable />).toHaveAttribute('shadowrootserializable', '');
   });
+
+  it('should set `shadowRootMode` property', () => {
+    expect(<template prop:shadowRootMode="open" />).toHaveProperty('shadowRootMode', 'open');
+  });
+
+  it('should set prop:shadowRootClonable property', () => {
+    expect(<template prop:shadowRootClonable />).toHaveProperty('shadowRootClonable', true);
+  });
+
+  it('should set prop:shadowRootDelegatesFocus property', () => {
+    expect(<template prop:shadowRootDelegatesFocus />).toHaveProperty('shadowRootDelegatesFocus', true);
+  });
+
+  it('should set prop:shadowRootSerializable property', () => {
+    expect(<template prop:shadowRootSerializable />).toHaveProperty('shadowRootSerializable', true);
+  });
 });
