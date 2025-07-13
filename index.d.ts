@@ -1,5 +1,5 @@
 /// <reference lib="dom" />
-/// <reference lib="es2023" />
+/// <reference lib="es2024" />
 import type { Properties, Property } from 'csstype';
 
 type AnyString = string & {}

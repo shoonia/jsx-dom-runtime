@@ -6,6 +6,7 @@
   "main": "jsx-runtime/index.cjs",
   "module": "jsx-runtime/index.js",
   "types": "./index.d.ts",
+  "packageManager": "^npm@11.4.2",
   "exports": {
     ".": {
       "types": "./index.d.ts",
@@ -38,13 +39,13 @@
     "@babel/types": "^7.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.27.4",
+    "@babel/core": "^7.28.0",
     "@babel/helper-validator-identifier": "^7.27.1",
     "@babel/preset-typescript": "^7.27.1",
-    "@babel/types": "^7.27.6",
-    "@eslint/js": "^9.29.0",
-    "@evilmartians/lefthook": "^1.11.14",
-    "@jest/globals": "^30.0.3",
+    "@babel/types": "^7.28.1",
+    "@eslint/js": "^9.31.0",
+    "@evilmartians/lefthook": "^1.12.2",
+    "@jest/globals": "^30.0.4",
     "@rollup/plugin-babel": "^6.0.4",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@size-limit/preset-small-lib": "^11.2.0",
@@ -52,15 +53,15 @@
     "@testing-library/jest-dom": "^6.6.3",
     "@types/babel__helper-validator-identifier": "^7.15.2",
     "@types/jest": "^30.0.0",
-    "babel-jest": "^30.0.2",
+    "babel-jest": "^30.0.4",
     "babel-plugin-transform-lhs-constants": "^1.2.0",
-    "eslint": "^9.29.0",
-    "jest": "^30.0.3",
-    "jest-environment-jsdom": "^30.0.2",
-    "rollup": "^4.44.0",
+    "eslint": "^9.31.0",
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
+    "rollup": "^4.45.0",
     "size-limit": "^11.2.0",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.35.0"
+    "typescript-eslint": "^8.36.0"
   },
   "files": [
     "babel-preset",
