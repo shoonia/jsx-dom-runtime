@@ -48,7 +48,7 @@ const Fragment = (content) => (
 const jsx = (tag, props, children?: any) => {
   let key, value, node = props._
     ? document.createElementNS(props._, tag)
-    : document.createElement(tag, props.is ? { is: props.is } : key);
+    : document.createElement(tag, { is: props.is });
 
   for (key in props) {
     if (key != '_' && key != 'ref') {
