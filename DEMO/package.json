@@ -7,15 +7,19 @@
   "source": "src/index.html",
   "scripts": {
     "start": "parcel src/index.html --open",
-    "build": "rm -rf dist .parcel-cache && parcel build src/index.html"
+    "build": "rm -rf dist .parcel-cache && parcel build src/index.html",
+    "lint": "eslint 'src/**/*.ts'"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.75.1"
+    "jsx-dom-runtime": "^0.76.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "eslint": "^9.33.0",
+    "typescript-eslint": "^8.39.1",
     "@babel/preset-typescript": "^7.27.1",
-    "parcel": "^2.15.2",
-    "postcss": "^8.5.4",
+    "parcel": "^2.15.4",
+    "postcss": "^8.5.6",
     "postcss-modules": "^6.0.1"
   },
   "browserslist": "> 1%, not dead",
