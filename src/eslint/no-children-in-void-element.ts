@@ -31,10 +31,10 @@ export const rule: TSESLint.RuleModule<string, []> = {
               node: node.closingElement.name,
               messageId: 'mustSelfClose',
               fix: fixer => {
-                const end = node.openingElement.range[1] - 1;
+                const end = node.openingElement.range[1];
 
                 return [
-                  fixer.replaceTextRange([end, end + 1], ' />'),
+                  fixer.replaceTextRange([end - 1, end], ' />'),
                   fixer.remove(node.closingElement),
                 ];
               },
