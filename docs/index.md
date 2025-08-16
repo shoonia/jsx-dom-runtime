@@ -269,7 +269,7 @@ document.body.append(<App name="Bob" />);
 
 ### Fragments
 
-Use `<>...</>` syntax, to group multiple elements together. Under the hood, it uses the [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) interface.
+Use `<>...</>` syntax to group multiple elements together without creating an extra wrapper element. This is useful when you need to return multiple elements from a component or when you want to avoid unnecessary DOM nesting. Under the hood, it uses the [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) interface, which provides efficient DOM manipulation.
 
 ```js
 document.body.append(
@@ -554,8 +554,6 @@ const App: JSX.FC<Props> = ({ label }) => {
 
 document.body.append(<App label="Hello!" />);
 ```
-
-
 
 ## License
 
