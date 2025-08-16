@@ -35,13 +35,6 @@ export default ts.config(
         },
       ],
       'linebreak-style': 'off',
-      indent: [
-        'error',
-        2,
-        {
-          SwitchCase: 1,
-        },
-      ],
       quotes: [
         'error',
         'single',

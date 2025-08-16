@@ -92,7 +92,7 @@ describe('HTMLSelectElement', () => {
   });
 
   it('should add `onchange` handler', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
 
     expect(<select onchange={spy} />).toHaveProperty('onchange', spy);
   });

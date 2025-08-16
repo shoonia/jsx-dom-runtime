@@ -50,6 +50,7 @@ document.body.append(
 - [Get Started](https://github.com/shoonia/jsx-dom-runtime/wiki#jsx-dom-runtime)
 - [Syntax](https://github.com/shoonia/jsx-dom-runtime/wiki#syntax)
 - [APIs](https://github.com/shoonia/jsx-dom-runtime/wiki#apis)
+- [ESLint Support](https://github.com/shoonia/jsx-dom-runtime/wiki#eslint-support)
 - [TypeScript Support](https://github.com/shoonia/jsx-dom-runtime/wiki#typescript-support)
 
 ## License

@@ -8,14 +8,14 @@ const beforeToggle = (node: Node) => fireEvent(node, createEvent('beforetoggle',
 
 describe('ToggleEvent: toggle', () => {
   it('should add `on:toggle` function handler', () => {
-    const spy: JSX.ToggleEventListener<HTMLDetailsElement> = jest.fn();
+    using spy: JSX.ToggleEventListener<HTMLDetailsElement> = jest.fn();
 
     toggle(<details on:toggle={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:toggle` object listener', () => {
-    const handleEvent: JSX.ToggleEventListener<HTMLDetailsElement> = jest.fn();
+    using handleEvent: JSX.ToggleEventListener<HTMLDetailsElement> = jest.fn();
 
     toggle(<details on:toggle={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
@@ -29,14 +29,14 @@ describe('ToggleEvent: beforetoggle', () => {
   });
 
   it('should add `on:beforeToggle` function handler', () => {
-    const spy: JSX.ToggleEventListener<HTMLDivElement> = jest.fn();
+    using spy: JSX.ToggleEventListener<HTMLDivElement> = jest.fn();
 
     beforeToggle(<div on:beforeToggle={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:beforeToggle` object listener', () => {
-    const handleEvent: JSX.ToggleEventListener<HTMLDivElement> = jest.fn();
+    using handleEvent: JSX.ToggleEventListener<HTMLDivElement> = jest.fn();
 
     beforeToggle(<div on:beforeToggle={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);

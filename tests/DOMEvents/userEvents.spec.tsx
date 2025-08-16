@@ -3,8 +3,8 @@ import { jest } from '@jest/globals';
 
 describe('User events', () => {
   it('should add a few handlers', () => {
-    const spyClick = jest.fn();
-    const spyChange = jest.fn();
+    using spyClick = jest.fn();
+    using spyChange = jest.fn();
     const input = <input onclick={spyClick} onchange={spyChange} />;
 
     fireEvent.click(input);
@@ -16,8 +16,8 @@ describe('User events', () => {
   });
 
   it('should transform camel case naming handlers', () => {
-    const spyClick = jest.fn();
-    const spyChange = jest.fn();
+    using spyClick = jest.fn();
+    using spyChange = jest.fn();
 
     const input = <input
       // @ts-expect-error
@@ -34,7 +34,7 @@ describe('User events', () => {
   });
 
   it('should add property', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
 
     expect(<div onclick={spy} />).toHaveProperty('onclick', spy);
   });

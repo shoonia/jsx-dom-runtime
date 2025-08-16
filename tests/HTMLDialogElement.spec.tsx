@@ -16,17 +16,17 @@ describe('HTMLDialogElement', () => {
   });
 
   it('should add `ontoggle` handler', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
     expect(<dialog ontoggle={spy} />).toHaveProperty('ontoggle', spy);
   });
 
   it('should add `oncancel` handler', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
     expect(<dialog oncancel={spy} />).toHaveProperty('oncancel', spy);
   });
 
   it('should add `onclose` handler', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
     expect(<dialog onclose={spy} />).toHaveProperty('onclose', spy);
   });
 
