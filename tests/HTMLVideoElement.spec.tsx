@@ -107,7 +107,7 @@ describe('HTMLVideoElement', () => {
   });
 
   it('should add `onresize` handler', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
     expect(<video onresize={spy} />).toHaveProperty('onresize', spy);
   });
 

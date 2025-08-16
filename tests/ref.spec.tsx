@@ -4,7 +4,7 @@ import { jsxImport } from './utils';
 
 describe('ref', () => {
   it('should work with function ref', () => {
-    const ref = jest.fn();
+    using ref = jest.fn();
     const div = <div ref={ref} />;
 
     expect(ref).toHaveBeenCalledTimes(1);
@@ -12,8 +12,8 @@ describe('ref', () => {
   });
 
   it('should work with a list with function refs', () => {
-    const ref1 = jest.fn();
-    const ref2 = jest.fn();
+    using ref1 = jest.fn();
+    using ref2 = jest.fn();
     const div = <div ref={[ref1, ref2]} />;
 
     expect(ref1).toHaveBeenCalledTimes(1);
@@ -40,7 +40,7 @@ describe('ref', () => {
 
   it('should work with multiply refs', () => {
     const ref1 = {} as JSX.Ref<HTMLDivElement>;
-    const ref2 = jest.fn();
+    using ref2 = jest.fn();
     const div = <div ref={[ref1, ref2]} />;
 
     expect(ref1).toStrictEqual({ current: div });
@@ -49,8 +49,8 @@ describe('ref', () => {
   });
 
   it('should support condition (&&) in the ref list', () => {
-    const ref1 = jest.fn();
-    const ref2 = jest.fn();
+    using ref1 = jest.fn();
+    using ref2 = jest.fn();
     const T = true;
     const F = false;
 
@@ -74,9 +74,9 @@ describe('ref', () => {
   });
 
   it('should support multiple refs attributes', () => {
-    const ref1 = jest.fn();
-    const ref2 = jest.fn();
-    const ref3 = jest.fn();
+    using ref1 = jest.fn();
+    using ref2 = jest.fn();
+    using ref3 = jest.fn();
     const ref4 = {} as JSX.Ref<HTMLDivElement>;
     const ref5 = {} as JSX.Ref<HTMLDivElement>;
 

@@ -1,6 +1,9 @@
 /** @type {import('jest').Config} */
 const config = {
   cache: false,
+  resetModules: true,
+  clearMocks: true,
+  restoreMocks: true,
   rootDir: 'tests',
   transform: {
     '\\.tsx?$': 'babel-jest',

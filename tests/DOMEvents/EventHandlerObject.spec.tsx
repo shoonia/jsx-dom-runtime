@@ -5,7 +5,7 @@ import type { EventHandlerObject } from '../../index';
 
 describe('EventHandlerObject', () => {
   it('should support class as an event listener', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
 
     class ClickHandler implements EventHandlerObject {
       handleEvent(event: Event) {
@@ -22,7 +22,7 @@ describe('EventHandlerObject', () => {
   });
 
   it('should have correct types', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
 
     const handler: EventHandlerObject<Event, HTMLButtonElement> = {
       handleEvent(event) {

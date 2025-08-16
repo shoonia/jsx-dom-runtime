@@ -5,8 +5,8 @@ import { jsx } from 'jsx-dom-runtime';
 
 describe('$', () => {
   it('should add a few handlers', () => {
-    const spyClick: JSX.EventListener = jest.fn();
-    const spyChange: JSX.EventListener = jest.fn();
+    using spyClick: JSX.EventListener = jest.fn();
+    using spyChange: JSX.EventListener = jest.fn();
     const input = <input on:click={spyClick} on:change={spyChange} />;
 
     fireEvent.click(input);
@@ -18,7 +18,7 @@ describe('$', () => {
   });
 
   it('should add event listener with prop:* directive', () => {
-    const click: JSX.EventListener = jest.fn();
+    using click: JSX.EventListener = jest.fn();
 
     <div
       prop:onclick={click}
@@ -29,8 +29,8 @@ describe('$', () => {
   });
 
   it('should add event listener in $ props #1', () => {
-    const click: JSX.EventListener = jest.fn();
-    const myEvent: JSX.EventListener = jest.fn();
+    using click: JSX.EventListener = jest.fn();
+    using myEvent: JSX.EventListener = jest.fn();
 
     <div
       $={{
@@ -48,8 +48,8 @@ describe('$', () => {
   });
 
   it('should add event listener in $ props #2', () => {
-    const click: JSX.EventListener = jest.fn();
-    const myEvent: JSX.EventListener = jest.fn();
+    using click: JSX.EventListener = jest.fn();
+    using myEvent: JSX.EventListener = jest.fn();
 
     jsx('div', {
       $: {
@@ -67,8 +67,8 @@ describe('$', () => {
   });
 
   it('should add event object listener in $ props (#3)', () => {
-    const click: JSX.EventListener = jest.fn();
-    const myEvent: JSX.EventListener = jest.fn();
+    using click: JSX.EventListener = jest.fn();
+    using myEvent: JSX.EventListener = jest.fn();
 
     <div
       $={{
@@ -87,8 +87,8 @@ describe('$', () => {
   });
 
   it('should add object event listener in $ props (#4)', () => {
-    const click: JSX.EventListener = jest.fn();
-    const myEvent: JSX.EventListener = jest.fn();
+    using click: JSX.EventListener = jest.fn();
+    using myEvent: JSX.EventListener = jest.fn();
 
     jsx('div', {
       $: {

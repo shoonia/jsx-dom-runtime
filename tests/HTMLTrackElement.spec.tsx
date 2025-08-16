@@ -32,7 +32,7 @@ describe('HTMLTrackElement', () => {
   });
 
   it('should add `oncuechange` handler', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
     expect(<track oncuechange={spy} />).toHaveProperty('oncuechange', spy);
   });
 });

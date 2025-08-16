@@ -176,7 +176,7 @@ describe('HTMLInputElement', () => {
     });
 
     it('should have `onchange` handler', () => {
-      const spy = jest.fn();
+      using spy = jest.fn();
 
       expect(<input onchange={spy} />).toHaveProperty('onchange', spy);
     });

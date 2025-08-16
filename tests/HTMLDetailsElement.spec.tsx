@@ -37,7 +37,7 @@ describe('HTMLDetailsElement', () => {
   });
 
   it('should add `ontoggle` handler', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
 
     expect(<details ontoggle={spy} />).toHaveProperty('ontoggle', spy);
   });

@@ -5,21 +5,21 @@ const command = (node: Node) => fireEvent(node, createEvent('command', node));
 
 describe('CommandEvent', () => {
   it('should add `on:command` function listener', () => {
-    const spy: JSX.CommandEventListener<HTMLDivElement> = jest.fn();
+    using spy: JSX.CommandEventListener<HTMLDivElement> = jest.fn();
 
     command(<div on:command={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:command` object listener', () => {
-    const handleEvent: JSX.CommandEventListener<HTMLDivElement> = jest.fn();
+    using handleEvent: JSX.CommandEventListener<HTMLDivElement> = jest.fn();
 
     command(<div on:command={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should add `oncommand` function listener', () => {
-    const spy: JSX.CommandEventListener<HTMLDivElement> = jest.fn();
+    using spy: JSX.CommandEventListener<HTMLDivElement> = jest.fn();
 
     expect(<div oncommand={spy} />).toHaveProperty('oncommand', spy);
   });
