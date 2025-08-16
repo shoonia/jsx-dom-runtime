@@ -25,7 +25,7 @@
   "sideEffects": false,
   "scripts": {
     "lint": "eslint 'src/**/*.ts' 'tests/**/*.{ts,tsx}'",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test": "NODE_OPTIONS='--experimental-vm-modules --no-warnings' jest",
     "build": "NODE_NO_WARNINGS=1 rollup -c",
     "size": "size-limit",
     "types": "tsc --project tests/tsconfig.json"
