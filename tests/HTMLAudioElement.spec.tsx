@@ -81,12 +81,12 @@ describe('HTMLAudioElement', () => {
   });
 
   it('should add `onencrypted` handler', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
     expect(<audio onencrypted={spy} />).toHaveProperty('onencrypted', spy);
   });
 
   it('should add `onwaitingforkey` handler', () => {
-    const spy = jest.fn();
+    using spy = jest.fn();
     expect(<audio onwaitingforkey={spy} />).toHaveProperty('onwaitingforkey', spy);
   });
 

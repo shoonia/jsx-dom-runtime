@@ -1,7 +1,13 @@
 /** @type {import('jest').Config} */
 const config = {
   cache: false,
+  resetModules: true,
+  clearMocks: true,
+  restoreMocks: true,
   rootDir: 'tests',
+  workerIdleMemoryLimit: '512MB',
+  forceExit: true,
+  detectOpenHandles: true,
   transform: {
     '\\.tsx?$': 'babel-jest',
   },

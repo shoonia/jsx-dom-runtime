@@ -2,7 +2,7 @@ import { jest } from '@jest/globals';
 
 describe('CustomEvent', () => {
   it('should add `my-event` handler', () => {
-    const spy: JSX.EventListener = jest.fn();
+    using spy: JSX.EventListener = jest.fn();
 
     const div = <div on:my-event={spy} />;
 
@@ -12,8 +12,8 @@ describe('CustomEvent', () => {
   });
 
   it('should add register sensitive event listeners', () => {
-    const lowerCaseSpy: JSX.EventListener = jest.fn();
-    const camelCaseSpy: JSX.EventListener = jest.fn();
+    using lowerCaseSpy: JSX.EventListener = jest.fn();
+    using camelCaseSpy: JSX.EventListener = jest.fn();
 
     const div = <div
       on:x-event={lowerCaseSpy}
