@@ -1,6 +1,7 @@
 /** @type {import('jest').Config} */
 const config = {
   cache: false,
+  watchman: false,
   rootDir: 'tests',
   transform: {
     '\\.tsx?$': 'babel-jest',
@@ -8,7 +9,7 @@ const config = {
   setupFilesAfterEnv: [
     '<rootDir>/utils/jest-setup.ts'
   ],
-  testEnvironment: 'jest-environment-jsdom',
+  testEnvironment: 'jsdom',
   extensionsToTreatAsEsm: ['.tsx', '.ts'],
 };
 
