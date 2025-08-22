@@ -2,6 +2,8 @@
 const config = {
   cache: false,
   watchman: false,
+  clearMocks: true,
+  restoreMocks: true,
   rootDir: 'tests',
   transform: {
     '\\.tsx?$': 'babel-jest',

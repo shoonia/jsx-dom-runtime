@@ -1,13 +1,11 @@
 import '@testing-library/jest-dom';
 import { diffStringsUnified } from 'jest-diff';
-import { jest } from '@jest/globals';
 
 import { t } from './t';
 
 beforeEach(() => {
   document.head.innerHTML = '';
   document.body.innerHTML = '';
-  jest.resetModules();
 });
 
 expect.extend({
