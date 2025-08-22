@@ -3,6 +3,7 @@ const config = {
   cache: false,
   watchman: false,
   clearMocks: true,
+  resetModules: true,
   restoreMocks: true,
   rootDir: 'tests',
   transform: {
