@@ -14,6 +14,8 @@ const config = {
   ],
   testEnvironment: 'jsdom',
   extensionsToTreatAsEsm: ['.tsx', '.ts'],
+  verbose: true,
+  testLocationInResults: true,
 };
 
 export { config as default };
