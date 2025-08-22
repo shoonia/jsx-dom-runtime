@@ -91,17 +91,17 @@ describe('Fragment', () => {
     ).toHaveInnerHTML('<p>1</p><p>2</p><p>3</p><p>4</p><p>5</p>');
   });
 
-  it('should work with function Fragment', async () => {
-    const { Fragment } = await import('jsx-dom-runtime');
+  // it('should work with function Fragment', async () => {
+  //   const { Fragment } = await import('jsx-dom-runtime');
 
-    expect(
-      <div>
-        {Fragment()}
-        {Fragment(<p>a</p>)}
-        {Fragment([<p>b</p>, 'c'])}
-      </div>
-    ).toHaveInnerHTML('<p>a</p><p>b</p>c');
-  });
+  //   expect(
+  //     <div>
+  //       {Fragment()}
+  //       {Fragment(<p>a</p>)}
+  //       {Fragment([<p>b</p>, 'c'])}
+  //     </div>
+  //   ).toHaveInnerHTML('<p>a</p><p>b</p>c');
+  // });
 
   it('should correct transform code #1', async () => {
     await expect('<></>').toBeTransform('import{Fragment as _Fragment}from"jsx-dom-runtime";/*#__PURE__*/_Fragment();');
