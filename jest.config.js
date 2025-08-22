@@ -7,7 +7,7 @@ const config = {
   restoreMocks: true,
   rootDir: 'tests',
   transform: {
-    '\\.tsx?$': ['babel-jest', { excludeJestPreset: true }],
+    '\\.tsx?$': 'babel-jest',
   },
   setupFilesAfterEnv: [
     '<rootDir>/utils/jest-setup.ts'
