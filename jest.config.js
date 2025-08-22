@@ -7,15 +7,13 @@ const config = {
   restoreMocks: true,
   rootDir: 'tests',
   transform: {
-    '\\.tsx?$': 'babel-jest',
+    '\\.tsx?$': ['babel-jest', { excludeJestPreset: true }],
   },
   setupFilesAfterEnv: [
     '<rootDir>/utils/jest-setup.ts'
   ],
   testEnvironment: 'jsdom',
   extensionsToTreatAsEsm: ['.tsx', '.ts'],
-  verbose: true,
-  testLocationInResults: true,
 };
 
 export { config as default };
