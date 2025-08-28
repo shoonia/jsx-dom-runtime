@@ -16,7 +16,7 @@ export const createRuleTester = (key: string, tests: {
 }) =>
   new RuleTester({
     languageOptions: {
-      parser: parser as any,
+      parser,
       sourceType: 'module',
       parserOptions: { ecmaFeatures: { jsx: true } },
     },
