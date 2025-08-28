@@ -1,3 +1,4 @@
+/* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
 import { jest } from '@jest/globals';
 import { createEvent, fireEvent } from '@testing-library/dom';
 

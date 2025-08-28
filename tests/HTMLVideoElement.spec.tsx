@@ -1,3 +1,4 @@
+/* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
 import { jest } from '@jest/globals';
 
 describe('HTMLVideoElement', () => {
