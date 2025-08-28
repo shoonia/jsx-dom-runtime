@@ -16,7 +16,7 @@ const getRefFunction = (element: t.JSXOpeningElement): t.ArrowFunctionExpression
     return cache.get(element);
   }
 
-  const arrowFunction: t.ArrowFunctionExpression = {
+  const refFunction: t.ArrowFunctionExpression = {
     type: 'ArrowFunctionExpression',
     params: [$identifier('e')],
     body: { type: 'NullLiteral' },
@@ -24,34 +24,33 @@ const getRefFunction = (element: t.JSXOpeningElement): t.ArrowFunctionExpression
     expression: false,
   };
 
-  const refAttr: t.JSXAttribute = {
+  element.attributes.unshift({
     type: 'JSXAttribute',
     name: $jsxIdentifier('ref'),
-    value: $jsxExpressionContainer(arrowFunction),
-  };
+    value: $jsxExpressionContainer(refFunction),
+  });
 
-  element.attributes.unshift(refAttr);
-  cache.set(element, arrowFunction);
+  cache.set(element, refFunction);
 
-  return arrowFunction;
+  return refFunction;
 };
 
 export const createDirective = (element: t.JSXOpeningElement, expression: t.Expression) => {
-  const arrowFunction = getRefFunction(element);
-  const bodyType = arrowFunction.body.type;
+  const refFunction = getRefFunction(element);
+  const bodyType = refFunction.body.type;
 
   if (bodyType === 'NullLiteral') {
-    arrowFunction.body = expression;
+    refFunction.body = expression;
   } else if (bodyType === 'AssignmentExpression' || bodyType === 'CallExpression') {
-    arrowFunction.body = {
+    refFunction.body = {
       type: 'BlockStatement',
       body: [
-        $expressionStatement(arrowFunction.body),
+        $expressionStatement(refFunction.body),
         $expressionStatement(expression),
       ],
       directives: [],
     };
   } else if (bodyType === 'BlockStatement') {
-    arrowFunction.body.body.push($expressionStatement(expression));
+    refFunction.body.body.push($expressionStatement(expression));
   }
 };
