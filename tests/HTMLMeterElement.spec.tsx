@@ -27,4 +27,29 @@ describe('HTMLMeterElement', () => {
   it('should have `value` property', () => {
     expect(<meter value={15} max="100" />).toHaveValue(15);
   });
+
+  it('should support prop:max', () => {
+    expect(<meter prop:max={10} />).toHaveProperty('max', 10);
+  });
+
+  it('should support prop:min', () => {
+    expect(<meter prop:min={11} />).toHaveProperty('min', 11);
+  });
+
+  it('should support prop:low', () => {
+    expect(<meter prop:low={12} max="100" />).toHaveProperty('low', 12);
+  });
+
+  it('should support prop:high', () => {
+    expect(<meter prop:high={13} max="100" />).toHaveProperty('high', 13);
+  });
+
+  it('should support prop:optimum', () => {
+    expect(<meter prop:optimum={14} max="100" />).toHaveProperty('optimum', 14);
+  });
+
+  it('should support prop:value', () => {
+    expect(<meter prop:value={15} max="100" />).toHaveProperty('value', 15);
+    expect(<meter prop:value={15} max="100" />).toHaveValue(15);
+  });
 });
