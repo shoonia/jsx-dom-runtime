@@ -13,17 +13,18 @@ describe('JSXSpreadAttribute', () => {
     );
   });
 
-  it('should throw an error for spread attributes on HTML elements', () => {
-    const inputCode = `
-      const props = { id: 'test' };
-      const B = () => <div {...props} />;
-    `;
+  it.each([
+    '<div {...props} />;',
+    '<svg {...props} />;',
+    '<math {...props} />;',
+    '<custom-element {...props} />;',
+  ])('should throw an error for spread attributes on DOM  - %s', (code) => {
 
     expect(() => {
-      babel.transform(inputCode, {
+      babel.transform(code, {
         presets: [preset],
         filename: 'test.js',
       });
-    }).toThrow(/SyntaxError: HTML, SVG, and MathML elements must not have spread attributes./); // Ensure the error is thrown and matches the snapshot
+    }).toThrow(/SyntaxError: HTML, SVG, MathML or Custom Elements must not have spread attributes./);
   });
 });

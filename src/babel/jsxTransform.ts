@@ -175,7 +175,7 @@ export const jsxTransform: PluginObj = {
         !isFunctionComponent(parent.name)
       ) {
         throw path.buildCodeFrameError(
-          '\n\nSyntaxError: HTML, SVG, and MathML elements must not have spread attributes.\n',
+          '\n\nSyntaxError: HTML, SVG, MathML or Custom Elements must not have spread attributes.\n',
           SyntaxError
         );
       }
