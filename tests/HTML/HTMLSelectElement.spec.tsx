@@ -1,4 +1,3 @@
-/* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
 import { jest } from '@jest/globals';
 
 describe('HTMLSelectElement', () => {
@@ -94,7 +93,7 @@ describe('HTMLSelectElement', () => {
 
   it('should add `onchange` handler', () => {
     const spy = jest.fn();
-
+   /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
     expect(<select onchange={spy} />).toHaveProperty('onchange', spy);
   });
 
@@ -113,5 +112,46 @@ describe('HTMLSelectElement', () => {
         <option value="3">Third</option>
       </select>
     ).not.toHaveAttribute('selectedindex');
+  });
+
+  it('should set `value` property via prop:', () => {
+      expect(
+      <select prop:value="2">
+        <option value="1">First</option>
+        <option value="2">Second</option>
+      </select>
+    ).toHaveValue('2');
+  });
+
+  it('should set `autocomplete` property via prop:', () => {
+    expect(<select prop:autocomplete="on" />).toHaveProperty('autocomplete', 'on');
+    expect(<select prop:autocomplete="on" />).not.toHaveAttribute('autocomplete');
+  });
+
+  it('should set `disabled` property via prop:', () => {
+    expect(<select prop:disabled={true} />).toHaveProperty('disabled', true);
+    expect(<select prop:disabled={true} />).toHaveAttribute('disabled', '');
+  });
+
+  it('should set `multiple` property via prop:', () => {
+    expect(<select prop:multiple={true} />).toHaveProperty('multiple', true);
+    expect(<select prop:multiple={true} />).toHaveAttribute('multiple', '');
+  });
+
+  it('should set `required` property via prop:', () => {
+    expect(<select prop:required={true} />).toHaveProperty('required', true);
+    expect(<select prop:required={true} />).toHaveAttribute('required', '');
+  });
+
+  it('should set `length` property via prop:', () => {
+    expect(<select prop:length={5} />).toHaveProperty('length', 5);
+  });
+
+  it('should set `size` property via prop:', () => {
+    expect(<select prop:size={4} />).toHaveProperty('size', 4);
+  });
+
+  it('should set `name` property via prop:', () => {
+    expect(<select prop:name="my-select" />).toHaveProperty('name', 'my-select');
   });
 });
