@@ -2287,16 +2287,33 @@ declare global {
       'prop:controls'?: boolean
       'prop:crossOrigin'?: CrossOrigin | null
       'prop:currentTime'?: number
+      /**
+       * A `boolean` that reflects the [`muted`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/muted) HTML attribute, which indicates whether the media element's audio output should be muted by default.
+       * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/defaultMuted
+       * @see `prop:muted`
+       */
       'prop:defaultMuted'?: boolean
       'prop:defaultPlaybackRate'?: number
       'prop:disableRemotePlayback'?: boolean
       'prop:loop'?: boolean
+      /**
+       * A `boolean` that determines whether audio is muted. true if the audio is muted and `false` otherwise.
+       * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/muted
+       */
       'prop:muted'?: boolean
       'prop:playbackRate'?: number
       'prop:preload'?: 'none' | 'metadata' | 'auto' | ''
+      /**
+       * A `boolean` value that determines if the pitch of the sound will be preserved. If set to `false`, the pitch will adjust to the speed of the audio
+       * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/preservesPitch
+       */
       'prop:preservesPitch'?: boolean
       'prop:src'?: string
       'prop:srcObject'?: MediaProvider | null
+      /**
+       * A `double` indicating the audio volume, from `0.0` (silent) to `1.0` (loudest).
+       * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
+       */
       'prop:volume'?: number
     }
 
