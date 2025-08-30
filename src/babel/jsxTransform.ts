@@ -213,9 +213,11 @@ export const jsxTransform: PluginObj = {
       if (attrName.type === 'JSXNamespacedName') {
         const directive = attrName.namespace.name;
 
-        if (directive === 'on' && attrValue.type === 'JSXExpressionContainer') {
-          eventListener(openingElement, attrName.name, attrValue);
-          path.remove();
+        if (directive === 'on') {
+          if (attrValue?.type === 'JSXExpressionContainer') {
+            eventListener(openingElement, attrName.name, attrValue);
+            path.remove();
+          }
         } else if (directive === 'attr') {
           createDirective(openingElement, {
             type: 'CallExpression',
