@@ -30,8 +30,12 @@ const getObjectProperties = (element: t.JSXOpeningElement): t.ObjectProperty[] =
 export const eventListener = (
   element: t.JSXOpeningElement,
   key: t.JSXIdentifier,
-  value: t.JSXExpressionContainer,
+  value?: t.Node,
 ): void => {
+  if (value == null || value.type !== 'JSXExpressionContainer') {
+    return;
+  }
+
   const properties = getObjectProperties(element);
   const name = key.name.toLowerCase();
 
