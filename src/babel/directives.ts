@@ -11,15 +11,15 @@ const cache = new WeakMap<t.JSXOpeningElement, t.ArrowFunctionExpression>();
 export const isRef = (i: t.ObjectMethod | t.ObjectProperty | t.SpreadElement): i is RefProp =>
   i.type === 'ObjectProperty' && i.key.type === 'Identifier' && i.key.name === 'ref';
 
-const getRefFunction = (element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
+const getRef = (element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
   if (cache.has(element)) {
     return cache.get(element);
   }
 
-  const refFunction: t.ArrowFunctionExpression = {
+  const funcRef: t.ArrowFunctionExpression = {
     type: 'ArrowFunctionExpression',
     params: [$identifier('e')],
-    body: { type: 'NullLiteral' },
+    body: null,
     async: false,
     expression: false,
   };
@@ -27,30 +27,34 @@ const getRefFunction = (element: t.JSXOpeningElement): t.ArrowFunctionExpression
   element.attributes.unshift({
     type: 'JSXAttribute',
     name: $jsxIdentifier('ref'),
-    value: $jsxExpressionContainer(refFunction),
+    value: $jsxExpressionContainer(funcRef),
   });
 
-  cache.set(element, refFunction);
+  cache.set(element, funcRef);
 
-  return refFunction;
+  return funcRef;
 };
 
 export const createDirective = (element: t.JSXOpeningElement, expression: t.Expression) => {
-  const refFunction = getRefFunction(element);
-  const bodyType = refFunction.body.type;
+  const funcRef = getRef(element);
 
-  if (bodyType === 'NullLiteral') {
-    refFunction.body = expression;
-  } else if (bodyType === 'AssignmentExpression' || bodyType === 'CallExpression') {
-    refFunction.body = {
+  if (funcRef.body === null) {
+    funcRef.body = expression;
+    return;
+  }
+
+  const bodyType = funcRef.body.type;
+
+  if (bodyType === 'AssignmentExpression' || bodyType === 'CallExpression') {
+    funcRef.body = {
       type: 'BlockStatement',
       body: [
-        $expressionStatement(refFunction.body),
+        $expressionStatement(funcRef.body),
         $expressionStatement(expression),
       ],
       directives: [],
     };
   } else if (bodyType === 'BlockStatement') {
-    refFunction.body.body.push($expressionStatement(expression));
+    funcRef.body.body.push($expressionStatement(expression));
   }
 };

@@ -274,13 +274,13 @@ export const jsxTransform: PluginObj = {
       } else if (enumerated.has(aName) || aName.startsWith('data-')) {
         attrName.name = aName;
 
-        if (attrValue === null) {
+        if (attrValue == null) {
           attribute.value = $stringLiteral('true');
         } else if (
           attrValue.type === 'JSXExpressionContainer' &&
           attrValue.expression.type === 'BooleanLiteral'
         ) {
-          attribute.value = $stringLiteral(attrValue.expression.value ? 'true' : 'false');
+          attribute.value = $stringLiteral(attrValue.expression.value.toString());
         }
       } else if (DOMEvents.has(aName)) {
         createDirective(openingElement, {
