@@ -1659,6 +1659,18 @@ declare global {
        * Turns a <button> element into a command button, controlling the given interactive element; takes the ID of the element to control as its value. This is a more general version of `popovertarget`.
        */
       commandfor?: string
+      /** Permitted ARIA role */
+      role?:
+      | 'checkbox'
+      | 'combobox'
+      | 'link'
+      | 'menuitem'
+      | 'menuitemcheckbox'
+      | 'menuitemradio'
+      | 'option'
+      | 'radio'
+      | 'switch'
+      | 'tab'
 
       'prop:command'?: CommandEventType
       'prop:commandForElement'?: globalThis.Element | null
@@ -1673,6 +1685,7 @@ declare global {
       'prop:value'?: string
       'prop:popoverTargetAction'?: 'hide' | 'show' | 'toggle'
       'prop:popoverTargetElement'?: globalThis.Element | null
+      'prop:role'?: HTMLButtonElementAttributes['role']
     }
 
     interface HTMLCanvasElementAttributes extends HTMLAttributes<HTMLCanvasElement> {
@@ -1838,6 +1851,23 @@ declare global {
       'prop:rel'?: HTMLFormElementAttributes['rel']
       'prop:relList'?: string
       'prop:target'?: Target
+    }
+
+    interface HTMLHeadingElementAttributes extends HTMLAttributes<HTMLHeadingElement> {
+      /** Permitted ARIA roles */
+      role?: 'tab' | 'presentation' | 'none';
+
+      'prop:role'?: HTMLHeadingElementAttributes['role']
+    }
+
+    interface HTMLHeadElementAttributes extends HTMLAttributes<HTMLHeadElement> {
+    }
+
+    interface HTMLHeaderElementAttributes extends HTMLAttributes<HTMLElement> {
+      /** Permitted ARIA roles */
+      role?: 'group' | 'presentation' | 'none';
+
+      'prop:role'?: HTMLHeaderElementAttributes['role']
     }
 
     interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> {
@@ -2561,6 +2591,37 @@ declare global {
       'prop:src'?: string
       'prop:text'?: string
       'prop:type'?: 'importmap' | 'module' | 'speculationrules' | AnyString
+    }
+
+    interface HTMLSearchElementAttributes extends HTMLAttributes<HTMLElement> {
+      /** Permitted ARIA roles  */
+      role?: 'form' | 'group' | 'none' | 'presentation' | 'region' | 'search'
+      'prop:role'?: HTMLSearchElementAttributes['role']
+    }
+
+    interface HTMLSectionElementAttributes extends HTMLAttributes<HTMLElement> {
+      /** Permitted ARIA roles  */
+      role?:
+      | 'alert'
+      | 'alertdialog'
+      | 'application'
+      | 'banner'
+      | 'complementary'
+      | 'contentinfo'
+      | 'dialog'
+      | 'document'
+      | 'feed'
+      | 'log'
+      | 'main'
+      | 'marquee'
+      | 'navigation'
+      | 'none'
+      | 'note'
+      | 'presentation'
+      | 'search'
+      | 'status'
+      | 'tabpanel'
+      'prop:role'?: HTMLSectionElementAttributes['role']
     }
 
     interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
@@ -3391,14 +3452,14 @@ declare global {
       font: HTMLAttributes<HTMLFontElement>
       footer: HTMLAttributes<HTMLElement>
       form: HTMLFormElementAttributes
-      h1: HTMLAttributes<HTMLHeadingElement>
-      h2: HTMLAttributes<HTMLHeadingElement>
-      h3: HTMLAttributes<HTMLHeadingElement>
-      h4: HTMLAttributes<HTMLHeadingElement>
-      h5: HTMLAttributes<HTMLHeadingElement>
-      h6: HTMLAttributes<HTMLHeadingElement>
-      head: HTMLAttributes<HTMLHeadElement>
-      header: HTMLAttributes<HTMLElement>
+      h1: HTMLHeadingElementAttributes
+      h2: HTMLHeadingElementAttributes
+      h3: HTMLHeadingElementAttributes
+      h4: HTMLHeadingElementAttributes
+      h5: HTMLHeadingElementAttributes
+      h6: HTMLHeadingElementAttributes
+      head: HTMLHeadElementAttributes
+      header: HTMLHeaderElementAttributes
       hgroup: HTMLAttributes<HTMLElement>
       hr: HTMLHRElementAttributes
       html: HTMLHtmlElementAttributes
@@ -3454,8 +3515,8 @@ declare global {
       s: HTMLAttributes<HTMLElement>
       samp: HTMLAttributes<HTMLElement>
       script: HTMLScriptElementAttributes
-      search: HTMLAttributes<HTMLElement>
-      section: HTMLAttributes<HTMLElement>
+      search: HTMLSearchElementAttributes
+      section: HTMLSectionElementAttributes
       select: HTMLSelectElementAttributes
       slot: HTMLSlotElementAttributes
       small: HTMLAttributes<HTMLElement>
