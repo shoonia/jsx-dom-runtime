@@ -32,7 +32,7 @@ export const eventListener = (
   key: t.JSXIdentifier,
   value?: t.Node,
 ): void => {
-  if (value == null || value.type !== 'JSXExpressionContainer') {
+  if (value?.type !== 'JSXExpressionContainer') {
     return;
   }
 

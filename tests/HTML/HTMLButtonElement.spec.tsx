@@ -60,4 +60,57 @@ describe('HTMLButtonElement', () => {
   it('should have `formEnctype` attribute', () => {
     expect(<button formEnctype="text/plain" />).toHaveAttribute('formenctype', 'text/plain');
   });
+
+  it('should have `type` property', () => {
+    expect(<button prop:type="reset" />).toHaveProperty('type', 'reset');
+  });
+
+    it('should have `command` property', () => {
+      expect(<button prop:command="request-close" />).toHaveProperty('command', 'request-close');
+    });
+
+    it('should have `commandForElement` property', () => {
+      const el = document.createElement('div');
+      expect(<button prop:commandForElement={el} />).toHaveProperty('commandForElement', el);
+    });
+
+    it('should have `disabled` property', () => {
+      expect(<button prop:disabled={true} />).toHaveProperty('disabled', true);
+      expect(<button prop:disabled={false} />).toHaveProperty('disabled', false);
+    });
+
+    it('should have `formAction` property', () => {
+      expect(<button prop:formAction="/action" />).toHaveProperty('formAction', '/action');
+    });
+
+    it('should have `formEnctype` property', () => {
+      expect(<button prop:formEnctype="multipart/form-data" />).toHaveProperty('formEnctype', 'multipart/form-data');
+    });
+
+    it('should have `formMethod` property', () => {
+      expect(<button prop:formMethod="post" />).toHaveProperty('formMethod', 'post');
+    });
+
+    it('should have `formNoValidate` property', () => {
+      expect(<button prop:formNoValidate={true} />).toHaveProperty('formNoValidate', true);
+      expect(<button prop:formNoValidate={false} />).toHaveProperty('formNoValidate', false);
+    });
+
+    it('should have `formTarget` property', () => {
+      expect(<button prop:formTarget="_blank" />).toHaveProperty('formTarget', '_blank');
+    });
+
+    it('should have `name` property', () => {
+      expect(<button prop:name="btnName" />).toHaveProperty('name', 'btnName');
+    });
+
+    it('should have `value` property', () => {
+      expect(<button prop:value="val123" />).toHaveProperty('value', 'val123');
+    });
+
+    it('should have `popoverTargetAction` property', () => {
+      expect(<button prop:popoverTargetAction="show" />).toHaveProperty('popoverTargetAction', 'show');
+      expect(<button prop:popoverTargetAction="hide" />).toHaveProperty('popoverTargetAction', 'hide');
+      expect(<button prop:popoverTargetAction="toggle" />).toHaveProperty('popoverTargetAction', 'toggle');
+    });
 });
