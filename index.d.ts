@@ -1798,9 +1798,18 @@ declare global {
       disabled?: boolean | ''
       form?: string
       name?: string
+      role?: 'radiogroup' | 'presentation' | 'none'
 
       'prop:name'?: string
       'prop:disabled'?: boolean
+      'prop:role'?: HTMLFieldSetElementAttributes['role']
+    }
+
+    interface HTMLFigcaptionElementAttributes extends HTMLAttributes<HTMLElement> {
+      /** Permitted ARIA roles */
+      role?: 'group' | 'presentation' | 'none'
+
+      'prop:role'?: HTMLFigcaptionElementAttributes['role']
     }
 
     interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
@@ -1976,6 +1985,8 @@ declare global {
        * The width of the frame in CSS pixels. Default is 300
        */
       width?: number | string
+      /** Permitted ARIA roles */
+      role?: 'application' | 'document' | 'img' | 'none' | 'presentation'
 
       'prop:align'?: string
       'prop:allow'?: string
@@ -1993,6 +2004,7 @@ declare global {
       'prop:src'?: string
       'prop:srcdoc'?: string
       'prop:width'?: string
+      'prop:role'?: HTMLIFrameElementAttributes['role']
     }
 
     interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
@@ -2278,15 +2290,39 @@ declare global {
       'prop:type'?: string
     }
 
+    interface HTMLMainElementAttributes extends HTMLAttributes<HTMLElement> {
+      /** No `role` permitted */
+      role?: never
+
+      'prop:role'?: never
+    }
+
     interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
       name?: string
+      /** No `role` permitted */
+      role?: never
 
       'prop:name'?: string
+      'prop:role'?: never
     }
 
     interface HTMLMenuElementAttributes extends HTMLAttributes<HTMLMenuElement> {
+      role?:
+      | 'directory'
+      | 'group'
+      | 'listbox'
+      | 'menu'
+      | 'menubar'
+      | 'none'
+      | 'presentation'
+      | 'radiogroup'
+      | 'tablist'
+      | 'toolbar'
+      | 'tree'
+
       /** @deprecated */
       'prop:compact'?: boolean
+      'prop:role'?: HTMLMenuElementAttributes['role']
     }
 
     interface HTMLMediaAttributes<T extends HTMLMediaElement> extends HTMLAttributes<T> {
@@ -2305,6 +2341,9 @@ declare global {
       mediaGroup?: string
       preload?: 'none' | 'metadata' | 'auto' | '';
       src?: string
+      /** Permitted ARIA roles */
+      role?: 'application'
+
       /** @deprecated use `on:encrypted` instead */
       onencrypted?: MediaEncryptedEventHandler<T>
       /** @deprecated use `on:waitingForKey` instead */
@@ -2345,6 +2384,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/volume
        */
       'prop:volume'?: number
+      'prop:role'?: 'application'
     }
 
     interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
@@ -2380,6 +2420,8 @@ declare global {
       min?: Numeric
       optimum?: Numeric
       value?: Numeric
+      /** No `role` permitted */
+      role?: never
 
       'prop:high'?: number
       'prop:low'?: number
@@ -2387,6 +2429,14 @@ declare global {
       'prop:min'?: number
       'prop:optimum'?: number
       'prop:value'?: number
+      'prop:role'?: never
+    }
+
+    interface HTMLNavElementAttributes extends HTMLAttributes<HTMLElement> {
+      /** No `role` permitted */
+      role?: never
+
+      'prop:role'?: HTMLNavElementAttributes['role']
     }
 
     interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
@@ -2482,19 +2532,35 @@ declare global {
       reversed?: boolean | ''
       start?: Numeric
       type?: '1' | 'a' | 'A' | 'i' | 'I'
+      role?:
+      | 'directory'
+      | 'group'
+      | 'listbox'
+      | 'menu'
+      | 'menubar'
+      | 'none'
+      | 'presentation'
+      | 'radiogroup'
+      | 'tablist'
+      | 'toolbar'
+      | 'tree'
 
       'prop:compact'?: boolean
       'prop:reversed'?: boolean
       'prop:start'?: number
       'prop:type'?: '1' | 'a' | 'A' | 'i' | 'I'
+      'prop:role'?: HTMLOListElementAttributes['role']
     }
 
     interface HTMLOptGroupElementAttributes extends HTMLAttributes<HTMLOptGroupElement> {
       disabled?: boolean | ''
       label?: string
+      /** No `role` permitted */
+      role?: never
 
       'prop:disabled'?: boolean
       'prop:label'?: string
+      'prop:role'?: never
     }
 
     interface HTMLOptionElementAttributes extends HTMLAttributes<HTMLOptionElement> {
@@ -2502,6 +2568,8 @@ declare global {
       label?: string
       selected?: boolean | ''
       value?: number | string
+      /** No `role` permitted */
+      role?: never
 
       'prop:defaultSelected'?: boolean
       'prop:disabled'?: boolean
@@ -2509,6 +2577,7 @@ declare global {
       'prop:selected'?: boolean
       'prop:text'?: string
       'prop:value'?: string
+      'prop:role'?: never
     }
 
     interface HTMLOutputElementAttributes extends HTMLAttributes<HTMLOutputElement> {
@@ -2543,12 +2612,22 @@ declare global {
       'prop:valueType'?: 'data' | 'ref' | 'object'
     }
 
+    interface HTMLPictureElementAttributes extends HTMLAttributes<HTMLPictureElement> {
+      /** No `role` permitted */
+      role?: never
+
+      'prop:role'?: never
+    }
+
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
       max?: Numeric
       value?: Numeric
+      /** No `role` permitted */
+      role?: never
 
       'prop:max'?: number
       'prop:value'?: number
+      'prop:role'?: never
     }
 
     interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
@@ -2716,6 +2795,13 @@ declare global {
       'prop:type'?: string
     }
 
+    interface HTMLSummaryElementAttributes extends HTMLAttributes<HTMLElement> {
+      /** No `role` permitted */
+      role?: never
+
+      'prop:role'?: never
+    }
+
     interface HTMLTableElementAttributes extends HTMLAttributes<HTMLTableElement> {
       /**
        * To achieve a similar effect, use the CSS properties `margin-left` and `margin-right` to `auto` or `margin` to `0 auto`.
@@ -2798,11 +2884,14 @@ declare global {
        * @see https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootSerializable
         */
       shadowRootSerializable?: boolean | ''
+      /** No `role` permitted */
+      role?: never
 
       'prop:shadowRootClonable'?: boolean
       'prop:shadowRootDelegatesFocus'?: boolean
       'prop:shadowRootMode'?: 'open' | 'closed'
       'prop:shadowRootSerializable'?: boolean
+      'prop:role'?: never
     }
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
@@ -3019,6 +3108,24 @@ declare global {
       'prop:label'?: string
       'prop:src'?: string
       'prop:srclang'?: string
+    }
+
+    interface HTMLUListElementAttributes extends HTMLAttributes<HTMLUListElement> {
+      /** Permitted ARIA roles */
+      role?:
+      | 'directory'
+      | 'group'
+      | 'listbox'
+      | 'menu'
+      | 'menubar'
+      | 'none'
+      | 'presentation'
+      | 'radiogroup'
+      | 'tablist'
+      | 'toolbar'
+      | 'tree'
+
+      'prop:role'?: HTMLUListElementAttributes['role']
     }
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
@@ -3446,7 +3553,7 @@ declare global {
       em: HTMLAttributes<HTMLElement>
       embed: HTMLEmbedElementAttributes
       fieldset: HTMLFieldSetElementAttributes
-      figcaption: HTMLAttributes<HTMLElement>
+      figcaption: HTMLFigcaptionElementAttributes
       figure: HTMLAttributes<HTMLElement>
       /** @deprecated */
       font: HTMLAttributes<HTMLFontElement>
@@ -3475,7 +3582,7 @@ declare global {
       legend: HTMLAttributes<HTMLLegendElement>
       li: HTMLLIElementAttributes
       link: HTMLLinkElementAttributes
-      main: HTMLAttributes<HTMLElement>
+      main: HTMLMainElementAttributes
       map: HTMLMapElementAttributes
       mark: HTMLAttributes<HTMLElement>
       /** @deprecated */
@@ -3484,7 +3591,7 @@ declare global {
       menuitem: HTMLAttributes<HTMLUnknownElement>
       meta: HTMLMetaElementAttributes
       meter: HTMLMeterElementAttributes
-      nav: HTMLAttributes<HTMLElement>
+      nav: HTMLNavElementAttributes
       /** @deprecated */
       nobr: HTMLAttributes<HTMLElement>
       /** @deprecated */
@@ -3501,7 +3608,7 @@ declare global {
       p: HTMLAttributes<HTMLParagraphElement>
       /** @deprecated */
       param: HTMLParamElementAttributes
-      picture: HTMLAttributes<HTMLPictureElement>
+      picture: HTMLPictureElementAttributes
       /** @deprecated */
       plaintext: HTMLAttributes<HTMLElement>
       pre: HTMLAttributes<HTMLPreElement>
@@ -3527,7 +3634,7 @@ declare global {
       strong: HTMLAttributes<HTMLElement>
       style: HTMLStyleElementAttributes
       sub: HTMLAttributes<HTMLElement>
-      summary: HTMLAttributes<HTMLElement>
+      summary: HTMLSummaryElementAttributes
       sup: HTMLAttributes<HTMLElement>
       table: HTMLTableElementAttributes
       template: HTMLTemplateElementAttributes
@@ -3544,7 +3651,7 @@ declare global {
       /** @deprecated */
       tt: HTMLAttributes<HTMLElement>
       u: HTMLAttributes<HTMLElement>
-      ul: HTMLAttributes<HTMLUListElement>
+      ul: HTMLUListElementAttributes
       var: HTMLAttributes<HTMLElement>
       video: HTMLVideoElementAttributes
       wbr: HTMLWBRElementAttributes
