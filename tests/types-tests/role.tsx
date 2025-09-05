@@ -20,6 +20,10 @@
 <a role="cell" />;
 <area role="button" />;
 <area role="link" />;
+<abbr role="blockquote" />;
+<acronym role="code" />;
+<article role="document" />;
+<aside role="complementary" />;
 
 /** Invalid ARIA roles */
 

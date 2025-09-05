@@ -1583,6 +1583,12 @@ declare global {
       'prop:username'?: string
     }
 
+    type HTMLAbbrElementAttributes = AnyRole & HTMLAttributes<HTMLElement>
+
+    type HTMLAcronymElementAttributes = AnyRole & HTMLAttributes<HTMLElement>
+
+    type HTMLAddressElementAttributes = AnyRole & HTMLAttributes<HTMLElement>
+
     type HTMLAudioElementAttributes = HTMLMediaAttributes<HTMLAudioElement>
 
     type HTMLAreaElementAttributes = AreaAriaRoles & HTMLAttributes<HTMLAreaElement> & {
@@ -1643,6 +1649,39 @@ declare global {
        * @deprecated
        */
       children?: null
+    }
+
+    type HTMLArticleElementAttributes = HTMLAttributes<HTMLElement> & {
+      role?:
+      | 'article'
+      | 'application'
+      | 'document'
+      | 'feed'
+      | 'main'
+      | 'none'
+      | 'presentation'
+      | 'region'
+
+      'prop:role'?: HTMLArticleElementAttributes['role']
+    }
+
+    export type HTMLAsideElementAttributes = HTMLAttributes<HTMLElement> & {
+      role?:
+      | 'complementary'
+      | 'feed'
+      | 'none'
+      | 'note'
+      | 'presentation'
+      | 'region'
+      | 'search'
+      | 'doc-dedication'
+      | 'doc-example'
+      | 'doc-footnote'
+      | 'doc-glossary'
+      | 'doc-pullquote'
+      | 'doc-tip'
+
+      'prop:role'?: HTMLAsideElementAttributes['role']
     }
 
     type HTMLBaseElementAttributes = HTMLAttributes<HTMLBaseElement> & {
@@ -3534,13 +3573,13 @@ declare global {
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
-      abbr: HTMLAttributes<HTMLElement>
+      abbr: HTMLAbbrElementAttributes
       /** @deprecated */
-      acronym: HTMLAttributes<HTMLElement>
-      address: HTMLAttributes<HTMLElement>
+      acronym: HTMLAcronymElementAttributes
+      address: HTMLAddressElementAttributes
       area: HTMLAreaElementAttributes
-      article: HTMLAttributes<HTMLElement>
-      aside: HTMLAttributes<HTMLElement>
+      article: HTMLArticleElementAttributes
+      aside: HTMLAsideElementAttributes
       audio: HTMLAudioElementAttributes
       b: HTMLAttributes<HTMLElement>
       base: HTMLBaseElementAttributes
