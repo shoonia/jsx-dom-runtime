@@ -16,6 +16,10 @@
 <hr role="none" />;
 <form role="search" />;
 <footer role="group" />;
+<a href="#" role="button" />;
+<a role="cell" />;
+<area role="button" />;
+<area role="link" />;
 
 /** Invalid ARIA roles */
 
@@ -75,3 +79,7 @@
 <form role="form" />;
 // @ts-expect-error
 <footer role="treegrid" />;
+// @ts-expect-error
+<a href="#" role="cell" />;
+// @ts-expect-error
+<area href="#" role="button" />;

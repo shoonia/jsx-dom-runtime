@@ -142,6 +142,149 @@ export type FormEnctype =
 export type FormMethod = 'post' | 'get' | 'dialog' | AnyString
 export type DirName = 'rtl' | 'ltr'
 
+/**
+ * All the WAI-ARIA 1.2 role attribute values
+ * @see https://www.w3.org/TR/wai-aria-1.2/#role_definitions
+ * All the Digital Publishing WAI-ARIA 1.0 role attribute values
+ * @see https://www.w3.org/TR/dpub-aria-1.0/#role_definitions
+ */
+type AriaRoles =
+  | 'alert'
+  | 'alertdialog'
+  | 'application'
+  | 'article'
+  | 'banner'
+  | 'blockquote'
+  | 'button'
+  | 'caption'
+  | 'cell'
+  | 'checkbox'
+  | 'code'
+  | 'columnheader'
+  | 'combobox'
+  | 'command'
+  | 'complementary'
+  | 'composite'
+  | 'contentinfo'
+  | 'definition'
+  | 'deletion'
+  | 'dialog'
+  | 'directory'
+  | 'document'
+  | 'emphasis'
+  | 'feed'
+  | 'figure'
+  | 'form'
+  | 'generic'
+  | 'grid'
+  | 'gridcell'
+  | 'group'
+  | 'heading'
+  | 'img'
+  | 'input'
+  | 'insertion'
+  | 'landmark'
+  | 'link'
+  | 'list'
+  | 'listbox'
+  | 'listitem'
+  | 'log'
+  | 'main'
+  | 'marquee'
+  | 'math'
+  | 'meter'
+  | 'menu'
+  | 'menubar'
+  | 'menuitem'
+  | 'menuitemcheckbox'
+  | 'menuitemradio'
+  | 'navigation'
+  | 'none'
+  | 'note'
+  | 'option'
+  | 'paragraph'
+  | 'presentation'
+  | 'progressbar'
+  | 'radio'
+  | 'radiogroup'
+  | 'range'
+  | 'region'
+  | 'roletype'
+  | 'row'
+  | 'rowgroup'
+  | 'rowheader'
+  | 'scrollbar'
+  | 'search'
+  | 'searchbox'
+  | 'section'
+  | 'sectionhead'
+  | 'select'
+  | 'separator'
+  | 'slider'
+  | 'spinbutton'
+  | 'status'
+  | 'strong'
+  | 'structure'
+  | 'subscript'
+  | 'superscript'
+  | 'switch'
+  | 'tab'
+  | 'table'
+  | 'tablist'
+  | 'tabpanel'
+  | 'term'
+  | 'textbox'
+  | 'time'
+  | 'timer'
+  | 'toolbar'
+  | 'tooltip'
+  | 'tree'
+  | 'treegrid'
+  | 'treeitem'
+  | 'widget'
+  | 'window'
+  | 'none presentation'
+  // the Digital Publishing WAI-ARIA
+  | 'doc-abstract'
+  | 'doc-acknowledgments'
+  | 'doc-afterword'
+  | 'doc-appendix'
+  | 'doc-backlink'
+  | 'doc-biblioentry'
+  | 'doc-bibliography'
+  | 'doc-biblioref'
+  | 'doc-chapter'
+  | 'doc-colophon'
+  | 'doc-conclusion'
+  | 'doc-cover'
+  | 'doc-credit'
+  | 'doc-credits'
+  | 'doc-dedication'
+  | 'doc-endnote'
+  | 'doc-endnotes'
+  | 'doc-epigraph'
+  | 'doc-epilogue'
+  | 'doc-errata'
+  | 'doc-example'
+  | 'doc-footnote'
+  | 'doc-foreword'
+  | 'doc-glossary'
+  | 'doc-glossref'
+  | 'doc-index'
+  | 'doc-introduction'
+  | 'doc-noteref'
+  | 'doc-notice'
+  | 'doc-pagebreak'
+  | 'doc-pagelist'
+  | 'doc-part'
+  | 'doc-preface'
+  | 'doc-prologue'
+  | 'doc-pullquote'
+  | 'doc-qna'
+  | 'doc-subtitle'
+  | 'doc-tip'
+  | 'doc-toc'
+
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
   'aria-activedescendant'?: string
@@ -365,148 +508,6 @@ export interface AriaAttributes {
   'aria-valuenow'?: Numeric
   /** Defines the human readable text alternative of aria-valuenow for a range widget. */
   'aria-valuetext'?: string
-  /**
-   * All the WAI-ARIA 1.2 role attribute values
-   * @see https://www.w3.org/TR/wai-aria-1.2/#role_definitions
-   * All the Digital Publishing WAI-ARIA 1.0 role attribute values
-   * @see https://www.w3.org/TR/dpub-aria-1.0/#role_definitions
-   */
-  role?:
-  | 'alert'
-  | 'alertdialog'
-  | 'application'
-  | 'article'
-  | 'banner'
-  | 'blockquote'
-  | 'button'
-  | 'caption'
-  | 'cell'
-  | 'checkbox'
-  | 'code'
-  | 'columnheader'
-  | 'combobox'
-  | 'command'
-  | 'complementary'
-  | 'composite'
-  | 'contentinfo'
-  | 'definition'
-  | 'deletion'
-  | 'dialog'
-  | 'directory'
-  | 'document'
-  | 'emphasis'
-  | 'feed'
-  | 'figure'
-  | 'form'
-  | 'generic'
-  | 'grid'
-  | 'gridcell'
-  | 'group'
-  | 'heading'
-  | 'img'
-  | 'input'
-  | 'insertion'
-  | 'landmark'
-  | 'link'
-  | 'list'
-  | 'listbox'
-  | 'listitem'
-  | 'log'
-  | 'main'
-  | 'marquee'
-  | 'math'
-  | 'meter'
-  | 'menu'
-  | 'menubar'
-  | 'menuitem'
-  | 'menuitemcheckbox'
-  | 'menuitemradio'
-  | 'navigation'
-  | 'none'
-  | 'note'
-  | 'option'
-  | 'paragraph'
-  | 'presentation'
-  | 'progressbar'
-  | 'radio'
-  | 'radiogroup'
-  | 'range'
-  | 'region'
-  | 'roletype'
-  | 'row'
-  | 'rowgroup'
-  | 'rowheader'
-  | 'scrollbar'
-  | 'search'
-  | 'searchbox'
-  | 'section'
-  | 'sectionhead'
-  | 'select'
-  | 'separator'
-  | 'slider'
-  | 'spinbutton'
-  | 'status'
-  | 'strong'
-  | 'structure'
-  | 'subscript'
-  | 'superscript'
-  | 'switch'
-  | 'tab'
-  | 'table'
-  | 'tablist'
-  | 'tabpanel'
-  | 'term'
-  | 'textbox'
-  | 'time'
-  | 'timer'
-  | 'toolbar'
-  | 'tooltip'
-  | 'tree'
-  | 'treegrid'
-  | 'treeitem'
-  | 'widget'
-  | 'window'
-  | 'none presentation'
-  // the Digital Publishing WAI-ARIA
-  | 'doc-abstract'
-  | 'doc-acknowledgments'
-  | 'doc-afterword'
-  | 'doc-appendix'
-  | 'doc-backlink'
-  | 'doc-biblioentry'
-  | 'doc-bibliography'
-  | 'doc-biblioref'
-  | 'doc-chapter'
-  | 'doc-colophon'
-  | 'doc-conclusion'
-  | 'doc-cover'
-  | 'doc-credit'
-  | 'doc-credits'
-  | 'doc-dedication'
-  | 'doc-endnote'
-  | 'doc-endnotes'
-  | 'doc-epigraph'
-  | 'doc-epilogue'
-  | 'doc-errata'
-  | 'doc-example'
-  | 'doc-footnote'
-  | 'doc-foreword'
-  | 'doc-glossary'
-  | 'doc-glossref'
-  | 'doc-index'
-  | 'doc-introduction'
-  | 'doc-noteref'
-  | 'doc-notice'
-  | 'doc-pagebreak'
-  | 'doc-pagelist'
-  | 'doc-part'
-  | 'doc-preface'
-  | 'doc-prologue'
-  | 'doc-pullquote'
-  | 'doc-qna'
-  | 'doc-subtitle'
-  | 'doc-tip'
-  | 'doc-toc'
 
   'prop:ariaActivedescendant'?: string
   'prop:ariaAtomic'?: Booleanish
@@ -571,7 +572,12 @@ export interface AriaAttributes {
   'prop:ariaValuemin'?: Numeric
   'prop:ariaValuenow'?: Numeric
   'prop:ariaValuetext'?: string
-  'prop:role'?: AriaAttributes['role']
+}
+
+interface AnyRole {
+  /** Any `role` permitted */
+  role?: AriaRoles
+  'prop:role'?: AriaRoles
 }
 
 interface NoRolePermitted {
@@ -579,6 +585,41 @@ interface NoRolePermitted {
   role?: never
   'prop:role'?: never
 }
+
+type AnchorAriaRoles =
+  | {
+    href: string
+    role?:
+    | 'link'
+    | 'button'
+    | 'checkbox'
+    | 'menuitem'
+    | 'menuitemcheckbox'
+    | 'menuitemradio'
+    | 'option'
+    | 'radio'
+    | 'switch'
+    | 'tab'
+    | 'treeitem'
+    | 'doc-backlink'
+    | 'doc-biblioref'
+    | 'doc-glossref'
+    | 'doc-noteref'
+  }
+  | {
+    href?: never;
+    role?: AriaRoles
+  }
+
+export type AreaAriaRoles =
+  | {
+    href: string
+    role?: 'link'
+  }
+  | {
+    href?: never
+    role?: 'button' | 'link'
+  };
 
 declare global {
   namespace JSX {
@@ -1464,7 +1505,7 @@ declare global {
       scriptlevel?: number | string
     }
 
-    interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
+    type HTMLAnchorElementAttributes = AnchorAriaRoles & HTMLAttributes<HTMLAnchorElement> & {
       /**
        * Instructs browsers to download a URL instead of navigating to it, so the user will be prompted to save it as a local file. _Default value: none; Animatable: no_
        */
@@ -1542,9 +1583,9 @@ declare global {
       'prop:username'?: string
     }
 
-    interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> { }
+    type HTMLAudioElementAttributes = HTMLMediaAttributes<HTMLAudioElement>
 
-    interface HTMLAreaElementAttributes extends HTMLAttributes<HTMLAreaElement> {
+    type HTMLAreaElementAttributes = AreaAriaRoles & HTMLAttributes<HTMLAreaElement> & {
       /** @deprecated */
       accessKey?: string
       alt?: string
@@ -1604,7 +1645,7 @@ declare global {
       children?: null
     }
 
-    interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
+    type HTMLBaseElementAttributes = HTMLAttributes<HTMLBaseElement> & {
       href?: string
       target?: Target
       /**
@@ -1618,7 +1659,7 @@ declare global {
       'prop:target'?: Target
     }
 
-    interface HTMLBRElementAttributes extends HTMLAttributes<HTMLBRElement> {
+    type HTMLBRElementAttributes = HTMLAttributes<HTMLBRElement> & {
       /** @deprecated */
       clear?: string
       /**
@@ -1631,7 +1672,7 @@ declare global {
       'prop:clear'?: string
     }
 
-    interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
+    type HTMLButtonElementAttributes = HTMLAttributes<HTMLButtonElement> & {
       autofocus?: boolean | ''
       disabled?: boolean | ''
       form?: string
@@ -1694,7 +1735,7 @@ declare global {
       'prop:role'?: HTMLButtonElementAttributes['role']
     }
 
-    interface HTMLCanvasElementAttributes extends HTMLAttributes<HTMLCanvasElement> {
+    type HTMLCanvasElementAttributes = HTMLAttributes<HTMLCanvasElement> & {
       /**
        * The height of the coordinate space in CSS pixels. Defaults to 150
        */
@@ -1716,7 +1757,7 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
+    type HTMLTableColElementAttributes = HTMLAttributes<HTMLTableColElement> & {
       span?: Numeric
       width?: number | string
       /**
@@ -1734,13 +1775,13 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
+    type HTMLDataElementAttributes = HTMLAttributes<HTMLDataElement> & {
       value?: number | string
 
       'prop:value'?: string
     }
 
-    interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
+    type HTMLDetailsElementAttributes = HTMLAttributes<HTMLDetailsElement> & {
       name?: string
       open?: boolean | ''
 
@@ -1748,7 +1789,9 @@ declare global {
       'prop:open'?: boolean
     }
 
-    interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
+    type HTMLDivElementAttributes = AnyRole & HTMLAttributes<HTMLDivElement>
+
+    type HTMLModElementAttributes = HTMLAttributes<HTMLModElement> & {
       cite?: string
       dateTime?: string
 
@@ -1756,7 +1799,7 @@ declare global {
       'prop:dateTime'?: string
     }
 
-    interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
+    type HTMLDialogElementAttributes = HTMLAttributes<HTMLDialogElement> & {
       open?: boolean | ''
       /**
        * Do not add the `tabindex` property to the `<dialog>` element as it is not interactive and does not receive focus. The dialog's contents, including the close button contained in the dialog, can receive focus and be interactive.
@@ -1780,7 +1823,7 @@ declare global {
       'prop:returnValue'?: string
     }
 
-    interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
+    type HTMLEmbedElementAttributes = HTMLAttributes<HTMLEmbedElement> & {
       height?: number | string
       src?: string
       type?: string
@@ -1800,32 +1843,32 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
+    type HTMLFieldSetElementAttributes = HTMLAttributes<HTMLFieldSetElement> & {
       disabled?: boolean | ''
       form?: string
       name?: string
-      role?: 'radiogroup' | 'presentation' | 'none'
 
       'prop:name'?: string
       'prop:disabled'?: boolean
-      'prop:role'?: HTMLFieldSetElementAttributes['role']
+
+      role?: 'radiogroup' | 'presentation' | 'none'
+      'prop:role'?: 'radiogroup' | 'presentation' | 'none'
     }
 
-    interface HTMLFigcaptionElementAttributes extends HTMLAttributes<HTMLElement> {
+    type HTMLFigcaptionElementAttributes = HTMLAttributes<HTMLElement> & {
       /** Permitted ARIA roles */
       role?: 'group' | 'presentation' | 'none'
-
       'prop:role'?: HTMLFigcaptionElementAttributes['role']
     }
 
-    interface HTMLFooterElementAttributes extends HTMLAttributes<HTMLElement> {
+    type HTMLFooterElementAttributes = HTMLAttributes<HTMLElement> & {
       /** Permitted ARIA roles */
       role?: 'group' | 'presentation' | 'none'
 
       'prop:role'?: HTMLFooterElementAttributes['role']
     }
 
-    interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
+    type HTMLFormElementAttributes = HTMLAttributes<HTMLFormElement> & {
       /**
        * Comma-separated content types the server accepts
        * @deprecated
@@ -1878,23 +1921,23 @@ declare global {
       'prop:role'?: HTMLFormElementAttributes['role']
     }
 
-    interface HTMLHeadingElementAttributes extends HTMLAttributes<HTMLHeadingElement> {
+    type HTMLHeadingElementAttributes = HTMLAttributes<HTMLHeadingElement> & {
       /** Permitted ARIA roles */
       role?: 'tab' | 'presentation' | 'none';
 
       'prop:role'?: HTMLHeadingElementAttributes['role']
     }
 
-    interface HTMLHeadElementAttributes extends HTMLAttributes<HTMLHeadElement>, NoRolePermitted {}
+    type HTMLHeadElementAttributes = NoRolePermitted & HTMLAttributes<HTMLHeadElement>;
 
-    interface HTMLHeaderElementAttributes extends HTMLAttributes<HTMLElement> {
+    type HTMLHeaderElementAttributes = HTMLAttributes<HTMLElement> & {
       /** Permitted ARIA roles */
       role?: 'group' | 'presentation' | 'none';
 
       'prop:role'?: HTMLHeaderElementAttributes['role']
     }
 
-    interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> {
+    type HTMLHRElementAttributes = HTMLAttributes<HTMLHRElement> & {
       /**
        * Sets or retrieves how the object is aligned with adjacent text.
        * @deprecated
@@ -1931,14 +1974,14 @@ declare global {
       'prop:role'?: HTMLHRElementAttributes['role']
     }
 
-    interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement>, NoRolePermitted {
+    type HTMLHtmlElementAttributes = NoRolePermitted & HTMLAttributes<HTMLHtmlElement> & {
       manifest?: string
       /** @deprecated */
       version?: string
       xmlns?: string
     }
 
-    interface HTMLIFrameElementAttributes extends HTMLAttributes<HTMLIFrameElement> {
+    type HTMLIFrameElementAttributes = HTMLAttributes<HTMLIFrameElement> & {
       allow?: string
       /**
        * This attribute is considered a legacy attribute and redefined as `allow="fullscreen"`
@@ -2025,7 +2068,7 @@ declare global {
       'prop:role'?: HTMLIFrameElementAttributes['role']
     }
 
-    interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
+    type HTMLImageElementAttributes = HTMLAttributes<HTMLImageElement> & {
       alt?: string
       crossOrigin?: CrossOrigin
       decoding?: 'async' | 'sync' | 'auto'
@@ -2071,7 +2114,7 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
+    type HTMLInputElementAttributes = HTMLAttributes<HTMLInputElement> & {
       accept?: string
       alt?: string
       autocomplete?: boolean | AutoFill
@@ -2191,22 +2234,21 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLLabelElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLLabelElement> {
+    type HTMLLabelElementAttributes = NoRolePermitted & HTMLAttributes<HTMLLabelElement> & {
       for?: string
       'prop:htmlFor'?: string
     }
 
-    interface HTMLLegendElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLLegendElement> {
-    }
+    type HTMLLegendElementAttributes = NoRolePermitted & HTMLAttributes<HTMLLegendElement>
 
-    interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
+    type HTMLLIElementAttributes = HTMLAttributes<HTMLLIElement> & {
       value?: Numeric
 
       'prop:type'?: string
       'prop:value'?: number
     }
 
-    interface HTMLLinkElementAttributes extends HTMLAttributes<HTMLLinkElement> {
+    type HTMLLinkElementAttributes = HTMLAttributes<HTMLLinkElement> & {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
@@ -2310,16 +2352,15 @@ declare global {
       'prop:type'?: string
     }
 
-    interface HTMLMainElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLElement> {
-    }
+    type HTMLMainElementAttributes = NoRolePermitted & HTMLAttributes<HTMLElement>
 
-    interface HTMLMapElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLMapElement> {
+    type HTMLMapElementAttributes = NoRolePermitted & HTMLAttributes<HTMLMapElement> & {
       name?: string
 
       'prop:name'?: string
     }
 
-    interface HTMLMenuElementAttributes extends HTMLAttributes<HTMLMenuElement> {
+    type HTMLMenuElementAttributes = HTMLAttributes<HTMLMenuElement> & {
       role?:
       | 'directory'
       | 'group'
@@ -2338,7 +2379,7 @@ declare global {
       'prop:role'?: HTMLMenuElementAttributes['role']
     }
 
-    interface HTMLMediaAttributes<T extends HTMLMediaElement> extends HTMLAttributes<T> {
+    type HTMLMediaAttributes<T extends HTMLMediaElement> = HTMLAttributes<T> & {
       autoplay?: boolean | ''
       controls?: boolean | ''
       /**
@@ -2400,7 +2441,7 @@ declare global {
       'prop:role'?: 'application'
     }
 
-    interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
+    type HTMLMetaElementAttributes = HTMLAttributes<HTMLMetaElement> & {
       charset?: string
       content?: string
       'http-equiv'?:
@@ -2425,7 +2466,7 @@ declare global {
       'prop:scheme'?: string
     }
 
-    interface HTMLMeterElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLMeterElement> {
+    type HTMLMeterElementAttributes = NoRolePermitted & HTMLAttributes<HTMLMeterElement> & {
       form?: string
       high?: Numeric
       low?: Numeric
@@ -2442,16 +2483,15 @@ declare global {
       'prop:value'?: number
     }
 
-    interface HTMLNavElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLElement> {
-    }
+    type HTMLNavElementAttributes = NoRolePermitted & HTMLAttributes<HTMLElement>
 
-    interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
+    type HTMLQuoteElementAttributes = HTMLAttributes<HTMLQuoteElement> & {
       cite?: string
 
       'prop:cite'?: string
     }
 
-    interface HTMLObjectElementAttributes extends HTMLAttributes<HTMLObjectElement> {
+    type HTMLObjectElementAttributes = HTMLAttributes<HTMLObjectElement> & {
       /**
        * A space-separated list of URIs for archives of resources for the object
        * @deprecated
@@ -2534,7 +2574,7 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
+    type HTMLOListElementAttributes = HTMLAttributes<HTMLOListElement> & {
       reversed?: boolean | ''
       start?: Numeric
       type?: '1' | 'a' | 'A' | 'i' | 'I'
@@ -2558,7 +2598,7 @@ declare global {
       'prop:role'?: HTMLOListElementAttributes['role']
     }
 
-    interface HTMLOptGroupElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLOptGroupElement> {
+    type HTMLOptGroupElementAttributes = NoRolePermitted & HTMLAttributes<HTMLOptGroupElement> & {
       disabled?: boolean | ''
       label?: string
 
@@ -2566,7 +2606,7 @@ declare global {
       'prop:label'?: string
     }
 
-    interface HTMLOptionElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLOptionElement> {
+    type HTMLOptionElementAttributes = NoRolePermitted & HTMLAttributes<HTMLOptionElement> & {
       disabled?: boolean | ''
       label?: string
       selected?: boolean | ''
@@ -2580,7 +2620,7 @@ declare global {
       'prop:value'?: string
     }
 
-    interface HTMLOutputElementAttributes extends HTMLAttributes<HTMLOutputElement> {
+    type HTMLOutputElementAttributes = HTMLAttributes<HTMLOutputElement> & {
       form?: string
       for?: string
       name?: string
@@ -2612,10 +2652,9 @@ declare global {
       'prop:valueType'?: 'data' | 'ref' | 'object'
     }
 
-    interface HTMLPictureElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLPictureElement> {
-    }
+    type HTMLPictureElementAttributes = NoRolePermitted & HTMLAttributes<HTMLPictureElement>
 
-    interface HTMLProgressElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLProgressElement> {
+    type HTMLProgressElementAttributes = NoRolePermitted & HTMLAttributes<HTMLProgressElement> & {
       max?: Numeric
       value?: Numeric
 
@@ -2623,7 +2662,7 @@ declare global {
       'prop:value'?: number
     }
 
-    interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
+    type HTMLScriptElementAttributes = HTMLAttributes<HTMLScriptElement> & {
       async?: boolean | ''
       /**
        * Specifies that you want the browser to send an `Attribution-Reporting-Eligible` header along with the script resource request
@@ -2665,13 +2704,13 @@ declare global {
       'prop:type'?: 'importmap' | 'module' | 'speculationrules' | AnyString
     }
 
-    interface HTMLSearchElementAttributes extends HTMLAttributes<HTMLElement> {
+    type HTMLSearchElementAttributes = HTMLAttributes<HTMLElement> & {
       /** Permitted ARIA roles  */
       role?: 'form' | 'group' | 'none' | 'presentation' | 'region' | 'search'
       'prop:role'?: HTMLSearchElementAttributes['role']
     }
 
-    interface HTMLSectionElementAttributes extends HTMLAttributes<HTMLElement> {
+    type HTMLSectionElementAttributes = HTMLAttributes<HTMLElement> & {
       /** Permitted ARIA roles  */
       role?:
       | 'alert'
@@ -2696,7 +2735,7 @@ declare global {
       'prop:role'?: HTMLSectionElementAttributes['role']
     }
 
-    interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
+    type HTMLSelectElementAttributes = HTMLAttributes<HTMLSelectElement> & {
       autocomplete?: boolean | AutoFill
       autofocus?: boolean | ''
       disabled?: boolean | ''
@@ -2718,12 +2757,12 @@ declare global {
       'prop:value'?: string
     }
 
-    interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {
+    type HTMLSlotElementAttributes = HTMLAttributes<HTMLSlotElement> & {
       name?: string
       'prop:name'?: string
     }
 
-    interface HTMLSourceElementAttributes extends HTMLAttributes<HTMLSourceElement> {
+    type HTMLSourceElementAttributes = HTMLAttributes<HTMLSourceElement> & {
       /**
        * Specifies the media query for the resource's intended media
        */
@@ -2768,7 +2807,7 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
+    type HTMLStyleElementAttributes = HTMLAttributes<HTMLStyleElement> & {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
@@ -2788,10 +2827,9 @@ declare global {
       'prop:type'?: string
     }
 
-    interface HTMLSummaryElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLElement> {
-    }
+    type HTMLSummaryElementAttributes = NoRolePermitted & HTMLAttributes<HTMLElement>
 
-    interface HTMLTableElementAttributes extends HTMLAttributes<HTMLTableElement> {
+    type HTMLTableElementAttributes = HTMLAttributes<HTMLTableElement> & {
       /**
        * To achieve a similar effect, use the CSS properties `margin-left` and `margin-right` to `auto` or `margin` to `0 auto`.
        * @deprecated
@@ -2852,7 +2890,7 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLTemplateElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLTemplateElement> {
+    type HTMLTemplateElementAttributes = NoRolePermitted & HTMLAttributes<HTMLTemplateElement> & {
       /**
        * Creates a shadow root for the parent element. It is a declarative version of the `Element.attachShadow()` method and accepts the same enumerated values.
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#shadowrootmode
@@ -2880,7 +2918,7 @@ declare global {
       'prop:shadowRootSerializable'?: boolean
     }
 
-    interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
+    type HTMLTextAreaElementAttributes = HTMLAttributes<HTMLTextAreaElement> & {
       autocomplete?: boolean | AutoFill
       autofocus?: boolean | ''
       /**
@@ -2927,7 +2965,7 @@ declare global {
       'prop:wrap'?: 'hard' | 'soft' | 'off'
     }
 
-    interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
+    type HTMLTableDataCellElementAttributes = HTMLAttributes<HTMLTableCellElement> & {
       /**
        * A non-negative integer value that indicates for how many columns the cell extends. Its default value is `1`. Values higher than `1000` will be considered as incorrect and will be set to the default value (`1`)
        */
@@ -2998,7 +3036,7 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLTableHeaderCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
+    type HTMLTableHeaderCellElementAttributes = HTMLAttributes<HTMLTableCellElement> & {
       abbr?: string
       /**
        * A non-negative integer value that indicates for how many columns the cell extends. Its default value is `1`. Values higher than `1000` will be considered as incorrect and will be set to the default value (`1`)
@@ -3064,7 +3102,7 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLTimeElementAttributes extends HTMLAttributes<HTMLTimeElement> {
+    type HTMLTimeElementAttributes = HTMLAttributes<HTMLTimeElement> & {
       /**
        * Indicates the time and/or date in the machine-readable format, allowing for better search engine results or custom features such as reminders
        */
@@ -3072,7 +3110,7 @@ declare global {
       'prop:dateTime'?: string
     }
 
-    interface HTMLTrackElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLTrackElement> {
+    type HTMLTrackElementAttributes = NoRolePermitted & HTMLAttributes<HTMLTrackElement> & {
       default?: boolean | ''
       kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
       label?: string
@@ -3096,7 +3134,7 @@ declare global {
       'prop:srclang'?: string
     }
 
-    interface HTMLUListElementAttributes extends HTMLAttributes<HTMLUListElement> {
+    type HTMLUListElementAttributes = HTMLAttributes<HTMLUListElement> & {
       /** Permitted ARIA roles */
       role?:
       | 'directory'
@@ -3114,7 +3152,7 @@ declare global {
       'prop:role'?: HTMLUListElementAttributes['role']
     }
 
-    interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
+    type HTMLVideoElementAttributes = HTMLMediaAttributes<HTMLVideoElement> & {
       height?: number | string
       playsInline?: boolean | ''
       poster?: string
@@ -3138,7 +3176,7 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLWBRElementAttributes extends HTMLAttributes<HTMLElement> {
+    type HTMLWBRElementAttributes = HTMLAttributes<HTMLElement> & {
       /**
        * Void element cannot have any child nodes (i.e., nested elements or text nodes)
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
@@ -3147,7 +3185,7 @@ declare global {
       children?: null
     }
 
-    interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
+    type HTMLWebViewElementAttributes = HTMLAttributes<HTMLWebViewElement> & {
       allowFullScreen?: boolean
       allowpopups?: boolean
       autofocus?: boolean | ''
@@ -3167,7 +3205,7 @@ declare global {
       webpreferences?: string
     }
 
-    interface HTMLMarqueeElementAttributes extends HTMLAttributes<HTMLMarqueeElement> {
+    type HTMLMarqueeElementAttributes = HTMLAttributes<HTMLMarqueeElement> & {
       behavior?: 'scroll' | 'slide' | 'alternate'
       bgColor?: Property.Color
       direction?: 'left' | 'right' | 'up' | 'down'
@@ -3533,7 +3571,7 @@ declare global {
       dialog: HTMLDialogElementAttributes
       /** @deprecated */
       dir: HTMLAttributes<HTMLDirectoryElement>
-      div: HTMLAttributes<HTMLDivElement>
+      div: HTMLDivElementAttributes
       dl: HTMLAttributes<HTMLDListElement>
       dt: HTMLAttributes<HTMLElement>
       em: HTMLAttributes<HTMLElement>
