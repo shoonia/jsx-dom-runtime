@@ -1812,6 +1812,13 @@ declare global {
       'prop:role'?: HTMLFigcaptionElementAttributes['role']
     }
 
+    interface HTMLFooterElementAttributes extends HTMLAttributes<HTMLElement> {
+      /** Permitted ARIA roles */
+      role?: 'group' | 'presentation' | 'none'
+
+      'prop:role'?: HTMLFooterElementAttributes['role']
+    }
+
     interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
       /**
        * Comma-separated content types the server accepts
@@ -1844,6 +1851,8 @@ declare global {
       | AnyString
       noValidate?: boolean | ''
       target?: Target
+      /** Permitted ARIA roles */
+      role?: 'search' | 'none' | 'presentation'
       /** @deprecated  use `on:formData` instead */
       onformdata?: FormDataEventHandler<HTMLFormElement>
 
@@ -1860,6 +1869,7 @@ declare global {
       'prop:rel'?: HTMLFormElementAttributes['rel']
       'prop:relList'?: string
       'prop:target'?: Target
+      'prop:role'?: HTMLFormElementAttributes['role']
     }
 
     interface HTMLHeadingElementAttributes extends HTMLAttributes<HTMLHeadingElement> {
@@ -1870,6 +1880,10 @@ declare global {
     }
 
     interface HTMLHeadElementAttributes extends HTMLAttributes<HTMLHeadElement> {
+      /** No `role` permitted */
+      role?: never
+
+      'prop:role'?: never
     }
 
     interface HTMLHeaderElementAttributes extends HTMLAttributes<HTMLElement> {
@@ -1905,12 +1919,15 @@ declare global {
        * @deprecated
        */
       children?: null
+      /** Permitted ARIA roles */
+      role?: 'presentation' | 'none'
 
       'prop:align'?: string
       'prop:color'?: Property.Color
       'prop:noShade'?: boolean
       'prop:size'?: string
       'prop:width'?: string
+      'prop:role'?: HTMLHRElementAttributes['role']
     }
 
     interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
@@ -1918,6 +1935,10 @@ declare global {
       /** @deprecated */
       version?: string
       xmlns?: string
+      /** No `role` permitted */
+      role?: never
+
+      'prop:role'?: never
     }
 
     interface HTMLIFrameElementAttributes extends HTMLAttributes<HTMLIFrameElement> {
@@ -2175,8 +2196,18 @@ declare global {
 
     interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
       for?: string
+      /** No `role` permitted */
+      role?: never
 
+      'prop:role'?: never
       'prop:htmlFor'?: string
+    }
+
+    interface HTMLLegendElementAttributes extends HTMLAttributes<HTMLLegendElement> {
+      /** No `role` permitted */
+      role?: never
+
+      'prop:role'?: never
     }
 
     interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
@@ -3102,12 +3133,15 @@ declare global {
        * @deprecated
        */
       children?: null
+      /** No `role` permitted */
+      role?: never
 
       'prop:default'?: boolean
-      'prop:kind'?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
+      'prop:kind'?: HTMLTrackElementAttributes['kind']
       'prop:label'?: string
       'prop:src'?: string
       'prop:srclang'?: string
+      'prop:role'?: never
     }
 
     interface HTMLUListElementAttributes extends HTMLAttributes<HTMLUListElement> {
@@ -3557,7 +3591,7 @@ declare global {
       figure: HTMLAttributes<HTMLElement>
       /** @deprecated */
       font: HTMLAttributes<HTMLFontElement>
-      footer: HTMLAttributes<HTMLElement>
+      footer: HTMLFooterElementAttributes
       form: HTMLFormElementAttributes
       h1: HTMLHeadingElementAttributes
       h2: HTMLHeadingElementAttributes
@@ -3579,7 +3613,7 @@ declare global {
       /** @deprecated */
       keygen: HTMLAttributes<HTMLUnknownElement>
       label: HTMLLabelElementAttributes
-      legend: HTMLAttributes<HTMLLegendElement>
+      legend: HTMLLegendElementAttributes
       li: HTMLLIElementAttributes
       link: HTMLLinkElementAttributes
       main: HTMLMainElementAttributes

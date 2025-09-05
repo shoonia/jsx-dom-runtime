@@ -1,3 +1,5 @@
+/** Valid ARIA roles */
+
 <div role="doc-abstract" />;
 <div role="alert" />;
 <div role="composite" />;
@@ -11,6 +13,9 @@
 <figcaption role="group" />;
 <ol role="listbox" />;
 <menu role="menubar" />;
+<hr role="none" />;
+<form role="search" />;
+<footer role="group" />;
 
 /** Invalid ARIA roles */
 
@@ -58,3 +63,15 @@
 <menu role="navigation" />;
 // @ts-expect-error
 <meter role="progressbar" />;
+// @ts-expect-error
+<legend role="meter" />;
+// @ts-expect-error
+<label role="textbox" />;
+// @ts-expect-error
+<track role="columnheader" />;
+// @ts-expect-error
+<hr role="separator" />;
+// @ts-expect-error
+<form role="form" />;
+// @ts-expect-error
+<footer role="treegrid" />;
