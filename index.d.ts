@@ -574,6 +574,12 @@ export interface AriaAttributes {
   'prop:role'?: AriaAttributes['role']
 }
 
+interface NoRolePermitted {
+  /** No `role` permitted */
+  role?: never
+  'prop:role'?: never
+}
+
 declare global {
   namespace JSX {
     type Element = JSXElement
@@ -1879,12 +1885,7 @@ declare global {
       'prop:role'?: HTMLHeadingElementAttributes['role']
     }
 
-    interface HTMLHeadElementAttributes extends HTMLAttributes<HTMLHeadElement> {
-      /** No `role` permitted */
-      role?: never
-
-      'prop:role'?: never
-    }
+    interface HTMLHeadElementAttributes extends HTMLAttributes<HTMLHeadElement>, NoRolePermitted {}
 
     interface HTMLHeaderElementAttributes extends HTMLAttributes<HTMLElement> {
       /** Permitted ARIA roles */
@@ -1930,15 +1931,11 @@ declare global {
       'prop:role'?: HTMLHRElementAttributes['role']
     }
 
-    interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
+    interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement>, NoRolePermitted {
       manifest?: string
       /** @deprecated */
       version?: string
       xmlns?: string
-      /** No `role` permitted */
-      role?: never
-
-      'prop:role'?: never
     }
 
     interface HTMLIFrameElementAttributes extends HTMLAttributes<HTMLIFrameElement> {
@@ -2194,20 +2191,12 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
+    interface HTMLLabelElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLLabelElement> {
       for?: string
-      /** No `role` permitted */
-      role?: never
-
-      'prop:role'?: never
       'prop:htmlFor'?: string
     }
 
-    interface HTMLLegendElementAttributes extends HTMLAttributes<HTMLLegendElement> {
-      /** No `role` permitted */
-      role?: never
-
-      'prop:role'?: never
+    interface HTMLLegendElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLLegendElement> {
     }
 
     interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
@@ -2321,20 +2310,13 @@ declare global {
       'prop:type'?: string
     }
 
-    interface HTMLMainElementAttributes extends HTMLAttributes<HTMLElement> {
-      /** No `role` permitted */
-      role?: never
-
-      'prop:role'?: never
+    interface HTMLMainElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLElement> {
     }
 
-    interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
+    interface HTMLMapElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLMapElement> {
       name?: string
-      /** No `role` permitted */
-      role?: never
 
       'prop:name'?: string
-      'prop:role'?: never
     }
 
     interface HTMLMenuElementAttributes extends HTMLAttributes<HTMLMenuElement> {
@@ -2443,7 +2425,7 @@ declare global {
       'prop:scheme'?: string
     }
 
-    interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
+    interface HTMLMeterElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLMeterElement> {
       form?: string
       high?: Numeric
       low?: Numeric
@@ -2451,8 +2433,6 @@ declare global {
       min?: Numeric
       optimum?: Numeric
       value?: Numeric
-      /** No `role` permitted */
-      role?: never
 
       'prop:high'?: number
       'prop:low'?: number
@@ -2460,14 +2440,9 @@ declare global {
       'prop:min'?: number
       'prop:optimum'?: number
       'prop:value'?: number
-      'prop:role'?: never
     }
 
-    interface HTMLNavElementAttributes extends HTMLAttributes<HTMLElement> {
-      /** No `role` permitted */
-      role?: never
-
-      'prop:role'?: HTMLNavElementAttributes['role']
+    interface HTMLNavElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLElement> {
     }
 
     interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
@@ -2583,24 +2558,19 @@ declare global {
       'prop:role'?: HTMLOListElementAttributes['role']
     }
 
-    interface HTMLOptGroupElementAttributes extends HTMLAttributes<HTMLOptGroupElement> {
+    interface HTMLOptGroupElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLOptGroupElement> {
       disabled?: boolean | ''
       label?: string
-      /** No `role` permitted */
-      role?: never
 
       'prop:disabled'?: boolean
       'prop:label'?: string
-      'prop:role'?: never
     }
 
-    interface HTMLOptionElementAttributes extends HTMLAttributes<HTMLOptionElement> {
+    interface HTMLOptionElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLOptionElement> {
       disabled?: boolean | ''
       label?: string
       selected?: boolean | ''
       value?: number | string
-      /** No `role` permitted */
-      role?: never
 
       'prop:defaultSelected'?: boolean
       'prop:disabled'?: boolean
@@ -2608,7 +2578,6 @@ declare global {
       'prop:selected'?: boolean
       'prop:text'?: string
       'prop:value'?: string
-      'prop:role'?: never
     }
 
     interface HTMLOutputElementAttributes extends HTMLAttributes<HTMLOutputElement> {
@@ -2643,22 +2612,15 @@ declare global {
       'prop:valueType'?: 'data' | 'ref' | 'object'
     }
 
-    interface HTMLPictureElementAttributes extends HTMLAttributes<HTMLPictureElement> {
-      /** No `role` permitted */
-      role?: never
-
-      'prop:role'?: never
+    interface HTMLPictureElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLPictureElement> {
     }
 
-    interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
+    interface HTMLProgressElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLProgressElement> {
       max?: Numeric
       value?: Numeric
-      /** No `role` permitted */
-      role?: never
 
       'prop:max'?: number
       'prop:value'?: number
-      'prop:role'?: never
     }
 
     interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
@@ -2826,11 +2788,7 @@ declare global {
       'prop:type'?: string
     }
 
-    interface HTMLSummaryElementAttributes extends HTMLAttributes<HTMLElement> {
-      /** No `role` permitted */
-      role?: never
-
-      'prop:role'?: never
+    interface HTMLSummaryElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLElement> {
     }
 
     interface HTMLTableElementAttributes extends HTMLAttributes<HTMLTableElement> {
@@ -2894,7 +2852,7 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLTemplateElementAttributes extends HTMLAttributes<HTMLTemplateElement> {
+    interface HTMLTemplateElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLTemplateElement> {
       /**
        * Creates a shadow root for the parent element. It is a declarative version of the `Element.attachShadow()` method and accepts the same enumerated values.
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#shadowrootmode
@@ -2915,14 +2873,11 @@ declare global {
        * @see https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootSerializable
         */
       shadowRootSerializable?: boolean | ''
-      /** No `role` permitted */
-      role?: never
 
       'prop:shadowRootClonable'?: boolean
       'prop:shadowRootDelegatesFocus'?: boolean
       'prop:shadowRootMode'?: 'open' | 'closed'
       'prop:shadowRootSerializable'?: boolean
-      'prop:role'?: never
     }
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
@@ -3117,7 +3072,7 @@ declare global {
       'prop:dateTime'?: string
     }
 
-    interface HTMLTrackElementAttributes extends HTMLAttributes<HTMLTrackElement> {
+    interface HTMLTrackElementAttributes extends NoRolePermitted, HTMLAttributes<HTMLTrackElement> {
       default?: boolean | ''
       kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
       label?: string
@@ -3133,15 +3088,12 @@ declare global {
        * @deprecated
        */
       children?: null
-      /** No `role` permitted */
-      role?: never
 
       'prop:default'?: boolean
       'prop:kind'?: HTMLTrackElementAttributes['kind']
       'prop:label'?: string
       'prop:src'?: string
       'prop:srclang'?: string
-      'prop:role'?: never
     }
 
     interface HTMLUListElementAttributes extends HTMLAttributes<HTMLUListElement> {
