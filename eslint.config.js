@@ -1,8 +1,9 @@
 import js from '@eslint/js';
+import { defineConfig } from 'eslint/config';
 import ts from 'typescript-eslint';
-import jsxDomRuntime from './eslint-plugin/index.cjs';
+import jsx from './eslint-plugin/index.cjs';
 
-export default ts.config(
+export default defineConfig(
   {
     ignores: [
       'babel-preset/',
@@ -11,9 +12,9 @@ export default ts.config(
     ],
   },
   js.configs.recommended,
-  ...ts.configs.recommended,
-  ...ts.configs.stylistic,
-  jsxDomRuntime,
+  ts.configs.recommended,
+  ts.configs.stylistic,
+  jsx,
   {
     rules: {
       '@typescript-eslint/no-unused-vars': 'error',
