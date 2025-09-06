@@ -24,6 +24,14 @@
 <acronym role="code" />;
 <article role="document" />;
 <aside role="complementary" />;
+<blockquote role="tabpanel" />;
+<br role="presentation" />;
+<canvas role="img" />;
+<caption role="caption" />;
+<data role="doc-introduction" />;
+<datalist role="listbox" />;
+<del role="code" />;
+<details role="group" />;
 
 /** Invalid ARIA roles */
 
@@ -32,7 +40,7 @@
 // @ts-expect-error
 <section role="composite" />;
 // @ts-expect-error
-<button role="button" />;
+<button role="code" />;
 // @ts-expect-error
 <h1 role="heading" />;
 // @ts-expect-error
@@ -87,3 +95,19 @@
 <a href="#" role="cell" />;
 // @ts-expect-error
 <area href="#" role="button" />;
+// @ts-expect-error
+<base role="banner" />;
+// @ts-expect-error
+<br role="cell" />;
+// @ts-expect-error
+<caption role="link" />;
+// @ts-expect-error
+<col role="columnheader" />;
+// @ts-expect-error
+<colgroup role="gridcell" />;
+// @ts-expect-error
+<datalist role="table" />;
+// @ts-expect-error
+<dd role="definition" />;
+// @ts-expect-error
+<details role="complementary" />;

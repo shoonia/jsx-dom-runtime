@@ -1684,7 +1684,7 @@ declare global {
       'prop:role'?: HTMLAsideElementAttributes['role']
     }
 
-    type HTMLBaseElementAttributes = HTMLAttributes<HTMLBaseElement> & {
+    type HTMLBaseElementAttributes = NoRolePermitted & HTMLAttributes<HTMLBaseElement> & {
       href?: string
       target?: Target
       /**
@@ -1707,8 +1707,11 @@ declare global {
        * @deprecated
       */
       children?: null
+      /** Permitted ARIA role */
+      role?: 'none' | 'presentation'
 
       'prop:clear'?: string
+      'prop:role'?: HTMLBRElementAttributes['role']
     }
 
     type HTMLButtonElementAttributes = HTMLAttributes<HTMLButtonElement> & {
@@ -1747,16 +1750,21 @@ declare global {
       commandfor?: string
       /** Permitted ARIA role */
       role?:
+      | 'button'
       | 'checkbox'
       | 'combobox'
+      | 'gridcell'
       | 'link'
       | 'menuitem'
       | 'menuitemcheckbox'
       | 'menuitemradio'
       | 'option'
       | 'radio'
+      | 'separator'
+      | 'slider'
       | 'switch'
       | 'tab'
+      | 'treeitem'
 
       'prop:command'?: CommandEventType
       'prop:commandForElement'?: globalThis.Element | null
@@ -1774,7 +1782,7 @@ declare global {
       'prop:role'?: HTMLButtonElementAttributes['role']
     }
 
-    type HTMLCanvasElementAttributes = HTMLAttributes<HTMLCanvasElement> & {
+    type HTMLCanvasElementAttributes = AnyRole & HTMLAttributes<HTMLCanvasElement> & {
       /**
        * The height of the coordinate space in CSS pixels. Defaults to 150
        */
@@ -1796,7 +1804,14 @@ declare global {
       'prop:width'?: number
     }
 
-    type HTMLTableColElementAttributes = HTMLAttributes<HTMLTableColElement> & {
+    type HTMLCaptionElementAttributes = HTMLAttributes<HTMLElement> & {
+      /** Permitted ARIA role */
+      role?: 'caption'
+
+      'prop:role'?: 'caption'
+    }
+
+    type HTMLTableColElementAttributes = NoRolePermitted & HTMLAttributes<HTMLTableColElement> & {
       span?: Numeric
       width?: number | string
       /**
@@ -1814,23 +1829,35 @@ declare global {
       'prop:width'?: string
     }
 
-    type HTMLDataElementAttributes = HTMLAttributes<HTMLDataElement> & {
+    type HTMLDataElementAttributes = AnyRole & HTMLAttributes<HTMLDataElement> & {
       value?: number | string
 
       'prop:value'?: string
     }
 
+    type HTMLDataListElementAttributes = AnyRole & HTMLAttributes<HTMLDataListElement> & {
+      /** Permitted ARIA roles */
+      role?: 'listbox'
+
+      'prop:role'?: 'listbox'
+    }
+
+    type HTMLDdElementAttributes = NoRolePermitted & HTMLAttributes<HTMLElement>
+
     type HTMLDetailsElementAttributes = HTMLAttributes<HTMLDetailsElement> & {
       name?: string
       open?: boolean | ''
+      /** Permitted ARIA roles */
+      role?: 'group'
 
       'prop:name'?: string
       'prop:open'?: boolean
+      'prop:role'?: 'group'
     }
 
     type HTMLDivElementAttributes = AnyRole & HTMLAttributes<HTMLDivElement>
 
-    type HTMLModElementAttributes = HTMLAttributes<HTMLModElement> & {
+    type HTMLModElementAttributes = AnyRole & HTMLAttributes<HTMLModElement> & {
       cite?: string
       dateTime?: string
 
@@ -2524,7 +2551,7 @@ declare global {
 
     type HTMLNavElementAttributes = NoRolePermitted & HTMLAttributes<HTMLElement>
 
-    type HTMLQuoteElementAttributes = HTMLAttributes<HTMLQuoteElement> & {
+    type HTMLQuoteElementAttributes = AnyRole & HTMLAttributes<HTMLQuoteElement> & {
       cite?: string
 
       'prop:cite'?: string
@@ -3594,7 +3621,7 @@ declare global {
       br: HTMLBRElementAttributes
       button: HTMLButtonElementAttributes
       canvas: HTMLCanvasElementAttributes
-      caption: HTMLAttributes<HTMLElement>
+      caption: HTMLCaptionElementAttributes
       /** @deprecated */
       center: HTMLAttributes<HTMLElement>
       cite: HTMLAttributes<HTMLElement>
@@ -3602,8 +3629,8 @@ declare global {
       col: HTMLTableColElementAttributes
       colgroup: HTMLTableColElementAttributes
       data: HTMLDataElementAttributes
-      datalist: HTMLAttributes<HTMLDataListElement>
-      dd: HTMLAttributes<HTMLElement>
+      datalist: HTMLDataListElementAttributes
+      dd: HTMLDdElementAttributes
       del: HTMLModElementAttributes
       details: HTMLDetailsElementAttributes
       dfn: HTMLAttributes<HTMLElement>
