@@ -621,6 +621,56 @@ export type AreaAriaRoles =
     role?: 'button' | 'link'
   };
 
+export type ImgAriaRolesName =
+  | 'img'
+  | 'button'
+  | 'checkbox'
+  | 'link'
+  | 'menuitem'
+  | 'menuitemcheckbox'
+  | 'menuitemradio'
+  | 'meter'
+  | 'option'
+  | 'progressbar'
+  | 'radio'
+  | 'scrollbar'
+  | 'separator'
+  | 'slider'
+  | 'switch'
+  | 'tab'
+  | 'treeitem'
+  | 'doc-cover'
+
+type ImgAriaRoles =
+  | {
+    'aria-label': string
+    role?: ImgAriaRolesName
+    'prop:role'?: ImgAriaRolesName
+  }
+  | {
+    'aria-labelledby': string
+    role?: ImgAriaRolesName
+    'prop:role'?: ImgAriaRolesName
+  }
+  | {
+    alt: string
+    role?: ImgAriaRolesName
+    'prop:role'?: ImgAriaRolesName
+  }
+  | {
+    title: string
+    role?: ImgAriaRolesName
+    'prop:role'?: ImgAriaRolesName
+  }
+  | {
+    'aria-label'?: never
+    'aria-labelledby'?: never
+    alt?: never
+    title?: never
+    role?: 'img' | 'none' | 'presentation'
+    'prop:role'?: 'img' | 'none' | 'presentation'
+  }
+
 declare global {
   namespace JSX {
     type Element = JSXElement
@@ -1857,6 +1907,22 @@ declare global {
 
     type HTMLDivElementAttributes = AnyRole & HTMLAttributes<HTMLDivElement>
 
+    type HTMLDlElementAttributes = HTMLAttributes<HTMLDListElement> & {
+      /** Permitted ARIA roles */
+      role?: 'group' | 'list' | 'none' | 'presentation'
+
+      'prop:role'?: HTMLDlElementAttributes['role']
+    }
+
+    type HTMLDtElementAttributes = HTMLAttributes<HTMLElement> & {
+      /** Permitted ARIA roles */
+      role?: 'listitem'
+
+      'prop:role'?: 'listitem'
+    }
+
+    type HTMLEmElementAttributes = AnyRole & HTMLAttributes<HTMLElement>
+
     type HTMLModElementAttributes = AnyRole & HTMLAttributes<HTMLModElement> & {
       cite?: string
       dateTime?: string
@@ -1880,6 +1946,8 @@ declare global {
       onclose?: GenericEventHandler<HTMLDialogElement>
       /** @deprecated use `on:cancel` instead */
       oncancel?: GenericEventHandler<HTMLDialogElement>
+      /** Permitted ARIA roles */
+      role?: 'dialog' | 'alertdialog'
 
       'on:close'?: EventListener<HTMLDialogElement>
       'on:cancel'?: EventListener<HTMLDialogElement>
@@ -1887,6 +1955,7 @@ declare global {
       'prop:open'?: boolean
       'prop:closedBy'?: 'any' | 'closerequest' | 'none'
       'prop:returnValue'?: string
+      'prop:role'?: HTMLDialogElementAttributes['role']
     }
 
     type HTMLEmbedElementAttributes = HTMLAttributes<HTMLEmbedElement> & {
@@ -1900,6 +1969,8 @@ declare global {
        * @deprecated
        */
       children?: null
+      /** Permitted ARIA roles */
+      role?: 'application' | 'document' | 'img' | 'none' | 'presentation'
 
       'prop:align'?: string
       'prop:height'?: string
@@ -1907,29 +1978,31 @@ declare global {
       'prop:src'?: string
       'prop:type'?: string
       'prop:width'?: string
+      'prop:role'?: HTMLEmbedElementAttributes['role']
     }
 
     type HTMLFieldSetElementAttributes = HTMLAttributes<HTMLFieldSetElement> & {
       disabled?: boolean | ''
       form?: string
       name?: string
+      /** Permitted ARIA roles */
+      role?: 'group' | 'none' | 'presentation' | 'radiogroup'
 
       'prop:name'?: string
       'prop:disabled'?: boolean
-
-      role?: 'radiogroup' | 'presentation' | 'none'
-      'prop:role'?: 'radiogroup' | 'presentation' | 'none'
+      'prop:role'?: HTMLFieldSetElementAttributes['role']
     }
 
     type HTMLFigcaptionElementAttributes = HTMLAttributes<HTMLElement> & {
       /** Permitted ARIA roles */
       role?: 'group' | 'presentation' | 'none'
+
       'prop:role'?: HTMLFigcaptionElementAttributes['role']
     }
 
     type HTMLFooterElementAttributes = HTMLAttributes<HTMLElement> & {
       /** Permitted ARIA roles */
-      role?: 'group' | 'presentation' | 'none'
+      role?: 'contentinfo' | 'group' | 'none' | 'presentation' | 'doc-footnote'
 
       'prop:role'?: HTMLFooterElementAttributes['role']
     }
@@ -1967,7 +2040,7 @@ declare global {
       noValidate?: boolean | ''
       target?: Target
       /** Permitted ARIA roles */
-      role?: 'search' | 'none' | 'presentation'
+      role?: 'form' | 'none' | 'presentation' | 'search'
       /** @deprecated  use `on:formData` instead */
       onformdata?: FormDataEventHandler<HTMLFormElement>
 
@@ -1989,7 +2062,7 @@ declare global {
 
     type HTMLHeadingElementAttributes = HTMLAttributes<HTMLHeadingElement> & {
       /** Permitted ARIA roles */
-      role?: 'tab' | 'presentation' | 'none';
+      role?: 'heading' | 'none' | 'presentation' | 'tab' | 'doc-subtitle'
 
       'prop:role'?: HTMLHeadingElementAttributes['role']
     }
@@ -1998,12 +2071,12 @@ declare global {
 
     type HTMLHeaderElementAttributes = HTMLAttributes<HTMLElement> & {
       /** Permitted ARIA roles */
-      role?: 'group' | 'presentation' | 'none';
+      role?: 'banner' | 'group' | 'none' | 'presentation'
 
       'prop:role'?: HTMLHeaderElementAttributes['role']
     }
 
-    type HTMLHRElementAttributes = HTMLAttributes<HTMLHRElement> & {
+    type HTMLHrElementAttributes = HTMLAttributes<HTMLHRElement> & {
       /**
        * Sets or retrieves how the object is aligned with adjacent text.
        * @deprecated
@@ -2030,21 +2103,25 @@ declare global {
        */
       children?: null
       /** Permitted ARIA roles */
-      role?: 'presentation' | 'none'
+      role?: 'separator' | 'none' | 'presentation' | 'doc-pagebreak'
 
       'prop:align'?: string
       'prop:color'?: Property.Color
       'prop:noShade'?: boolean
       'prop:size'?: string
       'prop:width'?: string
-      'prop:role'?: HTMLHRElementAttributes['role']
+      'prop:role'?: HTMLHrElementAttributes['role']
     }
 
-    type HTMLHtmlElementAttributes = NoRolePermitted & HTMLAttributes<HTMLHtmlElement> & {
+    type HTMLHtmlElementAttributes = HTMLAttributes<HTMLHtmlElement> & {
       manifest?: string
       /** @deprecated */
       version?: string
       xmlns?: string
+      /** Permitted ARIA roles */
+      role?: 'document'
+
+      'prop:role'?: 'document'
     }
 
     type HTMLIFrameElementAttributes = HTMLAttributes<HTMLIFrameElement> & {
@@ -2134,7 +2211,7 @@ declare global {
       'prop:role'?: HTMLIFrameElementAttributes['role']
     }
 
-    type HTMLImageElementAttributes = HTMLAttributes<HTMLImageElement> & {
+    type HTMLImageElementAttributes = ImgAriaRoles & HTMLAttributes<HTMLImageElement> & {
       alt?: string
       crossOrigin?: CrossOrigin
       decoding?: 'async' | 'sync' | 'auto'
@@ -3638,9 +3715,9 @@ declare global {
       /** @deprecated */
       dir: HTMLAttributes<HTMLDirectoryElement>
       div: HTMLDivElementAttributes
-      dl: HTMLAttributes<HTMLDListElement>
-      dt: HTMLAttributes<HTMLElement>
-      em: HTMLAttributes<HTMLElement>
+      dl: HTMLDlElementAttributes
+      dt: HTMLDtElementAttributes
+      em: HTMLEmElementAttributes
       embed: HTMLEmbedElementAttributes
       fieldset: HTMLFieldSetElementAttributes
       figcaption: HTMLFigcaptionElementAttributes
@@ -3658,7 +3735,7 @@ declare global {
       head: HTMLHeadElementAttributes
       header: HTMLHeaderElementAttributes
       hgroup: HTMLAttributes<HTMLElement>
-      hr: HTMLHRElementAttributes
+      hr: HTMLHrElementAttributes
       html: HTMLHtmlElementAttributes
       i: HTMLAttributes<HTMLElement>
       iframe: HTMLIFrameElementAttributes

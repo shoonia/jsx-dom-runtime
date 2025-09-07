@@ -32,6 +32,18 @@
 <datalist role="listbox" />;
 <del role="code" />;
 <details role="group" />;
+<dialog role="alertdialog" />;
+<dl role="list" />;
+<dt role="listitem" />;
+<em role="emphasis" />;
+<embed role="application" />;
+<h1 role="heading" />;
+<header role="banner" />;
+<hr role="separator" />;
+<form role="form" />;
+<img alt="desc" role="img" />;
+<img aria-label="description" role="slider" />;
+<img role="none" />;
 
 /** Invalid ARIA roles */
 
@@ -41,10 +53,6 @@
 <section role="composite" />;
 // @ts-expect-error
 <button role="code" />;
-// @ts-expect-error
-<h1 role="heading" />;
-// @ts-expect-error
-<header role="banner" />;
 // @ts-expect-error
 <audio role="button" />;
 // @ts-expect-error
@@ -86,10 +94,6 @@
 // @ts-expect-error
 <track role="columnheader" />;
 // @ts-expect-error
-<hr role="separator" />;
-// @ts-expect-error
-<form role="form" />;
-// @ts-expect-error
 <footer role="treegrid" />;
 // @ts-expect-error
 <a href="#" role="cell" />;
@@ -111,3 +115,13 @@
 <dd role="definition" />;
 // @ts-expect-error
 <details role="complementary" />;
+// @ts-expect-error
+<dialog role="navigation" />;
+// @ts-expect-error
+<dl role="directory" />;
+// @ts-expect-error
+<dt role="widget" />;
+// @ts-expect-error
+<embed role="list" />;
+// @ts-expect-error
+<img alt="description" role="none" />;
