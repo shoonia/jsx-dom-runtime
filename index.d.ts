@@ -1536,7 +1536,23 @@ declare global {
       'prop:username'?: string
     }
 
-    interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> { }
+    interface HTMLAbbrElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLAcronymElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLAddressElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLArticleElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLAsideElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> {
+    }
 
     interface HTMLAreaElementAttributes extends HTMLAttributes<HTMLAreaElement> {
       /** @deprecated */
@@ -1598,6 +1614,9 @@ declare global {
       children?: null
     }
 
+    interface HTMLBElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
     interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
       href?: string
       target?: Target
@@ -1612,7 +1631,19 @@ declare global {
       'prop:target'?: Target
     }
 
-    interface HTMLBRElementAttributes extends HTMLAttributes<HTMLBRElement> {
+    interface HTMLBdiElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLBdoElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLBigElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLBlankElementAttributes extends HTMLAttributes<HTMLUnknownElement> {
+    }
+
+    interface HTMLBrElementAttributes extends HTMLAttributes<HTMLBRElement> {
       /** @deprecated */
       clear?: string
       /**
@@ -1840,7 +1871,12 @@ declare global {
       'prop:target'?: Target
     }
 
-    interface HTMLHRElementAttributes extends HTMLAttributes<HTMLHRElement> {
+    interface HTMLHeadingElementAttributes extends HTMLAttributes<HTMLHeadingElement> {
+      /** @deprecated */
+      'prop:align'?: 'left' | 'right' | 'justify' | 'center';
+    }
+
+    interface HTMLHrElementAttributes extends HTMLAttributes<HTMLHRElement> {
       /**
        * Sets or retrieves how the object is aligned with adjacent text.
        * @deprecated
@@ -2346,6 +2382,9 @@ declare global {
       cite?: string
 
       'prop:cite'?: string
+    }
+
+    interface HTMLBodyElementAttributes extends HTMLAttributes<HTMLBodyElement> {
     }
 
     interface HTMLObjectElementAttributes extends HTMLAttributes<HTMLObjectElement> {
@@ -3325,25 +3364,25 @@ declare global {
     interface IntrinsicElements {
       // HTML
       a: HTMLAnchorElementAttributes
-      abbr: HTMLAttributes<HTMLElement>
+      abbr: HTMLAbbrElementAttributes
       /** @deprecated */
-      acronym: HTMLAttributes<HTMLElement>
-      address: HTMLAttributes<HTMLElement>
+      acronym: HTMLAcronymElementAttributes
+      address: HTMLAddressElementAttributes
       area: HTMLAreaElementAttributes
-      article: HTMLAttributes<HTMLElement>
-      aside: HTMLAttributes<HTMLElement>
+      article: HTMLArticleElementAttributes
+      aside: HTMLAsideElementAttributes
       audio: HTMLAudioElementAttributes
-      b: HTMLAttributes<HTMLElement>
+      b: HTMLBElementAttributes
       base: HTMLBaseElementAttributes
-      bdi: HTMLAttributes<HTMLElement>
-      bdo: HTMLAttributes<HTMLElement>
+      bdi: HTMLBdiElementAttributes
+      bdo: HTMLBdoElementAttributes
       /** @deprecated */
-      big: HTMLAttributes<HTMLElement>
+      big: HTMLBigElementAttributes
       /** @deprecated */
-      blink: HTMLAttributes<HTMLUnknownElement>
+      blink: HTMLBlankElementAttributes
       blockquote: HTMLQuoteElementAttributes
-      body: HTMLAttributes<HTMLBodyElement>
-      br: HTMLBRElementAttributes
+      body: HTMLBodyElementAttributes
+      br: HTMLBrElementAttributes
       button: HTMLButtonElementAttributes
       canvas: HTMLCanvasElementAttributes
       caption: HTMLAttributes<HTMLElement>
@@ -3374,16 +3413,16 @@ declare global {
       font: HTMLAttributes<HTMLFontElement>
       footer: HTMLAttributes<HTMLElement>
       form: HTMLFormElementAttributes
-      h1: HTMLAttributes<HTMLHeadingElement>
-      h2: HTMLAttributes<HTMLHeadingElement>
-      h3: HTMLAttributes<HTMLHeadingElement>
-      h4: HTMLAttributes<HTMLHeadingElement>
-      h5: HTMLAttributes<HTMLHeadingElement>
-      h6: HTMLAttributes<HTMLHeadingElement>
+      h1: HTMLHeadingElementAttributes
+      h2: HTMLHeadingElementAttributes
+      h3: HTMLHeadingElementAttributes
+      h4: HTMLHeadingElementAttributes
+      h5: HTMLHeadingElementAttributes
+      h6: HTMLHeadingElementAttributes
       head: HTMLAttributes<HTMLHeadElement>
       header: HTMLAttributes<HTMLElement>
       hgroup: HTMLAttributes<HTMLElement>
-      hr: HTMLHRElementAttributes
+      hr: HTMLHrElementAttributes
       html: HTMLHtmlElementAttributes
       i: HTMLAttributes<HTMLElement>
       iframe: HTMLIFrameElementAttributes
