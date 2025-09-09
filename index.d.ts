@@ -2627,7 +2627,7 @@ declare global {
       'prop:crossOrigin'?: CrossOrigin | null
       'prop:defer'?: boolean
       'prop:event'?: string
-      'prop:fetchPriority'?: 'high' | 'low' | 'auto'
+      'prop:fetchPriority'?: FetchPriority
       'prop:htmlFor'?: string
       'prop:integrity'?: string
       'prop:noModule'?: boolean
