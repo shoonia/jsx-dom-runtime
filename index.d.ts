@@ -30,6 +30,15 @@ export type RefCallback<T> = (instance: T) => void
 
 export type PropsWithChildren<P> = P & { children?: JSXChild | JSXChild[] }
 
+interface VoidElement {
+  /**
+ * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+ * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+ * @deprecated
+ */
+  children?: never | void | null
+}
+
 export declare function jsx<
   K extends keyof JSX.IntrinsicElements | AnyString,
   R = K extends keyof HTMLElementTagNameMap
@@ -1554,7 +1563,7 @@ declare global {
     interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> {
     }
 
-    interface HTMLAreaElementAttributes extends HTMLAttributes<HTMLAreaElement> {
+    interface HTMLAreaElementAttributes extends Omit<HTMLAttributes<HTMLAreaElement>, 'children'>, VoidElement {
       /** @deprecated */
       accessKey?: string
       alt?: string
@@ -1606,26 +1615,14 @@ declare global {
       nohref?: string
       /** @deprecated */
       tabIndex?: Numeric
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
     }
 
     interface HTMLBElementAttributes extends HTMLAttributes<HTMLElement> {
     }
 
-    interface HTMLBaseElementAttributes extends HTMLAttributes<HTMLBaseElement> {
+    interface HTMLBaseElementAttributes extends Omit<HTMLAttributes<HTMLBaseElement>, 'children'>, VoidElement {
       href?: string
       target?: Target
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
 
       'prop:href'?: string
       'prop:target'?: Target
@@ -1643,15 +1640,9 @@ declare global {
     interface HTMLBlankElementAttributes extends HTMLAttributes<HTMLUnknownElement> {
     }
 
-    interface HTMLBrElementAttributes extends HTMLAttributes<HTMLBRElement> {
+    interface HTMLBrElementAttributes extends Omit<HTMLAttributes<HTMLBRElement>, 'children'>, VoidElement {
       /** @deprecated */
       clear?: string
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-      */
-      children?: null
 
       'prop:clear'?: string
     }
@@ -1740,15 +1731,9 @@ declare global {
     interface HTMLCodeElementAttributes extends HTMLAttributes<HTMLElement> {
     }
 
-    interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
+    interface HTMLTableColElementAttributes extends Omit<HTMLAttributes<HTMLTableColElement>, 'children'>, VoidElement {
       span?: Numeric
       width?: number | string
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
 
       'prop:align'?: string
       'prop:ch'?: string
@@ -1828,17 +1813,11 @@ declare global {
     interface HTMLEmElementAttributes extends HTMLAttributes<HTMLElement> {
     }
 
-    interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
+    interface HTMLEmbedElementAttributes extends Omit<HTMLAttributes<HTMLEmbedElement>, 'children'>, VoidElement {
       height?: number | string
       src?: string
       type?: string
       width?: number | string
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
 
       'prop:align'?: string
       'prop:height'?: string
@@ -1912,7 +1891,7 @@ declare global {
       'prop:align'?: 'left' | 'right' | 'justify' | 'center';
     }
 
-    interface HTMLHrElementAttributes extends HTMLAttributes<HTMLHRElement> {
+    interface HTMLHrElementAttributes extends Omit<HTMLAttributes<HTMLHRElement>, 'children'>, VoidElement {
       /**
        * Sets or retrieves how the object is aligned with adjacent text.
        * @deprecated
@@ -1932,12 +1911,6 @@ declare global {
        * @deprecated
        */
       width?: string
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
 
       'prop:align'?: string
       'prop:color'?: Property.Color
@@ -2037,7 +2010,7 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLImageElementAttributes extends HTMLAttributes<HTMLImageElement> {
+    interface HTMLImageElementAttributes extends Omit<HTMLAttributes<HTMLImageElement>, 'children'>, VoidElement {
       alt?: string
       crossOrigin?: CrossOrigin
       decoding?: 'async' | 'sync' | 'auto'
@@ -2054,12 +2027,6 @@ declare global {
       useMap?: string
       width?: number | string
       fetchPriority?: FetchPriority
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
 
       'prop:align'?: string
       'prop:alt'?: string
@@ -2083,7 +2050,7 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLInputElementAttributes extends HTMLAttributes<HTMLInputElement> {
+    interface HTMLInputElementAttributes extends Omit<HTMLAttributes<HTMLInputElement>, 'children'>, VoidElement {
       accept?: string
       alt?: string
       autocomplete?: boolean | AutoFill
@@ -2153,12 +2120,6 @@ declare global {
       width?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
 
       'prop:accept'?: string
       'prop:align'?: string
@@ -2216,7 +2177,7 @@ declare global {
       'prop:value'?: number
     }
 
-    interface HTMLLinkElementAttributes extends HTMLAttributes<HTMLLinkElement> {
+    interface HTMLLinkElementAttributes extends Omit<HTMLAttributes<HTMLLinkElement>, 'children'>, VoidElement {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
@@ -2292,12 +2253,6 @@ declare global {
       /** @deprecated */
       charset?: string
       fetchPriority?: FetchPriority
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
 
       'prop:as'?: HTMLLinkElementAttributes['as']
       'prop:blocking'?: 'render' | AnyString
@@ -2372,7 +2327,7 @@ declare global {
       'prop:volume'?: number
     }
 
-    interface HTMLMetaElementAttributes extends HTMLAttributes<HTMLMetaElement> {
+    interface HTMLMetaElementAttributes extends Omit<HTMLAttributes<HTMLMetaElement>, 'children'>, VoidElement {
       charset?: string
       content?: string
       'http-equiv'?:
@@ -2383,12 +2338,6 @@ declare global {
       | 'refresh'
       | AnyString
       name?: string
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
 
       'prop:content'?: string
       'prop:httpEquiv'?: HTMLMetaElementAttributes['http-equiv']
@@ -2551,19 +2500,13 @@ declare global {
       'prop:value'?: string
     }
 
-    interface HTMLParamElementAttributes extends HTMLAttributes<HTMLParamElement> {
+    interface HTMLParamElementAttributes extends Omit<HTMLAttributes<HTMLParamElement>, 'children'>, VoidElement {
       /** @deprecated */
       name?: string
       /** @deprecated */
       value?: number | string
       /** @deprecated */
       valuetype?: 'data' | 'ref' | 'object'
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
 
       'prop:name'?: string
       'prop:type'?: string
@@ -2648,7 +2591,7 @@ declare global {
       'prop:name'?: string
     }
 
-    interface HTMLSourceElementAttributes extends HTMLAttributes<HTMLSourceElement> {
+    interface HTMLSourceElementAttributes extends Omit<HTMLAttributes<HTMLSourceElement>, 'children'>, VoidElement {
       /**
        * Specifies the media query for the resource's intended media
        */
@@ -2677,12 +2620,6 @@ declare global {
        * Specifies the intrinsic width of the image in pixels. Allowed if the parent of `<source>` is a `<picture>`. Not allowed if the parent is `<audio> `or `<video>.` The width value must be an integer without any units
        */
       width?: Numeric
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
 
       'prop:height'?: number
       'prop:media'?: string
@@ -2994,7 +2931,7 @@ declare global {
       'prop:dateTime'?: string
     }
 
-    interface HTMLTrackElementAttributes extends HTMLAttributes<HTMLTrackElement> {
+    interface HTMLTrackElementAttributes extends Omit<HTMLAttributes<HTMLTrackElement>, 'children'>, VoidElement {
       default?: boolean | ''
       kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
       label?: string
@@ -3004,12 +2941,6 @@ declare global {
       oncuechange?: GenericEventHandler<HTMLTrackElement>
 
       'on:cueChange'?: EventListener<HTMLTrackElement>
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
 
       'prop:default'?: boolean
       'prop:kind'?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
@@ -3042,13 +2973,7 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLWBRElementAttributes extends HTMLAttributes<HTMLElement> {
-      /**
-       * Void element cannot have any child nodes (i.e., nested elements or text nodes)
-       * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
-       * @deprecated
-       */
-      children?: null
+    interface HTMLWBRElementAttributes extends Omit<HTMLAttributes<HTMLElement>, 'children'>, VoidElement {
     }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
