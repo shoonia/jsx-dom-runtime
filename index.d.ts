@@ -1551,19 +1551,19 @@ declare global {
       'prop:username'?: string
     }
 
-    interface HTMLAbbrElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLAbbrElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLAcronymElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLAcronymElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLAddressElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLAddressElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLArticleElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLArticleElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLAsideElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLAsideElementAttributes extends HTMLElementAttributes {
     }
 
     interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> {
@@ -1623,7 +1623,7 @@ declare global {
       tabIndex?: Numeric
     }
 
-    interface HTMLBElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLBElementAttributes extends HTMLElementAttributes {
     }
 
     interface HTMLBaseElementAttributes extends Omit<HTMLAttributes<HTMLBaseElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
@@ -1634,16 +1634,13 @@ declare global {
       'prop:target'?: Target
     }
 
-    interface HTMLBdiElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLBdiElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLBdoElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLBdoElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLBigElementAttributes extends HTMLAttributes<HTMLElement> {
-    }
-
-    interface HTMLBlankElementAttributes extends HTMLAttributes<HTMLUnknownElement> {
+    interface HTMLBigElementAttributes extends HTMLElementAttributes {
     }
 
     interface HTMLBrElementAttributes extends Omit<HTMLAttributes<HTMLBRElement>, 'children'>, VoidElement {
@@ -1725,16 +1722,16 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLCaptionElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLCaptionElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLCenterElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLCenterElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLCiteElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLCiteElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLCodeElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLCodeElementAttributes extends HTMLElementAttributes {
     }
 
     interface HTMLColElementAttributes extends Omit<HTMLAttributes<HTMLTableColElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
@@ -1770,7 +1767,7 @@ declare global {
     interface HTMLDataListElementAttributes extends HTMLAttributes<HTMLDataListElement> {
     }
 
-    interface HTMLDdElementAttributes extends Omit<HTMLAttributes<HTMLElement>, 'role'>, NoRolePermited {
+    interface HTMLDdElementAttributes extends Omit<HTMLElementAttributes, 'role'>, NoRolePermited {
     }
 
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
@@ -1781,7 +1778,7 @@ declare global {
       'prop:open'?: boolean
     }
 
-    interface HTMLDfnElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLDfnElementAttributes extends HTMLElementAttributes {
     }
 
     interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
@@ -1790,6 +1787,9 @@ declare global {
 
       'prop:cite'?: string
       'prop:dateTime'?: string
+    }
+
+    interface HTMLKbdElementAttributes extends HTMLElementAttributes {
     }
 
     interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
@@ -1825,10 +1825,10 @@ declare global {
     interface HTMLDlElementAttributes extends HTMLAttributes<HTMLDListElement> {
     }
 
-    interface HTMLDtElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLDtElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLEmElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLEmElementAttributes extends HTMLElementAttributes {
     }
 
     interface HTMLEmbedElementAttributes extends Omit<HTMLAttributes<HTMLEmbedElement>, 'children'>, VoidElement {
@@ -1852,6 +1852,18 @@ declare global {
 
       'prop:name'?: string
       'prop:disabled'?: boolean
+    }
+
+    interface HTMLFigcaptionElementAttributes extends HTMLElementAttributes {
+    }
+
+    interface HTMLFigureElementAttributes extends HTMLElementAttributes {
+    }
+
+    interface HTMLFontElementAttributes extends HTMLAttributes<HTMLFontElement> {
+    }
+
+    interface HTMLFooterElementAttributes extends HTMLElementAttributes {
     }
 
     interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
@@ -1912,6 +1924,12 @@ declare global {
     interface HTMLHeadElementAttributes extends Omit<HTMLAttributes<HTMLHeadElement>, 'role'>, NoRolePermited {
     }
 
+    interface HTMLHeaderElementAttributes extends HTMLElementAttributes {
+    }
+
+    interface HTMLHGroupElementAttributes extends HTMLElementAttributes {
+    }
+
     interface HTMLHrElementAttributes extends Omit<HTMLAttributes<HTMLHRElement>, 'children'>, VoidElement {
       /**
        * Sets or retrieves how the object is aligned with adjacent text.
@@ -1945,6 +1963,9 @@ declare global {
       /** @deprecated */
       version?: string
       xmlns?: string
+    }
+
+    interface HTMLIElementAttributes extends HTMLElementAttributes {
     }
 
     interface HTMLIFrameElementAttributes extends HTMLAttributes<HTMLIFrameElement> {
@@ -2299,10 +2320,16 @@ declare global {
       'prop:type'?: string
     }
 
+    interface HTMLMainElementAttributes extends HTMLElementAttributes {
+    }
+
     interface HTMLMapElementAttributes extends Omit<HTMLAttributes<HTMLMapElement>, 'role'>, NoRolePermited {
       name?: string
 
       'prop:name'?: string
+    }
+
+    interface HTMLMarkElementAttributes extends HTMLElementAttributes {
     }
 
     interface HTMLMenuElementAttributes extends HTMLAttributes<HTMLMenuElement> {
@@ -2387,6 +2414,12 @@ declare global {
       'prop:value'?: number
     }
 
+    interface HTMLNavElementAttributes extends HTMLElementAttributes {
+    }
+
+    interface HTMLNoBrElementAttributes extends HTMLElementAttributes {
+    }
+
     interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
       cite?: string
 
@@ -2396,7 +2429,7 @@ declare global {
     interface HTMLBodyElementAttributes extends HTMLAttributes<HTMLBodyElement> {
     }
 
-    interface HTMLNoScriptElementAttributes extends Omit<HTMLAttributes<HTMLUnknownElement>, 'role'>, NoRolePermited {
+    interface HTMLNoScriptElementAttributes extends Omit<HTMLUnknownElementAttributes, 'role'>, NoRolePermited {
     }
 
     interface HTMLObjectElementAttributes extends HTMLAttributes<HTMLObjectElement> {
@@ -2527,6 +2560,9 @@ declare global {
       'prop:value'?: string
     }
 
+    interface HTMLPElementAttributes extends HTMLAttributes<HTMLParagraphElement> {
+    }
+
     interface HTMLParamElementAttributes extends Omit<HTMLAttributes<HTMLParamElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       /** @deprecated */
       name?: string
@@ -2550,6 +2586,12 @@ declare global {
 
       'prop:max'?: number
       'prop:value'?: number
+    }
+
+    interface HTMLPlainTextElementAttributes extends HTMLElementAttributes {
+    }
+
+    interface HTMLPreElementAttributes extends HTMLAttributes<HTMLPreElement> {
     }
 
     interface HTMLScriptElementAttributes extends Omit<HTMLAttributes<HTMLScriptElement>, 'role'>, NoRolePermited {
@@ -2660,6 +2702,8 @@ declare global {
       'prop:width'?: number
     }
 
+    interface HTMLSpanElementAttributes extends HTMLAttributes<HTMLSpanElement> {
+    }
     interface HTMLStyleElementAttributes extends Omit<HTMLAttributes<HTMLStyleElement>, 'role'>, NoRolePermited {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
@@ -2816,7 +2860,7 @@ declare global {
       'prop:wrap'?: 'hard' | 'soft' | 'off'
     }
 
-    interface HTMLTableDataCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
+    interface HTMLTdElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
       /**
        * A non-negative integer value that indicates for how many columns the cell extends. Its default value is `1`. Values higher than `1000` will be considered as incorrect and will be set to the default value (`1`)
        */
@@ -2887,7 +2931,7 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLTableHeaderCellElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
+    interface HTMLThElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
       abbr?: string
       /**
        * A non-negative integer value that indicates for how many columns the cell extends. Its default value is `1`. Values higher than `1000` will be considered as incorrect and will be set to the default value (`1`)
@@ -2953,6 +2997,12 @@ declare global {
       'prop:width'?: string
     }
 
+    interface HTMLTableSectionElementAttributes extends HTMLAttributes<HTMLTableSectionElement> {
+    }
+
+    interface HTMLTrElementAttributes extends HTMLAttributes<HTMLTableRowElement> {
+    }
+
     interface HTMLTimeElementAttributes extends HTMLAttributes<HTMLTimeElement> {
       /**
        * Indicates the time and/or date in the machine-readable format, allowing for better search engine results or custom features such as reminders
@@ -3006,7 +3056,7 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLWBRElementAttributes extends Omit<HTMLAttributes<HTMLElement>, 'children'>, VoidElement {
+    interface HTMLWBRElementAttributes extends Omit<HTMLElementAttributes, 'children'>, VoidElement {
     }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
@@ -3053,6 +3103,15 @@ declare global {
       'prop:trueSpeed'?: boolean
       'prop:vspace'?: number
       'prop:width'?: string
+    }
+
+    interface HTMLUlElementAttributes extends HTMLAttributes<HTMLUListElement> {
+    }
+
+    interface HTMLUnknownElementAttributes extends HTMLAttributes<HTMLUnknownElement> {
+    }
+
+    interface HTMLElementAttributes extends HTMLAttributes<HTMLElement> {
     }
 
     type HTMLWebViewElement = HTMLElement
@@ -3373,7 +3432,7 @@ declare global {
       /** @deprecated */
       big: HTMLBigElementAttributes
       /** @deprecated */
-      blink: HTMLBlankElementAttributes
+      blink: HTMLUnknownElementAttributes
       blockquote: HTMLQuoteElementAttributes
       body: HTMLBodyElementAttributes
       br: HTMLBrElementAttributes
@@ -3401,11 +3460,11 @@ declare global {
       em: HTMLEmElementAttributes
       embed: HTMLEmbedElementAttributes
       fieldset: HTMLFieldSetElementAttributes
-      figcaption: HTMLAttributes<HTMLElement>
-      figure: HTMLAttributes<HTMLElement>
+      figcaption: HTMLFigcaptionElementAttributes
+      figure: HTMLFigureElementAttributes
       /** @deprecated */
-      font: HTMLAttributes<HTMLFontElement>
-      footer: HTMLAttributes<HTMLElement>
+      font: HTMLFontElementAttributes
+      footer: HTMLFooterElementAttributes
       form: HTMLFormElementAttributes
       h1: HTMLHeadingElementAttributes
       h2: HTMLHeadingElementAttributes
@@ -3414,97 +3473,97 @@ declare global {
       h5: HTMLHeadingElementAttributes
       h6: HTMLHeadingElementAttributes
       head: HTMLHeadElementAttributes
-      header: HTMLAttributes<HTMLElement>
-      hgroup: HTMLAttributes<HTMLElement>
+      header: HTMLHeaderElementAttributes
+      hgroup: HTMLHGroupElementAttributes
       hr: HTMLHrElementAttributes
       html: HTMLHtmlElementAttributes
-      i: HTMLAttributes<HTMLElement>
+      i: HTMLIElementAttributes
       iframe: HTMLIFrameElementAttributes
       img: HTMLImageElementAttributes
       input: HTMLInputElementAttributes
       ins: HTMLModElementAttributes
-      kbd: HTMLAttributes<HTMLElement>
+      kbd: HTMLKbdElementAttributes
       /** @deprecated */
-      keygen: HTMLAttributes<HTMLUnknownElement>
+      keygen: HTMLUnknownElementAttributes
       label: HTMLLabelElementAttributes
       legend: HTMLLegendElementAttributes
       li: HTMLLIElementAttributes
       link: HTMLLinkElementAttributes
-      main: HTMLAttributes<HTMLElement>
+      main: HTMLMainElementAttributes
       map: HTMLMapElementAttributes
-      mark: HTMLAttributes<HTMLElement>
+      mark: HTMLMarkElementAttributes
       /** @deprecated */
-      marquee: HTMLAttributes<HTMLMarqueeElementAttributes>
+      marquee: HTMLMarqueeElementAttributes
       menu: HTMLMenuElementAttributes
-      menuitem: HTMLAttributes<HTMLUnknownElement>
+      menuitem: HTMLUnknownElementAttributes
       meta: HTMLMetaElementAttributes
       meter: HTMLMeterElementAttributes
-      nav: HTMLAttributes<HTMLElement>
+      nav: HTMLNavElementAttributes
       /** @deprecated */
-      nobr: HTMLAttributes<HTMLElement>
+      nobr: HTMLNoBrElementAttributes
       /** @deprecated */
-      noembed: HTMLAttributes<HTMLUnknownElement>
+      noembed: HTMLUnknownElementAttributes
       /** @deprecated */
-      noframes: HTMLAttributes<HTMLUnknownElement>
-      noindex: HTMLAttributes<HTMLElement>
+      noframes: HTMLUnknownElementAttributes
+      noindex: HTMLUnknownElementAttributes
       noscript: HTMLNoScriptElementAttributes
       object: HTMLObjectElementAttributes
       ol: HTMLOListElementAttributes
       optgroup: HTMLOptGroupElementAttributes
       option: HTMLOptionElementAttributes
       output: HTMLOutputElementAttributes
-      p: HTMLAttributes<HTMLParagraphElement>
+      p: HTMLPElementAttributes
       /** @deprecated */
       param: HTMLParamElementAttributes
       picture: HTMLPictureElementAttributes
       /** @deprecated */
-      plaintext: HTMLAttributes<HTMLElement>
-      pre: HTMLAttributes<HTMLPreElement>
+      plaintext: HTMLPlainTextElementAttributes
+      pre: HTMLPreElementAttributes
       progress: HTMLProgressElementAttributes
       q: HTMLQuoteElementAttributes
       /** @deprecated */
-      rb: HTMLAttributes<HTMLElement>
-      rp: HTMLAttributes<HTMLElement>
-      rt: HTMLAttributes<HTMLElement>
-      ruby: HTMLAttributes<HTMLElement>
-      s: HTMLAttributes<HTMLElement>
-      samp: HTMLAttributes<HTMLElement>
+      rb: HTMLElementAttributes
+      rp: HTMLElementAttributes
+      rt: HTMLElementAttributes
+      ruby: HTMLElementAttributes
+      s: HTMLElementAttributes
+      samp: HTMLElementAttributes
       script: HTMLScriptElementAttributes
-      search: HTMLAttributes<HTMLElement>
-      section: HTMLAttributes<HTMLElement>
+      search: HTMLElementAttributes
+      section: HTMLElementAttributes
       select: HTMLSelectElementAttributes
       slot: HTMLSlotElementAttributes
-      small: HTMLAttributes<HTMLElement>
+      small: HTMLElementAttributes
       source: HTMLSourceElementAttributes
-      span: HTMLAttributes<HTMLSpanElement>
+      span: HTMLSpanElementAttributes
       /** @deprecated */
-      strike: HTMLAttributes<HTMLElement>
-      strong: HTMLAttributes<HTMLElement>
+      strike: HTMLElementAttributes
+      strong: HTMLElementAttributes
       style: HTMLStyleElementAttributes
-      sub: HTMLAttributes<HTMLElement>
-      summary: HTMLAttributes<HTMLElement>
-      sup: HTMLAttributes<HTMLElement>
+      sub: HTMLElementAttributes
+      summary: HTMLElementAttributes
+      sup: HTMLElementAttributes
       table: HTMLTableElementAttributes
       template: HTMLTemplateElementAttributes
-      tbody: HTMLAttributes<HTMLTableSectionElement>
-      td: HTMLTableDataCellElementAttributes
+      tbody: HTMLTableSectionElementAttributes
+      td: HTMLTdElementAttributes
       textarea: HTMLTextAreaElementAttributes
-      tfoot: HTMLAttributes<HTMLTableSectionElement>
-      th: HTMLTableHeaderCellElementAttributes
-      thead: HTMLAttributes<HTMLTableSectionElement>
+      tfoot: HTMLTableSectionElementAttributes
+      th: HTMLThElementAttributes
+      thead: HTMLTableSectionElementAttributes
       time: HTMLTimeElementAttributes
       title: HTMLTitleElementAttributes
-      tr: HTMLAttributes<HTMLTableRowElement>
+      tr: HTMLTrElementAttributes
       track: HTMLTrackElementAttributes
       /** @deprecated */
-      tt: HTMLAttributes<HTMLElement>
-      u: HTMLAttributes<HTMLElement>
-      ul: HTMLAttributes<HTMLUListElement>
-      var: HTMLAttributes<HTMLElement>
+      tt: HTMLElementAttributes
+      u: HTMLElementAttributes
+      ul: HTMLUlElementAttributes
+      var: HTMLElementAttributes
       video: HTMLVideoElementAttributes
       wbr: HTMLWBRElementAttributes
       /** @deprecated */
-      xmp: HTMLAttributes<HTMLPreElement>
+      xmp: HTMLPreElementAttributes
       webview: HTMLWebViewElementAttributes
 
       // SVG
