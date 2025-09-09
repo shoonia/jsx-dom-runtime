@@ -1728,6 +1728,18 @@ declare global {
       'prop:width'?: number
     }
 
+    interface HTMLCaptionElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLCenterElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLCiteElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLCodeElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
     interface HTMLTableColElementAttributes extends HTMLAttributes<HTMLTableColElement> {
       span?: Numeric
       width?: number | string
@@ -1752,12 +1764,21 @@ declare global {
       'prop:value'?: string
     }
 
+    interface HTMLDataListElementAttributes extends HTMLAttributes<HTMLDataListElement> {
+    }
+
+    interface HTMLDdElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
       name?: string
       open?: boolean | ''
 
       'prop:name'?: string
       'prop:open'?: boolean
+    }
+
+    interface HTMLDfnElementAttributes extends HTMLAttributes<HTMLElement> {
     }
 
     interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
@@ -1790,6 +1811,21 @@ declare global {
       'prop:open'?: boolean
       'prop:closedBy'?: 'any' | 'closerequest' | 'none'
       'prop:returnValue'?: string
+    }
+
+    interface HTMLDirElementAttributes extends HTMLAttributes<HTMLDirectoryElement> {
+    }
+
+    interface HTMLDivElementAttributes extends HTMLAttributes<HTMLDivElement> {
+    }
+
+    interface HTMLDlElementAttributes extends HTMLAttributes<HTMLDListElement> {
+    }
+
+    interface HTMLDtElementAttributes extends HTMLAttributes<HTMLElement> {
+    }
+
+    interface HTMLEmElementAttributes extends HTMLAttributes<HTMLElement> {
     }
 
     interface HTMLEmbedElementAttributes extends HTMLAttributes<HTMLEmbedElement> {
@@ -3385,26 +3421,26 @@ declare global {
       br: HTMLBrElementAttributes
       button: HTMLButtonElementAttributes
       canvas: HTMLCanvasElementAttributes
-      caption: HTMLAttributes<HTMLElement>
+      caption: HTMLCaptionElementAttributes
       /** @deprecated */
-      center: HTMLAttributes<HTMLElement>
-      cite: HTMLAttributes<HTMLElement>
-      code: HTMLAttributes<HTMLElement>
+      center: HTMLCenterElementAttributes
+      cite: HTMLCiteElementAttributes
+      code: HTMLCodeElementAttributes
       col: HTMLTableColElementAttributes
       colgroup: HTMLTableColElementAttributes
       data: HTMLDataElementAttributes
-      datalist: HTMLAttributes<HTMLDataListElement>
-      dd: HTMLAttributes<HTMLElement>
+      datalist: HTMLDataListElementAttributes
+      dd: HTMLDdElementAttributes
       del: HTMLModElementAttributes
       details: HTMLDetailsElementAttributes
-      dfn: HTMLAttributes<HTMLElement>
+      dfn: HTMLDfnElementAttributes
       dialog: HTMLDialogElementAttributes
       /** @deprecated */
-      dir: HTMLAttributes<HTMLDirectoryElement>
-      div: HTMLAttributes<HTMLDivElement>
-      dl: HTMLAttributes<HTMLDListElement>
-      dt: HTMLAttributes<HTMLElement>
-      em: HTMLAttributes<HTMLElement>
+      dir: HTMLDirElementAttributes
+      div: HTMLDivElementAttributes
+      dl: HTMLDlElementAttributes
+      dt: HTMLDtElementAttributes
+      em: HTMLEmElementAttributes
       embed: HTMLEmbedElementAttributes
       fieldset: HTMLFieldSetElementAttributes
       figcaption: HTMLAttributes<HTMLElement>
