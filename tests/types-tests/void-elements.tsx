@@ -101,3 +101,9 @@
 <wbr children="test" />;
 
 // <keygen>;
+
+// No Void Elements
+
+<colgroup>
+  <col />
+</colgroup>;

@@ -46,3 +46,44 @@
 <img role="none" />;
 
 /** Invalid ARIA roles */
+
+// @ts-expect-error
+<base role="doc-abstract" />;
+// @ts-expect-error
+<col role="columnheader" />;
+// @ts-expect-error
+<colgroup role="table" />;
+// @ts-expect-error
+<dd role="definition" />;
+// @ts-expect-error
+<head role="banner" />;
+// @ts-expect-error
+<label role="textbox" />;
+// @ts-expect-error
+<legend role="radiogroup" />;
+// @ts-expect-error
+<link role="link" />;
+// @ts-expect-error
+<map role="img" />;
+// @ts-expect-error
+<meta role="presentation" />;
+// @ts-expect-error
+<noscript role="document" />;
+// @ts-expect-error
+<param role="listitem" />;
+// @ts-expect-error
+<picture role="img" />;
+// @ts-expect-error
+<script role="application" />;
+// @ts-expect-error
+<slot role="listbox" />;
+// @ts-expect-error
+<source role="presentation" />;
+// @ts-expect-error
+<style role="doc-appendix" />;
+// @ts-expect-error
+<template role="heading" />;
+// @ts-expect-error
+<title role="banner" />;
+// @ts-expect-error
+<track role="tablist" />;

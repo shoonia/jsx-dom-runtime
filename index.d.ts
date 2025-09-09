@@ -583,6 +583,12 @@ export interface AriaAttributes {
   'prop:role'?: AriaAttributes['role']
 }
 
+interface NoRolePermited {
+  /** No `role` permitted */
+  role?: never
+  'prop:role'?: never
+}
+
 declare global {
   namespace JSX {
     type Element = JSXElement
@@ -1620,7 +1626,7 @@ declare global {
     interface HTMLBElementAttributes extends HTMLAttributes<HTMLElement> {
     }
 
-    interface HTMLBaseElementAttributes extends Omit<HTMLAttributes<HTMLBaseElement>, 'children'>, VoidElement {
+    interface HTMLBaseElementAttributes extends Omit<HTMLAttributes<HTMLBaseElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       href?: string
       target?: Target
 
@@ -1731,7 +1737,19 @@ declare global {
     interface HTMLCodeElementAttributes extends HTMLAttributes<HTMLElement> {
     }
 
-    interface HTMLTableColElementAttributes extends Omit<HTMLAttributes<HTMLTableColElement>, 'children'>, VoidElement {
+    interface HTMLColElementAttributes extends Omit<HTMLAttributes<HTMLTableColElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
+      span?: Numeric
+      width?: number | string
+
+      'prop:align'?: string
+      'prop:ch'?: string
+      'prop:chOff'?: string
+      'prop:span'?: number
+      'prop:vAlign'?: string
+      'prop:width'?: string
+    }
+
+    interface HTMLColgroupElementAttributes extends Omit<HTMLAttributes<HTMLTableColElement>, 'role'>, NoRolePermited {
       span?: Numeric
       width?: number | string
 
@@ -1752,7 +1770,7 @@ declare global {
     interface HTMLDataListElementAttributes extends HTMLAttributes<HTMLDataListElement> {
     }
 
-    interface HTMLDdElementAttributes extends HTMLAttributes<HTMLElement> {
+    interface HTMLDdElementAttributes extends Omit<HTMLAttributes<HTMLElement>, 'role'>, NoRolePermited {
     }
 
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
@@ -1889,6 +1907,9 @@ declare global {
     interface HTMLHeadingElementAttributes extends HTMLAttributes<HTMLHeadingElement> {
       /** @deprecated */
       'prop:align'?: 'left' | 'right' | 'justify' | 'center';
+    }
+
+    interface HTMLHeadElementAttributes extends Omit<HTMLAttributes<HTMLHeadElement>, 'role'>, NoRolePermited {
     }
 
     interface HTMLHrElementAttributes extends Omit<HTMLAttributes<HTMLHRElement>, 'children'>, VoidElement {
@@ -2164,10 +2185,13 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLLabelElementAttributes extends HTMLAttributes<HTMLLabelElement> {
+    interface HTMLLabelElementAttributes extends Omit<HTMLAttributes<HTMLLabelElement>, 'role'>, NoRolePermited {
       for?: string
 
       'prop:htmlFor'?: string
+    }
+
+    interface HTMLLegendElementAttributes extends Omit<HTMLAttributes<HTMLLegendElement>, 'role'>, NoRolePermited {
     }
 
     interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
@@ -2177,7 +2201,7 @@ declare global {
       'prop:value'?: number
     }
 
-    interface HTMLLinkElementAttributes extends Omit<HTMLAttributes<HTMLLinkElement>, 'children'>, VoidElement {
+    interface HTMLLinkElementAttributes extends Omit<HTMLAttributes<HTMLLinkElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
@@ -2275,7 +2299,7 @@ declare global {
       'prop:type'?: string
     }
 
-    interface HTMLMapElementAttributes extends HTMLAttributes<HTMLMapElement> {
+    interface HTMLMapElementAttributes extends Omit<HTMLAttributes<HTMLMapElement>, 'role'>, NoRolePermited {
       name?: string
 
       'prop:name'?: string
@@ -2327,7 +2351,7 @@ declare global {
       'prop:volume'?: number
     }
 
-    interface HTMLMetaElementAttributes extends Omit<HTMLAttributes<HTMLMetaElement>, 'children'>, VoidElement {
+    interface HTMLMetaElementAttributes extends Omit<HTMLAttributes<HTMLMetaElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       charset?: string
       content?: string
       'http-equiv'?:
@@ -2370,6 +2394,9 @@ declare global {
     }
 
     interface HTMLBodyElementAttributes extends HTMLAttributes<HTMLBodyElement> {
+    }
+
+    interface HTMLNoScriptElementAttributes extends Omit<HTMLAttributes<HTMLUnknownElement>, 'role'>, NoRolePermited {
     }
 
     interface HTMLObjectElementAttributes extends HTMLAttributes<HTMLObjectElement> {
@@ -2500,7 +2527,7 @@ declare global {
       'prop:value'?: string
     }
 
-    interface HTMLParamElementAttributes extends Omit<HTMLAttributes<HTMLParamElement>, 'children'>, VoidElement {
+    interface HTMLParamElementAttributes extends Omit<HTMLAttributes<HTMLParamElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       /** @deprecated */
       name?: string
       /** @deprecated */
@@ -2514,6 +2541,9 @@ declare global {
       'prop:valueType'?: 'data' | 'ref' | 'object'
     }
 
+    interface HTMLPictureElementAttributes extends Omit<HTMLAttributes<HTMLPictureElement>, 'role'>, NoRolePermited {
+    }
+
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
       max?: Numeric
       value?: Numeric
@@ -2522,7 +2552,7 @@ declare global {
       'prop:value'?: number
     }
 
-    interface HTMLScriptElementAttributes extends HTMLAttributes<HTMLScriptElement> {
+    interface HTMLScriptElementAttributes extends Omit<HTMLAttributes<HTMLScriptElement>, 'role'>, NoRolePermited {
       async?: boolean | ''
       /**
        * Specifies that you want the browser to send an `Attribution-Reporting-Eligible` header along with the script resource request
@@ -2586,12 +2616,12 @@ declare global {
       'prop:value'?: string
     }
 
-    interface HTMLSlotElementAttributes extends HTMLAttributes<HTMLSlotElement> {
+    interface HTMLSlotElementAttributes extends Omit<HTMLAttributes<HTMLSlotElement>, 'role'>, NoRolePermited {
       name?: string
       'prop:name'?: string
     }
 
-    interface HTMLSourceElementAttributes extends Omit<HTMLAttributes<HTMLSourceElement>, 'children'>, VoidElement {
+    interface HTMLSourceElementAttributes extends Omit<HTMLAttributes<HTMLSourceElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       /**
        * Specifies the media query for the resource's intended media
        */
@@ -2630,7 +2660,7 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLStyleElementAttributes extends HTMLAttributes<HTMLStyleElement> {
+    interface HTMLStyleElementAttributes extends Omit<HTMLAttributes<HTMLStyleElement>, 'role'>, NoRolePermited {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
@@ -2711,7 +2741,7 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLTemplateElementAttributes extends HTMLAttributes<HTMLTemplateElement> {
+    interface HTMLTemplateElementAttributes extends Omit<HTMLAttributes<HTMLTemplateElement>, 'role'>, NoRolePermited {
       /**
        * Creates a shadow root for the parent element. It is a declarative version of the `Element.attachShadow()` method and accepts the same enumerated values.
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#shadowrootmode
@@ -2931,7 +2961,10 @@ declare global {
       'prop:dateTime'?: string
     }
 
-    interface HTMLTrackElementAttributes extends Omit<HTMLAttributes<HTMLTrackElement>, 'children'>, VoidElement {
+    interface HTMLTitleElementAttributes extends Omit<HTMLAttributes<HTMLTitleElement>, 'role'>, NoRolePermited {
+    }
+
+    interface HTMLTrackElementAttributes extends Omit<HTMLAttributes<HTMLTrackElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       default?: boolean | ''
       kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
       label?: string
@@ -3351,8 +3384,8 @@ declare global {
       center: HTMLCenterElementAttributes
       cite: HTMLCiteElementAttributes
       code: HTMLCodeElementAttributes
-      col: HTMLTableColElementAttributes
-      colgroup: HTMLTableColElementAttributes
+      col: HTMLColElementAttributes
+      colgroup: HTMLColgroupElementAttributes
       data: HTMLDataElementAttributes
       datalist: HTMLDataListElementAttributes
       dd: HTMLDdElementAttributes
@@ -3380,7 +3413,7 @@ declare global {
       h4: HTMLHeadingElementAttributes
       h5: HTMLHeadingElementAttributes
       h6: HTMLHeadingElementAttributes
-      head: HTMLAttributes<HTMLHeadElement>
+      head: HTMLHeadElementAttributes
       header: HTMLAttributes<HTMLElement>
       hgroup: HTMLAttributes<HTMLElement>
       hr: HTMLHrElementAttributes
@@ -3394,7 +3427,7 @@ declare global {
       /** @deprecated */
       keygen: HTMLAttributes<HTMLUnknownElement>
       label: HTMLLabelElementAttributes
-      legend: HTMLAttributes<HTMLLegendElement>
+      legend: HTMLLegendElementAttributes
       li: HTMLLIElementAttributes
       link: HTMLLinkElementAttributes
       main: HTMLAttributes<HTMLElement>
@@ -3414,7 +3447,7 @@ declare global {
       /** @deprecated */
       noframes: HTMLAttributes<HTMLUnknownElement>
       noindex: HTMLAttributes<HTMLElement>
-      noscript: HTMLAttributes<HTMLUnknownElement>
+      noscript: HTMLNoScriptElementAttributes
       object: HTMLObjectElementAttributes
       ol: HTMLOListElementAttributes
       optgroup: HTMLOptGroupElementAttributes
@@ -3423,7 +3456,7 @@ declare global {
       p: HTMLAttributes<HTMLParagraphElement>
       /** @deprecated */
       param: HTMLParamElementAttributes
-      picture: HTMLAttributes<HTMLPictureElement>
+      picture: HTMLPictureElementAttributes
       /** @deprecated */
       plaintext: HTMLAttributes<HTMLElement>
       pre: HTMLAttributes<HTMLPreElement>
@@ -3460,7 +3493,7 @@ declare global {
       th: HTMLTableHeaderCellElementAttributes
       thead: HTMLAttributes<HTMLTableSectionElement>
       time: HTMLTimeElementAttributes
-      title: HTMLAttributes<HTMLTitleElement>
+      title: HTMLTitleElementAttributes
       tr: HTMLAttributes<HTMLTableRowElement>
       track: HTMLTrackElementAttributes
       /** @deprecated */
