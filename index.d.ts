@@ -150,7 +150,7 @@ export type FormEnctype =
   | AnyString
 export type FormMethod = 'post' | 'get' | 'dialog' | AnyString
 export type DirName = 'rtl' | 'ltr'
-export type Role =
+export type AriaRole =
   | 'alert'
   | 'alertdialog'
   | 'application'
@@ -516,7 +516,7 @@ export interface AriaAttributes {
    * All the Digital Publishing WAI-ARIA 1.0 role attribute values
    * @see https://www.w3.org/TR/dpub-aria-1.0/#role_definitions
    */
-  role?: Role
+  role?: AriaRole
 
   'prop:ariaActivedescendant'?: string
   'prop:ariaAtomic'?: Booleanish
@@ -581,7 +581,7 @@ export interface AriaAttributes {
   'prop:ariaValuemin'?: Numeric
   'prop:ariaValuenow'?: Numeric
   'prop:ariaValuetext'?: string
-  'prop:role'?: Role
+  'prop:role'?: AriaRole
 }
 
 interface NoRolePermited {
