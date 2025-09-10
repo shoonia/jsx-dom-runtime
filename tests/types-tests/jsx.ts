@@ -35,3 +35,4 @@ export const children4 = jsx('div', {}, jsx('p', {}));
 export const children5 = jsx('div', {}, null);
 export const children6 = jsx('div', {}, undefined);
 export const children7 = jsx('div', {}, false);
+export const children8 = jsx('div', {}, 1n);

@@ -1765,6 +1765,10 @@ declare global {
     }
 
     interface HTMLCaptionElementAttributes extends HTMLElementAttributes {
+      /** Permitted ARIA roles */
+      role?: 'caption'
+
+      'prop:role'?: 'caption'
     }
 
     interface HTMLCenterElementAttributes extends HTMLElementAttributes {
@@ -1807,6 +1811,10 @@ declare global {
     }
 
     interface HTMLDataListElementAttributes extends HTMLAttributes<HTMLDataListElement> {
+      /** Permitted ARIA roles */
+      role?: 'listbox'
+
+      'prop:role'?: 'listbox'
     }
 
     interface HTMLDdElementAttributes extends Omit<HTMLElementAttributes, 'role'>, NoRolePermited {
@@ -1815,9 +1823,12 @@ declare global {
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
       name?: string
       open?: boolean | ''
+      /** Permitted ARIA roles */
+      role?: 'group'
 
       'prop:name'?: string
       'prop:open'?: boolean
+      'prop:role'?: 'group'
     }
 
     interface HTMLDfnElementAttributes extends HTMLElementAttributes {
@@ -1845,6 +1856,9 @@ declare global {
        * Specifies the types of user actions that can be used to close the `<dialog>` element
        */
       closedBy?: 'any' | 'closerequest' | 'none'
+      /** Permitted ARIA roles */
+      role?: 'dialog' | 'alertdialog'
+
       /** @deprecated use `on:close` instead */
       onclose?: GenericEventHandler<HTMLDialogElement>
       /** @deprecated use `on:cancel` instead */
@@ -1856,6 +1870,7 @@ declare global {
       'prop:open'?: boolean
       'prop:closedBy'?: 'any' | 'closerequest' | 'none'
       'prop:returnValue'?: string
+      'prop:role'?: 'dialog' | 'alertdialog'
     }
 
     interface HTMLDirElementAttributes extends HTMLAttributes<HTMLDirectoryElement> {
@@ -1865,9 +1880,17 @@ declare global {
     }
 
     interface HTMLDlElementAttributes extends HTMLAttributes<HTMLDListElement> {
+      /** Permitted ARIA roles */
+      role?: 'group' | 'list' | 'none' | 'presentation'
+
+      'prop:role'?: HTMLDlElementAttributes['role']
     }
 
     interface HTMLDtElementAttributes extends HTMLElementAttributes {
+      /** Permitted ARIA roles */
+      role?: 'listitem'
+
+      'prop:role'?: 'listitem'
     }
 
     interface HTMLEmElementAttributes extends HTMLElementAttributes {
@@ -1878,6 +1901,8 @@ declare global {
       src?: string
       type?: string
       width?: number | string
+      /** Permitted ARIA roles */
+      role?: 'application' | 'document' | 'img' | 'none' | 'presentation'
 
       'prop:align'?: string
       'prop:height'?: string
@@ -1885,15 +1910,19 @@ declare global {
       'prop:src'?: string
       'prop:type'?: string
       'prop:width'?: string
+      'prop:role'?: HTMLEmbedElementAttributes['role']
     }
 
     interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
       disabled?: boolean | ''
       form?: string
       name?: string
+      /** Permitted ARIA roles */
+      role?: 'group' | 'none' | 'presentation' | 'radiogroup'
 
       'prop:name'?: string
       'prop:disabled'?: boolean
+      'prop:role'?: HTMLFieldSetElementAttributes['role']
     }
 
     interface HTMLFigcaptionElementAttributes extends HTMLElementAttributes {
@@ -2920,7 +2949,7 @@ declare global {
        */
       rowSpan?: Numeric
       /**
-       * Do not use this attribute as it is obsolete in the latest standard. Alternatively, you can put the abbreviated description inside the cell and place the long content in the title attribute.
+       * Do not use this attribute as it is obsolete in the l atest standard. Alternatively, you can put the abbreviated description inside the cell and place the long content in the title attribute.
        * @deprecated
        */
       abbr?: string
