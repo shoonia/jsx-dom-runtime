@@ -46,6 +46,8 @@
 <img aria-label="description" role="slider" />;
 <img role="none" />;
 <button role="switch" />;
+<search role="search" />;
+<textarea role="textbox" />;
 
 /** Invalid ARIA roles */
 

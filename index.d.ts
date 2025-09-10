@@ -1926,6 +1926,10 @@ declare global {
     }
 
     interface HTMLFigcaptionElementAttributes extends HTMLElementAttributes {
+      /** Permitted ARIA roles */
+      role?: 'group' | 'none' | 'presentation'
+
+      'prop:role'?: 'group' | 'none' | 'presentation'
     }
 
     interface HTMLFigureElementAttributes extends HTMLElementAttributes {
@@ -1935,6 +1939,10 @@ declare global {
     }
 
     interface HTMLFooterElementAttributes extends HTMLElementAttributes {
+      /** Permitted ARIA roles */
+      role?: 'contentinfo' | 'group' | 'none' | 'presentation' | 'doc-footnote'
+
+      'prop:role'?: HTMLFooterElementAttributes['role']
     }
 
     interface HTMLFormElementAttributes extends HTMLAttributes<HTMLFormElement> {
@@ -1969,6 +1977,8 @@ declare global {
       | AnyString
       noValidate?: boolean | ''
       target?: Target
+      /** Permitted ARIA roles */
+      role?: 'form' | 'none' | 'presentation' | 'search'
       /** @deprecated  use `on:formData` instead */
       onformdata?: FormDataEventHandler<HTMLFormElement>
 
@@ -1985,17 +1995,26 @@ declare global {
       'prop:rel'?: HTMLFormElementAttributes['rel']
       'prop:relList'?: string
       'prop:target'?: Target
+      'prop:role'?: HTMLFormElementAttributes['role']
     }
 
     interface HTMLHeadingElementAttributes extends HTMLAttributes<HTMLHeadingElement> {
+      /** Permitted ARIA roles */
+      role?: 'heading' | 'none' | 'presentation' | 'tab' | 'doc-subtitle'
+
       /** @deprecated */
       'prop:align'?: 'left' | 'right' | 'justify' | 'center';
+      'prop:role'?: HTMLHeadingElementAttributes['role']
     }
 
     interface HTMLHeadElementAttributes extends Omit<HTMLAttributes<HTMLHeadElement>, 'role'>, NoRolePermited {
     }
 
     interface HTMLHeaderElementAttributes extends HTMLElementAttributes {
+      /** Permitted ARIA roles */
+      role?: 'banner' | 'group' | 'none' | 'presentation'
+
+      'prop:role'?: HTMLHeaderElementAttributes['role']
     }
 
     interface HTMLHGroupElementAttributes extends HTMLElementAttributes {
@@ -2021,12 +2040,15 @@ declare global {
        * @deprecated
        */
       width?: string
+      /** Permitted ARIA roles */
+      role?: 'separator' | 'none' | 'presentation' | 'doc-pagebreak'
 
       'prop:align'?: string
       'prop:color'?: Property.Color
       'prop:noShade'?: boolean
       'prop:size'?: string
       'prop:width'?: string
+      'prop:role'?: HTMLHrElementAttributes['role']
     }
 
     interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
@@ -2034,6 +2056,10 @@ declare global {
       /** @deprecated */
       version?: string
       xmlns?: string
+      /** Permitted ARIA roles */
+      role?: 'document'
+
+      'prop:role'?: 'document'
     }
 
     interface HTMLIElementAttributes extends HTMLElementAttributes {
@@ -2104,6 +2130,8 @@ declare global {
        * The width of the frame in CSS pixels. Default is 300
        */
       width?: number | string
+      /** Permitted ARIA roles */
+      role?: 'application' | 'document' | 'img' | 'none' | 'presentation'
 
       'prop:align'?: string
       'prop:allow'?: string
@@ -2121,6 +2149,7 @@ declare global {
       'prop:src'?: string
       'prop:srcdoc'?: string
       'prop:width'?: string
+      'prop:role'?: HTMLIFrameElementAttributes['role']
     }
 
     interface HTMLImageElementAttributes extends Omit<HTMLAttributes<HTMLImageElement>, 'children'>, VoidElement {
@@ -2140,6 +2169,7 @@ declare global {
       useMap?: string
       width?: number | string
       fetchPriority?: FetchPriority
+      // TODO: role attribute
 
       'prop:align'?: string
       'prop:alt'?: string
@@ -2233,6 +2263,7 @@ declare global {
       width?: number | string
       popovertarget?: string
       popovertargetaction?: 'hide' | 'show' | 'toggle'
+      // TODO: role attribute
 
       'prop:accept'?: string
       'prop:align'?: string
@@ -2392,6 +2423,10 @@ declare global {
     }
 
     interface HTMLMainElementAttributes extends HTMLElementAttributes {
+      /** Permitted ARIA roles */
+      role?: 'main'
+
+      'prop:role'?: 'main'
     }
 
     interface HTMLMapElementAttributes extends Omit<HTMLAttributes<HTMLMapElement>, 'role'>, NoRolePermited {
@@ -2404,8 +2439,23 @@ declare global {
     }
 
     interface HTMLMenuElementAttributes extends HTMLAttributes<HTMLMenuElement> {
+      /** Permitted ARIA roles */
+      role?:
+      | 'list'
+      | 'group'
+      | 'listbox'
+      | 'menu'
+      | 'menubar'
+      | 'none'
+      | 'presentation'
+      | 'radiogroup'
+      | 'tablist'
+      | 'toolbar'
+      | 'tree'
+
       /** @deprecated */
       'prop:compact'?: boolean
+      'prop:role'?: HTMLMenuElementAttributes['role']
     }
 
     interface HTMLMediaAttributes<T extends HTMLMediaElement> extends HTMLAttributes<T> {
@@ -2479,6 +2529,8 @@ declare global {
       min?: Numeric
       optimum?: Numeric
       value?: Numeric
+      /** Permitted ARIA roles */
+      role?: 'meter'
 
       'prop:high'?: number
       'prop:low'?: number
@@ -2486,9 +2538,20 @@ declare global {
       'prop:min'?: number
       'prop:optimum'?: number
       'prop:value'?: number
+      'prop:role'?: 'meter'
     }
 
     interface HTMLNavElementAttributes extends HTMLElementAttributes {
+      /** Permitted ARIA roles */
+      role?:
+      | 'navigation'
+      | 'menu'
+      | 'menubar'
+      | 'none'
+      | 'presentation'
+      | 'tablist'
+
+      'prop:role'?: HTMLNavElementAttributes['role']
     }
 
     interface HTMLNoBrElementAttributes extends HTMLElementAttributes {
@@ -2574,6 +2637,8 @@ declare global {
        * The width of the display resource, in CSS pixels. — (Absolute values only. NO percentages)
        */
       width?: number | string
+      /** Permitted ARIA roles */
+      role?: 'application' | 'document' | 'img'
 
       'prop:align'?: string
       'prop:archive'?: string
@@ -2591,25 +2656,43 @@ declare global {
       'prop:useMap'?: string
       'prop:vspace'?: number
       'prop:width'?: string
+      'prop:role'?: 'application' | 'document' | 'img'
     }
 
     interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
       reversed?: boolean | ''
       start?: Numeric
       type?: '1' | 'a' | 'A' | 'i' | 'I'
+      /** Permitted ARIA roles */
+      role?:
+      | 'list'
+      | 'group'
+      | 'listbox'
+      | 'menu'
+      | 'menubar'
+      | 'none'
+      | 'presentation'
+      | 'radiogroup'
+      | 'tablist'
+      | 'toolbar'
+      | 'tree'
 
       'prop:compact'?: boolean
       'prop:reversed'?: boolean
       'prop:start'?: number
       'prop:type'?: '1' | 'a' | 'A' | 'i' | 'I'
+      'prop:role'?: HTMLOListElementAttributes['role']
     }
 
     interface HTMLOptGroupElementAttributes extends HTMLAttributes<HTMLOptGroupElement> {
       disabled?: boolean | ''
       label?: string
+      /** Permitted ARIA roles */
+      role?: 'group'
 
       'prop:disabled'?: boolean
       'prop:label'?: string
+      'prop:role'?: 'group'
     }
 
     interface HTMLOptionElementAttributes extends HTMLAttributes<HTMLOptionElement> {
@@ -2617,6 +2700,8 @@ declare global {
       label?: string
       selected?: boolean | ''
       value?: number | string
+      /** Permitted ARIA roles */
+      role?: 'option'
 
       'prop:defaultSelected'?: boolean
       'prop:disabled'?: boolean
@@ -2624,6 +2709,7 @@ declare global {
       'prop:selected'?: boolean
       'prop:text'?: string
       'prop:value'?: string
+      'prop:role'?: 'option'
     }
 
     interface HTMLOutputElementAttributes extends HTMLAttributes<HTMLOutputElement> {
@@ -2661,9 +2747,12 @@ declare global {
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
       max?: Numeric
       value?: Numeric
+      /** Permitted ARIA roles */
+      role?: 'progressbar'
 
       'prop:max'?: number
       'prop:value'?: number
+      'prop:role'?: 'progressbar'
     }
 
     interface HTMLPlainTextElementAttributes extends HTMLElementAttributes {
@@ -2714,6 +2803,13 @@ declare global {
       'prop:type'?: 'importmap' | 'module' | 'speculationrules' | AnyString
     }
 
+    interface HTMLSearchElementAttributes extends HTMLElementAttributes {
+      /** Permitted ARIA roles */
+      role?: 'search' | 'form' | 'group' | 'none' | 'presentation' | 'region'
+
+      'prop:role'?: HTMLSearchElementAttributes['role']
+    }
+
     interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
       autocomplete?: boolean | AutoFill
       autofocus?: boolean | ''
@@ -2724,6 +2820,7 @@ declare global {
       required?: boolean | ''
       size?: Numeric
       value?: number | string
+      // TODO: role attribute
 
       'prop:autocomplete'?: AutoFill
       'prop:disabled'?: boolean
@@ -2782,6 +2879,7 @@ declare global {
 
     interface HTMLSpanElementAttributes extends HTMLAttributes<HTMLSpanElement> {
     }
+
     interface HTMLStyleElementAttributes extends Omit<HTMLAttributes<HTMLStyleElement>, 'role'>, NoRolePermited {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
@@ -2913,6 +3011,8 @@ declare global {
       rows?: Numeric
       value?: number | string
       wrap?: 'hard' | 'soft' | 'off'
+      /** Permitted ARIA roles */
+      role?: 'textbox'
 
       /** @deprecated use `on:selectionChange` instead */
       onselectionchange?: GenericEventHandler<HTMLTextAreaElement>
@@ -2936,6 +3036,7 @@ declare global {
       'prop:selectionStart'?: number
       'prop:value'?: string
       'prop:wrap'?: 'hard' | 'soft' | 'off'
+      'prop:role'?: 'textbox'
     }
 
     interface HTMLTdElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
@@ -3134,7 +3235,11 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLWBRElementAttributes extends Omit<HTMLElementAttributes, 'children'>, VoidElement {
+    interface HTMLWbrElementAttributes extends Omit<HTMLElementAttributes, 'children'>, VoidElement {
+      /** Permitted ARIA roles */
+      role?: 'none' | 'presentation'
+
+      'prop:role'?: 'none' | 'presentation'
     }
 
     interface HTMLWebViewElementAttributes extends HTMLAttributes<HTMLWebViewElement> {
@@ -3184,6 +3289,21 @@ declare global {
     }
 
     interface HTMLUlElementAttributes extends HTMLAttributes<HTMLUListElement> {
+      /** Permitted ARIA roles */
+      role?:
+      | 'list'
+      | 'group'
+      | 'listbox'
+      | 'menu'
+      | 'menubar'
+      | 'none'
+      | 'presentation'
+      | 'radiogroup'
+      | 'tablist'
+      | 'toolbar'
+      | 'tree'
+
+      'prop:role'?: HTMLUlElementAttributes['role']
     }
 
     interface HTMLUnknownElementAttributes extends HTMLAttributes<HTMLUnknownElement> {
@@ -3607,7 +3727,7 @@ declare global {
       s: HTMLElementAttributes
       samp: HTMLElementAttributes
       script: HTMLScriptElementAttributes
-      search: HTMLElementAttributes
+      search: HTMLSearchElementAttributes
       section: HTMLElementAttributes
       select: HTMLSelectElementAttributes
       slot: HTMLSlotElementAttributes
@@ -3639,7 +3759,7 @@ declare global {
       ul: HTMLUlElementAttributes
       var: HTMLElementAttributes
       video: HTMLVideoElementAttributes
-      wbr: HTMLWBRElementAttributes
+      wbr: HTMLWbrElementAttributes
       /** @deprecated */
       xmp: HTMLPreElementAttributes
       webview: HTMLWebViewElementAttributes
