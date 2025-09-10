@@ -73,7 +73,7 @@ export const mathmlTags = new Set([
   'menclose', 'mlabeledtr', 'maligngroup', 'malignmark',
 ]);
 
-export const htmlDOMAttributes = new Map(
+export const htmlDOMAttributes = new Map<unknown, string>(
   Object.entries({
     acceptCharset: 'accept-charset',
     className: 'class',

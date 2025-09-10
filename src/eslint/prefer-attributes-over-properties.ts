@@ -1,7 +1,7 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 
-import { isStandardNode } from './utils';
 import { htmlDOMAttributes } from '../collections';
+import { isStandardNode } from './utils';
 
 export const rule: TSESLint.RuleModule<string, []> = {
   defaultOptions: [],
@@ -19,7 +19,7 @@ export const rule: TSESLint.RuleModule<string, []> = {
   create(context) {
     return {
       JSXAttribute(node) {
-        const name = htmlDOMAttributes.get(node.name.name as any);
+        const name = htmlDOMAttributes.get(node.name.name);
 
         if (name && isStandardNode(node.parent)) {
           context.report({
