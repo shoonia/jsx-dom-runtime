@@ -7,6 +7,7 @@
 <div role="heading" />;
 <div role="banner" />;
 <audio role="application" />;
+<video role="application" />;
 <iframe role="document" />;
 <ul role="tree" />;
 <fieldset role="presentation" />;
@@ -14,6 +15,7 @@
 <ol role="listbox" />;
 <menu role="menubar" />;
 <hr role="none" />;
+<hr role="separator" />;
 <form role="search" />;
 <footer role="group" />;
 <a href="#" role="button" />;
@@ -39,11 +41,11 @@
 <embed role="application" />;
 <h1 role="heading" />;
 <header role="banner" />;
-<hr role="separator" />;
 <form role="form" />;
 <img alt="desc" role="img" />;
 <img aria-label="description" role="slider" />;
 <img role="none" />;
+<button role="switch" />;
 
 /** Invalid ARIA roles */
 

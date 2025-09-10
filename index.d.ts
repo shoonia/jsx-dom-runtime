@@ -32,10 +32,10 @@ export type PropsWithChildren<P> = P & { children?: JSXChild | JSXChild[] }
 
 interface VoidElement {
   /**
- * Void element cannot have any child nodes (i.e., nested elements or text nodes)
- * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
- * @deprecated
- */
+   * Void element cannot have any child nodes (i.e., nested elements or text nodes)
+   * @see https://developer.mozilla.org/en-US/docs/Glossary/Void_element
+   * @deprecated
+   */
   children?: never | void | null
 }
 
@@ -1562,9 +1562,30 @@ declare global {
     }
 
     interface HTMLArticleElementAttributes extends HTMLElementAttributes {
+      /** Permitted ARIA roles */
+      role?: 'article' | 'application' | 'document' | 'feed' | 'main' | 'none' | 'presentation' | 'region'
+
+      'prop:role'?: HTMLArticleElementAttributes['role']
     }
 
     interface HTMLAsideElementAttributes extends HTMLElementAttributes {
+      /** Permitted ARIA roles */
+      role?:
+      | 'complementary'
+      | 'feed'
+      | 'none'
+      | 'note'
+      | 'presentation'
+      | 'region'
+      | 'search'
+      | 'doc-dedication'
+      | 'doc-example'
+      | 'doc-footnote'
+      | 'doc-glossary'
+      | 'doc-pullquote'
+      | 'doc-tip'
+
+      'prop:role'?: HTMLAsideElementAttributes['role']
     }
 
     interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> {
@@ -1647,8 +1668,10 @@ declare global {
     interface HTMLBrElementAttributes extends Omit<HTMLAttributes<HTMLBRElement>, 'children'>, VoidElement {
       /** @deprecated */
       clear?: string
+      role?: 'presentation' | 'none'
 
       'prop:clear'?: string
+      'prop:role'?: 'presentation' | 'none'
     }
 
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
@@ -1685,6 +1708,23 @@ declare global {
        * Turns a <button> element into a command button, controlling the given interactive element; takes the ID of the element to control as its value. This is a more general version of `popovertarget`.
        */
       commandfor?: string
+      /** Permitted ARIA roles */
+      role?:
+      | 'button'
+      | 'checkbox'
+      | 'combobox'
+      | 'gridcell'
+      | 'link'
+      | 'menuitem'
+      | 'menuitemcheckbox'
+      | 'menuitemradio'
+      | 'option'
+      | 'radio'
+      | 'separator'
+      | 'slider'
+      | 'switch'
+      | 'tab'
+      | 'treeitem'
 
       'prop:command'?: CommandEventType
       'prop:commandForElement'?: globalThis.Element | null
@@ -1699,6 +1739,7 @@ declare global {
       'prop:value'?: string
       'prop:popoverTargetAction'?: 'hide' | 'show' | 'toggle'
       'prop:popoverTargetElement'?: globalThis.Element | null
+      'prop:role'?: HTMLButtonElementAttributes['role']
     }
 
     interface HTMLCanvasElementAttributes extends HTMLAttributes<HTMLCanvasElement> {
@@ -2358,6 +2399,8 @@ declare global {
       onencrypted?: MediaEncryptedEventHandler<T>
       /** @deprecated use `on:waitingForKey` instead */
       onwaitingforkey?: GenericEventHandler<T>
+      /** Permitted ARIA roles */
+      role?: 'application'
 
       'on:encrypted'?: MediaEncryptedEventListener<T>
       'on:waitingForKey'?: EventListener<T>
@@ -2377,6 +2420,7 @@ declare global {
       'prop:src'?: string
       'prop:srcObject'?: MediaProvider | null
       'prop:volume'?: number
+      'prop:role'?: 'application'
     }
 
     interface HTMLMetaElementAttributes extends Omit<HTMLAttributes<HTMLMetaElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
@@ -2419,6 +2463,10 @@ declare global {
     }
 
     interface HTMLNoBrElementAttributes extends HTMLElementAttributes {
+      /** Permitted ARIA roles */
+      role?: 'none' | 'presentation'
+
+      'prop:role'?: 'none' | 'presentation'
     }
 
     interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
