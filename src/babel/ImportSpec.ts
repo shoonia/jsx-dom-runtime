@@ -27,7 +27,8 @@ export class ImportSpec {
       });
     }
 
-    const local = $identifier('_' + importName);
+    const uid = this.#path.scope.generateUid(importName);
+    const local = $identifier(uid);
 
     this.#cache.set(importName, local);
     this.#specifiers.push({
