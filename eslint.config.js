@@ -1,5 +1,5 @@
+import { defineConfig } from '@eslint/config-helpers';
 import js from '@eslint/js';
-import { defineConfig } from 'eslint/config';
 import ts from 'typescript-eslint';
 import jsx from './eslint-plugin/index.cjs';
 
