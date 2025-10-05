@@ -213,18 +213,23 @@ export const jsxTransform: PluginObj = {
         const name = attrName.name.name;
         const directive = attrName.namespace.name;
 
-        if (directive === 'on') {
-          eventListener(openingElement, name, attrValue);
-          path.remove();
-        } else if (directive === 'attr') {
-          createDirectiveCallExp(openingElement, name, attrValue);
-          path.remove();
-        } else if (directive === 'prop') {
-          createDirectiveAssignExp(openingElement, name, attrValue);
-          path.remove();
-        } else if (isCustomElement) {
+        switch (directive) {
+          case 'on':
+            eventListener(openingElement, name, attrValue);
+            return path.remove();
+          case 'attr':
+            createDirectiveCallExp(openingElement, name, attrValue);
+            return path.remove();
+          case 'prop':
+            createDirectiveAssignExp(openingElement, name, attrValue);
+            return path.remove();
+        }
+
+        if (isCustomElement) {
           return;
-        } else if (directive === 'xlink' && name === 'href') {
+        }
+
+        if (directive === 'xlink' && name === 'href') {
           attribute.name = attrName.name;
         }
 
