@@ -1,6 +1,7 @@
 import type t from '@babel/types';
 import { isIdentifierName } from '@babel/helper-validator-identifier';
 
+import type { DirectiveFunc } from './util';
 import { $identifier, $jsxExpressionContainer, $jsxIdentifier, $objectProperty, $stringLiteral } from './builders';
 import { eventTypes } from './collections';
 
@@ -27,26 +28,22 @@ const getObjectProperties = (element: t.JSXOpeningElement): t.ObjectProperty[] =
   return properties;
 };
 
-export const eventListener = (
-  element: t.JSXOpeningElement,
-  key: t.JSXIdentifier,
-  value?: t.Node,
-): void => {
-  if (value?.type !== 'JSXExpressionContainer') {
+export const eventListener: DirectiveFunc = (element, attrName, attrValue) => {
+  if (attrValue?.type !== 'JSXExpressionContainer') {
     return;
   }
 
   const properties = getObjectProperties(element);
-  const name = key.name.toLowerCase();
+  const name = attrName.toLowerCase();
 
   properties.push(
     $objectProperty(
       eventTypes.has(name)
         ? $identifier(name)
-        : isIdentifierName(key.name)
-          ? $identifier(key.name)
-          : $stringLiteral(key.name),
-      value.expression as t.Expression,
+        : isIdentifierName(attrName)
+          ? $identifier(attrName)
+          : $stringLiteral(attrName),
+      attrValue.expression as t.Expression,
     ),
   );
 };

@@ -1,11 +1,10 @@
 import type { PluginObj, NodePath } from '@babel/core';
 import t from '@babel/types';
-import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { type TImportName, ImportSpec } from './ImportSpec';
 import { eventListener } from './events';
-import { createDirective, isRef } from './directives';
-import { buildProps, convertJSXAttrValue, convertJSXIdentifier, convertJSXNamespacedName } from './util';
+import { createDirectiveAssignExp, createDirectiveCallExp, isRef } from './directives';
+import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './util';
 import {
   $children,
   $identifier,
@@ -211,46 +210,21 @@ export const jsxTransform: PluginObj = {
       const attrName = attribute.name;
 
       if (attrName.type === 'JSXNamespacedName') {
+        const name = attrName.name.name;
         const directive = attrName.namespace.name;
 
         if (directive === 'on') {
-          eventListener(openingElement, attrName.name, attrValue);
+          eventListener(openingElement, name, attrValue);
           path.remove();
         } else if (directive === 'attr') {
-          createDirective(openingElement, {
-            type: 'CallExpression',
-            callee: {
-              type: 'MemberExpression',
-              object: $identifier('e'),
-              property: $identifier('setAttribute'),
-              computed: false,
-            },
-            arguments: [
-              $stringLiteral(attrName.name.name),
-              convertJSXAttrValue(attrValue)
-            ],
-          });
+          createDirectiveCallExp(openingElement, name, attrValue);
           path.remove();
         } else if (directive === 'prop') {
-          const isIdent = isIdentifierName(attrName.name.name);
-
-          createDirective(openingElement, {
-            type: 'AssignmentExpression',
-            operator: '=',
-            left: {
-              type: 'MemberExpression',
-              object: $identifier('e'),
-              property: isIdent
-                ? $identifier(attrName.name.name)
-                : $stringLiteral(attrName.name.name),
-              computed: !isIdent,
-            },
-            right: convertJSXAttrValue(attrValue)
-          });
+          createDirectiveAssignExp(openingElement, name, attrValue);
           path.remove();
         } else if (isCustomElement) {
           return;
-        } else if (directive === 'xlink' && attrName.name.name === 'href') {
+        } else if (directive === 'xlink' && name === 'href') {
           attribute.name = attrName.name;
         }
 
@@ -283,17 +257,7 @@ export const jsxTransform: PluginObj = {
           attribute.value = $stringLiteral(attrValue.expression.value.toString());
         }
       } else if (DOMEvents.has(aName)) {
-        createDirective(openingElement, {
-          type: 'AssignmentExpression',
-          operator: '=',
-          left: {
-            type: 'MemberExpression',
-            object: $identifier('e'),
-            property: $identifier(aName),
-            computed: false,
-          },
-          right: convertJSXAttrValue(attrValue)
-        });
+        createDirectiveAssignExp(openingElement, aName, attrValue);
         path.remove();
       } else if (isHTMLElement && attributes.has(aName)) {
         attrName.name = aName;
