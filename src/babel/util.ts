@@ -3,6 +3,12 @@ import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { $stringLiteral, $identifier, $objectProperty } from './builders';
 
+export type DirectiveFunc = (
+  element: t.JSXOpeningElement,
+  attrName: string,
+  attrValue?: t.JSXAttribute['value']
+) => void;
+
 export const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral =>
   $stringLiteral(node.namespace.name + ':' + node.name.name);
 

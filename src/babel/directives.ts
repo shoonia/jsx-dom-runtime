@@ -1,5 +1,8 @@
 import type t from '@babel/types';
-import { $expressionStatement, $identifier, $jsxExpressionContainer, $jsxIdentifier } from './builders';
+import { isIdentifierName } from '@babel/helper-validator-identifier';
+
+import { $expressionStatement, $identifier, $jsxExpressionContainer, $jsxIdentifier, $stringLiteral } from './builders';
+import { convertJSXAttrValue, type DirectiveFunc } from './util';
 
 interface RefProp extends t.ObjectProperty {
   key: t.Identifier & { name: 'ref' }
@@ -57,4 +60,37 @@ export const createDirective = (element: t.JSXOpeningElement, expression: t.Expr
   } else if (bodyType === 'BlockStatement') {
     funcRef.body.body.push($expressionStatement(expression));
   }
+};
+
+export const createDirectiveCallExp: DirectiveFunc = (openingElement, attrName, attrValue) =>
+  createDirective(openingElement, {
+    type: 'CallExpression',
+    callee: {
+      type: 'MemberExpression',
+      object: $identifier('e'),
+      property: $identifier('setAttribute'),
+      computed: false,
+    },
+    arguments: [
+      $stringLiteral(attrName),
+      convertJSXAttrValue(attrValue)
+    ],
+  });
+
+export const createDirectiveAssignExp: DirectiveFunc = (openingElement, attrName, attrValue) => {
+  const isIdent = isIdentifierName(attrName);
+
+  createDirective(openingElement, {
+    type: 'AssignmentExpression',
+    operator: '=',
+    left: {
+      type: 'MemberExpression',
+      object: $identifier('e'),
+      property: isIdent
+        ? $identifier(attrName)
+        : $stringLiteral(attrName),
+      computed: !isIdent,
+    },
+    right: convertJSXAttrValue(attrValue)
+  });
 };
