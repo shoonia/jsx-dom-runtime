@@ -39,6 +39,17 @@ interface VoidElement {
   children?: never | void | null
 }
 
+type ExcludeKey =
+  | 'children'
+  | `on${string}`
+  | `on:${string}`
+  | `prop:${string}`
+  | `attr:${string}`
+
+type ExcludeAttributes<A extends JSX.Attributes> = {
+  [K in keyof A as K extends ExcludeKey ? never : K]: A[K]
+}
+
 export declare function jsx<
   K extends keyof JSX.IntrinsicElements | AnyString,
   R = K extends keyof HTMLElementTagNameMap
@@ -52,9 +63,7 @@ export declare function jsx<
   : Element
 >(
   tag: K,
-  props: K extends keyof JSX.IntrinsicElements
-    ? JSX.IntrinsicElements[K]
-    : JSX.HTMLAttributes<R>,
+  props: ExcludeAttributes<K extends keyof JSX.IntrinsicElements ? JSX.IntrinsicElements[K] : JSX.HTMLAttributes<R>>,
   children?: JSXChild | JSXChild[]
 ): R
 
