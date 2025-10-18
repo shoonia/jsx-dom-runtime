@@ -19,10 +19,10 @@ export const math2 = jsx('math', { xmlns: 'some' });
 
 // Support event handlers $
 
-export const $1 = jsx('my-elem', { $: { onclick: () => {} } });
-export const $2 = jsx('div', { $: { onmouseover: () => {} } });
-export const $3 = jsx('svg', { $: { onpointerdown: () => {} } });
-export const $4 = jsx('math', { $: { oninput: () => {} } });
+export const $1 = jsx('my-elem', { $: { onclick: () => null } });
+export const $2 = jsx('div', { $: { onmouseover: () => null } });
+export const $3 = jsx('svg', { $: { onpointerdown: () => null } });
+export const $4 = jsx('math', { $: { oninput: () => null } });
 
 // XML
 
@@ -62,7 +62,6 @@ export const avoidChildren9 = jsx('svg', { children: 'text' });
 // @ts-expect-error
 export const avoidChildren10 = jsx('my-elem', { children: jsx('span', {}) });
 
-
 // Exclude attributes
 
 // @ts-expect-error
@@ -84,19 +83,19 @@ export const excludeAttr3 = jsx('svg', { 'attr:id': 'value' });
 export const excludeAttr4 = jsx('math', { 'attr:id': 'value' });
 
 // @ts-expect-error
-export const excludeOn1 = jsx('div', { 'on:click': () => {} });
+export const excludeOn1 = jsx('div', { 'on:click': () => null });
 // @ts-expect-error
-export const excludeOn2 = jsx('my-elem', { 'on:click': () => {} });
+export const excludeOn2 = jsx('my-elem', { 'on:click': () => null });
 // @ts-expect-error
-export const excludeOn3 = jsx('svg', { 'on:click': () => {} });
+export const excludeOn3 = jsx('svg', { 'on:click': () => null });
 // @ts-expect-error
-export const excludeOn4 = jsx('math', { 'on:click': () => {} });
+export const excludeOn4 = jsx('math', { 'on:click': () => null });
 
 // @ts-expect-error
-export const excludeHandler1 = jsx('div', { onclick: () => {} });
+export const excludeHandler1 = jsx('div', { onclick: () => null });
 // @ts-expect-error
-export const excludeHandler2 = jsx('my-elem', { onclick: () => {} });
+export const excludeHandler2 = jsx('my-elem', { onclick: () => null });
 // @ts-expect-error
-export const excludeHandler3 = jsx('svg', { onclick: () => {} });
+export const excludeHandler3 = jsx('svg', { onclick: () => null });
 // @ts-expect-error
-export const excludeHandler4 = jsx('math', { onclick: () => {} });
+export const excludeHandler4 = jsx('math', { onclick: () => null });
