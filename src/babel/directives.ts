@@ -46,9 +46,7 @@ export const createDirective = (element: t.JSXOpeningElement, expression: t.Expr
     return;
   }
 
-  const bodyType = funcRef.body.type;
-
-  if (bodyType === 'AssignmentExpression' || bodyType === 'CallExpression') {
+  if (funcRef.body.type !== 'BlockStatement') {
     funcRef.body = {
       type: 'BlockStatement',
       body: [
@@ -57,9 +55,10 @@ export const createDirective = (element: t.JSXOpeningElement, expression: t.Expr
       ],
       directives: [],
     };
-  } else if (bodyType === 'BlockStatement') {
-    funcRef.body.body.push($expressionStatement(expression));
+    return;
   }
+
+  funcRef.body.body.push($expressionStatement(expression));
 };
 
 export const createDirectiveCallExp: DirectiveFunc = (openingElement, attrName, attrValue) =>
