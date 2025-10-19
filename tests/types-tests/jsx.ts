@@ -30,7 +30,7 @@ export const xml = jsx('my:xml', { class: 'hello' });
 
 // children
 
-export const children0 = jsx('div', {  });
+export const children0 = jsx('div', {});
 export const children1 = jsx('div', {}, 'hello');
 export const children2 = jsx('div', {}, 1);
 export const children3 = jsx('div', {}, [1, 2]);

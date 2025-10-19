@@ -1,4 +1,4 @@
-import { useText, type FC, type FunctionComponent } from 'jsx-dom-runtime';
+import { useText } from 'jsx-dom-runtime';
 
 export const App: JSX.FC = () => <p />;
 export const Foo: JSX.FC = ({ children }) => <p>{children}</p>;
@@ -8,8 +8,6 @@ interface Props {
 }
 
 export const Bar1: JSX.FC<Props> = ({ text }) => <p>{text}</p>;
-export const Bar2: FC<Props> = ({ text }) => <p>{text}</p>;
-export const Bar3: FunctionComponent<Props> = ({ text }) => <p>{text}</p>;
 
 export const Node1: JSX.FC = () => useText()[0];
 export const Node2: JSX.FC = () => document.createTextNode('');

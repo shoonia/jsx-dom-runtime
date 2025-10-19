@@ -67,9 +67,6 @@ export declare function jsx<
   children?: JSXChild | JSXChild[]
 ): R
 
-export type FunctionComponent<P = {}> = JSX.FC<P>
-export { FunctionComponent as FC };
-
 export declare const extensions: Map<
   string,
   (node: Element, value: any, key: string) => void
