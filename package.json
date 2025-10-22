@@ -1,6 +1,6 @@
 {
   "name": "jsx-dom-runtime",
-  "version": "0.77.0",
+  "version": "0.78.0",
   "description": "A tiny 500-byte library for JSX syntax templates targeting the DOM. Supports HTML, SVG, and MathML tags",
   "type": "module",
   "main": "jsx-runtime/index.cjs",
@@ -60,7 +60,7 @@
     "rollup": "^4.52.5",
     "size-limit": "^11.2.0",
     "typescript": "^5.9.3",
-    "typescript-eslint": "^8.46.1"
+    "typescript-eslint": "^8.46.2"
   },
   "files": [
     "babel-preset",
