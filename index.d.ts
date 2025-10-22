@@ -46,7 +46,7 @@ type ExcludeKey =
   | `prop:${string}`
   | `attr:${string}`
 
-type OmitAtts<A extends JSX.Attributes, K extends keyof A> = {
+type OmitAttrs<A extends JSX.Attributes, K extends keyof A> = {
   [T in keyof A as T extends K ? never : T]: A[T]
 }
 
@@ -63,7 +63,7 @@ export declare function jsx<
   : Element
 >(
   tag: K,
-  props: OmitAtts<K extends keyof JSX.IntrinsicElements ? JSX.IntrinsicElements[K] : JSX.HTMLAttributes<R>, ExcludeKey>,
+  props: OmitAttrs<K extends keyof JSX.IntrinsicElements ? JSX.IntrinsicElements[K] : JSX.HTMLAttributes<R>, ExcludeKey>,
   children?: JSXChild | JSXChild[]
 ): R
 
@@ -1597,7 +1597,7 @@ declare global {
     interface HTMLAudioElementAttributes extends HTMLMediaAttributes<HTMLAudioElement> {
     }
 
-    interface HTMLAreaElementAttributes extends OmitAtts<HTMLAttributes<HTMLAreaElement>, 'children'>, VoidElement {
+    interface HTMLAreaElementAttributes extends OmitAttrs<HTMLAttributes<HTMLAreaElement>, 'children'>, VoidElement {
       /** @deprecated */
       accessKey?: string
       alt?: string
@@ -1654,7 +1654,7 @@ declare global {
     interface HTMLBElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLBaseElementAttributes extends OmitAtts<HTMLAttributes<HTMLBaseElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
+    interface HTMLBaseElementAttributes extends OmitAttrs<HTMLAttributes<HTMLBaseElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       href?: string
       target?: Target
 
@@ -1671,7 +1671,7 @@ declare global {
     interface HTMLBigElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLBrElementAttributes extends OmitAtts<HTMLAttributes<HTMLBRElement>, 'children'>, VoidElement {
+    interface HTMLBrElementAttributes extends OmitAttrs<HTMLAttributes<HTMLBRElement>, 'children'>, VoidElement {
       /** @deprecated */
       clear?: string
       role?: 'presentation' | 'none'
@@ -1786,7 +1786,7 @@ declare global {
     interface HTMLCodeElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLColElementAttributes extends OmitAtts<HTMLAttributes<HTMLTableColElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
+    interface HTMLColElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTableColElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       span?: Numeric
       width?: number | string
 
@@ -1798,7 +1798,7 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLColgroupElementAttributes extends OmitAtts<HTMLAttributes<HTMLTableColElement>, 'role'>, NoRolePermited {
+    interface HTMLColgroupElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTableColElement>, 'role'>, NoRolePermited {
       span?: Numeric
       width?: number | string
 
@@ -1823,7 +1823,7 @@ declare global {
       'prop:role'?: 'listbox'
     }
 
-    interface HTMLDdElementAttributes extends OmitAtts<HTMLElementAttributes, 'role'>, NoRolePermited {
+    interface HTMLDdElementAttributes extends OmitAttrs<HTMLElementAttributes, 'role'>, NoRolePermited {
     }
 
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
@@ -1902,7 +1902,7 @@ declare global {
     interface HTMLEmElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLEmbedElementAttributes extends OmitAtts<HTMLAttributes<HTMLEmbedElement>, 'children'>, VoidElement {
+    interface HTMLEmbedElementAttributes extends OmitAttrs<HTMLAttributes<HTMLEmbedElement>, 'children'>, VoidElement {
       height?: number | string
       src?: string
       type?: string
@@ -2013,7 +2013,7 @@ declare global {
       'prop:role'?: HTMLHeadingElementAttributes['role']
     }
 
-    interface HTMLHeadElementAttributes extends OmitAtts<HTMLAttributes<HTMLHeadElement>, 'role'>, NoRolePermited {
+    interface HTMLHeadElementAttributes extends OmitAttrs<HTMLAttributes<HTMLHeadElement>, 'role'>, NoRolePermited {
     }
 
     interface HTMLHeaderElementAttributes extends HTMLElementAttributes {
@@ -2026,7 +2026,7 @@ declare global {
     interface HTMLHGroupElementAttributes extends HTMLElementAttributes {
     }
 
-    interface HTMLHrElementAttributes extends OmitAtts<HTMLAttributes<HTMLHRElement>, 'children'>, VoidElement {
+    interface HTMLHrElementAttributes extends OmitAttrs<HTMLAttributes<HTMLHRElement>, 'children'>, VoidElement {
       /**
        * Sets or retrieves how the object is aligned with adjacent text.
        * @deprecated
@@ -2158,7 +2158,7 @@ declare global {
       'prop:role'?: HTMLIFrameElementAttributes['role']
     }
 
-    interface HTMLImageElementAttributes extends OmitAtts<HTMLAttributes<HTMLImageElement>, 'children'>, VoidElement {
+    interface HTMLImageElementAttributes extends OmitAttrs<HTMLAttributes<HTMLImageElement>, 'children'>, VoidElement {
       alt?: string
       crossOrigin?: CrossOrigin
       decoding?: 'async' | 'sync' | 'auto'
@@ -2199,7 +2199,7 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLInputElementAttributes extends OmitAtts<HTMLAttributes<HTMLInputElement>, 'children'>, VoidElement {
+    interface HTMLInputElementAttributes extends OmitAttrs<HTMLAttributes<HTMLInputElement>, 'children'>, VoidElement {
       accept?: string
       alt?: string
       autocomplete?: boolean | AutoFill
@@ -2314,13 +2314,13 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLLabelElementAttributes extends OmitAtts<HTMLAttributes<HTMLLabelElement>, 'role'>, NoRolePermited {
+    interface HTMLLabelElementAttributes extends OmitAttrs<HTMLAttributes<HTMLLabelElement>, 'role'>, NoRolePermited {
       for?: string
 
       'prop:htmlFor'?: string
     }
 
-    interface HTMLLegendElementAttributes extends OmitAtts<HTMLAttributes<HTMLLegendElement>, 'role'>, NoRolePermited {
+    interface HTMLLegendElementAttributes extends OmitAttrs<HTMLAttributes<HTMLLegendElement>, 'role'>, NoRolePermited {
     }
 
     interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
@@ -2330,7 +2330,7 @@ declare global {
       'prop:value'?: number
     }
 
-    interface HTMLLinkElementAttributes extends OmitAtts<HTMLAttributes<HTMLLinkElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
+    interface HTMLLinkElementAttributes extends OmitAttrs<HTMLAttributes<HTMLLinkElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
@@ -2435,7 +2435,7 @@ declare global {
       'prop:role'?: 'main'
     }
 
-    interface HTMLMapElementAttributes extends OmitAtts<HTMLAttributes<HTMLMapElement>, 'role'>, NoRolePermited {
+    interface HTMLMapElementAttributes extends OmitAttrs<HTMLAttributes<HTMLMapElement>, 'role'>, NoRolePermited {
       name?: string
 
       'prop:name'?: string
@@ -2508,7 +2508,7 @@ declare global {
       'prop:role'?: 'application'
     }
 
-    interface HTMLMetaElementAttributes extends OmitAtts<HTMLAttributes<HTMLMetaElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
+    interface HTMLMetaElementAttributes extends OmitAttrs<HTMLAttributes<HTMLMetaElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       charset?: string
       content?: string
       'http-equiv'?:
@@ -2576,7 +2576,7 @@ declare global {
     interface HTMLBodyElementAttributes extends HTMLAttributes<HTMLBodyElement> {
     }
 
-    interface HTMLNoScriptElementAttributes extends OmitAtts<HTMLUnknownElementAttributes, 'role'>, NoRolePermited {
+    interface HTMLNoScriptElementAttributes extends OmitAttrs<HTMLUnknownElementAttributes, 'role'>, NoRolePermited {
     }
 
     interface HTMLObjectElementAttributes extends HTMLAttributes<HTMLObjectElement> {
@@ -2733,7 +2733,7 @@ declare global {
     interface HTMLPElementAttributes extends HTMLAttributes<HTMLParagraphElement> {
     }
 
-    interface HTMLParamElementAttributes extends OmitAtts<HTMLAttributes<HTMLParamElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
+    interface HTMLParamElementAttributes extends OmitAttrs<HTMLAttributes<HTMLParamElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       /** @deprecated */
       name?: string
       /** @deprecated */
@@ -2747,7 +2747,7 @@ declare global {
       'prop:valueType'?: 'data' | 'ref' | 'object'
     }
 
-    interface HTMLPictureElementAttributes extends OmitAtts<HTMLAttributes<HTMLPictureElement>, 'role'>, NoRolePermited {
+    interface HTMLPictureElementAttributes extends OmitAttrs<HTMLAttributes<HTMLPictureElement>, 'role'>, NoRolePermited {
     }
 
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
@@ -2767,7 +2767,7 @@ declare global {
     interface HTMLPreElementAttributes extends HTMLAttributes<HTMLPreElement> {
     }
 
-    interface HTMLScriptElementAttributes extends OmitAtts<HTMLAttributes<HTMLScriptElement>, 'role'>, NoRolePermited {
+    interface HTMLScriptElementAttributes extends OmitAttrs<HTMLAttributes<HTMLScriptElement>, 'role'>, NoRolePermited {
       async?: boolean | ''
       /**
        * Specifies that you want the browser to send an `Attribution-Reporting-Eligible` header along with the script resource request
@@ -2839,12 +2839,12 @@ declare global {
       'prop:value'?: string
     }
 
-    interface HTMLSlotElementAttributes extends OmitAtts<HTMLAttributes<HTMLSlotElement>, 'role'>, NoRolePermited {
+    interface HTMLSlotElementAttributes extends OmitAttrs<HTMLAttributes<HTMLSlotElement>, 'role'>, NoRolePermited {
       name?: string
       'prop:name'?: string
     }
 
-    interface HTMLSourceElementAttributes extends OmitAtts<HTMLAttributes<HTMLSourceElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
+    interface HTMLSourceElementAttributes extends OmitAttrs<HTMLAttributes<HTMLSourceElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       /**
        * Specifies the media query for the resource's intended media
        */
@@ -2886,7 +2886,7 @@ declare global {
     interface HTMLSpanElementAttributes extends HTMLAttributes<HTMLSpanElement> {
     }
 
-    interface HTMLStyleElementAttributes extends OmitAtts<HTMLAttributes<HTMLStyleElement>, 'role'>, NoRolePermited {
+    interface HTMLStyleElementAttributes extends OmitAttrs<HTMLAttributes<HTMLStyleElement>, 'role'>, NoRolePermited {
       /**
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
@@ -2967,7 +2967,7 @@ declare global {
       'prop:width'?: string
     }
 
-    interface HTMLTemplateElementAttributes extends OmitAtts<HTMLAttributes<HTMLTemplateElement>, 'role'>, NoRolePermited {
+    interface HTMLTemplateElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTemplateElement>, 'role'>, NoRolePermited {
       /**
        * Creates a shadow root for the parent element. It is a declarative version of the `Element.attachShadow()` method and accepts the same enumerated values.
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#shadowrootmode
@@ -3196,10 +3196,10 @@ declare global {
       'prop:dateTime'?: string
     }
 
-    interface HTMLTitleElementAttributes extends OmitAtts<HTMLAttributes<HTMLTitleElement>, 'role'>, NoRolePermited {
+    interface HTMLTitleElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTitleElement>, 'role'>, NoRolePermited {
     }
 
-    interface HTMLTrackElementAttributes extends OmitAtts<HTMLAttributes<HTMLTrackElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
+    interface HTMLTrackElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTrackElement>, 'children' | 'role'>, VoidElement, NoRolePermited {
       default?: boolean | ''
       kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
       label?: string
@@ -3241,7 +3241,7 @@ declare global {
       'prop:width'?: number
     }
 
-    interface HTMLWbrElementAttributes extends OmitAtts<HTMLElementAttributes, 'children'>, VoidElement {
+    interface HTMLWbrElementAttributes extends OmitAttrs<HTMLElementAttributes, 'children'>, VoidElement {
       /** Permitted ARIA roles */
       role?: 'none' | 'presentation'
 
