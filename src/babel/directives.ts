@@ -38,7 +38,7 @@ const getRef = (element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
   return funcRef;
 };
 
-export const createDirective = (element: t.JSXOpeningElement, expression: t.Expression) => {
+const createDirective = (element: t.JSXOpeningElement, expression: t.Expression) => {
   const funcRef = getRef(element);
 
   if (funcRef.body === null) {
