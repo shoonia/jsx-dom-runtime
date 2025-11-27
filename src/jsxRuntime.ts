@@ -16,6 +16,12 @@ const setStyle = (node, value) => {
   }
 };
 
+const setDataset = (node, value) => {
+  for (let key in value) {
+    node.dataset[key] = value[key];
+  }
+};
+
 const appendChildren = (content, node) =>
   content !== false && content != null && (
     Array.isArray(content)
@@ -75,6 +81,7 @@ export {
   Fragment,
   appendChildren,
   setStyle,
+  setDataset,
   svgNs,
   mathmlNs,
 };

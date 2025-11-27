@@ -660,6 +660,7 @@ declare global {
        */
       spellcheck?: 'true' | 'false'
       style?: string | CSSProperties
+      dataset?: DOMStringMap
       tabIndex?: Numeric
       title?: string
       translate?: 'yes' | 'no'
