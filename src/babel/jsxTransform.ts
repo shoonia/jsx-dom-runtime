@@ -241,14 +241,13 @@ export const jsxTransform: PluginObj = {
         return;
       }
 
-      if (attrName.name === 'style') {
-        setUtility(openingElement, attrValue, importSpec.add('setStyle'));
-        return path.remove();
-      }
-
-      if (attrName.name === 'dataset') {
-        setUtility(openingElement, attrValue, importSpec.add('setDataset'));
-        return path.remove();
+      switch (attrName.name) {
+        case 'style':
+          setUtility(openingElement, attrValue, importSpec.add('setStyle'));
+          return path.remove();
+        case 'dataset':
+          setUtility(openingElement, attrValue, importSpec.add('setDataset'));
+          return path.remove();
       }
 
       if (isCustomElement) {

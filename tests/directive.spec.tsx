@@ -14,8 +14,15 @@ describe('directives', () => {
   });
 
   it('should correctly transform event handlers with `prop:* & attr:*` directives', async () => {
-    expect('<input type="text" attr:hello="world" prop:foo={foo} prop:bar={bar} oninvalid={fn2} onblur={fn3} />').toBeTransform(
+    await expect('<input type="text" attr:hello="world" prop:foo={foo} prop:bar={bar} oninvalid={fn2} onblur={fn3} />').toBeTransform(
       jsxImport`_jsx("input",{ref:e=>{e.setAttribute("hello","world");e.foo=foo;e.bar=bar;e.oninvalid=fn2;e.onblur=fn3},type:"text"});`
+    );
+  });
+
+  it('should render using `attr:*` and `prop:*` directives with dataset & style', async () => {
+    await expect('<p attr:test="qa" prop:_data={100} dataset={{ id: "123" }} style={{ color: "red" }} />')
+    .toBeTransform(
+      'import{setDataset as _setDataset,setStyle as _setStyle,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("p",{ref:e=>{e.setAttribute("test","qa");e._data=100;_setDataset(e,{id:"123"});_setStyle(e,{color:"red"})}});'
     );
   });
 
