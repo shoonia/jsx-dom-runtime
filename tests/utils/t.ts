@@ -23,3 +23,6 @@ export const t = async (source: TTemplate) => {
 
 export const jsxImport = (template: TTemplate): string =>
   `import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;
+
+export const styleImport = (template: TTemplate): string =>
+  `import{setStyle as _setStyle,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;

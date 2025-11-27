@@ -10,6 +10,7 @@ interface RefProp extends t.ObjectProperty {
 }
 
 const cache = new WeakMap<t.JSXOpeningElement, t.ArrowFunctionExpression>();
+const e = Object.seal($identifier('e'));
 
 export const isRef = (i: t.ObjectMethod | t.ObjectProperty | t.SpreadElement): i is RefProp =>
   i.type === 'ObjectProperty' && i.key.type === 'Identifier' && i.key.name === 'ref';
@@ -21,7 +22,7 @@ const getRef = (element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
 
   const funcRef: t.ArrowFunctionExpression = {
     type: 'ArrowFunctionExpression',
-    params: [$identifier('e')],
+    params: [e],
     body: null,
     async: false,
     expression: false,
@@ -66,7 +67,7 @@ export const createDirectiveCallExp: DirectiveFunc = (openingElement, attrName, 
     type: 'CallExpression',
     callee: {
       type: 'MemberExpression',
-      object: $identifier('e'),
+      object: e,
       property: $identifier('setAttribute'),
       computed: false,
     },
@@ -84,7 +85,7 @@ export const createDirectiveAssignExp: DirectiveFunc = (openingElement, attrName
     operator: '=',
     left: {
       type: 'MemberExpression',
-      object: $identifier('e'),
+      object: e,
       property: isIdent
         ? $identifier(attrName)
         : $stringLiteral(attrName),
@@ -93,3 +94,13 @@ export const createDirectiveAssignExp: DirectiveFunc = (openingElement, attrName
     right: convertJSXAttrValue(attrValue)
   });
 };
+
+export const setUtility = (openingElement: t.JSXOpeningElement, attrValue: t.JSXAttribute['value'], callee: t.Identifier) =>
+  createDirective(openingElement, {
+    type: 'CallExpression',
+    callee,
+    arguments: [
+      e,
+      convertJSXAttrValue(attrValue)
+    ],
+  });

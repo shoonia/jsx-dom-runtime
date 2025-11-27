@@ -3,7 +3,12 @@ import t from '@babel/types';
 
 import { type TImportName, ImportSpec } from './ImportSpec';
 import { eventListener } from './events';
-import { createDirectiveAssignExp, createDirectiveCallExp, isRef } from './directives';
+import {
+  createDirectiveAssignExp,
+  createDirectiveCallExp,
+  setUtility,
+  isRef
+} from './directives';
 import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './util';
 import {
   $children,
@@ -234,6 +239,11 @@ export const jsxTransform: PluginObj = {
         }
 
         return;
+      }
+
+      if (attrName.name === 'style') {
+        setUtility(openingElement, attrValue, importSpec.add('setStyle'));
+        return path.remove();
       }
 
       if (isCustomElement) {

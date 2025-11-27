@@ -2,27 +2,19 @@
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
-const extensions = new Map([
-  ['style', (node, value, key) => {
-    if (typeof value == 'string') {
-      node.setAttribute(key, value);
-    } else {
-      // reuse `key` variable
-      for (key in value) {
-        if (key.startsWith('-')) {
-          node.style.setProperty(key, value[key]);
-        } else {
-          node.style[key] = value[key];
-        }
+const setStyle = (node, value) => {
+  if (typeof value == 'string') {
+    node.style.cssText = value;
+  } else {
+    for (let key in value) {
+      if (key.startsWith('-')) {
+        node.style.setProperty(key, value[key]);
+      } else {
+        node.style[key] = value[key];
       }
     }
-  }],
-  ['$', (node, value, key) => {
-    for (key in value) {
-      node.addEventListener(key, value[key]);
-    }
-  }],
-]);
+  }
+};
 
 const appendChildren = (content, node) =>
   content !== false && content != null && (
@@ -54,8 +46,10 @@ const jsx = (tag, props, children?: any) => {
     if (key != '_' && key != 'ref') {
       value = props[key];
 
-      if (extensions.has(key)) {
-        extensions.get(key)(node, value, key);
+      if (key == '$') {
+        for (key in value) {
+          node.addEventListener(key, value[key]);
+        }
       } else if (value != null) {
         if (typeof value != 'boolean' || key.startsWith('-', 4)) {
           node.setAttribute(key, value);
@@ -80,7 +74,7 @@ export {
   jsx,
   Fragment,
   appendChildren,
-  extensions,
+  setStyle,
   svgNs,
   mathmlNs,
 };
