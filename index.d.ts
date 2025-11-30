@@ -1760,6 +1760,11 @@ declare global {
        * The width of the coordinate space in CSS pixels. Defaults to 300
        */
       width?: number | string
+
+      /** @deprecated use `on:contextLost` instead */
+      oncontextlost?: GenericEventHandler<HTMLCanvasElement>
+      /** @deprecated use `on:contextRestored` instead */
+      oncontextrestored?: GenericEventHandler<HTMLCanvasElement>
       /**
        * Lets the canvas know whether translucency will be a factor. If the canvas knows there's no translucency, painting performance can be optimized. This is only supported by Mozilla-based browsers; use the standardized `canvas.getContext('2d', { alpha: false })` instead
        * @deprecated
@@ -1768,6 +1773,8 @@ declare global {
       'on:webGLContextLost'?: WebGLContextEventListener<HTMLCanvasElement>
       'on:webGLContextRestored'?: WebGLContextEventListener<HTMLCanvasElement>
       'on:webGLContextCreationError'?: WebGLContextEventListener<HTMLCanvasElement>
+      'on:contextLost'?: EventListener<HTMLCanvasElement>
+      'on:contextRestored'?: EventListener<HTMLCanvasElement>
 
       'prop:height'?: number
       'prop:width'?: number

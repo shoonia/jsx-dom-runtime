@@ -62,6 +62,8 @@ const events = [
   'contentvisibilityautostatechange',
   // CommandEvent
   'command',
+  // HTMLCanvasElement
+  'contextlost', 'contextrestored',
 ];
 
 export const DOMEvents = new Set(events.map((e) => 'on' + e));
