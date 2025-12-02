@@ -42,6 +42,8 @@ const events = [
   'gotpointercapture', 'lostpointercapture',
   // UIEvent
   'scroll', 'scrollend',
+  // SnapEvent
+  'scrollsnapchange', 'scrollsnapchanging',
   // WheelEvent
   'wheel',
   // AnimationEvent

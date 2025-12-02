@@ -93,6 +93,14 @@ interface CommandEvent extends Event {
   readonly command: CommandEventType;
 }
 
+/** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent) */
+interface SnapEvent extends Event {
+  /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent/snapTargetBlock) */
+	readonly snapTargetBlock: Element | null;
+  /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent/snapTargetInline) */
+	readonly snapTargetInline: Element | null;
+}
+
 interface CurrentTarget<T> {
   readonly currentTarget: EventTarget & T
 }
@@ -126,6 +134,7 @@ export type WebGLContextEventHandler<T = Element> = EventHandlerFunction<WebGLCo
 export type WheelEventHandler<T = Element> = EventHandlerFunction<WheelEvent, T>
 export type ContentVisibilityAutoStateChangeEventHandler<T = Element> = EventHandlerFunction<ContentVisibilityAutoStateChangeEvent, T>
 export type CommandEventHandler<T = Element> = EventHandlerFunction<CommandEvent, T>
+export type SnapEventHandler<T = Element> = EventHandlerFunction<SnapEvent, T>
 
 export interface CSSProperties extends Properties<number | string> {
   cssText?: string | null
@@ -628,6 +637,7 @@ declare global {
     type WheelEventListener<T = globalThis.Element> = EventHandler<WheelEvent, T>
     type CommandEventListener<T = globalThis.Element> = EventHandler<CommandEvent, T>
     type ContentVisibilityAutoStateChangeEventListener<T = globalThis.Element> = EventHandler<ContentVisibilityAutoStateChangeEvent, T>
+    type SnapEventListener<T = globalThis.Element> = EventHandler<SnapEvent, T>
 
     interface Attributes {
       accessKey?: string
@@ -864,6 +874,9 @@ declare global {
       // UIEvent
       'on:scroll'?: UIEventListener<T>
       'on:scrollEnd'?: UIEventListener<T>
+      // SnapEvent
+      'on:scrollSnapChange'?: SnapEventListener<T>
+      'on:scrollSnapChanging'?: SnapEventListener<T>
       // WheelEvent
       'on:wheel'?: WheelEventListener<T>
       // AnimationEvent
@@ -1064,6 +1077,11 @@ declare global {
       onscroll?: UIEventHandler<T>
       /** @deprecated use `on:scrollEnd` instead */
       onscrollend?: UIEventHandler<T>
+      // SnapEvent
+      /** @deprecated use `on:scrollSnapChange` instead */
+      onscrollsnapchange?: SnapEventHandler<T>
+      /** @deprecated use `on:scrollSnapChanging` instead */
+      onscrollsnapchanging?: SnapEventHandler<T>
       // WheelEvent
       /** @deprecated use `on:wheel` instead */
       onwheel?: WheelEventHandler<T>
