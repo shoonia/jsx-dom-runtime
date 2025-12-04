@@ -1,7 +1,7 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 
-import { htmlDOMAttributes } from '../collections';
-import { isStandardNode } from './utils';
+import { htmlDOMAttributes, svgDOMAttributes } from '../collections';
+import { isStandardNode, isSvgNode } from './utils';
 
 export const rule: TSESLint.RuleModule<string, []> = {
   defaultOptions: [],
@@ -19,13 +19,29 @@ export const rule: TSESLint.RuleModule<string, []> = {
   create(context) {
     return {
       JSXAttribute(node) {
-        const name = htmlDOMAttributes.get(node.name.name);
+        const name = node.name.name;
 
-        if (name && isStandardNode(node.parent)) {
-          context.report({
+        if (typeof name !== 'string') {
+          return;
+        }
+
+        const attrName = htmlDOMAttributes.get(name);
+
+        if (attrName && isStandardNode(node.parent)) {
+         return context.report({
             node: node.name,
             messageId: 'preferAttribute',
-            fix: fixer => fixer.replaceText(node.name, name),
+            fix: fixer => fixer.replaceText(node.name, attrName),
+          });
+        }
+
+        const svgAttrName = svgDOMAttributes.get(name);
+
+        if (svgAttrName && isSvgNode(node.parent)) {
+          return context.report({
+            node: node.name,
+            messageId: 'preferAttribute',
+            fix: fixer => fixer.replaceText(node.name, svgAttrName),
           });
         }
       }

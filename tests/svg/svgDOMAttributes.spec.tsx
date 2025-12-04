@@ -1,3 +1,4 @@
+/* eslint-disable jsx-dom-runtime/prefer-attributes-over-properties */
 describe('svgDOMAttributes', () => {
   it('should transform SVGDOM propertis to Attributes', () => {
     expect(
