@@ -10,12 +10,10 @@ export const isJSXIdentifier = (node: TSESTree.Node): node is TSESTree.JSXIdenti
   node.type === 'JSXIdentifier';
 
 export const isStandardNode = (node: TSESTree.JSXOpeningElement): boolean =>
-  node.type === 'JSXOpeningElement' &&
   isJSXIdentifier(node.name) &&
   isStandardTag(node.name.name);
 
 export const isSvgNode = (node: TSESTree.JSXOpeningElement): boolean =>
-  node.type === 'JSXOpeningElement' &&
   isJSXIdentifier(node.name) &&
   (svgTags.has(node.name.name) || node.name.name === 'a');
 
