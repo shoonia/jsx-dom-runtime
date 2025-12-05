@@ -1,3 +1,5 @@
+import { svgImport } from '../utils/t';
+
 describe('<svg/> support', () => {
   it('should render SVG', () => {
     document.body.append(
@@ -32,7 +34,7 @@ describe('<svg/> support', () => {
       <image href="image.png" height="200" width={200} />
     </svg>`
     ).toBeTransform(
-      'import{svgNs as _svgNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("svg",{width:"200",height:"200",_:_svgNs},/*#__PURE__*/_jsx("image",{href:"image.png",height:"200",width:200,_:_svgNs}));',
+      svgImport`_jsx("svg",{width:"200",height:"200",_:_svgNs},/*#__PURE__*/_jsx("image",{href:"image.png",height:"200",width:200,_:_svgNs}));`,
     );
   });
 });
