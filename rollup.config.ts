@@ -4,7 +4,7 @@ import { babel } from '@rollup/plugin-babel';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import pkg from './package.json' with { type: 'json' };
 
-const emptyDir = async (path) => {
+const emptyDir = async (path: string) => {
   if (existsSync(path)) await rm(path, { recursive: true });
   await mkdir(path);
 };
