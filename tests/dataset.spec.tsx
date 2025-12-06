@@ -17,9 +17,9 @@ describe('dataset property', () => {
     expect(div).toHaveAttribute('data-obj', '[object Object]');
     expect(div.dataset.num).toBe('42');
     expect(div.dataset.flag).toBe('true');
-    expect(div.dataset.nullish).toBe('null');
-    expect(div.dataset.undef).toBe('undefined');
+    expect(div.dataset.nullish).toBeUndefined();
+    expect(div.dataset.undef).toBeUndefined();
     expect(div.dataset.obj).toBe('[object Object]');
-    expect(div).toHaveOuterHTML('<div data-num="42" data-flag="true" data-nullish="null" data-undef="undefined" data-obj="[object Object]"></div>');
+    expect(div).toHaveOuterHTML('<div data-num="42" data-flag="true" data-obj="[object Object]"></div>');
   });
 });

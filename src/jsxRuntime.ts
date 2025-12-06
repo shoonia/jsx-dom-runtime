@@ -18,7 +18,9 @@ const setStyle = (node, value) => {
 
 const setDataset = (node, value) => {
   for (let key in value) {
-    node.dataset[key] = value[key];
+    if (value[key] != null) {
+      node.dataset[key] = value[key];
+    }
   }
 };
 
