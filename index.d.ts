@@ -45,6 +45,9 @@ interface VoidElement {
 
 type ExcludeKey =
   | 'children'
+  | 'dataset'
+  | 'style'
+  | 'attributes'
   | `on${string}`
   | `on:${string}`
   | `prop:${string}`

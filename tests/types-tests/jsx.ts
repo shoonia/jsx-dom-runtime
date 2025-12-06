@@ -99,3 +99,10 @@ export const excludeHandler2 = jsx('my-elem', { onclick: () => null });
 export const excludeHandler3 = jsx('svg', { onclick: () => null });
 // @ts-expect-error
 export const excludeHandler4 = jsx('math', { onclick: () => null });
+
+// @ts-expect-error
+export const attr1 = jsx('div', { style: { color: 'red' } });
+// @ts-expect-error
+export const attr2 = jsx('div', { attributes: document.createAttribute('id') });
+// @ts-expect-error
+export const attr3 = jsx('div', { dataset: { test: 'value' } });
