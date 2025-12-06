@@ -6,7 +6,7 @@ import preset from '../../babel-preset/index.cjs';
 type TTemplate = string | TemplateStringsArray;
 
 const getSource = (source: TTemplate): string =>
-   typeof source === 'string' ? source : source[0];
+  typeof source === 'string' ? source : source[0];
 
 export const t = async (source: TTemplate) => {
   const result = await transformAsync(getSource(source), {
@@ -29,3 +29,9 @@ export const styleImport = (template: TTemplate): string =>
 
 export const svgImport = (template: TTemplate): string =>
   `import{svgNs as _svgNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;
+
+export const attrImport = (template: TTemplate): string =>
+  `import{setAttributes as _setAttributes,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;
+
+export const dataImport = (template: TTemplate): string =>
+  `import{setDataset as _setDataset,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;

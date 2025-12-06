@@ -9,7 +9,8 @@ export type TImportName =
   | 'svgNs'
   | 'mathmlNs'
   | 'setStyle'
-  | 'setDataset';
+  | 'setDataset'
+  | 'setAttributes';
 
 export class ImportSpec {
   readonly #path: NodePath<t.Program>;

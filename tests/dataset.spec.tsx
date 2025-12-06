@@ -1,3 +1,5 @@
+import { dataImport } from './utils/t';
+
 describe('dataset property', () => {
   it('should set dataset attributes', () => {
     const div = <div dataset={{ test: 'value', id: '123' }} /> as HTMLDivElement;
@@ -21,5 +23,11 @@ describe('dataset property', () => {
     expect(div.dataset.undef).toBeUndefined();
     expect(div.dataset.obj).toBe('[object Object]');
     expect(div).toHaveOuterHTML('<div data-num="42" data-flag="true" data-obj="[object Object]"></div>');
+  });
+
+   it('should transform dataset correctly', async () => {
+    await expect('<div dataset={{ test: true }} />').toBeTransform(
+      dataImport`_jsx("div",{ref:e=>_setDataset(e,{test:true})});`
+    );
   });
 });

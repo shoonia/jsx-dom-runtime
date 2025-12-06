@@ -253,6 +253,9 @@ export const jsxTransform: PluginObj = {
         case 'dataset':
           setUtility(openingElement, attrValue, importSpec.add('setDataset'));
           return path.remove();
+        case 'attributes':
+          setUtility(openingElement, attrValue, importSpec.add('setAttributes'));
+          return path.remove();
       }
 
       if (isCustomElement) {

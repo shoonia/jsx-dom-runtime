@@ -24,6 +24,9 @@ const setDataset = (node, value) => {
   }
 };
 
+const setAttributes = (node, value) =>
+  (Array.isArray(value) ? value : [value]).forEach(node.setAttributeNode, node);
+
 const appendChildren = (content, node) =>
   content !== false && content != null && (
     Array.isArray(content)
@@ -84,6 +87,7 @@ export {
   appendChildren,
   setStyle,
   setDataset,
+  setAttributes,
   svgNs,
   mathmlNs,
 };

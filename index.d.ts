@@ -671,6 +671,7 @@ declare global {
       spellcheck?: 'true' | 'false'
       style?: string | CSSProperties
       dataset?: DOMStringMap
+      attributes?: Attr | Attr[]
       tabIndex?: Numeric
       title?: string
       translate?: 'yes' | 'no'
