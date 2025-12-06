@@ -68,7 +68,11 @@ const events = [
   'contextlost', 'contextrestored',
 ];
 
-export const DOMEvents = new Set(events.map((e) => 'on' + e));
+export const DOMEvents = new Set([
+  ...events.map((e) => 'on' + e),
+  // SVGAnimationElement Events
+  'onbegin', 'onend', 'onrepeat',
+]);
 
 export const eventTypes = new Set([
   ...events,

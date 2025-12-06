@@ -1,5 +1,7 @@
+/* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
 import { jest } from '@jest/globals';
 import { createEvent, fireEvent } from '@testing-library/dom';
+import type { GenericEventHandler } from 'jsx-dom-runtime';
 
 import { svgImport } from '../utils/t';
 
@@ -29,11 +31,35 @@ describe('SVGAnimationElement', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
+  it('should assign `onbegin`, `onend` and `onrepeat` function handlers', () => {
+    const beginSpy: GenericEventHandler<SVGAnimateElement> = jest.fn();
+    const endSpy: GenericEventHandler<SVGAnimateElement> = jest.fn();
+    const repeatSpy: GenericEventHandler<SVGAnimateElement> = jest.fn();
+
+    const element = <animate
+      onbegin={beginSpy}
+      onend={endSpy}
+      onrepeat={repeatSpy}
+    />;
+
+    expect(element).toHaveProperty('onbegin', beginSpy);
+    expect(element).toHaveProperty('onend', endSpy);
+    expect(element).toHaveProperty('onrepeat', repeatSpy);
+  });
+
   it('should transform `on:beginEvent`, `on:endEvent` and `on:repeatEvent` props to event listeners', async () => {
     await expect(
       '<animate on:beginEvent={begin} on:endEvent={end} on:repeatEvent={repeat} />'
     ).toBeTransform(
       svgImport`_jsx("animate",{$:{beginEvent:begin,endEvent:end,repeatEvent:repeat},_:_svgNs});`
+    );
+  });
+
+  it('should transform deprecated `onbegin`, `onend` and `onrepeat` props to event listeners', async () => {
+    await expect(
+      '<animate onbegin={begin} onend={end} onrepeat={repeat} />'
+    ).toBeTransform(
+      svgImport`_jsx("animate",{ref:e=>{e.onbegin=begin;e.onend=end;e.onrepeat=repeat},_:_svgNs});`
     );
   });
 });
