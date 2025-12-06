@@ -84,6 +84,11 @@ export declare function useText<T = string>(initContent?: T): readonly [
   (content: T) => void
 ]
 
+export declare function useAttr(name: string, value?: string): readonly [
+  Attr,
+  (newValue: string) => void
+]
+
 export declare function parseFromString(html: string): DocumentFragment
 export declare function Fragment(children?: JSXChild | JSXChild[]): DocumentFragment
 export declare function Template(props: { children: string }): DocumentFragment
@@ -99,9 +104,9 @@ interface CommandEvent extends Event {
 /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent) */
 interface SnapEvent extends Event {
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent/snapTargetBlock) */
-	readonly snapTargetBlock: Element | null;
+  readonly snapTargetBlock: Element | null;
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent/snapTargetInline) */
-	readonly snapTargetInline: Element | null;
+  readonly snapTargetInline: Element | null;
 }
 
 interface CurrentTarget<T> {
