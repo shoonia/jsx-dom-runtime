@@ -1157,6 +1157,7 @@ declare global {
       azimuth?: Numeric
       baseFrequency?: number | string
       'baseline-shift'?: Property.BaselineShift
+      /** @deprecated */
       baseProfile?: number | string
       /** @deprecated */
       bbox?: number | string
@@ -1470,6 +1471,19 @@ declare global {
       zoomAndPan?: 'disable' | 'magnify'
       height?: number | string
       width?: number | string
+    }
+
+    interface SVGAnimationElementAttributes<T extends SVGAnimationElement> extends SVGAttributes<T> {
+      /** @deprecated use `'on:beginEvent` instead */
+      onbegin?: GenericEventHandler<T>
+      /** @deprecated use `'on:endEvent` instead */
+      onend?: GenericEventHandler<T>
+      /** @deprecated use `'on:repeatEvent` instead */
+      onrepeat?: GenericEventHandler<T>
+
+      'on:beginEvent'?: EventListener<T>
+      'on:endEvent'?: EventListener<T>
+      'on:repeatEvent'?: EventListener<T>
     }
 
     interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
@@ -3799,9 +3813,9 @@ declare global {
       webview: HTMLWebViewElementAttributes
 
       // SVG
-      animate: SVGAttributes<SVGAnimateElement>
-      animateMotion: SVGAttributes<SVGAnimateMotionElement>
-      animateTransform: SVGAttributes<SVGAnimateTransformElement>
+      animate: SVGAnimationElementAttributes<SVGAnimateElement>
+      animateMotion: SVGAnimationElementAttributes<SVGAnimateMotionElement>
+      animateTransform: SVGAnimationElementAttributes<SVGAnimateTransformElement>
       circle: SVGAttributes<SVGCircleElement>
       clipPath: SVGAttributes<SVGClipPathElement>
       defs: SVGAttributes<SVGDefsElement>
@@ -3848,7 +3862,7 @@ declare global {
       polyline: SVGAttributes<SVGPolylineElement>
       radialGradient: SVGAttributes<SVGRadialGradientElement>
       rect: SVGAttributes<SVGRectElement>
-      set: SVGAttributes<SVGSetElement>
+      set: SVGAnimationElementAttributes<SVGSetElement>
       stop: SVGAttributes<SVGStopElement>
       svg: SVGAttributes<SVGSVGElement>
       switch: SVGAttributes<SVGSwitchElement>

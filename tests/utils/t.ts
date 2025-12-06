@@ -26,3 +26,6 @@ export const jsxImport = (template: TTemplate): string =>
 
 export const styleImport = (template: TTemplate): string =>
   `import{setStyle as _setStyle,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;
+
+export const svgImport = (template: TTemplate): string =>
+  `import{svgNs as _svgNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;
