@@ -70,11 +70,6 @@ export declare function jsx<
   children?: JSXChild | JSXChild[]
 ): R
 
-export declare const extensions: Map<
-  string,
-  (node: Element, value: any, key: string) => void
->;
-
 export declare const svgNs = 'http://www.w3.org/2000/svg';
 export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
