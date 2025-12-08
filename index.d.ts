@@ -45,6 +45,9 @@ interface VoidElement {
 
 type ExcludeKey =
   | 'children'
+  | 'dataset'
+  | 'style'
+  | 'attributes'
   | `on${string}`
   | `on:${string}`
   | `prop:${string}`
@@ -67,11 +70,6 @@ export declare function jsx<
   children?: JSXChild | JSXChild[]
 ): R
 
-export declare const extensions: Map<
-  string,
-  (node: Element, value: any, key: string) => void
->;
-
 export declare const svgNs = 'http://www.w3.org/2000/svg';
 export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
@@ -79,6 +77,11 @@ export declare function useRef<T = any>(current?: T): RefObject<T>
 export declare function useText<T = string>(initContent?: T): readonly [
   Text,
   (content: T) => void
+]
+
+export declare function useAttr(name: string, value?: string): readonly [
+  Attr,
+  (newValue: string) => void
 ]
 
 export declare function parseFromString(html: string): DocumentFragment
@@ -96,9 +99,9 @@ interface CommandEvent extends Event {
 /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent) */
 interface SnapEvent extends Event {
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent/snapTargetBlock) */
-	readonly snapTargetBlock: Element | null;
+  readonly snapTargetBlock: Element | null;
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent/snapTargetInline) */
-	readonly snapTargetInline: Element | null;
+  readonly snapTargetInline: Element | null;
 }
 
 interface CurrentTarget<T> {
@@ -671,6 +674,7 @@ declare global {
       spellcheck?: 'true' | 'false'
       style?: string | CSSProperties
       dataset?: DOMStringMap
+      attributes?: Attr | Attr[]
       tabIndex?: Numeric
       title?: string
       translate?: 'yes' | 'no'
