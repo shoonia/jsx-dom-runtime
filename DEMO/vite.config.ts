@@ -1,11 +1,9 @@
 import { defineConfig } from 'vite';
 import babel from '@rollup/plugin-babel';
-// @ts-ignore
 import miniCssClassName from 'mini-css-class-name/postcss-modules';
 
 export default defineConfig(({ mode }) => {
   const isProd = mode === 'production';
-  // @ts-ignore
   const generateScopedName = isProd
     ? miniCssClassName()
     : '[name]__[local]___[hash:base64:5]';
