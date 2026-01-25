@@ -1,11 +1,11 @@
-export const useText = (initContent?: string) => {
-  const text = new Text(initContent);
+export const useText = (data?: string) => {
+  const text = new Text(data);
 
   return [
     text,
     (content: string): void => {
-      if (initContent !== content) {
-        text.textContent = initContent = content;
+      if (data !== content) {
+        text.nodeValue = data = content;
       }
     },
   ] as const;
