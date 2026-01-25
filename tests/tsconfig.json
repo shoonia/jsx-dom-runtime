@@ -12,6 +12,8 @@
     "strict": true,
     "noImplicitAny": true,
     "skipLibCheck": true,
+    "moduleDetection": "force",
+    "noUncheckedSideEffectImports": true,
     "lib": [
       "ES2024",
       "DOM"

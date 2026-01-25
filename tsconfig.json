@@ -11,6 +11,8 @@
     "jsx": "react-jsx",
     "jsxImportSource": "jsx-dom-runtime",
     "skipLibCheck": true,
+    "moduleDetection": "force",
+    "noUncheckedSideEffectImports": true,
     "lib": [
       "ES2024",
       "DOM"
