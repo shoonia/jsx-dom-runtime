@@ -49,7 +49,6 @@ type ExcludeKey =
   | 'style'
   | 'attributes'
   | `on${string}`
-  | `on:${string}`
   | `prop:${string}`
   | `attr:${string}`
 
