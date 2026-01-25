@@ -6,28 +6,25 @@
   "type": "module",
   "source": "src/index.html",
   "scripts": {
-    "start": "parcel src/index.html --open",
-    "build": "rm -rf dist .parcel-cache && parcel build src/index.html",
+    "dev": "vite",
+    "start": "vite",
+    "build": "NODE_ENV=production vite build",
+    "preview": "vite preview --open",
     "lint": "eslint 'src/**/*.ts'"
   },
   "dependencies": {
-    "jsx-dom-runtime": "^0.78.1"
+    "jsx-dom-runtime": "^0.79.1"
   },
   "devDependencies": {
-    "@babel/preset-typescript": "^7.28.5",
-    "@eslint/js": "^9.39.1",
-    "eslint": "^9.39.1",
-    "parcel": "^2.16.1",
-    "postcss": "^8.5.6",
-    "postcss-modules": "^6.0.1",
-    "typescript-eslint": "^8.47.0"
+    "@babel/core": "^7.28.0",
+    "@eslint/js": "^9.39.2",
+    "@rollup/plugin-babel": "^6.0.4",
+    "eslint": "^9.39.2",
+    "mini-css-class-name": "^0.15.2",
+    "terser": "^5.34.0",
+    "typescript-eslint": "^8.53.1",
+    "vite": "^5.4.0"
   },
   "browserslist": "> 1%, not dead",
-  "targets": {
-    "default": {
-      "sourceMap": false,
-      "publicUrl": "/jsx-dom-runtime/"
-    }
-  },
   "license": "MIT"
 }

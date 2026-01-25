@@ -1,6 +1,0 @@
-{
-  "presets": [
-    "@babel/typescript",
-    "jsx-dom-runtime/babel-preset"
-  ]
-}
