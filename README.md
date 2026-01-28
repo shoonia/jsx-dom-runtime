@@ -47,10 +47,31 @@ document.body.append(
 
 ## Documentation
 
-- [Get Started](https://github.com/shoonia/jsx-dom-runtime/wiki#jsx-dom-runtime)
-- [Syntax](https://github.com/shoonia/jsx-dom-runtime/wiki#syntax)
-- [APIs](https://github.com/shoonia/jsx-dom-runtime/wiki#apis)
-- [TypeScript Support](https://github.com/shoonia/jsx-dom-runtime/wiki#typescript-support)
+### Getting Started
+- [Introduction](https://github.com/shoonia/jsx-dom-runtime/wiki#jsx-dom-runtime)
+- [Installation](https://github.com/shoonia/jsx-dom-runtime/wiki#install)
+- [Configuration](https://github.com/shoonia/jsx-dom-runtime/wiki#configuration)
+  - [Vite](https://github.com/shoonia/jsx-dom-runtime/wiki#vite)
+
+### Syntax & Features
+- [Attributes](https://github.com/shoonia/jsx-dom-runtime/wiki#attributes)
+- [Style](https://github.com/shoonia/jsx-dom-runtime/wiki#style)
+- [SVG](https://github.com/shoonia/jsx-dom-runtime/wiki#svg)
+- [Event Handling](https://github.com/shoonia/jsx-dom-runtime/wiki#event-handling)
+- [Attribute Directives](https://github.com/shoonia/jsx-dom-runtime/wiki#attribute-directives) (`attr:*`)
+- [Property Directives](https://github.com/shoonia/jsx-dom-runtime/wiki#property-directives) (`prop:*`)
+- [Function Components](https://github.com/shoonia/jsx-dom-runtime/wiki#function-components)
+- [Fragments](https://github.com/shoonia/jsx-dom-runtime/wiki#fragments)
+
+### API Reference
+- [useRef()](https://github.com/shoonia/jsx-dom-runtime/wiki#creating-refs) - Create DOM element references
+- [Callback Refs](https://github.com/shoonia/jsx-dom-runtime/wiki#callback-refs) - Reference elements with callbacks
+- [useText()](https://github.com/shoonia/jsx-dom-runtime/wiki#text) - Create reactive Text nodes
+- [Template](https://github.com/shoonia/jsx-dom-runtime/wiki#template) - Parse HTML strings
+
+### Tooling
+- [ESLint Support](https://github.com/shoonia/jsx-dom-runtime/wiki#eslint-support) - Linting rules and configuration
+- [TypeScript Support](https://github.com/shoonia/jsx-dom-runtime/wiki#typescript-support) - Type definitions and setup
 
 ## License
 
