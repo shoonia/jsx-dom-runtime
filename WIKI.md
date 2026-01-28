@@ -101,6 +101,48 @@ Use attribute `class` instead of the `className` DOM property as in React.
 + <label for="cheese">Do you like cheese?</label>
 ```
 
+### Spread Props
+
+Spread attributes (`{...props}`) are **not supported** on DOM elements (HTML, SVG, MathML, and custom elements). This is a design decision to keep the generated code optimal and predictable.
+
+The library generates static, compile-time code that doesn't support dynamic attribute spreading, as it would break the generated output. Spread attributes would conflict with the library's special features such as:
+
+- Event handling directives (`on:click`, `on:change`, etc.)
+- Property directives (`prop:*`)
+- Attribute directives (`attr:*`)
+- Ref callbacks and ref objects
+- Special attributes like `style`, `dataset`, and `attributes`
+
+These features require compile-time transformation and cannot work with runtime spread operations.
+```js
+const props = { class: 'box', id: 'main' };
+
+// ❌ SyntaxError: HTML, SVG, MathML or Custom Elements must not have spread attributes.
+<div {...props} />;
+// ❌ SyntaxError: HTML, SVG, MathML or Custom Elements must not have spread attributes.
+<svg {...props}></svg>;
+// ❌ SyntaxError: HTML, SVG, MathML or Custom Elements must not have spread attributes.
+<math {...props}><mi>x</mi></math>;
+// ❌ SyntaxError: HTML, SVG, MathML or Custom Elements must not have spread attributes.
+<my-component {...props} />;
+```
+
+Spread props are fully supported on function components because they are just JavaScript functions:
+
+```js
+// ✅ This works fine - function components are just functions
+
+const MyComponent = ({ content, ...props }) => (
+  <div class={props.class} id={props.id}>{content}</div>
+);
+
+const props = { class: 'box', id: 'main' };
+
+document.body.append(<MyComponent content="Hello" {...props} />)
+```
+
+Since function components are regular JavaScript functions, the spread operator works naturally as a function argument, allowing you to pass multiple properties at once.
+
 ### Style
 
 The `style` attribute supports a JavaScript object and a [string value](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style). You can also use [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
