@@ -8,6 +8,7 @@ export type TImportName =
   | 'Fragment'
   | 'svgNs'
   | 'mathmlNs'
+  | 'empty'
   | 'setStyle'
   | 'setDataset'
   | 'setAttributes';
