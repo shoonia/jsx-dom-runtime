@@ -45,11 +45,7 @@ const isChildren = (node: t.Node): node is t.ObjectProperty =>
 let nsMap: WeakMap<NodePath, TImportName>;
 let importSpec: ImportSpec;
 
-export interface PluginOptions {
-  readonly useEmptyImport: boolean;
-}
-
-export const jsxTransform = ({ useEmptyImport }: PluginOptions): PluginObj => ({
+export const jsxTransform: PluginObj = {
   name: 'jsx-dom-runtime/babel-plugin-transform-jsx',
   visitor: {
     Program(path) {
@@ -100,9 +96,7 @@ export const jsxTransform = ({ useEmptyImport }: PluginOptions): PluginObj => ({
           path.replaceWith({
             type: 'CallExpression',
             callee: convertJSXIdentifier(name),
-            arguments: useEmptyImport && props.properties.length < 1
-              ? [importSpec.add('empty')]
-              : [props],
+            arguments: [props],
           });
         } else if (svgTags.has(name.name)) {
           nsMap.set(path, 'svgNs');
@@ -161,9 +155,7 @@ export const jsxTransform = ({ useEmptyImport }: PluginOptions): PluginObj => ({
           name.type === 'JSXIdentifier'
             ? $stringLiteral(name.name)
             : convertJSXNamespacedName(name),
-          useEmptyImport && props.properties.length < 1
-            ? importSpec.add('empty')
-            : props,
+          props,
         ];
 
         if (children.length > 0) {
@@ -301,4 +293,4 @@ export const jsxTransform = ({ useEmptyImport }: PluginOptions): PluginObj => ({
       }
     },
   },
-});
+};

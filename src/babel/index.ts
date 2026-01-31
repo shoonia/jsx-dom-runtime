@@ -1,8 +1,8 @@
 import type { ConfigAPI } from '@babel/core';
 
-import { jsxTransform, type PluginOptions } from './jsxTransform';
+import { jsxTransform } from './jsxTransform';
 
-const preset = (api: ConfigAPI, options?: Partial<PluginOptions>) => {
+const preset = (api: ConfigAPI) => {
   api.assertVersion(7);
 
   return {
@@ -12,10 +12,7 @@ const preset = (api: ConfigAPI, options?: Partial<PluginOptions>) => {
           parser.plugins.push('jsx');
         },
       },
-      jsxTransform({
-        useEmptyImport: false,
-        ...options,
-      }),
+      jsxTransform,
     ],
   };
 };
