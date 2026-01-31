@@ -71,6 +71,7 @@ export declare function jsx<
 
 export declare const svgNs = 'http://www.w3.org/2000/svg';
 export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
+export declare const empty: Readonly<{}>;
 
 export declare function useRef<T = any>(current?: T): RefObject<T>
 export declare function useText<T = string>(initContent?: T): readonly [

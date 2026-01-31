@@ -45,7 +45,11 @@ const isChildren = (node: t.Node): node is t.ObjectProperty =>
 let nsMap: WeakMap<NodePath, TImportName>;
 let importSpec: ImportSpec;
 
-export const jsxTransform: PluginObj = {
+export interface PluginOptions {
+  readonly useEmptyImport: boolean;
+}
+
+export const jsxTransform = ({ useEmptyImport }: PluginOptions): PluginObj => ({
   name: 'jsx-dom-runtime/babel-plugin-transform-jsx',
   visitor: {
     Program(path) {
@@ -96,7 +100,9 @@ export const jsxTransform: PluginObj = {
           path.replaceWith({
             type: 'CallExpression',
             callee: convertJSXIdentifier(name),
-            arguments: [props],
+            arguments: useEmptyImport && props.properties.length < 1
+              ? [importSpec.add('empty')]
+              : [props],
           });
         } else if (svgTags.has(name.name)) {
           nsMap.set(path, 'svgNs');
@@ -118,19 +124,8 @@ export const jsxTransform: PluginObj = {
             ? [childrenProps.value as t.Expression]
             : [];
 
-        const args: t.Expression[] = [
-          name.type === 'JSXIdentifier'
-            ? $stringLiteral(name.name)
-            : convertJSXNamespacedName(name),
-          props,
-        ];
-
         if (childrenProps != null) {
           props.properties = props.properties.filter((i) => !isChildren(i));
-        }
-
-        if (children.length > 0) {
-          args.push($children(children));
         }
 
         if (refs.length > 1) {
@@ -160,6 +155,19 @@ export const jsxTransform: PluginObj = {
               ),
             );
           }
+        }
+
+        const args: t.Expression[] = [
+          name.type === 'JSXIdentifier'
+            ? $stringLiteral(name.name)
+            : convertJSXNamespacedName(name),
+          useEmptyImport && props.properties.length < 1
+            ? importSpec.add('empty')
+            : props,
+        ];
+
+        if (children.length > 0) {
+          args.push($children(children));
         }
 
         path.replaceWith({
@@ -293,4 +301,4 @@ export const jsxTransform: PluginObj = {
       }
     },
   },
-};
+});

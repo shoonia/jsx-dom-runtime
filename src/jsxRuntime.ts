@@ -1,6 +1,7 @@
 /* eslint-disable prefer-const */
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
+const empty = Object.create(null);
 
 const setStyle = (node, value) => {
   if (typeof value == 'string') {
@@ -90,4 +91,5 @@ export {
   setAttributes,
   svgNs,
   mathmlNs,
+  empty,
 };
