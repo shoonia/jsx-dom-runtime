@@ -51,7 +51,7 @@ document.body.append(
 - [Introduction](https://github.com/shoonia/jsx-dom-runtime/wiki#jsx-dom-runtime)
 - [Installation](https://github.com/shoonia/jsx-dom-runtime/wiki#install)
 - [Configuration](https://github.com/shoonia/jsx-dom-runtime/wiki#configuration)
-  - [Vite](https://github.com/shoonia/jsx-dom-runtime/wiki#vite)
+  - [Vite](https://github.com/shoonia/jsx-dom-runtime/wiki#vite), [Webpack](https://github.com/shoonia/jsx-dom-runtime/wiki#webpack), [Rollup](https://github.com/shoonia/jsx-dom-runtime/wiki#rollup)
 
 ### Syntax & Features
 - [Attributes](https://github.com/shoonia/jsx-dom-runtime/wiki#attributes)

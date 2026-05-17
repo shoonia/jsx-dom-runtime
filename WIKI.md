@@ -69,15 +69,59 @@ export default defineConfig(() => {
     },
     plugins: [
       babel({
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
         babelHelpers: 'bundled',
-        presets: [
-          'jsx-dom-runtime/babel-preset',
-        ],
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        presets: ['jsx-dom-runtime/babel-preset'],
       }),
     ],
   };
 });
+```
+
+### Webpack
+
+Use [Webpack](https://webpack.js.org/) with [`babel-loader`](https://github.com/babel/babel-loader) and apply the preset to your TS/JSX files.
+
+**webpack.config.js**
+
+```js
+module.exports = {
+  // Webpack config ...
+  module: {
+    rules: [
+      {
+        test: /\.[jt]sx?$/,
+        exclude: /node_modules/,
+        loader: 'babel-loader',
+        options: {
+          presets: ['jsx-dom-runtime/babel-preset'],
+        },
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+  },
+};
+```
+
+### Rollup
+
+Use [Rollup](https://rollupjs.org/) with [`@rollup/plugin-babel`](https://github.com/rollup/plugins/tree/master/packages/babel) to apply this Babel plugin.
+
+```js
+import { babel } from '@rollup/plugin-babel';
+
+export default {
+  // Rollup config ...
+  plugins: [
+    babel({
+      babelHelpers: 'bundled',
+      extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      presets: ['jsx-dom-runtime/babel-preset'],
+    }),
+  ],
+}
 ```
 
 ## Syntax
