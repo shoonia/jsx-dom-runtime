@@ -9,7 +9,7 @@ describe('HTMLAreaElement', () => {
   });
 
   it('should have `interestForElement` property', () => {
-    const el = <div /> as HTMLDivElement
+    const el = <div /> as HTMLDivElement;
     expect(<area prop:interestForElement={el} />).toHaveProperty('interestForElement', el);
   });
 });

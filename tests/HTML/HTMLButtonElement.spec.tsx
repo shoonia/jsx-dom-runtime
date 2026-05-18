@@ -119,7 +119,7 @@ describe('HTMLButtonElement', () => {
   });
 
   it('should have `interestForElement` property', () => {
-    const el = <div /> as HTMLDivElement
+    const el = <div /> as HTMLDivElement;
     expect(<button prop:interestForElement={el} />).toHaveProperty('interestForElement', el);
   });
 });
