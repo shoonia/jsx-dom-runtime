@@ -1564,6 +1564,7 @@ declare global {
        */
       type?: string
       referrerPolicy?: ReferrerPolicy
+      interestfor?: string
       /**
        * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
        * @deprecated
@@ -1594,6 +1595,7 @@ declare global {
       'prop:protocol'?: string
       'prop:search'?: string
       'prop:username'?: string
+      'prop:interestForElement'?: globalThis.Element | null
     }
 
     interface HTMLAbbrElementAttributes extends HTMLElementAttributes {
@@ -1687,6 +1689,9 @@ declare global {
       nohref?: string
       /** @deprecated */
       tabIndex?: Numeric
+      interestfor?: string
+
+      'prop:interestForElement'?: globalThis.Element | null
     }
 
     interface HTMLBElementAttributes extends HTMLElementAttributes {
@@ -1752,6 +1757,7 @@ declare global {
        * Turns a <button> element into a command button, controlling the given interactive element; takes the ID of the element to control as its value. This is a more general version of `popovertarget`.
        */
       commandfor?: string
+      interestfor?: string
       /** Permitted ARIA roles */
       role?:
       | 'button'
@@ -1784,6 +1790,7 @@ declare global {
       'prop:popoverTargetAction'?: 'hide' | 'show' | 'toggle'
       'prop:popoverTargetElement'?: globalThis.Element | null
       'prop:role'?: HTMLButtonElementAttributes['role']
+      'prop:interestForElement'?: globalThis.Element | null
     }
 
     interface HTMLCanvasElementAttributes extends HTMLAttributes<HTMLCanvasElement> {
