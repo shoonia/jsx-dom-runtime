@@ -85,4 +85,13 @@ describe('HTMLAnchorElement', () => {
     expect(anchor).toHaveProperty('host', 'site.com:3000');
     expect(anchor).toHaveProperty('href', 'http://site.com:3000/');
   });
+
+  it('should have `interestfor` attribute', () => {
+    expect(<a interestfor="elem-id" />).toHaveAttribute('interestfor', 'elem-id');
+  });
+
+  it('should have `interestForElement` property', () => {
+    const el = <div /> as HTMLDivElement
+    expect(<a prop:interestForElement={el} />).toHaveProperty('interestForElement', el);
+  });
 });
