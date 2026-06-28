@@ -3830,11 +3830,20 @@ declare global {
 
       // Non-standard HTML
 
-      /** @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/fencedframe */
+      /**
+       * Non-standard element, only supported in Chrome and Edge.
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/fencedframe
+       */
       fencedframe: HTMLElementAttributes
-      /** @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/geolocation */
+      /**
+       * Non-standard element, only supported in Chrome and Edge.
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/geolocation
+       */
       geolocation: HTMLElementAttributes
-      /** @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/selectedcontent */
+      /**
+       * Non-standard element, only supported in Chrome and Edge.
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/selectedcontent
+       */
       selectedcontent: HTMLElementAttributes
 
       // SVG
