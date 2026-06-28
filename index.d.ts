@@ -3674,10 +3674,9 @@ declare global {
 
     interface IntrinsicElements {
       // HTML
+
       a: HTMLAnchorElementAttributes
       abbr: HTMLAbbrElementAttributes
-      /** @deprecated */
-      acronym: HTMLAcronymElementAttributes
       address: HTMLAddressElementAttributes
       area: HTMLAreaElementAttributes
       article: HTMLArticleElementAttributes
@@ -3687,18 +3686,12 @@ declare global {
       base: HTMLBaseElementAttributes
       bdi: HTMLBdiElementAttributes
       bdo: HTMLBdoElementAttributes
-      /** @deprecated */
-      big: HTMLBigElementAttributes
-      /** @deprecated */
-      blink: HTMLUnknownElementAttributes
       blockquote: HTMLQuoteElementAttributes
       body: HTMLBodyElementAttributes
       br: HTMLBrElementAttributes
       button: HTMLButtonElementAttributes
       canvas: HTMLCanvasElementAttributes
       caption: HTMLCaptionElementAttributes
-      /** @deprecated */
-      center: HTMLCenterElementAttributes
       cite: HTMLCiteElementAttributes
       code: HTMLCodeElementAttributes
       col: HTMLColElementAttributes
@@ -3710,8 +3703,6 @@ declare global {
       details: HTMLDetailsElementAttributes
       dfn: HTMLDfnElementAttributes
       dialog: HTMLDialogElementAttributes
-      /** @deprecated */
-      dir: HTMLDirElementAttributes
       div: HTMLDivElementAttributes
       dl: HTMLDlElementAttributes
       dt: HTMLDtElementAttributes
@@ -3720,8 +3711,6 @@ declare global {
       fieldset: HTMLFieldSetElementAttributes
       figcaption: HTMLFigcaptionElementAttributes
       figure: HTMLFigureElementAttributes
-      /** @deprecated */
-      font: HTMLFontElementAttributes
       footer: HTMLFooterElementAttributes
       form: HTMLFormElementAttributes
       h1: HTMLHeadingElementAttributes
@@ -3741,8 +3730,6 @@ declare global {
       input: HTMLInputElementAttributes
       ins: HTMLModElementAttributes
       kbd: HTMLKbdElementAttributes
-      /** @deprecated */
-      keygen: HTMLUnknownElementAttributes
       label: HTMLLabelElementAttributes
       legend: HTMLLegendElementAttributes
       li: HTMLLIElementAttributes
@@ -3750,19 +3737,11 @@ declare global {
       main: HTMLMainElementAttributes
       map: HTMLMapElementAttributes
       mark: HTMLMarkElementAttributes
-      /** @deprecated */
-      marquee: HTMLMarqueeElementAttributes
       menu: HTMLMenuElementAttributes
       menuitem: HTMLUnknownElementAttributes
       meta: HTMLMetaElementAttributes
       meter: HTMLMeterElementAttributes
       nav: HTMLNavElementAttributes
-      /** @deprecated */
-      nobr: HTMLNoBrElementAttributes
-      /** @deprecated */
-      noembed: HTMLUnknownElementAttributes
-      /** @deprecated */
-      noframes: HTMLUnknownElementAttributes
       noindex: HTMLUnknownElementAttributes
       noscript: HTMLNoScriptElementAttributes
       object: HTMLObjectElementAttributes
@@ -3771,16 +3750,10 @@ declare global {
       option: HTMLOptionElementAttributes
       output: HTMLOutputElementAttributes
       p: HTMLPElementAttributes
-      /** @deprecated */
-      param: HTMLParamElementAttributes
       picture: HTMLPictureElementAttributes
-      /** @deprecated */
-      plaintext: HTMLPlainTextElementAttributes
       pre: HTMLPreElementAttributes
       progress: HTMLProgressElementAttributes
       q: HTMLQuoteElementAttributes
-      /** @deprecated */
-      rb: HTMLElementAttributes
       rp: HTMLElementAttributes
       rt: HTMLElementAttributes
       ruby: HTMLElementAttributes
@@ -3794,8 +3767,6 @@ declare global {
       small: HTMLElementAttributes
       source: HTMLSourceElementAttributes
       span: HTMLSpanElementAttributes
-      /** @deprecated */
-      strike: HTMLElementAttributes
       strong: HTMLElementAttributes
       style: HTMLStyleElementAttributes
       sub: HTMLElementAttributes
@@ -3813,18 +3784,61 @@ declare global {
       title: HTMLTitleElementAttributes
       tr: HTMLTrElementAttributes
       track: HTMLTrackElementAttributes
-      /** @deprecated */
-      tt: HTMLElementAttributes
       u: HTMLElementAttributes
       ul: HTMLUlElementAttributes
       var: HTMLElementAttributes
       video: HTMLVideoElementAttributes
       wbr: HTMLWbrElementAttributes
+      webview: HTMLWebViewElementAttributes
+      
+      // Deprecated HTML
+      
+      /** @deprecated */
+      acronym: HTMLAcronymElementAttributes
+      /** @deprecated */
+      big: HTMLBigElementAttributes
+      /** @deprecated */
+      blink: HTMLUnknownElementAttributes
+      /** @deprecated */
+      center: HTMLCenterElementAttributes
+      /** @deprecated */
+      dir: HTMLDirElementAttributes
+      /** @deprecated */
+      font: HTMLFontElementAttributes
+      /** @deprecated */
+      keygen: HTMLUnknownElementAttributes
+      /** @deprecated */
+      marquee: HTMLMarqueeElementAttributes
+      /** @deprecated */
+      nobr: HTMLNoBrElementAttributes
+      /** @deprecated */
+      noembed: HTMLUnknownElementAttributes
+      /** @deprecated */
+      noframes: HTMLUnknownElementAttributes
+      /** @deprecated */
+      param: HTMLParamElementAttributes
+      /** @deprecated */
+      plaintext: HTMLPlainTextElementAttributes
+      /** @deprecated */
+      rb: HTMLElementAttributes
+      /** @deprecated */
+      strike: HTMLElementAttributes
+      /** @deprecated */
+      tt: HTMLElementAttributes
       /** @deprecated */
       xmp: HTMLPreElementAttributes
-      webview: HTMLWebViewElementAttributes
+
+      // Non-standard HTML
+
+      /** @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/fencedframe */
+      fencedframe: HTMLElementAttributes
+      /** @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/geolocation */
+      geolocation: HTMLElementAttributes
+      /** @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/selectedcontent */
+      selectedcontent: HTMLElementAttributes
 
       // SVG
+
       animate: SVGAnimationElementAttributes<SVGAnimateElement>
       animateMotion: SVGAnimationElementAttributes<SVGAnimateMotionElement>
       animateTransform: SVGAnimationElementAttributes<SVGAnimateTransformElement>
@@ -3886,6 +3900,7 @@ declare global {
       view: SVGAttributes<SVGViewElement>
 
       // MathML
+
       annotation: MathMLAnnotationElementAttributes
       'annotation-xml': MathMLAnnotationXmlElementAttributes
       /**
