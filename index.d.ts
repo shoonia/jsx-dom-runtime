@@ -663,7 +663,7 @@ declare global {
       enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
       hidden?: boolean | 'hidden' | 'until-found' | ''
       id?: string
-      inert?: boolean | ''
+      inert?: boolean | '' | 'inert'
       lang?: string
       slot?: string
       /**
@@ -695,7 +695,7 @@ declare global {
       autosave?: string
       color?: Property.Color
       itemProp?: string
-      itemScope?: boolean | ''
+      itemScope?: boolean | '' | 'itemscope'
       itemType?: string
       itemID?: string
       itemRef?: string
@@ -1724,8 +1724,8 @@ declare global {
     }
 
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
-      autofocus?: boolean | ''
-      disabled?: boolean | ''
+      autofocus?: boolean | '' | 'autofocus'
+      disabled?: boolean | '' | 'disabled'
       form?: string
       /**
        * The URL that processes the information submitted by the button. Overrides the `action` attribute of the button's form owner. Does nothing if there is no form owner
@@ -1739,7 +1739,7 @@ declare global {
        * A string indicating the HTTP method to use when submitting the form's data; this value overrides any method attribute given on the owning form
        */
       formMethod?: FormMethod
-      formNoValidate?: boolean | ''
+      formNoValidate?: boolean | '' | 'formnovalidate'
       /**
        * If the button is a submit button, this attribute is an author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form
        */
@@ -1880,7 +1880,7 @@ declare global {
 
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
       name?: string
-      open?: boolean | ''
+      open?: boolean | '' | 'open'
       /** Permitted ARIA roles */
       role?: 'group'
 
@@ -1904,7 +1904,7 @@ declare global {
     }
 
     interface HTMLDialogElementAttributes extends HTMLAttributes<HTMLDialogElement> {
-      open?: boolean | ''
+      open?: boolean | '' | 'open'
       /**
        * Do not add the `tabindex` property to the `<dialog>` element as it is not interactive and does not receive focus. The dialog's contents, including the close button contained in the dialog, can receive focus and be interactive.
        * @deprecated
@@ -1972,7 +1972,7 @@ declare global {
     }
 
     interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
-      disabled?: boolean | ''
+      disabled?: boolean | '' | 'disabled'
       form?: string
       name?: string
       /** Permitted ARIA roles */
@@ -2033,7 +2033,7 @@ declare global {
       | 'search'
       | 'license'
       | AnyString
-      noValidate?: boolean | ''
+      noValidate?: boolean | '' | 'novalidate'
       target?: Target
       /** Permitted ARIA roles */
       role?: 'form' | 'none' | 'presentation' | 'search'
@@ -2129,7 +2129,7 @@ declare global {
        * This attribute is considered a legacy attribute and redefined as `allow="fullscreen"`
        * @deprecated
        */
-      allowFullScreen?: boolean | ''
+      allowFullScreen?: boolean | '' | 'allowfullscreen'
       /**
        * This attribute is considered a legacy attribute and redefined as `allow="payment"`
        * @deprecated
@@ -2218,7 +2218,7 @@ declare global {
       /**
        * This Boolean attribute indicates that the image is part of a server-side map. If so, the coordinates where the user clicked on the image are sent to the server
        */
-      ismap?: boolean | ''
+      ismap?: boolean | '' | 'ismap'
       loading?: 'eager' | 'lazy'
       referrerPolicy?: ReferrerPolicy
       sizes?: string
@@ -2255,14 +2255,14 @@ declare global {
       accept?: string
       alt?: string
       autocomplete?: boolean | AutoFill
-      autofocus?: boolean | ''
+      autofocus?: boolean | '' | 'autofocus'
       /**
        * The capture attribute is supported on the `file` input type.
        */
       capture?: boolean | 'user' | 'environment' | ''
-      checked?: boolean | ''
+      checked?: boolean | '' | 'checked'
       crossOrigin?: CrossOrigin
-      disabled?: boolean | ''
+      disabled?: boolean | '' | 'disabled'
       dirName?: DirName
       form?: string
       /**
@@ -2277,7 +2277,7 @@ declare global {
        * A string indicating the HTTP method to use when submitting the form's data; this value overrides any method attribute given on the owning form
        */
       formMethod?: FormMethod
-      formNoValidate?: boolean | ''
+      formNoValidate?: boolean | '' | 'formnovalidate'
       formTarget?: Target
       height?: number | string
       list?: string
@@ -2285,12 +2285,12 @@ declare global {
       maxLength?: Numeric
       min?: number | string
       minLength?: Numeric
-      multiple?: boolean | ''
+      multiple?: boolean | '' | 'multiple'
       name?: string
       pattern?: string
       placeholder?: string
-      readOnly?: boolean | ''
-      required?: boolean | ''
+      readOnly?: boolean | '' | 'readonly'
+      required?: boolean | '' | 'required'
       size?: Numeric
       src?: string
       step?: Numeric
@@ -2405,7 +2405,7 @@ declare global {
       | 'worker'
       | AnyString
       crossOrigin?: CrossOrigin
-      disabled?: boolean | ''
+      disabled?: boolean | '' | 'disabled'
       href?: string
       hreflang?: string
       /**
@@ -2517,8 +2517,8 @@ declare global {
     }
 
     interface HTMLMediaAttributes<T extends HTMLMediaElement> extends HTMLAttributes<T> {
-      autoplay?: boolean | ''
-      controls?: boolean | ''
+      autoplay?: boolean | '' | 'autoplay'
+      controls?: boolean | '' | 'controls'
       /**
        * A Boolean attribute used to disable the capability of remote playback in devices that are attached using wired (HDMI, DVI, etc.) and wireless technologies (Miracast, Chromecast, DLNA, AirPlay, etc.)
        */
@@ -2528,7 +2528,9 @@ declare global {
        */
       controlsList?: ControlsList
       crossOrigin?: CrossOrigin
-      loop?: boolean | ''
+      loop?: boolean | '' | 'loop'
+      muted?: boolean | '' | 'muted'
+      playsInline?: boolean | '' | 'playsinline'
       mediaGroup?: string
       preload?: 'none' | 'metadata' | 'auto' | '';
       src?: string
@@ -2718,7 +2720,7 @@ declare global {
     }
 
     interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
-      reversed?: boolean | ''
+      reversed?: boolean | '' | 'reversed'
       start?: Numeric
       type?: '1' | 'a' | 'A' | 'i' | 'I'
       /** Permitted ARIA roles */
@@ -2743,7 +2745,7 @@ declare global {
     }
 
     interface HTMLOptGroupElementAttributes extends HTMLAttributes<HTMLOptGroupElement> {
-      disabled?: boolean | ''
+      disabled?: boolean | '' | 'disabled'
       label?: string
       /** Permitted ARIA roles */
       role?: 'group'
@@ -2754,9 +2756,9 @@ declare global {
     }
 
     interface HTMLOptionElementAttributes extends HTMLAttributes<HTMLOptionElement> {
-      disabled?: boolean | ''
+      disabled?: boolean | '' | 'disabled'
       label?: string
-      selected?: boolean | ''
+      selected?: boolean | '' | 'selected'
       value?: number | string
       /** Permitted ARIA roles */
       role?: 'option'
@@ -2820,7 +2822,7 @@ declare global {
     }
 
     interface HTMLScriptElementAttributes extends OmitAttrs<HTMLAttributes<HTMLScriptElement>, RoleKey>, NoRolePermited {
-      async?: boolean | ''
+      async?: boolean | '' | 'async' 
       /**
        * Specifies that you want the browser to send an `Attribution-Reporting-Eligible` header along with the script resource request
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attributionsrc
@@ -2833,9 +2835,9 @@ declare global {
       /** @deprecated */
       charset?: string
       crossOrigin?: CrossOrigin
-      defer?: boolean | ''
+      defer?: boolean | '' | 'defer'
       integrity?: string
-      noModule?: boolean | ''
+      noModule?: boolean | '' | 'nomodule'
       nonce?: string
       referrerPolicy?: ReferrerPolicy
       src?: string
@@ -2870,12 +2872,12 @@ declare global {
 
     interface HTMLSelectElementAttributes extends HTMLAttributes<HTMLSelectElement> {
       autocomplete?: boolean | AutoFill
-      autofocus?: boolean | ''
-      disabled?: boolean | ''
+      autofocus?: boolean | '' | 'autofocus'
+      disabled?: boolean | '' | 'disabled'
       form?: string
-      multiple?: boolean | ''
+      multiple?: boolean | '' | 'multiple'
       name?: string
-      required?: boolean | ''
+      required?: boolean | '' | 'required'
       size?: Numeric
       value?: number | string
       // TODO: role attribute
@@ -3049,20 +3051,20 @@ declare global {
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
       autocomplete?: boolean | AutoFill
-      autofocus?: boolean | ''
+      autofocus?: boolean | '' | 'autofocus'
       /**
        * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer. If it is not specified, the default value is 20
        */
       cols?: Numeric
       dirName?: DirName
-      disabled?: boolean | ''
+      disabled?: boolean | '' | 'disabled'
       form?: string
       maxLength?: Numeric
       minLength?: Numeric
       name?: string
       placeholder?: string
-      readOnly?: boolean | ''
-      required?: boolean | ''
+      readOnly?: boolean | '' | 'readonly'
+      required?: boolean | '' | 'required'
       /**
        * The number of visible text lines for the control. If it is specified, it must be a positive integer. If it is not specified, the default value is 2
        */
@@ -3252,7 +3254,7 @@ declare global {
     }
 
     interface HTMLTrackElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTrackElement>, 'children' | RoleKey>, VoidElement, NoRolePermited {
-      default?: boolean | ''
+      default?: boolean | '' | 'default'
       kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
       label?: string
       src?: string
@@ -3271,7 +3273,7 @@ declare global {
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
       height?: number | string
-      playsInline?: boolean | ''
+      playsInline?: boolean | '' | 'playsinline'
       poster?: string
       width?: number | string
       disablePictureInPicture?: boolean | ''
@@ -3672,10 +3674,9 @@ declare global {
 
     interface IntrinsicElements {
       // HTML
+
       a: HTMLAnchorElementAttributes
       abbr: HTMLAbbrElementAttributes
-      /** @deprecated */
-      acronym: HTMLAcronymElementAttributes
       address: HTMLAddressElementAttributes
       area: HTMLAreaElementAttributes
       article: HTMLArticleElementAttributes
@@ -3685,18 +3686,12 @@ declare global {
       base: HTMLBaseElementAttributes
       bdi: HTMLBdiElementAttributes
       bdo: HTMLBdoElementAttributes
-      /** @deprecated */
-      big: HTMLBigElementAttributes
-      /** @deprecated */
-      blink: HTMLUnknownElementAttributes
       blockquote: HTMLQuoteElementAttributes
       body: HTMLBodyElementAttributes
       br: HTMLBrElementAttributes
       button: HTMLButtonElementAttributes
       canvas: HTMLCanvasElementAttributes
       caption: HTMLCaptionElementAttributes
-      /** @deprecated */
-      center: HTMLCenterElementAttributes
       cite: HTMLCiteElementAttributes
       code: HTMLCodeElementAttributes
       col: HTMLColElementAttributes
@@ -3708,8 +3703,6 @@ declare global {
       details: HTMLDetailsElementAttributes
       dfn: HTMLDfnElementAttributes
       dialog: HTMLDialogElementAttributes
-      /** @deprecated */
-      dir: HTMLDirElementAttributes
       div: HTMLDivElementAttributes
       dl: HTMLDlElementAttributes
       dt: HTMLDtElementAttributes
@@ -3718,8 +3711,6 @@ declare global {
       fieldset: HTMLFieldSetElementAttributes
       figcaption: HTMLFigcaptionElementAttributes
       figure: HTMLFigureElementAttributes
-      /** @deprecated */
-      font: HTMLFontElementAttributes
       footer: HTMLFooterElementAttributes
       form: HTMLFormElementAttributes
       h1: HTMLHeadingElementAttributes
@@ -3739,8 +3730,6 @@ declare global {
       input: HTMLInputElementAttributes
       ins: HTMLModElementAttributes
       kbd: HTMLKbdElementAttributes
-      /** @deprecated */
-      keygen: HTMLUnknownElementAttributes
       label: HTMLLabelElementAttributes
       legend: HTMLLegendElementAttributes
       li: HTMLLIElementAttributes
@@ -3748,19 +3737,11 @@ declare global {
       main: HTMLMainElementAttributes
       map: HTMLMapElementAttributes
       mark: HTMLMarkElementAttributes
-      /** @deprecated */
-      marquee: HTMLMarqueeElementAttributes
       menu: HTMLMenuElementAttributes
       menuitem: HTMLUnknownElementAttributes
       meta: HTMLMetaElementAttributes
       meter: HTMLMeterElementAttributes
       nav: HTMLNavElementAttributes
-      /** @deprecated */
-      nobr: HTMLNoBrElementAttributes
-      /** @deprecated */
-      noembed: HTMLUnknownElementAttributes
-      /** @deprecated */
-      noframes: HTMLUnknownElementAttributes
       noindex: HTMLUnknownElementAttributes
       noscript: HTMLNoScriptElementAttributes
       object: HTMLObjectElementAttributes
@@ -3769,16 +3750,10 @@ declare global {
       option: HTMLOptionElementAttributes
       output: HTMLOutputElementAttributes
       p: HTMLPElementAttributes
-      /** @deprecated */
-      param: HTMLParamElementAttributes
       picture: HTMLPictureElementAttributes
-      /** @deprecated */
-      plaintext: HTMLPlainTextElementAttributes
       pre: HTMLPreElementAttributes
       progress: HTMLProgressElementAttributes
       q: HTMLQuoteElementAttributes
-      /** @deprecated */
-      rb: HTMLElementAttributes
       rp: HTMLElementAttributes
       rt: HTMLElementAttributes
       ruby: HTMLElementAttributes
@@ -3792,8 +3767,6 @@ declare global {
       small: HTMLElementAttributes
       source: HTMLSourceElementAttributes
       span: HTMLSpanElementAttributes
-      /** @deprecated */
-      strike: HTMLElementAttributes
       strong: HTMLElementAttributes
       style: HTMLStyleElementAttributes
       sub: HTMLElementAttributes
@@ -3811,18 +3784,61 @@ declare global {
       title: HTMLTitleElementAttributes
       tr: HTMLTrElementAttributes
       track: HTMLTrackElementAttributes
-      /** @deprecated */
-      tt: HTMLElementAttributes
       u: HTMLElementAttributes
       ul: HTMLUlElementAttributes
       var: HTMLElementAttributes
       video: HTMLVideoElementAttributes
       wbr: HTMLWbrElementAttributes
+      webview: HTMLWebViewElementAttributes
+      
+      // Deprecated HTML
+      
+      /** @deprecated */
+      acronym: HTMLAcronymElementAttributes
+      /** @deprecated */
+      big: HTMLBigElementAttributes
+      /** @deprecated */
+      blink: HTMLUnknownElementAttributes
+      /** @deprecated */
+      center: HTMLCenterElementAttributes
+      /** @deprecated */
+      dir: HTMLDirElementAttributes
+      /** @deprecated */
+      font: HTMLFontElementAttributes
+      /** @deprecated */
+      keygen: HTMLUnknownElementAttributes
+      /** @deprecated */
+      marquee: HTMLMarqueeElementAttributes
+      /** @deprecated */
+      nobr: HTMLNoBrElementAttributes
+      /** @deprecated */
+      noembed: HTMLUnknownElementAttributes
+      /** @deprecated */
+      noframes: HTMLUnknownElementAttributes
+      /** @deprecated */
+      param: HTMLParamElementAttributes
+      /** @deprecated */
+      plaintext: HTMLPlainTextElementAttributes
+      /** @deprecated */
+      rb: HTMLElementAttributes
+      /** @deprecated */
+      strike: HTMLElementAttributes
+      /** @deprecated */
+      tt: HTMLElementAttributes
       /** @deprecated */
       xmp: HTMLPreElementAttributes
-      webview: HTMLWebViewElementAttributes
+
+      // Non-standard HTML
+
+      /** @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/fencedframe */
+      fencedframe: HTMLElementAttributes
+      /** @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/geolocation */
+      geolocation: HTMLElementAttributes
+      /** @see https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/selectedcontent */
+      selectedcontent: HTMLElementAttributes
 
       // SVG
+
       animate: SVGAnimationElementAttributes<SVGAnimateElement>
       animateMotion: SVGAnimationElementAttributes<SVGAnimateMotionElement>
       animateTransform: SVGAnimationElementAttributes<SVGAnimateTransformElement>
@@ -3884,6 +3900,7 @@ declare global {
       view: SVGAttributes<SVGViewElement>
 
       // MathML
+
       annotation: MathMLAnnotationElementAttributes
       'annotation-xml': MathMLAnnotationXmlElementAttributes
       /**

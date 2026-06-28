@@ -56,7 +56,7 @@ const allHTMLTags = [
   'u', 'ul',
   'var', 'video',
   // non-standard
-  'fencedframe', 'selectedcontent',
+  'fencedframe', 'selectedcontent', 'geolocation',
   // deprecated
   'acronym', 'applet', 'basefont', 'bgsound', 'big', 'blink', 'center', 'noframes',
   'tt', 'strike', 'xmp', 'isindex', 'keygen',
