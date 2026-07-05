@@ -66,7 +66,7 @@ describe('ref', () => {
 
     <div ref={null} />;
     <div ref={undefined} />;
-    <div ref={undefined} />;
+    <div ref={false} />;
     <div ref={[]} />;
     <div ref={[null, undefined, false]} />;
 
