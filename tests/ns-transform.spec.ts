@@ -14,7 +14,7 @@ describe('ns-transform', () => {
       <svg>
         {link && <a href={link}>Welcome</a>}
       </svg>
-    `).toBeTransform(svgImport`_jsx("svg",{_:_svgNs},link&&/*#__PURE__*/_jsx("a",{href:link,_:_svgNs},"Welcome");`);
+    `).toBeTransform(svgImport`_jsx("svg",{_:_svgNs},link&&/*#__PURE__*/_jsx("a",{href:link,_:_svgNs},"Welcome"));`);
   });
 
   it('should transform <a> as MathML in the conditional operator', async () => {
