@@ -30,6 +30,9 @@ export const styleImport = (template: TTemplate): string =>
 export const svgImport = (template: TTemplate): string =>
   `import{svgNs as _svgNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;
 
+export const mathmlImport = (template: TTemplate): string =>
+  `import{mathmlNs as _mathmlNs,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;
+
 export const attrImport = (template: TTemplate): string =>
   `import{setAttributes as _setAttributes,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;
 
