@@ -32,6 +32,7 @@ describe('ns', () => {
     expect(<a />).toHaveProperty(prop, xhtmlNs);
     expect(<a _={xhtmlNs} />).toHaveProperty(prop, xhtmlNs);
     expect(<a _={svgNs} />).toHaveProperty(prop, svgNs);
+    expect(<a _={mathmlNs} />).toHaveProperty(prop, mathmlNs);
   });
 
   it('should have SVG `namespaceURI` for `script` tag', () => {
@@ -59,9 +60,17 @@ describe('ns', () => {
   it('should detect namespace from parent tag for `a` tag', () => {
     const div = <div><a /></div>;
     const svg = <svg><a /></svg>;
+    const math = <math><a /></math>;
 
     expect(div.firstChild).toHaveProperty(prop, xhtmlNs);
     expect(svg.firstChild).toHaveProperty(prop, svgNs);
+    expect(math.firstChild).toHaveProperty(prop, mathmlNs);
+  });
+
+  it('should detect MathML namespace from nested MathML parent for `a` tag', () => {
+    const mrow = <math><mrow><a /></mrow></math>;
+
+    expect(mrow.firstChild!.firstChild).toHaveProperty(prop, mathmlNs);
   });
 
   it('should detect namespace from parent tag for `script` tag', () => {
@@ -75,8 +84,10 @@ describe('ns', () => {
   it('should get parent namespace from scope', () => {
     const div = <div>{globalThis && <a />}</div>;
     const svg = <svg>{globalThis && <a />}</svg>;
+    const math = <math>{globalThis && <a />}</math>;
 
     expect(div.firstChild).toHaveProperty(prop, xhtmlNs);
     expect(svg.firstChild).toHaveProperty(prop, svgNs);
+    expect(math.firstChild).toHaveProperty(prop, mathmlNs);
   });
 });
