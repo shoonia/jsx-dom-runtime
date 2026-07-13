@@ -131,7 +131,7 @@ export const jsxTransform: PluginObj = {
           };
 
           props.properties = props.properties.filter(
-            (i) => !isRef(i) || i !== ref,
+            (i) => !isRef(i) || i === ref,
           );
         }
 
