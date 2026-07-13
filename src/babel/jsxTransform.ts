@@ -123,7 +123,7 @@ export const jsxTransform: PluginObj = {
         }
 
         if (refs.length > 1) {
-          const ref = refs.at(-1)
+          const ref = refs.at(-1);
 
           ref.value = {
             type: 'ArrayExpression',
