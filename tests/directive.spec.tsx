@@ -1,15 +1,15 @@
 import { jsxImport } from './utils';
 
 describe('directives', () => {
-  it('should join attr:* props:* directives and ref together with a user `ref` in the end', async () => {
+  it('should join attr:* props:* directives and ref together with a user `ref` in the last ref position #1', async () => {
     await expect('<p attr:hello="1" prop:world="2" ref={userRef} id="p" />').toBeTransform(
-      jsxImport`_jsx("p",{id:"p",ref:[e=>{e.setAttribute("hello","1");e.world="2"},userRef]});`
+      jsxImport`_jsx("p",{ref:[e=>{e.setAttribute("hello","1");e.world="2"},userRef],id:"p"});`
     );
   });
 
-  it('should join attr:* props:* directives and ref together with a user `ref` in the start', async () => {
+  it('should join attr:* props:* directives and ref together with a user `ref` in the last ref position #2', async () => {
     await expect('<p ref={userRef} attr:hello="1" prop:world="2" id="p" />').toBeTransform(
-      jsxImport`_jsx("p",{id:"p",ref:[e=>{e.setAttribute("hello","1");e.world="2"},userRef]});`
+      jsxImport`_jsx("p",{ref:[e=>{e.setAttribute("hello","1");e.world="2"},userRef],id:"p"});`
     );
   });
 
