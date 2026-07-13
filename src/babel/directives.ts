@@ -28,7 +28,7 @@ const getRef = (element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
     expression: false,
   };
 
-  element.attributes.unshift({
+  element.attributes.push({
     type: 'JSXAttribute',
     name: $jsxIdentifier('ref'),
     value: $jsxExpressionContainer(funcRef),
