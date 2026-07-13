@@ -123,15 +123,16 @@ export const jsxTransform: PluginObj = {
         }
 
         if (refs.length > 1) {
-          const ref = refs[0];
+          const ref = refs.at(-1);
 
           ref.value = {
             type: 'ArrayExpression',
             elements: refs.map((i) => i.value),
           };
 
-          props.properties = props.properties.filter((i) => !isRef(i));
-          props.properties.push(ref);
+          props.properties = props.properties.filter(
+            (i) => !isRef(i) || i === ref,
+          );
         }
 
         const noNs = props.properties.every((i: t.ObjectProperty) =>
