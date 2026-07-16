@@ -1,6 +1,7 @@
 /* eslint-disable prefer-const */
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
+const isArray = Array.isArray;
 
 const setStyle = (node, value) => {
   if (typeof value == 'string') {
@@ -25,18 +26,18 @@ const setDataset = (node, value) => {
 };
 
 const setAttributes = (node, value) =>
-  (Array.isArray(value) ? value : [value]).forEach(node.setAttributeNode, node);
+  (isArray(value) ? value : [value]).forEach(i => node.setAttributeNode(i));
 
 const appendChildren = (content, node) =>
   content !== false && content != null && (
-    Array.isArray(content)
+    isArray(content)
       ? content.forEach((i) => appendChildren(i, node))
       : node.append(content)
   );
 
 const setRef = (content, node) =>
   content && (
-    Array.isArray(content)
+    isArray(content)
       ? content.forEach((i) => setRef(i, node))
       : typeof content == 'function'
         ? content(node)
