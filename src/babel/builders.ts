@@ -29,13 +29,30 @@ export const $objectProperty = (key: t.Identifier | t.StringLiteral, value: t.Ex
   decorators: null,
 });
 
-export const $children = (elements: (t.JSXSpreadChild | t.Expression)[]) =>
-  elements.length === 1
+const flattenArray = (elements: t.Expression[]): t.Expression[] => {
+  const output: t.Expression[] = [];
+
+  for (const element of elements) {
+    if (element.type === 'ArrayExpression') {
+      output.push(...flattenArray(element.elements));
+    } else {
+      output.push(element);
+    }
+  }
+
+  return output;
+};
+
+export const $children = (items: (t.JSXSpreadChild | t.Expression)[]) => {
+  const elements = flattenArray(items);
+
+  return elements.length === 1
     ? elements[0] as t.Expression
     : {
       type: 'ArrayExpression',
       elements,
     } as t.Expression;
+};
 
 export const $pureAnnotation = (): [t.CommentBlock] => [
   {
@@ -48,3 +65,4 @@ export const $expressionStatement = (expression: t.Expression): t.ExpressionStat
   type: 'ExpressionStatement',
   expression,
 });
+
