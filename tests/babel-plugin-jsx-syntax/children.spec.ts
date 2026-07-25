@@ -38,4 +38,8 @@ describe('babel-plugin-jsx-syntax: Element', () => {
   it('should return elemet with array', async () => {
     await expect('<App>{[...a, ...b]}{...c}</App>').toBeTransform('App({children:[[...a,...b,c]});');
   });
+
+  it('should flatten nested single-child arrays with spread elements', async () => {
+    await expect('<App>{[1, [2, ...a], 3]}</App>').toBeTransform('App({children:[1,2,...a,3]});');
+  });
 });
