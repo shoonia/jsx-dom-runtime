@@ -1,4 +1,4 @@
-import { fragmentImport } from "utils/t";
+import { fragmentImport } from '../utils/t';
 
 describe('babel-plugin-jsx-syntax: Frament', () => {
   it('should inline FC', async () => {
