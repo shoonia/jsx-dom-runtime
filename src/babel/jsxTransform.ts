@@ -9,7 +9,7 @@ import {
   setUtility,
   isRef
 } from './directives';
-import { 
+import {
   buildProps,
   convertJSXIdentifier,
   convertJSXNamespacedName,
