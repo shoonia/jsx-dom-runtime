@@ -774,6 +774,7 @@ declare global {
       'prop:tabIndex'?: number
       'prop:title'?: string
       'prop:translate'?: 'yes' | 'no'
+      'prop:elementTiming'?: string
       'prop:virtualKeyboardPolicy'?: 'auto' | 'manual'
       'prop:writingSuggestions'?: 'true' | 'false'
       [key: `prop:${string}`]: any
@@ -1567,6 +1568,20 @@ declare global {
       type?: string
       referrerPolicy?: ReferrerPolicy
       interestfor?: string
+
+      /**
+       * Non-standard attribute:
+       * The attributionSourceId is used as part of the **Private Click Measurement** specification to identify the content that was clicked when following a link to another site.
+       * @see https://privacycg.github.io/private-click-measurement/
+       */
+      attributionsourceid?: string
+      /**
+       * Non-standard attribute:
+       * The attributiondestination is used as part of the **Private Click Measurement** specification to identify the destination of a link that was clicked.
+       * @see https://privacycg.github.io/private-click-measurement/
+       */
+      attributiondestination?: string
+
       /**
        * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
        * @deprecated
@@ -1598,6 +1613,9 @@ declare global {
       'prop:search'?: string
       'prop:username'?: string
       'prop:interestForElement'?: globalThis.Element | null
+
+      'prop:attributionSourceId'?: string
+      'prop:attributionDestination'?: string
     }
 
     interface HTMLAbbrElementAttributes extends HTMLElementAttributes {
