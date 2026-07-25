@@ -40,4 +40,8 @@ describe('jsx-children', () => {
   it('should flatten nested children in "children" property', async () => {
     await expect('<div children={[1, [2, [3, 4]]]}></div>').toBeTransform(jsxImport`_jsx("div",{},[1,2,3,4]);`);
   });
+
+  it('should flatten nested children with spread elements', async () => {
+    await expect('<div>{[1, [2, ...a], 3]}</div>').toBeTransform(jsxImport`_jsx("div",{},[1,2,...a,3]);`);
+  });
 });
