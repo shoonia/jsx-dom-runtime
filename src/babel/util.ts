@@ -13,11 +13,13 @@ export const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLit
   $stringLiteral(node.namespace.name + ':' + node.name.name);
 
 export const convertJSXAttrValue = (value: t.JSXAttribute['value']): t.Expression => {
-  const expression: t.Expression = value == null
-    ? { type: 'BooleanLiteral', value: true }
-    : value.type === 'JSXExpressionContainer'
-      ? value.expression as t.Expression
-      : value;
+  if (value == null) {
+    return { type: 'BooleanLiteral', value: true };
+  }
+
+  const expression: t.Expression = value.type === 'JSXExpressionContainer'
+    ? value.expression as t.Expression
+    : value;
 
   if (expression.type === 'StringLiteral') {
     expression.value = expression.value.replace(/\n\s+/g, ' ');
