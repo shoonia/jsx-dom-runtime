@@ -62,3 +62,17 @@ export const convertJSXIdentifier = (
     optional: null,
   };
 };
+
+export const flattenElements = (elements: t.Expression[]): t.Expression[] => {
+  const output: t.Expression[] = [];
+
+  for (const element of elements) {
+    if (element.type === 'ArrayExpression') {
+      output.push(...flattenElements(element.elements));
+    } else {
+      output.push(element);
+    }
+  }
+
+  return output;
+};

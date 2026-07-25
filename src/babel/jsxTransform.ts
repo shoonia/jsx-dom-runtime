@@ -9,7 +9,12 @@ import {
   setUtility,
   isRef
 } from './directives';
-import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './util';
+import { 
+  buildProps,
+  convertJSXIdentifier,
+  convertJSXNamespacedName,
+  flattenElements,
+} from './util';
 import {
   $children,
   $identifier,
@@ -127,7 +132,7 @@ export const jsxTransform: PluginObj = {
 
           ref.value = {
             type: 'ArrayExpression',
-            elements: refs.map((i) => i.value),
+            elements: flattenElements(refs.map((i) => i.value)),
           };
 
           props.properties = props.properties.filter(
