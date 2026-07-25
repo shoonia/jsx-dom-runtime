@@ -118,7 +118,7 @@ export const jsxTransform: PluginObj = {
         const childrenContent = t.react.buildChildren(path.node);
         const childrenProps = props.properties.findLast(isChildren);
         const children = childrenContent.length > 0
-          ? childrenContent
+          ? flattenElements(childrenContent)
           : childrenProps != null
             ? [childrenProps.value as t.Expression]
             : [];
