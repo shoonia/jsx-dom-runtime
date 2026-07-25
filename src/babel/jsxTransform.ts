@@ -118,7 +118,7 @@ export const jsxTransform: PluginObj = {
         const childrenContent = t.react.buildChildren(path.node);
         const childrenProps = props.properties.findLast(isChildren);
         const children = childrenContent.length > 0
-          ? flattenElements(childrenContent)
+          ? childrenContent
           : childrenProps != null
             ? [childrenProps.value as t.Expression]
             : [];
@@ -165,7 +165,7 @@ export const jsxTransform: PluginObj = {
         ];
 
         if (children.length > 0) {
-          args.push($children(children));
+          args.push($children(flattenElements(children)));
         }
 
         path.replaceWith({
