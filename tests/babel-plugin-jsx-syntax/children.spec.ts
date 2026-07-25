@@ -36,6 +36,6 @@ describe('babel-plugin-jsx-syntax: Element', () => {
   });
 
   it('should return elemet with array', async () => {
-    await expect('<App>{[...a, ...b]}{...c}</App>').toBeTransform('App({children:[[...a,...b],c]});');
+    await expect('<App>{[...a, ...b]}{...c}</App>').toBeTransform('App({children:[[...a,...b,c]});');
   });
 });
