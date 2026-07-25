@@ -8,7 +8,7 @@ const events = [
   // [Form] Event
   'change', 'reset', 'invalid',
   // Event
-  'load', 'error', 'select', 'selectionchange',
+  'load', 'error', 'select', 'selectionchange', 'beforematch',
   // FocusEvent
   'focus', 'blur',
   // InputEvent

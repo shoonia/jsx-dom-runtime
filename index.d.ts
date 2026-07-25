@@ -803,6 +803,7 @@ declare global {
       'on:load'?: EventListener<T>
       'on:error'?: EventListener<T>
       'on:select'?: EventListener<T>
+      'on:beforeMatch'?: EventListener<T>
       // SubmitEvent
       'on:submit'?: SubmitEventListener<T>
       // KeyboardEvent
@@ -947,7 +948,8 @@ declare global {
       onerror?: GenericEventHandler<T>
       /** @deprecated use `on:select` instead */
       onselect?: GenericEventHandler<T>
-
+      /** @deprecated use `on:beforeMatch` instead */
+      onbeforematch?: GenericEventHandler<T>
       // SubmitEvent
       /** @deprecated use `on:submit` instead */
       onsubmit?: SubmitEventHandler<T>
@@ -1182,7 +1184,7 @@ declare global {
       /** @deprecated */
       'color-rendering'?: Property.ColorRendering
       /** @deprecated */
-      contentScriptType?: string
+      contentScriptType?: 'application/ecmascript' | AnyString
       /** @deprecated */
       contentStyleType?: string
       cursor?: Property.Cursor
