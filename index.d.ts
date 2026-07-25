@@ -2830,9 +2830,6 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attributionsrc
        */
       attributionsrc?: boolean | string
-      /**
-       * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
-       */
       blocking?: 'render' | AnyString
       /** @deprecated */
       charset?: string
@@ -2843,10 +2840,7 @@ declare global {
       nonce?: string
       referrerPolicy?: ReferrerPolicy
       src?: string
-      /**
-       * This attribute indicates the type of script represented
-       */
-      type?: 'importmap' | 'module' | 'speculationrules' | AnyString
+      type?:  'importmap' | 'module' | 'speculationrules' | 'text/javascript' | AnyString
       fetchPriority?: FetchPriority
 
       'prop:async'?: boolean
@@ -2862,7 +2856,7 @@ declare global {
       'prop:referrerPolicy'?: ReferrerPolicy
       'prop:src'?: string
       'prop:text'?: string
-      'prop:type'?: 'importmap' | 'module' | 'speculationrules' | AnyString
+      'prop:type'?: HTMLScriptElementAttributes['type']
     }
 
     interface HTMLSearchElementAttributes extends HTMLElementAttributes {
