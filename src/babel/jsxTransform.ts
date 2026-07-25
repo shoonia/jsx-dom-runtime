@@ -59,7 +59,7 @@ export const jsxTransform: PluginObj = {
     },
 
     JSXFragment(path) {
-      const children = t.react.buildChildren(path.node);
+      const children = flattenElements(t.react.buildChildren(path.node));
 
       if (jsxNode.has(path.parent.type)) {
         if (children.length > 0) {
