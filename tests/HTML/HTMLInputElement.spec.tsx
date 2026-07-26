@@ -208,5 +208,10 @@ describe('HTMLInputElement', () => {
       expect(files).toBeInstanceOf(FileList);
       expect(<input type="file" prop:files={files} />).toHaveProperty('files', files);
     });
+
+    it('should have `webkitdirectory` property/attribute', () => {
+      expect(<input type="file" webkitdirectory />).toHaveAttribute('webkitdirectory', '');
+      expect(<input type="file" prop:webkitdirectory />).toHaveProperty('webkitdirectory', true);
+    });
   });
 });
