@@ -732,12 +732,12 @@ declare global {
        * This is an experimental technology
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/virtualkeyboardpolicy
        */
-      virtualkeyboardpolicy?: 'auto' | 'manual'
+      virtualKeyboardPolicy?: 'auto' | 'manual'
       /**
        * In browsers that support them, writing suggestions are enabled by default. To disable them, set the writingsuggestions attribute's value to `false`. Setting the attribute's value to `true`, or omitting the value, enables writing suggestions
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/writingsuggestions
        */
-      writingsuggestions?: Booleanish | ''
+      writingSuggestions?: Booleanish | ''
     }
 
     interface JSXDirectives<T> {
@@ -774,6 +774,7 @@ declare global {
       'prop:tabIndex'?: number
       'prop:title'?: string
       'prop:translate'?: 'yes' | 'no'
+      'prop:elementTiming'?: string
       'prop:virtualKeyboardPolicy'?: 'auto' | 'manual'
       'prop:writingSuggestions'?: 'true' | 'false'
       [key: `prop:${string}`]: any
@@ -803,6 +804,7 @@ declare global {
       'on:load'?: EventListener<T>
       'on:error'?: EventListener<T>
       'on:select'?: EventListener<T>
+      'on:beforeMatch'?: EventListener<T>
       // SubmitEvent
       'on:submit'?: SubmitEventListener<T>
       // KeyboardEvent
@@ -947,7 +949,8 @@ declare global {
       onerror?: GenericEventHandler<T>
       /** @deprecated use `on:select` instead */
       onselect?: GenericEventHandler<T>
-
+      /** @deprecated use `on:beforeMatch` instead */
+      onbeforematch?: GenericEventHandler<T>
       // SubmitEvent
       /** @deprecated use `on:submit` instead */
       onsubmit?: SubmitEventHandler<T>
@@ -1182,7 +1185,7 @@ declare global {
       /** @deprecated */
       'color-rendering'?: Property.ColorRendering
       /** @deprecated */
-      contentScriptType?: string
+      contentScriptType?: 'application/ecmascript' | AnyString
       /** @deprecated */
       contentStyleType?: string
       cursor?: Property.Cursor
@@ -1564,7 +1567,22 @@ declare global {
        */
       type?: string
       referrerPolicy?: ReferrerPolicy
-      interestfor?: string
+      interestFor?: string
+
+      /**
+       * Non-standard attribute:
+       * The attributionSourceId is used as part of the **Private Click Measurement** specification to identify the content that was clicked when following a link to another site.
+       * @see https://privacycg.github.io/private-click-measurement/
+       * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/attributionSourceId
+       */
+      attributionSourceId?: Numeric
+      /**
+       * Non-standard attribute:
+       * The attributiondestination is used as part of the **Private Click Measurement** specification to identify the destination of a link that was clicked.
+       * @see https://privacycg.github.io/private-click-measurement/
+       */
+      attributionDestination?: string
+
       /**
        * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
        * @deprecated
@@ -1596,6 +1614,9 @@ declare global {
       'prop:search'?: string
       'prop:username'?: string
       'prop:interestForElement'?: globalThis.Element | null
+
+      'prop:attributionSourceId'?: number
+      'prop:attributionDestination'?: string
     }
 
     interface HTMLAbbrElementAttributes extends HTMLElementAttributes {
@@ -1689,7 +1710,7 @@ declare global {
       nohref?: string
       /** @deprecated */
       tabIndex?: Numeric
-      interestfor?: string
+      interestFor?: string
 
       'prop:interestForElement'?: globalThis.Element | null
     }
@@ -1747,8 +1768,8 @@ declare global {
       name?: string
       type?: 'submit' | 'reset' | 'button'
       value?: number | string
-      popovertarget?: string
-      popovertargetaction?: 'hide' | 'show' | 'toggle'
+      popoverTarget?: string
+      popoverTargetAction?: 'hide' | 'show' | 'toggle'
       /**
        * Specifies the action to be performed on an element being controlled by a control `<button>`, specified via the `commandfor` attribute.
        */
@@ -1756,8 +1777,8 @@ declare global {
       /**
        * Turns a <button> element into a command button, controlling the given interactive element; takes the ID of the element to control as its value. This is a more general version of `popovertarget`.
        */
-      commandfor?: string
-      interestfor?: string
+      commandFor?: string
+      interestFor?: string
       /** Permitted ARIA roles */
       role?:
       | 'button'
@@ -2828,9 +2849,6 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attributionsrc
        */
       attributionsrc?: boolean | string
-      /**
-       * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
-       */
       blocking?: 'render' | AnyString
       /** @deprecated */
       charset?: string
@@ -2841,10 +2859,7 @@ declare global {
       nonce?: string
       referrerPolicy?: ReferrerPolicy
       src?: string
-      /**
-       * This attribute indicates the type of script represented
-       */
-      type?: 'importmap' | 'module' | 'speculationrules' | AnyString
+      type?:  'importmap' | 'module' | 'speculationrules' | 'text/javascript' | AnyString
       fetchPriority?: FetchPriority
 
       'prop:async'?: boolean
@@ -2860,7 +2875,7 @@ declare global {
       'prop:referrerPolicy'?: ReferrerPolicy
       'prop:src'?: string
       'prop:text'?: string
-      'prop:type'?: 'importmap' | 'module' | 'speculationrules' | AnyString
+      'prop:type'?: HTMLScriptElementAttributes['type']
     }
 
     interface HTMLSearchElementAttributes extends HTMLElementAttributes {

@@ -8,7 +8,7 @@ const events = [
   // [Form] Event
   'change', 'reset', 'invalid',
   // Event
-  'load', 'error', 'select', 'selectionchange',
+  'load', 'error', 'select', 'selectionchange', 'beforematch',
   // FocusEvent
   'focus', 'blur',
   // InputEvent
@@ -87,6 +87,9 @@ export const attributes = new Set([
   'itemprop', 'itemtype', 'itemid', 'itemref', 'accesskey', 'elementtiming', 'usemap',
   'fetchpriority', 'controlslist', 'dirname', 'formtarget', 'formmethod', 'formenctype',
   'formaction', 'datetime', 'colspan', 'rowspan', 'srcset', 'shadowrootmode', 'closedby',
+  'interestfor', 'commandfor', 'popovertarget', 'popovertargetaction',
+  // Non-standard attributes
+  'attributiondestination', 'attributionsourceid'
 ]);
 
 export const booleanAttributes = new Set([

@@ -69,6 +69,10 @@ describe('HTMLButtonElement', () => {
     expect(<button prop:command="request-close" />).toHaveProperty('command', 'request-close');
   });
 
+  it('should have `commandFor` attribute', () => {
+    expect(<button commandFor="elem-id" />).toHaveAttribute('commandfor', 'elem-id');
+  });
+
   it('should have `commandForElement` property', () => {
     const el = document.createElement('div');
     expect(<button prop:commandForElement={el} />).toHaveProperty('commandForElement', el);
@@ -114,8 +118,8 @@ describe('HTMLButtonElement', () => {
     expect(<button prop:popoverTargetAction="toggle" />).toHaveProperty('popoverTargetAction', 'toggle');
   });
 
-  it('should have `interestfor` attribute', () => {
-    expect(<button interestfor="elem-id" />).toHaveAttribute('interestfor', 'elem-id');
+  it('should have `interestFor` attribute', () => {
+    expect(<button interestFor="elem-id" />).toHaveAttribute('interestfor', 'elem-id');
   });
 
   it('should have `interestForElement` property', () => {
