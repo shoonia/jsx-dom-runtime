@@ -1,6 +1,6 @@
 <div part="part" />;
 <div exportparts="exportparts" />;
-<input virtualkeyboardpolicy="auto" />;
+<input virtualKeyboardPolicy="auto" />;
 
 <input autocomplete />;
 <input autocomplete="" />;

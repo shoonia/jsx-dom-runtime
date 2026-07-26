@@ -5,7 +5,7 @@ describe('HTMLAreaElement', () => {
   });
 
   it('should have `interestfor` attribute', () => {
-    expect(<area interestfor="elem-id" />).toHaveAttribute('interestfor', 'elem-id');
+    expect(<area interestFor="elem-id" />).toHaveAttribute('interestfor', 'elem-id');
   });
 
   it('should have `interestForElement` property', () => {

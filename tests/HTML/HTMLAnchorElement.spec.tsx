@@ -87,11 +87,21 @@ describe('HTMLAnchorElement', () => {
   });
 
   it('should have `interestfor` attribute', () => {
-    expect(<a interestfor="elem-id" />).toHaveAttribute('interestfor', 'elem-id');
+    expect(<a interestFor="elem-id" />).toHaveAttribute('interestfor', 'elem-id');
   });
 
   it('should have `interestForElement` property', () => {
     const el = <div /> as HTMLDivElement;
     expect(<a prop:interestForElement={el} />).toHaveProperty('interestForElement', el);
+  });
+
+  it('should have `attributionSourceId` property', () => {
+    expect(<a attributionSourceId="17" />).toHaveAttribute('attributionSourceId', '17');
+    expect(<a prop:attributionSourceId={17} />).toHaveProperty('attributionSourceId', 17);
+  });
+  
+  it('should have `attributionDestination` property', () => {
+    expect(<a attributionDestination="https://destination.example/" />).toHaveAttribute('attributionDestination', 'https://destination.example/');
+    expect(<a prop:attributionDestination="https://destination.example/" />).toHaveProperty('attributionDestination', 'https://destination.example/');
   });
 });

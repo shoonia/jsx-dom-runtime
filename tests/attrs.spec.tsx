@@ -51,9 +51,9 @@ describe('Props', () => {
     expect(<p contentEditable="false" />).toHaveAttribute('contenteditable', 'false');
   });
 
-  it('should add `writingsuggestions` attribute', () => {
-    expect(<input writingsuggestions="true" />).toHaveAttribute('writingsuggestions', 'true');
-    expect(<input writingsuggestions="false" />).toHaveAttribute('writingsuggestions', 'false');
+  it('should add `writingSuggestions` attribute', () => {
+    expect(<input writingSuggestions="true" />).toHaveAttribute('writingsuggestions', 'true');
+    expect(<input writingSuggestions="false" />).toHaveAttribute('writingsuggestions', 'false');
   });
 
   it('should add `spellcheck` attribute', () => {
