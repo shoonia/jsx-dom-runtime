@@ -3057,11 +3057,23 @@ declare global {
        * @see https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootSerializable
         */
       shadowRootSerializable?: boolean | ''
+      /**
+       * Sets the `slotAssignment` property of a `ShadowRoot` created using this element. This is the declarative equivalent of the `slotAssignment` option of the `Element.attachShadow()` method
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#shadowrootslotassignment
+       */
+      shadowRootSlotAssignment?: 'none' | 'manual'
+      /**
+       * Sets the `customElementRegistry` property of a `ShadowRoot` created using this element to `null`, rather than the document's custom element registry
+       * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement/shadowRootCustomElementRegistry
+       */
+      shadowRootCustomElementRegistry?: string
 
       'prop:shadowRootClonable'?: boolean
       'prop:shadowRootDelegatesFocus'?: boolean
       'prop:shadowRootMode'?: 'open' | 'closed'
       'prop:shadowRootSerializable'?: boolean
+      'prop:shadowRootSlotAssignment'?: 'none' | 'manual'
+      'prop:shadowRootCustomElementRegistry'?: string
     }
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
