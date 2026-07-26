@@ -2389,6 +2389,8 @@ declare global {
       'prop:valueAsNumber'?: number
       'prop:webkitdirectory'?: boolean
       'prop:width'?: number
+      'prop:popoverTargetAction'?: 'hide' | 'show' | 'toggle'
+      'prop:popoverTargetElement'?: globalThis.Element | null
     }
 
     interface HTMLLabelElementAttributes extends OmitAttrs<HTMLAttributes<HTMLLabelElement>, RoleKey>, NoRolePermited {
