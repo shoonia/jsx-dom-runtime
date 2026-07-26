@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2024" />
-import type { Properties, Property } from 'csstype';
+import type { Properties, Property } from 'csstype'
 
 type AnyString = string & {}
 type Booleanish = boolean | 'true' | 'false'
@@ -69,8 +69,8 @@ export declare function jsx<
   children?: JSXChild | JSXChild[]
 ): R
 
-export declare const svgNs = 'http://www.w3.org/2000/svg';
-export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
+export declare const svgNs = 'http://www.w3.org/2000/svg'
+export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML'
 
 export declare function useRef<T = any>(current?: T): RefObject<T>
 export declare function useText<T = string>(initContent?: T): readonly [
@@ -90,17 +90,17 @@ export declare function Template(props: { children: string }): DocumentFragment
 /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent) */
 interface CommandEvent extends Event {
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent/source) */
-  readonly source: Element | null;
+  readonly source: Element | null
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent/command) */
-  readonly command: CommandEventType;
+  readonly command: CommandEventType
 }
 
 /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent) */
 interface SnapEvent extends Event {
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent/snapTargetBlock) */
-  readonly snapTargetBlock: Element | null;
+  readonly snapTargetBlock: Element | null
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent/snapTargetInline) */
-  readonly snapTargetInline: Element | null;
+  readonly snapTargetInline: Element | null
 }
 
 interface CurrentTarget<T> {
@@ -732,12 +732,12 @@ declare global {
        * This is an experimental technology
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/virtualkeyboardpolicy
        */
-      virtualkeyboardpolicy?: 'auto' | 'manual'
+      virtualKeyboardPolicy?: 'auto' | 'manual'
       /**
        * In browsers that support them, writing suggestions are enabled by default. To disable them, set the writingsuggestions attribute's value to `false`. Setting the attribute's value to `true`, or omitting the value, enables writing suggestions
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/writingsuggestions
        */
-      writingsuggestions?: Booleanish | ''
+      writingSuggestions?: Booleanish | ''
     }
 
     interface JSXDirectives<T> {
@@ -774,6 +774,7 @@ declare global {
       'prop:tabIndex'?: number
       'prop:title'?: string
       'prop:translate'?: 'yes' | 'no'
+      'prop:elementTiming'?: string
       'prop:virtualKeyboardPolicy'?: 'auto' | 'manual'
       'prop:writingSuggestions'?: 'true' | 'false'
       [key: `prop:${string}`]: any
@@ -803,6 +804,7 @@ declare global {
       'on:load'?: EventListener<T>
       'on:error'?: EventListener<T>
       'on:select'?: EventListener<T>
+      'on:beforeMatch'?: EventListener<T>
       // SubmitEvent
       'on:submit'?: SubmitEventListener<T>
       // KeyboardEvent
@@ -947,7 +949,8 @@ declare global {
       onerror?: GenericEventHandler<T>
       /** @deprecated use `on:select` instead */
       onselect?: GenericEventHandler<T>
-
+      /** @deprecated use `on:beforeMatch` instead */
+      onbeforematch?: GenericEventHandler<T>
       // SubmitEvent
       /** @deprecated use `on:submit` instead */
       onsubmit?: SubmitEventHandler<T>
@@ -1182,7 +1185,7 @@ declare global {
       /** @deprecated */
       'color-rendering'?: Property.ColorRendering
       /** @deprecated */
-      contentScriptType?: string
+      contentScriptType?: 'application/ecmascript' | AnyString
       /** @deprecated */
       contentStyleType?: string
       cursor?: Property.Cursor
@@ -1564,7 +1567,22 @@ declare global {
        */
       type?: string
       referrerPolicy?: ReferrerPolicy
-      interestfor?: string
+      interestFor?: string
+
+      /**
+       * Non-standard attribute:
+       * The attributionSourceId is used as part of the **Private Click Measurement** specification to identify the content that was clicked when following a link to another site.
+       * @see https://privacycg.github.io/private-click-measurement/
+       * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/attributionSourceId
+       */
+      attributionSourceId?: Numeric
+      /**
+       * Non-standard attribute:
+       * The attributiondestination is used as part of the **Private Click Measurement** specification to identify the destination of a link that was clicked.
+       * @see https://privacycg.github.io/private-click-measurement/
+       */
+      attributionDestination?: string
+
       /**
        * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
        * @deprecated
@@ -1596,6 +1614,9 @@ declare global {
       'prop:search'?: string
       'prop:username'?: string
       'prop:interestForElement'?: globalThis.Element | null
+
+      'prop:attributionSourceId'?: number
+      'prop:attributionDestination'?: string
     }
 
     interface HTMLAbbrElementAttributes extends HTMLElementAttributes {
@@ -1689,7 +1710,7 @@ declare global {
       nohref?: string
       /** @deprecated */
       tabIndex?: Numeric
-      interestfor?: string
+      interestFor?: string
 
       'prop:interestForElement'?: globalThis.Element | null
     }
@@ -1747,8 +1768,8 @@ declare global {
       name?: string
       type?: 'submit' | 'reset' | 'button'
       value?: number | string
-      popovertarget?: string
-      popovertargetaction?: 'hide' | 'show' | 'toggle'
+      popoverTarget?: string
+      popoverTargetAction?: 'hide' | 'show' | 'toggle'
       /**
        * Specifies the action to be performed on an element being controlled by a control `<button>`, specified via the `commandfor` attribute.
        */
@@ -1756,8 +1777,8 @@ declare global {
       /**
        * Turns a <button> element into a command button, controlling the given interactive element; takes the ID of the element to control as its value. This is a more general version of `popovertarget`.
        */
-      commandfor?: string
-      interestfor?: string
+      commandFor?: string
+      interestFor?: string
       /** Permitted ARIA roles */
       role?:
       | 'button'
@@ -2061,7 +2082,7 @@ declare global {
       role?: 'heading' | 'none' | 'presentation' | 'tab' | 'doc-subtitle'
 
       /** @deprecated */
-      'prop:align'?: 'left' | 'right' | 'justify' | 'center';
+      'prop:align'?: 'left' | 'right' | 'justify' | 'center'
       'prop:role'?: HTMLHeadingElementAttributes['role']
     }
 
@@ -2532,7 +2553,7 @@ declare global {
       muted?: boolean | '' | 'muted'
       playsInline?: boolean | '' | 'playsinline'
       mediaGroup?: string
-      preload?: 'none' | 'metadata' | 'auto' | '';
+      preload?: 'none' | 'metadata' | 'auto' | ''
       src?: string
       /** @deprecated use `on:encrypted` instead */
       onencrypted?: MediaEncryptedEventHandler<T>
@@ -2828,9 +2849,6 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attributionsrc
        */
       attributionsrc?: boolean | string
-      /**
-       * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
-       */
       blocking?: 'render' | AnyString
       /** @deprecated */
       charset?: string
@@ -2841,10 +2859,7 @@ declare global {
       nonce?: string
       referrerPolicy?: ReferrerPolicy
       src?: string
-      /**
-       * This attribute indicates the type of script represented
-       */
-      type?: 'importmap' | 'module' | 'speculationrules' | AnyString
+      type?:  'importmap' | 'module' | 'speculationrules' | 'text/javascript' | AnyString
       fetchPriority?: FetchPriority
 
       'prop:async'?: boolean
@@ -2860,7 +2875,7 @@ declare global {
       'prop:referrerPolicy'?: ReferrerPolicy
       'prop:src'?: string
       'prop:text'?: string
-      'prop:type'?: 'importmap' | 'module' | 'speculationrules' | AnyString
+      'prop:type'?: HTMLScriptElementAttributes['type']
     }
 
     interface HTMLSearchElementAttributes extends HTMLElementAttributes {
@@ -3042,11 +3057,23 @@ declare global {
        * @see https://developer.mozilla.org/docs/Web/API/HTMLTemplateElement/shadowRootSerializable
         */
       shadowRootSerializable?: boolean | ''
+      /**
+       * Sets the `slotAssignment` property of a `ShadowRoot` created using this element. This is the declarative equivalent of the `slotAssignment` option of the `Element.attachShadow()` method
+       * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/template#shadowrootslotassignment
+       */
+      shadowRootSlotAssignment?: 'none' | 'manual'
+      /**
+       * Sets the `customElementRegistry` property of a `ShadowRoot` created using this element to `null`, rather than the document's custom element registry
+       * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement/shadowRootCustomElementRegistry
+       */
+      shadowRootCustomElementRegistry?: string
 
       'prop:shadowRootClonable'?: boolean
       'prop:shadowRootDelegatesFocus'?: boolean
       'prop:shadowRootMode'?: 'open' | 'closed'
       'prop:shadowRootSerializable'?: boolean
+      'prop:shadowRootSlotAssignment'?: 'none' | 'manual'
+      'prop:shadowRootCustomElementRegistry'?: string
     }
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {

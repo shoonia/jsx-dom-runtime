@@ -1,11 +1,11 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
 import { jest } from '@jest/globals';
 import { createEvent, fireEvent } from '@testing-library/dom';
-
-const i = 'import{jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
+import { jsxImport } from '../utils';
 
 const fullscreenChange = (node: Node) => fireEvent(node, createEvent('fullscreenchange', node));
 const fullscreenError = (node: Node) => fireEvent(node, createEvent('fullscreenerror', node));
+const beforeMatch = (node: Node) => fireEvent(node, createEvent('beforematch', node));
 
 describe('Event: select', () => {
   it('should add `onselect` handler', () => {
@@ -79,7 +79,7 @@ describe('Event: error', () => {
 describe('Event: fullscreenchange', () => {
   it('should transform events name', async () => {
     await expect('<div on:fullscreenChange={fn} />')
-      .toBeTransform(i + '_jsx("div",{$:{fullscreenchange:fn}});');
+      .toBeTransform(jsxImport`_jsx("div",{$:{fullscreenchange:fn}});`);
   });
 
   it('should add `on:fullscreenChange` function listener', () => {
@@ -100,7 +100,7 @@ describe('Event: fullscreenchange', () => {
 describe('Event: fullscreenerror', () => {
   it('should transform events name', async () => {
     await expect('<div on:fullscreenError={fn} />')
-      .toBeTransform(i + '_jsx("div",{$:{fullscreenerror:fn}});');
+      .toBeTransform(jsxImport`_jsx("div",{$:{fullscreenerror:fn}});`);
   });
 
   it('should add `on:fullscreenError` function listener', () => {
@@ -114,6 +114,27 @@ describe('Event: fullscreenerror', () => {
     const handleEvent: JSX.EventListener<HTMLDivElement> = jest.fn();
 
     fullscreenError(<div on:fullscreenError={{ handleEvent }} />);
+    expect(handleEvent).toHaveBeenCalledTimes(1);
+  });
+});
+
+describe('Event: beforematch', () => {
+  it('should transform events name', async () => {
+    await expect('<div on:beforeMatch={fn} />')
+      .toBeTransform(jsxImport`_jsx("div",{$:{beforematch:fn}});`);
+  });
+
+  it('should add `on:beforeMatch` function listener', () => {
+    const spy: JSX.EventListener<HTMLDivElement> = jest.fn();
+
+    beforeMatch(<div on:beforeMatch={spy} />);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  it('should add `on:beforeMatch` object listener', () => {
+    const handleEvent: JSX.EventListener<HTMLDivElement> = jest.fn();
+
+    beforeMatch(<div on:beforeMatch={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 });

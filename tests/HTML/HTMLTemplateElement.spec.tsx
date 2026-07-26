@@ -29,35 +29,34 @@ describe('HTMLTemplateElement', () => {
     expect(ref.current.content.querySelector('p')).toHaveInnerHTML('text here');
   });
 
-  it('should have `shadowRootMode` attribute', () => {
+  it('should have `shadowRootMode` attribute/property', () => {
     expect(<template shadowRootMode="open" />).toHaveAttribute('shadowrootmode', 'open');
-  });
-
-  it('should have `shadowrootclonable` attribute', () => {
-    expect(<template shadowRootClonable />).toHaveAttribute('shadowrootclonable', '');
-  });
-
-  it('should have `shadowrootdelegatesfocus` attribute', () => {
-    expect(<template shadowRootDelegatesFocus />).toHaveAttribute('shadowrootdelegatesfocus', '');
-  });
-
-  it('should have `shadowRootSerializable` attribute', () => {
-    expect(<template shadowRootSerializable />).toHaveAttribute('shadowrootserializable', '');
-  });
-
-  it('should set `shadowRootMode` property', () => {
     expect(<template prop:shadowRootMode="open" />).toHaveProperty('shadowRootMode', 'open');
   });
 
-  it('should set prop:shadowRootClonable property', () => {
+  it('should have `shadowrootclonable` attribute/property', () => {
+    expect(<template shadowRootClonable />).toHaveAttribute('shadowrootclonable', '');
     expect(<template prop:shadowRootClonable />).toHaveProperty('shadowRootClonable', true);
   });
 
-  it('should set prop:shadowRootDelegatesFocus property', () => {
+  it('should have `shadowrootdelegatesfocus` attribute/property', () => {
+    expect(<template shadowRootDelegatesFocus />).toHaveAttribute('shadowrootdelegatesfocus', '');
     expect(<template prop:shadowRootDelegatesFocus />).toHaveProperty('shadowRootDelegatesFocus', true);
   });
 
-  it('should set prop:shadowRootSerializable property', () => {
+  it('should have `shadowRootSerializable` attribute/property', () => {
+    expect(<template shadowRootSerializable />).toHaveAttribute('shadowrootserializable', '');
     expect(<template prop:shadowRootSerializable />).toHaveProperty('shadowRootSerializable', true);
   });
+
+  it('should have `shadowRootSlotAssignment` attribute/property', () => {
+    expect(<template shadowRootSlotAssignment="manual" />).toHaveAttribute('shadowrootslotassignment', 'manual');
+    expect(<template prop:shadowRootSlotAssignment="manual" />).toHaveProperty('shadowRootSlotAssignment', 'manual');
+  });
+
+  it('should have `shadowRootCustomElementRegistry` attribute/property', () => {
+    expect(<template shadowRootCustomElementRegistry="my-registry" />).toHaveAttribute('shadowrootcustomelementregistry', 'my-registry');
+    expect(<template prop:shadowRootCustomElementRegistry="my-registry" />).toHaveProperty('shadowRootCustomElementRegistry', 'my-registry');
+  });
+
 });

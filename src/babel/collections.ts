@@ -8,7 +8,7 @@ const events = [
   // [Form] Event
   'change', 'reset', 'invalid',
   // Event
-  'load', 'error', 'select', 'selectionchange',
+  'load', 'error', 'select', 'selectionchange', 'beforematch',
   // FocusEvent
   'focus', 'blur',
   // InputEvent
@@ -87,6 +87,9 @@ export const attributes = new Set([
   'itemprop', 'itemtype', 'itemid', 'itemref', 'accesskey', 'elementtiming', 'usemap',
   'fetchpriority', 'controlslist', 'dirname', 'formtarget', 'formmethod', 'formenctype',
   'formaction', 'datetime', 'colspan', 'rowspan', 'srcset', 'shadowrootmode', 'closedby',
+  'interestfor', 'commandfor', 'popovertarget', 'popovertargetaction',
+  // Non-standard attributes
+  'attributiondestination', 'attributionsourceid'
 ]);
 
 export const booleanAttributes = new Set([
@@ -96,7 +99,8 @@ export const booleanAttributes = new Set([
   'multiple', 'loop', 'required', 'hidden', 'open', 'selected', 'nomodule', 'noshade',
   'novalidate', 'playsinline', 'reversed', 'inert', 'disablepictureinpicture',
   'disableremoteplayback', 'popover', 'itemscope', 'declare', 'moz-opaque', 'ismap',
-  'shadowrootclonable', 'shadowrootdelegatesfocus', 'shadowrootserializable',
+  'shadowrootclonable', 'shadowrootdelegatesfocus', 'shadowrootserializable', 'shadowrootslotassignment',
+  'shadowrootcustomelementregistry',
 ]);
 
 export const enumerated = new Set([
