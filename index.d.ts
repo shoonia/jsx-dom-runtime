@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2024" />
-import type { Properties, Property } from 'csstype';
+import type { Properties, Property } from 'csstype'
 
 type AnyString = string & {}
 type Booleanish = boolean | 'true' | 'false'
@@ -69,8 +69,8 @@ export declare function jsx<
   children?: JSXChild | JSXChild[]
 ): R
 
-export declare const svgNs = 'http://www.w3.org/2000/svg';
-export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
+export declare const svgNs = 'http://www.w3.org/2000/svg'
+export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML'
 
 export declare function useRef<T = any>(current?: T): RefObject<T>
 export declare function useText<T = string>(initContent?: T): readonly [
@@ -90,17 +90,17 @@ export declare function Template(props: { children: string }): DocumentFragment
 /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent) */
 interface CommandEvent extends Event {
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent/source) */
-  readonly source: Element | null;
+  readonly source: Element | null
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent/command) */
-  readonly command: CommandEventType;
+  readonly command: CommandEventType
 }
 
 /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent) */
 interface SnapEvent extends Event {
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent/snapTargetBlock) */
-  readonly snapTargetBlock: Element | null;
+  readonly snapTargetBlock: Element | null
   /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/SnapEvent/snapTargetInline) */
-  readonly snapTargetInline: Element | null;
+  readonly snapTargetInline: Element | null
 }
 
 interface CurrentTarget<T> {
@@ -2082,7 +2082,7 @@ declare global {
       role?: 'heading' | 'none' | 'presentation' | 'tab' | 'doc-subtitle'
 
       /** @deprecated */
-      'prop:align'?: 'left' | 'right' | 'justify' | 'center';
+      'prop:align'?: 'left' | 'right' | 'justify' | 'center'
       'prop:role'?: HTMLHeadingElementAttributes['role']
     }
 
@@ -2553,7 +2553,7 @@ declare global {
       muted?: boolean | '' | 'muted'
       playsInline?: boolean | '' | 'playsinline'
       mediaGroup?: string
-      preload?: 'none' | 'metadata' | 'auto' | '';
+      preload?: 'none' | 'metadata' | 'auto' | ''
       src?: string
       /** @deprecated use `on:encrypted` instead */
       onencrypted?: MediaEncryptedEventHandler<T>
