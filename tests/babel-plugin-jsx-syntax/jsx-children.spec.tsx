@@ -32,4 +32,16 @@ describe('jsx-children', () => {
   it('should have children as array', async () => {
     await expect('<div><p /><p /></div>').toBeTransform(jsxImport`_jsx("div",{},[/*#__PURE__*/_jsx("p",{}),/*#__PURE__*/_jsx("p",{})]);`);
   });
+
+  it('should flatten nested children', async () => {
+    await expect('<div>{[1, [2, [3]]] }{4}</div>').toBeTransform(jsxImport`_jsx("div",{},[1,2,3,4]);`);
+  });
+
+  it('should flatten nested children in "children" property', async () => {
+    await expect('<div children={[1, [2, [3, 4]]]}></div>').toBeTransform(jsxImport`_jsx("div",{},[1,2,3,4]);`);
+  });
+
+  it('should flatten nested children with spread elements', async () => {
+    await expect('<div>{[1, [2, ...a], 3]}</div>').toBeTransform(jsxImport`_jsx("div",{},[1,2,...a,3]);`);
+  });
 });

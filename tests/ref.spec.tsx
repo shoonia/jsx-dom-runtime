@@ -92,7 +92,7 @@ describe('ref', () => {
 
   it('should join all refs in one property', async () => {
     expect('<div ref={ref1} ref={[ref2]} ref={[ref3, ref4]} ref={ref5} />').toBeTransform(
-      jsxImport`_jsx("div",{ref:[ref1,[ref2],[ref3,ref4],ref5]});`
+      jsxImport`_jsx("div",{ref:[ref1,ref2,ref3,ref4,ref5]});`
     );
   });
 });

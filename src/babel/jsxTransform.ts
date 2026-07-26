@@ -9,7 +9,12 @@ import {
   setUtility,
   isRef
 } from './directives';
-import { buildProps, convertJSXIdentifier, convertJSXNamespacedName } from './util';
+import {
+  buildProps,
+  convertJSXIdentifier,
+  convertJSXNamespacedName,
+  flattenElements,
+} from './util';
 import {
   $children,
   $identifier,
@@ -54,7 +59,7 @@ export const jsxTransform: PluginObj = {
     },
 
     JSXFragment(path) {
-      const children = t.react.buildChildren(path.node);
+      const children = flattenElements(t.react.buildChildren(path.node));
 
       if (jsxNode.has(path.parent.type)) {
         if (children.length > 0) {
@@ -127,7 +132,7 @@ export const jsxTransform: PluginObj = {
 
           ref.value = {
             type: 'ArrayExpression',
-            elements: refs.map((i) => i.value),
+            elements: flattenElements(refs.map((i) => i.value)),
           };
 
           props.properties = props.properties.filter(
@@ -160,7 +165,7 @@ export const jsxTransform: PluginObj = {
         ];
 
         if (children.length > 0) {
-          args.push($children(children));
+          args.push($children(flattenElements(children)));
         }
 
         path.replaceWith({
