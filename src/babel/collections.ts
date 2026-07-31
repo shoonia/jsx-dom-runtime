@@ -82,16 +82,6 @@ export const eventTypes = new Set([
   'webglcontextlost', 'webglcontextrestored', 'webglcontextcreationerror',
 ]);
 
-export const attributes = new Set([
-  'tabindex', 'inputmode', 'referrerpolicy', 'enterkeyhint', 'maxlength', 'minlength',
-  'itemprop', 'itemtype', 'itemid', 'itemref', 'accesskey', 'elementtiming', 'usemap',
-  'fetchpriority', 'controlslist', 'dirname', 'formtarget', 'formmethod', 'formenctype',
-  'formaction', 'datetime', 'colspan', 'rowspan', 'srcset', 'shadowrootmode', 'closedby',
-  'interestfor', 'commandfor', 'popovertarget', 'popovertargetaction',
-  // Non-standard attributes
-  'attributiondestination', 'attributionsourceid'
-]);
-
 export const booleanAttributes = new Set([
   'async', 'autofocus', 'autocomplete', 'autoplay', 'attributionsrc',
   'controls', 'checked', 'crossorigin',
@@ -104,19 +94,6 @@ export const booleanAttributes = new Set([
 ]);
 
 export const enumerated = new Set([
-  // ARIA enumerated attributes
-  'aria-atomic', 'aria-braillelabel', 'aria-brailleroledescription', 'aria-busy',
-  'aria-controls', 'aria-current', 'aria-describedby', 'aria-description', 'aria-details',
-  'aria-disabled', 'aria-dropeffect', 'aria-errormessage', 'aria-flowto', 'aria-grabbed',
-  'aria-haspopup', 'aria-hidden', 'aria-invalid', 'aria-keyshortcuts', 'aria-label',
-  'aria-labelledby', 'aria-live', 'aria-owns', 'aria-relevant', 'aria-roledescription',
-  'aria-autocomplete', 'aria-checked', 'aria-expanded', 'aria-level', 'aria-modal',
-  'aria-multiline', 'aria-multiselectable', 'aria-orientation', 'aria-placeholder',
-  'aria-pressed', 'aria-readonly', 'aria-required', 'aria-selected', 'aria-sort',
-  'aria-valuemax', 'aria-valuemin', 'aria-valuenow', 'aria-valuetext', 'aria-activedescendant',
-  'aria-colcount', 'aria-colindex', 'aria-colindextext', 'aria-colspan', 'aria-posinset',
-  'aria-rowcount', 'aria-rowindex', 'aria-rowindextext', 'aria-rowspan', 'aria-setsize',
-  // HTML enumerated attributes
   'draggable', 'spellcheck', 'writingsuggestions',
 ]);
 
