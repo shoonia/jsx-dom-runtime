@@ -1,6 +1,6 @@
 # jsx-dom-runtime
 
-This is a [Babel](https://babeljs.io/) plugin to transform [JSX](https://facebook.github.io/jsx/) syntax to [DOM](https://dom.spec.whatwg.org/) elements with minimal runtime dependency ~500 B. It supports [HTML](https://html.spec.whatwg.org/multipage/), [SVG](https://www.w3.org/TR/SVG/), and [MathML](https://www.w3.org/TR/MathML3/) tags.
+This is a [Babel](https://babeljs.io/) plugin to transform [JSX](https://facebook.github.io/jsx/) syntax to [DOM](https://dom.spec.whatwg.org/) elements with minimal runtime dependency ~500 B. It supports [HTML](https://html.spec.whatwg.org/multipage/), [SVG](https://www.w3.org/TR/SVG/), [MathML](https://www.w3.org/TR/MathML3/) and [Custom elements](https://html.spec.whatwg.org/multipage/custom-elements.html) tags.
 
 **source code:**
 
