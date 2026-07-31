@@ -277,7 +277,7 @@ export const jsxTransform: PluginObj = {
         return;
       }
 
-      const aName = attrName.name.toLowerCase();
+      let aName = attrName.name.toLowerCase();
 
       if (isHTMLElement) {
         attrName.name = aName;
@@ -302,6 +302,10 @@ export const jsxTransform: PluginObj = {
           attribute.value = $stringLiteral(attrValue.expression.value.toString());
         }
         return;
+      }
+
+      if (aName === 'ondoubleclick') {
+        aName = 'ondblclick';
       }
 
       if (DOMEvents.has(aName)) {
