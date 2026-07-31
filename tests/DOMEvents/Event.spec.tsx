@@ -118,6 +118,20 @@ describe('Event: fullscreenerror', () => {
   });
 });
 
+describe('Event: dblclick', () => {
+  it('should transform React style name `ondoubleclick` to `ondblclick`', async () => {
+    await expect('<div ondoubleclick={fn} />')
+      .toBeTransform(jsxImport`_jsx("div",{ref:e=>e.ondblclick=fn});`);
+  });
+
+  it('should add ondblclick when `ondoubleclick` handler is present', () => {
+    const spy: JSX.MouseEventListener = jest.fn();
+    // @ts-expect-error
+    fireEvent.dblClick(<div ondoubleclick={spy} />);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+});
+
 describe('Event: beforematch', () => {
   it('should transform events name', async () => {
     await expect('<div on:beforeMatch={fn} />')
