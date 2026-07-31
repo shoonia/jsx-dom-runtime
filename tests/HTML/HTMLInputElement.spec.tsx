@@ -208,5 +208,29 @@ describe('HTMLInputElement', () => {
       expect(files).toBeInstanceOf(FileList);
       expect(<input type="file" prop:files={files} />).toHaveProperty('files', files);
     });
+
+    it('should have `webkitdirectory` property/attribute', () => {
+      expect(<input type="file" webkitdirectory />).toHaveAttribute('webkitdirectory', '');
+      expect(<input type="file" prop:webkitdirectory />).toHaveProperty('webkitdirectory', true);
+    });
+  });
+
+  describe('button', () => {
+    it('should have attribute `popovertarget`', () => {
+      expect(<input type="button" popoverTarget="elem-id" />).toHaveAttribute('popovertarget', 'elem-id');
+    });
+
+    it('should have attribute `popovertargetaction`', () => {
+      expect(<input type="button" popoverTargetAction="show" />).toHaveAttribute('popovertargetaction', 'show');
+    });
+
+    it('should have property `popoverTargetElement`', () => {
+      const el = <div /> as HTMLDivElement;
+      expect(<input type="button" prop:popoverTargetElement={el} />).toHaveProperty('popoverTargetElement', el);
+    });
+
+    it('should have property `popoverTargetAction`', () => {
+      expect(<input type="button" prop:popoverTargetAction="hide" />).toHaveProperty('popoverTargetAction', 'hide');
+    });
   });
 });
