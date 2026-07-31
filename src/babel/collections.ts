@@ -88,6 +88,7 @@ export const attributes = new Set([
   'fetchpriority', 'controlslist', 'dirname', 'formtarget', 'formmethod', 'formenctype',
   'formaction', 'datetime', 'colspan', 'rowspan', 'srcset', 'shadowrootmode', 'closedby',
   'interestfor', 'commandfor', 'popovertarget', 'popovertargetaction',
+  'shadowrootcustomelementregistry', 'shadowrootslotassignment',
   // Non-standard attributes
   'attributiondestination', 'attributionsourceid'
 ]);
@@ -99,8 +100,8 @@ export const booleanAttributes = new Set([
   'multiple', 'loop', 'required', 'hidden', 'open', 'selected', 'nomodule', 'noshade',
   'novalidate', 'playsinline', 'reversed', 'inert', 'disablepictureinpicture',
   'disableremoteplayback', 'popover', 'itemscope', 'declare', 'moz-opaque', 'ismap',
-  'shadowrootclonable', 'shadowrootdelegatesfocus', 'shadowrootserializable', 'shadowrootslotassignment',
-  'shadowrootcustomelementregistry',
+  'shadowrootclonable', 'shadowrootdelegatesfocus', 'shadowrootserializable',
+  'webkitdirectory',
 ]);
 
 export const enumerated = new Set([

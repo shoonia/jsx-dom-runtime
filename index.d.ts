@@ -2340,8 +2340,12 @@ declare global {
       | 'week'
       value?: number | string
       width?: number | string
-      popovertarget?: string
-      popovertargetaction?: 'hide' | 'show' | 'toggle'
+      /**
+       * Allow to select entire folders instead of individual files. Attribute is only used for inputs with `type="file"`
+       */
+      webkitdirectory?: boolean | '' | 'webkitdirectory'
+      popoverTarget?: string
+      popoverTargetAction?: 'hide' | 'show' | 'toggle'
       // TODO: role attribute
 
       'prop:accept'?: string
@@ -2385,6 +2389,8 @@ declare global {
       'prop:valueAsNumber'?: number
       'prop:webkitdirectory'?: boolean
       'prop:width'?: number
+      'prop:popoverTargetAction'?: 'hide' | 'show' | 'toggle'
+      'prop:popoverTargetElement'?: globalThis.Element | null
     }
 
     interface HTMLLabelElementAttributes extends OmitAttrs<HTMLAttributes<HTMLLabelElement>, RoleKey>, NoRolePermited {
