@@ -26,7 +26,6 @@ import {
 import {
   enumerated,
   booleanAttributes,
-  attributes,
   DOMEvents,
   charCode,
   jsxNode,
@@ -273,14 +272,27 @@ export const jsxTransform: PluginObj = {
         return;
       }
 
+      if (isSVGElement && svgDOMAttributes.has(attrName.name)) {
+        attrName.name = svgDOMAttributes.get(attrName.name);
+        return;
+      }
+
       const aName = attrName.name.toLowerCase();
 
-      if (booleanAttributes.has(aName)) {
+      if (isHTMLElement) {
         attrName.name = aName;
-        attribute.value ??= $stringLiteral('');
-      } else if (enumerated.has(aName) || aName.startsWith('data-')) {
-        attrName.name = aName;
+      }
 
+      if (booleanAttributes.has(aName)) {
+        attribute.value ??= $stringLiteral('');
+        return;
+      }
+
+      if (
+        enumerated.has(aName) ||
+        aName.startsWith('data-') ||
+        aName.startsWith('aria-')
+      ) {
         if (attrValue == null) {
           attribute.value = $stringLiteral('true');
         } else if (
@@ -289,13 +301,12 @@ export const jsxTransform: PluginObj = {
         ) {
           attribute.value = $stringLiteral(attrValue.expression.value.toString());
         }
-      } else if (DOMEvents.has(aName)) {
+        return;
+      }
+
+      if (DOMEvents.has(aName)) {
         createDirectiveAssignExp(openingElement, aName, attrValue);
         path.remove();
-      } else if (isHTMLElement && attributes.has(aName)) {
-        attrName.name = aName;
-      } else if (isSVGElement && svgDOMAttributes.has(attrName.name)) {
-        attrName.name = svgDOMAttributes.get(attrName.name);
       }
     },
   },
