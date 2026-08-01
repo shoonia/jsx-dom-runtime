@@ -26,7 +26,6 @@ import {
 import {
   enumerated,
   booleanAttributes,
-  DOMEvents,
   charCode,
   jsxNode,
 } from './collections';
@@ -277,7 +276,7 @@ export const jsxTransform: PluginObj = {
         return;
       }
 
-      let aName = attrName.name.toLowerCase();
+      const aName = attrName.name.toLowerCase();
 
       if (isHTMLElement) {
         attrName.name = aName;
@@ -304,12 +303,12 @@ export const jsxTransform: PluginObj = {
         return;
       }
 
-      if (aName === 'ondoubleclick') {
-        aName = 'ondblclick';
-      }
-
-      if (DOMEvents.has(aName)) {
-        createDirectiveAssignExp(openingElement, aName, attrValue);
+      if (aName.startsWith('on')) {
+        createDirectiveAssignExp(
+          openingElement,
+          aName === 'ondoubleclick' ? 'ondblclick' : aName,
+          attrValue,
+        );
         path.remove();
       }
     },
