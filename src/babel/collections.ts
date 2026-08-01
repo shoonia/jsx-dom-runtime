@@ -1,6 +1,6 @@
 import type { Node } from '@babel/types';
 
-const events = [
+export const eventTypes = new Set([
   // ClipboardEvent
   'copy', 'cut', 'paste',
   // CompositionEvent
@@ -10,7 +10,7 @@ const events = [
   // Event
   'load', 'error', 'select', 'selectionchange', 'beforematch',
   // FocusEvent
-  'focus', 'blur',
+  'focus', 'blur', 'focusin', 'focusout',
   // InputEvent
   'beforeinput', 'input',
   // SubmitEvent
@@ -66,18 +66,6 @@ const events = [
   'command',
   // HTMLCanvasElement
   'contextlost', 'contextrestored',
-];
-
-export const DOMEvents = new Set([
-  ...events.map((e) => 'on' + e),
-  // SVGAnimationElement Events
-  'onbegin', 'onend', 'onrepeat',
-]);
-
-export const eventTypes = new Set([
-  ...events,
-  // FocusEvent
-  'focusin', 'focusout',
   // WebGLContextEvent
   'webglcontextlost', 'webglcontextrestored', 'webglcontextcreationerror',
 ]);
