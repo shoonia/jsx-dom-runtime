@@ -34,7 +34,7 @@ import {
   htmlDOMAttributes,
   svgDOMAttributes,
 } from '../collections';
-import { 
+import {
   isRef,
   isFunctionComponent,
   isChildren,
