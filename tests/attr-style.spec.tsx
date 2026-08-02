@@ -29,6 +29,10 @@ describe('Style attribute', () => {
     expect(<p style={{ cssText: 'padding: 15px; margin: 15px;' }} />).toHaveCssText('padding: 15px; margin: 15px;');
   });
 
+  it('should not braken when value is undefined', () => {
+    expect(<div style={undefined} />).toHaveCssText('');
+  });
+
   it('should transform style attribute to setStyle directive with string', async () => {
     await expect('<div style="color: red; background-color: blue;" />')
       .toBeTransform(styleImport`_jsx("div",{ref:e=>_setStyle(e,"color: red; background-color: blue;")});`);
