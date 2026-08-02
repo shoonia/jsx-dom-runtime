@@ -1,4 +1,4 @@
-import { styleImport } from './utils/t';
+import { styleImport, jsxImport } from './utils/t';
 
 describe('Style attribute', () => {
   it('should add style as a string', () => {
@@ -29,13 +29,27 @@ describe('Style attribute', () => {
     expect(<p style={{ cssText: 'padding: 15px; margin: 15px;' }} />).toHaveCssText('padding: 15px; margin: 15px;');
   });
 
-  it('should transform style attribute to setStyle directive with string', async () => {
-    await expect('<div style="color: red; background-color: blue;" />')
-      .toBeTransform(styleImport`_jsx("div",{ref:e=>_setStyle(e,"color: red; background-color: blue;")});`);
+  it('should not braken when value is undefined', () => {
+    expect(<div style={undefined} />).toHaveCssText('');
   });
 
   it('should transform style attribute to setStyle directive with object', async () => {
     await expect('<div style={{ color: "red", backgroundColor: "blue" }} />')
       .toBeTransform(styleImport`_jsx("div",{ref:e=>_setStyle(e,{color:"red",backgroundColor:"blue"})});`);
+  });
+
+  it('should add style as a string (no extra util)', async () => {
+    await expect('<div style="color: red; background-color: blue;" />')
+      .toBeTransform(jsxImport`_jsx("div",{style:"color: red; background-color: blue;"});`);
+  });
+
+  it('should add style as a template literal (no extra util)', async () => {
+    await expect('<div style={`color: ${color}; background-color: ${backgroundColor};`} />')
+      .toBeTransform(jsxImport('_jsx("div",{style:`color: ${color}; background-color: ${backgroundColor};`});'));
+  });
+
+  it('should transform style attribute to setStyle directive when using variable', async () => {
+    await expect('<div style={style} />')
+      .toBeTransform(styleImport`_jsx("div",{ref:e=>_setStyle(e,style)});`);
   });
 });
