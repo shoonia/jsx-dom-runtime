@@ -7,7 +7,6 @@ import {
   createDirectiveAssignExp,
   createDirectiveCallExp,
   setUtility,
-  isRef
 } from './directives';
 import {
   buildProps,
@@ -26,7 +25,6 @@ import {
 import {
   enumerated,
   booleanAttributes,
-  charCode,
   jsxNode,
 } from './collections';
 import {
@@ -36,17 +34,14 @@ import {
   htmlDOMAttributes,
   svgDOMAttributes,
 } from '../collections';
+import { 
+  isRef,
+  isFunctionComponent,
+  isChildren,
+  isJsxContainerWith,
+} from './guards';
 
 const opts = { name: '_' } as const;
-
-const isFunctionComponent = (name: t.JSXIdentifier): boolean =>
-  charCode.has(name.name.charCodeAt(0));
-
-const isChildren = (node: t.Node): node is t.ObjectProperty =>
-  node.type === 'ObjectProperty' && node.key.type === 'Identifier' && node.key.name === 'children';
-
-const isJsxContainerWith = (node: t.Node, expression: t.Node['type']): node is t.JSXExpressionContainer =>
-  node.type === 'JSXExpressionContainer' && node.expression.type === expression;
 
 let nsMap: WeakMap<NodePath, TImportName>;
 let importSpec: ImportSpec;

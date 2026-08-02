@@ -4,16 +4,8 @@ import { isIdentifierName } from '@babel/helper-validator-identifier';
 import { $expressionStatement, $identifier, $jsxExpressionContainer, $jsxIdentifier, $stringLiteral } from './builders';
 import { convertJSXAttrValue, type DirectiveFunc } from './util';
 
-interface RefProp extends t.ObjectProperty {
-  key: t.Identifier & { name: 'ref' }
-  value: t.Expression
-}
-
 const cache = new WeakMap<t.JSXOpeningElement, t.ArrowFunctionExpression>();
 const e = Object.seal($identifier('e'));
-
-export const isRef = (i: t.ObjectMethod | t.ObjectProperty | t.SpreadElement): i is RefProp =>
-  i.type === 'ObjectProperty' && i.key.type === 'Identifier' && i.key.name === 'ref';
 
 const getRef = (element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
   if (cache.has(element)) {
