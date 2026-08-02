@@ -20,11 +20,7 @@ export const rule: TSESLint.RuleModule<'legacyEventHandler', []> = {
         if (isJSXIdentifier(node.name)) {
           const name = node.name.name;
 
-          if (
-            name.startsWith('on') &&
-            name.length > 2 &&
-            isStandardNode(node.parent)
-          ) {
+          if (name.startsWith('on') && isStandardNode(node.parent)) {
             context.report({
               node: node.name,
               messageId: 'legacyEventHandler',
