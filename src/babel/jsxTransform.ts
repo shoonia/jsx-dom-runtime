@@ -45,6 +45,9 @@ const isFunctionComponent = (name: t.JSXIdentifier): boolean =>
 const isChildren = (node: t.Node): node is t.ObjectProperty =>
   node.type === 'ObjectProperty' && node.key.type === 'Identifier' && node.key.name === 'children';
 
+const isJsxContainerWith = (node: t.Node, expression: t.Node['type']): node is t.JSXExpressionContainer =>
+  node.type === 'JSXExpressionContainer' && node.expression.type === expression;
+
 let nsMap: WeakMap<NodePath, TImportName>;
 let importSpec: ImportSpec;
 
@@ -251,9 +254,19 @@ export const jsxTransform: PluginObj = {
       }
 
       switch (attrName.name) {
-        case 'style':
+        case 'style': {
+          if (
+            attrValue == null ||
+            attrValue.type === 'StringLiteral' ||
+            isJsxContainerWith(attrValue, 'StringLiteral') ||
+            isJsxContainerWith(attrValue, 'TemplateLiteral')
+          ) {
+            return;
+          }
+
           setUtility(openingElement, attrValue, importSpec.add('setStyle'));
           return path.remove();
+        }
         case 'dataset':
           setUtility(openingElement, attrValue, importSpec.add('setDataset'));
           return path.remove();
@@ -294,10 +307,7 @@ export const jsxTransform: PluginObj = {
       ) {
         if (attrValue == null) {
           attribute.value = $stringLiteral('true');
-        } else if (
-          attrValue.type === 'JSXExpressionContainer' &&
-          attrValue.expression.type === 'BooleanLiteral'
-        ) {
+        } else if (isJsxContainerWith(attrValue, 'BooleanLiteral')) {
           attribute.value = $stringLiteral(attrValue.expression.value.toString());
         }
         return;
