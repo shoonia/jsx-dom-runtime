@@ -42,4 +42,9 @@ describe('Style attribute', () => {
     await expect('<div style={{ color: "red", backgroundColor: "blue" }} />')
       .toBeTransform(styleImport`_jsx("div",{ref:e=>_setStyle(e,{color:"red",backgroundColor:"blue"})});`);
   });
+
+  it('should support TemplateLiteral in style attribute', async () => {
+    await expect('<div style={`color: ${color}; background-color: ${backgroundColor};`} />')
+      .toBeTransform(styleImport('_jsx("div",{ref:e=>_setStyle(e,`color: ${color}; background-color: ${backgroundColor};`)});'));
+  });
 });
