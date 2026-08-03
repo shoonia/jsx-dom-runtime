@@ -25,7 +25,8 @@ const setDataset = (node, value) => {
 };
 
 const setAttributes = (node, value) =>
-  (Array.isArray(value) ? value : [value]).forEach(node.setAttributeNode, node);
+  (Array.isArray(value) ? value : [value]).forEach(
+    (i) => node.setAttributeNode(i));
 
 const appendChildren = (content, node) =>
   content !== false && content != null && (
