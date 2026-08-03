@@ -5,10 +5,13 @@ This is a [Babel](https://babeljs.io/) plugin to transform [JSX](https://faceboo
 **source code:**
 
 ```js
-document.body.append(
+import { render } from 'jsx-dom-runtime';
+
+render(
   <main class="box">
     <h1 class="title">Hello, World!</h1>
-  </main>
+  </main>,
+  document.getElementById('root')
 );
 ```
 
@@ -16,17 +19,19 @@ document.body.append(
 
 ```js
 import { jsx as _jsx } from "jsx-dom-runtime";
+import { render } from 'jsx-dom-runtime';
 
-document.body.append(
+render(
   _jsx("main", {
     class: "box"
   }, _jsx("h1", {
     class: "title"
-  }, "Hello, World!"))
+  }, "Hello, World!")),
+  document.getElementById("root")
 );
 ```
 
-The Babel preset handles the injection of runtime functions, so no manual imports are required.
+The Babel preset injects the JSX runtime functions automatically. Import `render` explicitly to mount the resulting nodes.
 
 ## Install
 
@@ -182,7 +187,7 @@ const MyComponent = ({ content, ...props }) => (
 
 const props = { class: 'box', id: 'main' };
 
-document.body.append(<MyComponent content="Hello" {...props} />)
+<MyComponent content="Hello" {...props} />;
 ```
 
 Since function components are regular JavaScript functions, the spread operator works naturally as a function argument, allowing you to pass multiple properties at once.
@@ -376,23 +381,43 @@ div._customProperty = customValue;
 Function components must start with a capital letter or they won’t work.
 
 ```js
-const App = ({ name }) => (
-  <div>Hello {name}</div>
+import { render } from 'jsx-dom-runtime';
+
+const App = (props) => (
+  <div>Hello {props.name}</div>
 );
 
-document.body.append(<App name="Bob" />);
+render(<App name="Bob" />, document.getElementById('root'));
 ```
 
 ### Fragments
 
-Use `<>...</>` syntax to group multiple elements together without creating an extra wrapper element. This is useful when you need to return multiple elements from a component or when you want to avoid unnecessary DOM nesting. Under the hood, it uses the [`DocumentFragment`](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment) interface, which provides efficient DOM manipulation.
+Use `<>...</>` to group elements. An empty fragment compiles to `null`, a fragment with one child compiles to that child, and a fragment with multiple children compiles to a flattened array.
 
 ```js
-document.body.append(
+import { render } from 'jsx-dom-runtime';
+
+render(
   <>
     <p>Hello</p>
     <p>World</p>
-  </>
+  </>,
+  document.getElementById('root')
+);
+```
+
+After compilation:
+
+```js
+import { jsx as _jsx } from 'jsx-dom-runtime';
+import { render } from 'jsx-dom-runtime';
+
+render(
+  [
+    _jsx('p', {}, 'Hello'),
+    _jsx('p', {}, 'World')
+  ],
+  document.getElementById('root')
 );
 ```
 
@@ -403,7 +428,7 @@ document.body.append(
 Adding a reference to a DOM Element. When a ref is passed to an element during creation, a reference to the node becomes accessible at the `current` attribute of the ref
 
 ```js
-import { useRef } from 'jsx-dom-runtime';
+import { render, useRef } from 'jsx-dom-runtime';
 
 const ref = useRef();
 
@@ -412,13 +437,14 @@ const addItem = () => {
   ref.current.append(<li>New Item</li>);
 };
 
-document.body.append(
+render(
   <>
     <button type="button" on:click={addItem}>
       Add Item
     </button>
     <ul ref={ref} />
-  </>
+  </>,
+  document.getElementById('root')
 );
 ```
 
@@ -427,6 +453,8 @@ document.body.append(
 Another way to get a reference to an element is by passing a function callback. The callback will be called with the actual DOM element reference
 
 ```js
+import { render } from 'jsx-dom-runtime';
+
 const setRef = (node) => {
   node.addEventListener('focusin', () => {
     node.style.backgroundColor = 'pink';
@@ -437,8 +465,9 @@ const setRef = (node) => {
   });
 };
 
-document.body.append(
-  <input type="text" ref={setRef} />
+render(
+  <input type="text" ref={setRef} />,
+  document.getElementById('root')
 );
 ```
 
@@ -447,7 +476,7 @@ document.body.append(
 Use the [Text](https://developer.mozilla.org/en-US/docs/Web/API/Text) node in a DOM tree.
 
 ```js
-import { useText } from 'jsx-dom-runtime';
+import { render, useText } from 'jsx-dom-runtime';
 
 const [text, setText] = useText('The initial text');
 
@@ -455,13 +484,14 @@ const clickHandler = () => {
   setText('Clicked!');
 };
 
-document.body.append(
+render(
   <>
     <p>{text}</p>
     <button type="button" on:click={clickHandler}>
       Click me
     </button>
-  </>
+  </>,
+  document.getElementById('root')
 );
 ```
 
@@ -472,13 +502,11 @@ Get a template from a string.
 ```js
 import { Template } from 'jsx-dom-runtime';
 
-document.body.append(
-  <Template>
-    {`<svg width="24" height="24" aria-hidden="true">
-        <path d="M12 12V6h-1v6H5v1h6v6h1v-6h6v-1z"/>
-      </svg>`}
-  </Template>
-);
+<Template>
+  {`<svg width="24" height="24" aria-hidden="true">
+      <path d="M12 12V6h-1v6H5v1h6v6h1v-6h6v-1z"/>
+    </svg>`}
+</Template>
 ```
 
 ## ESLint Support
@@ -584,7 +612,7 @@ Example:
 **src/index.tsx**
 
 ```ts
-import { useText } from 'jsx-dom-runtime';
+import { render, useText } from 'jsx-dom-runtime';
 
 interface Props {
   label: string;
@@ -609,7 +637,10 @@ const App: JSX.FC<Props> = ({ label }) => {
   );
 };
 
-document.body.append(<App label="Hello!" />);
+render(
+  <App label="Hello!" />,
+  document.getElementById('root')!
+);
 ```
 
 ## License

@@ -30,16 +30,13 @@ Add preset to your [`.babelrc`](https://babeljs.io/docs/en/config-files) file.
 ## Example
 
 ```js
-// add to the end of the head
-document.head.append(
-  <link rel="stylesheet" href="/style.css" />
-);
+import { render } from 'jsx-dom-runtime';
 
-// add to the end the the body
-document.body.append(
+render(
   <main class="box">
     <h1 class="title">Hello World!</h1>
-  </main>
+  </main>,
+  document.getElementById('root')
 );
 ```
 
