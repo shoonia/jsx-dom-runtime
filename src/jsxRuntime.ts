@@ -25,12 +25,13 @@ const setDataset = (node, value) => {
 };
 
 const setAttributes = (node, value) =>
-  (Array.isArray(value) ? value : [value]).forEach(node.setAttributeNode, node);
+  (Array.isArray(value) ? value : [value]).forEach(
+    (i) => node.setAttributeNode(i));
 
-const appendChildren = (content, node) =>
+const render = (content, node) =>
   content !== false && content != null && (
     Array.isArray(content)
-      ? content.forEach((i) => appendChildren(i, node))
+      ? content.forEach((i) => render(i, node))
       : node.append(content)
   );
 
@@ -44,7 +45,7 @@ const setRef = (content, node) =>
   );
 
 const Fragment = (content) => (
-  appendChildren(content, content = new DocumentFragment()),
+  render(content, content = new DocumentFragment()),
   content
 );
 
@@ -71,7 +72,7 @@ const jsx = (tag, props, children?: any) => {
     }
   }
 
-  appendChildren(
+  render(
     children,
     tag == 'template' ? node.content : node,
   );
@@ -84,7 +85,7 @@ const jsx = (tag, props, children?: any) => {
 export {
   jsx,
   Fragment,
-  appendChildren,
+  render,
   setStyle,
   setDataset,
   setAttributes,
