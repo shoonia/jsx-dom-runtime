@@ -6,6 +6,16 @@ describe('render', () => {
     expect(document.body).toHaveInnerHTML('<p>hello</p>');
   });
 
+  it('should append a text node to an Element container', () => {
+    render('hello', document.body);
+    expect(document.body).toHaveInnerHTML('hello');
+  });
+
+  it('should append a number node to an Element container', () => {
+    render(123, document.body);
+    expect(document.body).toHaveInnerHTML('123');
+  });
+
   it('should append an array of elements in order', () => {
     render([
       <span>one</span>,
@@ -18,7 +28,7 @@ describe('render', () => {
   });
 
   it('should append an element to a DocumentFragment container', () => {
-    const container = <></>;
+    const container = <></> as DocumentFragment;
 
     render(<section>content</section>, container);
 

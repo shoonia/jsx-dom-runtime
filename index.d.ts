@@ -86,7 +86,7 @@ export declare function useAttr(name: string, value?: string): readonly [
 export declare function parseFromString(html: string): DocumentFragment
 export declare function Fragment(children?: JSXChild | JSXChild[]): DocumentFragment
 export declare function Template(props: { children: string }): DocumentFragment
-export declare function render(element: JSXElement | JSXElement[], container: Element | DocumentFragment): void
+export declare function render(element: JSXChild | JSXChild[], container: Element | DocumentFragment): void
 
 /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent) */
 interface CommandEvent extends Event {
