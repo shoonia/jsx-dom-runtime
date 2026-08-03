@@ -107,7 +107,7 @@ describe('Fragment', () => {
         <p>one</p>
         <p>two</p>
       </>`
-    ).toBeTransform(jsxImport`[/*#__PURE__*/_jsx("p",{},"one"),/*#__PURE__*/_jsx("p",{},"two")];`);
+    ).toBeTransform('import{jsx as _jsx}from"jsx-dom-runtime";[/*#__PURE__*/_jsx("p",{},"one"),/*#__PURE__*/_jsx("p",{},"two")];');
   });
 
   it('should transform Fragment in props', async () => {

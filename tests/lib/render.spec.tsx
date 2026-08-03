@@ -28,7 +28,7 @@ describe('render', () => {
   });
 
   it('should append an element to a DocumentFragment container', () => {
-    const container = <></> as DocumentFragment;
+    const container = new DocumentFragment();
 
     render(<section>content</section>, container);
 
