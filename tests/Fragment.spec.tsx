@@ -1,8 +1,6 @@
 import { jsxImport } from './utils';
 
 describe('Fragment', () => {
-  const start = 'import{Fragment as _Fragment,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/';
-
   it('should support Fragment', () => {
     expect(
       <div>
@@ -91,20 +89,9 @@ describe('Fragment', () => {
     ).toHaveInnerHTML('<p>1</p><p>2</p><p>3</p><p>4</p><p>5</p>');
   });
 
-  // it('should work with function Fragment', async () => {
-  //   const { Fragment } = await import('jsx-dom-runtime');
-
-  //   expect(
-  //     <div>
-  //       {Fragment()}
-  //       {Fragment(<p>a</p>)}
-  //       {Fragment([<p>b</p>, 'c'])}
-  //     </div>
-  //   ).toHaveInnerHTML('<p>a</p><p>b</p>c');
-  // });
 
   it('should correct transform code #1', async () => {
-    await expect('<></>').toBeTransform('import{Fragment as _Fragment}from"jsx-dom-runtime";/*#__PURE__*/_Fragment();');
+    await expect('<></>').toBeTransform('null;');
   });
 
   it('should correct transform code #2', async () => {
@@ -112,7 +99,7 @@ describe('Fragment', () => {
       <>
         <p>1</p>
       </>`
-    ).toBeTransform(start + '_Fragment(/*#__PURE__*/_jsx("p",{},"1"));');
+    ).toBeTransform(jsxImport`_jsx("p",{},"1");`);
   });
 
   it('should correct transform code #3', async () => {
@@ -121,18 +108,16 @@ describe('Fragment', () => {
         <p>one</p>
         <p>two</p>
       </>`
-    ).toBeTransform(start + '_Fragment([/*#__PURE__*/_jsx("p",{},"one"),/*#__PURE__*/_jsx("p",{},"two")]);');
+    ).toBeTransform(jsxImport`[/*#__PURE__*/_jsx("p",{},"one"),/*#__PURE__*/_jsx("p",{},"two")];`);
   });
 
-  const f = 'import{Fragment as _Fragment}from"jsx-dom-runtime";';
 
   it('should transform Fragment in props', async () => {
-    await expect('<App children={<></>} />')
-      .toBeTransform(f + 'App({children:/*#__PURE__*/_Fragment()});');
+    await expect('<App children={<></>} />').toBeTransform('App({children:null});');
   });
 
   it('should add fragment', async () => {
-    await expect('let f = <></>;').toBeTransform(f + 'let f=/*#__PURE__*/_Fragment();');
+    await expect('let f = <></>;').toBeTransform('let f=null;');
   });
 
   it('should remove unnecessary fragment', async () => {
@@ -158,5 +143,17 @@ describe('Fragment', () => {
         </>
       </div>
     `).toBeTransform(jsxImport`_jsx("div",{},[/*#__PURE__*/_jsx("p",{},"Hello"),"World"]);`);
+  });
+
+  it('should inline FC', async () => {
+    await expect('<><App /></>;').toBeTransform(`App({});`);
+  });
+
+  it('should inline two FC', async () => {
+    await expect('<><App /><App /></>;').toBeTransform(`[App({}),App({})];`);
+  });
+
+  it('should flatten nested array children in Fragment', async () => {
+    await expect('<>{[1, [2, [3]]] }{4}</>;').toBeTransform(`[1,2,3,4];`);
   });
 });

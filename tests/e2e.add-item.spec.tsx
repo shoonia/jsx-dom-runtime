@@ -1,4 +1,4 @@
-import { useRef } from 'jsx-dom-runtime';
+import { useRef, render } from 'jsx-dom-runtime';
 import { Driver } from './utils';
 
 describe('e2e test', () => {
@@ -26,7 +26,7 @@ describe('e2e test', () => {
       );
     };
 
-    driver.render(<List />);
+    render(<List />, document.body);
     driver.click('button');
 
     expect(driver.getAll('item')).toHaveLength(1);

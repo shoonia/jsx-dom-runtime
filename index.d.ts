@@ -84,7 +84,6 @@ export declare function useAttr(name: string, value?: string): readonly [
 ]
 
 export declare function parseFromString(html: string): DocumentFragment
-export declare function Fragment(children?: JSXChild | JSXChild[]): DocumentFragment
 export declare function Template(props: { children: string }): DocumentFragment
 export declare function render(element: JSXChild | JSXChild[], container: Element | DocumentFragment): void
 
