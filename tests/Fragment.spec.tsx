@@ -80,7 +80,7 @@ describe('Fragment', () => {
           <>
             <p>
               <>
-              5
+                5
               </>
             </p>
           </>
@@ -88,7 +88,6 @@ describe('Fragment', () => {
       </div>
     ).toHaveInnerHTML('<p>1</p><p>2</p><p>3</p><p>4</p><p>5</p>');
   });
-
 
   it('should correct transform code #1', async () => {
     await expect('<></>').toBeTransform('null;');
@@ -110,7 +109,6 @@ describe('Fragment', () => {
       </>`
     ).toBeTransform(jsxImport`[/*#__PURE__*/_jsx("p",{},"one"),/*#__PURE__*/_jsx("p",{},"two")];`);
   });
-
 
   it('should transform Fragment in props', async () => {
     await expect('<App children={<></>} />').toBeTransform('App({children:null});');
@@ -146,14 +144,14 @@ describe('Fragment', () => {
   });
 
   it('should inline FC', async () => {
-    await expect('<><App /></>;').toBeTransform(`App({});`);
+    await expect('<><App /></>;').toBeTransform('App({});');
   });
 
   it('should inline two FC', async () => {
-    await expect('<><App /><App /></>;').toBeTransform(`[App({}),App({})];`);
+    await expect('<><App /><App /></>;').toBeTransform('[App({}),App({})];');
   });
 
   it('should flatten nested array children in Fragment', async () => {
-    await expect('<>{[1, [2, [3]]] }{4}</>;').toBeTransform(`[1,2,3,4];`);
+    await expect('<>{[1, [2, [3]]] }{4}</>;').toBeTransform('[1,2,3,4];');
   });
 });
