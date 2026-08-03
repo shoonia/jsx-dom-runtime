@@ -44,11 +44,6 @@ const setRef = (content, node) =>
         : content.current = node
   );
 
-const Fragment = (content) => (
-  render(content, content = new DocumentFragment()),
-  content
-);
-
 const jsx = (tag, props, children?: any) => {
   let key, value, node = props._
     ? document.createElementNS(props._, tag)
@@ -84,7 +79,6 @@ const jsx = (tag, props, children?: any) => {
 
 export {
   jsx,
-  Fragment,
   render,
   setStyle,
   setDataset,
