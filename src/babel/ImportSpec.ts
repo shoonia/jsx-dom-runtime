@@ -7,7 +7,6 @@ export type TImportName =
   | 'jsx'
   | 'svgNs'
   | 'mathmlNs'
-  | 'empty'
   | 'setStyle'
   | 'setDataset'
   | 'setAttributes';
