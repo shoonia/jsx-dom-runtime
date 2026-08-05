@@ -119,7 +119,7 @@ describe('Fragment', () => {
   });
 
   it('should remove unnecessary fragment', async () => {
-    await expect('<div><></></div>').toBeTransform(jsxImport`_jsx("div",{});`);
+    await expect('<div><></></div>').toBeTransform(jsxImport`_jsx("div",{},null);`);
   });
 
   it('should replace fragment with its child node', async () => {
