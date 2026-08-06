@@ -59,8 +59,6 @@ To enable JSX transformation, add the `jsx-dom-runtime/babel-preset` to your [Ba
 
 [Vite v7](https://v7.vite.dev/) and [Vite v8](https://vite.dev/) use different transformers and plugin systems. Choose the configuration that matches your Vite version.
 
-#### Vite v7
-
 Vite v7 uses [esbuild](https://esbuild.github.io/api/) and [Rollup](https://rollupjs.org/introduction/). Configure esbuild to preserve JSX so that Babel can transform it with this library's preset.
 
 **vite.config.ts**
@@ -86,8 +84,6 @@ export default defineConfig(() => {
   };
 });
 ```
-
-#### Vite v8
 
 Vite v8 uses [Oxc](https://oxc.rs/docs/guide/what-is-oxc.html) and [Rolldown](https://rolldown.rs/). Configure Oxc to preserve JSX and use the Rolldown Babel plugin to transform it.
 
@@ -158,6 +154,20 @@ export default {
       presets: ['jsx-dom-runtime/babel-preset'],
     }),
   ],
+}
+```
+
+### Parcel
+
+[Parcel](https://parceljs.org/) automatically detects Babel configuration files. Add the JSX DOM Runtime preset to a `.babelrc` file in your project root:
+
+**.babelrc**
+
+```json
+{
+  "presets": [
+    "jsx-dom-runtime/babel-preset"
+  ]
 }
 ```
 
