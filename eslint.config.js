@@ -22,6 +22,7 @@ export default defineConfig(
       '@typescript-eslint/ban-ts-comment': 'off',
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-empty-object-type': 'off',
+      'prefer-const': 'off',
       'no-unused-vars': 'off',
       'no-undef': 'off',
       'no-redeclare': 'off',
