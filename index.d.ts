@@ -85,6 +85,14 @@ export declare function useAttr(name: string, value?: string): readonly [
 
 export declare function parseFromString(html: string): DocumentFragment
 export declare function Template(props: { children: string }): DocumentFragment
+/**
+ * Renders JSX content by appending it to the container with
+ * [`Node.append()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/append).
+ * Arrays are appended recursively and in order. `null`, `undefined`, and
+ * `false` values are ignored.
+ *
+ * Existing content in the container is preserved.
+ */
 export declare function render(element: JSXChild | JSXChild[], container: Element | DocumentFragment): void
 
 /** [MDN Reference](https://developer.mozilla.org/en-US/docs/Web/API/CommandEvent) */
