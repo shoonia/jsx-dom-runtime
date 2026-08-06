@@ -2,32 +2,6 @@
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
-const setStyle = (node, value) => {
-  if (typeof value == 'string') {
-    node.style.cssText = value;
-  } else {
-    for (let key in value) {
-      if (key.startsWith('-')) {
-        node.style.setProperty(key, value[key]);
-      } else {
-        node.style[key] = value[key];
-      }
-    }
-  }
-};
-
-const setDataset = (node, value) => {
-  for (let key in value) {
-    if (value[key] != null) {
-      node.dataset[key] = value[key];
-    }
-  }
-};
-
-const setAttributes = (node, value) =>
-  (Array.isArray(value) ? value : [value]).forEach(
-    (i) => node.setAttributeNode(i));
-
 const render = (content, node) =>
   content !== false && content != null && (
     Array.isArray(content)
@@ -80,9 +54,6 @@ const jsx = (tag, props, children?: any) => {
 export {
   jsx,
   render,
-  setStyle,
-  setDataset,
-  setAttributes,
   svgNs,
   mathmlNs,
 };
