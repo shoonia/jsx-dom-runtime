@@ -45,30 +45,30 @@ render(
 ## Documentation
 
 ### Getting Started
-- [Introduction](https://github.com/shoonia/jsx-dom-runtime/wiki#jsx-dom-runtime)
-- [Installation](https://github.com/shoonia/jsx-dom-runtime/wiki#install)
-- [Configuration](https://github.com/shoonia/jsx-dom-runtime/wiki#configuration)
-  - [Vite](https://github.com/shoonia/jsx-dom-runtime/wiki#vite), [Webpack](https://github.com/shoonia/jsx-dom-runtime/wiki#webpack), [Rollup](https://github.com/shoonia/jsx-dom-runtime/wiki#rollup), [Parcel](https://github.com/shoonia/jsx-dom-runtime/wiki#parcel)
+- [Introduction](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#jsx-dom-runtime)
+- [Installation](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#install)
+- [Configuration](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#configuration)
+  - [Vite](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#vite), [Webpack](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#webpack), [Rollup](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#rollup), [Parcel](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#parcel)
 
 ### Syntax & Features
-- [Attributes](https://github.com/shoonia/jsx-dom-runtime/wiki#attributes)
-- [Style](https://github.com/shoonia/jsx-dom-runtime/wiki#style)
-- [SVG](https://github.com/shoonia/jsx-dom-runtime/wiki#svg)
-- [Event Handling](https://github.com/shoonia/jsx-dom-runtime/wiki#event-handling)
-- [Attribute Directives](https://github.com/shoonia/jsx-dom-runtime/wiki#attribute-directives) (`attr:*`)
-- [Property Directives](https://github.com/shoonia/jsx-dom-runtime/wiki#property-directives) (`prop:*`)
-- [Function Components](https://github.com/shoonia/jsx-dom-runtime/wiki#function-components)
-- [Fragments](https://github.com/shoonia/jsx-dom-runtime/wiki#fragments)
+- [Attributes](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#attributes)
+- [Style](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#style)
+- [SVG](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#svg)
+- [Event Handling](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#event-handling)
+- [Attribute Directives](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#attribute-directives) (`attr:*`)
+- [Property Directives](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#property-directives) (`prop:*`)
+- [Function Components](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#function-components)
+- [Fragments](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#fragments)
 
 ### API Reference
-- [useRef()](https://github.com/shoonia/jsx-dom-runtime/wiki#creating-refs) - Create DOM element references
-- [Callback Refs](https://github.com/shoonia/jsx-dom-runtime/wiki#callback-refs) - Reference elements with callbacks
-- [useText()](https://github.com/shoonia/jsx-dom-runtime/wiki#text) - Create reactive Text nodes
-- [Template](https://github.com/shoonia/jsx-dom-runtime/wiki#template) - Parse HTML strings
+- [useRef()](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#creating-refs) - Create DOM element references
+- [Callback Refs](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#callback-refs) - Reference elements with callbacks
+- [useText()](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#text) - Create reactive Text nodes
+- [Template](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#template) - Parse HTML strings
 
 ### Tooling
-- [ESLint Support](https://github.com/shoonia/jsx-dom-runtime/wiki#eslint-support) - Linting rules and configuration
-- [TypeScript Support](https://github.com/shoonia/jsx-dom-runtime/wiki#typescript-support) - Type definitions and setup
+- [ESLint Support](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#eslint-support) - Linting rules and configuration
+- [TypeScript Support](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#typescript-support) - Type definitions and setup
 
 ## License
 
