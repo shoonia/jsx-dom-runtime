@@ -57,20 +57,11 @@ export const jsxTransform: PluginObj = {
     JSXFragment(path) {
       const children = flattenElements(t.react.buildChildren(path.node));
 
-      if (jsxNode.has(path.parent.type)) {
-        if (children.length > 0) {
-          path.replaceWith($children(children));
-        } else {
-          path.remove();
-        }
-      } else {
-        path.replaceWith({
-          type: 'CallExpression',
-          callee: importSpec.add('Fragment'),
-          arguments: children.length > 0 ? [$children(children)] : [],
-          leadingComments: $pureAnnotation(),
-        });
-      }
+      path.replaceWith(
+        children.length > 0
+          ? $children(children)
+          : t.nullLiteral(),
+      );
     },
 
     JSXElement: {

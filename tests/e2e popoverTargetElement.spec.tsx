@@ -1,10 +1,10 @@
-import { useRef } from 'jsx-dom-runtime';
+import { render, useRef } from 'jsx-dom-runtime';
 
 describe('popoverTargetElement', () => {
   it('should set popoverTargetElement element with directive prop:* via button', () => {
     const div = useRef<HTMLDivElement>();
 
-    document.body.append(
+    render(
       <>
         <div ref={div}>
           This is popover content!
@@ -16,7 +16,8 @@ describe('popoverTargetElement', () => {
         >
           Toggle popover
         </button>
-      </>
+      </>,
+      document.body,
     );
 
     expect(div.current).toBeInstanceOf(HTMLDivElement);
@@ -26,7 +27,7 @@ describe('popoverTargetElement', () => {
   it('should set popoverTargetElement element with directive prop:* via input[type=button]', () => {
     const div = useRef<HTMLDivElement>();
 
-    document.body.append(
+    render(
       <>
         <div ref={div}>
           This is popover content!
@@ -37,7 +38,8 @@ describe('popoverTargetElement', () => {
           prop:popoverTargetElement={div.current}
           value="Toggle popover"
         />
-      </>
+      </>,
+      document.body,
     );
 
     expect(div.current).toBeInstanceOf(HTMLDivElement);

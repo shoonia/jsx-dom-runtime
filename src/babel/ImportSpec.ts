@@ -5,10 +5,8 @@ import { $identifier, $stringLiteral } from './builders';
 
 export type TImportName =
   | 'jsx'
-  | 'Fragment'
   | 'svgNs'
   | 'mathmlNs'
-  | 'empty'
   | 'setStyle'
   | 'setDataset'
   | 'setAttributes';
