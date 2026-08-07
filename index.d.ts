@@ -1373,7 +1373,7 @@ declare global {
       'stroke-dasharray'?: Property.StrokeDasharray
       'stroke-dashoffset'?: Property.StrokeDashoffset
       'stroke-linecap'?: Property.StrokeLinecap
-      'stroke-linejoin'?: 'arcs' | 'bevel' | 'miter' | 'miter-clip' | 'round' | 'inherit'
+      'stroke-linejoin'?: Property.StrokeLinejoin
       'stroke-miterlimit'?: Property.StrokeMiterlimit
       'stroke-opacity'?: Property.StrokeOpacity
       'stroke-width'?: Property.StrokeWidth
