@@ -48,7 +48,7 @@ render(
 - [Introduction](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#jsx-dom-runtime)
 - [Installation](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#install)
 - [Configuration](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#configuration)
-  - [Vite](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#vite), [Webpack](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#webpack), [Rollup](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#rollup), [Parcel](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#parcel)
+  - [Vite](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#vite), [Webpack](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#webpack), [Rollup](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#rollup), [Rolldown](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#rolldown), [Parcel](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#parcel)
 
 ### Syntax & Features
 - [Attributes](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#attributes)

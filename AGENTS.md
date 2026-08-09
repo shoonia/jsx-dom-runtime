@@ -69,6 +69,7 @@ import babel from '@rollup/plugin-babel';
 
 export default defineConfig(() => {
   return {
+    // Vite config ...
     esbuild: {
       // Preserve JSX syntax in esbuild's output instead of transforming it.
       // This allows Babel to process the JSX later in the build pipeline.
@@ -77,6 +78,7 @@ export default defineConfig(() => {
     plugins: [
       babel({
         babelHelpers: 'bundled',
+        // Optimize the build by running Babel only on files that can contain JSX.
         extensions: ['.jsx', '.tsx'],
         presets: ['jsx-dom-runtime/babel-preset'],
       }),
@@ -93,8 +95,9 @@ Vite v8 uses [Oxc](https://oxc.rs/docs/guide/what-is-oxc.html) and [Rolldown](ht
 import { defineConfig } from 'vite';
 import babel from '@rolldown/plugin-babel';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(() => {
   return {
+    // Vite config ...
     oxc: {
       // Preserve JSX syntax in Oxc's output instead of transforming it.
       // This allows Babel to process the JSX later in the build pipeline.
@@ -103,6 +106,7 @@ export default defineConfig(({ mode }) => {
     },
     plugins: [
       babel({
+        // Optimize the build by running Babel only on files that can contain JSX.
         include: /\.[jt]sx$/,
         presets: ['jsx-dom-runtime/babel-preset'],
       }),
@@ -155,6 +159,33 @@ export default {
     }),
   ],
 }
+```
+
+### Rolldown
+
+Use [Rolldown](https://rolldown.rs/) with [`@rolldown/plugin-babel`](https://www.npmjs.com/package/@rolldown/plugin-babel). Preserve JSX during Rolldown's transform step so that Babel can transform it with this library's preset.
+
+**rolldown.config.js**
+
+```js
+import { defineConfig } from 'rolldown';
+import babel from '@rolldown/plugin-babel';
+
+export default defineConfig({
+  // Rolldown config ...
+  transform: {
+    // Preserve JSX syntax in Oxc's output instead of transforming it.
+    // This allows Babel to process the JSX later in the build pipeline.
+    jsx: 'preserve',
+  },
+  plugins: [
+    babel({
+      // Optimize the build by running Babel only on files that can contain JSX.
+      include: /\.[jt]sx$/,
+      presets: ['jsx-dom-runtime/babel-preset'],
+    }),
+  ],
+});
 ```
 
 ### Parcel
