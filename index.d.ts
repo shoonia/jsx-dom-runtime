@@ -72,15 +72,19 @@ export declare function jsx<
 export declare const svgNs = 'http://www.w3.org/2000/svg'
 export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML'
 
+export interface Signal<T extends Element> {
+  readonly [key: symbol]: symbol
+  readonly value: string
+  set(val: string): void
+  attr(name: string): Attr
+  text(): Text
+}
+
+export declare function signal<T = Element>(value?: string): Signal<T>
 export declare function useRef<T = any>(current?: T): RefObject<T>
 export declare function useText<T = string>(initContent?: T): readonly [
   Text,
   (content: T) => void
-]
-
-export declare function useAttr(name: string, value?: string): readonly [
-  Attr,
-  (newValue: string) => void
 ]
 
 export declare function parseFromString(html: string): DocumentFragment
@@ -651,7 +655,7 @@ declare global {
 
     interface Attributes {
       accessKey?: string
-      class?: string
+      class?: string | Signal<Element>
       /**
        * Making document regions editable
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/contenteditable

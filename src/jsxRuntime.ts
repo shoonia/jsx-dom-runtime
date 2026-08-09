@@ -1,3 +1,5 @@
+import { s } from './symbol';
+
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
 
@@ -31,7 +33,9 @@ const jsx = (tag, props, children?: any) => {
           node.addEventListener(key, value[key]);
         }
       } else if (value != null) {
-        if (typeof value != 'boolean' || key.startsWith('-', 4)) {
+        if (value[s]) {
+          node.setAttributeNode(value.attr(key));
+        } else if (typeof value != 'boolean' || key.startsWith('-', 4)) {
           node.setAttribute(key, value);
         } else if (value) {
           node.setAttribute(key, '');
