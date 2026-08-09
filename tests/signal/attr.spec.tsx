@@ -31,6 +31,9 @@ describe('signal', () => {
     const div1 = <div class={s} />;
     const div2 = <div class={s} />;
 
+    expect(div1).toHaveAttribute('class', 'hello');
+    expect(div2).toHaveAttribute('class', 'hello');
+
     s.set('world');
 
     expect(div1).toHaveAttribute('class', 'world');
