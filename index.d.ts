@@ -83,7 +83,7 @@ export interface Signal<T> {
 
 export type Signalish<T> = T | Signal<T> | undefined
 
-export declare function signal<T>(value?: T): Signal<T>
+export declare function signal<T = string>(value?: T): Signal<T>
 export declare function useRef<T = any>(current?: T): RefObject<T>
 export declare function useText<T = string>(initContent?: T): readonly [
   Text,
