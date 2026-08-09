@@ -16,7 +16,7 @@ export const signal = (value = ''): Signal<Element> => {
     set(val: string) {
       if (value != val) {
         value = val;
-        for (let sub of subs) sub(value);
+        subs.forEach(sub => sub(value));
       }
     },
 
