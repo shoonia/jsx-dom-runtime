@@ -3,7 +3,7 @@ import { sig } from './symbol';
 
 type Sub = (value: string) => void;
 
-export const signal = (value = ''): Signal<Element> => {
+export const signal = (value = ''): Signal<string> => {
   const subs: Sub[] = [];
 
   return {

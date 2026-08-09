@@ -657,7 +657,7 @@ declare global {
     type SnapEventListener<T = globalThis.Element> = EventHandler<SnapEvent, T>
 
     interface Attributes {
-      accessKey?: string
+      accessKey?: Signalish<string>
       class?: Signalish<string>
       /**
        * Making document regions editable
@@ -668,7 +668,7 @@ declare global {
        * This feature is no longer recommended. Though some browsers might still support it, it may have already been removed from the relevant web standards, may be in the process of being dropped, or may only be kept for compatibility purposes
        * @deprecated
        */
-      contextMenu?: string
+      contextMenu?: Signalish<string>
       dir?: DirName | 'auto'
       /**
        * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<img draggable>` is forbidden. The correct usage is `<img draggable="true">`
@@ -677,10 +677,10 @@ declare global {
       draggable?: 'true' | 'false'
       enterKeyHint?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
       hidden?: boolean | 'hidden' | 'until-found' | ''
-      id?: string
+      id?: Signalish<string>
       inert?: boolean | '' | 'inert'
-      lang?: string
-      slot?: string
+      lang?: Signalish<string>
+      slot?: Signalish<string>
       /**
        * This attribute is enumerated and not Boolean. A value of `true` or `false` is mandatory, and shorthand like `<input spellcheck>` is forbidden. The correct usage is `<input spellcheck="true">`
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
@@ -690,32 +690,32 @@ declare global {
       dataset?: DOMStringMap
       attributes?: Attr | Attr[]
       tabIndex?: Numeric
-      title?: string
+      title?: Signalish<string>
       translate?: 'yes' | 'no'
       // Unknown
-      radioGroup?: string // <command>, <menuitem>
+      radioGroup?: Signalish<string> // <command>, <menuitem>
       // RDFa Attributes
-      about?: string
-      datatype?: string
+      about?: Signalish<string>
+      datatype?: Signalish<string>
       inlist?: any
-      property?: string
-      resource?: string
-      typeof?: string
-      vocab?: string
+      property?: Signalish<string>
+      resource?: Signalish<string>
+      typeof?: Signalish<string>
+      vocab?: Signalish<string>
       autocapitalize?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
       /**
        * Non-standard attribute. Safari only. A string which indicates whether to activate automatic correction while the user is editing this field
        */
       autocorrect?: 'on' | 'off'
-      autosave?: string
+      autosave?: Signalish<string>
       color?: Property.Color
-      itemProp?: string
+      itemProp?: Signalish<string>
       itemScope?: boolean | '' | 'itemscope'
-      itemType?: string
-      itemID?: string
-      itemRef?: string
-      results?: Numeric
-      security?: string
+      itemType?: Signalish<string>
+      itemID?: Signalish<string>
+      itemRef?: Signalish<string>
+      results?: Signalish<Numeric>
+      security?: Signalish<string>
       unselectable?: 'on' | 'off'
       /**
        * Hints at the type of data that might be entered by the user while editing the element or its contents
@@ -732,17 +732,17 @@ declare global {
        * A space-separated list of the part names of the element. Part names allows CSS to select and style specific elements in a shadow tree via the `::part` pseudo-element.
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/part
        */
-      part?: string
+      part?: Signalish<string>
       /**
        * Allows you to select and style elements existing in nested shadow trees, by exporting their `part` names.
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/exportparts
        */
-      exportparts?: string
+      exportparts?: Signalish<string>
       /**
        * Used to indicate that an element is flagged for tracking by `PerformanceObserver` objects using the "element" type.
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/elementtiming
        */
-      elementTiming?: string
+      elementTiming?: Signalish<string>
       /**
        * This is an experimental technology
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/virtualkeyboardpolicy
@@ -1540,16 +1540,16 @@ declare global {
       /**
        * Instructs browsers to download a URL instead of navigating to it, so the user will be prompted to save it as a local file. _Default value: none; Animatable: no_
        */
-      download?: string
-      href?: string
+      download?: Signalish<string>
+      href?: Signalish<string>
       /**
        * Hints at the human language of the linked URL. No built-in functionality. Allowed values are the same as the global `lang` attribute
        */
-      hreflang?: string
+      hreflang?: Signalish<string>
       /**
        * A space-separated list of URLs. When the link is followed, the browser will send `POST` requests with the body `PING` to the URLs. Typically for tracking
        */
-      ping?: string
+      ping?: Signalish<string>
       /**
        * The relationship of the linked URL as space-separated link types
        */
@@ -1580,9 +1580,9 @@ declare global {
       /**
        * Hints at the linked URL's format with a MIME type. No built-in functionality
        */
-      type?: string
+      type?: Signalish<string>
       referrerPolicy?: ReferrerPolicy
-      interestFor?: string
+      interestFor?: Signalish<string>
 
       /**
        * Non-standard attribute:
@@ -1590,13 +1590,13 @@ declare global {
        * @see https://privacycg.github.io/private-click-measurement/
        * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLAnchorElement/attributionSourceId
        */
-      attributionSourceId?: Numeric
+      attributionSourceId?: Signalish<Numeric>
       /**
        * Non-standard attribute:
        * The attributiondestination is used as part of the **Private Click Measurement** specification to identify the destination of a link that was clicked.
        * @see https://privacycg.github.io/private-click-measurement/
        */
-      attributionDestination?: string
+      attributionDestination?: Signalish<string>
 
       /**
        * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
@@ -1675,24 +1675,24 @@ declare global {
 
     interface HTMLAreaElementAttributes extends OmitAttrs<HTMLAttributes<HTMLAreaElement>, 'children'>, VoidElement {
       /** @deprecated */
-      accessKey?: string
-      alt?: string
-      coords?: string
+      accessKey?: Signalish<string>
+      alt?: Signalish<string>
+      coords?: Signalish<string>
       /**
        * This attribute, if present, indicates that the author intends the hyperlink to be used for downloading a resource. See `<a>` for a full description of the `download` attribute
        */
-      download?: string
+      download?: Signalish<string>
       /**
        * The hyperlink target for the area. Its value is a valid URL. This attribute may be omitted; if so, the `<area>` element does not represent a hyperlink
        */
-      href?: string
+      href?: Signalish<string>
       /**
        * Contains a space-separated list of URLs to which, when the hyperlink is followed, `POST` requests with the body PING will be sent by the browser (in the background). Typically used for tracking
        */
-      ping?: string
+      ping?: Signalish<string>
       /** @deprecated */
-      hreflang?: string
-      media?: string
+      hreflang?: Signalish<string>
+      media?: Signalish<string>
       /**
        * A string indicating which referrer to use when fetching the resource
        */
@@ -1722,10 +1722,10 @@ declare global {
        */
       target?: Target
       /** @deprecated */
-      nohref?: string
+      nohref?: Signalish<string>
       /** @deprecated */
-      tabIndex?: Numeric
-      interestFor?: string
+      tabIndex?: Signalish<Numeric>
+      interestFor?: Signalish<string>
 
       'prop:interestForElement'?: globalThis.Element | null
     }
@@ -1734,7 +1734,7 @@ declare global {
     }
 
     interface HTMLBaseElementAttributes extends OmitAttrs<HTMLAttributes<HTMLBaseElement>, 'children' | RoleKey>, VoidElement, NoRolePermited {
-      href?: string
+      href?: Signalish<string>
       target?: Target
 
       'prop:href'?: string
@@ -1752,7 +1752,7 @@ declare global {
 
     interface HTMLBrElementAttributes extends OmitAttrs<HTMLAttributes<HTMLBRElement>, 'children'>, VoidElement {
       /** @deprecated */
-      clear?: string
+      clear?: Signalish<string>
       role?: 'presentation' | 'none'
 
       'prop:clear'?: string
@@ -1762,11 +1762,11 @@ declare global {
     interface HTMLButtonElementAttributes extends HTMLAttributes<HTMLButtonElement> {
       autofocus?: boolean | '' | 'autofocus'
       disabled?: boolean | '' | 'disabled'
-      form?: string
+      form?: Signalish<string>
       /**
        * The URL that processes the information submitted by the button. Overrides the `action` attribute of the button's form owner. Does nothing if there is no form owner
        */
-      formAction?: string
+      formAction?: Signalish<string>
       /**
        * Form data set encoding type to use for form submission. Attribute is only used for buttons with `type="submit"`
        */
@@ -1780,10 +1780,10 @@ declare global {
        * If the button is a submit button, this attribute is an author-defined name or standardized, underscore-prefixed keyword indicating where to display the response from submitting the form
        */
       formTarget?: Target
-      name?: string
+      name?: Signalish<string>
       type?: 'submit' | 'reset' | 'button'
-      value?: number | string
-      popoverTarget?: string
+      value?: Signalish<number | string>
+      popoverTarget?: Signalish<string>
       popoverTargetAction?: 'hide' | 'show' | 'toggle'
       /**
        * Specifies the action to be performed on an element being controlled by a control `<button>`, specified via the `commandfor` attribute.
@@ -1792,8 +1792,8 @@ declare global {
       /**
        * Turns a <button> element into a command button, controlling the given interactive element; takes the ID of the element to control as its value. This is a more general version of `popovertarget`.
        */
-      commandFor?: string
-      interestFor?: string
+      commandFor?: Signalish<string>
+      interestFor?: Signalish<string>
       /** Permitted ARIA roles */
       role?:
       | 'button'
@@ -1833,11 +1833,11 @@ declare global {
       /**
        * The height of the coordinate space in CSS pixels. Defaults to 150
        */
-      height?: number | string
+      height?: Signalish<number | string>
       /**
        * The width of the coordinate space in CSS pixels. Defaults to 300
        */
-      width?: number | string
+      width?: Signalish<number | string>
 
       /** @deprecated use `on:contextLost` instead */
       oncontextlost?: GenericEventHandler<HTMLCanvasElement>
@@ -1875,8 +1875,8 @@ declare global {
     }
 
     interface HTMLColElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTableColElement>, 'children' | RoleKey>, VoidElement, NoRolePermited {
-      span?: Numeric
-      width?: number | string
+      span?: Signalish<Numeric>
+      width?: Signalish<number | string>
 
       'prop:align'?: string
       'prop:ch'?: string
@@ -1887,8 +1887,8 @@ declare global {
     }
 
     interface HTMLColgroupElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTableColElement>, RoleKey>, NoRolePermited {
-      span?: Numeric
-      width?: number | string
+      span?: Signalish<Numeric>
+      width?: Signalish<number | string>
 
       'prop:align'?: string
       'prop:ch'?: string
@@ -1899,7 +1899,7 @@ declare global {
     }
 
     interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
-      value?: number | string
+      value?: Signalish<number | string>
 
       'prop:value'?: string
     }
@@ -1915,7 +1915,7 @@ declare global {
     }
 
     interface HTMLDetailsElementAttributes extends HTMLAttributes<HTMLDetailsElement> {
-      name?: string
+      name?: Signalish<string>
       open?: boolean | '' | 'open'
       /** Permitted ARIA roles */
       role?: 'group'
@@ -1929,8 +1929,8 @@ declare global {
     }
 
     interface HTMLModElementAttributes extends HTMLAttributes<HTMLModElement> {
-      cite?: string
-      dateTime?: string
+      cite?: Signalish<string>
+      dateTime?: Signalish<string>
 
       'prop:cite'?: string
       'prop:dateTime'?: string
@@ -1945,7 +1945,7 @@ declare global {
        * Do not add the `tabindex` property to the `<dialog>` element as it is not interactive and does not receive focus. The dialog's contents, including the close button contained in the dialog, can receive focus and be interactive.
        * @deprecated
        */
-      tabIndex?: Numeric
+      tabIndex?: Signalish<Numeric>
       /**
        * Specifies the types of user actions that can be used to close the `<dialog>` element
        */
@@ -1991,10 +1991,10 @@ declare global {
     }
 
     interface HTMLEmbedElementAttributes extends OmitAttrs<HTMLAttributes<HTMLEmbedElement>, 'children'>, VoidElement {
-      height?: number | string
-      src?: string
-      type?: string
-      width?: number | string
+      height?: Signalish<number | string>
+      src?: Signalish<string>
+      type?: Signalish<string>
+      width?: Signalish<number | string>
       /** Permitted ARIA roles */
       role?: 'application' | 'document' | 'img' | 'none' | 'presentation'
 
@@ -2009,8 +2009,8 @@ declare global {
 
     interface HTMLFieldSetElementAttributes extends HTMLAttributes<HTMLFieldSetElement> {
       disabled?: boolean | '' | 'disabled'
-      form?: string
-      name?: string
+      form?: Signalish<string>
+      name?: Signalish<string>
       /** Permitted ARIA roles */
       role?: 'group' | 'none' | 'presentation' | 'radiogroup'
 
@@ -2044,16 +2044,16 @@ declare global {
        * Comma-separated content types the server accepts
        * @deprecated
        */
-      accept?: string
+      accept?: Signalish<string>
       'accept-charset'?: 'UTF-8' | 'ISO-8859-1' | 'US-ASCII' | AnyString
-      action?: string
+      action?: Signalish<string>
       autocomplete?: boolean | AutoFillBase
       enctype?: FormEnctype
       /**
        * The HTTP method to submit the form with. The only allowed methods/values are (case insensitive)
        */
       method?: FormMethod
-      name?: string
+      name?: Signalish<string>
       /**
        * Controls the annotations and what kinds of links the form creates. The rel value is a space-separated list of these enumerated values
        */
@@ -2119,7 +2119,7 @@ declare global {
        * Sets or retrieves how the object is aligned with adjacent text.
        * @deprecated
        */
-      align?: string
+      align?: Signalish<string>
       /** @deprecated */
       color?: Property.Color
       /**
@@ -2128,12 +2128,12 @@ declare global {
        */
       noShade?: boolean | ''
       /** @deprecated */
-      size?: string
+      size?: Signalish<string>
       /**
        * Sets or retrieves the width of the object.
        * @deprecated
        */
-      width?: string
+      width?: Signalish<string>
       /** Permitted ARIA roles */
       role?: 'separator' | 'none' | 'presentation' | 'doc-pagebreak'
 
@@ -2146,10 +2146,10 @@ declare global {
     }
 
     interface HTMLHtmlElementAttributes extends HTMLAttributes<HTMLHtmlElement> {
-      manifest?: string
+      manifest?: Signalish<string>
       /** @deprecated */
-      version?: string
-      xmlns?: string
+      version?: Signalish<string>
+      xmlns?: Signalish<string>
       /** Permitted ARIA roles */
       role?: 'document'
 
@@ -2160,7 +2160,7 @@ declare global {
     }
 
     interface HTMLIFrameElementAttributes extends HTMLAttributes<HTMLIFrameElement> {
-      allow?: string
+      allow?: Signalish<string>
       /**
        * This attribute is considered a legacy attribute and redefined as `allow="fullscreen"`
        * @deprecated
@@ -2176,19 +2176,19 @@ declare global {
       /**
        * A Content Security Policy enforced for the embedded resource
        */
-      csp?: string
+      csp?: Signalish<string>
       /** @deprecated */
-      frameBorder?: number | string
+      frameBorder?: Signalish<number | string>
       /**
        * The height of the frame in CSS pixels. Default is 150
        */
-      height?: number | string
+      height?: Signalish<number | string>
       loading?: 'eager' | 'lazy'
       /** @deprecated */
-      marginHeight?: Numeric
+      marginHeight?: Signalish<Numeric>
       /** @deprecated */
-      marginWidth?: Numeric
-      name?: string
+      marginWidth?: Signalish<Numeric>
+      name?: Signalish<string>
       referrerPolicy?: ReferrerPolicy
       /**
        * Controls the restrictions applied to the content embedded in the `<iframe>`. The value of the attribute can either be empty to apply all restrictions, or space-separated tokens
@@ -2218,12 +2218,12 @@ declare global {
       scrolling?: 'auto' | 'yes' | 'no'
       /** @deprecated */
       seamless?: boolean | ''
-      src?: string
-      srcdoc?: string
+      src?: Signalish<string>
+      srcdoc?: Signalish<string>
       /**
        * The width of the frame in CSS pixels. Default is 300
        */
-      width?: number | string
+      width?: Signalish<number | string>
       /** Permitted ARIA roles */
       role?: 'application' | 'document' | 'img' | 'none' | 'presentation'
 
@@ -2247,21 +2247,21 @@ declare global {
     }
 
     interface HTMLImageElementAttributes extends OmitAttrs<HTMLAttributes<HTMLImageElement>, 'children'>, VoidElement {
-      alt?: string
+      alt?: Signalish<string>
       crossOrigin?: CrossOrigin
       decoding?: 'async' | 'sync' | 'auto'
-      height?: number | string
+      height?: Signalish<number | string>
       /**
        * This Boolean attribute indicates that the image is part of a server-side map. If so, the coordinates where the user clicked on the image are sent to the server
        */
       ismap?: boolean | '' | 'ismap'
       loading?: 'eager' | 'lazy'
       referrerPolicy?: ReferrerPolicy
-      sizes?: string
-      src?: string
-      srcset?: string
-      useMap?: string
-      width?: number | string
+      sizes?: Signalish<string>
+      src?: Signalish<string>
+      srcset?: Signalish<string>
+      useMap?: Signalish<string>
+      width?: Signalish<number | string>
       fetchPriority?: FetchPriority
       // TODO: role attribute
 
@@ -2288,8 +2288,8 @@ declare global {
     }
 
     interface HTMLInputElementAttributes extends OmitAttrs<HTMLAttributes<HTMLInputElement>, 'children'>, VoidElement {
-      accept?: string
-      alt?: string
+      accept?: Signalish<string>
+      alt?: Signalish<string>
       autocomplete?: boolean | AutoFill
       autofocus?: boolean | '' | 'autofocus'
       /**
@@ -2300,11 +2300,11 @@ declare global {
       crossOrigin?: CrossOrigin
       disabled?: boolean | '' | 'disabled'
       dirName?: DirName
-      form?: string
+      form?: Signalish<string>
       /**
        * URL to use for form submission. Attribute is only used for inputs with `type="submit"` or `type="image"`
        */
-      formAction?: string
+      formAction?: Signalish<string>
       /**
        * Form data set encoding type to use for form submission. Attribute is only used for inputs with `type="submit"` or `type="image"`
        */
@@ -2315,21 +2315,21 @@ declare global {
       formMethod?: FormMethod
       formNoValidate?: boolean | '' | 'formnovalidate'
       formTarget?: Target
-      height?: number | string
-      list?: string
-      max?: number | string
-      maxLength?: Numeric
-      min?: number | string
-      minLength?: Numeric
+      height?: Signalish<number | string>
+      list?: Signalish<string>
+      max?: Signalish<number | string>
+      maxLength?: Signalish<Numeric>
+      min?: Signalish<number | string>
+      minLength?: Signalish<Numeric>
       multiple?: boolean | '' | 'multiple'
-      name?: string
-      pattern?: string
-      placeholder?: string
+      name?: Signalish<string>
+      pattern?: Signalish<string>
+      placeholder?: Signalish<string>
       readOnly?: boolean | '' | 'readonly'
       required?: boolean | '' | 'required'
-      size?: Numeric
-      src?: string
-      step?: Numeric
+      size?: Signalish<Numeric>
+      src?: Signalish<string>
+      step?: Signalish<Numeric>
       type?:
       | 'button'
       | 'checkbox'
@@ -2353,13 +2353,13 @@ declare global {
       | 'time'
       | 'url'
       | 'week'
-      value?: number | string
-      width?: number | string
+      value?: Signalish<number | string>
+      width?: Signalish<number | string>
       /**
        * Allow to select entire folders instead of individual files. Attribute is only used for inputs with `type="file"`
        */
       webkitdirectory?: boolean | '' | 'webkitdirectory'
-      popoverTarget?: string
+      popoverTarget?: Signalish<string>
       popoverTargetAction?: 'hide' | 'show' | 'toggle'
       // TODO: role attribute
 
@@ -2409,7 +2409,7 @@ declare global {
     }
 
     interface HTMLLabelElementAttributes extends OmitAttrs<HTMLAttributes<HTMLLabelElement>, RoleKey>, NoRolePermited {
-      for?: string
+      for?: Signalish<string>
 
       'prop:htmlFor'?: string
     }
@@ -2418,7 +2418,7 @@ declare global {
     }
 
     interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
-      value?: Numeric
+      value?: Signalish<Numeric>
 
       'prop:type'?: string
       'prop:value'?: number
@@ -2448,17 +2448,17 @@ declare global {
       | AnyString
       crossOrigin?: CrossOrigin
       disabled?: boolean | '' | 'disabled'
-      href?: string
-      hreflang?: string
+      href?: Signalish<string>
+      hreflang?: Signalish<string>
       /**
        * For `rel="preload"` and `as="image"` only, the `imagesizes` attribute is a sizes attribute that indicates to preload the appropriate resource used by an `img` element with corresponding values for its `srcset` and `sizes` attributes
        */
-      imagesizes?: string
+      imagesizes?: Signalish<string>
       /**
        * For `rel="preload"` and `as="image"` only, the imagesrcset attribute is a sourceset attribute that indicates to preload the appropriate resource used by an `img` element with corresponding values for its `srcset` and `sizes` attributes
        */
-      imagesrcset?: string
-      integrity?: string
+      imagesrcset?: Signalish<string>
+      integrity?: Signalish<string>
       media?: 'all' | 'print' | AnyString
       referrerPolicy?: ReferrerPolicy
       /**
@@ -2494,11 +2494,11 @@ declare global {
       | 'terms-of-service'
       | AnyString
       /** @deprecated */
-      rev?: string
-      sizes?: string
-      type?: string
+      rev?: Signalish<string>
+      sizes?: Signalish<string>
+      type?: Signalish<string>
       /** @deprecated */
-      charset?: string
+      charset?: Signalish<string>
       fetchPriority?: FetchPriority
 
       'prop:as'?: HTMLLinkElementAttributes['as']
@@ -2530,7 +2530,7 @@ declare global {
     }
 
     interface HTMLMapElementAttributes extends OmitAttrs<HTMLAttributes<HTMLMapElement>, RoleKey>, NoRolePermited {
-      name?: string
+      name?: Signalish<string>
 
       'prop:name'?: string
     }
@@ -2573,9 +2573,9 @@ declare global {
       loop?: boolean | '' | 'loop'
       muted?: boolean | '' | 'muted'
       playsInline?: boolean | '' | 'playsinline'
-      mediaGroup?: string
+      mediaGroup?: Signalish<string>
       preload?: 'none' | 'metadata' | 'auto' | ''
-      src?: string
+      src?: Signalish<string>
       /** @deprecated use `on:encrypted` instead */
       onencrypted?: MediaEncryptedEventHandler<T>
       /** @deprecated use `on:waitingForKey` instead */
@@ -2605,8 +2605,8 @@ declare global {
     }
 
     interface HTMLMetaElementAttributes extends OmitAttrs<HTMLAttributes<HTMLMetaElement>, 'children' | RoleKey>, VoidElement, NoRolePermited {
-      charset?: string
-      content?: string
+      charset?: Signalish<string>
+      content?: Signalish<string>
       'http-equiv'?:
       | 'content-security-policy'
       | 'content-type'
@@ -2614,7 +2614,7 @@ declare global {
       | 'x-ua-compatible'
       | 'refresh'
       | AnyString
-      name?: string
+      name?: Signalish<string>
 
       'prop:content'?: string
       'prop:httpEquiv'?: HTMLMetaElementAttributes['http-equiv']
@@ -2624,13 +2624,13 @@ declare global {
     }
 
     interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
-      form?: string
-      high?: Numeric
-      low?: Numeric
-      max?: Numeric
-      min?: Numeric
-      optimum?: Numeric
-      value?: Numeric
+      form?: Signalish<string>
+      high?: Signalish<Numeric>
+      low?: Signalish<Numeric>
+      max?: Signalish<Numeric>
+      min?: Signalish<Numeric>
+      optimum?: Signalish<Numeric>
+      value?: Signalish<Numeric>
       /** Permitted ARIA roles */
       role?: 'meter'
 
@@ -2664,7 +2664,7 @@ declare global {
     }
 
     interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
-      cite?: string
+      cite?: Signalish<string>
 
       'prop:cite'?: string
     }
@@ -2680,31 +2680,31 @@ declare global {
        * A space-separated list of URIs for archives of resources for the object
        * @deprecated
        */
-      archive?: string
+      archive?: Signalish<string>
       /**
        * The width of a border around the control, in pixels
        * @deprecated
        */
-      border?: string
+      border?: Signalish<string>
       /**
        * The URI of the object's implementation. It can be used together with, or in place of, the `data` attribute
        * @deprecated
        */
-      classid?: string
+      classid?: Signalish<string>
       /**
        * The base path used to resolve relative URIs specified by `classid`, `data`, or `archive`. If not specified, the default is the base URI of the current document
        * @deprecated
        */
-      codebase?: string
+      codebase?: Signalish<string>
       /**
        * The content type of the data specified by `classid`
        * @deprecated
        */
-      codetype?: string
+      codetype?: Signalish<string>
       /**
        * The address of the resource as a valid URL. At least one of `data` and `type` must be defined
        */
-      data?: string
+      data?: Signalish<string>
       /**
        * The presence of this Boolean attribute makes this element a declaration only. The object must be instantiated by a subsequent `<object>` element. Repeat the `<object>` element completely each time the resource is reused
        * @deprecated
@@ -2713,32 +2713,32 @@ declare global {
       /**
        * The form element, if any, that the object element is associated with (its _form owner_). The value of the attribute must be an ID of a `<form>` element in the same document
        */
-      form?: string
+      form?: Signalish<string>
       /**
        * The height of the displayed resource, in CSS pixels. — (Absolute values only. NO percentages)
        */
-      height?: number | string
+      height?: Signalish<number | string>
       /**
        * The name of valid browsing context (HTML5), or the name of the control (HTML 4)
        */
-      name?: string
+      name?: Signalish<string>
       /**
        * A message that the browser can show while loading the object's implementation and data
        * @deprecated
        */
-      standby?: string
+      standby?: Signalish<string>
       /**
        * The content type of the resource specified by `data`. At least one of `data` and `type` must be defined
        */
-      type?: string
+      type?: Signalish<string>
       /**
        * A hash-name reference to a `<map>` element; that is a '#' followed by the value of a `name` of a map element
        */
-      useMap?: string
+      useMap?: Signalish<string>
       /**
        * The width of the display resource, in CSS pixels. — (Absolute values only. NO percentages)
        */
-      width?: number | string
+      width?: Signalish<number | string>
       /** Permitted ARIA roles */
       role?: 'application' | 'document' | 'img'
 
@@ -2763,7 +2763,7 @@ declare global {
 
     interface HTMLOListElementAttributes extends HTMLAttributes<HTMLOListElement> {
       reversed?: boolean | '' | 'reversed'
-      start?: Numeric
+      start?: Signalish<Numeric>
       type?: '1' | 'a' | 'A' | 'i' | 'I'
       /** Permitted ARIA roles */
       role?:
@@ -2788,7 +2788,7 @@ declare global {
 
     interface HTMLOptGroupElementAttributes extends HTMLAttributes<HTMLOptGroupElement> {
       disabled?: boolean | '' | 'disabled'
-      label?: string
+      label?: Signalish<string>
       /** Permitted ARIA roles */
       role?: 'group'
 
@@ -2799,9 +2799,9 @@ declare global {
 
     interface HTMLOptionElementAttributes extends HTMLAttributes<HTMLOptionElement> {
       disabled?: boolean | '' | 'disabled'
-      label?: string
+      label?: Signalish<string>
       selected?: boolean | '' | 'selected'
-      value?: number | string
+      value?: Signalish<number | string>
       /** Permitted ARIA roles */
       role?: 'option'
 
@@ -2815,10 +2815,10 @@ declare global {
     }
 
     interface HTMLOutputElementAttributes extends HTMLAttributes<HTMLOutputElement> {
-      form?: string
-      for?: string
-      name?: string
-      value?: number | string
+      form?: Signalish<string>
+      for?: Signalish<string>
+      name?: Signalish<string>
+      value?: Signalish<number | string>
 
       'prop:defaultValue'?: string
       'prop:htmlFor'?: string
@@ -2831,9 +2831,9 @@ declare global {
 
     interface HTMLParamElementAttributes extends OmitAttrs<HTMLAttributes<HTMLParamElement>, 'children' | RoleKey>, VoidElement, NoRolePermited {
       /** @deprecated */
-      name?: string
+      name?: Signalish<string>
       /** @deprecated */
-      value?: number | string
+      value?: Signalish<number | string>
       /** @deprecated */
       valuetype?: 'data' | 'ref' | 'object'
 
@@ -2847,8 +2847,8 @@ declare global {
     }
 
     interface HTMLProgressElementAttributes extends HTMLAttributes<HTMLProgressElement> {
-      max?: Numeric
-      value?: Numeric
+      max?: Signalish<Numeric>
+      value?: Signalish<Numeric>
       /** Permitted ARIA roles */
       role?: 'progressbar'
 
@@ -2872,14 +2872,14 @@ declare global {
       attributionsrc?: boolean | string
       blocking?: 'render' | AnyString
       /** @deprecated */
-      charset?: string
+      charset?: Signalish<string>
       crossOrigin?: CrossOrigin
       defer?: boolean | '' | 'defer'
-      integrity?: string
+      integrity?: Signalish<string>
       noModule?: boolean | '' | 'nomodule'
-      nonce?: string
+      nonce?: Signalish<string>
       referrerPolicy?: ReferrerPolicy
-      src?: string
+      src?: Signalish<string>
       type?:  'importmap' | 'module' | 'speculationrules' | 'text/javascript' | AnyString
       fetchPriority?: FetchPriority
 
@@ -2910,12 +2910,12 @@ declare global {
       autocomplete?: boolean | AutoFill
       autofocus?: boolean | '' | 'autofocus'
       disabled?: boolean | '' | 'disabled'
-      form?: string
+      form?: Signalish<string>
       multiple?: boolean | '' | 'multiple'
-      name?: string
+      name?: Signalish<string>
       required?: boolean | '' | 'required'
-      size?: Numeric
-      value?: number | string
+      size?: Signalish<Numeric>
+      value?: Signalish<number | string>
       // TODO: role attribute
 
       'prop:autocomplete'?: AutoFill
@@ -2930,7 +2930,7 @@ declare global {
     }
 
     interface HTMLSlotElementAttributes extends OmitAttrs<HTMLAttributes<HTMLSlotElement>, RoleKey>, NoRolePermited {
-      name?: string
+      name?: Signalish<string>
       'prop:name'?: string
     }
 
@@ -2938,31 +2938,31 @@ declare global {
       /**
        * Specifies the media query for the resource's intended media
        */
-      media?: string
+      media?: Signalish<string>
       /**
        * Specifies a list of source sizes that describe the final rendered width of the image. Allowed if the parent of `<source>` is `<picture>`. Not allowed if the parent is `<audio> `or `<video>`
        */
-      sizes?: string
+      sizes?: Signalish<string>
       /**
        * Specifies the URL of the media resource. Required if the parent of `<source>` is `<audio>` or `<video>`. Not allowed if the parent is `<picture>`
        */
-      src?: string
+      src?: Signalish<string>
       /**
        * Specifies a comma-separated list of one or more image URLs and their descriptors. Required if the parent of `<source>` is `<picture>`. Not allowed if the parent is `<audio>` or `<video>`
        */
-      srcset?: string
+      srcset?: Signalish<string>
       /**
        * Specifies the MIME media type of the image or other media type, optionally including a codecs parameter
        */
-      type?: string
+      type?: Signalish<string>
       /**
        * Specifies the intrinsic height of the image in pixels. Allowed if the parent of `<source>` is a `<picture>`. Not allowed if the parent is `<audio>` or `<video>`. The height value must be an integer without any units
        */
-      height?: Numeric
+      height?: Signalish<Numeric>
       /**
        * Specifies the intrinsic width of the image in pixels. Allowed if the parent of `<source>` is a `<picture>`. Not allowed if the parent is `<audio> `or `<video>.` The width value must be an integer without any units
        */
-      width?: Numeric
+      width?: Signalish<Numeric>
 
       'prop:height'?: number
       'prop:media'?: string
@@ -2981,14 +2981,14 @@ declare global {
        * This attribute explicitly indicates that certain operations should be blocked on the fetching of critical subresources. `@import`-ed stylesheets are generally considered as critical subresources, whereas `background-image` and fonts are not
        */
       blocking?: 'render' | AnyString
-      media?: string
-      nonce?: string
+      media?: Signalish<string>
+      nonce?: Signalish<string>
       scoped?: boolean | ''
       /**
        * This attribute should not be provided: if it is, the only permitted values are the empty string or a case-insensitive match for `text/css`
        * @deprecated
        */
-      type?: string
+      type?: Signalish<string>
 
       'prop:blocking'?: 'render' | AnyString
       'prop:disabled'?: boolean
@@ -3011,32 +3011,32 @@ declare global {
        * To achieve a similar effect, use the CSS `border` property.
        * @deprecated
        */
-      border?: string
+      border?: Signalish<string>
       /**
        * To achieve a similar effect, apply the `border-collapse` CSS property to the `<table>` element, with its value set to collapse, and the `padding` property to the `<td>` elements.
        * @deprecated
        */
-      cellPadding?: number | string
+      cellPadding?: Signalish<number | string>
       /**
        * To achieve a similar effect, apply the `border-spacing` CSS property to the `<table>` element. `border-spacing` does not have any effect if `border-collapse` is set to `collapse`.
        * @deprecated
        */
-      cellSpacing?: number | string
+      cellSpacing?: Signalish<number | string>
       /**
        * To achieve a similar effect, use the CSS the `border-style` and `border-width` properties.
        * @deprecated
        */
-      frame?: string
+      frame?: Signalish<string>
       /**
        * Use the `<caption>` element instead
        * @deprecated
        */
-      summary?: string
+      summary?: Signalish<string>
       /**
        * To achieve a similar effect, use the CSS `width` property instead.
        * @deprecated
        */
-      width?: number | string
+      width?: Signalish<number | string>
       /**
        * To achieve a similar effect, apply the CSS `border` property to the appropriate `<thead>`, `<tbody>`, `<tfoot>`, `<col>`, or `<colgroup>` elements.
        * @deprecated
@@ -3087,7 +3087,7 @@ declare global {
        * Sets the `customElementRegistry` property of a `ShadowRoot` created using this element to `null`, rather than the document's custom element registry
        * @see https://developer.mozilla.org/en-US/docs/Web/API/HTMLTemplateElement/shadowRootCustomElementRegistry
        */
-      shadowRootCustomElementRegistry?: string
+      shadowRootCustomElementRegistry?: Signalish<string>
 
       'prop:shadowRootClonable'?: boolean
       'prop:shadowRootDelegatesFocus'?: boolean
@@ -3103,21 +3103,21 @@ declare global {
       /**
        * The visible width of the text control, in average character widths. If it is specified, it must be a positive integer. If it is not specified, the default value is 20
        */
-      cols?: Numeric
+      cols?: Signalish<Numeric>
       dirName?: DirName
       disabled?: boolean | '' | 'disabled'
-      form?: string
-      maxLength?: Numeric
-      minLength?: Numeric
-      name?: string
-      placeholder?: string
+      form?: Signalish<string>
+      maxLength?: Signalish<Numeric>
+      minLength?: Signalish<Numeric>
+      name?: Signalish<string>
+      placeholder?: Signalish<string>
       readOnly?: boolean | '' | 'readonly'
       required?: boolean | '' | 'required'
       /**
        * The number of visible text lines for the control. If it is specified, it must be a positive integer. If it is not specified, the default value is 2
        */
-      rows?: Numeric
-      value?: number | string
+      rows?: Signalish<Numeric>
+      value?: Signalish<number | string>
       wrap?: 'hard' | 'soft' | 'off'
       /** Permitted ARIA roles */
       role?: 'textbox'
@@ -3151,24 +3151,24 @@ declare global {
       /**
        * A non-negative integer value that indicates for how many columns the cell extends. Its default value is `1`. Values higher than `1000` will be considered as incorrect and will be set to the default value (`1`)
        */
-      colSpan?: Numeric
-      headers?: string
+      colSpan?: Signalish<Numeric>
+      headers?: Signalish<string>
       /**
        * A non-negative integer value that indicates for how many rows the cell extends. Its default value is `1`; if its value is set to `0`, it extends until the end of the table section (`<thead>`, `<tbody>`, `<tfoot>`, even if implicitly defined), that the cell belongs to. Values higher than `65534` are clipped down to `65534`
        */
-      rowSpan?: Numeric
+      rowSpan?: Signalish<Numeric>
       /**
        * Do not use this attribute as it is obsolete in the l atest standard. Alternatively, you can put the abbreviated description inside the cell and place the long content in the title attribute.
        * @deprecated
        */
-      abbr?: string
+      abbr?: Signalish<string>
       /**
        * To achieve the same effect as the `left`, `center`, `right` or `justify` values, apply the CSS `text-align` property to the element, the `char` value, give the `text-align` property the same value you would use for the `char`.
        * @deprecated
        */
       align?: 'left' | 'center' | 'right' | 'justify' | 'char'
       /** @deprecated */
-      axis?: string
+      axis?: Signalish<string>
       /**
        * To achieve a similar effect, use the CSS `background-color` property
        * @deprecated
@@ -3178,24 +3178,24 @@ declare global {
        * To achieve the same effect, you can specify the character as the first value of the `text-align` property
        * @deprecated
        */
-      char?: string
+      char?: Signalish<string>
       /** @deprecated */
-      charoff?: string
+      charoff?: Signalish<string>
       /**
        * Only use this attribute with the `<th>` element to define the row or column for which it is a header
        * @deprecated
        */
-      scope?: string
+      scope?: Signalish<string>
       /**
        * To achieve a similar effect, use the CSS `height` property instead
        * @deprecated
        */
-      height?: number | string
+      height?: Signalish<number | string>
       /**
        * To achieve a similar effect,use the CSS `width` property instead
        * @deprecated
        */
-      width?: number | string
+      width?: Signalish<number | string>
       /**
        * To achieve a similar effect, use the CSS `vertical-align` property
        * @deprecated
@@ -3219,16 +3219,16 @@ declare global {
     }
 
     interface HTMLThElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
-      abbr?: string
+      abbr?: Signalish<string>
       /**
        * A non-negative integer value that indicates for how many columns the cell extends. Its default value is `1`. Values higher than `1000` will be considered as incorrect and will be set to the default value (`1`)
        */
-      colSpan?: Numeric
-      headers?: string
+      colSpan?: Signalish<Numeric>
+      headers?: Signalish<string>
       /**
        * A non-negative integer value that indicates for how many rows the cell extends. Its default value is `1`; if its value is set to `0`, it extends until the end of the table section (`<thead>`, `<tbody>`, `<tfoot>`, even if implicitly defined), that the cell belongs to. Values higher than `65534` are clipped down to `65534`
        */
-      rowSpan?: Numeric
+      rowSpan?: Signalish<Numeric>
       /**
        * This enumerated attribute defines the cells that the header (defined in the <th>) element relates to
        */
@@ -3239,7 +3239,7 @@ declare global {
        */
       align?: 'left' | 'center' | 'right' | 'justify' | 'char'
       /** @deprecated */
-      axis?: string
+      char?: Signalish<string>
       /**
        * To achieve a similar effect, use the CSS `background-color` property
        * @deprecated
@@ -3249,19 +3249,19 @@ declare global {
        * To achieve the same effect, you can specify the character as the first value of the `text-align` property.
        * @deprecated
        */
-      char?: string
+      char?: Signalish<string>
       /** @deprecated */
-      charoff?: string
+      charoff?: Signalish<string>
       /**
        * To achieve a similar effect, use the CSS `height` property instead.
        * @deprecated
        */
-      height?: number | string
+      height?: Signalish<number | string>
       /**
        * To achieve a similar effect,use the CSS `width` property instead
        * @deprecated
        */
-      width?: number | string
+      width?: Signalish<number | string>
       /**
        * To achieve a similar effect, use the CSS `vertical-align` property
        * @deprecated
@@ -3294,7 +3294,7 @@ declare global {
       /**
        * Indicates the time and/or date in the machine-readable format, allowing for better search engine results or custom features such as reminders
        */
-      dateTime?: string
+      dateTime?: Signalish<string>
       'prop:dateTime'?: string
     }
 
@@ -3304,9 +3304,9 @@ declare global {
     interface HTMLTrackElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTrackElement>, 'children' | RoleKey>, VoidElement, NoRolePermited {
       default?: boolean | '' | 'default'
       kind?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
-      label?: string
-      src?: string
-      srclang?: string
+      label?: Signalish<string>
+      src?: Signalish<string>
+      srclang?: Signalish<string>
       /** @deprecated use `on:cueChange` instead */
       oncuechange?: GenericEventHandler<HTMLTrackElement>
 
@@ -3320,9 +3320,9 @@ declare global {
     }
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
-      height?: number | string
+      height?: Signalish<number | string>
       playsInline?: boolean | '' | 'playsinline'
-      poster?: string
+      poster?: Signalish<string>
       width?: number | string
       disablePictureInPicture?: boolean | ''
       /** @deprecated use `on:enterPictureInPicture` instead */
@@ -3355,33 +3355,33 @@ declare global {
       allowpopups?: boolean
       autofocus?: boolean | ''
       autosize?: boolean
-      blinkfeatures?: string
-      disableblinkfeatures?: string
+      blinkfeatures?: Signalish<string>
+      disableblinkfeatures?: Signalish<string>
       disableguestresize?: boolean
       disablewebsecurity?: boolean
-      guestinstance?: string
-      httpreferrer?: string
+      guestinstance?: Signalish<string>
+      httpreferrer?: Signalish<string>
       nodeintegration?: boolean
-      partition?: string
+      partition?: Signalish<string>
       plugins?: boolean
-      preload?: string
-      src?: string
-      useragent?: string
-      webpreferences?: string
+      preload?: Signalish<string>
+      src?: Signalish<string>
+      useragent?: Signalish<string>
+      webpreferences?: Signalish<string>
     }
 
     interface HTMLMarqueeElementAttributes extends HTMLAttributes<HTMLMarqueeElement> {
       behavior?: 'scroll' | 'slide' | 'alternate'
       bgColor?: Property.Color
       direction?: 'left' | 'right' | 'up' | 'down'
-      height?: number | string
-      hspace?: number | string
-      loop?: number | string
-      scrollAmount?: number | string
-      scrollDelay?: number | string
+      height?: Signalish<number | string>
+      hspace?: Signalish<number | string>
+      loop?: Signalish<number | string>
+      scrollAmount?: Signalish<number | string>
+      scrollDelay?: Signalish<number | string>
       trueSpeed?: boolean | ''
-      vspace?: number | string
-      width?: number | string
+      vspace?: Signalish<number | string>
+      width?: Signalish<number | string>
 
       'prop:behavior'?: 'scroll' | 'slide' | 'alternate'
       'prop:bgColor'?: Property.Color
