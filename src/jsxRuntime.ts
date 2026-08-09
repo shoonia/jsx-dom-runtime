@@ -1,4 +1,4 @@
-import { s } from './symbol';
+import { sig } from './symbol';
 
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
@@ -33,7 +33,7 @@ const jsx = (tag, props, children?: any) => {
           node.addEventListener(key, value[key]);
         }
       } else if (value != null) {
-        if (value[s]) {
+        if (value[sig]) {
           node.setAttributeNode(value.attr(key));
         } else if (typeof value != 'boolean' || key.startsWith('-', 4)) {
           node.setAttribute(key, value);

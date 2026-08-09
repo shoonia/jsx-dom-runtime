@@ -1,6 +1,5 @@
-
 import type { Signal } from '../index';
-import { s } from './symbol';
+import { sig } from './symbol';
 
 type Sub = (value: string) => void;
 
@@ -8,7 +7,7 @@ export const signal = (value = ''): Signal<Element> => {
   const subs: Sub[] = [];
 
   return {
-    [s]: s,
+    [sig]: sig,
 
     get value() {
       return value;
@@ -32,6 +31,6 @@ export const signal = (value = ''): Signal<Element> => {
       const text = new Text(value);
       subs.push((val) => text.data = val);
       return text;
-    }
-  }
-}
+    },
+  };
+};

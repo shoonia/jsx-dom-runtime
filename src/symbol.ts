@@ -1,1 +1,1 @@
-export const s: unique symbol = Symbol();
+export const sig: unique symbol = Symbol();
