@@ -24,7 +24,7 @@ type JSXChild =
   | null
   | undefined
   | JSXElement
-  | Signal<Element>
+  | Signal<string>
   | JSXChild[]
 
 export interface RefObject<T> {
