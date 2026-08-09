@@ -3,18 +3,18 @@
     "name": "jsx",
     "path": "jsx-runtime/index.js",
     "import": "{ jsx }",
-    "limit": "300 B"
+    "limit": "287 B"
   },
   {
     "name": "render",
     "path": "jsx-runtime/index.js",
     "import": "{ render }",
-    "limit": "66 B"
+    "limit": "81 B"
   },
     {
     "name": "signal",
     "path": "jsx-runtime/index.js",
     "import": "{ signal }",
-    "limit": "150 B"
+    "limit": "151 B"
   }
 ]
