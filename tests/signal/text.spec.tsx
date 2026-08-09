@@ -4,19 +4,19 @@ describe('signal.text', () => {
   it('should add text', () => {
     const s = signal('hello');
 
-    expect(<i>{s.text()}</i>).toHaveOuterHTML('<i>hello</i>');
+    expect(<i>{s}</i>).toHaveOuterHTML('<i>hello</i>');
   });
 
   it('should add empty text', () => {
     const s = signal();
 
-    expect(<s>{s.text()}</s>).toHaveOuterHTML('<s></s>');
+    expect(<s>{s}</s>).toHaveOuterHTML('<s></s>');
   });
 
   it('should update text', () => {
     const s = signal('old');
 
-    render(s.text(), document.body);
+    render(s, document.body);
 
     expect(document.body).toHaveInnerHTML('old');
 
@@ -28,7 +28,7 @@ describe('signal.text', () => {
   it('should update empty text', () => {
     const s = signal();
 
-    render(s.text(), document.body);
+    render(s, document.body);
 
     expect(document.body).toHaveInnerHTML('');
 
@@ -40,7 +40,7 @@ describe('signal.text', () => {
   it('should update multiple text nodes sharing the same signal', () => {
     const s = signal('hello');
 
-    render([s.text(), s.text()], document.body);
+    render(<>{s}{s}</>, document.body);
 
     expect(document.body).toHaveInnerHTML('hellohello');
 

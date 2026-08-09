@@ -3,7 +3,7 @@
     "name": "jsx",
     "path": "jsx-runtime/index.js",
     "import": "{ jsx }",
-    "limit": "277 B"
+    "limit": "300 B"
   },
   {
     "name": "render",

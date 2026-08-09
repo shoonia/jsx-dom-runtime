@@ -7,7 +7,7 @@ const render = (content, node) =>
   content !== false && content != null && (
     Array.isArray(content)
       ? content.forEach((i) => render(i, node))
-      : node.append(content)
+      : node.append(content[sig] ? content.text() : content)
   );
 
 const setRef = (content, node) =>
