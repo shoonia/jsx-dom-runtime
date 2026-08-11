@@ -1,10 +1,8 @@
-export const useAttr = (name: string, value?: string) => {
+export const useAttr = (name: string, value = '') => {
   const attr = document.createAttribute(name),
-    setAttr = (newValue: string) => attr.value = newValue;
+    setAttr = (val: string) => attr.value = val;
 
-  if (value) {
-    setAttr(value);
-  }
+  setAttr(value);
 
   return [attr, setAttr] as const;
 };
