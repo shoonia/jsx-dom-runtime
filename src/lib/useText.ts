@@ -5,7 +5,7 @@ export const useText = (data?: string) => {
     text,
     (content: string): void => {
       if (data !== content) {
-        text.nodeValue = data = content;
+        text.data = data = content;
       }
     },
   ] as const;
