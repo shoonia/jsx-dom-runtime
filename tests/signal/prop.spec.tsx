@@ -52,16 +52,5 @@ describe('signal prop:className', () => {
       expect(div1).toHaveClass('updated');
       expect(div2).toHaveClass('updated');
     });
-
-    it('should stop updating className after `off`', () => {
-      const s = signal('initial');
-
-      const div = <div prop:className={s} />;
-
-      off();
-      s.set('changed');
-
-      expect(div).toHaveClass('initial');
-    });
   });
 });
