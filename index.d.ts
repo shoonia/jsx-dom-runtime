@@ -78,7 +78,7 @@ export type SignalSubscriber<T> = (value: T) => void
 export interface Signal<T> {
   get(): T
   set(val: T): void
-  subscribe(sub: SignalSubscriber<T>): () => void
+  subscribe(sub: SignalSubscriber<T>): () => boolean
 
   readonly [_s: symbol]: symbol
   _a(name: string): Attr

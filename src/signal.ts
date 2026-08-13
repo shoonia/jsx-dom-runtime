@@ -2,13 +2,13 @@ import type { Signal, SignalSubscriber } from '../index';
 import { _s } from './symbol';
 
 export const signal = (value = ''): Signal<string> => {
-  let subs: Set<SignalSubscriber<string>> = new Set()
+  let subs = new Set<SignalSubscriber<string>>();
 
   let subscribe = (sub: SignalSubscriber<string>) => {
     subs.add(sub);
     sub(value);
     return () => subs.delete(sub);
-  }
+  };
 
   return {
     subscribe,
