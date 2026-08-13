@@ -15,6 +15,6 @@
     "name": "signal",
     "path": "jsx-runtime/index.js",
     "import": "{ signal }",
-    "limit": "161 B"
+    "limit": "156 B"
   }
 ]

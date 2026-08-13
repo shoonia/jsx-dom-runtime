@@ -8,3 +8,4 @@ className.set('new-class');
 const maxValue = signal(100);
 maxValue.set(200);
 <progress max={maxValue} />;
+<progress prop:max={maxValue} />;

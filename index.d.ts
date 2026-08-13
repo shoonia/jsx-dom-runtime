@@ -2856,8 +2856,8 @@ declare global {
       /** Permitted ARIA roles */
       role?: 'progressbar'
 
-      'prop:max'?: number
-      'prop:value'?: number
+      'prop:max'?: Signalish<number>
+      'prop:value'?: Signalish<number>
       'prop:role'?: 'progressbar'
     }
 
