@@ -108,7 +108,7 @@ export const setProperty = (
     type: 'CallExpression',
     callee,
     arguments: [
-      attrValue,
+      convertJSXAttrValue(attrValue),
       {
         type: 'ArrowFunctionExpression',
         async: false,
