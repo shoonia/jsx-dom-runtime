@@ -24,13 +24,13 @@ export const signal = (value = ''): Signal<string> => {
 
     _a(name: string) {
       const attr = document.createAttribute(name);
-      on((val) => attr.value = '' + val);
+      on((val) => attr.value = val);
       return attr;
     },
 
     _t() {
       const text = new Text();
-      on((val) => text.data = '' + val);
+      on((val) => text.data = val);
       return text;
     },
   };
