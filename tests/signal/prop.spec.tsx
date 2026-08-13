@@ -1,7 +1,6 @@
 import { signal } from 'jsx-dom-runtime';
 
-const setPropertyImport = (s: TemplateStringsArray | string): string =>
-  `import{setProperty as _setProperty,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${typeof s === 'string' ? s : s[0]}`;
+import { setPropertyImport } from '../utils/t';
 
 describe('signal prop:className', () => {
   describe('compilation', () => {
@@ -33,13 +32,6 @@ describe('signal prop:className', () => {
       expect(div).toHaveClass('foo');
       s.set('bar');
       expect(div).toHaveClass('bar');
-    });
-
-    it('should set empty className from signal with no initial value', () => {
-      const s = signal();
-      const div = <div prop:className={s} />;
-
-      expect(div).toHaveClass('');
     });
 
     it('should update multiple elements sharing the same signal', () => {

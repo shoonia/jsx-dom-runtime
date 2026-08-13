@@ -2,7 +2,6 @@ import t from '@babel/types';
 
 type NodeType = t.Node['type'];
 
-const stringLiterals = new Set<NodeType>(['StringLiteral', 'TemplateLiteral']);
 const literals = new Set<NodeType>([
   'StringLiteral',
   'TemplateLiteral',
@@ -26,10 +25,9 @@ export const isRef = (i: t.ObjectMethod | t.ObjectProperty | t.SpreadElement): i
 export const isJsxContainerWithBoolean = (node: t.Node): node is t.JSXExpressionContainer =>
   node.type === 'JSXExpressionContainer' && node.expression.type === 'BooleanLiteral';
 
-export const isJsxContainerWithString = (node: t.Node): node is t.JSXExpressionContainer =>
-  node.type === 'JSXExpressionContainer' && stringLiterals.has(node.expression.type);
-
-export const isJsxContainerWithAnyLiteral = (node: t.Node): node is t.JSXExpressionContainer =>
+export const isJsxAttributeLiteralValue = (node: t.Node | null): node is t.JSXExpressionContainer =>
+  node == null ||
+  node.type === 'StringLiteral' ||
   node.type === 'JSXExpressionContainer' && literals.has(node.expression.type);
 
 // [$] and [_] character codes

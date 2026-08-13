@@ -40,8 +40,7 @@ import {
   isFunctionComponent,
   isChildren,
   isJsxContainerWithBoolean,
-  isJsxContainerWithString,
-  isJsxContainerWithAnyLiteral,
+  isJsxAttributeLiteralValue,
 } from './guards';
 
 const opts = { name: '_' } as const;
@@ -227,10 +226,7 @@ export const jsxTransform: PluginObj = {
             createDirectiveCallExp(openingElement, name, attrValue);
             return path.remove();
           case 'prop': {
-            if (
-              attrValue != null &&
-              (attrValue.type === 'StringLiteral' || isJsxContainerWithAnyLiteral(attrValue))
-            ) {
+            if (isJsxAttributeLiteralValue(attrValue)) {
               createDirectiveAssignExp(openingElement, name, attrValue);
             } else {
               setProperty(openingElement, name, attrValue, importSpec.add('setProperty'));
@@ -253,11 +249,7 @@ export const jsxTransform: PluginObj = {
 
       switch (attrName.name) {
         case 'style': {
-          if (
-            attrValue == null ||
-            attrValue.type === 'StringLiteral' ||
-            isJsxContainerWithString(attrValue)
-          ) {
+          if (isJsxAttributeLiteralValue(attrValue)) {
             return;
           }
 

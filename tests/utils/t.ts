@@ -38,3 +38,6 @@ export const attrImport = (template: TTemplate): string =>
 
 export const dataImport = (template: TTemplate): string =>
   `import{setDataset as _setDataset,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;
+
+export const setPropertyImport = (template: TTemplate): string =>
+  `import{setProperty as _setProperty,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/${getSource(template)}`;
