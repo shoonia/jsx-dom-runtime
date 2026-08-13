@@ -7,6 +7,7 @@ import {
   createDirectiveAssignExp,
   createDirectiveCallExp,
   setUtility,
+  setProperty,
 } from './directives';
 import {
   buildProps,
@@ -38,7 +39,9 @@ import {
   isRef,
   isFunctionComponent,
   isChildren,
-  isJsxContainerWith,
+  isJsxContainerWithBoolean,
+  isJsxContainerWithString,
+  isJsxContainerWithAnyLiteral,
 } from './guards';
 
 const opts = { name: '_' } as const;
@@ -223,9 +226,18 @@ export const jsxTransform: PluginObj = {
           case 'attr':
             createDirectiveCallExp(openingElement, name, attrValue);
             return path.remove();
-          case 'prop':
-            createDirectiveAssignExp(openingElement, name, attrValue);
+          case 'prop': {
+            if (
+              attrValue != null &&
+              (attrValue.type === 'StringLiteral' || isJsxContainerWithAnyLiteral(attrValue))
+            ) {
+              createDirectiveAssignExp(openingElement, name, attrValue);
+            } else {
+              setProperty(openingElement, name, attrValue, importSpec.add('setProperty'));
+            }
+
             return path.remove();
+          }
         }
 
         if (isCustomElement) {
@@ -244,8 +256,7 @@ export const jsxTransform: PluginObj = {
           if (
             attrValue == null ||
             attrValue.type === 'StringLiteral' ||
-            isJsxContainerWith(attrValue, 'StringLiteral') ||
-            isJsxContainerWith(attrValue, 'TemplateLiteral')
+            isJsxContainerWithString(attrValue)
           ) {
             return;
           }
@@ -293,7 +304,7 @@ export const jsxTransform: PluginObj = {
       ) {
         if (attrValue == null) {
           attribute.value = $stringLiteral('true');
-        } else if (isJsxContainerWith(attrValue, 'BooleanLiteral')) {
+        } else if (isJsxContainerWithBoolean(attrValue)) {
           attribute.value = $stringLiteral(attrValue.expression.value.toString());
         }
         return;

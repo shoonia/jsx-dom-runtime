@@ -766,7 +766,7 @@ declare global {
       // Properties
       'prop:nodeValue'?: string | null
       'prop:classList'?: string
-      'prop:className'?: string
+      'prop:className'?: Signalish<string>
       'prop:id'?: string
       'prop:innerHTML'?: string
       'prop:outerHTML'?: string
