@@ -1,4 +1,4 @@
-import { _s } from './_s'
+import { _s } from './_s';
 
 export const setStyle = (node, value) => {
   if (typeof value == 'string') {
