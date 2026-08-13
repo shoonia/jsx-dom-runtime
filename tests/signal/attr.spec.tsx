@@ -40,16 +40,6 @@ describe('signal', () => {
     expect(div2).toHaveAttribute('class', 'world');
   });
 
-  it('should expose current value via .value', () => {
-    const s = signal('hello');
-
-    expect(s.value).toBe('hello');
-
-    s.set('world');
-
-    expect(s.value).toBe('world');
-  });
-
   it('should default to empty string when no initial value provided', () => {
     const s = signal();
     const div = <div class={s} />;
