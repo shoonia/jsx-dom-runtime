@@ -1,17 +1,17 @@
-import type { Signal, SignalSubscriber } from '../index';
+import type { Signal, SignalListener } from '../index';
 import { _s } from './_s';
 
 export const signal = (value = ''): Signal<string> => {
-  let subs = new Set<SignalSubscriber<string>>();
+  let subs = new Set<SignalListener<string>>();
 
-  let subscribe = (sub: SignalSubscriber<string>) => {
-    subs.add(sub);
-    sub(value);
-    return () => subs.delete(sub);
+  let on = (fn: SignalListener<string>) => {
+    subs.add(fn);
+    fn(value);
+    return () => subs.delete(fn);
   };
 
   return {
-    subscribe,
+    on,
 
     get: () => value,
 
@@ -24,13 +24,13 @@ export const signal = (value = ''): Signal<string> => {
 
     _a(name: string) {
       const attr = document.createAttribute(name);
-      subscribe((val) => attr.value = '' + val);
+      on((val) => attr.value = '' + val);
       return attr;
     },
 
     _t() {
       const text = new Text();
-      subscribe((val) => text.data = '' + val);
+      on((val) => text.data = '' + val);
       return text;
     },
   };

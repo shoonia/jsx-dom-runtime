@@ -70,15 +70,15 @@ export declare function jsx<
   children?: JSXChild | JSXChild[]
 ): R
 
-export declare const svgNs = 'http://www.w3.org/2000/svg'
-export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML'
+export declare const svgNs: 'http://www.w3.org/2000/svg'
+export declare const mathmlNs: 'http://www.w3.org/1998/Math/MathML'
 
-export type SignalSubscriber<T> = (value: T) => void
+export type SignalListener<T> = (value: T) => void
 
 export interface Signal<T> {
   get(): T
   set(val: T): void
-  subscribe(sub: SignalSubscriber<T>): () => boolean
+  on(fn: SignalListener<T>): () => boolean
 
   readonly [_s: symbol]: symbol
   _a(name: string): Attr
