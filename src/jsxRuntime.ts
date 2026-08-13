@@ -1,4 +1,4 @@
-import { _s } from './symbol';
+import { _s } from './_s';
 
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';

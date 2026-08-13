@@ -1,5 +1,5 @@
 import type { Signal, SignalSubscriber } from '../index';
-import { _s } from './symbol';
+import { _s } from './_s';
 
 export const signal = (value = ''): Signal<string> => {
   let subs = new Set<SignalSubscriber<string>>();
