@@ -1,35 +1,36 @@
-import type { Signal } from '../index';
-import { sig } from './symbol';
-
-type Sub = (value: string) => void;
+import type { Signal, SignalSubscriber } from '../index';
+import { _s } from './symbol';
 
 export const signal = (value = ''): Signal<string> => {
-  const subs: Sub[] = [];
+  let subs: Set<SignalSubscriber<string>> = new Set()
+
+  let subscribe = (sub: SignalSubscriber<string>) => {
+    subs.add(sub);
+    sub(value);
+    return () => subs.delete(sub);
+  }
 
   return {
-    [sig]: sig,
+    subscribe,
 
-    get value() {
-      return value;
-    },
+    get: () => value,
 
     set(val: string) {
-      if (value != val) {
-        value = val;
-        for (let sub of subs) sub(value);
-      }
+      value = val;
+      for (let sub of subs) sub(value);
     },
 
-    attr(name: string) {
+    [_s]: _s,
+
+    _a(name: string) {
       const attr = document.createAttribute(name);
-      attr.value = value;
-      subs.push((val) => attr.value = val);
+      subscribe((val) => attr.value = '' + val);
       return attr;
     },
 
-    text() {
-      const text = new Text(value);
-      subs.push((val) => text.data = val);
+    _t() {
+      const text = new Text();
+      subscribe((val) => text.data = '' + val);
       return text;
     },
   };

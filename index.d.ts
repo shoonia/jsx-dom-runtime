@@ -73,12 +73,16 @@ export declare function jsx<
 export declare const svgNs = 'http://www.w3.org/2000/svg'
 export declare const mathmlNs = 'http://www.w3.org/1998/Math/MathML'
 
+export type SignalSubscriber<T> = (value: T) => void
+
 export interface Signal<T> {
-  readonly [key: symbol]: symbol
-  readonly value: T
+  get(): T
   set(val: T): void
-  attr(name: string): Attr
-  text(): Text
+  subscribe(sub: SignalSubscriber<T>): () => void
+
+  readonly [_s: symbol]: symbol
+  _a(name: string): Attr
+  _t(): Text
 }
 
 export type Signalish<T> = T | Signal<T> | undefined

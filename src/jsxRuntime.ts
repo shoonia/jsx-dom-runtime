@@ -1,4 +1,4 @@
-import { sig } from './symbol';
+import { _s } from './symbol';
 
 const svgNs = 'http://www.w3.org/2000/svg';
 const mathmlNs = 'http://www.w3.org/1998/Math/MathML';
@@ -7,7 +7,7 @@ const render = (content, node) =>
   content !== false && content != null && (
     Array.isArray(content)
       ? content.forEach((i) => render(i, node))
-      : node.append(content[sig] ? content.text() : content)
+      : node.append(content[_s] ? content._t() : content)
   );
 
 const setRef = (content, node) =>
@@ -33,8 +33,8 @@ const jsx = (tag, props, children?: any) => {
           node.addEventListener(key, value[key]);
         }
       } else if (value != null) {
-        if (value[sig]) {
-          node.setAttributeNode(value.attr(key));
+        if (value[_s]) {
+          node.setAttributeNode(value._a(key));
         } else if (typeof value != 'boolean' || key.startsWith('-', 4)) {
           node.setAttribute(key, value);
         } else if (value) {
