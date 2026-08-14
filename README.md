@@ -61,6 +61,7 @@ render(
 - [Fragments](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#fragments)
 
 ### API Reference
+- [signal()](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#signal) - Reactive values that update attributes, properties, and text automatically
 - [useRef()](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#creating-refs) - Create DOM element references
 - [Callback Refs](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#callback-refs) - Reference elements with callbacks
 - [useText()](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#text) - Create reactive Text nodes

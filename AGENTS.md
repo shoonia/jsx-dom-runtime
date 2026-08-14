@@ -568,6 +568,119 @@ render(
 );
 ```
 
+### signal()
+
+A signal is a reactive value. When the value changes, every place that depends on it — an attribute, a text node, or a manual subscriber — updates automatically.
+
+```js
+import { signal } from 'jsx-dom-runtime';
+
+const count = signal(0);
+
+count.get();  // 0
+count.set(1);
+count.get();  // 1
+```
+
+**API**
+
+| Method | Description |
+|--------|-------------|
+| `get()` | Returns the current value (readonly) |
+| `set(val)` | Updates the value and notifies all subscribers |
+| `on(fn)` | Subscribes `fn` — calls it immediately with the current value, then on every `set()`. Returns an unsubscribe function |
+
+```js
+const s = signal('hello');
+
+const off = s.on((value) => {
+  // called immediately: "hello"
+  // then on every s.set(...)
+  console.log(value); 
+});
+
+s.set('world'); // logs "world"
+
+off();          // unsubscribe
+s.set('!');     // nothing logged
+```
+
+**Using signals in JSX**
+
+Pass a signal anywhere the attribute accepts `Signalish<T>` — the element updates in place whenever the signal changes.
+
+```js
+import { render, signal } from 'jsx-dom-runtime';
+
+const label = signal('Submit');
+const disabled = signal(false);
+
+render(
+  <button type="button" class="btn" prop:disabled={disabled}>
+    {label}
+  </button>,
+  document.getElementById('root')
+);
+
+// Later — no DOM query needed
+label.set('Saving…');
+disabled.set(true);
+```
+
+**HTML attributes** — updates the attribute via `setAttribute`:
+
+```js
+const status = signal('idle');
+
+<div attr:data-status={status} />;
+
+status.set('loading'); // → data-status="loading"
+```
+
+**DOM properties** — updates the property directly:
+
+```js
+const title = signal('Hello');
+
+<h1 prop:textContent={title} />;
+
+title.set('World'); // → h1.textContent = "World"
+```
+
+**Text content** — pass a signal as a child:
+
+```js
+const name = signal('Alice');
+
+<p>Hello, {name}!</p>;
+
+name.set('Bob'); // → "Hello, Bob!"
+```
+
+**Standard attributes** — attributes typed as `Signalish<T>` accept signals directly:
+
+```js
+const cls = signal('btn');
+const href = signal('/home');
+const max = signal(100);
+
+<button class={cls} />;
+<a href={href} />;
+<progress max={max} />;
+```
+
+**Multiple elements** sharing a signal all update together:
+
+```js
+const theme = signal('light');
+
+const header = <header class={theme} />;
+const footer = <footer class={theme} />;
+
+theme.set('dark');
+// both header and footer now have class="dark"
+```
+
 ### Template
 
 Get a template from a string.
