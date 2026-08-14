@@ -24,7 +24,7 @@ type JSXChild =
   | null
   | undefined
   | JSXElement
-  | Signal<string>
+  | Signal<string | number | bigint | boolean | null | undefined>
   | JSXChild[]
 
 export interface RefObject<T> {
@@ -85,7 +85,7 @@ export interface Signal<T> {
   _t(): Text
 }
 
-export type Signalish<T> = T | Signal<T> | undefined
+export type Signalish<T> = T | Signal<T>
 
 export declare function signal<T = string>(value?: T): Signal<T>
 export declare function useRef<T = any>(current?: T): RefObject<T>
@@ -325,299 +325,299 @@ export type AriaRole =
 
 export interface AriaAttributes {
   /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
-  'aria-activedescendant'?: string
+  'aria-activedescendant'?: Signalish<string>
   /** Indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the aria-relevant attribute. */
-  'aria-atomic'?: Booleanish
+  'aria-atomic'?: Signalish<Booleanish>
   /**
    * Indicates whether inputting text could trigger display of one or more predictions of the user's intended value for an input and specifies how predictions would be
    * presented if they are made.
    */
-  'aria-autocomplete'?: 'none' | 'inline' | 'list' | 'both'
+  'aria-autocomplete'?: Signalish<'none' | 'inline' | 'list' | 'both'>
   /**
    * Defines a string value that labels the current element, which is intended to be converted into Braille.
    * @see aria-label.
    */
-  'aria-braillelabel'?: string
+  'aria-braillelabel'?: Signalish<string>
   /**
    * Defines a human-readable, author-localized abbreviated description for the role of an element, which is intended to be converted into Braille.
    * @see aria-roledescription.
    */
-  'aria-brailleroledescription'?: string
+  'aria-brailleroledescription'?: Signalish<string>
   /** Indicates an element is being modified and that assistive technologies MAY want to wait until the modifications are complete before exposing them to the user. */
-  'aria-busy'?: Booleanish
+  'aria-busy'?: Signalish<Booleanish>
   /**
    * Indicates the current "checked" state of checkboxes, radio buttons, and other widgets.
    * @see aria-pressed @see aria-selected.
    */
-  'aria-checked'?: Booleanish | 'mixed'
+  'aria-checked'?: Signalish<Booleanish | 'mixed'>
   /**
    * Defines the total number of columns in a table, grid, or treegrid.
    * @see aria-colindex.
    */
-  'aria-colcount'?: Numeric
+  'aria-colcount'?: Signalish<Numeric>
   /**
    * Defines an element's column index or position with respect to the total number of columns within a table, grid, or treegrid.
    * @see aria-colcount @see aria-colspan.
    */
-  'aria-colindex'?: Numeric
+  'aria-colindex'?: Signalish<Numeric>
   /**
    * Defines a human readable text alternative of aria-colindex.
    * @see aria-rowindextext.
    */
-  'aria-colindextext'?: string
+  'aria-colindextext'?: Signalish<string>
   /**
    * Defines the number of columns spanned by a cell or gridcell within a table, grid, or treegrid.
    * @see aria-colindex @see aria-rowspan.
    */
-  'aria-colspan'?: Numeric
+  'aria-colspan'?: Signalish<Numeric>
   /**
    * Identifies the element (or elements) whose contents or presence are controlled by the current element.
    * @see aria-owns.
    */
-  'aria-controls'?: string
+  'aria-controls'?: Signalish<string>
   /** Indicates the element that represents the current item within a container or set of related elements. */
-  'aria-current'?: Booleanish | 'page' | 'step' | 'location' | 'date' | 'time'
+  'aria-current'?: Signalish<Booleanish | 'page' | 'step' | 'location' | 'date' | 'time'>
   /**
    * Identifies the element (or elements) that describes the object.
    * @see aria-labelledby
    */
-  'aria-describedby'?: string
+  'aria-describedby'?: Signalish<string>
   /**
    * Defines a string value that describes or annotates the current element.
    * @see related aria-describedby.
    */
-  'aria-description'?: string
+  'aria-description'?: Signalish<string>
   /**
    * Identifies the element that provides a detailed, extended description for the object.
    * @see aria-describedby.
    */
-  'aria-details'?: string
+  'aria-details'?: Signalish<string>
   /**
    * Indicates that the element is perceivable but disabled, so it is not editable or otherwise operable.
    * @see aria-hidden @see aria-readonly.
    */
-  'aria-disabled'?: Booleanish
+  'aria-disabled'?: Signalish<Booleanish>
   /**
    * Indicates what functions can be performed when a dragged object is released on the drop target.
    * @deprecated in ARIA 1.1
    */
-  'aria-dropeffect'?: 'none' | 'copy' | 'execute' | 'link' | 'move' | 'popup'
+  'aria-dropeffect'?: Signalish<'none' | 'copy' | 'execute' | 'link' | 'move' | 'popup'>
   /**
    * Identifies the element that provides an error message for the object.
    * @see aria-invalid @see aria-describedby.
    */
-  'aria-errormessage'?: string
+  'aria-errormessage'?: Signalish<string>
   /** Indicates whether the element, or another grouping element it controls, is currently expanded or collapsed. */
-  'aria-expanded'?: Booleanish
+  'aria-expanded'?: Signalish<Booleanish>
   /**
    * Identifies the next element (or elements) in an alternate reading order of content which, at the user's discretion,
    * allows assistive technology to override the general default of reading in document source order.
    */
-  'aria-flowto'?: string
+  'aria-flowto'?: Signalish<string>
   /**
    * Indicates an element's "grabbed" state in a drag-and-drop operation.
    * @deprecated in ARIA 1.1
    */
-  'aria-grabbed'?: Booleanish
+  'aria-grabbed'?: Signalish<Booleanish>
 
   /** Indicates the availability and type of interactive popup element, such as menu or dialog, that can be triggered by an element. */
-  'aria-haspopup'?: Booleanish | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
+  'aria-haspopup'?: Signalish<Booleanish | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'>
   /**
    * Indicates whether the element is exposed to an accessibility API.
    * @see aria-disabled.
    */
-  'aria-hidden'?: Booleanish
+  'aria-hidden'?: Signalish<Booleanish>
   /**
    * Indicates the entered value does not conform to the format expected by the application.
    * @see aria-errormessage.
    */
-  'aria-invalid'?: Booleanish | 'grammar' | 'spelling'
+  'aria-invalid'?: Signalish<Booleanish | 'grammar' | 'spelling'>
   /** Indicates keyboard shortcuts that an author has implemented to activate or give focus to an element. */
-  'aria-keyshortcuts'?: string
+  'aria-keyshortcuts'?: Signalish<string>
   /**
    * Defines a string value that labels the current element.
    * @see aria-labelledby.
    */
-  'aria-label'?: string
+  'aria-label'?: Signalish<string>
   /**
    * Identifies the element (or elements) that labels the current element.
    * @see aria-describedby.
    */
-  'aria-labelledby'?: string
+  'aria-labelledby'?: Signalish<string>
   /** Defines the hierarchical level of an element within a structure. */
-  'aria-level'?: Numeric
+  'aria-level'?: Signalish<Numeric>
   /** Indicates that an element will be updated, and describes the types of updates the user agents, assistive technologies, and user can expect from the live region. */
-  'aria-live'?: 'off' | 'assertive' | 'polite'
+  'aria-live'?: Signalish<'off' | 'assertive' | 'polite'>
   /** Indicates whether an element is modal when displayed. */
-  'aria-modal'?: Booleanish
+  'aria-modal'?: Signalish<Booleanish>
   /** Indicates whether a text box accepts multiple lines of input or only a single line. */
-  'aria-multiline'?: Booleanish
+  'aria-multiline'?: Signalish<Booleanish>
   /** Indicates that the user may select more than one item from the current selectable descendants. */
-  'aria-multiselectable'?: Booleanish
+  'aria-multiselectable'?: Signalish<Booleanish>
   /** Indicates whether the element's orientation is horizontal, vertical, or unknown/ambiguous. */
-  'aria-orientation'?: 'horizontal' | 'vertical'
+  'aria-orientation'?: Signalish<'horizontal' | 'vertical'>
   /**
    * Identifies an element (or elements) in order to define a visual, functional, or contextual parent/child relationship
    * between DOM elements where the DOM hierarchy cannot be used to represent the relationship.
    * @see aria-controls.
    */
-  'aria-owns'?: string
+  'aria-owns'?: Signalish<string>
   /**
    * Defines a short hint (a word or short phrase) intended to aid the user with data entry when the control has no value.
    * A hint could be a sample value or a brief description of the expected format.
    */
-  'aria-placeholder'?: string
+  'aria-placeholder'?: Signalish<string>
   /**
    * Defines an element's number or position in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
    * @see aria-setsize.
    */
-  'aria-posinset'?: Numeric
+  'aria-posinset'?: Signalish<Numeric>
   /**
    * Indicates the current "pressed" state of toggle buttons.
    * @see aria-checked @see aria-selected.
    */
-  'aria-pressed'?: Booleanish | 'mixed'
+  'aria-pressed'?: Signalish<Booleanish | 'mixed'>
   /**
    * Indicates that the element is not editable, but is otherwise operable.
    * @see aria-disabled.
    */
-  'aria-readonly'?: Booleanish
-
+  'aria-readonly'?: Signalish<Booleanish>
   /**
    * Indicates what notifications the user agent will trigger when the accessibility tree within a live region is modified.
    * @see aria-atomic.
    */
-  'aria-relevant'?:
-  | 'additions'
-  | 'additions removals'
-  | 'additions text'
-  | 'all'
-  | 'removals'
-  | 'removals additions'
-  | 'removals text'
-  | 'text'
-  | 'text additions'
-  | 'text removals'
-
+  'aria-relevant'?: Signalish<
+    | 'additions'
+    | 'additions removals'
+    | 'additions text'
+    | 'all'
+    | 'removals'
+    | 'removals additions'
+    | 'removals text'
+    | 'text'
+    | 'text additions'
+    | 'text removals'
+  >
   /** Indicates that user input is required on the element before a form may be submitted. */
-  'aria-required'?: Booleanish
+  'aria-required'?: Signalish<Booleanish>
   /** Defines a human-readable, author-localized description for the role of an element. */
-  'aria-roledescription'?: string
+  'aria-roledescription'?: Signalish<string>
   /**
    * Defines the total number of rows in a table, grid, or treegrid.
    * @see aria-rowindex.
    */
-  'aria-rowcount'?: Numeric
+  'aria-rowcount'?: Signalish<Numeric>
   /**
    * Defines an element's row index or position with respect to the total number of rows within a table, grid, or treegrid.
    * @see aria-rowcount @see aria-rowspan.
    */
-  'aria-rowindex'?: Numeric
+  'aria-rowindex'?: Signalish<Numeric>
   /**
    * Defines a human readable text alternative of aria-rowindex.
    * @see aria-colindextext.
    */
-  'aria-rowindextext'?: string
+  'aria-rowindextext'?: Signalish<string>
   /**
    * Defines the number of rows spanned by a cell or gridcell within a table, grid, or treegrid.
    * @see aria-rowindex @see aria-colspan.
    */
-  'aria-rowspan'?: Numeric
+  'aria-rowspan'?: Signalish<Numeric>
   /**
    * Indicates the current "selected" state of various widgets.
    * @see aria-checked @see aria-pressed.
    */
-  'aria-selected'?: Booleanish
+  'aria-selected'?: Signalish<Booleanish>
   /**
    * Defines the number of items in the current set of listitems or treeitems. Not required if all elements in the set are present in the DOM.
    * @see aria-posinset.
    */
-  'aria-setsize'?: Numeric
+  'aria-setsize'?: Signalish<Numeric>
   /** Indicates if items in a table or grid are sorted in ascending or descending order. */
-  'aria-sort'?: 'none' | 'ascending' | 'descending' | 'other'
+  'aria-sort'?: Signalish<'none' | 'ascending' | 'descending' | 'other'>
   /** Defines the maximum allowed value for a range widget. */
-  'aria-valuemax'?: Numeric
+  'aria-valuemax'?: Signalish<Numeric>
   /** Defines the minimum allowed value for a range widget. */
-  'aria-valuemin'?: Numeric
+  'aria-valuemin'?: Signalish<Numeric>
   /**
    * Defines the current value for a range widget.
    * @see aria-valuetext.
    */
-  'aria-valuenow'?: Numeric
+  'aria-valuenow'?: Signalish<Numeric>
   /** Defines the human readable text alternative of aria-valuenow for a range widget. */
-  'aria-valuetext'?: string
+  'aria-valuetext'?: Signalish<string>
   /**
    * All the WAI-ARIA 1.2 role attribute values
    * @see https://www.w3.org/TR/wai-aria-1.2/#role_definitions
    * All the Digital Publishing WAI-ARIA 1.0 role attribute values
    * @see https://www.w3.org/TR/dpub-aria-1.0/#role_definitions
    */
-  role?: AriaRole
+  role?: Signalish<AriaRole>
 
   'prop:ariaActivedescendant'?: Signalish<string>
-  'prop:ariaAtomic'?: Booleanish
-  'prop:ariaAutocomplete'?: 'none' | 'inline' | 'list' | 'both'
+  'prop:ariaAtomic'?: Signalish<Booleanish>
+  'prop:ariaAutocomplete'?: Signalish<'none' | 'inline' | 'list' | 'both'>
   'prop:ariaBraillelabel'?: Signalish<string>
   'prop:ariaBrailleroledescription'?: Signalish<string>
-  'prop:ariaBusy'?: Booleanish
-  'prop:ariaChecked'?: Booleanish | 'mixed'
+  'prop:ariaBusy'?: Signalish<Booleanish>
+  'prop:ariaChecked'?: Signalish<Booleanish | 'mixed'>
   'prop:ariaColcount'?: Signalish<Numeric>
   'prop:ariaColindex'?: Signalish<Numeric>
   'prop:ariaColindextext'?: Signalish<string>
   'prop:ariaColspan'?: Signalish<Numeric>
   'prop:ariaControls'?: Signalish<string>
-  'prop:ariaCurrent'?: Booleanish | 'page' | 'step' | 'location' | 'date' | 'time'
+  'prop:ariaCurrent'?: Signalish<Booleanish | 'page' | 'step' | 'location' | 'date' | 'time'>
   'prop:ariaDescribedby'?: Signalish<string>
   'prop:ariaDescription'?: Signalish<string>
   'prop:ariaDetails'?: Signalish<string>
-  'prop:ariaDisabled'?: Booleanish
-  'prop:ariaDropeffect'?: 'none' | 'copy' | 'execute' | 'link' | 'move' | 'popup'
+  'prop:ariaDisabled'?: Signalish<Booleanish>
+  'prop:ariaDropeffect'?: Signalish<'none' | 'copy' | 'execute' | 'link' | 'move' | 'popup'>
   'prop:ariaErrormessage'?: Signalish<string>
-  'prop:ariaExpanded'?: Booleanish
+  'prop:ariaExpanded'?: Signalish<Booleanish>
   'prop:ariaFlowto'?: Signalish<string>
-  'prop:ariaGrabbed'?: Booleanish
-  'prop:ariaHaspopup'?: Booleanish | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
-  'prop:ariaHidden'?: Booleanish
-  'prop:ariaInvalid'?: Booleanish | 'grammar' | 'spelling'
+  'prop:ariaGrabbed'?: Signalish<Booleanish>
+  'prop:ariaHaspopup'?: Signalish<Booleanish | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'>
+  'prop:ariaHidden'?: Signalish<Booleanish>
+  'prop:ariaInvalid'?: Signalish<Booleanish | 'grammar' | 'spelling'>
   'prop:ariaKeyshortcuts'?: Signalish<string>
   'prop:ariaLabel'?: Signalish<string>
   'prop:ariaLabelledby'?: Signalish<string>
   'prop:ariaLevel'?: Signalish<Numeric>
-  'prop:ariaLive'?: 'off' | 'assertive' | 'polite'
-  'prop:ariaModal'?: Booleanish
-  'prop:ariaMultiline'?: Booleanish
-  'prop:ariaMultiselectable'?: Booleanish
-  'prop:ariaOrientation'?: 'horizontal' | 'vertical'
+  'prop:ariaLive'?: Signalish<'off' | 'assertive' | 'polite'>
+  'prop:ariaModal'?: Signalish<Booleanish>
+  'prop:ariaMultiline'?: Signalish<Booleanish>
+  'prop:ariaMultiselectable'?: Signalish<Booleanish>
+  'prop:ariaOrientation'?: Signalish<'horizontal' | 'vertical'>
   'prop:ariaOwns'?: Signalish<string>
   'prop:ariaPlaceholder'?: Signalish<string>
   'prop:ariaPosinset'?: Signalish<Numeric>
-  'prop:ariaPressed'?: Booleanish | 'mixed'
-  'prop:ariaReadonly'?: Booleanish
-  'prop:ariaRelevant'?:
-  | 'additions'
-  | 'additions removals'
-  | 'additions text'
-  | 'all'
-  | 'removals'
-  | 'removals additions'
-  | 'removals text'
-  | 'text'
-  | 'text additions'
-  | 'text removals'
-  'prop:ariaRequired'?: Booleanish
+  'prop:ariaPressed'?: Signalish<Booleanish | 'mixed'>
+  'prop:ariaReadonly'?: Signalish<Booleanish>
+  'prop:ariaRelevant'?: Signalish<
+    | 'additions'
+    | 'additions removals'
+    | 'additions text'
+    | 'all'
+    | 'removals'
+    | 'removals additions'
+    | 'removals text'
+    | 'text'
+    | 'text additions'
+    | 'text removals'
+  >
+  'prop:ariaRequired'?: Signalish<Booleanish>
   'prop:ariaRoledescription'?: Signalish<string>
   'prop:ariaRowcount'?: Signalish<Numeric>
   'prop:ariaRowindex'?: Signalish<Numeric>
   'prop:ariaRowindextext'?: Signalish<string>
   'prop:ariaRowspan'?: Signalish<Numeric>
-  'prop:ariaSelected'?: Booleanish
+  'prop:ariaSelected'?: Signalish<Booleanish>
   'prop:ariaSetsize'?: Signalish<Numeric>
-  'prop:ariaSort'?: 'none' | 'ascending' | 'descending' | 'other'
+  'prop:ariaSort'?: Signalish<'none' | 'ascending' | 'descending' | 'other'>
   'prop:ariaValuemax'?: Signalish<Numeric>
   'prop:ariaValuemin'?: Signalish<Numeric>
   'prop:ariaValuenow'?: Signalish<Numeric>
   'prop:ariaValuetext'?: Signalish<string>
-  'prop:role'?: AriaRole
+  'prop:role'?: Signalish<AriaRole>
 }
 
 type RoleKey = 'role' | 'prop:role'
@@ -660,7 +660,7 @@ declare global {
     type ContentVisibilityAutoStateChangeEventListener<T = globalThis.Element> = EventHandler<ContentVisibilityAutoStateChangeEvent, T>
     type SnapEventListener<T = globalThis.Element> = EventHandler<SnapEvent, T>
 
-    interface Attributes {
+    interface Attributes extends AriaAttributes {
       accessKey?: Signalish<string>
       class?: Signalish<string>
       /**
@@ -925,7 +925,7 @@ declare global {
       'on:command'?: CommandEventListener<T>
     }
 
-    interface HTMLAttributes<T> extends AriaAttributes, Attributes, JSXDirectives<T> {
+    interface HTMLAttributes<T> extends Attributes, JSXDirectives<T> {
       _?: string
       $?: Record<string, EventListener<T>>
       ref?: Ref<T> | false | null | undefined | (Ref<T> | false | null | undefined)[]
@@ -2868,7 +2868,7 @@ declare global {
     }
 
     interface HTMLScriptElementAttributes extends OmitAttrs<HTMLAttributes<HTMLScriptElement>, RoleKey>, NoRolePermited {
-      async?: boolean | '' | 'async' 
+      async?: boolean | '' | 'async'
       /**
        * Specifies that you want the browser to send an `Attribution-Reporting-Eligible` header along with the script resource request
        * @see https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#attributionsrc
@@ -2884,7 +2884,7 @@ declare global {
       nonce?: Signalish<string>
       referrerPolicy?: ReferrerPolicy
       src?: Signalish<string>
-      type?:  'importmap' | 'module' | 'speculationrules' | 'text/javascript' | AnyString
+      type?: 'importmap' | 'module' | 'speculationrules' | 'text/javascript' | AnyString
       fetchPriority?: FetchPriority
 
       'prop:async'?: Signalish<boolean>
@@ -3842,9 +3842,9 @@ declare global {
       video: HTMLVideoElementAttributes
       wbr: HTMLWbrElementAttributes
       webview: HTMLWebViewElementAttributes
-      
+
       // Deprecated HTML
-      
+
       /** @deprecated */
       acronym: HTMLAcronymElementAttributes
       /** @deprecated */
