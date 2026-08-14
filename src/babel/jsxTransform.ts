@@ -7,6 +7,8 @@ import {
   createDirectiveAssignExp,
   createDirectiveCallExp,
   setUtility,
+  setSignalishProp,
+  setSignalishAttr,
 } from './directives';
 import {
   buildProps,
@@ -38,7 +40,8 @@ import {
   isRef,
   isFunctionComponent,
   isChildren,
-  isJsxContainerWith,
+  isJsxContainerWithBoolean,
+  isJsxAttributeLiteralValue,
 } from './guards';
 
 const opts = { name: '_' } as const;
@@ -220,12 +223,22 @@ export const jsxTransform: PluginObj = {
           case 'on':
             eventListener(openingElement, name, attrValue);
             return path.remove();
-          case 'attr':
-            createDirectiveCallExp(openingElement, name, attrValue);
+          case 'attr': {
+            if (isJsxAttributeLiteralValue(attrValue)) {
+              createDirectiveCallExp(openingElement, name, attrValue);
+            } else {
+              setSignalishAttr(openingElement, name, attrValue, importSpec.add('setSignalish'));
+            }
             return path.remove();
-          case 'prop':
-            createDirectiveAssignExp(openingElement, name, attrValue);
+          }
+          case 'prop': {
+            if (isJsxAttributeLiteralValue(attrValue)) {
+              createDirectiveAssignExp(openingElement, name, attrValue);
+            } else {
+              setSignalishProp(openingElement, name, attrValue, importSpec.add('setSignalish'));
+            }
             return path.remove();
+          }
         }
 
         if (isCustomElement) {
@@ -241,12 +254,7 @@ export const jsxTransform: PluginObj = {
 
       switch (attrName.name) {
         case 'style': {
-          if (
-            attrValue == null ||
-            attrValue.type === 'StringLiteral' ||
-            isJsxContainerWith(attrValue, 'StringLiteral') ||
-            isJsxContainerWith(attrValue, 'TemplateLiteral')
-          ) {
+          if (isJsxAttributeLiteralValue(attrValue)) {
             return;
           }
 
@@ -293,7 +301,7 @@ export const jsxTransform: PluginObj = {
       ) {
         if (attrValue == null) {
           attribute.value = $stringLiteral('true');
-        } else if (isJsxContainerWith(attrValue, 'BooleanLiteral')) {
+        } else if (isJsxContainerWithBoolean(attrValue)) {
           attribute.value = $stringLiteral(attrValue.expression.value.toString());
         }
         return;

@@ -78,9 +78,7 @@ export const createDirectiveAssignExp: DirectiveFunc = (openingElement, attrName
     left: {
       type: 'MemberExpression',
       object: e,
-      property: isIdent
-        ? $identifier(attrName)
-        : $stringLiteral(attrName),
+      property: isIdent ? $identifier(attrName) : $stringLiteral(attrName),
       computed: !isIdent,
     },
     right: convertJSXAttrValue(attrValue)
@@ -96,3 +94,74 @@ export const setUtility = (openingElement: t.JSXOpeningElement, attrValue: t.JSX
       convertJSXAttrValue(attrValue)
     ],
   });
+
+export const setSignalishProp = (
+  openingElement: t.JSXOpeningElement,
+  attrName: string,
+  attrValue: t.JSXAttribute['value'],
+  callee: t.Identifier,
+) => {
+  const isIdent = isIdentifierName(attrName);
+  const param = $identifier('i');
+
+  return createDirective(openingElement, {
+    type: 'CallExpression',
+    callee,
+    arguments: [
+      convertJSXAttrValue(attrValue),
+      {
+        type: 'ArrowFunctionExpression',
+        async: false,
+        expression: false,
+        params: [param],
+        body: {
+          type: 'AssignmentExpression',
+          operator: '=',
+          left: {
+            type: 'MemberExpression',
+            object: e,
+            property: isIdent ? $identifier(attrName) : $stringLiteral(attrName),
+            computed: !isIdent,
+          },
+          right: param
+        }
+      }
+    ]
+  });
+};
+
+export const setSignalishAttr = (
+  openingElement: t.JSXOpeningElement,
+  attrName: string,
+  attrValue: t.JSXAttribute['value'],
+  callee: t.Identifier,
+) => {
+  const param = $identifier('i');
+
+  return createDirective(openingElement, {
+    type: 'CallExpression',
+    callee,
+    arguments: [
+      convertJSXAttrValue(attrValue),
+      {
+        type: 'ArrowFunctionExpression',
+        async: false,
+        expression: false,
+        params: [param],
+        body: {
+          type: 'CallExpression',
+          callee: {
+            type: 'MemberExpression',
+            object: e,
+            property: $identifier('setAttribute'),
+            computed: false,
+          },
+          arguments: [
+            $stringLiteral(attrName),
+            param
+          ],
+        }
+      }
+    ]
+  });
+};

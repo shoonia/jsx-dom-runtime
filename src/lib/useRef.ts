@@ -1,3 +1,3 @@
 import type { RefObject } from '../../index';
 
-export const useRef = <T>(current?: T): RefObject<T> => ({ current });
+export const useRef = /*#__PURE__*/ <T>(current?: T): RefObject<T> => ({ current });

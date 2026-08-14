@@ -1,6 +1,6 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
 import { jest } from '@jest/globals';
-import { jsx } from 'jsx-dom-runtime';
+import { jsx, signal } from 'jsx-dom-runtime';
 
 describe('HTMLInputElement', () => {
   it('should set value', () => {
@@ -232,5 +232,25 @@ describe('HTMLInputElement', () => {
     it('should have property `popoverTargetAction`', () => {
       expect(<input type="button" prop:popoverTargetAction="hide" />).toHaveProperty('popoverTargetAction', 'hide');
     });
+  });
+});
+
+describe('signalish support', () => {
+  it('should set prop:disabled from signal', () => {
+    const disabled = signal(false);
+    const input = <input type="text" prop:disabled={disabled} />;
+
+    expect(input).not.toBeDisabled();
+    disabled.set(true);
+    expect(input).toBeDisabled();
+  });
+
+  it('should set prop:readonly from signal', () => {
+    const readOnly = signal(false);
+    const input = <input type="text" prop:readOnly={readOnly} />;
+
+    expect(input).not.toHaveAttribute('readonly');
+    readOnly.set(true);
+    expect(input).toHaveAttribute('readonly', '');
   });
 });

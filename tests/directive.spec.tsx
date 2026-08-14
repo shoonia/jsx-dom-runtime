@@ -1,4 +1,4 @@
-import { jsxImport } from './utils';
+import { jsxImport, signalishImport } from './utils/t';
 
 describe('directives', () => {
   it('should join attr:* props:* directives and ref together with a user `ref` in the last ref position #1', async () => {
@@ -15,7 +15,7 @@ describe('directives', () => {
 
   it('should correctly transform event handlers with `prop:* & attr:*` directives', async () => {
     await expect('<input type="text" attr:hello="world" prop:foo={foo} prop:bar={bar} oninvalid={fn2} onblur={fn3} />').toBeTransform(
-      jsxImport`_jsx("input",{ref:e=>{e.setAttribute("hello","world");e.foo=foo;e.bar=bar;e.oninvalid=fn2;e.onblur=fn3},type:"text"});`
+      signalishImport`_jsx("input",{ref:e=>{e.setAttribute("hello","world");_setSignalish(foo,i=>e.foo=i);_setSignalish(bar,i=>e.bar=i);e.oninvalid=fn2;e.onblur=fn3},type:"text"});`
     );
   });
 
