@@ -7,7 +7,8 @@ import {
   createDirectiveAssignExp,
   createDirectiveCallExp,
   setUtility,
-  setProperty,
+  setSignalishProp,
+  setSignalishAttr,
 } from './directives';
 import {
   buildProps,
@@ -222,16 +223,20 @@ export const jsxTransform: PluginObj = {
           case 'on':
             eventListener(openingElement, name, attrValue);
             return path.remove();
-          case 'attr':
-            createDirectiveCallExp(openingElement, name, attrValue);
+          case 'attr': {
+            if (isJsxAttributeLiteralValue(attrValue)) {
+              createDirectiveCallExp(openingElement, name, attrValue);
+            } else {
+              setSignalishAttr(openingElement, name, attrValue, importSpec.add('setSignalish'));
+            }
             return path.remove();
+          }
           case 'prop': {
             if (isJsxAttributeLiteralValue(attrValue)) {
               createDirectiveAssignExp(openingElement, name, attrValue);
             } else {
-              setProperty(openingElement, name, attrValue, importSpec.add('setProperty'));
+              setSignalishProp(openingElement, name, attrValue, importSpec.add('setSignalish'));
             }
-
             return path.remove();
           }
         }

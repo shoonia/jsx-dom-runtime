@@ -95,7 +95,7 @@ export const setUtility = (openingElement: t.JSXOpeningElement, attrValue: t.JSX
     ],
   });
 
-export const setProperty = (
+export const setSignalishProp = (
   openingElement: t.JSXOpeningElement,
   attrName: string,
   attrValue: t.JSXAttribute['value'],
@@ -124,6 +124,42 @@ export const setProperty = (
             computed: !isIdent,
           },
           right: param
+        }
+      }
+    ]
+  });
+};
+
+export const setSignalishAttr = (
+  openingElement: t.JSXOpeningElement,
+  attrName: string,
+  attrValue: t.JSXAttribute['value'],
+  callee: t.Identifier,
+) => {
+  const param = $identifier('i');
+
+  return createDirective(openingElement, {
+    type: 'CallExpression',
+    callee,
+    arguments: [
+      convertJSXAttrValue(attrValue),
+      {
+        type: 'ArrowFunctionExpression',
+        async: false,
+        expression: false,
+        params: [param],
+        body: {
+          type: 'CallExpression',
+          callee: {
+            type: 'MemberExpression',
+            object: e,
+            property: $identifier('setAttribute'),
+            computed: false,
+          },
+          arguments: [
+            $stringLiteral(attrName),
+            param
+          ],
         }
       }
     ]

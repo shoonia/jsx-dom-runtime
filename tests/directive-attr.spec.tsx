@@ -1,4 +1,6 @@
-import { jsxImport } from './utils';
+import { signal } from 'jsx-dom-runtime';
+
+import { jsxImport, signalishImport } from './utils';
 
 describe('directive attr:*', () => {
   it('should transform `attr:*` directive with value', async () => {

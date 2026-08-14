@@ -26,6 +26,6 @@ export const setAttributes = (node, value) =>
   (Array.isArray(value) ? value : [value]).forEach(
     (i) => node.setAttributeNode(i));
 
-export const setProperty = (value, fn) => value?.[_s]
+export const setSignalish = (value, fn) => value?.[_s]
   ? value.on(fn)
   : fn(value);

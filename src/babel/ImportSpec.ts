@@ -9,7 +9,7 @@ export type TImportName =
   | 'mathmlNs'
   | 'setStyle'
   | 'setDataset'
-  | 'setProperty'
+  | 'setSignalish'
   | 'setAttributes';
 
 export class ImportSpec {
