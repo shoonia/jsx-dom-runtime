@@ -761,7 +761,7 @@ declare global {
 
     interface JSXDirectives<T> {
       // Attributes
-      [key: `attr:${string}`]: string | number | bigint | null | undefined
+      [key: `attr:${string}`]: Signalish<string | number | bigint | null | undefined>
 
       // Properties
       'prop:nodeValue'?: string | null
