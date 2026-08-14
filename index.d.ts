@@ -76,7 +76,7 @@ export declare const mathmlNs: 'http://www.w3.org/1998/Math/MathML'
 export type SignalListener<T> = (value: T) => void
 
 export interface Signal<T> {
-  get(): T
+  get(): Readonly<T>
   set(val: T): void
   on(fn: SignalListener<T>): () => boolean
 
@@ -554,43 +554,43 @@ export interface AriaAttributes {
    */
   role?: AriaRole
 
-  'prop:ariaActivedescendant'?: string
+  'prop:ariaActivedescendant'?: Signalish<string>
   'prop:ariaAtomic'?: Booleanish
   'prop:ariaAutocomplete'?: 'none' | 'inline' | 'list' | 'both'
-  'prop:ariaBraillelabel'?: string
-  'prop:ariaBrailleroledescription'?: string
+  'prop:ariaBraillelabel'?: Signalish<string>
+  'prop:ariaBrailleroledescription'?: Signalish<string>
   'prop:ariaBusy'?: Booleanish
   'prop:ariaChecked'?: Booleanish | 'mixed'
-  'prop:ariaColcount'?: Numeric
-  'prop:ariaColindex'?: Numeric
-  'prop:ariaColindextext'?: string
-  'prop:ariaColspan'?: Numeric
-  'prop:ariaControls'?: string
+  'prop:ariaColcount'?: Signalish<Numeric>
+  'prop:ariaColindex'?: Signalish<Numeric>
+  'prop:ariaColindextext'?: Signalish<string>
+  'prop:ariaColspan'?: Signalish<Numeric>
+  'prop:ariaControls'?: Signalish<string>
   'prop:ariaCurrent'?: Booleanish | 'page' | 'step' | 'location' | 'date' | 'time'
-  'prop:ariaDescribedby'?: string
-  'prop:ariaDescription'?: string
-  'prop:ariaDetails'?: string
+  'prop:ariaDescribedby'?: Signalish<string>
+  'prop:ariaDescription'?: Signalish<string>
+  'prop:ariaDetails'?: Signalish<string>
   'prop:ariaDisabled'?: Booleanish
   'prop:ariaDropeffect'?: 'none' | 'copy' | 'execute' | 'link' | 'move' | 'popup'
-  'prop:ariaErrormessage'?: string
+  'prop:ariaErrormessage'?: Signalish<string>
   'prop:ariaExpanded'?: Booleanish
-  'prop:ariaFlowto'?: string
+  'prop:ariaFlowto'?: Signalish<string>
   'prop:ariaGrabbed'?: Booleanish
   'prop:ariaHaspopup'?: Booleanish | 'menu' | 'listbox' | 'tree' | 'grid' | 'dialog'
   'prop:ariaHidden'?: Booleanish
   'prop:ariaInvalid'?: Booleanish | 'grammar' | 'spelling'
-  'prop:ariaKeyshortcuts'?: string
-  'prop:ariaLabel'?: string
-  'prop:ariaLabelledby'?: string
-  'prop:ariaLevel'?: Numeric
+  'prop:ariaKeyshortcuts'?: Signalish<string>
+  'prop:ariaLabel'?: Signalish<string>
+  'prop:ariaLabelledby'?: Signalish<string>
+  'prop:ariaLevel'?: Signalish<Numeric>
   'prop:ariaLive'?: 'off' | 'assertive' | 'polite'
   'prop:ariaModal'?: Booleanish
   'prop:ariaMultiline'?: Booleanish
   'prop:ariaMultiselectable'?: Booleanish
   'prop:ariaOrientation'?: 'horizontal' | 'vertical'
-  'prop:ariaOwns'?: string
-  'prop:ariaPlaceholder'?: string
-  'prop:ariaPosinset'?: Numeric
+  'prop:ariaOwns'?: Signalish<string>
+  'prop:ariaPlaceholder'?: Signalish<string>
+  'prop:ariaPosinset'?: Signalish<Numeric>
   'prop:ariaPressed'?: Booleanish | 'mixed'
   'prop:ariaReadonly'?: Booleanish
   'prop:ariaRelevant'?:
@@ -605,18 +605,18 @@ export interface AriaAttributes {
   | 'text additions'
   | 'text removals'
   'prop:ariaRequired'?: Booleanish
-  'prop:ariaRoledescription'?: string
-  'prop:ariaRowcount'?: Numeric
-  'prop:ariaRowindex'?: Numeric
-  'prop:ariaRowindextext'?: string
-  'prop:ariaRowspan'?: Numeric
+  'prop:ariaRoledescription'?: Signalish<string>
+  'prop:ariaRowcount'?: Signalish<Numeric>
+  'prop:ariaRowindex'?: Signalish<Numeric>
+  'prop:ariaRowindextext'?: Signalish<string>
+  'prop:ariaRowspan'?: Signalish<Numeric>
   'prop:ariaSelected'?: Booleanish
-  'prop:ariaSetsize'?: Numeric
+  'prop:ariaSetsize'?: Signalish<Numeric>
   'prop:ariaSort'?: 'none' | 'ascending' | 'descending' | 'other'
-  'prop:ariaValuemax'?: Numeric
-  'prop:ariaValuemin'?: Numeric
-  'prop:ariaValuenow'?: Numeric
-  'prop:ariaValuetext'?: string
+  'prop:ariaValuemax'?: Signalish<Numeric>
+  'prop:ariaValuemin'?: Signalish<Numeric>
+  'prop:ariaValuenow'?: Signalish<Numeric>
+  'prop:ariaValuetext'?: Signalish<string>
   'prop:role'?: AriaRole
 }
 
@@ -693,7 +693,7 @@ declare global {
       style?: string | CSSProperties
       dataset?: DOMStringMap
       attributes?: Attr | Attr[]
-      tabIndex?: Numeric
+      tabIndex?: Signalish<Numeric>
       title?: Signalish<string>
       translate?: 'yes' | 'no'
       // Unknown
@@ -1608,34 +1608,34 @@ declare global {
        */
       'xlink:href'?: string
 
-      'prop:charset'?: string
-      'prop:coords'?: string
-      'prop:download'?: string
-      'prop:hreflang'?: string
-      'prop:name'?: string
-      'prop:ping'?: string
+      'prop:charset'?: Signalish<string>
+      'prop:coords'?: Signalish<string>
+      'prop:download'?: Signalish<string>
+      'prop:hreflang'?: Signalish<string>
+      'prop:name'?: Signalish<string>
+      'prop:ping'?: Signalish<string>
       'prop:referrerPolicy'?: ReferrerPolicy
       'prop:rel'?: HTMLAnchorElementAttributes['rel']
-      'prop:relList'?: string
-      'prop:rev'?: string
-      'prop:shape'?: string
+      'prop:relList'?: Signalish<string>
+      'prop:rev'?: Signalish<string>
+      'prop:shape'?: Signalish<string>
       'prop:target'?: Target
-      'prop:text'?: string
-      'prop:type'?: string
-      'prop:hash'?: string
-      'prop:host'?: string
-      'prop:hostname'?: string
-      'prop:href'?: string
-      'prop:password'?: string
-      'prop:pathname'?: string
-      'prop:port'?: string
-      'prop:protocol'?: string
-      'prop:search'?: string
-      'prop:username'?: string
+      'prop:text'?: Signalish<string>
+      'prop:type'?: Signalish<string>
+      'prop:hash'?: Signalish<string>
+      'prop:host'?: Signalish<string>
+      'prop:hostname'?: Signalish<string>
+      'prop:href'?: Signalish<string>
+      'prop:password'?: Signalish<string>
+      'prop:pathname'?: Signalish<string>
+      'prop:port'?: Signalish<string>
+      'prop:protocol'?: Signalish<string>
+      'prop:search'?: Signalish<string>
+      'prop:username'?: Signalish<string>
       'prop:interestForElement'?: globalThis.Element | null
 
-      'prop:attributionSourceId'?: number
-      'prop:attributionDestination'?: string
+      'prop:attributionSourceId'?: Signalish<number>
+      'prop:attributionDestination'?: Signalish<string>
     }
 
     interface HTMLAbbrElementAttributes extends HTMLElementAttributes {
@@ -1759,7 +1759,7 @@ declare global {
       clear?: Signalish<string>
       role?: 'presentation' | 'none'
 
-      'prop:clear'?: string
+      'prop:clear'?: Signalish<string>
       'prop:role'?: 'presentation' | 'none'
     }
 
@@ -1858,8 +1858,8 @@ declare global {
       'on:contextLost'?: EventListener<HTMLCanvasElement>
       'on:contextRestored'?: EventListener<HTMLCanvasElement>
 
-      'prop:height'?: number
-      'prop:width'?: number
+      'prop:height'?: Signalish<number>
+      'prop:width'?: Signalish<number>
     }
 
     interface HTMLCaptionElementAttributes extends HTMLElementAttributes {
@@ -1882,30 +1882,30 @@ declare global {
       span?: Signalish<Numeric>
       width?: Signalish<number | string>
 
-      'prop:align'?: string
-      'prop:ch'?: string
-      'prop:chOff'?: string
-      'prop:span'?: number
-      'prop:vAlign'?: string
-      'prop:width'?: string
+      'prop:align'?: Signalish<string>
+      'prop:ch'?: Signalish<string>
+      'prop:chOff'?: Signalish<string>
+      'prop:span'?: Signalish<number>
+      'prop:vAlign'?: Signalish<string>
+      'prop:width'?: Signalish<string>
     }
 
     interface HTMLColgroupElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTableColElement>, RoleKey>, NoRolePermited {
       span?: Signalish<Numeric>
       width?: Signalish<number | string>
 
-      'prop:align'?: string
-      'prop:ch'?: string
-      'prop:chOff'?: string
-      'prop:span'?: number
-      'prop:vAlign'?: string
-      'prop:width'?: string
+      'prop:align'?: Signalish<string>
+      'prop:ch'?: Signalish<string>
+      'prop:chOff'?: Signalish<string>
+      'prop:span'?: Signalish<number>
+      'prop:vAlign'?: Signalish<string>
+      'prop:width'?: Signalish<string>
     }
 
     interface HTMLDataElementAttributes extends HTMLAttributes<HTMLDataElement> {
       value?: Signalish<number | string>
 
-      'prop:value'?: string
+      'prop:value'?: Signalish<string>
     }
 
     interface HTMLDataListElementAttributes extends HTMLAttributes<HTMLDataListElement> {
@@ -1924,8 +1924,8 @@ declare global {
       /** Permitted ARIA roles */
       role?: 'group'
 
-      'prop:name'?: string
-      'prop:open'?: boolean
+      'prop:name'?: Signalish<string>
+      'prop:open'?: Signalish<boolean>
       'prop:role'?: 'group'
     }
 
@@ -1936,8 +1936,8 @@ declare global {
       cite?: Signalish<string>
       dateTime?: Signalish<string>
 
-      'prop:cite'?: string
-      'prop:dateTime'?: string
+      'prop:cite'?: Signalish<string>
+      'prop:dateTime'?: Signalish<string>
     }
 
     interface HTMLKbdElementAttributes extends HTMLElementAttributes {
@@ -1965,9 +1965,9 @@ declare global {
       'on:close'?: EventListener<HTMLDialogElement>
       'on:cancel'?: EventListener<HTMLDialogElement>
 
-      'prop:open'?: boolean
+      'prop:open'?: Signalish<boolean>
       'prop:closedBy'?: 'any' | 'closerequest' | 'none'
-      'prop:returnValue'?: string
+      'prop:returnValue'?: Signalish<string>
       'prop:role'?: 'dialog' | 'alertdialog'
     }
 
@@ -2002,12 +2002,12 @@ declare global {
       /** Permitted ARIA roles */
       role?: 'application' | 'document' | 'img' | 'none' | 'presentation'
 
-      'prop:align'?: string
-      'prop:height'?: string
-      'prop:name'?: string
-      'prop:src'?: string
-      'prop:type'?: string
-      'prop:width'?: string
+      'prop:align'?: Signalish<string>
+      'prop:height'?: Signalish<string>
+      'prop:name'?: Signalish<string>
+      'prop:src'?: Signalish<string>
+      'prop:type'?: Signalish<string>
+      'prop:width'?: Signalish<string>
       'prop:role'?: HTMLEmbedElementAttributes['role']
     }
 
@@ -2018,8 +2018,8 @@ declare global {
       /** Permitted ARIA roles */
       role?: 'group' | 'none' | 'presentation' | 'radiogroup'
 
-      'prop:name'?: string
-      'prop:disabled'?: boolean
+      'prop:name'?: Signalish<string>
+      'prop:disabled'?: Signalish<boolean>
       'prop:role'?: HTMLFieldSetElementAttributes['role']
     }
 
@@ -2083,15 +2083,15 @@ declare global {
       'on:formData'?: FormDataEventListener<HTMLFormElement>
 
       'prop:acceptCharset'?: 'UTF-8' | 'ISO-8859-1' | 'US-ASCII' | AnyString
-      'prop:action'?: string
+      'prop:action'?: Signalish<string>
       'prop:autocomplete'?: AutoFillBase
       'prop:encoding'?: FormEnctype
       'prop:enctype'?: FormEnctype
       'prop:method'?: FormMethod
-      'prop:name'?: string
-      'prop:noValidate'?: boolean
+      'prop:name'?: Signalish<string>
+      'prop:noValidate'?: Signalish<boolean>
       'prop:rel'?: HTMLFormElementAttributes['rel']
-      'prop:relList'?: string
+      'prop:relList'?: Signalish<string>
       'prop:target'?: Target
       'prop:role'?: HTMLFormElementAttributes['role']
     }
@@ -2141,11 +2141,11 @@ declare global {
       /** Permitted ARIA roles */
       role?: 'separator' | 'none' | 'presentation' | 'doc-pagebreak'
 
-      'prop:align'?: string
+      'prop:align'?: Signalish<string>
       'prop:color'?: Property.Color
-      'prop:noShade'?: boolean
-      'prop:size'?: string
-      'prop:width'?: string
+      'prop:noShade'?: Signalish<boolean>
+      'prop:size'?: Signalish<string>
+      'prop:width'?: Signalish<string>
       'prop:role'?: HTMLHrElementAttributes['role']
     }
 
@@ -2231,22 +2231,22 @@ declare global {
       /** Permitted ARIA roles */
       role?: 'application' | 'document' | 'img' | 'none' | 'presentation'
 
-      'prop:align'?: string
-      'prop:allow'?: string
-      'prop:allowFullscreen'?: boolean
-      'prop:frameBorder'?: string
-      'prop:height'?: string
+      'prop:align'?: Signalish<string>
+      'prop:allow'?: Signalish<string>
+      'prop:allowFullscreen'?: Signalish<boolean>
+      'prop:frameBorder'?: Signalish<string>
+      'prop:height'?: Signalish<string>
       'prop:loading'?: 'eager' | 'lazy'
-      'prop:longDesc'?: string
-      'prop:marginHeight'?: string
-      'prop:marginWidth'?: string
-      'prop:name'?: string
+      'prop:longDesc'?: Signalish<string>
+      'prop:marginHeight'?: Signalish<string>
+      'prop:marginWidth'?: Signalish<string>
+      'prop:name'?: Signalish<string>
       'prop:referrerPolicy'?: ReferrerPolicy
       'prop:sandbox'?: HTMLIFrameElementAttributes['sandbox']
       'prop:scrolling'?: 'auto' | 'yes' | 'no'
-      'prop:src'?: string
-      'prop:srcdoc'?: string
-      'prop:width'?: string
+      'prop:src'?: Signalish<string>
+      'prop:srcdoc'?: Signalish<string>
+      'prop:width'?: Signalish<string>
       'prop:role'?: HTMLIFrameElementAttributes['role']
     }
 
@@ -2269,26 +2269,26 @@ declare global {
       fetchPriority?: FetchPriority
       // TODO: role attribute
 
-      'prop:align'?: string
-      'prop:alt'?: string
-      'prop:border'?: string
-      'prop:crossOrigin'?: string | null
+      'prop:align'?: Signalish<string>
+      'prop:alt'?: Signalish<string>
+      'prop:border'?: Signalish<string>
+      'prop:crossOrigin'?: Signalish<string | null>
       'prop:decoding'?: 'async' | 'sync' | 'auto'
       'prop:fetchPriority'?: FetchPriority
-      'prop:height'?: number
-      'prop:hspace'?: number
-      'prop:isMap'?: boolean
+      'prop:height'?: Signalish<number>
+      'prop:hspace'?: Signalish<number>
+      'prop:isMap'?: Signalish<boolean>
       'prop:loading'?: 'eager' | 'lazy'
-      'prop:longDesc'?: string
-      'prop:lowsrc'?: string
-      'prop:name'?: string
+      'prop:longDesc'?: Signalish<string>
+      'prop:lowsrc'?: Signalish<string>
+      'prop:name'?: Signalish<string>
       'prop:referrerPolicy'?: ReferrerPolicy
-      'prop:sizes'?: string
-      'prop:src'?: string
-      'prop:srcset'?: string
-      'prop:useMap'?: string
-      'prop:vspace'?: number
-      'prop:width'?: number
+      'prop:sizes'?: Signalish<string>
+      'prop:src'?: Signalish<string>
+      'prop:srcset'?: Signalish<string>
+      'prop:useMap'?: Signalish<string>
+      'prop:vspace'?: Signalish<number>
+      'prop:width'?: Signalish<number>
     }
 
     interface HTMLInputElementAttributes extends OmitAttrs<HTMLAttributes<HTMLInputElement>, 'children'>, VoidElement {
@@ -2415,7 +2415,7 @@ declare global {
     interface HTMLLabelElementAttributes extends OmitAttrs<HTMLAttributes<HTMLLabelElement>, RoleKey>, NoRolePermited {
       for?: Signalish<string>
 
-      'prop:htmlFor'?: string
+      'prop:htmlFor'?: Signalish<string>
     }
 
     interface HTMLLegendElementAttributes extends OmitAttrs<HTMLAttributes<HTMLLegendElement>, RoleKey>, NoRolePermited {
@@ -2424,8 +2424,8 @@ declare global {
     interface HTMLLIElementAttributes extends HTMLAttributes<HTMLLIElement> {
       value?: Signalish<Numeric>
 
-      'prop:type'?: string
-      'prop:value'?: number
+      'prop:type'?: Signalish<string>
+      'prop:value'?: Signalish<number>
     }
 
     interface HTMLLinkElementAttributes extends OmitAttrs<HTMLAttributes<HTMLLinkElement>, 'children' | RoleKey>, VoidElement, NoRolePermited {
@@ -2507,23 +2507,23 @@ declare global {
 
       'prop:as'?: HTMLLinkElementAttributes['as']
       'prop:blocking'?: 'render' | AnyString
-      'prop:charset'?: string
+      'prop:charset'?: Signalish<string>
       'prop:crossOrigin'?: CrossOrigin | null
-      'prop:disabled'?: boolean
+      'prop:disabled'?: Signalish<boolean>
       'prop:fetchPriority'?: FetchPriority
-      'prop:href'?: string
-      'prop:hreflang'?: string
-      'prop:imageSizes'?: string
-      'prop:imageSrcset'?: string
-      'prop:integrity'?: string
-      'prop:media'?: string
-      'prop:referrerPolicy'?: string
+      'prop:href'?: Signalish<string>
+      'prop:hreflang'?: Signalish<string>
+      'prop:imageSizes'?: Signalish<string>
+      'prop:imageSrcset'?: Signalish<string>
+      'prop:integrity'?: Signalish<string>
+      'prop:media'?: Signalish<string>
+      'prop:referrerPolicy'?: Signalish<string>
       'prop:rel'?: HTMLLinkElementAttributes['rel']
-      'prop:relList'?: string
-      'prop:rev'?: string
-      'prop:sizes'?: string
-      'prop:target'?: string
-      'prop:type'?: string
+      'prop:relList'?: Signalish<string>
+      'prop:rev'?: Signalish<string>
+      'prop:sizes'?: Signalish<string>
+      'prop:target'?: Signalish<string>
+      'prop:type'?: Signalish<string>
     }
 
     interface HTMLMainElementAttributes extends HTMLElementAttributes {
@@ -2536,7 +2536,7 @@ declare global {
     interface HTMLMapElementAttributes extends OmitAttrs<HTMLAttributes<HTMLMapElement>, RoleKey>, NoRolePermited {
       name?: Signalish<string>
 
-      'prop:name'?: string
+      'prop:name'?: Signalish<string>
     }
 
     interface HTMLMarkElementAttributes extends HTMLElementAttributes {
@@ -2558,7 +2558,7 @@ declare global {
       | 'tree'
 
       /** @deprecated */
-      'prop:compact'?: boolean
+      'prop:compact'?: Signalish<boolean>
       'prop:role'?: HTMLMenuElementAttributes['role']
     }
 
@@ -2590,21 +2590,21 @@ declare global {
       'on:encrypted'?: MediaEncryptedEventListener<T>
       'on:waitingForKey'?: EventListener<T>
 
-      'prop:autoplay'?: boolean
-      'prop:controls'?: boolean
+      'prop:autoplay'?: Signalish<boolean>
+      'prop:controls'?: Signalish<boolean>
       'prop:crossOrigin'?: CrossOrigin | null
-      'prop:currentTime'?: number
-      'prop:defaultMuted'?: boolean
-      'prop:defaultPlaybackRate'?: number
-      'prop:disableRemotePlayback'?: boolean
-      'prop:loop'?: boolean
-      'prop:muted'?: boolean
-      'prop:playbackRate'?: number
+      'prop:currentTime'?: Signalish<number>
+      'prop:defaultMuted'?: Signalish<boolean>
+      'prop:defaultPlaybackRate'?: Signalish<number>
+      'prop:disableRemotePlayback'?: Signalish<boolean>
+      'prop:loop'?: Signalish<boolean>
+      'prop:muted'?: Signalish<boolean>
+      'prop:playbackRate'?: Signalish<number>
       'prop:preload'?: 'none' | 'metadata' | 'auto' | ''
-      'prop:preservesPitch'?: boolean
-      'prop:src'?: string
+      'prop:preservesPitch'?: Signalish<boolean>
+      'prop:src'?: Signalish<string>
       'prop:srcObject'?: MediaProvider | null
-      'prop:volume'?: number
+      'prop:volume'?: Signalish<number>
       'prop:role'?: 'application'
     }
 
@@ -2620,11 +2620,11 @@ declare global {
       | AnyString
       name?: Signalish<string>
 
-      'prop:content'?: string
+      'prop:content'?: Signalish<string>
       'prop:httpEquiv'?: HTMLMetaElementAttributes['http-equiv']
-      'prop:media'?: string
-      'prop:name'?: string
-      'prop:scheme'?: string
+      'prop:media'?: Signalish<string>
+      'prop:name'?: Signalish<string>
+      'prop:scheme'?: Signalish<string>
     }
 
     interface HTMLMeterElementAttributes extends HTMLAttributes<HTMLMeterElement> {
@@ -2638,12 +2638,12 @@ declare global {
       /** Permitted ARIA roles */
       role?: 'meter'
 
-      'prop:high'?: number
-      'prop:low'?: number
-      'prop:max'?: number
-      'prop:min'?: number
-      'prop:optimum'?: number
-      'prop:value'?: number
+      'prop:high'?: Signalish<number>
+      'prop:low'?: Signalish<number>
+      'prop:max'?: Signalish<number>
+      'prop:min'?: Signalish<number>
+      'prop:optimum'?: Signalish<number>
+      'prop:value'?: Signalish<number>
       'prop:role'?: 'meter'
     }
 
@@ -2670,7 +2670,7 @@ declare global {
     interface HTMLQuoteElementAttributes extends HTMLAttributes<HTMLQuoteElement> {
       cite?: Signalish<string>
 
-      'prop:cite'?: string
+      'prop:cite'?: Signalish<string>
     }
 
     interface HTMLBodyElementAttributes extends HTMLAttributes<HTMLBodyElement> {
@@ -2746,22 +2746,22 @@ declare global {
       /** Permitted ARIA roles */
       role?: 'application' | 'document' | 'img'
 
-      'prop:align'?: string
-      'prop:archive'?: string
-      'prop:border'?: string
-      'prop:code'?: string
-      'prop:codeBase'?: string
-      'prop:codeType'?: string
-      'prop:data'?: string
-      'prop:declare'?: boolean
-      'prop:height'?: string
-      'prop:hspace'?: number
-      'prop:name'?: string
-      'prop:standby'?: string
-      'prop:type'?: string
-      'prop:useMap'?: string
-      'prop:vspace'?: number
-      'prop:width'?: string
+      'prop:align'?: Signalish<string>
+      'prop:archive'?: Signalish<string>
+      'prop:border'?: Signalish<string>
+      'prop:code'?: Signalish<string>
+      'prop:codeBase'?: Signalish<string>
+      'prop:codeType'?: Signalish<string>
+      'prop:data'?: Signalish<string>
+      'prop:declare'?: Signalish<boolean>
+      'prop:height'?: Signalish<string>
+      'prop:hspace'?: Signalish<number>
+      'prop:name'?: Signalish<string>
+      'prop:standby'?: Signalish<string>
+      'prop:type'?: Signalish<string>
+      'prop:useMap'?: Signalish<string>
+      'prop:vspace'?: Signalish<number>
+      'prop:width'?: Signalish<string>
       'prop:role'?: 'application' | 'document' | 'img'
     }
 
@@ -2783,9 +2783,9 @@ declare global {
       | 'toolbar'
       | 'tree'
 
-      'prop:compact'?: boolean
-      'prop:reversed'?: boolean
-      'prop:start'?: number
+      'prop:compact'?: Signalish<boolean>
+      'prop:reversed'?: Signalish<boolean>
+      'prop:start'?: Signalish<number>
       'prop:type'?: '1' | 'a' | 'A' | 'i' | 'I'
       'prop:role'?: HTMLOListElementAttributes['role']
     }
@@ -2796,8 +2796,8 @@ declare global {
       /** Permitted ARIA roles */
       role?: 'group'
 
-      'prop:disabled'?: boolean
-      'prop:label'?: string
+      'prop:disabled'?: Signalish<boolean>
+      'prop:label'?: Signalish<string>
       'prop:role'?: 'group'
     }
 
@@ -2809,12 +2809,12 @@ declare global {
       /** Permitted ARIA roles */
       role?: 'option'
 
-      'prop:defaultSelected'?: boolean
-      'prop:disabled'?: boolean
-      'prop:label'?: string
-      'prop:selected'?: boolean
-      'prop:text'?: string
-      'prop:value'?: string
+      'prop:defaultSelected'?: Signalish<boolean>
+      'prop:disabled'?: Signalish<boolean>
+      'prop:label'?: Signalish<string>
+      'prop:selected'?: Signalish<boolean>
+      'prop:text'?: Signalish<string>
+      'prop:value'?: Signalish<string>
       'prop:role'?: 'option'
     }
 
@@ -2824,10 +2824,10 @@ declare global {
       name?: Signalish<string>
       value?: Signalish<number | string>
 
-      'prop:defaultValue'?: string
-      'prop:htmlFor'?: string
-      'prop:name'?: string
-      'prop:value'?: string
+      'prop:defaultValue'?: Signalish<string>
+      'prop:htmlFor'?: Signalish<string>
+      'prop:name'?: Signalish<string>
+      'prop:value'?: Signalish<string>
     }
 
     interface HTMLPElementAttributes extends HTMLAttributes<HTMLParagraphElement> {
@@ -2841,9 +2841,9 @@ declare global {
       /** @deprecated */
       valuetype?: 'data' | 'ref' | 'object'
 
-      'prop:name'?: string
-      'prop:type'?: string
-      'prop:value'?: string
+      'prop:name'?: Signalish<string>
+      'prop:type'?: Signalish<string>
+      'prop:value'?: Signalish<string>
       'prop:valueType'?: 'data' | 'ref' | 'object'
     }
 
@@ -2887,19 +2887,19 @@ declare global {
       type?:  'importmap' | 'module' | 'speculationrules' | 'text/javascript' | AnyString
       fetchPriority?: FetchPriority
 
-      'prop:async'?: boolean
+      'prop:async'?: Signalish<boolean>
       'prop:blocking'?: 'render' | AnyString
-      'prop:charset'?: string
+      'prop:charset'?: Signalish<string>
       'prop:crossOrigin'?: CrossOrigin | null
-      'prop:defer'?: boolean
-      'prop:event'?: string
+      'prop:defer'?: Signalish<boolean>
+      'prop:event'?: Signalish<string>
       'prop:fetchPriority'?: FetchPriority
-      'prop:htmlFor'?: string
-      'prop:integrity'?: string
-      'prop:noModule'?: boolean
+      'prop:htmlFor'?: Signalish<string>
+      'prop:integrity'?: Signalish<string>
+      'prop:noModule'?: Signalish<boolean>
       'prop:referrerPolicy'?: ReferrerPolicy
-      'prop:src'?: string
-      'prop:text'?: string
+      'prop:src'?: Signalish<string>
+      'prop:text'?: Signalish<string>
       'prop:type'?: HTMLScriptElementAttributes['type']
     }
 
@@ -2923,19 +2923,19 @@ declare global {
       // TODO: role attribute
 
       'prop:autocomplete'?: AutoFill
-      'prop:disabled'?: boolean
-      'prop:length'?: number
-      'prop:multiple'?: boolean
-      'prop:name'?: string
-      'prop:required'?: boolean
-      'prop:selectedIndex'?: number
-      'prop:size'?: number
-      'prop:value'?: string
+      'prop:disabled'?: Signalish<boolean>
+      'prop:length'?: Signalish<number>
+      'prop:multiple'?: Signalish<boolean>
+      'prop:name'?: Signalish<string>
+      'prop:required'?: Signalish<boolean>
+      'prop:selectedIndex'?: Signalish<number>
+      'prop:size'?: Signalish<number>
+      'prop:value'?: Signalish<string>
     }
 
     interface HTMLSlotElementAttributes extends OmitAttrs<HTMLAttributes<HTMLSlotElement>, RoleKey>, NoRolePermited {
       name?: Signalish<string>
-      'prop:name'?: string
+      'prop:name'?: Signalish<string>
     }
 
     interface HTMLSourceElementAttributes extends OmitAttrs<HTMLAttributes<HTMLSourceElement>, 'children' | RoleKey>, VoidElement, NoRolePermited {
@@ -2968,13 +2968,13 @@ declare global {
        */
       width?: Signalish<Numeric>
 
-      'prop:height'?: number
-      'prop:media'?: string
-      'prop:sizes'?: string
-      'prop:src'?: string
-      'prop:srcset'?: string
-      'prop:type'?: string
-      'prop:width'?: number
+      'prop:height'?: Signalish<number>
+      'prop:media'?: Signalish<string>
+      'prop:sizes'?: Signalish<string>
+      'prop:src'?: Signalish<string>
+      'prop:srcset'?: Signalish<string>
+      'prop:type'?: Signalish<string>
+      'prop:width'?: Signalish<number>
     }
 
     interface HTMLSpanElementAttributes extends HTMLAttributes<HTMLSpanElement> {
@@ -2995,9 +2995,9 @@ declare global {
       type?: Signalish<string>
 
       'prop:blocking'?: 'render' | AnyString
-      'prop:disabled'?: boolean
-      'prop:media'?: string
-      'prop:type'?: string
+      'prop:disabled'?: Signalish<boolean>
+      'prop:media'?: Signalish<string>
+      'prop:type'?: Signalish<string>
     }
 
     interface HTMLTableElementAttributes extends HTMLAttributes<HTMLTableElement> {
@@ -3048,17 +3048,17 @@ declare global {
       rules?: 'none' | 'groups' | 'rows' | 'cols' | 'all'
 
       'prop:align'?: 'left' | 'center' | 'right' | AnyString
-      'prop:bgColor'?: string
-      'prop:border'?: string
+      'prop:bgColor'?: Signalish<string>
+      'prop:border'?: Signalish<string>
       'prop:caption'?: HTMLTableCaptionElement | null
-      'prop:cellPadding'?: string
-      'prop:cellSpacing'?: string
-      'prop:frame'?: string
+      'prop:cellPadding'?: Signalish<string>
+      'prop:cellSpacing'?: Signalish<string>
+      'prop:frame'?: Signalish<string>
       'prop:rules'?: 'none' | 'groups' | 'rows' | 'cols' | 'all'
-      'prop:summary'?: string
+      'prop:summary'?: Signalish<string>
       'prop:tFoot'?: HTMLTableSectionElement | null
       'prop:tHead'?: HTMLTableSectionElement | null
-      'prop:width'?: string
+      'prop:width'?: Signalish<string>
     }
 
     interface HTMLTemplateElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTemplateElement>, RoleKey>, NoRolePermited {
@@ -3093,12 +3093,12 @@ declare global {
        */
       shadowRootCustomElementRegistry?: Signalish<string>
 
-      'prop:shadowRootClonable'?: boolean
-      'prop:shadowRootDelegatesFocus'?: boolean
+      'prop:shadowRootClonable'?: Signalish<boolean>
+      'prop:shadowRootDelegatesFocus'?: Signalish<boolean>
       'prop:shadowRootMode'?: 'open' | 'closed'
-      'prop:shadowRootSerializable'?: boolean
+      'prop:shadowRootSerializable'?: Signalish<boolean>
       'prop:shadowRootSlotAssignment'?: 'none' | 'manual'
-      'prop:shadowRootCustomElementRegistry'?: string
+      'prop:shadowRootCustomElementRegistry'?: Signalish<string>
     }
 
     interface HTMLTextAreaElementAttributes extends HTMLAttributes<HTMLTextAreaElement> {
@@ -3132,21 +3132,21 @@ declare global {
       'on:selectionChange'?: EventListener<HTMLTextAreaElement>
 
       'prop:autocomplete'?: AutoFill
-      'prop:cols'?: number
-      'prop:defaultValue'?: string
+      'prop:cols'?: Signalish<number>
+      'prop:defaultValue'?: Signalish<string>
       'prop:dirName'?: DirName
-      'prop:disabled'?: boolean
-      'prop:maxLength'?: number
-      'prop:minLength'?: number
-      'prop:name'?: string
-      'prop:placeholder'?: string
-      'prop:readOnly'?: boolean
-      'prop:required'?: boolean
-      'prop:rows'?: number
+      'prop:disabled'?: Signalish<boolean>
+      'prop:maxLength'?: Signalish<number>
+      'prop:minLength'?: Signalish<number>
+      'prop:name'?: Signalish<string>
+      'prop:placeholder'?: Signalish<string>
+      'prop:readOnly'?: Signalish<boolean>
+      'prop:required'?: Signalish<boolean>
+      'prop:rows'?: Signalish<number>
       'prop:selectionDirection'?: 'forward' | 'backward' | 'none'
-      'prop:selectionEnd'?: number
-      'prop:selectionStart'?: number
-      'prop:value'?: string
+      'prop:selectionEnd'?: Signalish<number>
+      'prop:selectionStart'?: Signalish<number>
+      'prop:value'?: Signalish<string>
       'prop:wrap'?: 'hard' | 'soft' | 'off'
       'prop:role'?: 'textbox'
     }
@@ -3206,20 +3206,20 @@ declare global {
        */
       valign?: 'top' | 'middle' | 'bottom' | 'baseline'
 
-      'prop:abbr'?: string
+      'prop:abbr'?: Signalish<string>
       'prop:align'?: 'left' | 'center' | 'right' | 'justify' | 'char'
-      'prop:axis'?: string
+      'prop:axis'?: Signalish<string>
       'prop:bgColor'?: Property.Color
-      'prop:ch'?: string
-      'prop:chOff'?: string
-      'prop:colSpan'?: number
-      'prop:headers'?: string
-      'prop:height'?: string
-      'prop:noWrap'?: boolean
-      'prop:rowSpan'?: number
-      'prop:scope'?: string
+      'prop:ch'?: Signalish<string>
+      'prop:chOff'?: Signalish<string>
+      'prop:colSpan'?: Signalish<number>
+      'prop:headers'?: Signalish<string>
+      'prop:height'?: Signalish<string>
+      'prop:noWrap'?: Signalish<boolean>
+      'prop:rowSpan'?: Signalish<number>
+      'prop:scope'?: Signalish<string>
       'prop:vAlign'?: 'top' | 'middle' | 'bottom' | 'baseline'
-      'prop:width'?: string
+      'prop:width'?: Signalish<string>
     }
 
     interface HTMLThElementAttributes extends HTMLAttributes<HTMLTableCellElement> {
@@ -3272,20 +3272,20 @@ declare global {
        */
       valign?: 'top' | 'middle' | 'bottom' | 'baseline'
 
-      'prop:abbr'?: string
+      'prop:abbr'?: Signalish<string>
       'prop:align'?: 'left' | 'center' | 'right' | 'justify' | 'char'
-      'prop:axis'?: string
+      'prop:axis'?: Signalish<string>
       'prop:bgColor'?: Property.Color
-      'prop:ch'?: string
-      'prop:chOff'?: string
-      'prop:colSpan'?: number
-      'prop:headers'?: string
-      'prop:height'?: string
-      'prop:noWrap'?: boolean
-      'prop:rowSpan'?: number
+      'prop:ch'?: Signalish<string>
+      'prop:chOff'?: Signalish<string>
+      'prop:colSpan'?: Signalish<number>
+      'prop:headers'?: Signalish<string>
+      'prop:height'?: Signalish<string>
+      'prop:noWrap'?: Signalish<boolean>
+      'prop:rowSpan'?: Signalish<number>
       'prop:scope'?: 'row' | 'col' | 'rowgroup' | 'colgroup'
       'prop:vAlign'?: 'top' | 'middle' | 'bottom' | 'baseline'
-      'prop:width'?: string
+      'prop:width'?: Signalish<string>
     }
 
     interface HTMLTableSectionElementAttributes extends HTMLAttributes<HTMLTableSectionElement> {
@@ -3299,7 +3299,7 @@ declare global {
        * Indicates the time and/or date in the machine-readable format, allowing for better search engine results or custom features such as reminders
        */
       dateTime?: Signalish<string>
-      'prop:dateTime'?: string
+      'prop:dateTime'?: Signalish<string>
     }
 
     interface HTMLTitleElementAttributes extends OmitAttrs<HTMLAttributes<HTMLTitleElement>, RoleKey>, NoRolePermited {
@@ -3316,11 +3316,11 @@ declare global {
 
       'on:cueChange'?: EventListener<HTMLTrackElement>
 
-      'prop:default'?: boolean
+      'prop:default'?: Signalish<boolean>
       'prop:kind'?: 'subtitles' | 'captions' | 'descriptions' | 'chapters' | 'metadata'
-      'prop:label'?: string
-      'prop:src'?: string
-      'prop:srclang'?: string
+      'prop:label'?: Signalish<string>
+      'prop:src'?: Signalish<string>
+      'prop:srclang'?: Signalish<string>
     }
 
     interface HTMLVideoElementAttributes extends HTMLMediaAttributes<HTMLVideoElement> {
@@ -3340,11 +3340,11 @@ declare global {
       'on:leavePictureInPicture'?: PictureInPictureEventListener<HTMLVideoElement>
       'on:resize'?: PictureInPictureEventListener<HTMLVideoElement>
 
-      'prop:disablePictureInPicture'?: boolean
-      'prop:height'?: number
-      'prop:playsInline'?: boolean
-      'prop:poster'?: string
-      'prop:width'?: number
+      'prop:disablePictureInPicture'?: Signalish<boolean>
+      'prop:height'?: Signalish<number>
+      'prop:playsInline'?: Signalish<boolean>
+      'prop:poster'?: Signalish<string>
+      'prop:width'?: Signalish<number>
     }
 
     interface HTMLWbrElementAttributes extends OmitAttrs<HTMLElementAttributes, 'children'>, VoidElement {
@@ -3390,14 +3390,14 @@ declare global {
       'prop:behavior'?: 'scroll' | 'slide' | 'alternate'
       'prop:bgColor'?: Property.Color
       'prop:direction'?: 'left' | 'right' | 'up' | 'down'
-      'prop:height'?: string
-      'prop:hspace'?: number
-      'prop:loop'?: number
-      'prop:scrollAmount'?: number
-      'prop:scrollDelay'?: number
-      'prop:trueSpeed'?: boolean
-      'prop:vspace'?: number
-      'prop:width'?: string
+      'prop:height'?: Signalish<string>
+      'prop:hspace'?: Signalish<number>
+      'prop:loop'?: Signalish<number>
+      'prop:scrollAmount'?: Signalish<number>
+      'prop:scrollDelay'?: Signalish<number>
+      'prop:trueSpeed'?: Signalish<boolean>
+      'prop:vspace'?: Signalish<number>
+      'prop:width'?: Signalish<string>
     }
 
     interface HTMLUlElementAttributes extends HTMLAttributes<HTMLUListElement> {
