@@ -4,6 +4,7 @@ const className = signal('my-class');
 className.set('new-class');
 <div class={className} />;
 <div prop:className={className} />;
+<div attr:class={className} />;
 
 const maxValue = signal(100);
 maxValue.set(200);

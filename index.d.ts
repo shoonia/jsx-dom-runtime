@@ -764,36 +764,36 @@ declare global {
       [key: `attr:${string}`]: Signalish<string | number | bigint | null | undefined>
 
       // Properties
-      'prop:nodeValue'?: string | null
-      'prop:classList'?: string
+      'prop:nodeValue'?: Signalish<string | null>
+      'prop:classList'?: Signalish<string>
       'prop:className'?: Signalish<string>
-      'prop:id'?: string
-      'prop:innerHTML'?: string
-      'prop:outerHTML'?: string
-      'prop:part'?: string
-      'prop:scrollLeft'?: number
-      'prop:scrollTop'?: number
-      'prop:slot'?: string
-      'prop:accessKey'?: string
+      'prop:id'?: Signalish<string>
+      'prop:innerHTML'?: Signalish<string>
+      'prop:outerHTML'?: Signalish<string>
+      'prop:part'?: Signalish<string>
+      'prop:scrollLeft'?: Signalish<number>
+      'prop:scrollTop'?: Signalish<number>
+      'prop:slot'?: Signalish<string>
+      'prop:accessKey'?: Signalish<string>
       'prop:autocapitalize'?: 'none' | 'off' | 'on' | 'sentences' | 'words' | 'characters'
       'prop:autocorrect'?: 'on' | 'off'
-      'prop:autofocus'?: boolean
+      'prop:autofocus'?: Signalish<boolean>
       'prop:contentEditable'?: 'true' | 'false' | 'plaintext-only'
       'prop:dir'?: DirName | 'auto' | ''
       'prop:draggable'?: 'true' | 'false'
       'prop:enterKeyHint'?: 'enter' | 'done' | 'go' | 'next' | 'previous' | 'search' | 'send'
-      'prop:hidden'?: boolean
-      'prop:inert'?: boolean
-      'prop:innerText'?: string
+      'prop:hidden'?: Signalish<boolean>
+      'prop:inert'?: Signalish<boolean>
+      'prop:innerText'?: Signalish<string>
       'prop:inputMode'?: 'none' | 'text' | 'tel' | 'url' | 'email' | 'numeric' | 'decimal' | 'search'
-      'prop:lang'?: string
-      'prop:outerText'?: string
+      'prop:lang'?: Signalish<string>
+      'prop:outerText'?: Signalish<string>
       'prop:popover'?: 'auto' | 'manual' | 'hint' | null
       'prop:spellcheck'?: 'true' | 'false'
-      'prop:tabIndex'?: number
-      'prop:title'?: string
+      'prop:tabIndex'?: Signalish<number>
+      'prop:title'?: Signalish<string>
       'prop:translate'?: 'yes' | 'no'
-      'prop:elementTiming'?: string
+      'prop:elementTiming'?: Signalish<string>
       'prop:virtualKeyboardPolicy'?: 'auto' | 'manual'
       'prop:writingSuggestions'?: 'true' | 'false'
       [key: `prop:${string}`]: any
@@ -1818,15 +1818,15 @@ declare global {
 
       'prop:command'?: CommandEventType
       'prop:commandForElement'?: globalThis.Element | null
-      'prop:disabled'?: boolean
-      'prop:formAction'?: string
+      'prop:disabled'?: Signalish<boolean>
+      'prop:formAction'?: Signalish<string>
       'prop:formEnctype'?: FormEnctype
       'prop:formMethod'?: FormMethod
-      'prop:formNoValidate'?: boolean
+      'prop:formNoValidate'?: Signalish<boolean>
       'prop:formTarget'?: Target
-      'prop:name'?: string
+      'prop:name'?: Signalish<string>
       'prop:type'?: 'submit' | 'reset' | 'button'
-      'prop:value'?: string
+      'prop:value'?: Signalish<string>
       'prop:popoverTargetAction'?: 'hide' | 'show' | 'toggle'
       'prop:popoverTargetElement'?: globalThis.Element | null
       'prop:role'?: HTMLButtonElementAttributes['role']
@@ -2367,47 +2367,47 @@ declare global {
       popoverTargetAction?: 'hide' | 'show' | 'toggle'
       // TODO: role attribute
 
-      'prop:accept'?: string
-      'prop:align'?: string
-      'prop:alt'?: string
+      'prop:accept'?: Signalish<string>
+      'prop:align'?: Signalish<string>
+      'prop:alt'?: Signalish<string>
       'prop:autocomplete'?: AutoFill
-      'prop:capture'?: string
-      'prop:checked'?: boolean
-      'prop:defaultChecked'?: boolean
-      'prop:defaultValue'?: string
+      'prop:capture'?: Signalish<string>
+      'prop:checked'?: Signalish<boolean>
+      'prop:defaultChecked'?: Signalish<boolean>
+      'prop:defaultValue'?: Signalish<string>
       'prop:dirName'?: DirName
-      'prop:disabled'?: boolean
+      'prop:disabled'?: Signalish<boolean>
       'prop:files'?: FileList | null
-      'prop:formAction'?: string
+      'prop:formAction'?: Signalish<string>
       'prop:formEnctype'?: FormEnctype
       'prop:formMethod'?: FormMethod
-      'prop:formNoValidate'?: boolean
+      'prop:formNoValidate'?: Signalish<boolean>
       'prop:formTarget'?: Target
-      'prop:height'?: number
-      'prop:indeterminate'?: boolean
-      'prop:max'?: string
-      'prop:maxLength'?: number
-      'prop:min'?: string
-      'prop:minLength'?: number
-      'prop:multiple'?: boolean
-      'prop:name'?: string
-      'prop:pattern'?: string
-      'prop:placeholder'?: string
-      'prop:readOnly'?: boolean
-      'prop:required'?: boolean
+      'prop:height'?: Signalish<number>
+      'prop:indeterminate'?: Signalish<boolean>
+      'prop:max'?: Signalish<string>
+      'prop:maxLength'?: Signalish<number>
+      'prop:min'?: Signalish<string>
+      'prop:minLength'?: Signalish<number>
+      'prop:multiple'?: Signalish<boolean>
+      'prop:name'?: Signalish<string>
+      'prop:pattern'?: Signalish<string>
+      'prop:placeholder'?: Signalish<string>
+      'prop:readOnly'?: Signalish<boolean>
+      'prop:required'?: Signalish<boolean>
       'prop:selectionDirection'?: 'forward' | 'backward' | 'none' | null
-      'prop:selectionEnd'?: number | null
-      'prop:selectionStart'?: number | null
-      'prop:size'?: number
-      'prop:src'?: string
-      'prop:step'?: string
+      'prop:selectionEnd'?: Signalish<number> | null
+      'prop:selectionStart'?: Signalish<number> | null
+      'prop:size'?: Signalish<number>
+      'prop:src'?: Signalish<string>
+      'prop:step'?: Signalish<string>
       'prop:type'?: HTMLInputElementAttributes['type']
-      'prop:useMap'?: string
-      'prop:value'?: string
+      'prop:useMap'?: Signalish<string>
+      'prop:value'?: Signalish<string>
       'prop:valueAsDate'?: Date | null
-      'prop:valueAsNumber'?: number
-      'prop:webkitdirectory'?: boolean
-      'prop:width'?: number
+      'prop:valueAsNumber'?: Signalish<number>
+      'prop:webkitdirectory'?: Signalish<boolean>
+      'prop:width'?: Signalish<number>
       'prop:popoverTargetAction'?: 'hide' | 'show' | 'toggle'
       'prop:popoverTargetElement'?: globalThis.Element | null
     }
