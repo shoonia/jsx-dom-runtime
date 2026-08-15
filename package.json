@@ -1,6 +1,6 @@
 {
   "name": "jsx-dom-runtime",
-  "version": "0.83.0",
+  "version": "0.84.0",
   "description": "A tiny 500-byte library for JSX templates targeting the DOM. Supports HTML, SVG, MathML, and Custom Element tags",
   "type": "module",
   "main": "jsx-runtime/index.cjs",
