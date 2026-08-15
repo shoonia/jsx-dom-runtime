@@ -7,6 +7,7 @@ import config from '../../eslint-plugin/index.cjs';
 const rules = config.plugins['jsx-dom-runtime'].rules;
 
 if (typeof globalThis.structuredClone !== 'function') {
+  // @ts-ignore
   globalThis.structuredClone = (obj: {}) => JSON.parse(JSON.stringify(obj));
 }
 
