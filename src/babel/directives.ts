@@ -1,7 +1,14 @@
 import type t from '@babel/types';
 import { isIdentifierName } from '@babel/helper-validator-identifier';
 
-import { $expressionStatement, $identifier, $jsxExpressionContainer, $jsxIdentifier, $stringLiteral } from './builders';
+import {
+  $expressionStatement,
+  $identifier,
+  $jsxExpressionContainer,
+  $jsxIdentifier,
+  $stringLiteral,
+  $arrowFunction,
+} from './builders';
 import { convertJSXAttrValue } from './util';
 
 const cache = new WeakMap<t.JSXOpeningElement, t.ArrowFunctionExpression>();
@@ -12,23 +19,17 @@ const getRef = (element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
     return cache.get(element);
   }
 
-  const funcRef: t.ArrowFunctionExpression = {
-    type: 'ArrowFunctionExpression',
-    params: [e],
-    body: null,
-    async: false,
-    expression: false,
-  };
+  const arrowFn = $arrowFunction(e, null);
 
   element.attributes.unshift({
     type: 'JSXAttribute',
     name: $jsxIdentifier('ref'),
-    value: $jsxExpressionContainer(funcRef),
+    value: $jsxExpressionContainer(arrowFn),
   });
 
-  cache.set(element, funcRef);
+  cache.set(element, arrowFn);
 
-  return funcRef;
+  return arrowFn;
 };
 
 export const createDirective = (element: t.JSXOpeningElement, expression: t.Expression): void => {
@@ -82,7 +83,7 @@ export const propAssignmentExp = (attrName: string, attrValue: t.JSXAttribute['v
     },
     right: convertJSXAttrValue(attrValue),
   };
-}
+};
 
 export const setUtility = (openingElement: t.JSXOpeningElement, attrValue: t.JSXAttribute['value'], callee: t.Identifier) =>
   createDirective(openingElement, {
@@ -107,13 +108,7 @@ export const setSignalishProp = (
     callee,
     arguments: [
       convertJSXAttrValue(attrValue),
-      {
-        type: 'ArrowFunctionExpression',
-        async: false,
-        expression: false,
-        params: [param],
-        body: propAssignmentExp(attrName, param),
-      },
+      $arrowFunction(param, propAssignmentExp(attrName, param)),
     ],
   });
 };
@@ -131,13 +126,7 @@ export const setSignalishAttr = (
     callee,
     arguments: [
       convertJSXAttrValue(attrValue),
-      {
-        type: 'ArrowFunctionExpression',
-        async: false,
-        expression: false,
-        params: [param],
-        body: setAttributeCallExp(attrName, param),
-      },
+      $arrowFunction(param, setAttributeCallExp(attrName, param)),
     ],
   });
 };
