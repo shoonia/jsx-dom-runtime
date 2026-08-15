@@ -4,8 +4,9 @@ import t from '@babel/types';
 import { type TImportName, ImportSpec } from './ImportSpec';
 import { eventListener } from './events';
 import {
-  createDirectiveAssignExp,
-  createDirectiveCallExp,
+  createDirective,
+  setAttributeCallExp,
+  propAssignmentExp,
   setUtility,
   setSignalishProp,
   setSignalishAttr,
@@ -225,17 +226,17 @@ export const jsxTransform: PluginObj = {
             return path.remove();
           case 'attr': {
             if (isJsxAttributeLiteralValue(attrValue)) {
-              createDirectiveCallExp(openingElement, name, attrValue);
+              createDirective(openingElement, setAttributeCallExp(name, attrValue));
             } else {
-              setSignalishAttr(openingElement, name, attrValue, importSpec.add('setSignalish'));
+              setSignalishAttr(openingElement, importSpec.add('setSignalish'), name, attrValue);
             }
             return path.remove();
           }
           case 'prop': {
             if (isJsxAttributeLiteralValue(attrValue)) {
-              createDirectiveAssignExp(openingElement, name, attrValue);
+              createDirective(openingElement, propAssignmentExp(name, attrValue));
             } else {
-              setSignalishProp(openingElement, name, attrValue, importSpec.add('setSignalish'));
+              setSignalishProp(openingElement, importSpec.add('setSignalish'), name, attrValue);
             }
             return path.remove();
           }
@@ -308,10 +309,9 @@ export const jsxTransform: PluginObj = {
       }
 
       if (aName.startsWith('on')) {
-        createDirectiveAssignExp(
+        createDirective(
           openingElement,
-          aName === 'ondoubleclick' ? 'ondblclick' : aName,
-          attrValue,
+          propAssignmentExp(aName === 'ondoubleclick' ? 'ondblclick' : aName, attrValue),
         );
         path.remove();
       }

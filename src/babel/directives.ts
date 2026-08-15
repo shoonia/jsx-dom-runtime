@@ -2,7 +2,7 @@ import type t from '@babel/types';
 import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { $expressionStatement, $identifier, $jsxExpressionContainer, $jsxIdentifier, $stringLiteral } from './builders';
-import { convertJSXAttrValue, type DirectiveFunc } from './util';
+import { convertJSXAttrValue } from './util';
 
 const cache = new WeakMap<t.JSXOpeningElement, t.ArrowFunctionExpression>();
 const e = Object.seal($identifier('e'));
@@ -31,7 +31,7 @@ const getRef = (element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
   return funcRef;
 };
 
-const createDirective = (element: t.JSXOpeningElement, expression: t.Expression) => {
+export const createDirective = (element: t.JSXOpeningElement, expression: t.Expression): void => {
   const funcRef = getRef(element);
 
   if (funcRef.body === null) {
@@ -54,25 +54,24 @@ const createDirective = (element: t.JSXOpeningElement, expression: t.Expression)
   funcRef.body.body.push($expressionStatement(expression));
 };
 
-export const createDirectiveCallExp: DirectiveFunc = (openingElement, attrName, attrValue) =>
-  createDirective(openingElement, {
-    type: 'CallExpression',
-    callee: {
-      type: 'MemberExpression',
-      object: e,
-      property: $identifier('setAttribute'),
-      computed: false,
-    },
-    arguments: [
-      $stringLiteral(attrName),
-      convertJSXAttrValue(attrValue)
-    ],
-  });
+export const setAttributeCallExp = (attrName: string, attrValue: t.JSXAttribute['value']): t.CallExpression => ({
+  type: 'CallExpression',
+  callee: {
+    type: 'MemberExpression',
+    object: e,
+    property: $identifier('setAttribute'),
+    computed: false,
+  },
+  arguments: [
+    $stringLiteral(attrName),
+    convertJSXAttrValue(attrValue),
+  ],
+});
 
-export const createDirectiveAssignExp: DirectiveFunc = (openingElement, attrName, attrValue) => {
+export const propAssignmentExp = (attrName: string, attrValue: t.JSXAttribute['value']): t.AssignmentExpression => {
   const isIdent = isIdentifierName(attrName);
 
-  createDirective(openingElement, {
+  return {
     type: 'AssignmentExpression',
     operator: '=',
     left: {
@@ -81,9 +80,9 @@ export const createDirectiveAssignExp: DirectiveFunc = (openingElement, attrName
       property: isIdent ? $identifier(attrName) : $stringLiteral(attrName),
       computed: !isIdent,
     },
-    right: convertJSXAttrValue(attrValue)
-  });
-};
+    right: convertJSXAttrValue(attrValue),
+  };
+}
 
 export const setUtility = (openingElement: t.JSXOpeningElement, attrValue: t.JSXAttribute['value'], callee: t.Identifier) =>
   createDirective(openingElement, {
@@ -91,17 +90,16 @@ export const setUtility = (openingElement: t.JSXOpeningElement, attrValue: t.JSX
     callee,
     arguments: [
       e,
-      convertJSXAttrValue(attrValue)
+      convertJSXAttrValue(attrValue),
     ],
   });
 
 export const setSignalishProp = (
   openingElement: t.JSXOpeningElement,
+  callee: t.Identifier,
   attrName: string,
   attrValue: t.JSXAttribute['value'],
-  callee: t.Identifier,
 ) => {
-  const isIdent = isIdentifierName(attrName);
   const param = $identifier('i');
 
   return createDirective(openingElement, {
@@ -114,27 +112,17 @@ export const setSignalishProp = (
         async: false,
         expression: false,
         params: [param],
-        body: {
-          type: 'AssignmentExpression',
-          operator: '=',
-          left: {
-            type: 'MemberExpression',
-            object: e,
-            property: isIdent ? $identifier(attrName) : $stringLiteral(attrName),
-            computed: !isIdent,
-          },
-          right: param
-        }
-      }
-    ]
+        body: propAssignmentExp(attrName, param),
+      },
+    ],
   });
 };
 
 export const setSignalishAttr = (
   openingElement: t.JSXOpeningElement,
+  callee: t.Identifier,
   attrName: string,
   attrValue: t.JSXAttribute['value'],
-  callee: t.Identifier,
 ) => {
   const param = $identifier('i');
 
@@ -148,20 +136,8 @@ export const setSignalishAttr = (
         async: false,
         expression: false,
         params: [param],
-        body: {
-          type: 'CallExpression',
-          callee: {
-            type: 'MemberExpression',
-            object: e,
-            property: $identifier('setAttribute'),
-            computed: false,
-          },
-          arguments: [
-            $stringLiteral(attrName),
-            param
-          ],
-        }
-      }
-    ]
+        body: setAttributeCallExp(attrName, param),
+      },
+    ],
   });
 };
