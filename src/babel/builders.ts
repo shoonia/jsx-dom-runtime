@@ -48,3 +48,11 @@ export const $expressionStatement = (expression: t.Expression): t.ExpressionStat
   type: 'ExpressionStatement',
   expression,
 });
+
+export const $arrowFunction = (param: t.Identifier, body: t.Expression | null): t.ArrowFunctionExpression => ({
+  type: 'ArrowFunctionExpression',
+  params: [param],
+  body,
+  async: false,
+  expression: true,
+});
