@@ -16,7 +16,7 @@ const e = Object.seal($identifier('e'));
 
 const getRef = (element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
   if (cache.has(element)) {
-    return cache.get(element);
+    return cache.get(element)!;
   }
 
   const arrowFn = $arrowFunction(e, null);
@@ -55,7 +55,7 @@ export const createDirective = (element: t.JSXOpeningElement, expression: t.Expr
   funcRef.body.body.push($expressionStatement(expression));
 };
 
-export const setAttributeCallExp = (attrName: string, attrValue: t.JSXAttribute['value']): t.CallExpression => ({
+export const setAttributeCallExp = (attrName: string, param: t.Identifier): t.CallExpression => ({
   type: 'CallExpression',
   callee: {
     type: 'MemberExpression',
@@ -65,11 +65,11 @@ export const setAttributeCallExp = (attrName: string, attrValue: t.JSXAttribute[
   },
   arguments: [
     $stringLiteral(attrName),
-    convertJSXAttrValue(attrValue),
+    param,
   ],
 });
 
-export const propAssignmentExp = (attrName: string, attrValue: t.JSXAttribute['value']): t.AssignmentExpression => {
+export const propAssignmentExp = (attrName: string, param: t.Identifier): t.AssignmentExpression => {
   const isIdent = isIdentifierName(attrName);
 
   return {
@@ -81,7 +81,7 @@ export const propAssignmentExp = (attrName: string, attrValue: t.JSXAttribute['v
       property: isIdent ? $identifier(attrName) : $stringLiteral(attrName),
       computed: !isIdent,
     },
-    right: convertJSXAttrValue(attrValue),
+    right: param,
   };
 };
 

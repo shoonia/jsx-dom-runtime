@@ -119,7 +119,7 @@ export const jsxTransform: PluginObj = {
         }
 
         if (refs.length > 1) {
-          const ref = refs.at(-1);
+          const ref = refs.at(-1)!;
 
           ref.value = {
             type: 'ArrayExpression',
@@ -136,7 +136,7 @@ export const jsxTransform: PluginObj = {
         );
 
         if (noNs) {
-          const importName = nsMap.get(path) ?? nsMap.get(path.findParent((p) => jsxNode.has(p.node.type)));
+          const importName = nsMap.get(path) ?? nsMap.get(path.findParent((p) => jsxNode.has(p.node.type))!);
 
           if (importName !== undefined) {
             props.properties.push(
@@ -275,12 +275,12 @@ export const jsxTransform: PluginObj = {
       }
 
       if (htmlDOMAttributes.has(attrName.name)) {
-        attrName.name = htmlDOMAttributes.get(attrName.name);
+        attrName.name = htmlDOMAttributes.get(attrName.name)!;
         return;
       }
 
       if (isSVGElement && svgDOMAttributes.has(attrName.name)) {
-        attrName.name = svgDOMAttributes.get(attrName.name);
+        attrName.name = svgDOMAttributes.get(attrName.name)!;
         return;
       }
 

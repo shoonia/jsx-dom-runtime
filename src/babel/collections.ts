@@ -85,4 +85,4 @@ export const enumerated = new Set([
   'draggable', 'spellcheck', 'writingsuggestions',
 ]);
 
-export const jsxNode = new Set<Node['type']>(['JSXElement', 'JSXFragment']);
+export const jsxNode = new Set<Node['type'] | undefined>(['JSXElement', 'JSXFragment']);
