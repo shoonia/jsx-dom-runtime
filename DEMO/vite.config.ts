@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
-import babel from '@rollup/plugin-babel';
+import { defineConfig, type UserConfig } from 'vite';
+import babel from '@rolldown/plugin-babel';
 import generateScopedName from 'mini-css-class-name/postcss-modules';
 
-export default defineConfig(({ mode }) => {
+export default defineConfig(({ mode }): UserConfig => {
   const isProd = mode === 'production';
   const isDev = mode === 'development';
 
@@ -18,12 +18,10 @@ export default defineConfig(({ mode }) => {
       minify: isProd ? 'terser' : false,
       sourcemap: isDev,
       modulePreload: false,
+      cssCodeSplit: false,
       reportCompressedSize: true,
-      rollupOptions: {
-        output: {
-          compact: true,
-        },
-        treeshake: true,
+      rolldownOptions: {
+        treeshake: isProd,
       },
     },
     css: {
@@ -33,21 +31,15 @@ export default defineConfig(({ mode }) => {
           : '[name]__[local]___[hash:base64:5]',
       },
     },
-    esbuild: {
+    oxc: {
       jsx: 'preserve',
-      legalComments: 'none',
-      drop: ['console', 'debugger'],
-      keepNames: isDev,
-      treeShaking: true,
-      minifyIdentifiers: isProd,
-      minifySyntax: isProd,
-      minifyWhitespace: isProd,
+      target: 'esnext',
     },
     plugins: [
       babel({
-        extensions: ['.ts', '.tsx'],
-        babelHelpers: 'bundled',
+        include: /\.tsx$/,
         comments: isDev,
+        sourceMap: isDev,
         presets: ['jsx-dom-runtime/babel-preset'],
       }),
     ],

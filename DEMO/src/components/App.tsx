@@ -1,6 +1,6 @@
 import { useRef } from 'jsx-dom-runtime';
 
-import * as s from './App.module.css';
+import s from './App.module.css';
 import { ListItem } from './ListItem';
 
 export const App: JSX.FC = () => {

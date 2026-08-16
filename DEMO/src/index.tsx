@@ -1,3 +1,4 @@
+import { render } from 'jsx-dom-runtime';
 import { App } from './components/App';
 
-document.body.append(<App />);
+render(<App />, document.body);

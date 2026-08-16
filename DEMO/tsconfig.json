@@ -2,7 +2,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "jsx-dom-runtime",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "strict": true,
     "lib": [

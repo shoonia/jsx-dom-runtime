@@ -223,6 +223,42 @@ Use attribute `class` instead of the `className` DOM property as in React.
 + <label for="cheese">Do you like cheese?</label>
 ```
 
+### SVG
+
+Use unmodified SVG attributes instead of camelCase style as in React
+
+```diff
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+-  <circle strokeWidth="2" strokeLinejoin="round" cx="24" cy="24" r="20" fill="none" />
++  <circle stroke-width="2" stroke-linejoin="round" cx="24" cy="24" r="20" fill="none" />
+</svg>
+```
+
+Don't use namespaced attributes. The namespaced attributes are deprecated and no longer recommended.
+
+Instead of [`xlink:href`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href) you should use `href`
+
+```diff
+<svg viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
+-  <a xlink:href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href">
++  <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href">
+    <text x="10" y="25">MDN Web Docs</text>
+  </a>
+</svg>
+```
+
+### Style
+
+The `style` attribute supports a JavaScript object and a [string value](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style). You can also use [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
+
+```js
+<div style="background-color: #ffe7e8; border: 2px solid #e66465;" />
+<div style="--color: red;" />
+// or
+<div style={{ backgroundColor: '#ffe7e8', border: '2px solid #e66465' }} />
+<div style={{ '--color': 'red' }} />
+```
+
 ### Spread Props
 
 Spread attributes (`{...props}`) are **not supported** on DOM elements (HTML, SVG, MathML, and custom elements). This is a design decision to keep the generated code optimal and predictable.
@@ -264,42 +300,6 @@ const props = { class: 'box', id: 'main' };
 ```
 
 Since function components are regular JavaScript functions, the spread operator works naturally as a function argument, allowing you to pass multiple properties at once.
-
-### Style
-
-The `style` attribute supports a JavaScript object and a [string value](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style). You can also use [CSS custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties)
-
-```js
-<div style="background-color: #ffe7e8; border: 2px solid #e66465;" />
-<div style="--color: red;" />
-// or
-<div style={{ backgroundColor: '#ffe7e8', border: '2px solid #e66465' }} />
-<div style={{ '--color': 'red' }} />
-```
-
-### SVG
-
-Use unmodified SVG attributes instead of camelCase style as in React
-
-```diff
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
--  <circle strokeWidth="2" strokeLinejoin="round" cx="24" cy="24" r="20" fill="none" />
-+  <circle stroke-width="2" stroke-linejoin="round" cx="24" cy="24" r="20" fill="none" />
-</svg>
-```
-
-Don't use namespaced attributes. The namespaced attributes are deprecated and no longer recommended.
-
-Instead of [`xlink:href`](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href) you should use `href`
-
-```diff
-<svg viewBox="0 0 160 40" xmlns="http://www.w3.org/2000/svg">
--  <a xlink:href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href">
-+  <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href">
-    <text x="10" y="25">MDN Web Docs</text>
-  </a>
-</svg>
-```
 
 ### Event handling
 
@@ -784,7 +784,7 @@ To enable type-checking for JSX, create a `tsconfig.json` file in your project r
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "jsx-dom-runtime",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "noEmit": true,
     "lib": [
       "DOM"
@@ -798,26 +798,24 @@ Example:
 **src/index.tsx**
 
 ```ts
-import { render, useText } from 'jsx-dom-runtime';
+import { render, signal } from 'jsx-dom-runtime';
 
 interface Props {
   label: string;
 }
 
 const App: JSX.FC<Props> = ({ label }) => {
-  let i = 0;
-
-  const [textNode, setCount] = useText(i);
+  const count = signal(0);
 
   const clickHandler: JSX.EventListener = () => {
-    setCount(++i);
+    count.set(count.get() + 1)
   };
 
   return (
     <div class="card">
       <h1 class="label">{label}</h1>
       <button type="button" on:click={clickHandler}>
-        Click me! {textNode}
+        Click me! {count}
       </button>
     </div>
   );

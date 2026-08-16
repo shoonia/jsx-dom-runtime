@@ -1,6 +1,6 @@
 import { useRef } from 'jsx-dom-runtime';
 
-import * as s from './ListItem.module.css';
+import s from './ListItem.module.css';
 
 interface Props {
   text: string;

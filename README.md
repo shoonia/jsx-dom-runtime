@@ -52,8 +52,8 @@ render(
 
 ### Syntax & Features
 - [Attributes](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#attributes)
-- [Style](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#style)
 - [SVG](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#svg)
+- [Style](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#style)
 - [Event Handling](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#event-handling)
 - [Attribute Directives](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#attribute-directives) (`attr:*`)
 - [Property Directives](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#property-directives) (`prop:*`)
