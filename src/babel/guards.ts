@@ -1,7 +1,7 @@
 import t from '@babel/types';
 
-type NodeType = t.Node['type'];
 type Nulishable<T> = T | null | undefined;
+type NodeType = Nulishable<t.Node['type']>;
 
 interface RefProp extends t.ObjectProperty {
   key: t.Identifier & { name: 'ref' }
@@ -12,7 +12,7 @@ interface JsxExpdressionContainerWithBoolean extends t.JSXExpressionContainer {
   expression: t.BooleanLiteral
 }
 
-const literals = new Set<NodeType>([
+export const literals = new Set<NodeType>([
   'StringLiteral',
   'TemplateLiteral',
   'NumericLiteral',
@@ -20,6 +20,8 @@ const literals = new Set<NodeType>([
   'BigIntLiteral',
   'NullLiteral',
 ]);
+
+export const jsxNode = new Set<NodeType>(['JSXElement', 'JSXFragment']);
 
 export const isChildren = (node: t.Node): node is t.ObjectProperty =>
   node.type === 'ObjectProperty' && node.key.type === 'Identifier' && node.key.name === 'children';

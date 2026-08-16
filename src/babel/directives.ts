@@ -9,7 +9,7 @@ import {
   $stringLiteral,
   $arrowFunction,
 } from './builders';
-import { convertJSXAttrValue } from './util';
+import { convertJsxAttrValue } from './util';
 
 const cache = new WeakMap<t.JSXOpeningElement, t.ArrowFunctionExpression>();
 const e = Object.seal($identifier('e'));
@@ -55,7 +55,7 @@ export const createDirective = (element: t.JSXOpeningElement, expression: t.Expr
   funcRef.body.body.push($expressionStatement(expression));
 };
 
-export const setAttributeCallExp = (attrName: string, param:  t.JSXAttribute['value'] | t.Identifier): t.CallExpression => ({
+export const setAttributeCallExp = (attrName: string, param: t.Expression): t.CallExpression => ({
   type: 'CallExpression',
   callee: {
     type: 'MemberExpression',
@@ -65,11 +65,11 @@ export const setAttributeCallExp = (attrName: string, param:  t.JSXAttribute['va
   },
   arguments: [
     $stringLiteral(attrName),
-    convertJSXAttrValue(param),
+    param,
   ],
 });
 
-export const propAssignmentExp = (attrName: string, param: t.JSXAttribute['value'] | t.Identifier): t.AssignmentExpression => {
+export const propAssignmentExp = (attrName: string, param: t.Expression): t.AssignmentExpression => {
   const isIdent = isIdentifierName(attrName);
 
   return {
@@ -81,7 +81,7 @@ export const propAssignmentExp = (attrName: string, param: t.JSXAttribute['value
       property: isIdent ? $identifier(attrName) : $stringLiteral(attrName),
       computed: !isIdent,
     },
-    right: convertJSXAttrValue(param),
+    right: param,
   };
 };
 
@@ -91,7 +91,7 @@ export const setUtility = (openingElement: t.JSXOpeningElement, attrValue: t.JSX
     callee,
     arguments: [
       e,
-      convertJSXAttrValue(attrValue),
+      convertJsxAttrValue(attrValue),
     ],
   });
 
@@ -99,7 +99,7 @@ export const setSignalishProp = (
   openingElement: t.JSXOpeningElement,
   callee: t.Identifier,
   attrName: string,
-  attrValue: t.JSXAttribute['value'],
+  attrValue: t.Expression,
 ) => {
   const param = $identifier('i');
 
@@ -107,7 +107,7 @@ export const setSignalishProp = (
     type: 'CallExpression',
     callee,
     arguments: [
-      convertJSXAttrValue(attrValue),
+      attrValue,
       $arrowFunction(param, propAssignmentExp(attrName, param)),
     ],
   });
@@ -117,7 +117,7 @@ export const setSignalishAttr = (
   openingElement: t.JSXOpeningElement,
   callee: t.Identifier,
   attrName: string,
-  attrValue: t.JSXAttribute['value'],
+  attrValue: t.Expression,
 ) => {
   const param = $identifier('i');
 
@@ -125,7 +125,7 @@ export const setSignalishAttr = (
     type: 'CallExpression',
     callee,
     arguments: [
-      convertJSXAttrValue(attrValue),
+      attrValue,
       $arrowFunction(param, setAttributeCallExp(attrName, param)),
     ],
   });

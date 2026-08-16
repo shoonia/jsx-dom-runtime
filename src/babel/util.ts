@@ -3,10 +3,10 @@ import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { $stringLiteral, $identifier, $objectProperty } from './builders';
 
-export const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral =>
+export const convertJsxNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral =>
   $stringLiteral(node.namespace.name + ':' + node.name.name);
 
-export const convertJSXAttrValue = (value: t.JSXAttribute['value'] | t.Identifier): t.Expression => {
+export const convertJsxAttrValue = (value: t.JSXAttribute['value']): t.Expression => {
   if (value == null) {
     return { type: 'BooleanLiteral', value: true };
   }
@@ -34,16 +34,16 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => ({
 
     return $objectProperty(
       attr.name.type === 'JSXNamespacedName'
-        ? convertJSXNamespacedName(attr.name)
+        ? convertJsxNamespacedName(attr.name)
         : isIdentifierName(attr.name.name)
           ? $identifier(attr.name.name)
           : $stringLiteral(attr.name.name),
-      convertJSXAttrValue(attr.value),
+      convertJsxAttrValue(attr.value),
     );
   }),
 });
 
-export const convertJSXIdentifier = (
+export const convertJsxIdentifier = (
   node: t.JSXIdentifier | t.JSXMemberExpression,
 ): t.MemberExpression | t.Identifier => {
   if (node.type === 'JSXIdentifier') {
@@ -52,7 +52,7 @@ export const convertJSXIdentifier = (
 
   return {
     type: 'MemberExpression',
-    object: convertJSXIdentifier(node.object),
+    object: convertJsxIdentifier(node.object),
     property: $identifier(node.property.name),
     computed: false,
     optional: null,

@@ -13,8 +13,9 @@ import {
 } from './directives';
 import {
   buildProps,
-  convertJSXIdentifier,
-  convertJSXNamespacedName,
+  convertJsxAttrValue,
+  convertJsxIdentifier,
+  convertJsxNamespacedName,
   flattenElements,
 } from './util';
 import {
@@ -28,7 +29,6 @@ import {
 import {
   enumerated,
   booleanAttributes,
-  jsxNode,
 } from './collections';
 import {
   htmlTags,
@@ -43,6 +43,8 @@ import {
   isChildren,
   isJsxContainerWithBoolean,
   isJsxAttributeLiteralValue,
+  jsxNode,
+  literals,
 } from './guards';
 
 const opts = { name: '_' } as const;
@@ -91,7 +93,7 @@ export const jsxTransform: PluginObj = {
 
           path.replaceWith({
             type: 'CallExpression',
-            callee: convertJSXIdentifier(name),
+            callee: convertJsxIdentifier(name),
             arguments: [props],
           });
         } else if (svgTags.has(name.name)) {
@@ -151,7 +153,7 @@ export const jsxTransform: PluginObj = {
         const args: t.Expression[] = [
           name.type === 'JSXIdentifier'
             ? $stringLiteral(name.name)
-            : convertJSXNamespacedName(name),
+            : convertJsxNamespacedName(name),
           props,
         ];
 
@@ -225,18 +227,20 @@ export const jsxTransform: PluginObj = {
             eventListener(openingElement, name, attrValue);
             return path.remove();
           case 'attr': {
-            if (isJsxAttributeLiteralValue(attrValue)) {
-              createDirective(openingElement, setAttributeCallExp(name, attrValue));
+            const value = convertJsxAttrValue(attrValue);
+            if (literals.has(value.type)) {
+              createDirective(openingElement, setAttributeCallExp(name, value));
             } else {
-              setSignalishAttr(openingElement, importSpec.add('setSignalish'), name, attrValue);
+              setSignalishAttr(openingElement, importSpec.add('setSignalish'), name, value);
             }
             return path.remove();
           }
           case 'prop': {
-            if (isJsxAttributeLiteralValue(attrValue)) {
-              createDirective(openingElement, propAssignmentExp(name, attrValue));
+            const value = convertJsxAttrValue(attrValue);
+            if (literals.has(value.type)) {
+              createDirective(openingElement, propAssignmentExp(name, value));
             } else {
-              setSignalishProp(openingElement, importSpec.add('setSignalish'), name, attrValue);
+              setSignalishProp(openingElement, importSpec.add('setSignalish'), name, value);
             }
             return path.remove();
           }
@@ -311,7 +315,10 @@ export const jsxTransform: PluginObj = {
       if (aName.startsWith('on')) {
         createDirective(
           openingElement,
-          propAssignmentExp(aName === 'ondoubleclick' ? 'ondblclick' : aName, attrValue),
+          propAssignmentExp(
+            aName === 'ondoubleclick' ? 'ondblclick' : aName,
+            convertJsxAttrValue(attrValue),
+          ),
         );
         path.remove();
       }
