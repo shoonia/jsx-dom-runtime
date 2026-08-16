@@ -6,7 +6,7 @@ import { $stringLiteral, $identifier, $objectProperty } from './builders';
 export const convertJSXNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral =>
   $stringLiteral(node.namespace.name + ':' + node.name.name);
 
-export const convertJSXAttrValue = (value: t.JSXAttribute['value']): t.Expression => {
+export const convertJSXAttrValue = (value: t.JSXAttribute['value'] | t.Identifier): t.Expression => {
   if (value == null) {
     return { type: 'BooleanLiteral', value: true };
   }

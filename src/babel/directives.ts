@@ -55,7 +55,7 @@ export const createDirective = (element: t.JSXOpeningElement, expression: t.Expr
   funcRef.body.body.push($expressionStatement(expression));
 };
 
-export const setAttributeCallExp = (attrName: string, param: t.Identifier): t.CallExpression => ({
+export const setAttributeCallExp = (attrName: string, param:  t.JSXAttribute['value'] | t.Identifier): t.CallExpression => ({
   type: 'CallExpression',
   callee: {
     type: 'MemberExpression',
@@ -65,11 +65,11 @@ export const setAttributeCallExp = (attrName: string, param: t.Identifier): t.Ca
   },
   arguments: [
     $stringLiteral(attrName),
-    param,
+    convertJSXAttrValue(param),
   ],
 });
 
-export const propAssignmentExp = (attrName: string, param: t.Identifier): t.AssignmentExpression => {
+export const propAssignmentExp = (attrName: string, param: t.JSXAttribute['value'] | t.Identifier): t.AssignmentExpression => {
   const isIdent = isIdentifierName(attrName);
 
   return {
@@ -81,7 +81,7 @@ export const propAssignmentExp = (attrName: string, param: t.Identifier): t.Assi
       property: isIdent ? $identifier(attrName) : $stringLiteral(attrName),
       computed: !isIdent,
     },
-    right: param,
+    right: convertJSXAttrValue(param),
   };
 };
 
