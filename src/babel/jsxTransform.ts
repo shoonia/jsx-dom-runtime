@@ -1,5 +1,6 @@
-import type { PluginObj, NodePath } from '@babel/core';
-import t from '@babel/types';
+import type { PluginObject, NodePath } from '@babel/core';
+import type * as t from '@babel/types';
+import  { isIdentifier, react, nullLiteral } from '@babel/types';
 
 import { type TImportName, ImportSpec } from './ImportSpec';
 import { eventListener } from './events';
@@ -52,7 +53,7 @@ const opts = { name: '_' } as const;
 let nsMap: WeakMap<NodePath, TImportName>;
 let importSpec: ImportSpec;
 
-export const jsxTransform: PluginObj = {
+export const jsxTransform: PluginObject = {
   name: 'jsx-dom-runtime/babel-plugin-transform-jsx',
   visitor: {
     Program(path) {
@@ -61,12 +62,12 @@ export const jsxTransform: PluginObj = {
     },
 
     JSXFragment(path) {
-      const children = flattenElements(t.react.buildChildren(path.node));
+      const children = flattenElements(react.buildChildren(path.node));
 
       path.replaceWith(
         children.length > 0
           ? $children(children)
-          : t.nullLiteral(),
+          : nullLiteral(),
       );
     },
 
@@ -80,7 +81,7 @@ export const jsxTransform: PluginObj = {
 
         if (name.type === 'JSXMemberExpression' || isFunctionComponent(name)) {
           const props = buildProps(path.node);
-          const children = t.react.buildChildren(path.node);
+          const children = react.buildChildren(path.node);
 
           if (children.length > 0) {
             props.properties.push(
@@ -108,7 +109,7 @@ export const jsxTransform: PluginObj = {
         const props = buildProps(path.node);
         const refs = props.properties.filter(isRef);
 
-        const childrenContent = t.react.buildChildren(path.node);
+        const childrenContent = react.buildChildren(path.node);
         const childrenProps = props.properties.findLast(isChildren);
         const children = childrenContent.length > 0
           ? childrenContent
@@ -133,8 +134,8 @@ export const jsxTransform: PluginObj = {
           );
         }
 
-        const noNs = props.properties.every((i: t.ObjectProperty) =>
-          !t.isIdentifier(i.key, opts),
+        const noNs = props.properties.every((i: t.ObjectPropertyNonComputed) =>
+          !isIdentifier(i.key, opts),
         );
 
         if (noNs) {

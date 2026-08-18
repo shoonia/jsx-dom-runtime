@@ -1,4 +1,4 @@
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 import { fireEvent, createEvent } from '@testing-library/dom';
 
 const formData = (node: Node) => fireEvent(node, createEvent('formdata', node));
@@ -11,14 +11,14 @@ describe('FormDataEvent', () => {
   });
 
   it('should add `formdata` function handler', () => {
-    const spy: JSX.FormDataEventListener<HTMLFormElement> = jest.fn();
+    const spy: JSX.FormDataEventListener<HTMLFormElement> = vi.fn(() => null);
 
     formData(<form on:formData={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `formdata` object handler', () => {
-    const handleEvent: JSX.FormDataEventListener<HTMLFormElement> = jest.fn();
+    const handleEvent: JSX.FormDataEventListener<HTMLFormElement> = vi.fn(() => null);
 
     formData(<form on:formData={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);

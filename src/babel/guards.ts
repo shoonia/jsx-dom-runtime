@@ -1,9 +1,9 @@
-import t from '@babel/types';
+import type * as t from '@babel/types';
 
 type Nulishable<T> = T | null | undefined;
 type NodeType = Nulishable<t.Node['type']>;
 
-interface RefProp extends t.ObjectProperty {
+interface RefProp extends t.ObjectPropertyNonComputed {
   key: t.Identifier & { name: 'ref' }
   value: t.Expression
 }

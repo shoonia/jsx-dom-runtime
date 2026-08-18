@@ -3,30 +3,28 @@
   "version": "0.84.0",
   "description": "A tiny 500-byte library for JSX templates targeting the DOM. Supports HTML, SVG, MathML, and Custom Element tags",
   "type": "module",
-  "main": "jsx-runtime/index.cjs",
+  "main": "jsx-runtime/index.js",
   "module": "jsx-runtime/index.js",
   "types": "./index.d.ts",
   "packageManager": "^npm@11.4.2",
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./jsx-runtime/index.js",
-      "require": "./jsx-runtime/index.cjs"
+      "import": "./jsx-runtime/index.js"
     },
     "./jsx-runtime": {
       "types": "./index.d.ts",
-      "import": "./jsx-runtime/index.js",
-      "require": "./jsx-runtime/index.cjs"
+      "import": "./jsx-runtime/index.js"
     },
-    "./babel-preset": "./babel-preset/index.cjs",
-    "./eslint-plugin": "./eslint-plugin/index.cjs",
+    "./babel-preset": "./babel-preset/index.js",
+    "./eslint-plugin": "./eslint-plugin/index.js",
     "./package.json": "./package.json"
   },
   "sideEffects": false,
   "scripts": {
     "lint": "eslint src tests",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
-    "build": "NODE_NO_WARNINGS=1 rollup -c",
+    "test": "vitest run",
+    "build": "rollup -c",
     "size": "size-limit",
     "types": "tsc --project tests/tsconfig.json"
   },
@@ -34,33 +32,31 @@
     "csstype": "^3.2.3"
   },
   "peerDependencies": {
-    "@babel/core": "^7.0.0",
-    "@babel/helper-validator-identifier": "^7.0.0",
-    "@babel/types": "^7.0.0"
+    "@babel/core": "^8.0.0",
+    "@babel/helper-validator-identifier": "^8.0.0",
+    "@babel/types": "^8.0.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.29.7",
-    "@babel/helper-validator-identifier": "^7.29.7",
-    "@babel/preset-typescript": "^7.29.7",
-    "@babel/types": "^7.29.8",
+    "@babel/core": "^8.0.1",
+    "@babel/helper-validator-identifier": "^8.0.4",
+    "@babel/preset-typescript": "^8.0.1",
+    "@babel/types": "^8.0.4",
     "@eslint/js": "^10.0.1",
-    "@jest/globals": "^30.2.0",
     "@rollup/plugin-babel": "^7.1.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@size-limit/preset-small-lib": "^12.0.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
-    "@types/babel__helper-validator-identifier": "^7.15.2",
-    "@types/jest": "^30.0.0",
-    "babel-jest": "^30.4.1",
-    "babel-plugin-transform-lhs-constants": "^1.4.0",
+    "@types/node": "^26.2.0",
+    "@vitest/coverage-v8": "^4.1.11",
+    "babel-plugin-transform-lhs-constants": "^1.4.1",
     "eslint": "^10.8.1",
-    "jest": "^30.4.2",
-    "jest-environment-jsdom": "^30.4.1",
+    "jsdom": "^30.0.1",
     "rollup": "^4.62.4",
     "size-limit": "^12.0.0",
     "typescript": "^6.0.0",
-    "typescript-eslint": "^8.67.0"
+    "typescript-eslint": "^8.67.0",
+    "vitest": "^4.1.11"
   },
   "files": [
     "AGENTS.md",

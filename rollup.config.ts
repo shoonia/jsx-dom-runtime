@@ -33,7 +33,7 @@ const plugins = [
     presets: [
       '@babel/preset-typescript',
     ],
-    shouldPrintComment: (value) => value === '#__PURE__',
+    shouldPrintComment: (value: string) => value === '#__PURE__',
   }),
   nodeResolve({
     extensions,
@@ -47,7 +47,7 @@ export default [
       {
         file: pkg.exports['./babel-preset'],
         exports: 'default',
-        format: 'cjs',
+        format: 'es',
       },
     ],
     external,
@@ -59,7 +59,7 @@ export default [
       {
         file: pkg.exports['./eslint-plugin'],
         exports: 'default',
-        format: 'cjs',
+        format: 'es',
       },
     ],
     external,
@@ -71,11 +71,6 @@ export default [
       {
         file: pkg.module,
         format: 'es',
-      },
-      {
-        file: pkg.main,
-        format: 'cjs',
-        esModule: false,
       },
     ],
     plugins,

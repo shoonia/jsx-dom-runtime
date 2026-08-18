@@ -1,4 +1,4 @@
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 
 describe('HTMLSelectElement', () => {
   it('should render a select', () => {
@@ -92,7 +92,7 @@ describe('HTMLSelectElement', () => {
   });
 
   it('should add `onchange` handler', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => null);
    /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
     expect(<select onchange={spy} />).toHaveProperty('onchange', spy);
   });

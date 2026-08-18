@@ -1,11 +1,11 @@
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 import { fireEvent } from '@testing-library/dom';
 
 import type { EventHandlerObject } from '../../index';
 
 describe('EventHandlerObject', () => {
   it('should support class as an event listener', () => {
-    const spy = jest.fn();
+    const spy = vi.fn((i) => i);
 
     class ClickHandler implements EventHandlerObject {
       handleEvent(event: Event) {
@@ -22,7 +22,7 @@ describe('EventHandlerObject', () => {
   });
 
   it('should have correct types', () => {
-    const spy = jest.fn();
+    const spy = vi.fn((...a) => a);
 
     const handler: EventHandlerObject<Event, HTMLButtonElement> = {
       handleEvent(event) {

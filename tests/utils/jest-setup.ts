@@ -1,5 +1,4 @@
-import '@testing-library/jest-dom';
-import { diffStringsUnified } from 'jest-diff';
+import '@testing-library/jest-dom/vitest';
 
 import { t } from './t';
 
@@ -17,7 +16,7 @@ expect.extend({
       pass,
       message: () => pass
         ? 'expected value not to be equal outerHTML'
-        : 'expected value to be equal outerHTML\n\n' + diffStringsUnified(val, html),
+        : 'expected value to be equal outerHTML\n\n' + this.utils.diff(val, html),
     };
   },
 
@@ -29,7 +28,7 @@ expect.extend({
       pass,
       message: () => pass
         ? 'expected value not to be equal innerHTML'
-        : 'expected value to be equal innerHTML\n\n' + diffStringsUnified(val, html),
+        : 'expected value to be equal innerHTML\n\n' + this.utils.diff(val, html),
     };
   },
 
@@ -41,7 +40,7 @@ expect.extend({
       pass,
       message: () => pass
         ? 'expected value not to be equal style.cssText'
-        : 'expected value to be equal style.cssText\n\n' + diffStringsUnified(val, css),
+        : 'expected value to be equal style.cssText\n\n' + this.utils.diff(val, css),
     };
   },
 
@@ -53,8 +52,8 @@ expect.extend({
     return {
       pass,
       message: () => pass
-        ? 'expected code not to be equal reslut'
-        : 'expected code to be equal reslut\n\n' + diffStringsUnified(code, result),
+        ? 'expected code not to be equal result'
+        : 'expected code to be equal result\n\n' + this.utils.diff(code, result),
     };
   }
 });

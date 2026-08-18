@@ -1,4 +1,4 @@
-import type t from '@babel/types';
+import type * as t from '@babel/types';
 import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import {
@@ -19,7 +19,7 @@ const getRef = (element: t.JSXOpeningElement): t.ArrowFunctionExpression => {
     return cache.get(element)!;
   }
 
-  const arrowFn = $arrowFunction(e, null);
+  const arrowFn = $arrowFunction(e, null as any);
 
   element.attributes.unshift({
     type: 'JSXAttribute',
@@ -80,7 +80,7 @@ export const propAssignmentExp = (attrName: string, param: t.Expression): t.Assi
       object: e,
       property: isIdent ? $identifier(attrName) : $stringLiteral(attrName),
       computed: !isIdent,
-    },
+    } as t.MemberExpression,
     right: param,
   };
 };

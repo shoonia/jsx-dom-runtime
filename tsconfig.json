@@ -16,6 +16,9 @@
       "ES2024",
       "DOM"
     ],
+    "types": [
+      "node"
+    ]
   },
   "include": [
     "./src/**/*.ts"

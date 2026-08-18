@@ -1,5 +1,5 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 import { createEvent, fireEvent } from '@testing-library/dom';
 import type { GenericEventHandler } from 'jsx-dom-runtime';
 
@@ -11,30 +11,30 @@ const repeatEvent = (node: Node) => fireEvent(node, createEvent('repeatEvent', n
 
 describe('SVGAnimationElement', () => {
   it('should add `beginEvent` function handler', () => {
-    const spy: JSX.EventListener<SVGAnimateElement> = jest.fn();
+    const spy: JSX.EventListener<SVGAnimateElement> = vi.fn(() => null);
 
     beginEvent(<animate on:beginEvent={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `endEvent` function handler', () => {
-    const spy: JSX.EventListener<SVGAnimateElement> = jest.fn();
+    const spy: JSX.EventListener<SVGAnimateElement> = vi.fn(() => null);
 
     endEvent(<animateMotion on:endEvent={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `repeatEvent` function handler', () => {
-    const spy: JSX.EventListener<SVGAnimateElement> = jest.fn();
+    const spy: JSX.EventListener<SVGAnimateElement> = vi.fn(() => null);
 
     repeatEvent(<animateTransform on:repeatEvent={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should assign `onbegin`, `onend` and `onrepeat` function handlers', () => {
-    const beginSpy: GenericEventHandler<SVGAnimateElement> = jest.fn();
-    const endSpy: GenericEventHandler<SVGAnimateElement> = jest.fn();
-    const repeatSpy: GenericEventHandler<SVGAnimateElement> = jest.fn();
+    const beginSpy: GenericEventHandler<SVGAnimateElement> = vi.fn(() => null);
+    const endSpy: GenericEventHandler<SVGAnimateElement> = vi.fn(() => null);
+    const repeatSpy: GenericEventHandler<SVGAnimateElement> = vi.fn(() => null);
 
     const element = <animate
       onbegin={beginSpy}

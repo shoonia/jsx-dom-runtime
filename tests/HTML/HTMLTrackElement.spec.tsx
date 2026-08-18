@@ -1,5 +1,5 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 
 describe('HTMLTrackElement', () => {
   it('should have `label` attribute', () => {
@@ -13,7 +13,7 @@ describe('HTMLTrackElement', () => {
   });
 
   it('should have `src` attribute', () => {
-    expect(<track src="/url" />).toHaveProperty('src', 'http://localhost/url');
+    expect(<track src="/url" />).toHaveProperty('src', 'http://localhost:3000/url');
     expect(<track src="/url" />).toHaveAttribute('src', '/url');
   });
 
@@ -33,7 +33,7 @@ describe('HTMLTrackElement', () => {
   });
 
   it('should add `oncuechange` handler', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => null);
     expect(<track oncuechange={spy} />).toHaveProperty('oncuechange', spy);
   });
 });
@@ -49,7 +49,7 @@ describe('HTMLTrackElement prop:* support', () => {
     expect(<track prop:label="English" />).toHaveProperty('label', 'English');
   });
   it('should support prop:src', () => {
-    expect(<track prop:src="/subs.vtt" />).toHaveProperty('src', 'http://localhost/subs.vtt');
+    expect(<track prop:src="/subs.vtt" />).toHaveProperty('src', 'http://localhost:3000/subs.vtt');
   });
   it('should support prop:srclang', () => {
     expect(<track prop:srclang="en" />).toHaveProperty('srclang', 'en');

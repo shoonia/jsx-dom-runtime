@@ -1,5 +1,5 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 
 describe('HTMLAudioElement', () => {
   it('should render audio block', () => {
@@ -17,7 +17,7 @@ describe('HTMLAudioElement', () => {
 
   it('should have `src` attributes', () => {
     expect(<audio src="/Run-DMC.mp3" />).toHaveAttribute('src', '/Run-DMC.mp3');
-    expect(<audio src="/Run-DMC.mp3" />).toHaveProperty('src', 'http://localhost/Run-DMC.mp3');
+    expect(<audio src="/Run-DMC.mp3" />).toHaveProperty('src', 'http://localhost:3000/Run-DMC.mp3');
   });
 
   it('should have `controls` attributes', () => {
@@ -82,12 +82,12 @@ describe('HTMLAudioElement', () => {
   });
 
   it('should add `onencrypted` handler', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => null);
     expect(<audio onencrypted={spy} />).toHaveProperty('onencrypted', spy);
   });
 
   it('should add `onwaitingforkey` handler', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => null);
     expect(<audio onwaitingforkey={spy} />).toHaveProperty('onwaitingforkey', spy);
   });
 

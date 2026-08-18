@@ -1,5 +1,3 @@
-import type { Node } from '@babel/types';
-
 export const eventTypes = new Set([
   // ClipboardEvent
   'copy', 'cut', 'paste',
@@ -84,4 +82,3 @@ export const booleanAttributes = new Set([
 export const enumerated = new Set([
   'draggable', 'spellcheck', 'writingsuggestions',
 ]);
-
