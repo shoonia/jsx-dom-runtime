@@ -5,7 +5,7 @@ import type { EventHandlerObject } from '../../index';
 
 describe('EventHandlerObject', () => {
   it('should support class as an event listener', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn((i) => {});
 
     class ClickHandler implements EventHandlerObject {
       handleEvent(event: Event) {
@@ -22,7 +22,7 @@ describe('EventHandlerObject', () => {
   });
 
   it('should have correct types', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn((...a) => {});
 
     const handler: EventHandlerObject<Event, HTMLButtonElement> = {
       handleEvent(event) {
