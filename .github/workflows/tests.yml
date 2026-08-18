@@ -15,6 +15,8 @@ jobs:
       with:
         node-version: 22
         cache: npm
+      env:
+        CI: true
 
     - run: npm ci --legacy-peer-deps
     - run: npm run types
