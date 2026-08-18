@@ -72,11 +72,6 @@ export default [
         file: pkg.module,
         format: 'es',
       },
-      {
-        file: pkg.main,
-        format: 'cjs',
-        esModule: false,
-      },
     ],
     plugins,
   },

@@ -3,20 +3,18 @@
   "version": "0.84.0",
   "description": "A tiny 500-byte library for JSX templates targeting the DOM. Supports HTML, SVG, MathML, and Custom Element tags",
   "type": "module",
-  "main": "jsx-runtime/index.cjs",
+  "main": "jsx-runtime/index.js",
   "module": "jsx-runtime/index.js",
   "types": "./index.d.ts",
   "packageManager": "^npm@11.4.2",
   "exports": {
     ".": {
       "types": "./index.d.ts",
-      "import": "./jsx-runtime/index.js",
-      "require": "./jsx-runtime/index.cjs"
+      "import": "./jsx-runtime/index.js"
     },
     "./jsx-runtime": {
       "types": "./index.d.ts",
-      "import": "./jsx-runtime/index.js",
-      "require": "./jsx-runtime/index.cjs"
+      "import": "./jsx-runtime/index.js"
     },
     "./babel-preset": "./babel-preset/index.js",
     "./eslint-plugin": "./eslint-plugin/index.js",
