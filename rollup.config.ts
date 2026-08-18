@@ -1,7 +1,6 @@
 import { existsSync } from 'node:fs';
 import { rm, mkdir, writeFile } from 'node:fs/promises';
 import { babel } from '@rollup/plugin-babel';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
 import pkg from './package.json' with { type: 'json' };
 
 const emptyDir = async (path: string) => {
@@ -35,9 +34,6 @@ const plugins = [
     ],
     shouldPrintComment: (value: string) => value === '#__PURE__',
   }),
-  nodeResolve({
-    extensions,
-  }),
 ];
 
 export default [
@@ -59,7 +55,7 @@ export default [
       {
         file: pkg.exports['./eslint-plugin'],
         exports: 'default',
-        format: 'cjs',
+        format: 'es',
       },
     ],
     external,

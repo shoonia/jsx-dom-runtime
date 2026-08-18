@@ -2,7 +2,7 @@ import { RuleTester } from 'eslint';
 import { parser } from 'typescript-eslint';
 
 // @ts-ignore
-import config from '../../eslint-plugin/index.cjs';
+import config from '../../eslint-plugin/index.js';
 
 const rules = config.plugins['jsx-dom-runtime'].rules;
 

@@ -19,7 +19,7 @@
       "require": "./jsx-runtime/index.cjs"
     },
     "./babel-preset": "./babel-preset/index.js",
-    "./eslint-plugin": "./eslint-plugin/index.cjs",
+    "./eslint-plugin": "./eslint-plugin/index.js",
     "./package.json": "./package.json"
   },
   "sideEffects": false,

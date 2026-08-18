@@ -1,7 +1,7 @@
 import { defineConfig } from '@eslint/config-helpers';
 import js from '@eslint/js';
 import ts from 'typescript-eslint';
-import jsx from './eslint-plugin/index.cjs';
+import jsx from './eslint-plugin/index.js';
 
 export default defineConfig(
   {
