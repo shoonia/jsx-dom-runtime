@@ -1,10 +1,10 @@
 import type { Signal, SignalListener } from '../index';
 import { _s } from './_s';
 
-export const signal = (value = ''): Signal<string> => {
-  let subs = new Set<SignalListener<string>>();
+export const signal = (value: any = ''): Signal<any> => {
+  let subs = new Set<SignalListener<any>>();
 
-  let on = (fn: SignalListener<string>) => {
+  let on = (fn: SignalListener<any>) => {
     subs.add(fn);
     fn(value);
     return () => subs.delete(fn);
@@ -15,14 +15,14 @@ export const signal = (value = ''): Signal<string> => {
 
     get: () => value,
 
-    set(val: string) {
+    set(val: any) {
       value = val;
-      for (let sub of subs) sub(value);
+      for (val of subs) val(value);
     },
 
     [_s]: _s,
 
-    _a(name: string) {
+    _a(name: any) {
       const attr = document.createAttribute(name);
       on((val) => attr.value = val);
       return attr;
