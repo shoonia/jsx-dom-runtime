@@ -23,7 +23,7 @@ const babelPlugin: Plugin = {
 
 export default defineConfig({
   test: {
-    include: ['tests/**/*.tsx'],
+    include: ['tests/**/*.spec.ts?(x)'],
     globals: true,
     environment: 'jsdom',
     setupFiles: './tests/utils/jest-setup.ts',
