@@ -58,7 +58,7 @@ describe('HTMLFormElement', () => {
   });
 
   it('should have `action` attribute', () => {
-    expect(<form action="/" />).toHaveProperty('action', 'http://localhost/');
+    expect(<form action="/" />).toHaveProperty('action', 'http://localhost:3000/');
     expect(<form action="/" />).toHaveAttribute('action', '/');
   });
 

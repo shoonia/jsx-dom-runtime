@@ -1,6 +1,6 @@
 describe('HTMLImageElement', () => {
   it('should have `src` attribute', () => {
-    expect(<img src="/url" />).toHaveProperty('src', 'http://localhost/url');
+    expect(<img src="/url" />).toHaveProperty('src', 'http://localhost:3000/url');
   });
 
   it('should set alt', () => {

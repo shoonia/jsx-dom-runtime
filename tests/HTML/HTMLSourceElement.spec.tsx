@@ -1,6 +1,6 @@
 describe('HTMLSourceElement', () => {
   it('should have `src` attribute', () => {
-    expect(<source src="/url" />).toHaveProperty('src', 'http://localhost/url');
+    expect(<source src="/url" />).toHaveProperty('src', 'http://localhost:3000/url');
     expect(<source src="/url" />).toHaveAttribute('src', '/url');
   });
 

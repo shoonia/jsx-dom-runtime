@@ -3,12 +3,12 @@ import { vi } from 'vitest';
 
 describe('HTMLVideoElement', () => {
   it('should have `src` attribute & property', () => {
-    expect(<video src="/video" />).toHaveProperty('src', 'http://localhost/video');
+    expect(<video src="/video" />).toHaveProperty('src', 'http://localhost:3000/video');
     expect(<video src="/video" />).toHaveAttribute('src', '/video');
   });
 
   it('should have `poster` attribute & property', () => {
-    expect(<video poster="/poster" />).toHaveProperty('poster', 'http://localhost/poster');
+    expect(<video poster="/poster" />).toHaveProperty('poster', 'http://localhost:3000/poster');
     expect(<video poster="/poster" />).toHaveAttribute('poster', '/poster');
   });
 

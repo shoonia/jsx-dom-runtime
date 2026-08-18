@@ -17,7 +17,7 @@ describe('HTMLAudioElement', () => {
 
   it('should have `src` attributes', () => {
     expect(<audio src="/Run-DMC.mp3" />).toHaveAttribute('src', '/Run-DMC.mp3');
-    expect(<audio src="/Run-DMC.mp3" />).toHaveProperty('src', 'http://localhost/Run-DMC.mp3');
+    expect(<audio src="/Run-DMC.mp3" />).toHaveProperty('src', 'http://localhost:3000/Run-DMC.mp3');
   });
 
   it('should have `controls` attributes', () => {

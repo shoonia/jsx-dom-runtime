@@ -1,6 +1,6 @@
 describe('HTMLAnchorElement', () => {
   it('should have `href` attribute', () => {
-    expect(<a href="/" />).toHaveProperty('href', 'http://localhost/');
+    expect(<a href="/" />).toHaveProperty('href', 'http://localhost:3000/');
     expect(<a href="/" />).toHaveAttribute('href', '/');
   });
 

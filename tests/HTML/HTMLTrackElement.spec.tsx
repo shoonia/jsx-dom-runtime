@@ -13,7 +13,7 @@ describe('HTMLTrackElement', () => {
   });
 
   it('should have `src` attribute', () => {
-    expect(<track src="/url" />).toHaveProperty('src', 'http://localhost/url');
+    expect(<track src="/url" />).toHaveProperty('src', 'http://localhost:3000/url');
     expect(<track src="/url" />).toHaveAttribute('src', '/url');
   });
 
@@ -49,7 +49,7 @@ describe('HTMLTrackElement prop:* support', () => {
     expect(<track prop:label="English" />).toHaveProperty('label', 'English');
   });
   it('should support prop:src', () => {
-    expect(<track prop:src="/subs.vtt" />).toHaveProperty('src', 'http://localhost/subs.vtt');
+    expect(<track prop:src="/subs.vtt" />).toHaveProperty('src', 'http://localhost:3000/subs.vtt');
   });
   it('should support prop:srclang', () => {
     expect(<track prop:srclang="en" />).toHaveProperty('srclang', 'en');
