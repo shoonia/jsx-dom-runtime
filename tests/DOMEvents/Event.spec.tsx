@@ -1,5 +1,5 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 import { createEvent, fireEvent } from '@testing-library/dom';
 import { jsxImport } from '../utils';
 
@@ -9,14 +9,14 @@ const beforeMatch = (node: Node) => fireEvent(node, createEvent('beforematch', n
 
 describe('User events', () => {
   it('should add property', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => {});
 
     expect(<div onclick={spy} />).toHaveProperty('onclick', spy);
   });
 
   it('should add a few handlers', () => {
-    const spyClick = jest.fn();
-    const spyChange = jest.fn();
+    const spyClick = vi.fn(() => {});
+    const spyChange = vi.fn(() => {});
     const input = <input onclick={spyClick} onchange={spyChange} />;
 
     fireEvent.click(input);
@@ -28,8 +28,8 @@ describe('User events', () => {
   });
 
   it('should transform camel case naming handlers', () => {
-    const spyClick = jest.fn();
-    const spyChange = jest.fn();
+    const spyClick = vi.fn(() => {});
+    const spyChange = vi.fn(() => {});
 
     const input = <input
       // @ts-expect-error
@@ -48,21 +48,21 @@ describe('User events', () => {
 
 describe('Event: select', () => {
   it('should add `onselect` handler', () => {
-    const spy: JSX.EventListener<HTMLInputElement> = jest.fn();
+    const spy: JSX.EventListener<HTMLInputElement> = vi.fn(() => {});
 
     fireEvent.select(<input onselect={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:select` function listener', () => {
-    const spy: JSX.EventListener<HTMLInputElement> = jest.fn();
+    const spy: JSX.EventListener<HTMLInputElement> = vi.fn(() => {});
 
     fireEvent.select(<input on:select={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:select` object listener', () => {
-    const handleEvent: JSX.EventListener<HTMLInputElement> = jest.fn();
+    const handleEvent: JSX.EventListener<HTMLInputElement> = vi.fn(() => {});
 
     fireEvent.select(<input on:select={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
@@ -71,21 +71,21 @@ describe('Event: select', () => {
 
 describe('Event: load', () => {
   it('should add `onselect` handler', () => {
-    const spy: JSX.EventListener<HTMLImageElement> = jest.fn();
+    const spy: JSX.EventListener<HTMLImageElement> = vi.fn(() => {});
 
     fireEvent.load(<img onload={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:load` function listener', () => {
-    const spy: JSX.EventListener<HTMLImageElement> = jest.fn();
+    const spy: JSX.EventListener<HTMLImageElement> = vi.fn(() => {});
 
     fireEvent.load(<img on:load={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:load` object listener', () => {
-    const handleEvent: JSX.EventListener<HTMLImageElement> = jest.fn();
+    const handleEvent: JSX.EventListener<HTMLImageElement> = vi.fn(() => {});
 
     fireEvent.load(<img on:load={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
@@ -94,21 +94,21 @@ describe('Event: load', () => {
 
 describe('Event: error', () => {
   it('should add `onerror` handler', () => {
-    const spy: JSX.EventListener<HTMLImageElement> = jest.fn();
+    const spy: JSX.EventListener<HTMLImageElement> = vi.fn(() => {});
 
     fireEvent.error(<img onerror={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:error` function listener', () => {
-    const spy: JSX.EventListener<HTMLImageElement> = jest.fn();
+    const spy: JSX.EventListener<HTMLImageElement> = vi.fn(() => {});
 
     fireEvent.error(<img on:error={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:error` object listener', () => {
-    const handleEvent: JSX.EventListener<HTMLImageElement> = jest.fn();
+    const handleEvent: JSX.EventListener<HTMLImageElement> = vi.fn(() => {});
 
     fireEvent.error(<img on:error={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
@@ -122,14 +122,14 @@ describe('Event: fullscreenchange', () => {
   });
 
   it('should add `on:fullscreenChange` function listener', () => {
-    const spy: JSX.EventListener<HTMLDivElement> = jest.fn();
+    const spy: JSX.EventListener<HTMLDivElement> = vi.fn(() => {});
 
     fullscreenChange(<div on:fullscreenChange={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:fullscreenChange` object listener', () => {
-    const handleEvent: JSX.EventListener<HTMLDivElement> = jest.fn();
+    const handleEvent: JSX.EventListener<HTMLDivElement> = vi.fn(() => {});
 
     fullscreenChange(<div on:fullscreenChange={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
@@ -143,14 +143,14 @@ describe('Event: fullscreenerror', () => {
   });
 
   it('should add `on:fullscreenError` function listener', () => {
-    const spy: JSX.EventListener<HTMLDivElement> = jest.fn();
+    const spy: JSX.EventListener<HTMLDivElement> = vi.fn(() => {});
 
     fullscreenError(<div on:fullscreenError={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:fullscreenError` object listener', () => {
-    const handleEvent: JSX.EventListener<HTMLDivElement> = jest.fn();
+    const handleEvent: JSX.EventListener<HTMLDivElement> = vi.fn(() => {});
 
     fullscreenError(<div on:fullscreenError={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
@@ -164,7 +164,7 @@ describe('Event: dblclick', () => {
   });
 
   it('should add ondblclick when `ondoubleclick` handler is present', () => {
-    const spy: JSX.MouseEventListener = jest.fn();
+    const spy: JSX.MouseEventListener = vi.fn(() => {});
     // @ts-expect-error
     fireEvent.dblClick(<div ondoubleclick={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
@@ -178,14 +178,14 @@ describe('Event: beforematch', () => {
   });
 
   it('should add `on:beforeMatch` function listener', () => {
-    const spy: JSX.EventListener<HTMLDivElement> = jest.fn();
+    const spy: JSX.EventListener<HTMLDivElement> = vi.fn(() => {});
 
     beforeMatch(<div on:beforeMatch={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:beforeMatch` object listener', () => {
-    const handleEvent: JSX.EventListener<HTMLDivElement> = jest.fn();
+    const handleEvent: JSX.EventListener<HTMLDivElement> = vi.fn(() => {});
 
     beforeMatch(<div on:beforeMatch={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);

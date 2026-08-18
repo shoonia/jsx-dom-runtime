@@ -1,4 +1,4 @@
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 import { fireEvent, createEvent } from '@testing-library/dom';
 
 import { jsxImport } from '../utils/t';
@@ -27,14 +27,14 @@ describe('WebGLContextEvent', () => {
   });
 
     it('should add `contextLost` function handler', () => {
-      const spy: JSX.EventListener<HTMLCanvasElement> = jest.fn();
+      const spy: JSX.EventListener<HTMLCanvasElement> = vi.fn(() => {});
 
       contextLost(<canvas on:contextLost={spy} />);
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('should add `contextRestored` function handler', () => {
-      const spy: JSX.EventListener<HTMLCanvasElement> = jest.fn();
+      const spy: JSX.EventListener<HTMLCanvasElement> = vi.fn(() => {});
 
       contextRestored(<canvas on:contextRestored={spy} />);
       expect(spy).toHaveBeenCalledTimes(1);

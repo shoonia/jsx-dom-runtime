@@ -1,5 +1,5 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 
 describe('HTMLTextAreaElement', () => {
   it('should set name', () => {
@@ -107,7 +107,7 @@ describe('HTMLTextAreaElement', () => {
   });
 
   it('should have `onchange` handler', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => {});
 
     expect(<textarea onchange={spy} />).toHaveProperty('onchange', spy);
   });

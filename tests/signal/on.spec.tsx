@@ -1,11 +1,11 @@
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 
 import { signal } from 'jsx-dom-runtime';
 
 describe('signal.on', () => {
   it('should call `on` immediately with current value', () => {
     const s = signal('hello');
-    const fn = jest.fn();
+    const fn = vi.fn(() => {});
 
     s.on(fn);
 
@@ -15,7 +15,7 @@ describe('signal.on', () => {
 
   it('should call `on` with default empty string when no initial value', () => {
     const s = signal();
-    const fn = jest.fn();
+    const fn = vi.fn(() => {});
 
     s.on(fn);
 
@@ -24,7 +24,7 @@ describe('signal.on', () => {
 
   it('should call `on` when value changes', () => {
     const s = signal('a');
-    const fn = jest.fn();
+    const fn = vi.fn(() => {});
 
     s.on(fn);
     fn.mockClear();
@@ -37,7 +37,7 @@ describe('signal.on', () => {
 
   it('should call `on` on every set', () => {
     const s = signal('x');
-    const fn = jest.fn();
+    const fn = vi.fn(() => {});
 
     s.on(fn);
     fn.mockClear();
@@ -52,8 +52,8 @@ describe('signal.on', () => {
 
   it('should support multiple listeners', () => {
     const s = signal('init');
-    const fn1 = jest.fn();
-    const fn2 = jest.fn();
+    const fn1 = vi.fn(() => {});
+    const fn2 = vi.fn(() => {});
 
     s.on(fn1);
     s.on(fn2);
@@ -68,7 +68,7 @@ describe('signal.on', () => {
 
   it('should stop calling `on` after `off`', () => {
     const s = signal('a');
-    const fn = jest.fn();
+    const fn = vi.fn(() => {});
 
     const off = s.on(fn);
     fn.mockClear();
@@ -81,8 +81,8 @@ describe('signal.on', () => {
 
   it('should `off` only the specific `on`', () => {
     const s = signal('a');
-    const fn1 = jest.fn();
-    const fn2 = jest.fn();
+    const fn1 = vi.fn(() => {});
+    const fn2 = vi.fn(() => {});
 
     const off = s.on(fn1);
     s.on(fn2);
@@ -98,7 +98,7 @@ describe('signal.on', () => {
 
   it('should return true from `off` when `on` was active', () => {
     const s = signal('a');
-    const fn = jest.fn();
+    const fn = vi.fn(() => {});
 
     const off = s.on(fn);
 
@@ -107,7 +107,7 @@ describe('signal.on', () => {
 
   it('should return false from `off` when `on` was already removed', () => {
     const s = signal('a');
-    const fn = jest.fn();
+    const fn = vi.fn(() => {});
 
     const off = s.on(fn);
     off();

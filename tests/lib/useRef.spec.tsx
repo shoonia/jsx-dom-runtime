@@ -1,10 +1,10 @@
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 
 import { useRef } from 'jsx-dom-runtime';
 
 describe('ref', () => {
   it('should run callback ref when it is a function', () => {
-    const spy: JSX.Ref<HTMLElement> = jest.fn();
+    const spy: JSX.Ref<HTMLElement> = vi.fn(() => {});
 
     const node = <footer ref={spy} />;
 

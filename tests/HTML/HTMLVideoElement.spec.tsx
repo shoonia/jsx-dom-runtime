@@ -1,5 +1,5 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 
 describe('HTMLVideoElement', () => {
   it('should have `src` attribute & property', () => {
@@ -108,7 +108,7 @@ describe('HTMLVideoElement', () => {
   });
 
   it('should add `onresize` handler', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => {});
     expect(<video onresize={spy} />).toHaveProperty('onresize', spy);
   });
 

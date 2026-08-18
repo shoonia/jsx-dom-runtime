@@ -1,5 +1,5 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 
 describe('HTMLDetailsElement', () => {
   it('should render details with summary', () => {
@@ -38,7 +38,7 @@ describe('HTMLDetailsElement', () => {
   });
 
   it('should add `ontoggle` handler', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => {});
 
     expect(<details ontoggle={spy} />).toHaveProperty('ontoggle', spy);
   });

@@ -1,5 +1,5 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 import { jsx, signal } from 'jsx-dom-runtime';
 
 describe('HTMLInputElement', () => {
@@ -177,7 +177,7 @@ describe('HTMLInputElement', () => {
     });
 
     it('should have `onchange` handler', () => {
-      const spy = jest.fn();
+      const spy = vi.fn(() => {});
 
       expect(<input onchange={spy} />).toHaveProperty('onchange', spy);
     });

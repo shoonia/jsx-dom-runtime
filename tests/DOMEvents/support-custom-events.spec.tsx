@@ -1,10 +1,10 @@
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 
 import { jsxImport } from '../utils';
 
 describe('support custom events', () => {
   it('shuld add CustomEvent listener', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => {});
     const div = <div on:custom-event={spy} /> as HTMLElement;
 
     div.dispatchEvent(new CustomEvent('custom-event'));
@@ -13,7 +13,7 @@ describe('support custom events', () => {
   });
 
   it('Event names are case-sensitive', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => {});
     const div = <div on:Custom-Event={spy} /> as HTMLElement;
 
     div.dispatchEvent(new CustomEvent('Custom-Event'));
@@ -25,7 +25,7 @@ describe('support custom events', () => {
   });
 
   it('Event names are case-sensitive #2', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => {});
     // @ts-expect-error
     const div = <div on:MyEvent={spy} /> as HTMLElement;
 
@@ -34,7 +34,7 @@ describe('support custom events', () => {
   });
 
   it('should support CustomEvent in Custom Element', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => {});
     const web = <web-component on:custom-event={spy}></web-component> as HTMLElement;
 
     web.dispatchEvent(new CustomEvent('custom-event'));

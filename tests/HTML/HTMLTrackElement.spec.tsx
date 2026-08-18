@@ -1,5 +1,5 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 
 describe('HTMLTrackElement', () => {
   it('should have `label` attribute', () => {
@@ -33,7 +33,7 @@ describe('HTMLTrackElement', () => {
   });
 
   it('should add `oncuechange` handler', () => {
-    const spy = jest.fn();
+    const spy = vi.fn(() => {});
     expect(<track oncuechange={spy} />).toHaveProperty('oncuechange', spy);
   });
 });

@@ -1,4 +1,4 @@
-import { jest } from '@jest/globals';
+import { vi } from 'vitest';
 import { fireEvent, createEvent } from '@testing-library/dom';
 
 const contentVisibilityAutoStateChange = (node: Node) =>
@@ -13,14 +13,14 @@ describe('ContentVisibilityAutoStateChangeEvent', () => {
   });
 
   it('should add `formdata` function handler', () => {
-    const spy: JSX.ContentVisibilityAutoStateChangeEventListener<HTMLDivElement> = jest.fn();
+    const spy: JSX.ContentVisibilityAutoStateChangeEventListener<HTMLDivElement> = vi.fn(() => {});
 
     contentVisibilityAutoStateChange(<div on:contentVisibilityAutoStateChange={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `formdata` object handler', () => {
-    const handleEvent: JSX.ContentVisibilityAutoStateChangeEventListener<HTMLDivElement> = jest.fn();
+    const handleEvent: JSX.ContentVisibilityAutoStateChangeEventListener<HTMLDivElement> = vi.fn(() => {});
 
     contentVisibilityAutoStateChange(<div on:contentVisibilityAutoStateChange={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
