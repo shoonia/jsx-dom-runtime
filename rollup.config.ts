@@ -33,7 +33,7 @@ const plugins = [
     presets: [
       '@babel/preset-typescript',
     ],
-    shouldPrintComment: (value) => value === '#__PURE__',
+    shouldPrintComment: (value: string) => value === '#__PURE__',
   }),
   nodeResolve({
     extensions,
@@ -47,7 +47,7 @@ export default [
       {
         file: pkg.exports['./babel-preset'],
         exports: 'default',
-        format: 'cjs',
+        format: 'es',
       },
     ],
     external,

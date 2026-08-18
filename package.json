@@ -18,7 +18,7 @@
       "import": "./jsx-runtime/index.js",
       "require": "./jsx-runtime/index.cjs"
     },
-    "./babel-preset": "./babel-preset/index.cjs",
+    "./babel-preset": "./babel-preset/index.js",
     "./eslint-plugin": "./eslint-plugin/index.cjs",
     "./package.json": "./package.json"
   },

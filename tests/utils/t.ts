@@ -1,7 +1,7 @@
 import { transformAsync } from '@babel/core';
 
 // @ts-ignore
-import preset from '../../babel-preset/index.cjs';
+import preset from '../../babel-preset/index.js';
 
 type TTemplate = string | TemplateStringsArray;
 

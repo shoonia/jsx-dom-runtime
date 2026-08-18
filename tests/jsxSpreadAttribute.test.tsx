@@ -1,6 +1,6 @@
 import { transform } from '@babel/core';
 // @ts-expect-error
-import preset from '../babel-preset/index.cjs';
+import preset from '../babel-preset/index.js';
 
 describe('JSXSpreadAttribute', () => {
   it('should allow spread attributes on function components', async () => {
