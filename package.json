@@ -25,8 +25,8 @@
   "sideEffects": false,
   "scripts": {
     "lint": "eslint src tests",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
-    "build": "NODE_NO_WARNINGS=1 rollup -c",
+    "test": "node --experimental-vm-modules node_modules/jest-cli/bin/jest.js",
+    "build": "rollup -c",
     "size": "size-limit",
     "types": "tsc --project tests/tsconfig.json"
   },
@@ -53,9 +53,10 @@
     "@types/babel__helper-validator-identifier": "^7.15.2",
     "@types/jest": "^30.0.0",
     "babel-jest": "^30.4.1",
-    "babel-plugin-transform-lhs-constants": "^1.4.0",
+    "babel-plugin-transform-lhs-constants": "^1.4.1",
     "eslint": "^10.8.1",
     "jest": "^30.4.2",
+    "jest-cli": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "rollup": "^4.62.4",
     "size-limit": "^12.0.0",
