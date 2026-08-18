@@ -177,7 +177,7 @@ describe('HTMLInputElement', () => {
     });
 
     it('should have `onchange` handler', () => {
-      const spy = vi.fn(() => {});
+      const spy = vi.fn(() => null);
 
       expect(<input onchange={spy} />).toHaveProperty('onchange', spy);
     });

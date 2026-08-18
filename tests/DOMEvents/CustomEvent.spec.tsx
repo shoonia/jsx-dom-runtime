@@ -2,7 +2,7 @@ import { vi } from 'vitest';
 
 describe('CustomEvent', () => {
   it('should add `my-event` handler', () => {
-    const spy: JSX.EventListener = vi.fn(() => {});
+    const spy: JSX.EventListener = vi.fn(() => null);
 
     const div = <div on:my-event={spy} />;
 
@@ -12,8 +12,8 @@ describe('CustomEvent', () => {
   });
 
   it('should add register sensitive event listeners', () => {
-    const lowerCaseSpy: JSX.EventListener = vi.fn(() => {});
-    const camelCaseSpy: JSX.EventListener = vi.fn(() => {});
+    const lowerCaseSpy: JSX.EventListener = vi.fn(() => null);
+    const camelCaseSpy: JSX.EventListener = vi.fn(() => null);
 
     const div = <div
       on:x-event={lowerCaseSpy}

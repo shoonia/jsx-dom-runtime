@@ -38,7 +38,7 @@ describe('HTMLDetailsElement', () => {
   });
 
   it('should add `ontoggle` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
 
     expect(<details ontoggle={spy} />).toHaveProperty('ontoggle', spy);
   });

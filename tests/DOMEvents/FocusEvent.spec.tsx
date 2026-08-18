@@ -23,21 +23,21 @@ describe('FocusEvent', () => {
   });
 
   it('should add `onfocus` handler', () => {
-    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => {});
+    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.focus(<input onfocus={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `onblur` handler', () => {
-    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => {});
+    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.blur(<input onblur={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `focusin` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
     const input = <input ref={(node) => {
       node.addEventListener('focusin', spy);
     }} />;
@@ -47,7 +47,7 @@ describe('FocusEvent', () => {
   });
 
   it('should add `focusout` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
     const input = <input ref={(node) => {
       node.addEventListener('focusout', spy);
     }} />;
@@ -57,28 +57,28 @@ describe('FocusEvent', () => {
   });
 
   it('should add `on:focus` handler', () => {
-    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => {});
+    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.focus(<input on:focus={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:focusIn` handler', () => {
-    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => {});
+    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.focusIn(<input on:focusIn={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:focusOut` handler', () => {
-    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => {});
+    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.focusOut(<input on:focusOut={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:blur` handler', () => {
-    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => {});
+    const spy: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.blur(<input on:blur={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
@@ -87,28 +87,28 @@ describe('FocusEvent', () => {
 
 describe('FocusEvent Object Listener', () => {
   it('should add `on:focus` object lisnener', () => {
-    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => {});
+    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.focus(<input on:focus={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:focusIn` object lisnener', () => {
-    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => {});
+    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.focusIn(<input on:focusIn={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:focusOut` object lisnener', () => {
-    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => {});
+    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.focusOut(<input on:focusOut={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:blur` object lisnener', () => {
-    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => {});
+    const handleEvent: JSX.FocusEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.blur(<input on:blur={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);

@@ -27,14 +27,14 @@ describe('WebGLContextEvent', () => {
   });
 
     it('should add `contextLost` function handler', () => {
-      const spy: JSX.EventListener<HTMLCanvasElement> = vi.fn(() => {});
+      const spy: JSX.EventListener<HTMLCanvasElement> = vi.fn(() => null);
 
       contextLost(<canvas on:contextLost={spy} />);
       expect(spy).toHaveBeenCalledTimes(1);
     });
 
     it('should add `contextRestored` function handler', () => {
-      const spy: JSX.EventListener<HTMLCanvasElement> = vi.fn(() => {});
+      const spy: JSX.EventListener<HTMLCanvasElement> = vi.fn(() => null);
 
       contextRestored(<canvas on:contextRestored={spy} />);
       expect(spy).toHaveBeenCalledTimes(1);

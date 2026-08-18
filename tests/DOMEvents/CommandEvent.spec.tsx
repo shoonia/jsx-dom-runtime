@@ -6,21 +6,21 @@ const command = (node: Node) => fireEvent(node, createEvent('command', node));
 
 describe('CommandEvent', () => {
   it('should add `on:command` function listener', () => {
-    const spy: JSX.CommandEventListener<HTMLDivElement> = vi.fn(() => {});
+    const spy: JSX.CommandEventListener<HTMLDivElement> = vi.fn(() => null);
 
     command(<div on:command={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:command` object listener', () => {
-    const handleEvent: JSX.CommandEventListener<HTMLDivElement> = vi.fn(() => {});
+    const handleEvent: JSX.CommandEventListener<HTMLDivElement> = vi.fn(() => null);
 
     command(<div on:command={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should add `oncommand` function listener', () => {
-    const spy: JSX.CommandEventListener<HTMLDivElement> = vi.fn(() => {});
+    const spy: JSX.CommandEventListener<HTMLDivElement> = vi.fn(() => null);
 
     expect(<div oncommand={spy} />).toHaveProperty('oncommand', spy);
   });

@@ -5,8 +5,8 @@ import { jsx } from 'jsx-dom-runtime';
 
 describe('$', () => {
   it('should add a few handlers', () => {
-    const spyClick: JSX.EventListener = vi.fn(() => {});
-    const spyChange: JSX.EventListener = vi.fn(() => {});
+    const spyClick: JSX.EventListener = vi.fn(() => null);
+    const spyChange: JSX.EventListener = vi.fn(() => null);
     const input = <input on:click={spyClick} on:change={spyChange} />;
 
     fireEvent.click(input);
@@ -18,7 +18,7 @@ describe('$', () => {
   });
 
   it('should add event listener with prop:* directive', () => {
-    const click: JSX.EventListener = vi.fn(() => {});
+    const click: JSX.EventListener = vi.fn(() => null);
 
     <div
       prop:onclick={click}
@@ -29,8 +29,8 @@ describe('$', () => {
   });
 
   it('should add event listener in $ props #1', () => {
-    const click: JSX.EventListener = vi.fn(() => {});
-    const myEvent: JSX.EventListener = vi.fn(() => {});
+    const click: JSX.EventListener = vi.fn(() => null);
+    const myEvent: JSX.EventListener = vi.fn(() => null);
 
     <div
       $={{
@@ -48,8 +48,8 @@ describe('$', () => {
   });
 
   it('should add event listener in $ props #2', () => {
-    const click: JSX.EventListener = vi.fn(() => {});
-    const myEvent: JSX.EventListener = vi.fn(() => {});
+    const click: JSX.EventListener = vi.fn(() => null);
+    const myEvent: JSX.EventListener = vi.fn(() => null);
 
     jsx('div', {
       $: {
@@ -67,8 +67,8 @@ describe('$', () => {
   });
 
   it('should add event object listener in $ props (#3)', () => {
-    const click: JSX.EventListener = vi.fn(() => {});
-    const myEvent: JSX.EventListener = vi.fn(() => {});
+    const click: JSX.EventListener = vi.fn(() => null);
+    const myEvent: JSX.EventListener = vi.fn(() => null);
 
     <div
       $={{
@@ -87,8 +87,8 @@ describe('$', () => {
   });
 
   it('should add object event listener in $ props (#4)', () => {
-    const click: JSX.EventListener = vi.fn(() => {});
-    const myEvent: JSX.EventListener = vi.fn(() => {});
+    const click: JSX.EventListener = vi.fn(() => null);
+    const myEvent: JSX.EventListener = vi.fn(() => null);
 
     jsx('div', {
       $: {

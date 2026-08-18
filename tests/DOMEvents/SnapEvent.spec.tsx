@@ -8,42 +8,42 @@ const scrollSnapChanging = (node: Node) => fireEvent(node, createEvent('scrollsn
 describe('SnapEvent', () => {
   // scrollsnapchange
   it('should add `on:scrollSnapChange` function listener', () => {
-    const spy: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => {});
+    const spy: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => null);
 
     scrollSnapChange(<div on:scrollSnapChange={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:scrollSnapChange` object listener', () => {
-    const handleEvent: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => {});
+    const handleEvent: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => null);
 
     scrollSnapChange(<div on:scrollSnapChange={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should add `onscrollsnapchange` function listener', () => {
-    const spy: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => {});
+    const spy: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => null);
 
     expect(<div onscrollsnapchange={spy} />).toHaveProperty('onscrollsnapchange', spy);
   });
 
   // scrollsnapchanging
    it('should add `on:scrollSnapChanging` function listener', () => {
-    const spy: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => {});
+    const spy: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => null);
 
     scrollSnapChanging(<div on:scrollSnapChanging={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:scrollSnapChanging` object listener', () => {
-    const handleEvent: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => {});
+    const handleEvent: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => null);
 
     scrollSnapChanging(<div on:scrollSnapChanging={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should add `onscrollsnapchanging` function listener', () => {
-    const spy: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => {});
+    const spy: JSX.SnapEventListener<HTMLDivElement> = vi.fn(() => null);
 
     expect(<div onscrollsnapchanging={spy} />).toHaveProperty('onscrollsnapchanging', spy);
   });

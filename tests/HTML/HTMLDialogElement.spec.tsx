@@ -17,17 +17,17 @@ describe('HTMLDialogElement', () => {
   });
 
   it('should add `ontoggle` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
     expect(<dialog ontoggle={spy} />).toHaveProperty('ontoggle', spy);
   });
 
   it('should add `oncancel` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
     expect(<dialog oncancel={spy} />).toHaveProperty('oncancel', spy);
   });
 
   it('should add `onclose` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
     expect(<dialog onclose={spy} />).toHaveProperty('onclose', spy);
   });
 

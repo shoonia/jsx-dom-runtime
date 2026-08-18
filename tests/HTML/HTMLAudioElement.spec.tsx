@@ -82,12 +82,12 @@ describe('HTMLAudioElement', () => {
   });
 
   it('should add `onencrypted` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
     expect(<audio onencrypted={spy} />).toHaveProperty('onencrypted', spy);
   });
 
   it('should add `onwaitingforkey` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
     expect(<audio onwaitingforkey={spy} />).toHaveProperty('onwaitingforkey', spy);
   });
 

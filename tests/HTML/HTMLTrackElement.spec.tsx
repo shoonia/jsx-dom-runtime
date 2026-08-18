@@ -33,7 +33,7 @@ describe('HTMLTrackElement', () => {
   });
 
   it('should add `oncuechange` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
     expect(<track oncuechange={spy} />).toHaveProperty('oncuechange', spy);
   });
 });

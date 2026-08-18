@@ -107,7 +107,7 @@ describe('HTMLTextAreaElement', () => {
   });
 
   it('should have `onchange` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
 
     expect(<textarea onchange={spy} />).toHaveProperty('onchange', spy);
   });

@@ -108,7 +108,7 @@ describe('HTMLVideoElement', () => {
   });
 
   it('should add `onresize` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
     expect(<video onresize={spy} />).toHaveProperty('onresize', spy);
   });
 

@@ -92,7 +92,7 @@ describe('HTMLSelectElement', () => {
   });
 
   it('should add `onchange` handler', () => {
-    const spy = vi.fn(() => {});
+    const spy = vi.fn(() => null);
    /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
     expect(<select onchange={spy} />).toHaveProperty('onchange', spy);
   });

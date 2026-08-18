@@ -4,21 +4,21 @@ import { fireEvent } from '@testing-library/dom';
 
 describe('SubmitEvent', () => {
   it('should add `onsubmit` handler', () => {
-    const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = vi.fn(() => {});
+    const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = vi.fn(() => null);
 
     fireEvent.submit(<form onsubmit={handleEvent} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:submit` handler', () => {
-    const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = vi.fn(() => {});
+    const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = vi.fn(() => null);
 
     fireEvent.submit(<form on:submit={handleEvent} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:submit` object listener', () => {
-    const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = vi.fn(() => {});
+    const handleEvent: JSX.SubmitEventListener<HTMLFormElement> = vi.fn(() => null);
 
     fireEvent.submit(<form on:submit={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);

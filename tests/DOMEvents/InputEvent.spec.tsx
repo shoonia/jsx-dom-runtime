@@ -6,21 +6,21 @@ const beforeInput = (node: Node) => fireEvent(node, createEvent('beforeinput', n
 
 describe('InputEvent', () => {
   it('should add `oninput` handler', () => {
-    const spy: JSX.InputEventListener<HTMLInputElement> = vi.fn(() => {});
+    const spy: JSX.InputEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.input(<input oninput={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:input` handler', () => {
-    const spy: JSX.InputEventListener<HTMLInputElement> = vi.fn(() => {});
+    const spy: JSX.InputEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.input(<input on:input={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:beforeInput` handler', () => {
-    const spy: JSX.InputEventListener<HTMLInputElement> = vi.fn(() => {});
+    const spy: JSX.InputEventListener<HTMLInputElement> = vi.fn(() => null);
 
     beforeInput(<input on:beforeInput={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
@@ -29,14 +29,14 @@ describe('InputEvent', () => {
 
 describe('InputEvent Object Listener', () => {
   it('should add `on:input` handler', () => {
-    const handleEvent: JSX.InputEventListener<HTMLInputElement> = vi.fn(() => {});
+    const handleEvent: JSX.InputEventListener<HTMLInputElement> = vi.fn(() => null);
 
     fireEvent.input(<input on:input={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
   });
 
   it('should add `on:beforeInput` handler', () => {
-    const handleEvent: JSX.InputEventListener<HTMLInputElement> = vi.fn(() => {});
+    const handleEvent: JSX.InputEventListener<HTMLInputElement> = vi.fn(() => null);
 
     beforeInput(<input on:beforeInput={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);

@@ -13,14 +13,14 @@ describe('ContentVisibilityAutoStateChangeEvent', () => {
   });
 
   it('should add `formdata` function handler', () => {
-    const spy: JSX.ContentVisibilityAutoStateChangeEventListener<HTMLDivElement> = vi.fn(() => {});
+    const spy: JSX.ContentVisibilityAutoStateChangeEventListener<HTMLDivElement> = vi.fn(() => null);
 
     contentVisibilityAutoStateChange(<div on:contentVisibilityAutoStateChange={spy} />);
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
   it('should add `formdata` object handler', () => {
-    const handleEvent: JSX.ContentVisibilityAutoStateChangeEventListener<HTMLDivElement> = vi.fn(() => {});
+    const handleEvent: JSX.ContentVisibilityAutoStateChangeEventListener<HTMLDivElement> = vi.fn(() => null);
 
     contentVisibilityAutoStateChange(<div on:contentVisibilityAutoStateChange={{ handleEvent }} />);
     expect(handleEvent).toHaveBeenCalledTimes(1);
