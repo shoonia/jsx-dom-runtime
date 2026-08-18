@@ -1,4 +1,4 @@
-import * as babel from '@babel/core';
+import { transform } from '@babel/core';
 // @ts-expect-error
 import preset from '../babel-preset/index.cjs';
 
@@ -21,7 +21,8 @@ describe('JSXSpreadAttribute', () => {
   ])('should throw an error for spread attributes on DOM  - %s', (code) => {
 
     expect(() => {
-      babel.transform(code, {
+      transform(code, {
+        // @ts-expect-error
         presets: [preset],
         filename: 'test.js',
       });
