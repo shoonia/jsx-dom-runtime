@@ -1,14 +1,10 @@
-import type { ConfigAPI } from '@babel/core';
-
 import { jsxTransform } from './jsxTransform';
 
-const preset = (api: ConfigAPI) => {
-  api.assertVersion(7);
-
+const preset = () => {
   return {
     plugins: [
       {
-        manipulateOptions(_, parser) {
+        manipulateOptions(_: any, parser: any) {
           parser.plugins.push('jsx');
         },
       },

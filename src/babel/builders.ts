@@ -1,4 +1,4 @@
-import type t from '@babel/types';
+import type * as t from '@babel/types';
 
 export const $stringLiteral = (value: string): t.StringLiteral => ({
   type: 'StringLiteral',
@@ -49,7 +49,7 @@ export const $expressionStatement = (expression: t.Expression): t.ExpressionStat
   expression,
 });
 
-export const $arrowFunction = (param: t.Identifier, body: t.Expression | null): t.ArrowFunctionExpression => ({
+export const $arrowFunction = (param: t.Identifier, body: t.Expression): t.ArrowFunctionExpression => ({
   type: 'ArrowFunctionExpression',
   params: [param],
   body,

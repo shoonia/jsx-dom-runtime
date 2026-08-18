@@ -1,5 +1,5 @@
 import type { NodePath } from '@babel/core';
-import type t from '@babel/types';
+import type * as t from '@babel/types';
 
 import { $identifier, $stringLiteral } from './builders';
 
@@ -23,7 +23,7 @@ export class ImportSpec {
 
   public add(importName: TImportName): t.Identifier {
     if (this.#cache.has(importName)) {
-      return this.#cache.get(importName);
+      return this.#cache.get(importName)!;
     }
 
     if (this.#specifiers.length === 0) {

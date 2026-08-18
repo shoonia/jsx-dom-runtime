@@ -1,4 +1,4 @@
-import t from '@babel/types';
+import * as t from '@babel/types';
 import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { $stringLiteral, $identifier, $objectProperty } from './builders';
@@ -45,7 +45,7 @@ export const buildProps = (node: t.JSXElement): t.ObjectExpression => ({
 
 export const convertJsxIdentifier = (
   node: t.JSXIdentifier | t.JSXMemberExpression,
-): t.MemberExpression | t.Identifier => {
+): t.MemberExpressionNonComputed | t.Identifier => {
   if (node.type === 'JSXIdentifier') {
     return $identifier(node.name);
   }
@@ -55,7 +55,6 @@ export const convertJsxIdentifier = (
     object: convertJsxIdentifier(node.object),
     property: $identifier(node.property.name),
     computed: false,
-    optional: null,
   };
 };
 
