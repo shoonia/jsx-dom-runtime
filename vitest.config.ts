@@ -27,7 +27,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     setupFiles: './tests/utils/jest-setup.ts',
-    maxWorkers: 1,
+    maxWorkers: process.env.CI ? undefined : '25%',
     pool: 'threads',
   },
   oxc: {
