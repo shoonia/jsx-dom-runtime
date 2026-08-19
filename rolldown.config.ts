@@ -1,7 +1,6 @@
 import { existsSync } from 'node:fs';
-import { rm, mkdir, writeFile } from 'node:fs/promises';
-import { babel } from '@rollup/plugin-babel';
-import { nodeResolve } from '@rollup/plugin-node-resolve';
+import { mkdir, rm, writeFile } from 'node:fs/promises';
+import { defineConfig } from 'rolldown';
 import pkg from './package.json' with { type: 'json' };
 
 const emptyDir = async (path: string) => {
@@ -20,38 +19,19 @@ await writeFile(
   'export * from "../index"',
 );
 
-const extensions = ['.ts'];
-const external = Object.keys(pkg.peerDependencies);
-
-const plugins = [
-  babel({
-    extensions,
-    babelHelpers: 'bundled',
-    plugins: [
-      'babel-plugin-transform-lhs-constants'
-    ],
-    presets: [
-      '@babel/preset-typescript',
-    ],
-    shouldPrintComment: (value: string) => value === '#__PURE__',
-  }),
-  nodeResolve({
-    extensions,
-  }),
-];
-
-export default [
+export default defineConfig([
   {
     input: 'src/babel/index.ts',
     output: [
       {
         file: pkg.exports['./babel-preset'],
         exports: 'default',
+        comments: false,
         format: 'es',
       },
     ],
-    external,
-    plugins,
+    platform: "node",
+    external: Object.keys(pkg.peerDependencies),
   },
   {
     input: 'src/eslint/index.ts',
@@ -59,11 +39,11 @@ export default [
       {
         file: pkg.exports['./eslint-plugin'],
         exports: 'default',
+        comments: false,
         format: 'es',
       },
     ],
-    external,
-    plugins,
+    platform: "node",
   },
   {
     input: 'src/index.ts',
@@ -73,6 +53,6 @@ export default [
         format: 'es',
       },
     ],
-    plugins,
+    platform: "browser",
   },
-];
+]);
