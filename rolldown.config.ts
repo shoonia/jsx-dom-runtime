@@ -46,7 +46,7 @@ export default defineConfig([
           this.emitFile({
             type: 'asset',
             fileName: 'index.d.ts',
-            source: 'export * from "../index"',
+            source: 'export type * from "../index";',
           });
         }
       }
