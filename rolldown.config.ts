@@ -1,23 +1,5 @@
-import { existsSync } from 'node:fs';
-import { mkdir, rm, writeFile } from 'node:fs/promises';
 import { defineConfig } from 'rolldown';
 import pkg from './package.json' with { type: 'json' };
-
-const emptyDir = async (path: string) => {
-  if (existsSync(path)) await rm(path, { recursive: true });
-  await mkdir(path);
-};
-
-await Promise.all([
-  emptyDir('./babel-preset'),
-  emptyDir('./jsx-runtime'),
-  emptyDir('./eslint-plugin'),
-]);
-
-await writeFile(
-  './jsx-runtime/index.d.ts',
-  'export * from "../index"',
-);
 
 export default defineConfig([
   {
@@ -27,10 +9,11 @@ export default defineConfig([
         file: pkg.exports['./babel-preset'],
         exports: 'default',
         comments: false,
+        cleanDir: true,
         format: 'es',
       },
     ],
-    platform: "node",
+    platform: 'node',
     external: Object.keys(pkg.peerDependencies),
   },
   {
@@ -40,10 +23,11 @@ export default defineConfig([
         file: pkg.exports['./eslint-plugin'],
         exports: 'default',
         comments: false,
+        cleanDir: true,
         format: 'es',
       },
     ],
-    platform: "node",
+    platform: 'node',
   },
   {
     input: 'src/index.ts',
@@ -51,8 +35,21 @@ export default defineConfig([
       {
         file: pkg.module,
         format: 'es',
+        cleanDir: true,
       },
     ],
-    platform: "browser",
+    platform: 'browser',
+    plugins: [
+      {
+        name: 'types',
+        generateBundle() {
+          this.emitFile({
+            type: 'asset',
+            fileName: 'index.d.ts',
+            source: 'export * from "../index"',
+          });
+        }
+      }
+    ]
   },
 ]);
