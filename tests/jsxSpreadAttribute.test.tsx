@@ -18,8 +18,7 @@ describe('JSXSpreadAttribute', () => {
     '<custom-element {...props} />;',
   ])('should throw an error for spread attributes on DOM  - %s', async (code) => {
 
-    await expect(async () => {
-      await t(code, 'test.tsx', false);
-    }).rejects.toThrow(/SyntaxError: HTML, SVG, MathML or Custom Elements must not have spread attributes./);
+    await expect(t(code, 'test.tsx', false))
+    .rejects.toThrow(/SyntaxError: HTML, SVG, MathML or Custom Elements must not have spread attributes./);
   });
 });

@@ -14,7 +14,7 @@ describe('JSX DOM Events', () => {
   });
 
   it('should throw an error for invalid event listener values in compilation', async () => {
-    await expect(t`<div on:click={} />`)
+    await expect(t('<div on:click={} />', 'test.tsx', false))
     .rejects.toThrow(/JSX attributes must only be assigned a non-empty expression./);
   });
 
