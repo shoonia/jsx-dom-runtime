@@ -45,7 +45,7 @@ expect.extend({
   },
 
   async toBeTransform(source: string, code: string) {
-    const result = await t(source, this.testPath, true);
+    const result = await t(source, this.testPath ?? 'test.tsx', true);
 
     const pass = code === result;
 
