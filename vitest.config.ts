@@ -1,6 +1,6 @@
 import type { Plugin } from 'vite';
 import { defineConfig } from 'vitest/config';
-import { t } from './tests/utils/t';
+import { t } from './tests/utils/t.ts';
 
 const babelPlugin: Plugin = {
   name: "babel",
