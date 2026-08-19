@@ -1,6 +1,6 @@
-import { defineConfig } from 'vitest/config';
 import { transformAsync } from '@babel/core';
 import type { Plugin } from 'vite';
+import { defineConfig } from 'vitest/config';
 import preset from './babel-preset/index.js';
 
 const babelPlugin: Plugin = {
