@@ -1,6 +1,4 @@
-import { transformAsync } from '@babel/core';
-// @ts-expect-error
-import preset from '../babel-preset/index.js';
+import { t } from './utils';
 
 describe('JSXSpreadAttribute', () => {
   it('should allow spread attributes on function components', async () => {
@@ -20,11 +18,7 @@ describe('JSXSpreadAttribute', () => {
     '<custom-element {...props} />;',
   ])('should throw an error for spread attributes on DOM  - %s', async (code) => {
 
-    await expect(async () => {
-      await transformAsync(code, {
-        presets: [preset],
-        filename: 'test.js',
-      });
-    }).rejects.toThrow(/SyntaxError: HTML, SVG, MathML or Custom Elements must not have spread attributes./);
+    await expect(t(code, 'test.tsx', false))
+    .rejects.toThrow(/SyntaxError: HTML, SVG, MathML or Custom Elements must not have spread attributes./);
   });
 });

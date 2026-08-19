@@ -14,18 +14,18 @@ describe('babel: JSXEmptyExpression', () => {
   it('should be syntax error #1', async () => {
     expect.hasAssertions();
 
-    const promise =  t`<div id={}></div>`;
+    const promise = t('<div id={}></div>', 'test.tsx', false);
 
     await expect(promise).rejects.toBeInstanceOf(SyntaxError);
-    await expect(promise).rejects.toThrow('unknown: JSX attributes must only be assigned a non-empty expression');
+    await expect(promise).rejects.toThrow('JSX attributes must only be assigned a non-empty expression');
   });
 
   it('should be syntax error #2', async () => {
     expect.hasAssertions();
 
-    const promise = t`<div {}></div>`;
+    const promise = t('<div {}></div>', 'test.tsx', false);
 
     await expect(promise).rejects.toBeInstanceOf(SyntaxError);
-    await expect(promise).rejects.toThrow('unknown: Unexpected token, expected "..."');
+    await expect(promise).rejects.toThrow('Unexpected token, expected "..."');
   });
 });
