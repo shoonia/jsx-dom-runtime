@@ -8,11 +8,12 @@ type TTemplate = string | TemplateStringsArray;
 const getSource = (source: TTemplate): string =>
   typeof source === 'string' ? source : source[0];
 
-export const t = async (source: TTemplate) => {
+export const t = async (source: TTemplate, filename: string, minified: boolean) => {
   const result = await transformAsync(getSource(source), {
+    filename,
+    minified,
     presets: [preset],
     ast: false,
-    minified: true,
     babelrc: false,
     sourceMaps: false,
     configFile: false,

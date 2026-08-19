@@ -1,22 +1,15 @@
-import { transformAsync } from '@babel/core';
 import type { Plugin } from 'vite';
 import { defineConfig } from 'vitest/config';
-import preset from './babel-preset/index.js';
+import { t } from './tests/utils/t';
 
 const babelPlugin: Plugin = {
   name: "babel",
   enforce: 'post',
   async transform(code, id) {
-    if (!id.endsWith('.tsx') || id.includes('/node_modules/')) return;
-
-    const respnse = await transformAsync(code, {
-      presets: [preset as any],
-      filename: id,
-      ast: false,
-    });
-
-    return {
-      code: respnse?.code ?? '',
+    if (id.endsWith('.tsx')) {
+      return {
+        code: await t(code, id, false),
+      };
     };
   },
 };
@@ -26,7 +19,7 @@ export default defineConfig({
     include: ['tests/**/*.spec.ts?(x)'],
     globals: true,
     environment: 'jsdom',
-    setupFiles: './tests/utils/jest-setup.ts',
+    setupFiles: './tests/utils/setup.ts',
     pool: 'threads',
   },
   oxc: {
