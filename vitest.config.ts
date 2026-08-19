@@ -3,7 +3,7 @@ import { defineConfig } from 'vitest/config';
 import { t } from './tests/utils/t.ts';
 
 const babelPlugin: Plugin = {
-  name: "babel",
+  name: 'babel',
   enforce: 'post',
   async transform(code, id) {
     if (id.endsWith('.tsx')) {

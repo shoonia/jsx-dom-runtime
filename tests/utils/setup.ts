@@ -31,18 +31,6 @@ expect.extend({
     };
   },
 
-  toHaveCssText(node: HTMLElement, css: string) {
-    const val = node.style.cssText;
-    const pass = val === css;
-
-    return {
-      pass,
-      message: () => pass
-        ? 'expected value not to be equal style.cssText'
-        : 'expected value to be equal style.cssText\n\n' + this.utils.diff(val, css),
-    };
-  },
-
   async toBeTransform(source: string, code: string) {
     const result = await t(source, this.testPath ?? 'test.tsx', true);
 

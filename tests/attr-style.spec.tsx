@@ -2,7 +2,7 @@ import { styleImport, jsxImport } from './utils/t';
 
 describe('Style attribute', () => {
   it('should add style as a string', () => {
-    expect(<div style="color: red; padding: 10px;" />).toHaveCssText(
+    expect(<div style="color: red; padding: 10px;" />).toHaveStyle(
       'color: red; padding: 10px;',
     );
   });
@@ -11,26 +11,26 @@ describe('Style attribute', () => {
     expect(<div style={{
       color: 'black',
       border: '1px solid white',
-    }} />).toHaveCssText(
+    }} />).toHaveStyle(
       'color: black; border: 1px solid white;',
     );
   });
 
   it('should add CSS custom property as a string', () => {
-    expect(<div style="--x: red;" />).toHaveCssText('--x: red;');
+    expect(<div style="--x: red;" />).toHaveStyle('--x: red;');
   });
 
   it('should add CSS custom property as an object', () => {
-    expect(<div style={{ '--x': 'red' }} />).toHaveCssText('--x: red;');
-    expect(<div style={{ '--y': 'yellow', '--b': 'blue' }} />).toHaveCssText('--y: yellow; --b: blue;');
+    expect(<div style={{ '--x': 'red' }} />).toHaveStyle('--x: red;');
+    expect(<div style={{ '--y': 'yellow', '--b': 'blue' }} />).toHaveStyle('--y: yellow; --b: blue;');
   });
 
   it('should add inline CSS with `cssText` property', () => {
-    expect(<p style={{ cssText: 'padding: 15px; margin: 15px;' }} />).toHaveCssText('padding: 15px; margin: 15px;');
+    expect(<p style={{ cssText: 'padding: 15px; margin: 15px;' }} />).toHaveStyle('padding: 15px; margin: 15px;');
   });
 
   it('should not braken when value is undefined', () => {
-    expect(<div style={undefined} />).toHaveCssText('');
+    expect(<div style={undefined} />).toHaveStyle('');
   });
 
   it('should transform style attribute to setStyle directive with object', async () => {
