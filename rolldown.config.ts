@@ -15,6 +15,10 @@ export default defineConfig([
     ],
     platform: 'node',
     external: Object.keys(pkg.peerDependencies),
+    optimization: {
+      inlineConst: true,
+      pifeForModuleWrappers: true,
+    },
   },
   {
     input: 'src/eslint/index.ts',
@@ -28,6 +32,10 @@ export default defineConfig([
       },
     ],
     platform: 'node',
+    optimization: {
+      inlineConst: true,
+      pifeForModuleWrappers: true,
+    },
   },
   {
     input: 'src/index.ts',
@@ -48,8 +56,8 @@ export default defineConfig([
             fileName: 'index.d.ts',
             source: 'export type * from "../index";',
           });
-        }
-      }
-    ]
+        },
+      },
+    ],
   },
 ]);
