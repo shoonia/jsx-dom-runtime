@@ -159,7 +159,7 @@ export type SnapEventHandler<T = Element> = EventHandlerFunction<SnapEvent, T>
 
 export interface CSSProperties extends Properties<number | string> {
   cssText?: string | null
-  [key: `--${string}`]: number | string
+  [key: `--${string}`]: number | string | null
 }
 
 export type ControlsList =
@@ -690,7 +690,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
        */
       spellcheck?: Signalish<'true' | 'false'>
-      style?: string | CSSProperties
+      style?: Signalish<string | CSSProperties>
       dataset?: DOMStringMap
       attributes?: Attr | Attr[]
       tabIndex?: Signalish<Numeric>
