@@ -159,7 +159,7 @@ export type SnapEventHandler<T = Element> = EventHandlerFunction<SnapEvent, T>
 
 export interface CSSProperties extends Properties<number | string> {
   cssText?: string | null
-  [key: `--${string}`]: number | string
+  [key: `--${string}`]: number | string | null
 }
 
 export type ControlsList =

@@ -18,30 +18,6 @@ describe('Style attribute', () => {
     );
   });
 
-  it('should support signal string', () => {
-    const style = signal('font-size: 16px;');
-    const p = <p style={style} />;
-
-    expect(p).toHaveCssText('font-size: 16px;');
-    style.set('font-size: 18px;');
-    expect(p).toHaveCssText('font-size: 18px;');
-  });
-
-  it('should support signal object', () => {
-    const style = signal<CSSProperties>({
-      color: 'red',
-      backgroundColor: 'blue',
-    });
-    const span = <span style={style} />;
-
-    expect(span).toHaveCssText('color: red; background-color: blue;');
-    style.set({
-      color: 'green',
-      backgroundColor: 'yellow',
-    });
-    expect(span).toHaveCssText('color: green; background-color: yellow;');
-  });
-
   it('should add CSS custom property as a string', () => {
     expect(<div style="--x: red;" />).toHaveCssText('--x: red;');
   });
@@ -77,5 +53,53 @@ describe('Style attribute', () => {
   it('should transform style attribute to setStyle directive when using variable', async () => {
     await expect('<div style={style} />')
       .toBeTransform(styleImport`_jsx("div",{ref:e=>_setStyle(e,style)});`);
+  });
+
+  it('should support signal string', () => {
+    const style = signal('font-size: 16px;');
+    const p = <p style={style} />;
+
+    expect(p).toHaveCssText('font-size: 16px;');
+    style.set('font-size: 18px;');
+    expect(p).toHaveCssText('font-size: 18px;');
+  });
+
+  it('should support signal object', () => {
+    const style = signal<CSSProperties>({
+      color: 'red',
+      backgroundColor: 'blue',
+    });
+    const span = <span style={style} />;
+
+    expect(span).toHaveCssText('color: red; background-color: blue;');
+    style.set({
+      color: 'green',
+      backgroundColor: 'yellow',
+    });
+    expect(span).toHaveCssText('color: green; background-color: yellow;');
+  });
+
+  it('should support signal custom property', () => {
+    const style = signal('--x: red;');
+    const div = <div style={style} />;
+
+    expect(div).toHaveCssText('--x: red;');
+    style.set('--x: blue;');
+    expect(div).toHaveCssText('--x: blue;');
+  });
+
+  it('should support signal custom property as an object', () => {
+    const style = signal<CSSProperties>({
+      '--x': 'red',
+      '--y': 'blue',
+    });
+    const div = <div style={style} />;
+
+    expect(div).toHaveCssText('--x: red; --y: blue;');
+    style.set({
+      '--x': 'green',
+      '--y': 'yellow',
+    });
+    expect(div).toHaveCssText('--x: green; --y: yellow;');
   });
 });
