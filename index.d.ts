@@ -690,7 +690,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Glossary/Enumerated
        */
       spellcheck?: Signalish<'true' | 'false'>
-      style?: string | CSSProperties
+      style?: Signalish<string | CSSProperties>
       dataset?: DOMStringMap
       attributes?: Attr | Attr[]
       tabIndex?: Signalish<Numeric>

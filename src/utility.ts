@@ -1,18 +1,19 @@
 import { _s } from './_s';
 
-export const setStyle = (node, value) => {
-  if (typeof value == 'string') {
-    node.style.cssText = value;
-  } else {
-    for (let key in value) {
-      if (key.startsWith('-')) {
-        node.style.setProperty(key, value[key]);
-      } else {
-        node.style[key] = value[key];
+export const setSignalish = (value, fn) =>
+  value?.[_s] ? value.on(fn) : fn(value);
+
+export const setStyle = (node, value) =>
+  setSignalish(value, (val) => {
+    if (typeof val == 'string') {
+      node.style.cssText = val;
+    } else {
+      for (let key in val) {
+        if (key.startsWith('-')) node.style.setProperty(key, val[key]);
+        else node.style[key] = val[key];
       }
     }
-  }
-};
+  });
 
 export const setDataset = (node, value) => {
   for (let key in value) {
@@ -23,9 +24,6 @@ export const setDataset = (node, value) => {
 };
 
 export const setAttributes = (node, value) =>
-  (Array.isArray(value) ? value : [value]).forEach(
-    (i) => node.setAttributeNode(i));
-
-export const setSignalish = (value, fn) => value?.[_s]
-  ? value.on(fn)
-  : fn(value);
+  (Array.isArray(value) ? value : [value]).forEach((i) =>
+    node.setAttributeNode(i),
+  );

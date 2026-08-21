@@ -1,3 +1,4 @@
+import { signal } from 'jsx-dom-runtime';
 import { styleImport, jsxImport } from './utils/t';
 
 describe('Style attribute', () => {
@@ -14,6 +15,14 @@ describe('Style attribute', () => {
     }} />).toHaveCssText(
       'color: black; border: 1px solid white;',
     );
+  });
+
+  it('should support signal string', () => {
+    const style = signal('font-size: 16px;');
+    const p = <p style={style} />;
+    expect(p).toHaveCssText('font-size: 16px;');
+    style.set('font-size: 18px;');
+    expect(p).toHaveCssText('font-size: 16px;');
   });
 
   it('should add CSS custom property as a string', () => {
