@@ -65,7 +65,6 @@ render(
 - [useRef()](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#creating-refs) - Create DOM element references
 - [Callback Refs](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#callback-refs) - Reference elements with callbacks
 - [useText()](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#text) - Create reactive Text nodes
-- [Template](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#template) - Parse HTML strings
 
 ### Tooling
 - [ESLint Support](https://github.com/shoonia/jsx-dom-runtime/blob/master/AGENTS.md#eslint-support) - Linting rules and configuration

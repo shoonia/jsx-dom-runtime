@@ -681,20 +681,6 @@ theme.set('dark');
 // both header and footer now have class="dark"
 ```
 
-### Template
-
-Get a template from a string.
-
-```js
-import { Template } from 'jsx-dom-runtime';
-
-<Template>
-  {`<svg width="24" height="24" aria-hidden="true">
-      <path d="M12 12V6h-1v6H5v1h6v6h1v-6h6v-1z"/>
-    </svg>`}
-</Template>
-```
-
 ## ESLint Support
 
 This library provides [ESLint](https://eslint.org) rules to help you write better JSX code and catch common mistakes. The rules are designed to work with **ESLint v9** and help enforce best practices when using jsx-dom-runtime.
