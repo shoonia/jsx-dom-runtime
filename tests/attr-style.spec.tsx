@@ -22,7 +22,7 @@ describe('Style attribute', () => {
     const p = <p style={style} />;
     expect(p).toHaveCssText('font-size: 16px;');
     style.set('font-size: 18px;');
-    expect(p).toHaveCssText('font-size: 16px;');
+    expect(p).toHaveCssText('font-size: 18px;');
   });
 
   it('should add CSS custom property as a string', () => {
