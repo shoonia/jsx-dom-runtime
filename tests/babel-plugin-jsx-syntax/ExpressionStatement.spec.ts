@@ -8,11 +8,11 @@ describe('babel-plugin-jsx-syntax: ExpressionStatement', () => {
   });
 
   it('should work in block', async () => {
-    await expect('{ <App />; };').toBeTransform('{App({})};');
+    await expect('{ <App />; };').toBeTransform('{App({});};');
   });
 
   it('should work a few components in block', async () => {
-    await expect('{ <App />; <Two />; };').toBeTransform('{App({});Two({})};');
+    await expect('{ <App />; <Two />; };').toBeTransform('{App({});Two({});};');
   });
 
   it('should work LabeledStatement', async () => {

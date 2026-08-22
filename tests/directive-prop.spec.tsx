@@ -26,13 +26,13 @@ describe('directive prop:*', () => {
 
   it('should support a few `prop:*` directive to set properties', async () => {
     await expect('<div prop:foo-foo={1} prop:bar-bar="2" />').toBeTransform(
-      jsxImport`_jsx("div",{ref:e=>{e["foo-foo"]=1;e["bar-bar"]="2"}});`
+      jsxImport`_jsx("div",{ref:e=>{e["foo-foo"]=1;e["bar-bar"]="2";}});`
     );
   });
 
   it('should join `ref` with `prop:*` directive expressions', async () => {
     await expect('<div ref={(e) => console.log(e)} prop:foo-foo={1} prop:bar="2" />').toBeTransform(
-      jsxImport`_jsx("div",{ref:[e=>{e["foo-foo"]=1;e.bar="2"},e=>console.log(e)]});`
+      jsxImport`_jsx("div",{ref:[e=>{e["foo-foo"]=1;e.bar="2";},e=>console.log(e)]});`
     );
   });
 
@@ -75,7 +75,7 @@ describe('directive prop:*', () => {
 
   it('should transform a few event handlers to properties', async () => {
     expect('<input type="text" onclick={fn1} onchange={fn2} oninvalid={fn3} onblur={fn4} />').toBeTransform(
-      jsxImport`_jsx("input",{ref:e=>{e.onclick=fn1;e.onchange=fn2;e.oninvalid=fn3;e.onblur=fn4},type:"text"});`
+      jsxImport`_jsx("input",{ref:e=>{e.onclick=fn1;e.onchange=fn2;e.oninvalid=fn3;e.onblur=fn4;},type:"text"});`
     );
   });
 });

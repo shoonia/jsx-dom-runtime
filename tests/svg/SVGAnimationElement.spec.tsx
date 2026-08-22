@@ -1,7 +1,7 @@
 /* eslint-disable jsx-dom-runtime/no-legacy-event-handler */
-import { vi } from 'vitest';
 import { createEvent, fireEvent } from '@testing-library/dom';
 import type { GenericEventHandler } from 'jsx-dom-runtime';
+import { vi } from 'vitest';
 
 import { svgImport } from '../utils/t';
 
@@ -59,7 +59,7 @@ describe('SVGAnimationElement', () => {
     await expect(
       '<animate onbegin={begin} onend={end} onrepeat={repeat} />'
     ).toBeTransform(
-      svgImport`_jsx("animate",{ref:e=>{e.onbegin=begin;e.onend=end;e.onrepeat=repeat},_:_svgNs});`
+      svgImport`_jsx("animate",{ref:e=>{e.onbegin=begin;e.onend=end;e.onrepeat=repeat;},_:_svgNs});`
     );
   });
 });

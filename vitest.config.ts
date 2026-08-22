@@ -8,7 +8,7 @@ const babelPlugin: Plugin = {
   async transform(code, id) {
     if (id.endsWith('.tsx')) {
       return {
-        code: await t(code, id, false),
+        code: await t(code, id),
       };
     };
   },
