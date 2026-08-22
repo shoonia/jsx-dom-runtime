@@ -3,7 +3,6 @@ import type { TSESLint } from '@typescript-eslint/utils';
 import { isJSXIdentifier, isStandardNode } from './utils';
 
 export const rule: TSESLint.RuleModule<'legacyEventHandler', []> = {
-  defaultOptions: [],
   meta: {
     type: 'suggestion',
     docs: {

@@ -1,10 +1,12 @@
 import type { TSESTree } from '@typescript-eslint/utils';
 
-import { htmlTags, svgTags, mathmlTags, voidHTMLTags } from '../collections';
+import { htmlTags, mathmlTags, svgTags, voidHTMLTags } from '../collections';
 
 const voidTags = new Set(voidHTMLTags);
 // Tags that are allowed in both HTML and SVG contexts
 const crossTags = new Set(['a', 'script', 'style', 'title']);
+
+export const nonJsxExtensions = new Set(['.ts', '.js', '.cjs', '.mjs']);
 
 const isStandardTag = (tag: string) => htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag);
 

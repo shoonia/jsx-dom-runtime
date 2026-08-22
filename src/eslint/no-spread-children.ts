@@ -1,7 +1,6 @@
 import type { TSESLint } from '@typescript-eslint/utils';
 
 export const rule: TSESLint.RuleModule<'noSpreadChildren', []> = {
-  defaultOptions: [],
   meta: {
     type: 'problem',
     docs: {
