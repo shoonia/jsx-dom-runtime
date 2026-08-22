@@ -3,7 +3,6 @@ import type { TSESLint } from '@typescript-eslint/utils';
 import { isStandardNode } from './utils.js';
 
 export const rule: TSESLint.RuleModule<string, []> = {
-  defaultOptions: [],
   meta: {
     type: 'problem',
     docs: {

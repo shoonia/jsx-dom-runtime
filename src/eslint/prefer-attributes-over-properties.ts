@@ -4,7 +4,6 @@ import { htmlDOMAttributes, svgDOMAttributes } from '../collections';
 import { isStandardNode, isSvgNode } from './utils';
 
 export const rule: TSESLint.RuleModule<string, []> = {
-  defaultOptions: [],
   meta: {
     type: 'suggestion',
     docs: {

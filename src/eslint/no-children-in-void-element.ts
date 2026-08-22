@@ -3,7 +3,6 @@ import type { TSESLint } from '@typescript-eslint/utils';
 import { hasJSXChildren, isVoidElement } from './utils';
 
 export const rule: TSESLint.RuleModule<string, []> = {
-  defaultOptions: [],
   meta: {
     type: 'problem',
     docs: {
@@ -31,6 +30,10 @@ export const rule: TSESLint.RuleModule<string, []> = {
               node: node.closingElement.name,
               messageId: 'mustSelfClose',
               fix: fixer => {
+                if (!node.closingElement) {
+                  return null;
+                }
+
                 const end = node.openingElement.range[1];
 
                 return [
