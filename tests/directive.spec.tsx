@@ -3,27 +3,27 @@ import { jsxImport, signalishImport } from './utils/t';
 describe('directives', () => {
   it('should join attr:* props:* directives and ref together with a user `ref` in the last ref position #1', async () => {
     await expect('<p attr:hello="1" prop:world="2" ref={userRef} id="p" />').toBeTransform(
-      jsxImport`_jsx("p",{ref:[e=>{e.setAttribute("hello","1");e.world="2"},userRef],id:"p"});`
+      jsxImport`_jsx("p",{ref:[e=>{e.setAttribute("hello","1");e.world="2";},userRef],id:"p"});`
     );
   });
 
   it('should join attr:* props:* directives and ref together with a user `ref` in the last ref position #2', async () => {
     await expect('<p ref={userRef} attr:hello="1" prop:world="2" id="p" />').toBeTransform(
-      jsxImport`_jsx("p",{ref:[e=>{e.setAttribute("hello","1");e.world="2"},userRef],id:"p"});`
+      jsxImport`_jsx("p",{ref:[e=>{e.setAttribute("hello","1");e.world="2";},userRef],id:"p"});`
     );
   });
 
   it('should correctly transform event handlers with `prop:* & attr:*` directives', async () => {
     await expect('<input type="text" attr:hello="world" prop:foo={foo} prop:bar={bar} oninvalid={fn2} onblur={fn3} />').toBeTransform(
-      signalishImport`_jsx("input",{ref:e=>{e.setAttribute("hello","world");_setSignalish(foo,i=>e.foo=i);_setSignalish(bar,i=>e.bar=i);e.oninvalid=fn2;e.onblur=fn3},type:"text"});`
+      signalishImport`_jsx("input",{ref:e=>{e.setAttribute("hello","world");_setSignalish(foo,i=>e.foo=i);_setSignalish(bar,i=>e.bar=i);e.oninvalid=fn2;e.onblur=fn3;},type:"text"});`
     );
   });
 
   it('should render using `attr:*` and `prop:*` directives with dataset & style', async () => {
     await expect('<p attr:test="qa" prop:_data={100} dataset={{ id: "123" }} style={{ color: "red" }} />')
-    .toBeTransform(
-      'import{setDataset as _setDataset,setStyle as _setStyle,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("p",{ref:e=>{e.setAttribute("test","qa");e._data=100;_setDataset(e,{id:"123"});_setStyle(e,{color:"red"})}});'
-    );
+      .toBeTransform(
+        'import{setDataset as _setDataset,setStyle as _setStyle,jsx as _jsx}from"jsx-dom-runtime";/*#__PURE__*/_jsx("p",{ref:e=>{e.setAttribute("test","qa");e._data=100;_setDataset(e,{id:"123"});_setStyle(e,{color:"red"});}});'
+      );
   });
 
   it('should render correct all directives', () => {
