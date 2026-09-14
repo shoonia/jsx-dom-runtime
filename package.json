@@ -48,22 +48,22 @@
     }
   },
   "devDependencies": {
-    "@babel/core": "^8.0.1",
+    "@babel/core": "^8.0.5",
     "@babel/helper-validator-identifier": "^8.0.4",
-    "@babel/types": "^8.0.4",
+    "@babel/types": "^8.0.5",
     "@eslint/js": "^10.0.1",
-    "@size-limit/preset-small-lib": "^13.0.3",
-    "@testing-library/dom": "^10.4.1",
+    "@size-limit/preset-small-lib": "^13.1.1",
+    "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",
-    "@types/node": "^26.2.0",
-    "@vitest/coverage-v8": "^4.1.11",
-    "eslint": "^10.9.0",
+    "@types/node": "^26.5.1",
+    "@vitest/coverage-v8": "^5.0.0",
+    "eslint": "^10.10.0",
     "jsdom": "^30.0.1",
     "rolldown": "^1.2.5",
     "size-limit": "^13.0.3",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.67.0",
-    "vitest": "^4.1.11"
+    "typescript-eslint": "^8.70.0",
+    "vitest": "^5.0.0"
   },
   "files": [
     "AGENTS.md",
