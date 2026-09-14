@@ -36,6 +36,17 @@
     "@babel/helper-validator-identifier": "^8.0.0",
     "@babel/types": "^8.0.0"
   },
+  "peerDependenciesMeta": {
+    "@babel/core": {
+      "optional": true
+    },
+    "@babel/helper-validator-identifier": {
+      "optional": true
+    },
+    "@babel/types": {
+      "optional": true
+    }
+  },
   "devDependencies": {
     "@babel/core": "^8.0.1",
     "@babel/helper-validator-identifier": "^8.0.4",
