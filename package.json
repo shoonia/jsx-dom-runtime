@@ -1,6 +1,6 @@
 {
   "name": "jsx-dom-runtime",
-  "version": "0.84.0",
+  "version": "0.85.1",
   "description": "A tiny 500-byte library for JSX templates targeting the DOM. Supports HTML, SVG, MathML, and Custom Element tags",
   "type": "module",
   "main": "jsx-runtime/index.js",
@@ -30,22 +30,6 @@
   },
   "dependencies": {
     "csstype": "^3.2.3"
-  },
-  "peerDependencies": {
-    "@babel/core": "^8.0.0",
-    "@babel/helper-validator-identifier": "^8.0.0",
-    "@babel/types": "^8.0.0"
-  },
-  "peerDependenciesMeta": {
-    "@babel/core": {
-      "optional": true
-    },
-    "@babel/helper-validator-identifier": {
-      "optional": true
-    },
-    "@babel/types": {
-      "optional": true
-    }
   },
   "devDependencies": {
     "@babel/core": "^8.0.5",
