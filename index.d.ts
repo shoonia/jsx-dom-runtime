@@ -3252,8 +3252,6 @@ declare global {
        * @deprecated
        */
       align?: Signalish<'left' | 'center' | 'right' | 'justify' | 'char'>
-      /** @deprecated */
-      char?: Signalish<string>
       /**
        * To achieve a similar effect, use the CSS `background-color` property
        * @deprecated
