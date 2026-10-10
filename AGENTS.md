@@ -98,6 +98,15 @@ import babel from '@rolldown/plugin-babel';
 export default defineConfig(() => {
   return {
     // Vite config ...
+    optimizeDeps: {
+      // The dependency scanner ignores `oxc`, so preserve JSX here too.
+      rolldownOptions: {
+        transform: {
+          jsx: 'preserve',
+          target: 'esnext',
+        },
+      },
+    },
     oxc: {
       // Preserve JSX syntax in Oxc's output instead of transforming it.
       // This allows Babel to process the JSX later in the build pipeline.

@@ -1,6 +1,6 @@
-import { defineConfig, type UserConfig } from 'vite';
 import babel from '@rolldown/plugin-babel';
 import generateScopedName from 'mini-css-class-name/postcss-modules';
+import { defineConfig, type UserConfig } from 'vite';
 
 export default defineConfig(({ mode }): UserConfig => {
   const isProd = mode === 'production';
@@ -29,6 +29,11 @@ export default defineConfig(({ mode }): UserConfig => {
         generateScopedName: isProd
           ? generateScopedName()
           : '[name]__[local]___[hash:base64:5]',
+      },
+    },
+    optimizeDeps: {
+      rolldownOptions: {
+        transform: { jsx: 'preserve', target: 'esnext' },
       },
     },
     oxc: {
