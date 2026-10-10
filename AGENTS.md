@@ -59,35 +59,7 @@ To enable JSX transformation, add the `jsx-dom-runtime/babel-preset` to your [Ba
 
 [Vite v7](https://v7.vite.dev/) and [Vite v8](https://vite.dev/) use different transformers and plugin systems. Choose the configuration that matches your Vite version.
 
-Vite v7 uses [esbuild](https://esbuild.github.io/api/) and [Rollup](https://rollupjs.org/introduction/). Configure esbuild to preserve JSX so that Babel can transform it with this library's preset.
-
-**vite.config.ts**
-
-```ts
-import { defineConfig } from 'vite';
-import babel from '@rollup/plugin-babel';
-
-export default defineConfig(() => {
-  return {
-    // Vite config ...
-    esbuild: {
-      // Preserve JSX syntax in esbuild's output instead of transforming it.
-      // This allows Babel to process the JSX later in the build pipeline.
-      jsx: 'preserve',
-    },
-    plugins: [
-      babel({
-        babelHelpers: 'bundled',
-        // Optimize the build by running Babel only on files that can contain JSX.
-        extensions: ['.jsx', '.tsx'],
-        presets: ['jsx-dom-runtime/babel-preset'],
-      }),
-    ],
-  };
-});
-```
-
-Vite v8 uses [Oxc](https://oxc.rs/docs/guide/what-is-oxc.html) and [Rolldown](https://rolldown.rs/). Configure Oxc to preserve JSX and use the Rolldown Babel plugin to transform it.
+Vite **v8** uses [Oxc](https://oxc.rs/docs/guide/what-is-oxc.html) and [Rolldown](https://rolldown.rs/). Configure Oxc to preserve JSX and use the Rolldown Babel plugin to transform it.
 
 **vite.config.ts**
 
@@ -117,6 +89,34 @@ export default defineConfig(() => {
       babel({
         // Optimize the build by running Babel only on files that can contain JSX.
         include: /\.[jt]sx$/,
+        presets: ['jsx-dom-runtime/babel-preset'],
+      }),
+    ],
+  };
+});
+```
+
+Vite **v7** uses [esbuild](https://esbuild.github.io/api/) and [Rollup](https://rollupjs.org/introduction/). Configure esbuild to preserve JSX so that Babel can transform it with this library's preset.
+
+**vite.config.ts**
+
+```ts
+import { defineConfig } from 'vite';
+import babel from '@rollup/plugin-babel';
+
+export default defineConfig(() => {
+  return {
+    // Vite config ...
+    esbuild: {
+      // Preserve JSX syntax in esbuild's output instead of transforming it.
+      // This allows Babel to process the JSX later in the build pipeline.
+      jsx: 'preserve',
+    },
+    plugins: [
+      babel({
+        babelHelpers: 'bundled',
+        // Optimize the build by running Babel only on files that can contain JSX.
+        extensions: ['.jsx', '.tsx'],
         presets: ['jsx-dom-runtime/babel-preset'],
       }),
     ],
@@ -605,7 +605,7 @@ const s = signal('hello');
 const off = s.on((value) => {
   // called immediately: "hello"
   // then on every s.set(...)
-  console.log(value); 
+  console.log(value);
 });
 
 s.set('world'); // logs "world"
