@@ -1,3 +1,4 @@
+import { isAbsolute } from 'node:path';
 import { defineConfig } from 'rolldown';
 import pkg from './package.json' with { type: 'json' };
 
@@ -14,7 +15,7 @@ export default defineConfig([
       },
     ],
     platform: 'node',
-    external: Object.keys(pkg.peerDependencies),
+    external: (id) => !id.startsWith('.') && !isAbsolute(id),
     optimization: {
       inlineConst: true,
       pifeForModuleWrappers: true,
