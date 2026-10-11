@@ -22,7 +22,7 @@ export const signal = (value: any = ''): Signal<any> => {
 
     [_s]: _s,
 
-    _a(name: any) {
+    _a(name: string) {
       const attr = document.createAttribute(name);
       on((val) => attr.value = val);
       return attr;
