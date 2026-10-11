@@ -1,6 +1,6 @@
-import { signal } from 'jsx-dom-runtime';
 import type { CSSProperties } from 'jsx-dom-runtime';
-import { styleImport, jsxImport } from './utils/t';
+import { signal } from 'jsx-dom-runtime';
+import { jsxImport, styleImport } from './utils/t';
 
 describe('Style attribute', () => {
   it('should add style as a string', () => {
@@ -48,6 +48,11 @@ describe('Style attribute', () => {
   it('should add style as a template literal (no extra util)', async () => {
     await expect('<div style={`color: ${color}; background-color: ${backgroundColor};`} />')
       .toBeTransform(jsxImport('_jsx("div",{style:`color: ${color}; background-color: ${backgroundColor};`});'));
+  });
+
+  it('should add style an attribute handler when using binary expression', async () => {
+    await expect('<div style={"color:" + color} />')
+      .toBeTransform(jsxImport`_jsx("div",{style:"color:"+color});`);
   });
 
   it('should transform style attribute to setStyle directive when using variable', async () => {
