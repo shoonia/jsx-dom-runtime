@@ -21,6 +21,7 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: './tests/utils/setup.ts',
     pool: 'threads',
+    isolate: false,
   },
   oxc: {
     target: 'esnext',
