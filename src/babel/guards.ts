@@ -12,13 +12,14 @@ interface JsxExpdressionContainerWithBoolean extends t.JSXExpressionContainer {
   expression: t.BooleanLiteral
 }
 
-export const literals = new Set<NodeType>([
+export const staticTypes = new Set<NodeType>([
   'StringLiteral',
   'TemplateLiteral',
   'NumericLiteral',
   'BooleanLiteral',
   'BigIntLiteral',
   'NullLiteral',
+  'BinaryExpression'
 ]);
 
 export const jsxNode = new Set<NodeType>(['JSXElement', 'JSXFragment']);
@@ -32,10 +33,10 @@ export const isRef = (i: t.ObjectMethod | t.ObjectProperty | t.SpreadElement): i
 export const isJsxContainerWithBoolean = (node: t.Node): node is JsxExpdressionContainerWithBoolean =>
   node.type === 'JSXExpressionContainer' && node.expression.type === 'BooleanLiteral';
 
-export const isJsxAttributeLiteralValue = (node: Nulishable<t.Node>): node is Nulishable<t.JSXExpressionContainer> =>
+export const isStaticJsxAttributeValue = (node: Nulishable<t.Node>): node is Nulishable<t.JSXExpressionContainer> =>
   node == null ||
   node.type === 'StringLiteral' ||
-  node.type === 'JSXExpressionContainer' && literals.has(node.expression.type);
+  node.type === 'JSXExpressionContainer' && staticTypes.has(node.expression.type);
 
 // [$] and [_] character codes
 const charCode = new Set([36, 95]);

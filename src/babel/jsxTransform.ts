@@ -1,17 +1,45 @@
-import type { PluginObject, NodePath } from '@babel/core';
+import type { NodePath, PluginObject } from '@babel/core';
 import type * as t from '@babel/types';
-import  { isIdentifier, react, nullLiteral } from '@babel/types';
+import { isIdentifier, nullLiteral, react } from '@babel/types';
 
+import {
+  htmlDOMAttributes,
+  htmlTags,
+  mathmlTags,
+  svgDOMAttributes,
+  svgTags,
+} from '../collections';
 import { type TImportName, ImportSpec } from './ImportSpec';
-import { eventListener } from './events';
+import {
+  $children,
+  $identifier,
+  $jsxExpressionContainer,
+  $objectProperty,
+  $pureAnnotation,
+  $stringLiteral,
+} from './builders';
+import {
+  booleanAttributes,
+  enumerated,
+} from './collections';
 import {
   createDirective,
-  setAttributeCallExp,
   propAssignmentExp,
-  setUtility,
-  setSignalishProp,
+  setAttributeCallExp,
   setSignalishAttr,
+  setSignalishProp,
+  setUtility,
 } from './directives';
+import { eventListener } from './events';
+import {
+  isChildren,
+  isFunctionComponent,
+  isJsxContainerWithBoolean,
+  isRef,
+  isStaticJsxAttributeValue,
+  jsxNode,
+  staticTypes
+} from './guards';
 import {
   buildProps,
   convertJsxAttrValue,
@@ -19,34 +47,6 @@ import {
   convertJsxNamespacedName,
   flattenElements,
 } from './util';
-import {
-  $children,
-  $identifier,
-  $objectProperty,
-  $stringLiteral,
-  $pureAnnotation,
-  $jsxExpressionContainer,
-} from './builders';
-import {
-  enumerated,
-  booleanAttributes,
-} from './collections';
-import {
-  htmlTags,
-  mathmlTags,
-  svgTags,
-  htmlDOMAttributes,
-  svgDOMAttributes,
-} from '../collections';
-import {
-  isRef,
-  isFunctionComponent,
-  isChildren,
-  isJsxContainerWithBoolean,
-  isJsxAttributeLiteralValue,
-  jsxNode,
-  literals,
-} from './guards';
 
 const opts = { name: '_' } as const;
 
@@ -229,7 +229,7 @@ export const jsxTransform: PluginObject = {
             return path.remove();
           case 'attr': {
             const value = convertJsxAttrValue(attrValue);
-            if (literals.has(value.type)) {
+            if (staticTypes.has(value.type)) {
               createDirective(openingElement, setAttributeCallExp(name, value));
             } else {
               setSignalishAttr(openingElement, importSpec.add('setSignalish'), name, value);
@@ -238,7 +238,7 @@ export const jsxTransform: PluginObject = {
           }
           case 'prop': {
             const value = convertJsxAttrValue(attrValue);
-            if (literals.has(value.type)) {
+            if (staticTypes.has(value.type)) {
               createDirective(openingElement, propAssignmentExp(name, value));
             } else {
               setSignalishProp(openingElement, importSpec.add('setSignalish'), name, value);
@@ -260,7 +260,7 @@ export const jsxTransform: PluginObject = {
 
       switch (attrName.name) {
         case 'style': {
-          if (isJsxAttributeLiteralValue(attrValue)) {
+          if (isStaticJsxAttributeValue(attrValue)) {
             return;
           }
 
