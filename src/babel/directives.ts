@@ -1,14 +1,14 @@
 import type * as t from '@babel/types';
-import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import {
+  $arrowFunction,
   $expressionStatement,
   $identifier,
   $jsxExpressionContainer,
   $jsxIdentifier,
   $stringLiteral,
-  $arrowFunction,
 } from './builders';
+import { isIdentifierName } from './guards';
 import { convertJsxAttrValue } from './util';
 
 const cache = new WeakMap<t.JSXOpeningElement, t.ArrowFunctionExpression>();

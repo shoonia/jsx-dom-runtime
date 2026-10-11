@@ -44,3 +44,14 @@ for (let i = 65; i <= 90; i++) charCode.add(i);
 
 export const isFunctionComponent = (name: t.JSXIdentifier): boolean =>
   charCode.has(name.name.charCodeAt(0));
+
+// [:] and [-] character codes
+const cp = new Set([58, 45]);
+export const isIdentifierName = (name: string): boolean => {
+  for (let i = 0; i < name.length; i++) {
+    if (cp.has(name.charCodeAt(i))) {
+      return false;
+    }
+  }
+  return true;
+};

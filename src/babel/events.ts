@@ -1,8 +1,8 @@
 import type * as t from '@babel/types';
-import { isIdentifierName } from '@babel/helper-validator-identifier';
 
 import { $identifier, $jsxExpressionContainer, $jsxIdentifier, $objectProperty, $stringLiteral } from './builders';
 import { eventTypes } from './collections';
+import { isIdentifierName } from './guards';
 
 const cache = new WeakMap<t.JSXOpeningElement, t.ObjectProperty[]>();
 

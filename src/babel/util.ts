@@ -1,7 +1,7 @@
 import * as t from '@babel/types';
-import { isIdentifierName } from '@babel/helper-validator-identifier';
 
-import { $stringLiteral, $identifier, $objectProperty } from './builders';
+import { $identifier, $objectProperty, $stringLiteral } from './builders';
+import { isIdentifierName } from './guards';
 
 export const convertJsxNamespacedName = (node: t.JSXNamespacedName): t.StringLiteral =>
   $stringLiteral(node.namespace.name + ':' + node.name.name);
