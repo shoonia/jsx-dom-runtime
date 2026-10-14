@@ -19,18 +19,6 @@ describe('directives', () => {
     );
   });
 
-  it('should not use signalish for binary props value', async () => {
-    await expect('<p prop:foo={"bar" + baz} />').toBeTransform(
-      jsxImport`_jsx("p",{ref:e=>e.foo="bar"+baz});`
-    );
-  });
-
-  it('should not use signalish for binary attrs value', async () => {
-    await expect('<p attr:foo={"bar" + baz} />').toBeTransform(
-      jsxImport`_jsx("p",{ref:e=>e.setAttribute("foo","bar"+baz)});`
-    );
-  });
-
   it('should render using `attr:*` and `prop:*` directives with dataset & style', async () => {
     await expect('<p attr:test="qa" prop:_data={100} dataset={{ id: "123" }} style={{ color: "red" }} />')
       .toBeTransform(

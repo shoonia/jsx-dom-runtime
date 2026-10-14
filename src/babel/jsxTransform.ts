@@ -36,9 +36,9 @@ import {
   isFunctionComponent,
   isJsxContainerWithBoolean,
   isRef,
+  isStaticExpression,
   isStaticJsxAttributeValue,
   jsxNode,
-  staticTypes
 } from './guards';
 import {
   buildProps,
@@ -229,7 +229,7 @@ export const jsxTransform: PluginObject = {
             return path.remove();
           case 'attr': {
             const value = convertJsxAttrValue(attrValue);
-            if (staticTypes.has(value.type)) {
+            if (isStaticExpression(value)) {
               createDirective(openingElement, setAttributeCallExp(name, value));
             } else {
               setSignalishAttr(openingElement, importSpec.add('setSignalish'), name, value);
@@ -238,7 +238,7 @@ export const jsxTransform: PluginObject = {
           }
           case 'prop': {
             const value = convertJsxAttrValue(attrValue);
-            if (staticTypes.has(value.type)) {
+            if (isStaticExpression(value)) {
               createDirective(openingElement, propAssignmentExp(name, value));
             } else {
               setSignalishProp(openingElement, importSpec.add('setSignalish'), name, value);
