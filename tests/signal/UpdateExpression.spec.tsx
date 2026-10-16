@@ -1,4 +1,4 @@
-import { jsxImport } from "../utils";
+import { jsxImport } from '../utils';
 
 describe('UpdateExpression', () => {
   it('should not use signalish for ++ prefix update operator in prop and attr values', async () => {
