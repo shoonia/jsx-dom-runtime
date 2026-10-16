@@ -20,6 +20,7 @@ const staticTypes = new Set<NodeType>([
   'BigIntLiteral',
   'NullLiteral',
   'UnaryExpression',
+  'UpdateExpression',
 ]);
 
 const binOp = new Set<t.BinaryExpression['operator']>([
