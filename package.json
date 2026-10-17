@@ -16,6 +16,10 @@
       "types": "./index.d.ts",
       "import": "./jsx-runtime/index.js"
     },
+    "./jsx-dev-runtime": {
+      "types": "./index.d.ts",
+      "import": "./jsx-runtime/index.js"
+    },
     "./babel-preset": "./babel-preset/index.js",
     "./eslint-plugin": "./eslint-plugin/index.js",
     "./package.json": "./package.json"
