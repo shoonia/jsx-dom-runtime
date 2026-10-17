@@ -6,11 +6,6 @@ import config from '../../eslint-plugin/index.js';
 
 const rules = config.plugins['jsx-dom-runtime'].rules;
 
-if (typeof globalThis.structuredClone !== 'function') {
-  // @ts-ignore
-  globalThis.structuredClone = (obj: {}) => JSON.parse(JSON.stringify(obj));
-}
-
 export const createRuleTester = (key: string, tests: {
   valid: (string | RuleTester.ValidTestCase)[];
   invalid: RuleTester.InvalidTestCase[];
