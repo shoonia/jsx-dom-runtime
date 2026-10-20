@@ -39,7 +39,8 @@ export const isJsxContainerWithBoolean = (node: t.Node): node is JsxExpdressionC
   node.type === 'JSXExpressionContainer' && node.expression.type === 'BooleanLiteral';
 
 export const isStaticExpression = (node: t.Node): node is t.BinaryExpression =>
-  staticTypes.has(node.type) || node.type === 'BinaryExpression' && binOp.has(node.operator);
+  staticTypes.has(node.type) ||
+  node.type === 'BinaryExpression' && binOp.has(node.operator);
 
 export const isStaticJsxAttributeValue = (node: Nulishable<t.Node>): node is Nulishable<t.JSXExpressionContainer> =>
   node == null ||

@@ -6,7 +6,7 @@ const voidTags = new Set(voidHTMLTags);
 // Tags that are allowed in both HTML and SVG contexts
 const crossTags = new Set(['a', 'script', 'style', 'title']);
 
-export const nonJsxExtensions = new Set(['.ts', '.js', '.cjs', '.mjs']);
+export const nonJsxExtensions = new Set(['.ts', '.cts', '.mts', '.js', '.cjs', '.mjs']);
 
 const isStandardTag = (tag: string) => htmlTags.has(tag) || svgTags.has(tag) || mathmlTags.has(tag);
 
