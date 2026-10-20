@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 /// <reference lib="es2024" />
-import type { Properties, Property } from 'csstype'
+import type { Properties, Property } from 'csstype';
 
 type AnyString = string & {}
 type Booleanish = boolean | 'true' | 'false'
@@ -70,8 +70,8 @@ export declare function jsx<
   children?: JSXChild | JSXChild[]
 ): R
 
-export declare const svgNs: 'http://www.w3.org/2000/svg'
-export declare const mathmlNs: 'http://www.w3.org/1998/Math/MathML'
+export declare const svgNs: 'http://www.w3.org/2000/svg';
+export declare const mathmlNs: 'http://www.w3.org/1998/Math/MathML';
 
 export type SignalListener<T> = (value: T) => void
 
