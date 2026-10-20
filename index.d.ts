@@ -1148,353 +1148,353 @@ declare global {
     interface SVGAttributes<T extends EventTarget> extends HTMLAttributes<T> {
       _?: typeof svgNs
       xmlns?: typeof svgNs
-      href?: string
-      cx?: number | string
-      cy?: number | string
-      fx?: number | string
-      fy?: number | string
-      fr?: string
-      d?: string
+      href?: Signalish<string>
+      cx?: Signalish<number | string>
+      cy?: Signalish<number | string>
+      fx?: Signalish<number | string>
+      fy?: Signalish<number | string>
+      fr?: Signalish<string>
+      d?: Signalish<string>
       /**
        * The `accent-height` attribute defines the distance from the origin to the top of accent characters, measured by a distance within the font coordinate system
        * @deprecated
        */
-      'accent-height'?: Numeric
-      accumulate?: 'none' | 'sum'
-      additive?: 'replace' | 'sum'
-      'alignment-baseline'?: Property.AlignmentBaseline
-      allowReorder?: 'no' | 'yes'
+      'accent-height'?: Signalish<Numeric>
+      accumulate?: Signalish<'none' | 'sum'>
+      additive?: Signalish<'replace' | 'sum'>
+      'alignment-baseline'?: Signalish<Property.AlignmentBaseline>
+      allowReorder?: Signalish<'no' | 'yes'>
       /** @deprecated */
-      alphabetic?: number | string
-      amplitude?: Numeric
+      alphabetic?: Signalish<number | string>
+      amplitude?: Signalish<Numeric>
       /** @deprecated */
-      'arabic-form'?: 'initial' | 'medial' | 'terminal' | 'isolated'
+      'arabic-form'?: Signalish<'initial' | 'medial' | 'terminal' | 'isolated'>
       /**
        * The `ascent` attribute defines the maximum unaccented height of the font within the font coordinate system
        * @deprecated
        */
-      ascent?: Numeric
-      attributeName?: string
+      ascent?: Signalish<Numeric>
+      attributeName?: Signalish<string>
       /** @deprecated */
-      attributeType?: 'CSS' | 'XML' | 'auto'
-      autoReverse?: number | string
-      azimuth?: Numeric
-      baseFrequency?: number | string
-      'baseline-shift'?: Property.BaselineShift
+      attributeType?: Signalish<'CSS' | 'XML' | 'auto'>
+      autoReverse?: Signalish<number | string>
+      azimuth?: Signalish<Numeric>
+      baseFrequency?: Signalish<number | string>
+      'baseline-shift'?: Signalish<Property.BaselineShift>
       /** @deprecated */
-      baseProfile?: number | string
+      baseProfile?: Signalish<number | string>
       /** @deprecated */
-      bbox?: number | string
-      begin?: number | string
-      bias?: Numeric
-      by?: number | string
-      calcMode?: 'discrete' | 'linear' | 'paced' | 'spline'
+      bbox?: Signalish<number | string>
+      begin?: Signalish<number | string>
+      bias?: Signalish<Numeric>
+      by?: Signalish<number | string>
+      calcMode?: Signalish<'discrete' | 'linear' | 'paced' | 'spline'>
       /** @deprecated */
-      'cap-height'?: number | string
+      'cap-height'?: Signalish<number | string>
       /** @deprecated */
-      clip?: Property.Clip
-      'clip-path'?: Property.ClipPath
-      clipPathUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-      'clip-rule'?: Property.ClipRule
-      'color-interpolation'?: Property.ColorInterpolation
-      'color-interpolation-filters'?: Property.ColorInterpolation
+      clip?: Signalish<Property.Clip>
+      'clip-path'?: Signalish<Property.ClipPath>
+      clipPathUnits?: Signalish<'userSpaceOnUse' | 'objectBoundingBox'>
+      'clip-rule'?: Signalish<Property.ClipRule>
+      'color-interpolation'?: Signalish<Property.ColorInterpolation>
+      'color-interpolation-filters'?: Signalish<Property.ColorInterpolation>
       /** @deprecated */
-      'color-profile'?: Property.Color
+      'color-profile'?: Signalish<Property.Color>
       /** @deprecated */
-      'color-rendering'?: Property.ColorRendering
+      'color-rendering'?: Signalish<Property.ColorRendering>
       /** @deprecated */
-      contentScriptType?: 'application/ecmascript' | AnyString
+      contentScriptType?: Signalish<'application/ecmascript' | AnyString>
       /** @deprecated */
-      contentStyleType?: string
-      cursor?: Property.Cursor
-      decelerate?: number | string
-      descent?: number | string
-      diffuseConstant?: Numeric
-      direction?: Property.Direction
-      display?: Property.Display
-      divisor?: number | string
-      'dominant-baseline'?: Property.DominantBaseline
-      dur?: number | string
-      dx?: number | string
-      dy?: number | string
-      edgeMode?: 'duplicate' | 'wrap' | 'none'
-      elevation?: Numeric
+      contentStyleType?: Signalish<string>
+      cursor?: Signalish<Property.Cursor>
+      decelerate?: Signalish<number | string>
+      descent?: Signalish<number | string>
+      diffuseConstant?: Signalish<Numeric>
+      direction?: Signalish<Property.Direction>
+      display?: Signalish<Property.Display>
+      divisor?: Signalish<number | string>
+      'dominant-baseline'?: Signalish<Property.DominantBaseline>
+      dur?: Signalish<number | string>
+      dx?: Signalish<number | string>
+      dy?: Signalish<number | string>
+      edgeMode?: Signalish<'duplicate' | 'wrap' | 'none'>
+      elevation?: Signalish<Numeric>
       /** @deprecated */
-      'enable-background'?: number | string
-      end?: number | string
-      exponent?: Numeric
+      'enable-background'?: Signalish<number | string>
+      end?: Signalish<number | string>
+      exponent?: Signalish<Numeric>
       /** @deprecated */
-      externalResourcesRequired?: 'true' | 'false'
-      fill?: Property.Fill
-      'fill-opacity'?: Property.FillOpacity
-      'fill-rule'?: Property.FillRule
-      filter?: Property.Filter
+      externalResourcesRequired?: Signalish<'true' | 'false'>
+      fill?: Signalish<Property.Fill>
+      'fill-opacity'?: Signalish<Property.FillOpacity>
+      'fill-rule'?: Signalish<Property.FillRule>
+      filter?: Signalish<Property.Filter>
       /** @deprecated */
-      filterRes?: number | string
-      filterUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-      'flood-color'?: Property.FloodColor
-      'flood-opacity'?: Property.FillOpacity
-      focusable?: 'true' | 'false' | 'auto'
-      focusHighlight?: 'auto' | 'none'
-      'font-family'?: Property.FontFamily
-      'font-size'?: Property.FontSize
-      'font-size-adjust'?: Property.FontSizeAdjust
-      'font-stretch'?: Property.FontStretch
-      'font-style'?: Property.FontStyle
-      'font-variant'?: Property.FontVariant
-      'font-weight'?: Property.FontWeight
+      filterRes?: Signalish<number | string>
+      filterUnits?: Signalish<'userSpaceOnUse' | 'objectBoundingBox'>
+      'flood-color'?: Signalish<Property.FloodColor>
+      'flood-opacity'?: Signalish<Property.FillOpacity>
+      focusable?: Signalish<'true' | 'false' | 'auto'>
+      focusHighlight?: Signalish<'auto' | 'none'>
+      'font-family'?: Signalish<Property.FontFamily>
+      'font-size'?: Signalish<Property.FontSize>
+      'font-size-adjust'?: Signalish<Property.FontSizeAdjust>
+      'font-stretch'?: Signalish<Property.FontStretch>
+      'font-style'?: Signalish<Property.FontStyle>
+      'font-variant'?: Signalish<Property.FontVariant>
+      'font-weight'?: Signalish<Property.FontWeight>
       /** @deprecated */
-      format?: string
-      from?: number | string
+      format?: Signalish<string>
+      from?: Signalish<number | string>
       /** @deprecated */
-      g1?: number | string
+      g1?: Signalish<number | string>
       /** @deprecated */
-      g2?: number | string
+      g2?: Signalish<number | string>
       /** @deprecated */
-      'glyph-name'?: string
+      'glyph-name'?: Signalish<string>
       /** @deprecated */
-      'glyph-orientation-horizontal'?: string
+      'glyph-orientation-horizontal'?: Signalish<string>
       /** @deprecated */
-      'glyph-orientation-vertical'?: Property.GlyphOrientationVertical
+      'glyph-orientation-vertical'?: Signalish<Property.GlyphOrientationVertical>
       /** @deprecated */
-      glyphRef?: string
-      gradientTransform?: string
-      gradientUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+      glyphRef?: Signalish<string>
+      gradientTransform?: Signalish<string>
+      gradientUnits?: Signalish<'userSpaceOnUse' | 'objectBoundingBox'>
       /** @deprecated */
-      hanging?: Numeric
+      hanging?: Signalish<Numeric>
       /** @deprecated */
-      'horiz-adv-x'?: Numeric
+      'horiz-adv-x'?: Signalish<Numeric>
       /** @deprecated */
-      'horiz-origin-x'?: Numeric
+      'horiz-origin-x'?: Signalish<Numeric>
       /** @deprecated */
-      'horiz-origin-y'?: Numeric
+      'horiz-origin-y'?: Signalish<Numeric>
       /** @deprecated */
-      ideographic?: Numeric
-      'image-rendering'?: 'auto' | 'optimizeQuality' | 'optimizeSpeed' | 'inherit'
-      in2?: string
-      in?: string
-      intercept?: Numeric
-      k1?: Numeric
-      k2?: Numeric
-      k3?: Numeric
-      k4?: Numeric
+      ideographic?: Signalish<Numeric>
+      'image-rendering'?: Signalish<'auto' | 'optimizeQuality' | 'optimizeSpeed' | 'inherit'>
+      in2?: Signalish<string>
+      in?: Signalish<string>
+      intercept?: Signalish<Numeric>
+      k1?: Signalish<Numeric>
+      k2?: Signalish<Numeric>
+      k3?: Signalish<Numeric>
+      k4?: Signalish<Numeric>
       /** @deprecated */
-      k?: Numeric
-      kernelMatrix?: number | string
+      k?: Signalish<Numeric>
+      kernelMatrix?: Signalish<number | string>
       /** @deprecated */
-      kernelUnitLength?: number | string
+      kernelUnitLength?: Signalish<number | string>
       /** @deprecated */
-      kerning?: number | string
-      keyPoints?: number | string
-      keySplines?: number | string
-      keyTimes?: number | string
-      lang?: string
-      lengthAdjust?: 'spacing' | 'spacingAndGlyphs'
-      'letter-spacing'?: Property.LetterSpacing
-      'lighting-color'?: Property.LightingColor
-      limitingConeAngle?: Numeric
-      marker?: Property.Marker
-      'marker-start'?: Property.MarkerStart
-      'marker-end'?: Property.MarkerEnd
-      'marker-mid'?: Property.MarkerMid
-      markerHeight?: number | string
-      markerUnits?: 'userSpaceOnUse' | 'strokeWidth'
-      markerWidth?: number | string
-      local?: string
-      mask?: Property.Mask
-      maskContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-      maskUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
+      kerning?: Signalish<number | string>
+      keyPoints?: Signalish<number | string>
+      keySplines?: Signalish<number | string>
+      keyTimes?: Signalish<number | string>
+      lang?: Signalish<string>
+      lengthAdjust?: Signalish<'spacing' | 'spacingAndGlyphs'>
+      'letter-spacing'?: Signalish<Property.LetterSpacing>
+      'lighting-color'?: Signalish<Property.LightingColor>
+      limitingConeAngle?: Signalish<Numeric>
+      marker?: Signalish<Property.Marker>
+      'marker-start'?: Signalish<Property.MarkerStart>
+      'marker-end'?: Signalish<Property.MarkerEnd>
+      'marker-mid'?: Signalish<Property.MarkerMid>
+      markerHeight?: Signalish<number | string>
+      markerUnits?: Signalish<'userSpaceOnUse' | 'strokeWidth'>
+      markerWidth?: Signalish<number | string>
+      local?: Signalish<string>
+      mask?: Signalish<Property.Mask>
+      maskContentUnits?: Signalish<'userSpaceOnUse' | 'objectBoundingBox'>
+      maskUnits?: Signalish<'userSpaceOnUse' | 'objectBoundingBox'>
       /** @deprecated */
-      mathematical?: Numeric
-      max?: string
-      min?: string
-      media?: string
-      method?: 'align' | 'stretch'
-      mode?: string
-      name?: string
-      numOctaves?: Numeric
-      offset?: Property.Offset
-      opacity?: Property.Opacity
-      operator?: 'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic' | 'erode' | 'dilate'
-      order?: Property.Order
-      orient?: 'auto' | 'auto-start-reverse' | number | AnyString
+      mathematical?: Signalish<Numeric>
+      max?: Signalish<string>
+      min?: Signalish<string>
+      media?: Signalish<string>
+      method?: Signalish<'align' | 'stretch'>
+      mode?: Signalish<string>
+      name?: Signalish<string>
+      numOctaves?: Signalish<Numeric>
+      offset?: Signalish<Property.Offset>
+      opacity?: Signalish<Property.Opacity>
+      operator?: Signalish<'over' | 'in' | 'out' | 'atop' | 'xor' | 'lighter' | 'arithmetic' | 'erode' | 'dilate'>
+      order?: Signalish<Property.Order>
+      orient?: Signalish<'auto' | 'auto-start-reverse' | number | AnyString>
       /** @deprecated */
-      orientation?: 'h' | 'v'
-      origin?: 'default' | AnyString
-      overflow?: Property.Overflow
-      'overline-position'?: Numeric
-      'overline-thickness'?: Numeric
-      'paint-order'?: Property.PaintOrder
+      orientation?: Signalish<'h' | 'v'>
+      origin?: Signalish<'default' | AnyString>
+      overflow?: Signalish<Property.Overflow>
+      'overline-position'?: Signalish<Numeric>
+      'overline-thickness'?: Signalish<Numeric>
+      'paint-order'?: Signalish<Property.PaintOrder>
       /** @deprecated */
-      'panose-1'?: string
-      path?: string
-      pathLength?: Numeric
-      patternContentUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-      patternTransform?: string
-      patternUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-      'pointer-events'?: Property.PointerEvents
-      points?: string
-      pointsAtX?: Numeric
-      pointsAtY?: Numeric
-      pointsAtZ?: Numeric
-      preserveAlpha?: 'true' | 'false'
-      preserveAspectRatio?: string
-      primitiveUnits?: 'userSpaceOnUse' | 'objectBoundingBox'
-      r?: number | string
-      radius?: number | string
-      refX?: 'left' | 'center' | 'right' | number | AnyString
-      refY?: 'top' | 'center' | 'bottom' | number | AnyString
-      renderingIntent?: number | string
-      repeatCount?: 'indefinite' | Numeric
-      repeatDur?: 'indefinite' | number | AnyString
-      requiredExtensions?: number | string
+      'panose-1'?: Signalish<string>
+      path?: Signalish<string>
+      pathLength?: Signalish<Numeric>
+      patternContentUnits?: Signalish<'userSpaceOnUse' | 'objectBoundingBox'>
+      patternTransform?: Signalish<string>
+      patternUnits?: Signalish<'userSpaceOnUse' | 'objectBoundingBox'>
+      'pointer-events'?: Signalish<Property.PointerEvents>
+      points?: Signalish<string>
+      pointsAtX?: Signalish<Numeric>
+      pointsAtY?: Signalish<Numeric>
+      pointsAtZ?: Signalish<Numeric>
+      preserveAlpha?: Signalish<'true' | 'false'>
+      preserveAspectRatio?: Signalish<string>
+      primitiveUnits?: Signalish<'userSpaceOnUse' | 'objectBoundingBox'>
+      r?: Signalish<number | string>
+      radius?: Signalish<number | string>
+      refX?: Signalish<'left' | 'center' | 'right' | number | AnyString>
+      refY?: Signalish<'top' | 'center' | 'bottom' | number | AnyString>
+      renderingIntent?: Signalish<number | string>
+      repeatCount?: Signalish<'indefinite' | Numeric>
+      repeatDur?: Signalish<'indefinite' | number | AnyString>
+      requiredExtensions?: Signalish<number | string>
       /** @deprecated */
-      requiredFeatures?: string
-      restart?: 'always' | 'whenNotActive' | 'never'
-      result?: string
-      rotate?: Numeric | 'auto' | 'auto-reverse'
-      rx?: 'auto' | number | AnyString
-      ry?: 'auto' | number | AnyString
-      scale?: Numeric
-      seed?: Numeric
-      'shape-rendering'?: Property.ShapeRendering
-      side?: 'left' | 'right'
+      requiredFeatures?: Signalish<string>
+      restart?: Signalish<'always' | 'whenNotActive' | 'never'>
+      result?: Signalish<string>
+      rotate?: Signalish<Numeric | 'auto' | 'auto-reverse'>
+      rx?: Signalish<'auto' | number | AnyString>
+      ry?: Signalish<'auto' | number | AnyString>
+      scale?: Signalish<Numeric>
+      seed?: Signalish<Numeric>
+      'shape-rendering'?: Signalish<Property.ShapeRendering>
+      side?: Signalish<'left' | 'right'>
       /** @deprecated */
-      slope?: Numeric
-      spacing?: 'auto' | 'exact'
-      specularConstant?: Numeric
-      specularExponent?: Numeric
-      speed?: number | string
-      spreadMethod?: 'pad' | 'reflect' | 'repeat'
-      startOffset?: number | string
-      stdDeviation?: number | string
+      slope?: Signalish<Numeric>
+      spacing?: Signalish<'auto' | 'exact'>
+      specularConstant?: Signalish<Numeric>
+      specularExponent?: Signalish<Numeric>
+      speed?: Signalish<number | string>
+      spreadMethod?: Signalish<'pad' | 'reflect' | 'repeat'>
+      startOffset?: Signalish<number | string>
+      stdDeviation?: Signalish<number | string>
       /** @deprecated */
-      stemh?: Numeric
+      stemh?: Signalish<Numeric>
       /** @deprecated */
-      stemv?: Numeric
-      stitchTiles?: 'noStitch' | 'stitch'
-      'stop-color'?: Property.StopColor
-      'stop-opacity'?: Property.StopOpacity
-      'strikethrough-position'?: Numeric
-      'strikethrough-thickness'?: Numeric
+      stemv?: Signalish<Numeric>
+      stitchTiles?: Signalish<'noStitch' | 'stitch'>
+      'stop-color'?: Signalish<Property.StopColor>
+      'stop-opacity'?: Signalish<Property.StopOpacity>
+      'strikethrough-position'?: Signalish<Numeric>
+      'strikethrough-thickness'?: Signalish<Numeric>
       /** @deprecated */
-      string?: number | string
-      stroke?: Property.Stroke
-      'stroke-dasharray'?: Property.StrokeDasharray
-      'stroke-dashoffset'?: Property.StrokeDashoffset
-      'stroke-linecap'?: Property.StrokeLinecap
-      'stroke-linejoin'?: Property.StrokeLinejoin
-      'stroke-miterlimit'?: Property.StrokeMiterlimit
-      'stroke-opacity'?: Property.StrokeOpacity
-      'stroke-width'?: Property.StrokeWidth
-      surfaceScale?: Numeric
-      systemLanguage?: string
-      tabindex?: Numeric
-      tableValues?: number | string
-      target?: Target
-      targetX?: number | string
-      targetY?: number | string
-      'text-anchor'?: Property.TextAnchor
-      'text-decoration'?: Property.TextDecoration
-      'text-rendering'?: Property.TextRendering
-      textLength?: number | string
-      to?: string
-      transform?: Property.Transform
-      'transform-origin'?: Property.TransformOrigin
-      type?: 'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY' | AnyString
+      string?: Signalish<number | string>
+      stroke?: Signalish<Property.Stroke>
+      'stroke-dasharray'?: Signalish<Property.StrokeDasharray>
+      'stroke-dashoffset'?: Signalish<Property.StrokeDashoffset>
+      'stroke-linecap'?: Signalish<Property.StrokeLinecap>
+      'stroke-linejoin'?: Signalish<Property.StrokeLinejoin>
+      'stroke-miterlimit'?: Signalish<Property.StrokeMiterlimit>
+      'stroke-opacity'?: Signalish<Property.StrokeOpacity>
+      'stroke-width'?: Signalish<Property.StrokeWidth>
+      surfaceScale?: Signalish<Numeric>
+      systemLanguage?: Signalish<string>
+      tabindex?: Signalish<Numeric>
+      tableValues?: Signalish<number | string>
+      target?: Signalish<Target>
+      targetX?: Signalish<number | string>
+      targetY?: Signalish<number | string>
+      'text-anchor'?: Signalish<Property.TextAnchor>
+      'text-decoration'?: Signalish<Property.TextDecoration>
+      'text-rendering'?: Signalish<Property.TextRendering>
+      textLength?: Signalish<number | string>
+      to?: Signalish<string>
+      transform?: Signalish<Property.Transform>
+      'transform-origin'?: Signalish<Property.TransformOrigin>
+      type?: Signalish<'translate' | 'scale' | 'rotate' | 'skewX' | 'skewY' | AnyString>
       /** @deprecated */
-      u1?: string
+      u1?: Signalish<string>
       /** @deprecated */
-      u2?: string
-      'underline-position'?: Numeric
-      'underline-thickness'?: Numeric
-      unicode?: string
-      'unicode-bidi'?: Property.UnicodeBidi
+      u2?: Signalish<string>
+      'underline-position'?: Signalish<Numeric>
+      'underline-thickness'?: Signalish<Numeric>
+      unicode?: Signalish<string>
+      'unicode-bidi'?: Signalish<Property.UnicodeBidi>
       /** @deprecated */
-      'unicode-range'?: string
+      'unicode-range'?: Signalish<string>
       /** @deprecated */
-      'units-per-em'?: Numeric
+      'units-per-em'?: Signalish<Numeric>
       /** @deprecated */
-      'v-alphabetic'?: Numeric
+      'v-alphabetic'?: Signalish<Numeric>
       /** @deprecated */
-      'v-hanging'?: Numeric
+      'v-hanging'?: Signalish<Numeric>
       /** @deprecated */
-      'v-ideographic'?: Numeric
+      'v-ideographic'?: Signalish<Numeric>
       /** @deprecated */
-      'v-mathematical'?: Numeric
-      values?: string
-      'vector-effect'?: Property.VectorEffect
+      'v-mathematical'?: Signalish<Numeric>
+      values?: Signalish<string>
+      'vector-effect'?: Signalish<Property.VectorEffect>
       /** @deprecated */
-      version?: '1.0' | '1.1'
+      version?: Signalish<'1.0' | '1.1'>
       /** @deprecated */
-      'vert-adv-y'?: Numeric
+      'vert-adv-y'?: Signalish<Numeric>
       /** @deprecated */
-      'vert-origin-x'?: Numeric
+      'vert-origin-x'?: Signalish<Numeric>
       /** @deprecated */
-      'vert-origin-y'?: Numeric
-      viewBox?: string
+      'vert-origin-y'?: Signalish<Numeric>
+      viewBox?: Signalish<string>
       /** @deprecated */
-      viewTarget?: string
-      visibility?: Property.Visibility
+      viewTarget?: Signalish<string>
+      visibility?: Signalish<Property.Visibility>
       /** @deprecated */
-      widths?: Numeric
-      'word-spacing'?: Property.WordSpacing
-      'writing-mode'?: Property.WritingMode
-      x1?: number | string
-      x2?: number | string
-      x?: number | string
+      widths?: Signalish<Numeric>
+      'word-spacing'?: Signalish<Property.WordSpacing>
+      'writing-mode'?: Signalish<Property.WritingMode>
+      x1?: Signalish<number | string>
+      x2?: Signalish<number | string>
+      x?: Signalish<number | string>
       /** @deprecated */
-      'x-height'?: Numeric
-      xChannelSelector?: 'R' | 'G' | 'B' | 'A'
-      yChannelSelector?: 'R' | 'G' | 'B' | 'A'
+      'x-height'?: Signalish<Numeric>
+      xChannelSelector?: Signalish<'R' | 'G' | 'B' | 'A'>
+      yChannelSelector?: Signalish<'R' | 'G' | 'B' | 'A'>
       /** @deprecated */
-      'xmlns:xlink'?: 'http://www.w3.org/1999/xlink',
+      'xmlns:xlink'?: Signalish<'http://www.w3.org/1999/xlink'>,
       /** @deprecated */
-      'xlink:actuate'?: 'onLoad' | 'onRequest' | 'other' | 'none'
+      'xlink:actuate'?: Signalish<'onLoad' | 'onRequest' | 'other' | 'none'>
       /** @deprecated */
-      'xlink:arcrole'?: string
+      'xlink:arcrole'?: Signalish<string>
       /**
        * SVG 2 removed the need for the `xlink` namespace, so instead of `xlink:href` you should use `href`
        * @deprecated
        */
-      'xlink:href'?: string
+      'xlink:href'?: Signalish<string>
       /** @deprecated */
-      'xlink:show'?: 'new' | 'replace' | 'embed' | 'other' | 'none'
+      'xlink:show'?: Signalish<'new' | 'replace' | 'embed' | 'other' | 'none'>
       /**
        * New content should use a `<title>` child element rather than a `xlink:title` attribute
        * @deprecated
        */
-      'xlink:title'?: string
+      'xlink:title'?: Signalish<string>
       /** @deprecated */
-      'xlink:type'?: 'simple' | 'extended' | 'locator' | 'arc' | 'resource' | 'title' | 'none'
+      'xlink:type'?: Signalish<'simple' | 'extended' | 'locator' | 'arc' | 'resource' | 'title' | 'none'>
       /** @deprecated */
-      'xlink:role'?: string
+      'xlink:role'?: Signalish<string>
       /** @deprecated */
-      'xlink:label'?: string
+      'xlink:label'?: Signalish<string>
       /** @deprecated */
-      'xlink:from'?: string
+      'xlink:from'?: Signalish<string>
       /** @deprecated */
-      'xlink:to'?: string
+      'xlink:to'?: Signalish<string>
       /** @deprecated */
-      'xml:base'?: string
+      'xml:base'?: Signalish<string>
       /**
        * There is also a `lang` attribute (without namespace)
        * @deprecated
        */
-      'xml:lang'?: string
+      'xml:lang'?: Signalish<string>
       /**
        * Instead of using the `xml:space` attribute, use the `white-space` CSS property
        * @deprecated
        */
-      'xml:space'?: 'default' | 'preserve'
-      y1?: number | string
-      y2?: number | string
-      y?: number | string
-      z?: Numeric
+      'xml:space'?: Signalish<'default' | 'preserve'>
+      y1?: Signalish<number | string>
+      y2?: Signalish<number | string>
+      y?: Signalish<number | string>
+      z?: Signalish<Numeric>
       /** @deprecated */
-      zoomAndPan?: 'disable' | 'magnify'
-      height?: number | string
-      width?: number | string
+      zoomAndPan?: Signalish<'disable' | 'magnify'>
+      height?: Signalish<number | string>
+      width?: Signalish<number | string>
     }
 
     interface SVGAnimationElementAttributes<T extends SVGAnimationElement> extends SVGAttributes<T> {
