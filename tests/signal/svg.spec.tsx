@@ -1,7 +1,7 @@
 import { signal } from 'jsx-dom-runtime';
 
 describe('SVG signal', () => {
-  it('renders correctly', () => {
+  it('renders correctly attributes value', () => {
     const one = 'M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z';
     const two = 'M16.59 16.16 12 11.58l-4.59 4.58L6 14.75l6-6 6 6z';
 
@@ -16,5 +16,19 @@ describe('SVG signal', () => {
     expect(svg.firstChild).toHaveAttribute('d', one);
     d.set(two);
     expect(svg.firstChild).toHaveAttribute('d', two);
+  });
+
+  it('renders correctly text content', () => {
+    const text = signal('Hello');
+
+    const svg = (
+      <svg>
+        <text>{text}</text>
+      </svg>
+    ) as Element;
+
+    expect(svg.querySelector('text')).toHaveTextContent('Hello');
+    text.set('World');
+    expect(svg.querySelector('text')).toHaveTextContent('World');
   });
 });

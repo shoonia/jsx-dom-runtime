@@ -1513,30 +1513,30 @@ declare global {
     interface MathMLAttributes extends HTMLAttributes<MathMLElement> {
       _?: typeof mathmlNs
       xmlns?: typeof mathmlNs
-      dir?: DirName
-      displaystyle?: 'true' | 'false'
+      dir?: Signalish<DirName>
+      displaystyle?: Signalish<'true' | 'false'>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/href
        * @deprecated This feature is non-standard
        */
-      href?: string
+      href?: Signalish<string>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathbackground
        * @deprecated
        */
-      mathbackground?: Property.BackgroundColor
+      mathbackground?: Signalish<Property.BackgroundColor>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathcolor
        * @deprecated
        */
-      mathcolor?: Property.Color
+      mathcolor?: Signalish<Property.Color>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Global_attributes/mathsize
        * @deprecated
        */
-      mathsize?: number | string
-      nonce?: string
-      scriptlevel?: number | string
+      mathsize?: Signalish<number | string>
+      nonce?: Signalish<string>
+      scriptlevel?: Signalish<number | string>
     }
 
     interface HTMLAnchorElementAttributes extends HTMLAttributes<HTMLAnchorElement> {
@@ -3414,48 +3414,48 @@ declare global {
     }
 
     interface MathMLAnnotationElementAttributes extends MathMLAttributes {
-      encoding?: string
+      encoding?: Signalish<string>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics#src
        * @deprecated
        */
-      src?: string
+      src?: Signalish<string>
     }
 
     interface MathMLAnnotationXmlElementAttributes extends MathMLAttributes {
-      encoding?: string
+      encoding?: Signalish<string>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/semantics#src
        * @deprecated
        */
-      src?: string
+      src?: Signalish<string>
     }
 
-    interface MathMLMActionElemenAttributes extends MathMLAttributes {
+    interface MathMLMActionElementAttributes extends MathMLAttributes {
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/maction#actiontype
        * @deprecated
        */
-      actiontype?: 'statusline' | 'toggle'
+      actiontype?: Signalish<'statusline' | 'toggle'>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/maction#selection
        * @deprecated
        */
-      selection?: string
+      selection?: Signalish<string>
     }
 
     interface MathMLMathElementAttributes extends MathMLAttributes {
-      display?: 'block' | 'inline'
+      display?: Signalish<'block' | 'inline'>
     }
 
     interface MathMLMEncloseElementAttributes extends MathMLAttributes {
-      notation?: string
+      notation?: Signalish<string>
     }
 
     interface MathMLMFencedElementAttributes extends MathMLAttributes {
-      close?: string
-      open?: string
-      separators?: string
+      close?: Signalish<string>
+      open?: Signalish<string>
+      separators?: Signalish<string>
     }
 
     interface MathMLMFracElementAttributes extends MathMLAttributes {
@@ -3463,13 +3463,13 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfrac#denomalign
        * @deprecated
        */
-      denomalign?: 'center' | 'left' | 'right'
-      linethickness?: string
+      denomalign?: Signalish<'center' | 'left' | 'right'>
+      linethickness?: Signalish<string>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mfrac#numalign
        * @deprecated
        */
-      numalign?: 'center' | 'left' | 'right'
+      numalign?: Signalish<'center' | 'left' | 'right'>
     }
 
     interface MathMLMiElementAttributes extends MathMLAttributes {
@@ -3477,7 +3477,7 @@ declare global {
        * The only value allowed in the current specification is normal (case insensitive)
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mi#mathvariant
        */
-      mathvariant?:
+      mathvariant?: Signalish<
       | 'normal'
       | 'bold'
       | 'italic'
@@ -3496,6 +3496,7 @@ declare global {
       | 'tailed'
       | 'looped'
       | 'stretched'
+      >
     }
 
     interface MathMLMmultiScriptsElementAttributes extends MathMLAttributes {
@@ -3503,12 +3504,12 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mmultiscripts#subscriptshift
        * @deprecated
        */
-      subscriptshift?: string
+      subscriptshift?: Signalish<string>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mmultiscripts#superscriptshift
        * @deprecated
        */
-      superscriptshift?: string
+      superscriptshift?: Signalish<string>
     }
 
     interface MathMLMOElementAttributes extends MathMLAttributes {
@@ -3516,29 +3517,29 @@ declare global {
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mo#accent
        */
-      accent?: 'true' | 'false'
-      fence?: 'true' | 'false'
-      largeop?: 'true' | 'false'
-      lspace?: string
-      maxsize?: string
-      minsize?: string
-      movablelimits?: 'true' | 'false'
-      rspace?: string
-      separator?: 'true' | 'false'
-      stretchy?: 'true' | 'false'
-      symmetric?: 'true' | 'false'
+      accent?: Signalish<'true' | 'false'>
+      fence?: Signalish<'true' | 'false'>
+      largeop?: Signalish<'true' | 'false'>
+      lspace?: Signalish<string>
+      maxsize?: Signalish<string>
+      minsize?: Signalish<string>
+      movablelimits?: Signalish<'true' | 'false'>
+      rspace?: Signalish<string>
+      separator?: Signalish<'true' | 'false'>
+      stretchy?: Signalish<'true' | 'false'>
+      symmetric?: Signalish<'true' | 'false'>
     }
 
     interface MathMLMOverElementAttributes extends MathMLAttributes {
-      accent?: 'true' | 'false'
+      accent?: Signalish<'true' | 'false'>
     }
 
     interface MathMLMPaddedElementAttributes extends MathMLAttributes {
-      depth?: string
-      height?: string
-      lspace?: string
-      voffset?: string
-      width?: string
+      depth?: Signalish<string>
+      height?: Signalish<string>
+      lspace?: Signalish<string>
+      voffset?: Signalish<string>
+      width?: Signalish<string>
     }
 
     interface MathMLMSElementAttributes extends MathMLAttributes {
@@ -3546,12 +3547,12 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/ms#browser_compatibility
        * @deprecated
        */
-      lquote?: string
+      lquote?: Signalish<string>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/ms#browser_compatibility
        * @deprecated
        */
-      rquote?: string
+      rquote?: Signalish<string>
     }
 
     interface MathMLMStyleElementAttributes extends MathMLAttributes {
@@ -3559,37 +3560,37 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#background
        * @deprecated
        */
-      background?: Property.BackgroundColor
+      background?: Signalish<Property.BackgroundColor>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#color
        * @deprecated
        */
-      color?: Property.Color
+      color?: Signalish<Property.Color>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#fontsize
        * @deprecated
        */
-      fontsize?: Property.FontSize
+      fontsize?: Signalish<Property.FontSize>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#fontstyle
        * @deprecated
        */
-      fontstyle?: Property.FontStyle
+      fontstyle?: Signalish<Property.FontStyle>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#fontweight
        * @deprecated
        */
-      fontweight?: Property.FontWeight
+      fontweight?: Signalish<Property.FontWeight>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#scriptminsize
        * @deprecated
        */
-      scriptminsize?: string
+      scriptminsize?: Signalish<string>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mstyle#scriptsizemultiplier
        * @deprecated
        */
-      scriptsizemultiplier?: string
+      scriptsizemultiplier?: Signalish<string>
     }
 
     interface MathMLMSubElementAttributes extends MathMLAttributes {
@@ -3597,7 +3598,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msub#subscriptshift
        * @deprecated
        */
-      subscriptshift?: string
+      subscriptshift?: Signalish<string>
     }
 
     interface MathMLMSubsupElementAttributes extends MathMLAttributes {
@@ -3605,12 +3606,12 @@ declare global {
        *  @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msubsup#subscriptshift
        *  @deprecated
        */
-      subscriptshift?: string
+      subscriptshift?: Signalish<string>
       /**
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msubsup#superscriptshift
        * @deprecated
        */
-      superscriptshift?: string
+      superscriptshift?: Signalish<string>
     }
 
     interface MathMLMSupElementAttributes extends MathMLAttributes {
@@ -3618,7 +3619,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/msup#superscriptshift
        * @deprecated
        */
-      superscriptshift?: string
+      superscriptshift?: Signalish<string>
     }
 
     interface MathMLMTableElementAttributes extends MathMLAttributes {
@@ -3626,67 +3627,67 @@ declare global {
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#align
        */
-      align?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString
+      align?: Signalish<'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnalign
        */
-      columnalign?: 'center' | 'left' | 'right' | AnyString
+      columnalign?: Signalish<'center' | 'left' | 'right' | AnyString>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnlines
        */
-      columnlines?: 'dashed' | 'none' | 'solid' | AnyString
+      columnlines?: Signalish<'dashed' | 'none' | 'solid' | AnyString>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#columnspacing
        */
-      columnspacing?: string
+      columnspacing?: Signalish<string>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#frame
        */
-      frame?: 'dashed' | 'none' | 'solid'
+      frame?: Signalish<'dashed' | 'none' | 'solid'>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#framespacing
        */
-      framespacing?: string
+      framespacing?: Signalish<string>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowalign
        */
-      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString
+      rowalign?: Signalish<'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowlines
        */
-      rowlines?: 'dashed' | 'none' | 'solid' | AnyString
+      rowlines?: Signalish<'dashed' | 'none' | 'solid' | AnyString>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#rowspacing
        */
-      rowspacing?: string
+      rowspacing?: Signalish<string>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtable#width
        */
-      width?: string
+      width?: Signalish<string>
     }
 
     interface MathMLMTdElementAttributes extends MathMLAttributes {
-      columnspan?: Numeric
-      rowspan?: Numeric
+      columnspan?: Signalish<Numeric>
+      rowspan?: Signalish<Numeric>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtd#columnalign
        */
-      columnalign?: 'center' | 'left' | 'right' | AnyString
+      columnalign?: Signalish<'center' | 'left' | 'right' | AnyString>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtd#rowalign
        */
-      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString
+      rowalign?: Signalish<'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString>
     }
 
     interface MathMLMTrElementAttributes extends MathMLAttributes {
@@ -3694,21 +3695,21 @@ declare global {
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtr#columnalign
        */
-      columnalign?: 'center' | 'left' | 'right' | AnyString
+      columnalign?: Signalish<'center' | 'left' | 'right' | AnyString>
       /**
        * Non-standard attribute
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/mtr#rowalign
        */
-      rowalign?: 'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString
+      rowalign?: Signalish<'axis' | 'baseline' | 'bottom' | 'center' | 'top' | AnyString>
     }
 
     interface MathMLMUnderElementAttributes extends MathMLAttributes {
-      accentunder?: 'true' | 'false'
+      accentunder?: Signalish<'true' | 'false'>
     }
 
     interface MathMLMUnderoverElementAttributes extends MathMLAttributes {
-      accent?: 'true' | 'false'
-      accentunder?: 'true' | 'false'
+      accent?: Signalish<'true' | 'false'>
+      accentunder?: Signalish<'true' | 'false'>
     }
 
     interface IntrinsicElements {
@@ -3954,7 +3955,7 @@ declare global {
        * @see https://developer.mozilla.org/en-US/docs/Web/MathML/Element/maction
        * @deprecated
        */
-      maction: MathMLMActionElemenAttributes
+      maction: MathMLMActionElementAttributes
       math: MathMLMathElementAttributes
       /**
        * This feature is non-standard
