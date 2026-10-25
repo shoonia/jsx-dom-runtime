@@ -72,6 +72,7 @@ export declare function jsx<
 
 export declare const svgNs: 'http://www.w3.org/2000/svg';
 export declare const mathmlNs: 'http://www.w3.org/1998/Math/MathML';
+export declare const __signalish: unique symbol;
 
 export type SignalListener<T> = (value: T) => void
 
@@ -80,7 +81,7 @@ export interface Signal<T> {
   set(val: T): void
   on(fn: SignalListener<T>): () => boolean
 
-  readonly [_s: symbol]: symbol
+  readonly [_s: typeof __signalish]: typeof __signalish
   _a(name: string): Attr
   _t(): Text
 }

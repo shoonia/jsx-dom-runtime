@@ -1,7 +1,7 @@
-import { _s } from './_s';
+import { __signalish } from './__signalish';
 
 export const setSignalish = (value, fn) =>
-  value?.[_s] ? value.on(fn) : fn(value);
+  value?.[__signalish] ? value.on(fn) : fn(value);
 
 export const setStyle = (node, value) =>
   setSignalish(value, (val) => {

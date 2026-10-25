@@ -1,5 +1,5 @@
 import type { Signal, SignalListener } from '../index';
-import { _s } from './_s';
+import { __signalish } from './__signalish';
 
 export const signal = (value: any = ''): Signal<any> => {
   let subs = new Set<SignalListener<any>>();
@@ -20,7 +20,7 @@ export const signal = (value: any = ''): Signal<any> => {
       for (val of subs) val(value);
     },
 
-    [_s]: _s,
+    [__signalish]: __signalish,
 
     _a(name: string) {
       const attr = document.createAttribute(name);
