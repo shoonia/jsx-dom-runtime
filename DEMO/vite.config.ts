@@ -31,11 +31,6 @@ export default defineConfig(({ mode }): UserConfig => {
           : '[name]__[local]___[hash:base64:5]',
       },
     },
-    optimizeDeps: {
-      rolldownOptions: {
-        transform: { jsx: 'preserve', target: 'esnext' },
-      },
-    },
     oxc: {
       jsx: 'preserve',
       target: 'esnext',
