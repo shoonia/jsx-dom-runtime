@@ -81,7 +81,7 @@ export interface Signal<T> {
   set(val: T): void
   on(fn: SignalListener<T>): () => boolean
 
-  readonly [_s: typeof __signalish]: typeof __signalish
+  readonly [__signalish: symbol]: symbol
   _a(name: string): Attr
   _t(): Text
 }
